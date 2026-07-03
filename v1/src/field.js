@@ -13,6 +13,15 @@ function smoothstep(v) {
   return v * v * (3 - 2 * v);
 }
 
+/* Warp sweep progress 0..1 -> 0..1: same endpoints (loop timing preserved) but
+   the front speeds up and slows down across the pass instead of a constant
+   glide. Two sine terms give an organic, uneven cadence; amplitudes are kept
+   small enough that the curve stays monotonic (the front never reverses). */
+function easeWarp(p) {
+  p = Math.max(0, Math.min(1, p));
+  return p + 0.08 * Math.sin(p * Math.PI * 2) + 0.03 * Math.sin(p * Math.PI * 4);
+}
+
 function makeDust(n, w, h) {
   const d = [];
   for (let i = 0; i < n; i++) {
@@ -109,15 +118,20 @@ export function createField(canvas) {
     drawDust(ctx, dust, t);
 
     const tt = t % period;
-    const xBuild = -LEADIN + Math.min(tt, buildDur) * SPD;
-    const xTear = -LEADIN + Math.max(0, tt - buildDur - HOLD) * SPD;
+    // Progress through the build and tear passes (0..1 over buildDur each),
+    // warped so the front's pace varies instead of advancing at a fixed SPD.
+    // span === buildDur * SPD, so the warped endpoints match the old linear ones.
+    const buildP = Math.min(tt, buildDur) / buildDur;
+    const tearP = Math.max(0, tt - buildDur - HOLD) / buildDur;
+    const xBuild = -LEADIN + easeWarp(buildP) * span;
+    const xTear = -LEADIN + easeWarp(tearP) * span;
 
     const resolvedAmt = (p) => {
       const o = waveFront(p.gy, t);
       return smoothstep((xBuild + o - p.gx) / 180) * (1 - smoothstep((xTear + o - p.gx) / 180));
     };
 
-    ctx.strokeStyle = 'rgba(255,255,255,0.055)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.075)';
     ctx.lineWidth = 1;
     for (const row of grid) {
       ctx.beginPath();
@@ -151,14 +165,14 @@ export function createField(canvas) {
       const x = p.sx + (p.gx - p.sx) * r + jx;
       const y = p.sy + (p.gy - p.sy) * r + jy;
       if (p.yel && r > 0.5) {
-        ctx.globalAlpha = 0.6 * r;
+        ctx.globalAlpha = 0.72 * r;
         ctx.strokeStyle = YEL;
         ctx.beginPath();
         ctx.moveTo(x - 5, y); ctx.lineTo(x + 5, y);
         ctx.moveTo(x, y - 5); ctx.lineTo(x, y + 5);
         ctx.stroke();
       } else {
-        ctx.globalAlpha = 0.24 + 0.18 * r;
+        ctx.globalAlpha = 0.32 + 0.22 * r;
         ctx.fillStyle = '#fff';
         ctx.fillRect(x, y, 1.7 + r, 1.7 + r);
       }
