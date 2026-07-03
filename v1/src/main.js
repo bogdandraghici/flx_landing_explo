@@ -118,6 +118,23 @@ input.addEventListener('input', () => {
   sizeInput();
 });
 
+/* the whole terminal reads as one field — clicking anywhere in it focuses the
+   input (the input is only as wide as its text, so most of the strip is dead
+   space otherwise). don't steal focus when the click was on the compile button
+   or a text selection. */
+term.addEventListener('mousedown', (e) => {
+  if (input.disabled || e.target.closest('button') || e.target === input) return;
+  if (window.getSelection && String(window.getSelection())) return;
+  e.preventDefault();
+  input.focus({ preventScroll: true });
+});
+
+/* focused on load so you can start typing immediately (desktop only — avoid
+   popping the mobile keyboard; preventScroll keeps the hero in place). */
+if (matchMedia('(pointer: fine)').matches) {
+  input.focus({ preventScroll: true });
+}
+
 document.querySelectorAll('.hint').forEach((btn) => {
   btn.addEventListener('click', () => {
     input.value = btn.dataset.hint;
