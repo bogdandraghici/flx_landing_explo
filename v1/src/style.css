@@ -182,6 +182,7 @@ em { font-style: normal; }
   position: relative;
   min-height: 100dvh;
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* cap the track to the viewport so wide content (the text-sized terminal input) can't blow the hero out on mobile */
   align-content: center;
   overflow: clip;
 }
@@ -870,6 +871,10 @@ em { font-style: normal; }
   .router__line { min-width: 24px; }
   .hero__foot-right { display: none; }
   .term__ver { display: none; }
+  /* stack the compile button below the input so the (auto-writing) input gets
+     the full row width instead of being squeezed to a few characters */
+  .term__form { flex-wrap: wrap; }
+  .term__go { flex-basis: 100%; width: 100%; margin-top: 2px; }
 }
 
 /* ============================================================

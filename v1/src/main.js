@@ -95,7 +95,13 @@ function sizeInput() {
   inputGhost.style.fontWeight = cs.fontWeight;
   inputGhost.style.letterSpacing = cs.letterSpacing;
   inputGhost.textContent = input.value || input.placeholder || '';
-  input.style.width = Math.ceil(inputGhost.getBoundingClientRect().width) + 1 + 'px';
+  const textW = Math.ceil(inputGhost.getBoundingClientRect().width) + 1;
+  // never exceed the space left in the field (minus the trailing caret), so a
+  // long placeholder can't push the caret off-screen or widen the layout
+  const field = input.closest('.term__field');
+  const caret = field ? field.querySelector('.term__caret') : null;
+  const avail = field ? field.clientWidth - (caret ? caret.offsetWidth : 0) - 4 : textW;
+  input.style.width = Math.max(1, Math.min(textW, avail)) + 'px';
 }
 
 const PLACEHOLDERS = [
