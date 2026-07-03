@@ -20,7 +20,7 @@ let bgInstance = null;
 let bgMode = null;
 
 function setHeroBg(mode) {
-  if (!BG_MODES[mode]) mode = 'sweep';
+  if (!BG_MODES[mode]) mode = 'field';
   if (mode === bgMode) return;
   bgInstance?.destroy?.();
   bgMode = mode;
@@ -34,8 +34,8 @@ function setHeroBg(mode) {
 }
 
 if (canvas) {
-  let initial = 'sweep';
-  try { initial = localStorage.getItem(BG_KEY) || 'sweep'; } catch {}
+  let initial = 'field';
+  try { initial = localStorage.getItem(BG_KEY) || 'field'; } catch {}
   setHeroBg(initial);
   document.querySelectorAll('[data-bg-opt]').forEach((btn) => {
     btn.addEventListener('click', () => setHeroBg(btn.dataset.bgOpt));

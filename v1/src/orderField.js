@@ -44,18 +44,22 @@ export function createOrderField(canvas) {
 
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   const GAP = 44; // lattice spacing
-  const CORE = 90; // radius the cursor orders within (full at <30, none at >90)
-  const CREEP = 0.03; // per-second autonomous "priming" gain, independent of cursor
+  const CORE = 110; // radius the cursor orders within (full at <50, none at >110)
+  const CREEP = 0.045; // per-second autonomous "priming" gain, independent of cursor
   const CREEP_CAP = 0.45; // creep alone can only prime this far (below connect 0.55)
-  const NUCLEATION = 0.55; // expected spontaneous seeds per second
+  const NUCLEATION = 1.1; // expected spontaneous seeds per second
 
   let w = 0, h = 0, cols = 0, dots = [];
   const mouse = { x: -1e4, y: -1e4, active: false };
 
   function buildDots() {
     dots = [];
-    for (let y = GAP / 2; y < h; y += GAP) {
-      for (let x = GAP / 2; x < w; x += GAP) {
+    // centre the lattice on the viewport so a column/row sits dead-centre —
+    // this lines the centred 880px (= 20·GAP) terminal's edges up with columns
+    const sx = (((w / 2) % GAP) + GAP) % GAP;
+    const sy = (((h / 2) % GAP) + GAP) % GAP;
+    for (let y = sy; y < h; y += GAP) {
+      for (let x = sx; x < w; x += GAP) {
         dots.push({
           hx: x, hy: y,
           cx: x + (Math.random() - 0.5) * 150,
@@ -66,8 +70,8 @@ export function createOrderField(canvas) {
       }
     }
     cols = 0;
-    const y0 = dots.length ? dots[0].hy : 0;
-    for (const d of dots) { if (d.hy !== y0) break; cols++; }
+    const firstY = dots.length ? dots[0].hy : 0;
+    for (const d of dots) { if (d.hy !== firstY) break; cols++; }
   }
 
   function layout() {
@@ -80,6 +84,10 @@ export function createOrderField(canvas) {
   }
   layout();
 
+  // vertical fade: the grid is dim at the top and ramps to full toward the
+  // bottom (based on each dot's home row, so it doesn't flicker with wobble)
+  const vfade = (y) => 0.22 + 0.78 * Math.max(0, Math.min(1, y / h));
+
   function render() {
     const ctx2 = ctx;
     ctx2.lineWidth = 1;
@@ -90,7 +98,7 @@ export function createOrderField(canvas) {
       const down = dots[i + cols] || null;
       for (const n2 of [right, down]) {
         if (!n2 || n2.o < 0.55) continue;
-        const a = (d.o - 0.55) * (n2.o - 0.55) * 4.9 * 0.17;
+        const a = (d.o - 0.55) * (n2.o - 0.55) * 4.9 * 0.17 * vfade((d.hy + n2.hy) / 2);
         if (a <= 0.005) continue;
         ctx2.strokeStyle = rgba(LINE, a);
         ctx2.beginPath();
@@ -101,7 +109,7 @@ export function createOrderField(canvas) {
     }
     for (const d of dots) {
       const col = mix(DOT_LO, DOT_HI, d.o);
-      ctx2.fillStyle = rgba(col, 0.15 + d.o * 0.38);
+      ctx2.fillStyle = rgba(col, (0.15 + d.o * 0.38) * vfade(d.hy));
       ctx2.beginPath();
       ctx2.arc(d.px, d.py, 0.5 + d.o * 0.5, 0, 6.2832);
       ctx2.fill();
@@ -111,8 +119,8 @@ export function createOrderField(canvas) {
   function draw(t, dt) {
     ctx.clearRect(0, 0, w, h);
 
-    const grow = Math.min(1, dt * 2.2); // cursor/nucleus seeds order at this rate
-    const spread = Math.min(1, dt * 0.7); // the front advances one ring at a time
+    const grow = Math.min(1, dt * 4.5); // cursor/nucleus seeds order at this rate
+    const spread = Math.min(1, dt * 1.35); // the front advances one ring at a time
     const creep = dt * CREEP; // priming gain toward the dim disconnected floor
 
     // spontaneous nucleation: occasionally a dot in a still-disordered patch
