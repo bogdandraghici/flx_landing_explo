@@ -4,14 +4,43 @@ import '@fontsource-variable/geist-mono';
 import './style.css';
 
 import { createField } from './field.js';
+import { createOrderField } from './orderField.js';
 import { classify, renderDiagram, specText, typeSpec } from './blueprint.js';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (sel) => document.querySelector(sel);
 
 /* ================= hero field ================= */
+/* Two background animations, switchable from the nav toggle. Choice persists
+   across reloads; 'sweep' (the grid-resolve field) is the default. */
 const canvas = $('#field');
-if (canvas) createField(canvas);
+const BG_KEY = 'flx-hero-bg';
+const BG_MODES = { sweep: createField, field: createOrderField };
+let bgInstance = null;
+let bgMode = null;
+
+function setHeroBg(mode) {
+  if (!BG_MODES[mode]) mode = 'sweep';
+  if (mode === bgMode) return;
+  bgInstance?.destroy?.();
+  bgMode = mode;
+  bgInstance = BG_MODES[mode](canvas);
+  document.querySelectorAll('[data-bg-opt]').forEach((b) => {
+    const on = b.dataset.bgOpt === mode;
+    b.classList.toggle('is-on', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+  try { localStorage.setItem(BG_KEY, mode); } catch {}
+}
+
+if (canvas) {
+  let initial = 'sweep';
+  try { initial = localStorage.getItem(BG_KEY) || 'sweep'; } catch {}
+  setHeroBg(initial);
+  document.querySelectorAll('[data-bg-opt]').forEach((btn) => {
+    btn.addEventListener('click', () => setHeroBg(btn.dataset.bgOpt));
+  });
+}
 
 /* ================= nav ================= */
 const nav = $('#nav');

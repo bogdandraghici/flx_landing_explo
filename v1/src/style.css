@@ -119,6 +119,32 @@ em { font-style: normal; }
   white-space: nowrap;
 }
 
+/* minimal switch: toggles the two hero background animations */
+.bgtoggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+}
+.bgtoggle__opt {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  padding: 4px 11px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.bgtoggle__opt:hover { color: var(--text-dim); }
+.bgtoggle__opt.is-on {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.07);
+}
+
 /* ============================================================
    BUTTONS
    ============================================================ */
@@ -836,7 +862,7 @@ em { font-style: normal; }
   .section__head { grid-template-columns: 1fr; gap: 16px; }
 }
 @media (max-width: 760px) {
-  .nav__links, .nav__cert { display: none; }
+  .nav__links, .nav__cert, .bgtoggle { display: none; }
   .why__row { grid-template-columns: 40px 1fr; }
   .why__fix { grid-column: 2; }
   .stats__row { grid-template-columns: 1fr; gap: 8px; align-items: start; }
