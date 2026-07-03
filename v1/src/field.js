@@ -82,6 +82,10 @@ export function createField(canvas) {
   const SPD = 120; // px/s sweep speed
   const HOLD = 1.8; // seconds fully resolved
   const REST = 1.2; // seconds fully torn down
+  const LEADIN = 400; // px the resolve front starts off-screen to the left
+  // Skip the empty lead-in on load so dots start organizing right away — the
+  // sweep begins already entering the viewport instead of 400px+ off-screen.
+  const PREROLL = (LEADIN + 120) / SPD; // seconds of phase head-start
 
   let w = 0, h = 0, grid = [], pts = [], dust = [];
   let span = 0, buildDur = 0, period = 0;
@@ -105,8 +109,8 @@ export function createField(canvas) {
     drawDust(ctx, dust, t);
 
     const tt = t % period;
-    const xBuild = -400 + Math.min(tt, buildDur) * SPD;
-    const xTear = -400 + Math.max(0, tt - buildDur - HOLD) * SPD;
+    const xBuild = -LEADIN + Math.min(tt, buildDur) * SPD;
+    const xTear = -LEADIN + Math.max(0, tt - buildDur - HOLD) * SPD;
 
     const resolvedAmt = (p) => {
       const o = waveFront(p.gy, t);
@@ -170,7 +174,7 @@ export function createField(canvas) {
   function frame(now) {
     raf = requestAnimationFrame(frame);
     if (t0 === null) t0 = now;
-    draw((now - t0) / 1000);
+    draw((now - t0) / 1000 + PREROLL);
   }
   function start() {
     if (running || reduceMotion) return;
