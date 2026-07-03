@@ -71,9 +71,11 @@
             <p class="term__ask"><span class="amber">▸</span> what should your first agent do?</p>
             <form class="term__form" id="termForm" autocomplete="off">
               <label class="term__prompt" for="termInput">$</label>
-              <input class="term__input" id="termInput" name="usecase" type="text" spellcheck="false"
-                     placeholder="" aria-label="Describe your use case" maxlength="120" />
-              <span class="term__caret" aria-hidden="true"></span>
+              <span class="term__field">
+                <input class="term__input" id="termInput" name="usecase" type="text" spellcheck="false"
+                       placeholder="" aria-label="Describe your use case" maxlength="120" />
+                <span class="term__caret" aria-hidden="true"></span>
+              </span>
               <button class="term__go" type="submit" aria-label="Compile blueprint">compile ↵</button>
             </form>
             <div class="term__log" id="termLog" aria-live="polite"></div>

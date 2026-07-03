@@ -53,6 +53,22 @@ const form = $('#termForm');
 const input = $('#termInput');
 const log = $('#termLog');
 
+/* size the input to its text so the block caret trails the end, like a real terminal */
+const inputGhost = document.createElement('span');
+inputGhost.setAttribute('aria-hidden', 'true');
+inputGhost.style.cssText =
+  'position:absolute;left:-9999px;top:0;white-space:pre;visibility:hidden;pointer-events:none';
+document.body.appendChild(inputGhost);
+function sizeInput() {
+  const cs = getComputedStyle(input);
+  inputGhost.style.fontFamily = cs.fontFamily;
+  inputGhost.style.fontSize = cs.fontSize;
+  inputGhost.style.fontWeight = cs.fontWeight;
+  inputGhost.style.letterSpacing = cs.letterSpacing;
+  inputGhost.textContent = input.value || input.placeholder || '';
+  input.style.width = Math.ceil(inputGhost.getBoundingClientRect().width) + 1 + 'px';
+}
+
 const PLACEHOLDERS = [
   'automate KYC onboarding for retail customers',
   'triage motor insurance claims end to end',
@@ -65,6 +81,7 @@ let phTimer = 0;
 function cyclePlaceholder() {
   if (reduceMotion) {
     input.placeholder = PLACEHOLDERS[0];
+    sizeInput();
     return;
   }
   let pi = 0, ci = 0, deleting = false;
@@ -76,6 +93,7 @@ function cyclePlaceholder() {
         deleting = true;
         phTimer = setTimeout(tick, 2100);
         input.placeholder = full;
+        sizeInput();
         return;
       }
     } else {
@@ -87,20 +105,24 @@ function cyclePlaceholder() {
       }
     }
     input.placeholder = full.slice(0, ci);
+    sizeInput();
     phTimer = setTimeout(tick, deleting ? 22 : 38 + Math.random() * 40);
   };
   tick();
 }
+sizeInput();
 cyclePlaceholder();
 
 input.addEventListener('input', () => {
   term.classList.toggle('has-text', input.value.trim().length > 0);
+  sizeInput();
 });
 
 document.querySelectorAll('.hint').forEach((btn) => {
   btn.addEventListener('click', () => {
     input.value = btn.dataset.hint;
     term.classList.add('has-text');
+    sizeInput();
     input.focus();
     form.requestSubmit();
   });
@@ -200,6 +222,7 @@ form.addEventListener('submit', (e) => {
 
 $('#bpAgain').addEventListener('click', () => {
   input.value = '';
+  sizeInput();
   term.classList.remove('has-text');
   log.innerHTML = '';
   document.getElementById('hero').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
