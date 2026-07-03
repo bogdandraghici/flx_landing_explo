@@ -113,7 +113,7 @@ export function createField(canvas) {
       return smoothstep((xBuild + o - p.gx) / 180) * (1 - smoothstep((xTear + o - p.gx) / 180));
     };
 
-    ctx.strokeStyle = 'rgba(255,255,255,0.032)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.055)';
     ctx.lineWidth = 1;
     for (const row of grid) {
       ctx.beginPath();
@@ -147,16 +147,16 @@ export function createField(canvas) {
       const x = p.sx + (p.gx - p.sx) * r + jx;
       const y = p.sy + (p.gy - p.sy) * r + jy;
       if (p.yel && r > 0.5) {
-        ctx.globalAlpha = 0.5 * r;
+        ctx.globalAlpha = 0.6 * r;
         ctx.strokeStyle = YEL;
         ctx.beginPath();
         ctx.moveTo(x - 5, y); ctx.lineTo(x + 5, y);
         ctx.moveTo(x, y - 5); ctx.lineTo(x, y + 5);
         ctx.stroke();
       } else {
-        ctx.globalAlpha = 0.16 + 0.14 * r;
+        ctx.globalAlpha = 0.24 + 0.18 * r;
         ctx.fillStyle = '#fff';
-        ctx.fillRect(x, y, 1.5 + r, 1.5 + r);
+        ctx.fillRect(x, y, 1.7 + r, 1.7 + r);
       }
     }
 
