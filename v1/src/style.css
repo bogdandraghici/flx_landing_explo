@@ -450,6 +450,13 @@ em { font-style: normal; }
   font-size: 16.5px;
   color: var(--text-dim);
 }
+/* platform headline sits on a single line on desktop (wraps again <1080px,
+   where the head stacks full-width and one line no longer fits) */
+.section--platform .h2 {
+  max-width: none;
+  white-space: nowrap;
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+}
 
 /* ============================================================
    BLUEPRINT
@@ -870,6 +877,7 @@ em { font-style: normal; }
   .why__left { position: static; }
   .plat__cell, .plat__cell--wide { grid-column: span 12; }
   .section__head { grid-template-columns: 1fr; gap: 16px; }
+  .section--platform .h2 { white-space: normal; }
 }
 @media (max-width: 760px) {
   .nav__links, .nav__cert, .bgtoggle { display: none; }
