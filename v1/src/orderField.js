@@ -49,8 +49,72 @@ export function createOrderField(canvas) {
   const CREEP_CAP = 0.45; // creep alone can only prime this far (below connect 0.55)
   const NUCLEATION = 1.1; // expected spontaneous seeds per second
 
+  // twinkle pulse: every so often a settled dot lights up and the glint ripples
+  // outward to its lattice neighbours ring by ring, with a short delay per ring
+  // and fading as it spreads — a slow, sophisticated pulse rather than isolated
+  // sparkles. Only dots at or above the dim floor carry a pulse, so it plays
+  // across the ambient grid without needing the field to fully crystallize.
+  const PULSE = 0.9; // expected pulses/sec across the whole field
+  const TW_DUR = 1.1; // seconds each dot's glint lasts (ease in and out)
+  const TW_AMP = 0.68; // peak added brightness at the pulse origin
+  const TW_GATE = 0.32; // dots at least this ordered can light (the dim floor up)
+  const RING_DELAY = 0.3; // delay before a pulse reaches the next ring out
+  const RING_DECAY = 0.82; // brightness falloff per ring (the ripple dies out)
+  const MAX_RING = 5; // rings the pulse travels before it stops
+
+  // ---- spherical projection -----------------------------------------------
+  // The flat lattice is warped so it reads as the inner wall of a huge sphere
+  // we're sitting inside: rows and columns bow into arcs, the cell size swells
+  // toward the point we face (screen centre) and compresses toward the curving
+  // rim, and a depth shade dims/shrinks the periphery so it recedes. It's a
+  // barrel (fisheye) map — the corners stay pinned so the field still fills the
+  // viewport. SPHERE scales the whole effect (0 = flat), FOVA is the half-angle
+  // of the projection (bigger = rounder).
+  const SPHERE = 1;
+  const FOVA = 1.6;
+  let Cx = 0, Cy = 0, Rref = 1;
+  const sinA = Math.sin(FOVA);
+
   let w = 0, h = 0, cols = 0, dots = [];
   const mouse = { x: -1e4, y: -1e4, active: false };
+
+  // pending pulse activations: each { i, t, amp, ring, pid } fires when its
+  // timer t reaches 0, lighting dot i and scheduling its neighbours one ring out.
+  let pulses = [];
+  let pulseId = 0;
+
+  // radial warp of a normalized radius (0..1): interior swells outward toward
+  // the rim, most in the mid-radii, pinned at both centre and corner.
+  const warpR = (rn) => rn + (Math.sin(rn * FOVA) / sinA - rn) * SPHERE;
+
+  // project an on-screen point through the sphere; returns [x, y, depth] where
+  // depth is 1 at the centre (nearest) falling toward the rim (farthest).
+  function project(px, py) {
+    const dx = px - Cx, dy = py - Cy;
+    const r = Math.hypot(dx, dy);
+    if (r < 1e-3) return [px, py, 1];
+    const rn = Math.min(1, r / Rref);
+    const s = (warpR(rn) * Rref) / r;
+    const dep = 1 - (1 - (Math.cos(rn * FOVA) * 0.5 + 0.5)) * SPHERE;
+    return [Cx + dx * s, Cy + dy * s, dep];
+  }
+
+  // invert the radial warp so cursor interaction, measured in screen space,
+  // seeds the dots the user is actually pointing at (a few bisection steps —
+  // the map is monotonic, so this converges fast).
+  function unproject(px, py) {
+    const dx = px - Cx, dy = py - Cy;
+    const r = Math.hypot(dx, dy);
+    if (r < 1e-3) return [px, py];
+    const target = Math.min(1, r / Rref);
+    let lo = 0, hi = 1;
+    for (let i = 0; i < 12; i++) {
+      const mid = (lo + hi) / 2;
+      if (warpR(mid) < target) lo = mid; else hi = mid;
+    }
+    const s = (((lo + hi) / 2) * Rref) / r;
+    return [Cx + dx * s, Cy + dy * s];
+  }
 
   function buildDots() {
     dots = [];
@@ -66,6 +130,7 @@ export function createOrderField(canvas) {
           cy: y + (Math.random() - 0.5) * 150,
           ph: Math.random() * 6.283, sp: 0.5 + Math.random(),
           o: 0, px: x, py: y, tgt: 0, rate: 0, nuc: false,
+          tw: 0, twT: 0, twAmp: 0, pid: -1,
         });
       }
     }
@@ -80,7 +145,13 @@ export function createOrderField(canvas) {
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // sphere faces the middle of the hero; Rref reaches the farthest corner so
+    // that corner stays pinned and the warp never uncovers the viewport edges.
+    Cx = w / 2;
+    Cy = h * 0.5;
+    Rref = Math.hypot(Math.max(Cx, w - Cx), Math.max(Cy, h - Cy)) || 1;
     buildDots();
+    pulses = []; // dot indices just changed — drop any in-flight pulse fronts
   }
   layout();
 
@@ -91,6 +162,12 @@ export function createOrderField(canvas) {
   function render() {
     const ctx2 = ctx;
     ctx2.lineWidth = 1;
+    // project every dot onto the sphere once per frame; sx/sy are the on-screen
+    // positions, dep is the depth shade (1 near, <1 toward the receding rim).
+    for (const d of dots) {
+      const p = project(d.px, d.py);
+      d.sx = p[0]; d.sy = p[1]; d.dep = p[2];
+    }
     for (let i = 0; i < dots.length; i++) {
       const d = dots[i];
       if (d.o < 0.55) continue;
@@ -98,20 +175,34 @@ export function createOrderField(canvas) {
       const down = dots[i + cols] || null;
       for (const n2 of [right, down]) {
         if (!n2 || n2.o < 0.55) continue;
-        const a = (d.o - 0.55) * (n2.o - 0.55) * 4.9 * 0.17 * vfade((d.hy + n2.hy) / 2);
+        const dep = (d.dep + n2.dep) * 0.5;
+        const a = (d.o - 0.55) * (n2.o - 0.55) * 4.9 * 0.17 * vfade((d.hy + n2.hy) / 2) * dep;
         if (a <= 0.005) continue;
         ctx2.strokeStyle = rgba(LINE, a);
         ctx2.beginPath();
-        ctx2.moveTo(d.px, d.py);
-        ctx2.lineTo(n2.px, n2.py);
+        ctx2.moveTo(d.sx, d.sy);
+        ctx2.lineTo(n2.sx, n2.sy);
         ctx2.stroke();
       }
     }
     for (const d of dots) {
-      const col = mix(DOT_LO, DOT_HI, d.o);
-      ctx2.fillStyle = rgba(col, (0.15 + d.o * 0.38) * vfade(d.hy));
+      const tw = d.tw;
+      const fade = vfade(d.hy) * d.dep;
+      const rad = (0.5 + d.o * 0.5) * (0.55 + 0.45 * d.dep);
+      // twinkle: a soft glow halo makes the glint read as a sparkle even on the
+      // faint lattice, then the core dot brightens toward white and swells a
+      // touch. The halo is what carries the effect — a single bright pixel is
+      // invisible at screen scale.
+      if (tw > 0.02) {
+        ctx2.fillStyle = rgba(DOT_HI, 0.04 * tw * fade);
+        ctx2.beginPath();
+        ctx2.arc(d.sx, d.sy, rad + 1.7 * tw, 0, 6.2832);
+        ctx2.fill();
+      }
+      const col = mix(DOT_LO, DOT_HI, Math.min(1, d.o + tw * 0.9));
+      ctx2.fillStyle = rgba(col, (0.15 + d.o * 0.38 + tw * TW_AMP) * fade);
       ctx2.beginPath();
-      ctx2.arc(d.px, d.py, 0.5 + d.o * 0.5, 0, 6.2832);
+      ctx2.arc(d.sx, d.sy, rad + tw * 1.1, 0, 6.2832);
       ctx2.fill();
     }
   }
@@ -129,6 +220,51 @@ export function createOrderField(canvas) {
     if (Math.random() < dt * NUCLEATION) {
       const d = dots[(Math.random() * dots.length) | 0];
       if (d && !d.nuc && d.o < CREEP_CAP + 0.05) d.nuc = true;
+    }
+
+    // originate a pulse on a random settled dot, at roughly PULSE events/sec.
+    if (Math.random() < dt * PULSE) {
+      const i0 = (Math.random() * dots.length) | 0;
+      const d0 = dots[i0];
+      if (d0 && d0.o > TW_GATE && d0.twT <= 0) {
+        pulseId++;
+        d0.pid = pulseId;
+        pulses.push({ i: i0, t: 0, amp: 1, ring: 0, pid: pulseId });
+      }
+    }
+
+    // advance the pulse fronts: fire any activation whose delay has elapsed,
+    // light that dot, and schedule its not-yet-touched neighbours one ring out.
+    if (pulses.length) {
+      const next = [];
+      for (const pu of pulses) {
+        pu.t -= dt;
+        if (pu.t > 0) { next.push(pu); continue; }
+        const d = dots[pu.i];
+        if (!d) continue;
+        if (d.twT <= 0) { d.twT = TW_DUR; d.twAmp = pu.amp; }
+        const amp = pu.amp * RING_DECAY;
+        if (pu.ring < MAX_RING && amp > 0.1) {
+          const i = pu.i, c = i % cols;
+          const nb = [];
+          if (c > 0) nb.push(i - 1);
+          if (c < cols - 1) nb.push(i + 1);
+          if (i - cols >= 0) nb.push(i - cols);
+          if (i + cols < dots.length) nb.push(i + cols);
+          // spread chance starts at 100% for the origin's own neighbours and
+          // drops 10 points per ring out (90%, 80%, …), so the ripple reaches
+          // everything nearby but frays and thins as it travels.
+          const spreadP = 1 - 0.1 * pu.ring;
+          for (const ni of nb) {
+            const nd = dots[ni];
+            if (nd && nd.pid !== pu.pid && nd.o > TW_GATE && Math.random() < spreadP) {
+              nd.pid = pu.pid; // claim so this pulse's front never revisits it
+              next.push({ i: ni, t: RING_DELAY, amp, ring: pu.ring + 1, pid: pu.pid });
+            }
+          }
+        }
+      }
+      pulses = next;
     }
 
     for (let i = 0; i < dots.length; i++) {
@@ -168,6 +304,14 @@ export function createOrderField(canvas) {
         const ease = 0.45 + 5.5 * (1 - d.o) * (1 - d.o); // fast burst while low
         d.o = Math.min(CREEP_CAP, d.o + creep * cf * ease);
       }
+      // glint envelope: a smooth 0→1→0 bump over TW_DUR, scaled by the pulse
+      // amplitude that reached this dot (fainter the further out the ring).
+      if (d.twT > 0) {
+        d.twT -= dt;
+        const p = 1 - Math.max(0, d.twT) / TW_DUR;
+        const bump = Math.sin(p * Math.PI);
+        d.tw = bump * bump * d.twAmp;
+      } else if (d.tw) d.tw = 0;
       const wob = 1 - d.o;
       d.px = d.hx + (d.cx - d.hx) * wob * 0.8 + Math.sin(t * d.sp + d.ph) * 18 * wob;
       d.py = d.hy + (d.cy - d.hy) * wob * 0.8 + Math.cos(t * d.sp * 0.9 + d.ph) * 18 * wob;
@@ -215,8 +359,13 @@ export function createOrderField(canvas) {
   function onMove(e) {
     const b = canvas.getBoundingClientRect();
     if (!b.width || !b.height) return;
-    mouse.x = (e.clientX - b.left) * (w / b.width);
-    mouse.y = (e.clientY - b.top) * (h / b.height);
+    const sx = (e.clientX - b.left) * (w / b.width);
+    const sy = (e.clientY - b.top) * (h / b.height);
+    // dots seed by their unwarped home distance, so map the screen cursor back
+    // through the sphere to the lattice coordinate under it.
+    const [mx, my] = unproject(sx, sy);
+    mouse.x = mx;
+    mouse.y = my;
     mouse.active = true;
   }
   function onLeave() { mouse.active = false; }

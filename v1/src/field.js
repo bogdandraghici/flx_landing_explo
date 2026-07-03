@@ -99,12 +99,35 @@ export function createField(canvas) {
   let w = 0, h = 0, grid = [], pts = [], dust = [];
   let span = 0, buildDur = 0, period = 0;
 
+  // ---- spherical projection -------------------------------------------------
+  // Same barrel/fisheye warp as the "order field" background, so the grid reads
+  // as the inner wall of a huge sphere: rows/columns bow into arcs, cells swell
+  // toward the centre and compress toward the receding rim. Corners stay pinned
+  // so the field still fills the viewport. Kept in sync with orderField.js.
+  const SPHERE = 1;
+  const FOVA = 1.6;
+  const sinA = Math.sin(FOVA);
+  let Cx = 0, Cy = 0, Rref = 1;
+  function project(px, py) {
+    const dx = px - Cx, dy = py - Cy;
+    const r = Math.hypot(dx, dy);
+    if (r < 1e-3) return [px, py, 1];
+    const rn = Math.min(1, r / Rref);
+    const warped = rn + (Math.sin(rn * FOVA) / sinA - rn) * SPHERE;
+    const s = (warped * Rref) / r;
+    const dep = 1 - (1 - (Math.cos(rn * FOVA) * 0.5 + 0.5)) * SPHERE;
+    return [Cx + dx * s, Cy + dy * s, dep];
+  }
+
   function layout() {
     w = canvas.clientWidth || window.innerWidth;
     h = canvas.clientHeight || window.innerHeight;
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    Cx = w / 2;
+    Cy = h * 0.5;
+    Rref = Math.hypot(Math.max(Cx, w - Cx), Math.max(Cy, h - Cy)) || 1;
     ({ grid, pts } = buildGrid(w, h));
     dust = makeDust(50, w, h);
     span = w + 1200;
@@ -139,8 +162,9 @@ export function createField(canvas) {
       for (let k = 0; k < row.length - 1; k++) {
         const a = pts[row[k]], b = pts[row[k + 1]];
         if (resolvedAmt(a) > 0.8 && resolvedAmt(b) > 0.8) {
-          if (!open) { ctx.moveTo(a.gx, a.gy); open = true; }
-          ctx.lineTo(b.gx, b.gy);
+          const pb = project(b.gx, b.gy);
+          if (!open) { const pa = project(a.gx, a.gy); ctx.moveTo(pa[0], pa[1]); open = true; }
+          ctx.lineTo(pb[0], pb[1]);
         } else open = false;
       }
       ctx.stroke();
@@ -151,8 +175,9 @@ export function createField(canvas) {
       for (let r = 0; r < grid.length - 1; r++) {
         const a = pts[grid[r][c]], b = pts[grid[r + 1][c]];
         if (resolvedAmt(a) > 0.8 && resolvedAmt(b) > 0.8) {
-          if (!open) { ctx.moveTo(a.gx, a.gy); open = true; }
-          ctx.lineTo(b.gx, b.gy);
+          const pb = project(b.gx, b.gy);
+          if (!open) { const pa = project(a.gx, a.gy); ctx.moveTo(pa[0], pa[1]); open = true; }
+          ctx.lineTo(pb[0], pb[1]);
         } else open = false;
       }
       ctx.stroke();
@@ -162,17 +187,19 @@ export function createField(canvas) {
       const r = resolvedAmt(p);
       const jx = Math.sin(t * 1.1 + p.ph) * 34 * (1 - r);
       const jy = Math.cos(t * 0.8 + p.ph * 1.7) * 28 * (1 - r);
-      const x = p.sx + (p.gx - p.sx) * r + jx;
-      const y = p.sy + (p.gy - p.sy) * r + jy;
+      const [x, y, dep] = project(
+        p.sx + (p.gx - p.sx) * r + jx,
+        p.sy + (p.gy - p.sy) * r + jy
+      );
       if (p.yel && r > 0.5) {
-        ctx.globalAlpha = 0.72 * r;
+        ctx.globalAlpha = 0.72 * r * dep;
         ctx.strokeStyle = YEL;
         ctx.beginPath();
         ctx.moveTo(x - 5, y); ctx.lineTo(x + 5, y);
         ctx.moveTo(x, y - 5); ctx.lineTo(x, y + 5);
         ctx.stroke();
       } else {
-        ctx.globalAlpha = 0.32 + 0.22 * r;
+        ctx.globalAlpha = (0.32 + 0.22 * r) * dep;
         ctx.fillStyle = '#fff';
         ctx.fillRect(x, y, 1.7 + r, 1.7 + r);
       }
