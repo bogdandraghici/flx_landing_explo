@@ -1,0 +1,19 @@
+{
+  "name": "flowx-ai-landing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 4321 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "^5.2.9",
+    "@fontsource-variable/geist-mono": "^5.2.8",
+    "@fontsource-variable/sora": "^5.2.8"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}

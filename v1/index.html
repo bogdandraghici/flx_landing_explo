@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlowX — Be in the 5%</title>
+  <meta name="description" content="FlowX is the secure foundation for embedding AI in highly regulated environments. Deploy governed AI agents in weeks. Proven in production." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M28 26 L60 62 M60 26 L28 62' stroke='%23F4F5F3' stroke-width='9'/%3E%3Crect x='28' y='70' width='44' height='9' fill='%23FCB813'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ================= NAV ================= -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="#top" aria-label="FlowX home">
+        <svg class="nav__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+          <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor"/>
+          <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor"/>
+          <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor"/>
+          <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor"/>
+          <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813"/>
+          <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#blueprint">Blueprint</a>
+        <a href="#why">Why FlowX</a>
+        <a href="#platform">Platform</a>
+        <a href="#proof">Proof</a>
+      </nav>
+      <div class="nav__right">
+        <span class="nav__cert mono">SOC 2 · ISO 27001</span>
+        <a class="btn btn--primary btn--sm" href="#cta">Book a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="hero">
+      <canvas id="field" class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__scrim" aria-hidden="true"></div>
+
+      <div class="shell hero__inner">
+        <p class="hero__eyebrow mono rv-load" style="--d:0">
+          <span class="tick" aria-hidden="true"></span>
+          Enterprise AI &middot; Regulated by design
+        </p>
+
+        <h1 class="hero__title">
+          <span class="hero__line rv-load" style="--d:1"><span class="dim">95% of enterprise AI</span></span>
+          <span class="hero__line rv-load" style="--d:2"><span class="dim">initiatives fail.</span></span>
+          <span class="hero__line hero__line--big rv-load" style="--d:3">Be in the <em>5%</em><span class="amber">.</span></span>
+        </h1>
+
+        <p class="hero__sub rv-load" style="--d:4">
+          Deploy AI agents in weeks — governed, auditable, and running inside
+          your own perimeter. Proven in production at Tier-1 banks and insurers.
+        </p>
+
+        <!-- Terminal / solution compiler -->
+        <div class="term rv-load" style="--d:5" id="term">
+          <div class="term__bar mono">
+            <span class="term__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="term__title">flowx &mdash; solution compiler</span>
+            <span class="term__ver">v4.2.1</span>
+          </div>
+          <div class="term__body mono">
+            <p class="term__ask"><span class="amber">▸</span> what should your first agent do?</p>
+            <form class="term__form" id="termForm" autocomplete="off">
+              <label class="term__prompt" for="termInput">$</label>
+              <input class="term__input" id="termInput" name="usecase" type="text" spellcheck="false"
+                     placeholder="" aria-label="Describe your use case" maxlength="120" />
+              <span class="term__caret" aria-hidden="true"></span>
+              <button class="term__go" type="submit" aria-label="Compile blueprint">compile ↵</button>
+            </form>
+            <div class="term__log" id="termLog" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <p class="term__hints mono rv-load" style="--d:6">
+          try —
+          <button class="hint" type="button" data-hint="automate KYC onboarding for retail customers">KYC onboarding</button> ·
+          <button class="hint" type="button" data-hint="triage motor insurance claims end to end">claims triage</button> ·
+          <button class="hint" type="button" data-hint="underwrite SME loans in under 24 hours">SME lending</button>
+        </p>
+      </div>
+
+      <div class="hero__foot mono rv-load" style="--d:7">
+        <span>[ scroll ]</span>
+        <span class="hero__foot-right">001 — production-grade agents, without the science project</span>
+      </div>
+    </section>
+
+    <!-- ================= BLUEPRINT ================= -->
+    <section class="section section--blueprint" id="blueprint">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">02 / Blueprint</span>
+          <div class="section__headline">
+            <h2 class="h2" id="bpTitle">Your solution, drafted<span class="amber">.</span></h2>
+            <p class="section__lede" id="bpTagline">Describe a use case in the compiler above — FlowX drafts the agents,
+            guardrails and integrations it would ship with.</p>
+          </div>
+        </div>
+
+        <div class="bp" id="bp">
+          <!-- Empty state -->
+          <div class="bp__empty" id="bpEmpty">
+            <svg class="bp__ghost" viewBox="0 0 520 200" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.2">
+                <rect x="20" y="80" width="110" height="40" rx="8"/>
+                <rect x="205" y="30" width="110" height="40" rx="8"/>
+                <rect x="205" y="130" width="110" height="40" rx="8"/>
+                <rect x="390" y="80" width="110" height="40" rx="8"/>
+                <path d="M130 100 C 168 100, 168 50, 205 50"/>
+                <path d="M130 100 C 168 100, 168 150, 205 150"/>
+                <path d="M315 50 C 353 50, 353 100, 390 100"/>
+                <path d="M315 150 C 353 150, 353 100, 390 100"/>
+              </g>
+            </svg>
+            <p class="mono">no blueprint compiled yet<br /><span class="dim2">describe your use case in the terminal above — the compiler drafts one in seconds</span></p>
+          </div>
+
+          <!-- Generated content (populated by JS) -->
+          <div class="bp__result" id="bpResult" hidden>
+            <div class="bp__meta mono" id="bpMeta"></div>
+            <div class="bp__grid">
+              <figure class="bp__diagram" id="bpDiagram" role="img" aria-label="Generated solution architecture diagram"></figure>
+              <aside class="bp__spec">
+                <div class="bp__spec-bar mono"><span>blueprint.yaml</span><span class="amber" id="bpSpecStatus">writing…</span></div>
+                <pre class="bp__spec-body mono" id="bpSpec"></pre>
+              </aside>
+            </div>
+            <div class="bp__actions">
+              <a class="btn btn--primary" href="#cta">Book a build review</a>
+              <button class="btn btn--ghost" id="bpAgain" type="button">Compile another use case</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMPLIANCE MARQUEE ================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track mono" id="marqueeTrack">
+        <span>GDPR</span><i>·</i><span>EU AI ACT</span><i>·</i><span>DORA</span><i>·</i><span>SOC 2 TYPE II</span><i>·</i>
+        <span>ISO 27001</span><i>·</i><span>PSD2</span><i>·</i><span>BASEL III</span><i>·</i><span>MiFID II</span><i>·</i>
+      </div>
+    </div>
+
+    <!-- ================= WHY 95% FAIL ================= -->
+    <section class="section" id="why">
+      <div class="shell">
+        <div class="why">
+          <div class="why__left">
+            <span class="section__no mono">03 / Why 95% fail</span>
+            <h2 class="h2 rv">Pilots don't die from bad&nbsp;models<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">They die from missing infrastructure — the unglamorous machinery
+              between a promising demo and a system a regulator will sign off on. FlowX is that machinery.</p>
+          </div>
+          <ol class="why__list">
+            <li class="why__row rv" style="--i:0">
+              <span class="why__no mono">01</span>
+              <div class="why__fail">
+                <h3>The pilot works. Production never comes.</h3>
+                <p>Demos run on laptops. Production needs rollout gates, rollback, and an owner on call.</p>
+              </div>
+              <p class="why__fix"><span class="mono amber">FLOWX →</span> Agents ship on rails — versioned, staged, and rolled back in one click.</p>
+            </li>
+            <li class="why__row rv" style="--i:1">
+              <span class="why__no mono">02</span>
+              <div class="why__fail">
+                <h3>Compliance finds out last.</h3>
+                <p>Risk teams meet the system after it's built — then kill it, slowly and correctly.</p>
+              </div>
+              <p class="why__fix"><span class="mono amber">FLOWX →</span> The policy engine sits in the execution path, not in a PDF.</p>
+            </li>
+            <li class="why__row rv" style="--i:2">
+              <span class="why__no mono">03</span>
+              <div class="why__fail">
+                <h3>Nobody can explain a decision six months later.</h3>
+                <p>An auditor asks why a loan was declined in March. The logs shrug.</p>
+              </div>
+              <p class="why__fix"><span class="mono amber">FLOWX →</span> Every prompt, tool call and output is written to an immutable, hash-chained audit log.</p>
+            </li>
+            <li class="why__row rv" style="--i:3">
+              <span class="why__no mono">04</span>
+              <div class="why__fail">
+                <h3>The model changes. Everything breaks.</h3>
+                <p>Twelve months of prompt engineering welded to one vendor's API.</p>
+              </div>
+              <p class="why__fix"><span class="mono amber">FLOWX →</span> A model-agnostic core — swap frontier or private models without re-platforming.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PLATFORM ================= -->
+    <section class="section section--platform" id="platform">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">04 / Platform</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Built like infrastructure, because it is<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Not a chatbot wrapper. A governed execution layer for AI agents,
+              engineered to the standard of your core systems.</p>
+          </div>
+        </div>
+
+        <div class="plat">
+          <!-- Audit log — large block -->
+          <article class="plat__cell plat__cell--wide rv" style="--i:0">
+            <header class="plat__head">
+              <h3>Every decision, auditable</h3>
+              <p>Agents don't just act — they leave evidence. Hash-chained logs of every prompt, retrieval, tool call and human override, queryable for seven years.</p>
+            </header>
+            <div class="audit mono" id="audit" aria-hidden="true">
+              <div class="audit__hd"><span>timestamp</span><span>agent</span><span>action</span><span>status</span></div>
+              <div class="audit__rows" id="auditRows"></div>
+            </div>
+          </article>
+
+          <!-- Guardrails -->
+          <article class="plat__cell rv" style="--i:1">
+            <header class="plat__head">
+              <h3>Deterministic guardrails</h3>
+              <p>Policies are compiled, not suggested. If a rule says a human signs off above €50k, no temperature setting changes that.</p>
+            </header>
+            <ul class="rails mono">
+              <li><span class="rails__state rails__state--on"></span>pii.redaction<em>enforced</em></li>
+              <li><span class="rails__state rails__state--on"></span>data.residency = eu-central<em>enforced</em></li>
+              <li><span class="rails__state rails__state--on"></span>hitl.threshold &gt; 0.72<em>enforced</em></li>
+              <li><span class="rails__state rails__state--on"></span>audit.retention = 7y<em>enforced</em></li>
+            </ul>
+          </article>
+
+          <!-- Perimeter -->
+          <article class="plat__cell rv" style="--i:2">
+            <header class="plat__head">
+              <h3>Runs inside your perimeter</h3>
+              <p>On-prem Kubernetes, private VPC, or EU sovereign cloud. Your data never crosses a boundary you didn't draw.</p>
+            </header>
+            <ul class="targets mono">
+              <li><span class="amber">▪</span> on-prem / k8s</li>
+              <li><span class="amber">▪</span> private vpc</li>
+              <li><span class="amber">▪</span> eu sovereign cloud</li>
+              <li><span class="dim2">▪ zero data egress by default</span></li>
+            </ul>
+          </article>
+
+          <!-- Model routing -->
+          <article class="plat__cell plat__cell--wide rv" style="--i:3">
+            <header class="plat__head">
+              <h3>Model-agnostic routing</h3>
+              <p>Route each task to the best model for it — frontier, open-weight or your own fine-tune — behind one governed interface.</p>
+            </header>
+            <div class="router mono" id="router" aria-hidden="true">
+              <span class="router__in">task</span>
+              <span class="router__line"></span>
+              <span class="router__hub">policy<br/>router</span>
+              <span class="router__line router__line--fan"></span>
+              <div class="router__models">
+                <span class="router__model" data-m="0">claude-fable-5</span>
+                <span class="router__model" data-m="1">private-llm / vllm</span>
+                <span class="router__model" data-m="2">rules-engine</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROOF ================= -->
+    <section class="section section--proof" id="proof">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">05 / Proof</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">In production, not in&nbsp;pilots<span class="amber">.</span></h2>
+          </div>
+        </div>
+        <dl class="stats">
+          <div class="stats__row rv" style="--i:0">
+            <dt><span class="stats__num mono" data-count="6.4" data-dec="1">0.0</span><span class="stats__unit mono">wks</span></dt>
+            <dd>median time from kickoff to first agent in production</dd>
+          </div>
+          <div class="stats__row rv" style="--i:1">
+            <dt><span class="stats__num mono" data-count="2.7" data-dec="1">0.0</span><span class="stats__unit mono">M+/day</span></dt>
+            <dd>governed agent decisions executed across live deployments</dd>
+          </div>
+          <div class="stats__row rv" style="--i:2">
+            <dt><span class="stats__num mono" data-count="97.3" data-dec="1">0.0</span><span class="stats__unit mono">%</span></dt>
+            <dd>straight-through processing on document-heavy flows</dd>
+          </div>
+          <div class="stats__row rv" style="--i:3">
+            <dt><span class="stats__num mono" data-count="0" data-dec="0">0</span><span class="stats__unit mono">&nbsp;</span></dt>
+            <dd>agent actions outside the audit log — by construction, not by policy</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section section--cta" id="cta">
+      <div class="shell">
+        <span class="section__no mono">06 / Next</span>
+        <h2 class="cta__title">
+          <span class="rv" style="--i:0">Stop piloting.</span>
+          <span class="rv" style="--i:1">Start deploying<span class="amber">.</span></span>
+        </h2>
+        <div class="cta__row rv" style="--i:2">
+          <a class="btn btn--primary btn--lg" id="ctaBtn" href="mailto:hello@flowx.ai?subject=Architecture%20review">Book an architecture review</a>
+          <a class="btn btn--ghost btn--lg" href="#blueprint">See a blueprint first</a>
+        </div>
+        <p class="cta__note mono rv" style="--i:3">45 minutes · your stack · your security team welcome</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__top">
+        <svg class="footer__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+          <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor"/>
+          <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor"/>
+          <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor"/>
+          <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor"/>
+          <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813"/>
+          <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor"/>
+        </svg>
+        <nav class="footer__cols" aria-label="Footer">
+          <div>
+            <h4 class="mono">Platform</h4>
+            <a href="#platform">Agents</a>
+            <a href="#platform">Guardrails</a>
+            <a href="#platform">Audit</a>
+          </div>
+          <div>
+            <h4 class="mono">Company</h4>
+            <a href="#why">Why FlowX</a>
+            <a href="#proof">Customers</a>
+            <a href="#cta">Contact</a>
+          </div>
+          <div>
+            <h4 class="mono">Trust</h4>
+            <a href="#platform">Security</a>
+            <a href="#platform">Compliance</a>
+            <a href="#platform">Data residency</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__base mono">
+        <span>© <span id="year">2026</span> FlowX AI — Bucharest · London · New York</span>
+        <span>SOC 2 TYPE II · ISO 27001 · GDPR</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
