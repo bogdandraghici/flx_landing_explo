@@ -4,7 +4,7 @@ import '@fontsource-variable/geist-mono';
 import './style.css';
 
 import { createField } from './field.js';
-import { createOrderField } from './orderField.js';
+import { createOrderField, createStaticField } from './orderField.js';
 import { classify, renderDiagram, specText, typeSpec } from './blueprint.js';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -41,6 +41,10 @@ if (canvas) {
     btn.addEventListener('click', () => setHeroBg(btn.dataset.bgOpt));
   });
 }
+
+/* ================= cta static grid ================= */
+const ctaCanvas = $('.cta__canvas');
+if (ctaCanvas) createStaticField(ctaCanvas);
 
 /* ================= nav ================= */
 const nav = $('#nav');

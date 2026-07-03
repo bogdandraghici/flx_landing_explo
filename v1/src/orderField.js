@@ -14,6 +14,7 @@
 const DOT_LO = [150, 160, 178];
 const DOT_HI = [240, 244, 252];
 const LINE = [210, 218, 232];
+const GAP = 44; // lattice spacing — shared by the animated field and the static frame
 
 function smoothstep(v) {
   v = Math.max(0, Math.min(1, v));
@@ -43,7 +44,6 @@ export function createOrderField(canvas) {
   }
 
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  const GAP = 44; // lattice spacing
   const CORE = 110; // radius the cursor orders within (full at <50, none at >110)
   const CREEP = 0.045; // per-second autonomous "priming" gain, independent of cursor
   const CREEP_CAP = 0.45; // creep alone can only prime this far (below connect 0.55)
@@ -256,6 +256,88 @@ export function createOrderField(canvas) {
       document.removeEventListener('visibilitychange', onVis);
       clearTimeout(resizeTimer);
       ctx.clearRect(0, 0, w, h);
+    },
+  };
+}
+
+/*
+ * Static "final frame" of the order field — the fully-resolved lattice, no
+ * animation or interaction. Same centred grid, colours and vertical fade as
+ * the animated hero field, so it reads as the same grid at rest. Used as a
+ * section background (e.g. the CTA). Redraws on size change.
+ */
+export function createStaticField(canvas) {
+  let ctx;
+  try {
+    ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('2d context unavailable');
+  } catch {
+    canvas.style.display = 'none';
+    return { destroy() {} };
+  }
+
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  function draw() {
+    const w = canvas.clientWidth || 0;
+    const h = canvas.clientHeight || 0;
+    if (!w || !h) return;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    // centred lattice, fully resolved (order o = 1 everywhere)
+    const sx = (((w / 2) % GAP) + GAP) % GAP;
+    const sy = (((h / 2) % GAP) + GAP) % GAP;
+    const pts = [];
+    let cols = 0;
+    for (let y = sy; y < h; y += GAP) {
+      const rowStart = pts.length;
+      for (let x = sx; x < w; x += GAP) pts.push({ x, y });
+      if (cols === 0) cols = pts.length - rowStart;
+    }
+    const DIM = 0.5; // this static frame sits dimmer than the animated hero grid
+    const vfade = (y) => (0.22 + 0.78 * Math.max(0, Math.min(1, y / h))) * DIM;
+
+    // lines (both dots at o = 1 → alpha 0.45·0.45·4.9·0.17, scaled by the fade)
+    ctx.lineWidth = 1;
+    for (let i = 0; i < pts.length; i++) {
+      const a = pts[i];
+      const right = i % cols < cols - 1 ? pts[i + 1] : null;
+      const down = pts[i + cols] || null;
+      for (const n2 of [right, down]) {
+        if (!n2) continue;
+        ctx.strokeStyle = rgba(LINE, 0.45 * 0.45 * 4.9 * 0.17 * vfade((a.y + n2.y) / 2));
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(n2.x, n2.y);
+        ctx.stroke();
+      }
+    }
+    // dots (o = 1 → colour DOT_HI, alpha 0.53, radius 1.0, scaled by the fade)
+    for (const p of pts) {
+      ctx.fillStyle = rgba(DOT_HI, (0.15 + 0.38) * vfade(p.y));
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1, 0, 6.2832);
+      ctx.fill();
+    }
+  }
+
+  draw();
+
+  let timer = 0;
+  const ro = new ResizeObserver(() => {
+    clearTimeout(timer);
+    timer = setTimeout(draw, 100);
+  });
+  ro.observe(canvas);
+
+  return {
+    destroy() {
+      ro.disconnect();
+      clearTimeout(timer);
+      ctx.clearRect(0, 0, canvas.clientWidth || 0, canvas.clientHeight || 0);
     },
   };
 }

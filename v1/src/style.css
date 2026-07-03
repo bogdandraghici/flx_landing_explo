@@ -774,7 +774,16 @@ em { font-style: normal; }
 /* ============================================================
    CTA
    ============================================================ */
-.section--cta { padding-block: clamp(140px, 20vh, 240px); }
+.section--cta { padding-block: clamp(140px, 20vh, 240px); position: relative; overflow: clip; }
+.cta__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.section--cta .shell { position: relative; z-index: 1; }
 .section--cta .section__no { display: block; margin-bottom: 30px; }
 .cta__title {
   font-family: var(--font-display);
