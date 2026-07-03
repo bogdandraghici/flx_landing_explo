@@ -137,6 +137,7 @@ function logLine(msg, time, delay) {
 }
 
 /* ================= blueprint generation ================= */
+const bpSection = $('#blueprint');
 const bpEmpty = $('#bpEmpty');
 const bpResult = $('#bpResult');
 const bpMeta = $('#bpMeta');
@@ -192,7 +193,8 @@ function compile(rawInput) {
       bpMeta.appendChild(c);
     });
 
-    // swap empty → result
+    // reveal the section (hidden until first compile) and swap empty → result
+    bpSection.hidden = false;
     bpEmpty.hidden = true;
     bpResult.hidden = false;
 
@@ -227,6 +229,17 @@ $('#bpAgain').addEventListener('click', () => {
   log.innerHTML = '';
   document.getElementById('hero').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
   setTimeout(() => input.focus({ preventScroll: true }), reduceMotion ? 0 : 650);
+});
+
+// While the blueprint is still hidden, "Blueprint" in the nav sends you to the
+// compiler instead of a collapsed anchor.
+document.querySelectorAll('a[href="#blueprint"]').forEach((a) => {
+  a.addEventListener('click', (e) => {
+    if (!bpSection.hidden) return;
+    e.preventDefault();
+    document.getElementById('hero').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    setTimeout(() => input.focus({ preventScroll: true }), reduceMotion ? 0 : 650);
+  });
 });
 
 /* ================= audit ticker ================= */
