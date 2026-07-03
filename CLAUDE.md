@@ -68,12 +68,8 @@ npm run preview
   same way (`reduceMotion` in `main.js`, the media query in `style.css`).
 - **Aesthetic:** dark, single-accent, Linear/Palantir-grade restraint.
 
-## Git workflow (important)
+## Git
 
-This repo uses the **POC workflow** (`/poc-workflow` skill):
-
-- **All work happens on `poc/*` branches** (kebab-case, e.g. `poc/new-hero`).
-- **Never commit or push to `main`/`master`.** Branch first.
-- **No merging, no force-pushing, no destructive git ops.**
-- Pushing a `poc/*` branch auto-creates a **draft PR** — POC PRs are not merged
-  directly; promotion to a feature is done by the team lead.
+Standard flow — feature branches merged into `main` via PR, or push straight to
+`main` for small changes. `docs/vN/` holds the built output served by GitHub
+Pages; rebuild (`npm run build`) rather than hand-editing it.
