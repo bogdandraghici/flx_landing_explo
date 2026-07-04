@@ -60,6 +60,9 @@ function buildGrid(w, h) {
         sy: r * SP + (Math.random() - 0.5) * 340,
         ph: Math.random() * 6.28,
         yel: Math.random() < 0.05,
+        // Twinkle phase seed; < 0 means this point never twinkles, so only a
+        // subset of the grid ever lights up (see twinkleAmt).
+        tw: Math.random() < 0.5 ? Math.random() * 6.28 : -1,
       });
     }
     grid.push(row);
@@ -73,6 +76,24 @@ function waveFront(y, t) {
     Math.sin(y * 0.0143 + t * 1.6 + 1.3) * 74 +
     Math.sin(y * 0.027 - t * 0.55 + 2.1) * 34
   );
+}
+
+/* Occasional per-point twinkle: 0 almost all the time, spiking briefly toward 1.
+   Points with tw < 0 opt out entirely, and the spatial phase terms (gx/gy) keep
+   neighbours from spiking together — so twinkles pop in scattered clusters
+   across the grid rather than all at once. The high power makes each spike
+   short and sparse. */
+function twinkleAmt(p, t) {
+  if (p.tw < 0) return 0;
+  const s = Math.sin(t * 0.85 + p.tw + p.gx * 0.0018 + p.gy * 0.0026);
+  return s > 0 ? Math.pow(s, 10) : 0;
+}
+
+/* A small, fast positional wobble scaled by the twinkle envelope — a brief local
+   distortion that rides along with a twinkle and fades out as it does. */
+function twinkleOffset(p, t, amt) {
+  const a = 3.6 * amt;
+  return [Math.sin(t * 6.5 + p.tw * 4.7) * a, Math.cos(t * 5.3 + p.tw * 2.9) * a];
 }
 
 export function createField(canvas) {
@@ -154,7 +175,16 @@ export function createField(canvas) {
       return smoothstep((xBuild + o - p.gx) / 180) * (1 - smoothstep((xTear + o - p.gx) / 180));
     };
 
-    ctx.strokeStyle = 'rgba(255,255,255,0.075)';
+    // Project a lattice point, nudging it by its twinkle distortion when one is
+    // firing so the grid lines meeting a twinkling dot wobble along with it.
+    const gp = (p) => {
+      const tw = twinkleAmt(p, t);
+      if (tw < 0.002) return project(p.gx, p.gy);
+      const [dx, dy] = twinkleOffset(p, t, tw);
+      return project(p.gx + dx, p.gy + dy);
+    };
+
+    ctx.strokeStyle = 'rgba(255,255,255,0.11)';
     ctx.lineWidth = 1;
     for (const row of grid) {
       ctx.beginPath();
@@ -162,8 +192,8 @@ export function createField(canvas) {
       for (let k = 0; k < row.length - 1; k++) {
         const a = pts[row[k]], b = pts[row[k + 1]];
         if (resolvedAmt(a) > 0.8 && resolvedAmt(b) > 0.8) {
-          const pb = project(b.gx, b.gy);
-          if (!open) { const pa = project(a.gx, a.gy); ctx.moveTo(pa[0], pa[1]); open = true; }
+          const pb = gp(b);
+          if (!open) { const pa = gp(a); ctx.moveTo(pa[0], pa[1]); open = true; }
           ctx.lineTo(pb[0], pb[1]);
         } else open = false;
       }
@@ -175,8 +205,8 @@ export function createField(canvas) {
       for (let r = 0; r < grid.length - 1; r++) {
         const a = pts[grid[r][c]], b = pts[grid[r + 1][c]];
         if (resolvedAmt(a) > 0.8 && resolvedAmt(b) > 0.8) {
-          const pb = project(b.gx, b.gy);
-          if (!open) { const pa = project(a.gx, a.gy); ctx.moveTo(pa[0], pa[1]); open = true; }
+          const pb = gp(b);
+          if (!open) { const pa = gp(a); ctx.moveTo(pa[0], pa[1]); open = true; }
           ctx.lineTo(pb[0], pb[1]);
         } else open = false;
       }
@@ -185,23 +215,26 @@ export function createField(canvas) {
 
     for (const p of pts) {
       const r = resolvedAmt(p);
+      // Twinkle only counts once a point has resolved onto the lattice.
+      const tw = twinkleAmt(p, t) * r;
+      const [tdx, tdy] = tw > 0.002 ? twinkleOffset(p, t, tw) : [0, 0];
       const jx = Math.sin(t * 1.1 + p.ph) * 34 * (1 - r);
       const jy = Math.cos(t * 0.8 + p.ph * 1.7) * 28 * (1 - r);
       const [x, y, dep] = project(
-        p.sx + (p.gx - p.sx) * r + jx,
-        p.sy + (p.gy - p.sy) * r + jy
+        p.sx + (p.gx - p.sx) * r + jx + tdx,
+        p.sy + (p.gy - p.sy) * r + jy + tdy
       );
       if (p.yel && r > 0.5) {
-        ctx.globalAlpha = 0.72 * r * dep;
+        ctx.globalAlpha = Math.min(1, (0.72 * r + 0.28 * tw) * dep);
         ctx.strokeStyle = YEL;
         ctx.beginPath();
         ctx.moveTo(x - 5, y); ctx.lineTo(x + 5, y);
         ctx.moveTo(x, y - 5); ctx.lineTo(x, y + 5);
         ctx.stroke();
       } else {
-        ctx.globalAlpha = (0.32 + 0.22 * r) * dep;
+        ctx.globalAlpha = Math.min(1, (0.32 + 0.22 * r + 0.5 * tw) * dep);
         ctx.fillStyle = '#fff';
-        ctx.fillRect(x, y, 1.7 + r, 1.7 + r);
+        ctx.fillRect(x, y, 1.7 + r + tw * 1.2, 1.7 + r + tw * 1.2);
       }
     }
 

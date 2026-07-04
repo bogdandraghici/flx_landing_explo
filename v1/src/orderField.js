@@ -315,6 +315,14 @@ export function createOrderField(canvas) {
       const wob = 1 - d.o;
       d.px = d.hx + (d.cx - d.hx) * wob * 0.8 + Math.sin(t * d.sp + d.ph) * 18 * wob;
       d.py = d.hy + (d.cy - d.hy) * wob * 0.8 + Math.cos(t * d.sp * 0.9 + d.ph) * 18 * wob;
+      // twinkle distortion: while a glint is on this dot, jitter it (and so the
+      // lines meeting it) by a small amount that fades with the glint envelope.
+      // Because the pulse reaches each ring a beat later, the wobble ripples
+      // outward with it — a slight local warp that only fires where dots twinkle.
+      if (d.tw > 0.02) {
+        d.px += Math.sin(t * 3.4 + d.ph * 3.1) * 1.6 * d.tw;
+        d.py += Math.cos(t * 2.9 + d.ph * 2.3) * 1.6 * d.tw;
+      }
     }
 
     render();
