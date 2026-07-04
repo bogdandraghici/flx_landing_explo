@@ -5,6 +5,7 @@ import './style.css';
 
 import { createField } from './field.js';
 import { createOrderField, createStaticField } from './orderField.js';
+import { createGrain } from './grain.js';
 import { classify, renderDiagram, specText, typeSpec } from './blueprint.js';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -41,6 +42,10 @@ if (canvas) {
     btn.addEventListener('click', () => setHeroBg(btn.dataset.bgOpt));
   });
 }
+
+// site-wide film-grain / static overlay (fixed, covers the whole page)
+const grainCanvas = $('#grain');
+if (grainCanvas) createGrain(grainCanvas);
 
 /* ================= cta static grid ================= */
 const ctaCanvas = $('.cta__canvas');
