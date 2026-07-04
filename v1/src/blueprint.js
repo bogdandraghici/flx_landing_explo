@@ -181,17 +181,31 @@ export function classify(input) {
   return TEMPLATES.find((t) => t.match.test(input)) || TEMPLATES[TEMPLATES.length - 1];
 }
 
-/* ---------------- SVG diagram ---------------- */
+/* ---------------- SVG diagram ---------------- *
+ * "Pulse" telemetry style (ported from the Architecture Diagram Explorations
+ * "4a Pulse"): four lanes of glass cards on a 1455×650 canvas, thin connectors
+ * with amber pulses riding the solid wires, dashed review/logging edges, an
+ * ambient amber glow behind the agents lane, and breathing status dots on the
+ * live nodes (the decision agent and human review). Rendered in SVG so it
+ * scales responsively with the panel; the viewBox reuses the exploration's
+ * exact coordinates.
+ */
 
 const NS = 'http://www.w3.org/2000/svg';
-const LANES = [
-  { key: 'intake', label: '01 — INTAKE', x: 34, w: 190 },
-  { key: 'agents', label: '02 — FLOWX AGENTS', x: 330, w: 224 },
-  { key: 'controls', label: '03 — CONTROLS', x: 660, w: 214 },
-  { key: 'systems', label: '04 — SYSTEMS OF RECORD', x: 964, w: 174 },
-];
-const ROW_Y = [158, 296, 434];
-const NODE_H = { intake: 58, agents: 70, controls: 62, systems: 58 };
+const VIEW_W = 1455;
+const VIEW_H = 650;
+const COL_X = [55, 413, 771, 1129]; // card left edge per lane
+const ROW_TOP = [140, 308, 476]; // card top edge per row
+const CARD_W = 270;
+const CARD_H = 118;
+const LANE_LABELS = ['01 — INTAKE', '02 — FLOWX AGENTS', '03 — CONTROLS', '04 — SYSTEMS OF RECORD'];
+const CODE_PREFIX = ['IN', 'AG', 'CT', 'SR'];
+
+// anchor helpers on the lattice
+const cyOf = (ri) => ROW_TOP[ri] + CARD_H / 2; // 199 / 367 / 535
+const cxOf = (li) => COL_X[li] + CARD_W / 2;
+const rightOf = (li) => COL_X[li] + CARD_W;
+const leftOf = (li) => COL_X[li];
 
 function el(name, attrs = {}) {
   const node = document.createElementNS(NS, name);
@@ -199,130 +213,166 @@ function el(name, attrs = {}) {
   return node;
 }
 
+// horizontal transition between lanes: a symmetric bezier bowing at the mid-x
+// (degenerates to a straight line when the two rows are level)
 function hEdge(x1, y1, x2, y2) {
   const mx = (x1 + x2) / 2;
   return `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
 }
+// vertical drop down a lane, from one card's bottom to the next card's top
+function vEdge(li, r1, r2) {
+  return `M ${cxOf(li)} ${cyOf(r1) + CARD_H / 2} L ${cxOf(li)} ${cyOf(r2) - CARD_H / 2}`;
+}
 
 export function renderDiagram(container, t, { reduceMotion }) {
   container.innerHTML = '';
-  const svg = el('svg', { viewBox: '0 0 1172 520', role: 'presentation' });
+  const svg = el('svg', { viewBox: `0 0 ${VIEW_W} ${VIEW_H}`, role: 'presentation' });
+
+  // gradient defs: glass card fill + the ambient amber glow
+  const defs = el('defs');
+  const cardFill = el('linearGradient', { id: 'bpCardFill', x1: 0, y1: 0, x2: 0, y2: 1 });
+  cardFill.appendChild(el('stop', { offset: '0', 'stop-color': 'rgba(255,255,255,0.055)' }));
+  cardFill.appendChild(el('stop', { offset: '1', 'stop-color': 'rgba(255,255,255,0.012)' }));
+  const glow = el('radialGradient', { id: 'bpGlow', cx: '0.5', cy: '0.5', r: '0.5' });
+  glow.appendChild(el('stop', { offset: '0', 'stop-color': 'rgba(252,184,19,0.09)' }));
+  glow.appendChild(el('stop', { offset: '1', 'stop-color': 'rgba(252,184,19,0)' }));
+  defs.appendChild(cardFill);
+  defs.appendChild(glow);
+  svg.appendChild(defs);
+
+  // ambient glow behind the agents lane
+  svg.appendChild(el('ellipse', {
+    class: 'bp-glow', cx: cxOf(1), cy: 380, rx: 235, ry: 250, fill: 'url(#bpGlow)',
+  }));
+
+  // paint order: edges + pulses sit behind the cards, cards on top
+  const edgesG = el('g');
+  const pulsesG = el('g');
+  const cardsG = el('g');
+  svg.appendChild(edgesG);
+  svg.appendChild(pulsesG);
+  svg.appendChild(cardsG);
 
   // lane labels
-  for (const lane of LANES) {
-    const label = el('text', { x: lane.x, y: 52, class: 'bp-lane' });
-    label.textContent = lane.label;
-    svg.appendChild(label);
-  }
-
-  const edgesG = el('g');
-  const nodesG = el('g');
-  svg.appendChild(edgesG);
-  svg.appendChild(nodesG);
-
-  const nodeMeta = []; // for edge anchor lookup
-  const laneData = [t.intake, t.agents, t.controls, t.systems];
-  const laneClass = ['', 'bp-node--agent', 'bp-node--ctrl', ''];
-
-  laneData.forEach((items, li) => {
-    const lane = LANES[li];
-    const h = NODE_H[lane.key];
-    items.forEach((item, ri) => {
-      const cy = ROW_Y[ri];
-      const g = el('g', { class: `bp-node ${laneClass[li]}`.trim() });
-      g.appendChild(el('rect', { x: lane.x, y: cy - h / 2, width: lane.w, height: h, rx: 10 }));
-      const l1 = el('text', { x: lane.x + 16, y: cy - 3, class: 'l1' });
-      l1.textContent = item.l;
-      const l2 = el('text', { x: lane.x + 16, y: cy + 17, class: 'l2' });
-      l2.textContent = item.s;
-      g.appendChild(l1);
-      g.appendChild(l2);
-      nodesG.appendChild(g);
-      nodeMeta.push({ li, ri, g, left: lane.x, right: lane.x + lane.w, cx: lane.x + lane.w / 2, cy, h });
-    });
+  LANE_LABELS.forEach((label, li) => {
+    const txt = el('text', { x: COL_X[li], y: 96, class: 'bp-lane' });
+    txt.textContent = label;
+    cardsG.appendChild(txt);
   });
 
-  const at = (li, ri) => nodeMeta.find((n) => n.li === li && n.ri === ri);
+  // ---------- connectors (4a topology, structural) ----------
+  // solid decision path — carries pulses; ordered to match the exploration's
+  // per-wire cadence [d, dur, begin]
+  const solid = [
+    [hEdge(rightOf(0), cyOf(0), leftOf(1), cyOf(0)), 4.5, -0.5], // intake 1 → agent 1
+    [hEdge(rightOf(0), cyOf(1), leftOf(1), cyOf(0)), 4.5, -2.0], // intake 2 → agent 1
+    [hEdge(rightOf(0), cyOf(2), leftOf(1), cyOf(0)), 4.5, -3.5], // intake 3 → agent 1
+    [vEdge(1, 0, 1), 3.0, -1.0],                                 // agent 1 → agent 2
+    [vEdge(1, 1, 2), 3.0, -2.4],                                 // agent 2 → agent 3
+    [hEdge(rightOf(1), cyOf(1), leftOf(2), cyOf(0)), 4.0, -0.8], // agent 2 → policy
+    [hEdge(rightOf(2), cyOf(0), leftOf(3), cyOf(0)), 3.5, -1.2], // policy → system 1
+    [hEdge(rightOf(2), cyOf(0), leftOf(3), cyOf(1)), 3.5, -2.9], // policy → system 2
+    [hEdge(rightOf(2), cyOf(2), leftOf(3), cyOf(2)), 3.5, -0.1], // audit → system 3
+  ];
+  // dashed review / logging edges — no pulses
+  const soft = [
+    hEdge(rightOf(1), cyOf(2), leftOf(2), cyOf(1)), // decision agent → human review
+    hEdge(rightOf(1), cyOf(2), leftOf(2), cyOf(2)), // decision agent → audit log
+  ];
 
-  // solid decision path + dashed logging edges
-  const solid = [];
-  const A = (li, ri) => at(li, ri);
-  // intake → first agent
-  for (let r = 0; r < 3; r++) solid.push(hEdge(A(0, r).right, A(0, r).cy, A(1, 0).left, A(1, 0).cy));
-  // agent chain (vertical)
-  for (let r = 0; r < 2; r++) {
-    const a = A(1, r), b = A(1, r + 1);
-    solid.push(`M ${a.cx} ${a.cy + a.h / 2} L ${b.cx} ${b.cy - b.h / 2}`);
-  }
-  // last agent → policy engine + human review
-  solid.push(hEdge(A(1, 2).right, A(1, 2).cy, A(2, 0).left, A(2, 0).cy));
-  solid.push(hEdge(A(1, 2).right, A(1, 2).cy, A(2, 1).left, A(2, 1).cy));
-  // policy engine → systems
-  for (let r = 0; r < 3; r++) solid.push(hEdge(A(2, 0).right, A(2, 0).cy, A(3, r).left, A(3, r).cy));
-
-  const soft = [];
-  // every agent logs to the audit node
-  for (let r = 0; r < 3; r++) soft.push(hEdge(A(1, r).right, A(1, r).cy + 14, A(2, 2).left, A(2, 2).cy));
-
-  const solidPaths = solid.map((d) => {
+  const solidPaths = solid.map(([d]) => {
     const p = el('path', { d, class: 'bp-edge' });
     edgesG.appendChild(p);
     return p;
   });
-  soft.forEach((d) => edgesG.appendChild(el('path', { d, class: 'bp-edge bp-edge--soft' })));
+  const softPaths = soft.map((d) => {
+    const p = el('path', { d, class: 'bp-edge bp-edge--soft' });
+    edgesG.appendChild(p);
+    return p;
+  });
+
+  // ---------- glass telemetry cards ----------
+  const laneData = [t.intake, t.agents, t.controls, t.systems];
+  const cards = [];
+  laneData.forEach((items, li) => {
+    items.forEach((item, ri) => {
+      const x = COL_X[li];
+      const y = ROW_TOP[ri];
+      // "live" nodes: the decision/escalation agent (full amber card) and human
+      // review (breathing dot + amber telemetry only)
+      const accentFull = li === 1 && ri === 2;
+      const accentDot = li === 2 && ri === 1;
+      const live = accentFull || accentDot;
+
+      const g = el('g', { class: `bp-card${accentFull ? ' bp-card--live' : ''}` });
+      g.appendChild(el('rect', { x, y, width: CARD_W, height: CARD_H, rx: 14, fill: 'url(#bpCardFill)', class: 'bp-card__box' }));
+      g.appendChild(el('line', { x1: x + 14, y1: y + 1, x2: x + CARD_W - 14, y2: y + 1, class: 'bp-card__hi' }));
+
+      const code = el('text', { x: x + 18, y: y + 27, class: `bp-code${accentFull ? ' bp-code--live' : ''}` });
+      code.textContent = `${CODE_PREFIX[li]}·0${ri + 1}`;
+      g.appendChild(code);
+
+      g.appendChild(el('circle', {
+        cx: x + CARD_W - 20, cy: y + 22, r: 2.6, class: live ? 'bp-dot bp-dot--live' : 'bp-dot',
+      }));
+
+      const title = el('text', { x: x + 18, y: y + 58, class: `bp-title${accentFull ? ' bp-title--live' : ''}` });
+      title.textContent = item.l;
+      g.appendChild(title);
+
+      const sub = el('text', { x: x + 18, y: y + 85, class: `bp-sub${live ? ' bp-sub--live' : ''}` });
+      sub.textContent = item.s;
+      g.appendChild(sub);
+
+      cardsG.appendChild(g);
+      cards.push(g);
+    });
+  });
 
   container.appendChild(svg);
 
   // ---------- entrance choreography ----------
-  const nodes = [...nodesG.children];
+  let pulseTimer = 0;
   if (reduceMotion) {
-    nodes.forEach((n) => n.classList.add('in'));
-  } else {
-    solidPaths.forEach((p, i) => {
-      const len = p.getTotalLength();
-      p.style.strokeDasharray = String(len);
-      p.style.strokeDashoffset = String(len);
-      p.style.transition = `stroke-dashoffset 0.9s cubic-bezier(0.16,1,0.3,1) ${240 + i * 70}ms`;
+    cards.forEach((c) => c.classList.add('in'));
+    softPaths.forEach((p) => p.classList.add('in'));
+    return () => {};
+  }
+
+  // draw the solid wires in, staggered
+  solidPaths.forEach((p, i) => {
+    const len = p.getTotalLength();
+    p.style.strokeDasharray = String(len);
+    p.style.strokeDashoffset = String(len);
+    p.style.transition = `stroke-dashoffset 0.9s cubic-bezier(0.16,1,0.3,1) ${240 + i * 60}ms`;
+  });
+  requestAnimationFrame(() => {
+    // cards reveal left-to-right, column by column
+    cards.forEach((c, i) => {
+      c.style.transitionDelay = `${i * 45}ms`;
+      c.classList.add('in');
     });
     requestAnimationFrame(() => {
-      nodes.forEach((n, i) => {
-        n.style.transitionDelay = `${i * 55}ms`;
-        n.classList.add('in');
-      });
-      requestAnimationFrame(() => solidPaths.forEach((p) => (p.style.strokeDashoffset = '0')));
+      solidPaths.forEach((p) => (p.style.strokeDashoffset = '0'));
+      softPaths.forEach((p) => p.classList.add('in'));
     });
-  }
+  });
 
-  // ---------- traveling pulses ----------
-  let raf = 0;
-  if (!reduceMotion) {
-    const pulses = Array.from({ length: 4 }, (_, i) => {
-      const c = el('circle', { r: 2.6, class: 'bp-pulse', opacity: 0 });
-      svg.appendChild(c);
-      return { c, path: null, t: Math.random(), speed: 0.0018 + Math.random() * 0.0014, delay: i * 500 };
+  // ---------- amber pulses ride the solid wires ----------
+  // added once the wires have drawn in, so nothing travels an undrawn edge
+  pulseTimer = setTimeout(() => {
+    solid.forEach(([d, dur, begin]) => {
+      const c = el('circle', { r: 2, class: 'bp-pulse', opacity: 0 });
+      c.appendChild(el('animateMotion', { path: d, dur: `${dur}s`, begin: `${begin}s`, repeatCount: 'indefinite' }));
+      c.appendChild(el('animate', {
+        attributeName: 'opacity', values: '0;0.9;0.9;0', keyTimes: '0;0.12;0.82;1',
+        dur: `${dur}s`, begin: `${begin}s`, repeatCount: 'indefinite',
+      }));
+      pulsesG.appendChild(c);
     });
-    const t0 = performance.now();
-    const step = (now) => {
-      raf = requestAnimationFrame(step);
-      for (const p of pulses) {
-        if (now - t0 < p.delay + 1400) continue;
-        if (!p.path) p.path = solidPaths[Math.floor(Math.random() * solidPaths.length)];
-        p.t += p.speed * 16;
-        if (p.t >= 1) {
-          p.t = 0;
-          p.path = solidPaths[Math.floor(Math.random() * solidPaths.length)];
-        }
-        const len = p.path.getTotalLength();
-        const pt = p.path.getPointAtLength(p.t * len);
-        p.c.setAttribute('cx', pt.x);
-        p.c.setAttribute('cy', pt.y);
-        p.c.setAttribute('opacity', String(Math.min(1, Math.sin(p.t * Math.PI) * 1.6) * 0.95));
-      }
-    };
-    raf = requestAnimationFrame(step);
-  }
+  }, 1250);
 
-  return () => cancelAnimationFrame(raf);
+  return () => clearTimeout(pulseTimer);
 }
 
 /* ---------------- spec sheet ---------------- */
