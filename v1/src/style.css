@@ -636,6 +636,53 @@ em { font-style: normal; }
 .why__fix .mono { display: block; font-size: 10.5px; letter-spacing: 0.14em; margin-bottom: 8px; }
 
 /* ============================================================
+   AGENTS REGISTRY
+   ============================================================ */
+.reg {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-panel);
+  padding: clamp(20px, 3vw, 34px);
+}
+.reg__hd, .reg__row {
+  display: grid;
+  grid-template-columns: minmax(200px, 1.4fr) 70px 2fr 130px;
+  gap: 16px;
+  align-items: baseline;
+}
+.reg__hd {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.reg__rows { list-style: none; }
+.reg__row {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.reg__name { color: var(--text); }
+.reg__count { color: var(--amber); }
+.reg__caps { color: var(--text-faint); }
+.reg__st {
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.reg__row--next .reg__name { color: var(--amber); }
+.reg__row--next .reg__st a {
+  color: var(--amber);
+  border-bottom: 1px dashed var(--amber-line);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+.reg__foot { margin-top: 16px; font-size: 11px; letter-spacing: 0.1em; }
+
+/* ============================================================
    PLATFORM
    ============================================================ */
 .plat {
@@ -909,6 +956,9 @@ em { font-style: normal; }
      the full row width instead of being squeezed to a few characters */
   .term__form { flex-wrap: wrap; }
   .term__go { flex-basis: 100%; width: 100%; margin-top: 2px; }
+  .reg__hd { display: none; }
+  .reg__row { grid-template-columns: 1fr 56px; }
+  .reg__caps, .reg__st { grid-column: 1 / -1; }
 }
 
 /* ============================================================
