@@ -154,7 +154,101 @@
       </div>
     </section>
 
-    <!-- ================= 03 / INSURANCE (Task 5) ================= -->
+    <!-- ================= INSURANCE ================= -->
+    <section class="section" id="insurance">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">03 / Insurance</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Insurance agents, on the claims journey<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">From first notice of loss to settlement —
+              agents for carriers, brokers, and reinsurers at every step.</p>
+          </div>
+        </div>
+
+        <figure class="vs rv" style="--i:2" role="img" aria-label="Claims journey pipeline: FNOL, docs, assess, decide, settle — with agents attached to each stage">
+          <div class="vs__bar mono"><span>insurance / claims journey</span><span class="vs__live"><i></i>agents live</span></div>
+          <div class="vs__scroll">
+            <svg viewBox="0 0 960 216" aria-hidden="true">
+              <path id="insSpine" class="abx-edge" d="M20 59 H940"/>
+              <g class="vs-stage" data-stage="fnol">
+                <rect class="abx-node" x="20" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="36" y="64">fnol</text>
+                <text class="abx-sub" x="132" y="64">01</text>
+              </g>
+              <g class="vs-stage" data-stage="docs">
+                <rect class="abx-node" x="210" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="226" y="64">docs</text>
+                <text class="abx-sub" x="322" y="64">02</text>
+                <path class="abx-edge" d="M290 82 C290 112 296 128 296 148"/>
+                <rect class="abx-chip" x="222" y="148" width="150" height="38" rx="9"/>
+                <text class="abx-label" x="238" y="171">doc-completeness</text>
+              </g>
+              <g class="vs-stage vs-stage--live" data-stage="assess">
+                <rect class="abx-node abx-node--live" x="400" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label abx-label--live" x="416" y="64">assess</text>
+                <circle class="abx-dot--live" cx="540" cy="59" r="4"/>
+                <path class="abx-edge" d="M480 82 C480 112 486 128 486 148"/>
+                <rect class="abx-chip abx-chip--pick" x="398" y="148" width="176" height="38" rx="9"/>
+                <text class="abx-label abx-label--live" x="414" y="171">damage-extraction +5</text>
+              </g>
+              <g class="vs-stage" data-stage="decide">
+                <rect class="abx-node" x="590" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="606" y="64">decide</text>
+                <text class="abx-sub" x="702" y="64">04</text>
+                <path class="abx-edge" d="M670 82 C670 112 676 128 676 148"/>
+                <rect class="abx-chip" x="606" y="148" width="140" height="38" rx="9"/>
+                <text class="abx-label" x="622" y="171">fraud-signals</text>
+              </g>
+              <g class="vs-stage" data-stage="settle">
+                <rect class="abx-node" x="780" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="796" y="64">settle</text>
+                <text class="abx-sub" x="892" y="64">05</text>
+              </g>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#insSpine"/></animateMotion></circle>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#insSpine"/></animateMotion></circle>
+            </svg>
+          </div>
+        </figure>
+
+        <div class="segs segs--3">
+          <article class="seg rv" style="--i:0" data-stages="fnol docs assess decide settle">
+            <h3 class="seg__name">Insurers &amp; Carriers</h3>
+            <p class="seg__desc">Core operational agents for insurance companies managing policies and claims directly.</p>
+            <ul class="seg__chips mono">
+              <li>Policy onboarding</li>
+              <li>Claims processing</li>
+              <li>Underwriting assessment</li>
+              <li>Fraud detection &amp; alerting</li>
+              <li>Regulatory &amp; Compliance</li>
+              <li>Complaints &amp; disputes</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:1" data-stages="fnol docs settle">
+            <h3 class="seg__name">Brokers</h3>
+            <p class="seg__desc">Agents focused on distribution, client management, and sales optimization.</p>
+            <ul class="seg__chips mono">
+              <li>Distribution</li>
+              <li>Renewals &amp; Upsell</li>
+              <li>Policy onboarding</li>
+              <li>Complaints &amp; disputes</li>
+              <li>Regulatory &amp; Compliance</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:2" data-stages="assess decide">
+            <h3 class="seg__name">Reinsurance</h3>
+            <p class="seg__desc">Agents tailored for risk transfer, treaty management, and portfolio analysis.</p>
+            <ul class="seg__chips mono">
+              <li>Reinsurance coordination</li>
+              <li>Underwriting assessment</li>
+              <li>Fraud detection &amp; alerting</li>
+              <li>Regulatory &amp; Compliance</li>
+              <li>Claims processing</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
     <!-- ================= 04 / LOGISTICS (Task 6) ================= -->
     <!-- ================= 05 / FEATURED (Task 8) ================= -->
 
