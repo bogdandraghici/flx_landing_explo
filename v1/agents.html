@@ -40,25 +40,77 @@
 
     <!-- ================= HERO ================= -->
     <section class="ahero" id="ahero">
-      <div class="shell">
-        <p class="hero__eyebrow mono rv-load" style="--d:0">
-          <span class="tick" aria-hidden="true"></span>
-          AI Agents &middot; by industry and business process
-        </p>
-        <h1 class="hero__title">
-          <span class="hero__line hero__line--big rv-load" style="--d:1">220+ agents, mapped to your value streams<span class="amber">.</span></span>
-        </h1>
-        <p class="hero__sub rv-load" style="--d:2">
-          Every FlowX.AI agent is built for a real journey in a regulated
-          industry. Explore the full directory below — organized by the value
-          stream each agent works on — or build your own.
-        </p>
-        <p class="astats mono rv-load" style="--d:3">
-          <span><b>220+</b> agents</span>
-          <span><b>20</b> categories</span>
-          <span><b>3</b> industries</span>
-          <span><b class="amber">●</b> in production</span>
-        </p>
+      <div class="shell ahero__grid">
+        <div class="ahero__text">
+          <p class="hero__eyebrow mono rv-load" style="--d:0">
+            <span class="tick" aria-hidden="true"></span>
+            AI Agents &middot; by industry and business process
+          </p>
+          <h1 class="hero__title">
+            <span class="hero__line hero__line--big rv-load" style="--d:1">220+ agents, mapped to your value streams<span class="amber">.</span></span>
+          </h1>
+          <p class="hero__sub rv-load" style="--d:2">
+            Every FlowX.AI agent is built for a real journey in a regulated
+            industry. Explore the full directory below — organized by the value
+            stream each agent works on — or build your own.
+          </p>
+          <p class="astats mono rv-load" style="--d:3">
+            <span><b>220+</b> agents</span>
+            <span><b>20</b> categories</span>
+            <span><b>3</b> industries</span>
+            <span><b class="amber">●</b> in production</span>
+          </p>
+        </div>
+
+        <!-- 220+ agents orbiting the FlowX core that powers them; 3 industries as orbit markers -->
+        <div class="ahero__viz" aria-hidden="true">
+          <svg viewBox="0 0 460 460" role="img" aria-label="220+ AI agents orbiting the FlowX core that powers them, with banking, insurance and logistics markers on the orbits">
+            <!-- orbit rings (also serve as motion tracks) -->
+            <path id="heroRingA" class="hero-ring" d="M130 230 a100 100 0 1 0 200 0 a100 100 0 1 0 -200 0"/>
+            <path id="heroRingB" class="hero-ring" d="M78 230 a152 152 0 1 0 304 0 a152 152 0 1 0 -304 0"/>
+            <path id="heroRingC" class="hero-ring" d="M26 230 a204 204 0 1 0 408 0 a204 204 0 1 0 -408 0"/>
+
+            <!-- agent population -->
+            <g>
+              <circle class="abx-port" cx="196" cy="324" r="2.6"/>
+              <circle class="abx-port" cx="136" cy="196" r="2.6"/>
+              <circle class="abx-port" cx="264" cy="136" r="2.6"/>
+              <circle class="abx-port" cx="282" cy="373" r="2.6"/>
+              <circle class="abx-port" cx="87" cy="282" r="2.6"/>
+              <circle class="abx-port" cx="178" cy="87" r="2.6"/>
+              <circle class="abx-port" cx="427" cy="283" r="2.6"/>
+              <circle class="abx-port" cx="33" cy="283" r="2.6"/>
+              <circle class="abx-port" cx="283" cy="33" r="2.6"/>
+              <circle class="abx-port" cx="427" cy="177" r="2.6"/>
+              <circle class="hero-agent" cx="324" cy="264" r="3.2"/>
+              <circle class="hero-agent" cx="373" cy="178" r="3.2"/>
+              <circle class="hero-agent" cx="283" cy="427" r="3.2"/>
+              <circle class="hero-agent" cx="33" cy="177" r="3.2"/>
+            </g>
+
+            <!-- each orbit ring is an industry; agents populate their industry's orbit -->
+            <g>
+              <rect class="hero-tag" x="200" y="19" width="60" height="14"/>
+              <text class="abx-cat" x="230" y="29" text-anchor="middle">logistics</text>
+              <rect class="hero-tag" x="199" y="71" width="62" height="14"/>
+              <text class="abx-cat" x="230" y="81" text-anchor="middle">insurance</text>
+              <rect class="hero-tag" x="204" y="123" width="52" height="14"/>
+              <text class="abx-cat" x="230" y="133" text-anchor="middle">banking</text>
+            </g>
+
+            <!-- live agents gravitating around the core -->
+            <circle class="abx-pulse" r="4"><animateMotion dur="16s" repeatCount="indefinite"><mpath href="#heroRingA"/></animateMotion></circle>
+            <circle class="abx-pulse" r="4"><animateMotion dur="22s" keyPoints="1;0" keyTimes="0;1" calcMode="linear" repeatCount="indefinite"><mpath href="#heroRingB"/></animateMotion></circle>
+            <circle class="abx-pulse" r="4"><animateMotion dur="28s" repeatCount="indefinite"><mpath href="#heroRingC"/></animateMotion></circle>
+
+            <!-- FlowX core -->
+            <rect class="abx-node abx-node--live" x="182" y="182" width="96" height="96" rx="18"/>
+            <rect class="hero-ring" x="192" y="192" width="76" height="76" rx="12"/>
+            <line class="hero-x" x1="214" y1="212" x2="246" y2="240"/>
+            <line class="hero-x" x1="246" y1="212" x2="214" y2="240"/>
+            <rect class="hero-x-bar" x="214" y="248" width="32" height="7" rx="2"/>
+          </svg>
+        </div>
       </div>
     </section>
 
@@ -79,6 +131,8 @@
           <div class="vs__scroll">
             <svg viewBox="0 0 960 216" aria-hidden="true">
               <path id="bkSpine" class="abx-edge" d="M20 59 H940"/>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#bkSpine"/></animateMotion></circle>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#bkSpine"/></animateMotion></circle>
               <g class="vs-stage" data-stage="apply">
                 <rect class="abx-node" x="20" y="36" width="160" height="46" rx="10"/>
                 <text class="abx-label" x="36" y="64">apply</text>
@@ -113,8 +167,6 @@
                 <text class="abx-label" x="796" y="64">onboard</text>
                 <text class="abx-sub" x="892" y="64">05</text>
               </g>
-              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#bkSpine"/></animateMotion></circle>
-              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#bkSpine"/></animateMotion></circle>
             </svg>
           </div>
         </figure>
@@ -171,6 +223,8 @@
           <div class="vs__scroll">
             <svg viewBox="0 0 960 216" aria-hidden="true">
               <path id="insSpine" class="abx-edge" d="M20 59 H940"/>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#insSpine"/></animateMotion></circle>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#insSpine"/></animateMotion></circle>
               <g class="vs-stage" data-stage="fnol">
                 <rect class="abx-node" x="20" y="36" width="160" height="46" rx="10"/>
                 <text class="abx-label" x="36" y="64">fnol</text>
@@ -205,8 +259,6 @@
                 <text class="abx-label" x="796" y="64">settle</text>
                 <text class="abx-sub" x="892" y="64">05</text>
               </g>
-              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#insSpine"/></animateMotion></circle>
-              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#insSpine"/></animateMotion></circle>
             </svg>
           </div>
         </figure>
@@ -266,6 +318,8 @@
           <div class="vs__scroll">
             <svg viewBox="0 0 960 216" aria-hidden="true">
               <path id="lgSpine" class="abx-edge" d="M20 59 H940"/>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#lgSpine"/></animateMotion></circle>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#lgSpine"/></animateMotion></circle>
               <g class="vs-stage" data-stage="quote">
                 <rect class="abx-node" x="20" y="36" width="160" height="46" rx="10"/>
                 <text class="abx-label" x="36" y="64">quote</text>
@@ -300,8 +354,6 @@
                 <rect class="abx-chip abx-chip--pick" x="760" y="148" width="182" height="38" rx="9"/>
                 <text class="abx-label abx-label--live" x="776" y="171">invoice-recon +3</text>
               </g>
-              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#lgSpine"/></animateMotion></circle>
-              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#lgSpine"/></animateMotion></circle>
             </svg>
           </div>
         </figure>
