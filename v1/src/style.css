@@ -829,13 +829,13 @@ em { font-style: normal; }
   background: var(--amber);
   animation: travel 2.6s linear infinite;
 }
-/* same profile as the branch sparks: ride the line, then fade out before the
-   flowx-runtime hub instead of blasting into it */
+/* ride the line up to the flowx-runtime hub, then vanish exactly on contact
+   (the hub sits one 14px flex-gap past the line, so travel = line + gap) */
 @keyframes travel {
-  0%   { transform: translateX(0);            opacity: 0; }
+  0%   { transform: translateX(0);                 opacity: 0; }
   15%  { opacity: 1; }
-  68%  { opacity: 1; }
-  100% { transform: translateX(calc(88cqw));  opacity: 0; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(calc(100cqw + 8px)); opacity: 0; }
 }
 .router__line { container-type: inline-size; }
 
