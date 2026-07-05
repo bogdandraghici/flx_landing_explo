@@ -14,6 +14,10 @@ page. Explorations are kept side by side, not merged into one app.
 
 Deployed builds live in `docs/vN/` and are served by GitHub Pages.
 
+> **Active version:** `v1/` is the version we're actively working on — treat it
+> as the source of truth. The `FLX Landing v2/` and `FLX Landing v3/` folders in
+> the parent directory are separate/older explorations; ignore them unless asked.
+
 ## Layout
 
 ```

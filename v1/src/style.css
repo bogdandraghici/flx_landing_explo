@@ -1208,6 +1208,347 @@ em { font-style: normal; }
 @keyframes fwave { 50% { transform: scaleY(2.6); } }
 
 /* ============================================================
+   about page
+   ============================================================ */
+/* hero — R&D trajectory spiral (line language matches the faint rings; amber
+   reserved for the moving pulses + origin/end markers only) */
+.hero-spiral {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-dasharray: 1620;
+  stroke-dashoffset: 1620;
+  animation: spiralDraw 2.6s var(--ease) 0.5s forwards;
+}
+@keyframes spiralDraw { to { stroke-dashoffset: 0; } }
+
+/* mission — head on top, full-width system visual below (mirrors the agents
+   value-stream sections: no side-by-side, no framed panel) */
+.mfound {
+  margin: clamp(44px, 6vh, 76px) auto 0;
+  max-width: 1040px;
+}
+.mfound__svg { width: 100%; height: auto; display: block; }
+
+/* an AI process running inside a governance boundary, cleared through
+   validation checkpoints before it emerges as safe output */
+.mgrd-bound { fill: none; stroke: rgba(255, 255, 255, 0.14); stroke-width: 1; stroke-dasharray: 4 7; }
+.mgrd-rail { stroke: var(--line); stroke-width: 1; }
+.mgrd-flow { fill: none; stroke: rgba(255, 255, 255, 0.18); stroke-width: 1; }
+.mgrd-gate { stroke: var(--line); stroke-width: 1; }
+.mgrd-check { fill: var(--bg-raised); stroke: var(--line); stroke-width: 1; }
+.mgrd-check--live { fill: var(--amber-soft); stroke: var(--amber-line); }
+.mgrd-node { fill: rgba(244, 245, 243, 0.7); }
+.mgrd-node--live { fill: var(--amber); }
+.mgrd-pulse { fill: var(--amber); filter: drop-shadow(0 0 5px rgba(252, 184, 19, 0.6)); }
+.mgrd-lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; fill: var(--text-faint); }
+.mgrd-lbl--amber { fill: var(--amber); }
+
+.mviz {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-panel);
+  overflow: hidden;
+}
+.mviz__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.mviz__live { display: inline-flex; align-items: center; gap: 8px; color: var(--text-dim); }
+.mviz__live i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber);
+  animation: bpBreathe 4s ease-in-out infinite;
+}
+.mviz__stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(28px, 4vw, 48px);
+  background: radial-gradient(120% 120% at 50% 0%, rgba(255, 255, 255, 0.035), transparent 60%);
+}
+.mviz__foot {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line-soft);
+}
+.mviz__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 18px;
+}
+.mviz__stat + .mviz__stat { border-left: 1px solid var(--line-soft); }
+.mviz__k {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.mviz__v {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+.mviz__v.amber { color: var(--amber); }
+
+/* double helix — 3D rungs twisting around a vertical axis */
+.dna {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 148px;
+  height: clamp(300px, 42vw, 384px);
+  perspective: 760px;
+}
+.dna__rung {
+  position: relative;
+  width: 132px;
+  height: 2px;
+  transform-style: preserve-3d;
+  animation: dnaSpin 7s linear infinite;
+  animation-delay: calc(var(--i) * -0.4s);
+}
+@keyframes dnaSpin { to { transform: rotateY(360deg); } }
+/* base-pair connector */
+.dna__bar {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg,
+    rgba(244, 245, 243, 0.4) 0%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(244, 245, 243, 0.4) 100%);
+}
+.dna__node {
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+}
+/* monochrome strands — they swap sides as each rung twists */
+.dna__node--a { left: 0; background: rgba(244, 245, 243, 0.9); box-shadow: 0 0 8px rgba(255, 255, 255, 0.25); }
+.dna__node--b { left: 100%; background: rgba(244, 245, 243, 0.9); box-shadow: 0 0 8px rgba(255, 255, 255, 0.25); }
+
+/* team — operator cards: duotone headshots, color revealed on hover */
+.crew {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.crew__card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg-raised);
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease);
+}
+.crew__card:hover { border-color: var(--amber-line); }
+.crew__photo { position: relative; aspect-ratio: 1; overflow: hidden; }
+.crew__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) contrast(1.06) brightness(0.86);
+  transition: filter 0.5s var(--ease);
+}
+/* amber cast over the grayscale = duotone; lifts on hover with the filter */
+.crew__photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--amber);
+  mix-blend-mode: soft-light;
+  opacity: 0.4;
+  pointer-events: none;
+  transition: opacity 0.5s var(--ease);
+}
+.crew__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 11, 13, 0.5), transparent 38%);
+  pointer-events: none;
+}
+.crew__card:hover .crew__photo img { filter: none; }
+.crew__card:hover .crew__photo::before { opacity: 0; }
+.crew__tag {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  z-index: 1;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244, 245, 243, 0.75);
+  background: rgba(10, 11, 13, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  padding: 4px 8px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.crew__meta { padding: 18px 20px 20px; }
+.crew__name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.crew__role {
+  margin-top: 4px;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.crew__bio { margin-top: 10px; font-size: 13.5px; line-height: 1.5; color: var(--text-dim); }
+
+/* full-team snapshot — wide panel, same duotone language */
+.crew__wide {
+  position: relative;
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+/* native 16:9 — the snapshot is a grid montage of faces; a wider crop beheads a row */
+.crew__wide img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) contrast(1.05) brightness(0.8);
+  transition: filter 0.6s var(--ease);
+}
+.crew__wide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--amber);
+  mix-blend-mode: soft-light;
+  opacity: 0.35;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease);
+}
+.crew__wide:hover img { filter: grayscale(0) contrast(1) brightness(0.94); }
+.crew__wide:hover::before { opacity: 0; }
+.crew__cap {
+  position: absolute;
+  z-index: 1;
+  inset-inline: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  background: rgba(10, 11, 13, 0.62);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* timeline — commit-log rail */
+.tl { list-style: none; max-width: 880px; }
+.tl__row {
+  display: grid;
+  grid-template-columns: 96px 40px 1fr;
+  gap: 0 clamp(8px, 2vw, 20px);
+}
+.tl__year { font-size: 15px; color: var(--text); padding-top: 2px; font-variant-numeric: tabular-nums; }
+.tl__node { position: relative; }
+.tl__node::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  background: var(--bg);
+  border: 1px solid var(--amber-line);
+}
+.tl__node--live::before { background: var(--amber); border-color: var(--amber); }
+.tl__node::after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 8px;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: var(--line);
+}
+.tl__row:last-child .tl__node::after { display: none; }
+.tl__body { padding-bottom: 44px; }
+.tl__row:last-child .tl__body { padding-bottom: 0; }
+.tl__slug {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+.tl__body h3 {
+  font-family: var(--font-display);
+  font-size: 19.5px;
+  font-weight: 590;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.tl__body p { font-size: 14.5px; color: var(--text-dim); max-width: 52ch; }
+
+/* offices — coordinate cards on a dotted wireframe backdrop */
+.off { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.off__card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background-color: var(--bg-panel);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 22px 22px;
+  padding: clamp(26px, 3vw, 40px);
+  transition: border-color 0.3s var(--ease);
+}
+.off__card:hover { border-color: var(--amber-line); }
+.off__coords {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+}
+.off__coords em { font-style: normal; margin-right: 6px; }
+.off__clock { color: var(--text-dim); font-variant-numeric: tabular-nums; }
+.off__city {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.4vw, 30px);
+  font-weight: 620;
+  letter-spacing: -0.02em;
+  margin: 20px 0 12px;
+}
+.off__addr { font-size: 12px; line-height: 1.8; color: var(--text-dim); font-style: normal; }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1080px) {
@@ -1226,6 +1567,8 @@ em { font-style: normal; }
   .fcard--2 { grid-column: span 3; }
   .ahero__grid { grid-template-columns: 1fr; gap: clamp(28px, 6vw, 52px); }
   .ahero__viz { max-width: 460px; }
+  .crew { grid-template-columns: repeat(2, 1fr); }
+  .off { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
   .nav__links, .nav__cert { display: none; }
@@ -1249,6 +1592,10 @@ em { font-style: normal; }
   .fcard--2, .fcard--3 { grid-column: span 6; }
   .fcard--wave { flex-direction: column; align-items: stretch; }
   .ahero__viz { display: none; }
+  .crew { grid-template-columns: 1fr; }
+  .crew__photo { aspect-ratio: 4 / 3; }
+  .crew__cap { position: static; }
+  .tl__row { grid-template-columns: 52px 28px 1fr; }
 }
 
 /* ============================================================
@@ -1269,4 +1616,7 @@ em { font-style: normal; }
   .vs__live i { animation: none; }
   .ahero__viz { opacity: 1; animation: none; }
   .fviz--wave i { animation: none; }
+  .hero-spiral { stroke-dashoffset: 0; animation: none; }
+  .mviz__live i { animation: none; }
+  .dna__rung { animation: none; }
 }
