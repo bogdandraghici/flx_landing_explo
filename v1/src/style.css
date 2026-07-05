@@ -1430,6 +1430,9 @@ em { font-style: normal; }
 /* native 16:9 — the snapshot is a grid montage of faces; a wider crop beheads a row */
 .crew__wide img {
   width: 100%;
+  /* height:auto so the intrinsic height="1152" attribute can't pin the box
+     square and defeat aspect-ratio — otherwise cover beheads the outer columns */
+  height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
