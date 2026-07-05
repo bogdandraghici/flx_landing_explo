@@ -81,10 +81,6 @@ const revealIO = new IntersectionObserver(
 );
 document.querySelectorAll('.rv').forEach((n) => revealIO.observe(n));
 
-/* ================= marquee — duplicate track for seamless loop ================= */
-const track = $('#marqueeTrack');
-if (track) track.innerHTML += track.innerHTML;
-
 /* ================= terminal ================= */
 const term = $('#term');
 const form = $('#termForm');

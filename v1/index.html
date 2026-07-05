@@ -24,20 +24,17 @@
         </svg>
       </a>
       <nav class="nav__links" aria-label="Primary">
-        <a href="#blueprint">Agent Builder</a>
-        <a href="#why">Why FlowX</a>
-        <a href="#registry">Agents</a>
-        <a href="#platform">Platform</a>
-        <a href="#proof">Proof</a>
-        <a href="#faq">FAQ</a>
+        <!-- labels match flowx.ai; Industries/Resources/Company become their own pages later -->
+        <a href="#registry">AI Agents</a>
+        <a href="#" data-page="industries">Industries</a>
+        <a href="#" data-page="resources">Resources</a>
+        <a href="#" data-page="company">Company</a>
       </nav>
       <div class="nav__right">
         <div class="bgtoggle" role="group" aria-label="Hero background style">
           <button type="button" class="bgtoggle__opt" data-bg-opt="sweep" aria-pressed="false" title="Grid resolve">Sweep</button>
           <button type="button" class="bgtoggle__opt is-on" data-bg-opt="field" aria-pressed="true" title="Order field">Field</button>
         </div>
-        <!-- CLAIMS — verify before publish -->
-        <span class="nav__cert mono">SOC 2 · ISO 27001</span>
         <a class="btn btn--primary btn--sm" href="#cta">Book a demo</a>
       </div>
     </div>
@@ -57,22 +54,28 @@
         </p>
 
         <h1 class="hero__title">
-          <span class="hero__line rv-load" style="--d:1"><span class="dim">95% of enterprise AI</span></span>
-          <span class="hero__line rv-load" style="--d:2"><span class="dim">initiatives fail.</span></span>
-          <span class="hero__line hero__line--big rv-load" style="--d:3">Be in the <em>5%</em><span class="amber">.</span></span>
+          <span class="hero__line hero__line--big rv-load" style="--d:1">Deploy Banking, Insurance, and Logistics AI Agents in Weeks<span class="amber">.</span></span>
+          <span class="hero__line rv-load" style="--d:2"><span class="dim">Proven in Production.</span></span>
         </h1>
 
         <p class="hero__sub rv-load" style="--d:4">
-          Deploy banking, insurance, and logistics AI agents in weeks —
-          proven in production. 220+ enterprise-ready agents, or build your
-          own, plugged into the legacy systems you already run.
+          Accelerate mission-critical value streams: onboarding, lending,
+          underwriting, claims, retention, quoting, track &amp; trace, and more.
+          Over 220 enterprise-ready AI agents — or build your own — ready to
+          plug into your legacy systems.
         </p>
 
+        <div class="hero__cta cta__row rv-load" style="--d:5">
+          <a class="btn btn--primary" href="#registry">Explore Agents</a>
+          <!-- placeholder — dedicated ROI calculator page later -->
+          <a class="btn btn--ghost" href="#proof">Calculate ROI</a>
+        </div>
+
         <!-- Terminal / solution compiler -->
-        <div class="term rv-load" style="--d:5" id="term">
+        <div class="term rv-load" style="--d:6" id="term">
           <div class="term__bar mono">
             <span class="term__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="term__title">flowx &mdash; solution compiler</span>
+            <span class="term__title">flowx &mdash; agent builder</span>
             <span class="term__ver">v4.2.1</span>
           </div>
           <div class="term__body mono">
@@ -90,7 +93,7 @@
           </div>
         </div>
 
-        <p class="term__hints mono rv-load" style="--d:6">
+        <p class="term__hints mono rv-load" style="--d:7">
           try —
           <button class="hint" type="button" data-hint="automate commercial onboarding for business clients">onboarding</button> ·
           <button class="hint" type="button" data-hint="underwrite retail mortgages in days, not weeks">underwriting</button> ·
@@ -99,7 +102,7 @@
         </p>
       </div>
 
-      <div class="hero__foot mono rv-load" style="--d:7">
+      <div class="hero__foot mono rv-load" style="--d:8">
         <span>[ scroll ]</span>
         <span class="hero__foot-right">001 — 220+ enterprise-ready agents · 20 categories · in production</span>
       </div>
@@ -157,57 +160,28 @@
       </div>
     </section>
 
-    <!-- ================= COMPLIANCE MARQUEE ================= -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track mono" id="marqueeTrack">
-        <span>GDPR</span><i>·</i><span>EU AI ACT</span><i>·</i><span>DORA</span><i>·</i><span>SOC 2 TYPE II</span><i>·</i>
-        <span>ISO 27001</span><i>·</i><span>PSD2</span><i>·</i><span>BASEL III</span><i>·</i><span>MiFID II</span><i>·</i>
-      </div>
-    </div>
-
-    <!-- ================= WHY 95% FAIL ================= -->
+<!-- ================= WHY 95% FAIL ================= -->
     <section class="section" id="why">
       <div class="shell">
         <div class="why">
           <div class="why__left">
-            <span class="section__no mono">03 / Why 95% fail</span>
-            <h2 class="h2 rv">Pilots don't die from bad&nbsp;models<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">The biggest challenge in deploying AI agents in mission-critical
-              value streams is not building agents — it's inadequate data access, missing integrations, and broken
-              process flows. FlowX is that machinery.</p>
+            <span class="section__no mono">03 / The 5%</span>
+            <h2 class="h2 rv">95% of AI initiatives do fail. Be in the <span class="amber">5%</span> that succeed.</h2>
           </div>
           <ol class="why__list">
             <li class="why__row rv" style="--i:0">
               <span class="why__no mono">01</span>
-              <div class="why__fail">
-                <h3>The agent is smart. Your data won't talk to it.</h3>
-                <p>The knowledge it needs is locked in cores, documents and desktops it can't reach.</p>
+              <div class="why__fail" style="grid-column:2 / -1">
+                <h3>Why?</h3>
+                <p>The biggest challenge in deploying AI agents in mission-critical value streams is not building agents, but inadequacy in data access, integrations, process flows and more.</p>
               </div>
-              <p class="why__fix"><span class="mono amber">FLOWX →</span> Governed connectors mount your systems of record — data reaches agents without leaving your perimeter.</p>
             </li>
             <li class="why__row rv" style="--i:1">
               <span class="why__no mono">02</span>
-              <div class="why__fail">
-                <h3>Demos skip the hard part: your legacy stack.</h3>
-                <p>Production means core banking, mainframes and document stores — not a clean sandbox.</p>
+              <div class="why__fail" style="grid-column:2 / -1">
+                <h3>Solution</h3>
+                <p>For 10+ years we've shipped AI that scales in complex, regulated environments. Today, companies run critical customer and operations journeys on FlowX.AI.</p>
               </div>
-              <p class="why__fix"><span class="mono amber">FLOWX →</span> Ready to plug into your legacy systems — no rip-and-replace, nothing rewritten.</p>
-            </li>
-            <li class="why__row rv" style="--i:2">
-              <span class="why__no mono">03</span>
-              <div class="why__fail">
-                <h3>A model is not a process.</h3>
-                <p>Mission-critical value streams need routing, approvals, exceptions and audit — end to end.</p>
-              </div>
-              <p class="why__fix"><span class="mono amber">FLOWX →</span> Agents run inside governed process flows, with humans in the loop where policy demands.</p>
-            </li>
-            <li class="why__row rv" style="--i:3">
-              <span class="why__no mono">04</span>
-              <div class="why__fail">
-                <h3>Most stacks have never met a regulator.</h3>
-                <p>You'd be the experiment — and risk teams know it.</p>
-              </div>
-              <p class="why__fix"><span class="mono amber">FLOWX →</span> Proven in production at banks, insurers and logistics operators — where failure is not an option.</p>
             </li>
           </ol>
         </div>
@@ -220,9 +194,9 @@
         <div class="section__head">
           <span class="section__no mono">04 / Agents</span>
           <div class="section__headline">
-            <h2 class="h2 rv">220+ agents, ready to deploy<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">Enterprise-ready AI agents across 20 categories — or build your
-              own in the Agent Builder. Four of the stacks running in production today:</p>
+            <h2 class="h2 rv">Our production-ready AI agents and agent stacks<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Over 220 mission-critical AI agents across 20 categories,
+              designed for regulated industries. Four of the stacks running in production today:</p>
           </div>
         </div>
         <div class="reg rv" style="--i:2">
@@ -231,25 +205,25 @@
             <li class="reg__row mono">
               <span class="reg__name">retail-mortgage-underwriting</span>
               <span class="reg__count">9</span>
-              <span class="reg__caps">contract · appraisal · title · income · affordability</span>
+              <span class="reg__caps">end-to-end checks: contract ↔ appraisal ↔ title/EPC · income &amp; self-employed · debts, collateral, completeness</span>
               <span class="reg__st">in production</span>
             </li>
             <li class="reg__row mono">
               <span class="reg__name">commercial-onboarding</span>
               <span class="reg__count">7</span>
-              <span class="reg__caps">identity · UBO resolution · KYC · cross-document consistency</span>
+              <span class="reg__caps">identity &amp; UBO · signatory/mandates · address checks · cross-doc consistency · jurisdictional KYC · guided ask-backs</span>
               <span class="reg__st">in production</span>
             </li>
             <li class="reg__row mono">
               <span class="reg__name">claims-processing</span>
               <span class="reg__count">6</span>
-              <span class="reg__caps">FNOL routing · damage extraction · fraud signals</span>
+              <span class="reg__caps">FNOL &amp; routing · doc completeness · policy/limits check · damage extraction &amp; estimate · threshold validation · fraud signals</span>
               <span class="reg__st">in production</span>
             </li>
             <li class="reg__row mono">
               <span class="reg__name">invoice-reconciliation</span>
               <span class="reg__count">4</span>
-              <span class="reg__caps">auto-invoicing · rate &amp; tax validation · payment reconciliation</span>
+              <span class="reg__caps">auto-create invoices · validate rates/taxes/compliance · reconcile payments &amp; adjustments · real-time billing analytics</span>
               <span class="reg__st">in production</span>
             </li>
             <li class="reg__row reg__row--next mono">
@@ -261,6 +235,10 @@
           </ul>
           <p class="reg__foot mono dim2">220+ agents · 20 categories · ready to plug into your legacy systems</p>
         </div>
+        <div class="cta__row rv" style="--i:3">
+          <a class="btn btn--primary" href="#registry">Explore All Agents</a>
+          <a class="btn btn--ghost" href="#proof">Calculate ROI</a>
+        </div>
       </div>
     </section>
 
@@ -268,11 +246,9 @@
     <section class="section section--platform" id="platform">
       <div class="shell">
         <div class="section__head">
-          <span class="section__no mono">05 / Platform</span>
+          <span class="section__no mono">05 / Why FlowX</span>
           <div class="section__headline">
-            <h2 class="h2 rv">Built like infrastructure, because it is<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">Not a chatbot wrapper. A governed execution layer for AI agents,
-              engineered to the standard of your core systems.</p>
+            <h2 class="h2 rv" style="white-space:normal">Why do FlowX.AI agents succeed in enterprises?</h2>
           </div>
         </div>
 
@@ -280,8 +256,8 @@
           <!-- Audit log — large block -->
           <article class="plat__cell plat__cell--wide rv" style="--i:0">
             <header class="plat__head">
-              <h3>Banking-grade safety</h3>
-              <p>Agents don't just act — they leave evidence. Every prompt, retrieval, tool call and human override lands in an immutable audit log your examiner can replay.</p>
+              <h3>Banking-Grade Safety</h3>
+              <p>Centralized governance: audit trails, zero hallucinations, deterministic outputs — built for regulators.</p>
             </header>
             <div class="audit mono" id="audit" aria-hidden="true">
               <div class="audit__hd"><span>timestamp</span><span>agent</span><span>action</span><span>status</span></div>
@@ -292,8 +268,8 @@
           <!-- Guardrails -->
           <article class="plat__cell rv" style="--i:1">
             <header class="plat__head">
-              <h3>Easy to deploy</h3>
-              <p>No transformation program. A small joint team takes your first agents from kickoff to production in weeks — not quarters.</p>
+              <h3>Easy to Deploy</h3>
+              <p>Small teams deploy our agents. Go live while others are still planning.</p>
             </header>
             <ul class="rails mono">
               <li><span class="rails__state rails__state--on"></span>env.provision<em>wk 1</em></li>
@@ -306,8 +282,8 @@
           <!-- Perimeter -->
           <article class="plat__cell rv" style="--i:2">
             <header class="plat__head">
-              <h3>Impeccable data privacy</h3>
-              <p>On-prem Kubernetes, private VPC, or EU sovereign cloud. Your data never crosses a boundary you didn't draw.</p>
+              <h3>Impeccable Data Privacy</h3>
+              <p>Data stays inside your perimeter, agents run next to your systems under your policies.</p>
             </header>
             <ul class="targets mono">
               <li><span class="amber">▪</span> on-prem / k8s</li>
@@ -320,8 +296,8 @@
           <!-- Model routing -->
           <article class="plat__cell plat__cell--wide rv" style="--i:3">
             <header class="plat__head">
-              <h3>Plugs into your existing data</h3>
-              <p>Agents draw on the systems you already run — cores, mainframes, document stores — behind one governed interface. Nothing rewritten, nothing replaced.</p>
+              <h3>Plugs Into Your Existing Data</h3>
+              <p>Jack Henry, FIS, Finastra, Temenos, COBOL mainframe, transportation management systems — we connect to any type of system.</p>
             </header>
             <div class="router mono" id="router" aria-hidden="true">
               <span class="router__in">agent</span>
@@ -329,9 +305,12 @@
               <span class="router__hub">flowx<br/>runtime</span>
               <span class="router__line router__line--fan"></span>
               <div class="router__models">
-                <span class="router__model" data-m="0">core-banking</span>
-                <span class="router__model" data-m="1">cobol-mainframe</span>
-                <span class="router__model" data-m="2">document-store</span>
+                <span class="router__model" data-m="0">jack-henry</span>
+                <span class="router__model" data-m="1">fis</span>
+                <span class="router__model" data-m="2">finastra</span>
+                <span class="router__model" data-m="3">temenos</span>
+                <span class="router__model" data-m="4">cobol-mainframe</span>
+                <span class="router__model" data-m="5">tms</span>
               </div>
             </div>
           </article>
@@ -353,22 +332,22 @@
           <li class="proc__step rv" style="--i:0">
             <span class="proc__no mono">01</span>
             <h3>We create your environment</h3>
-            <p>Your runtime, provisioned inside your perimeter, under your security policies.</p>
+            <p>Validate the gap with your team. Lock in the agent or agent stack that fixes your biggest pain.</p>
           </li>
           <li class="proc__step rv" style="--i:1">
             <span class="proc__no mono">02</span>
             <h3>We connect your systems</h3>
-            <p>Core, mainframe, documents — wired in through governed connectors, untouched underneath.</p>
+            <p>We do the heavy lifting. Your legacy systems stay untouched. No disruption.</p>
           </li>
           <li class="proc__step rv" style="--i:2">
             <span class="proc__no mono">03</span>
             <h3>We configure and you test</h3>
-            <p>Your value stream, your data, your acceptance criteria — your people sign off.</p>
+            <p>We train the agent on your data under your rules and compliance. Safe AI.</p>
           </li>
           <li class="proc__step rv" style="--i:3">
             <span class="proc__no mono">04</span>
             <h3>Go live and see the impact</h3>
-            <p>Production traffic from the first case, measured like the numbers below.</p>
+            <p>Launch. Measure impact. Show the board real numbers. Plan the next agent.</p>
           </li>
         </ol>
       </div>
@@ -380,33 +359,33 @@
         <div class="section__head">
           <span class="section__no mono">07 / Proof</span>
           <div class="section__headline">
-            <h2 class="h2 rv">In production, not in&nbsp;pilots<span class="amber">.</span></h2>
+            <h2 class="h2 rv">Success stories with FlowX.AI<span class="amber">.</span></h2>
           </div>
         </div>
         <dl class="stats">
           <div class="stats__row rv" style="--i:0">
             <dt><span class="stats__val"><span class="stats__num mono" data-count="80" data-dec="0">0</span></span><span class="stats__unit mono">%</span></dt>
-            <dd>of manual handoffs automated in lending flows — in production</dd>
+            <dd>of manual handoffs in lending flows automated — European commercial bank</dd>
           </div>
           <div class="stats__row rv" style="--i:1">
             <dt><span class="stats__val"><span class="stats__pre mono">−</span><span class="stats__num mono" data-count="40" data-dec="0">0</span></span><span class="stats__unit mono">%</span></dt>
-            <dd>operational cost for lending flows</dd>
+            <dd>lower operational cost for lending flows — bank with 4M+ clients</dd>
           </div>
           <div class="stats__row rv" style="--i:2">
             <dt><span class="stats__val"><span class="stats__pre mono">−</span><span class="stats__num mono" data-count="65" data-dec="0">0</span></span><span class="stats__unit mono">%</span></dt>
-            <dd>processing time for underwriting</dd>
+            <dd>reduction in processing time for underwriting — global bank</dd>
           </div>
           <div class="stats__row rv" style="--i:3">
             <dt><span class="stats__val"><span class="stats__pre mono">−</span><span class="stats__num mono" data-count="62" data-dec="0">0</span></span><span class="stats__unit mono">%</span></dt>
-            <dd>time-to-yes in approval flows</dd>
+            <dd>reduction in time-to-yes in an approval flow — large financial institution</dd>
           </div>
           <div class="stats__row rv" style="--i:4">
             <dt><span class="stats__val"><span class="stats__pre mono">$</span><span class="stats__num mono" data-count="1.8" data-dec="1">0.0</span></span><span class="stats__unit mono">M</span></dt>
-            <dd>projected annual savings — in production</dd>
+            <dd>projected annual savings — global insurer, after a stack of AI agents</dd>
           </div>
           <div class="stats__row rv" style="--i:5">
             <dt><span class="stats__val"><span class="stats__num mono" data-count="8" data-dec="0">0</span></span><span class="stats__unit mono">wks</span></dt>
-            <dd>fund management platform — built and launched, in production</dd>
+            <dd>fund management platform built and launched — asset manager</dd>
           </div>
         </dl>
       </div>
@@ -418,33 +397,32 @@
         <div class="section__head">
           <span class="section__no mono">08 / Voices</span>
           <div class="section__headline">
-            <h2 class="h2 rv">The people running it<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">From production deployments — banks, insurers, and the teams inside them.</p>
+            <h2 class="h2 rv">Global companies, including financial institutions, trust FlowX.AI<span class="amber">.</span></h2>
           </div>
         </div>
         <div class="voices">
           <blockquote class="voice rv" style="--i:0">
-            <p>“FlowX.AI is a business asset, not an IT asset.”</p>
-            <cite>COO · major custodian bank</cite>
+            <p>“To us, FlowX.AI is a business asset, not an IT asset. We're shifting from technology that is a constraint, to an enabler.”</p>
+            <cite>COO of Major Custodian Bank</cite>
           </blockquote>
           <blockquote class="voice rv" style="--i:1">
-            <p>“We now see FlowX.AI as the engine that powers user experiences.”</p>
-            <cite>Deputy Director · CEE bank group</cite>
+            <p>“We now see FlowX.AI as the engine that powers user experiences across our entire digital portfolio.”</p>
+            <cite>Deputy Director of CEE Bank Group</cite>
           </blockquote>
           <blockquote class="voice rv" style="--i:2">
-            <p>“I have delivered more functionality in production with FlowX.AI in three months.”</p>
-            <cite>Solution architect · European bank</cite>
+            <p>“I have delivered more functionality in production with FlowX.AI in three months than in the rest of my entire career with the bank of six years.”</p>
+            <cite>Solution Architect of a European Bank</cite>
           </blockquote>
           <blockquote class="voice rv" style="--i:3">
-            <p>“Before FlowX.AI it would take us a year to launch a new product. Today we launch in 2–4 weeks.”</p>
-            <cite>Insurance executive</cite>
+            <p>“Before FlowX.AI, just like everyone else, it would take us a year to launch a new product. Today, we are able to launch new products in 2-4 weeks. This would have been unthinkable a few years ago.”</p>
+            <cite>Insurance Executive</cite>
           </blockquote>
           <blockquote class="voice rv" style="--i:4">
-            <p>“FlowX.AI delivers value, multiple times faster, through its ability to integrate.”</p>
-            <cite>CTO · European insurer</cite>
+            <p>“FlowX.AI delivers value, multiple times faster, through its ability to integrate its modern tech platform with existing stack, through plug-and-play functionality.”</p>
+            <cite>CTO of European Insurer</cite>
           </blockquote>
           <blockquote class="voice rv" style="--i:5">
-            <p>“FlowX.AI is the future of software development.”</p>
+            <p>“FlowX.AI is the future of software development. It is exactly what we need to transform the entire bank.”</p>
             <cite>SVP Technology Architecture &amp; Strategy</cite>
           </blockquote>
         </div>
@@ -457,8 +435,7 @@
         <div class="section__head">
           <span class="section__no mono">09 / FAQ</span>
           <div class="section__headline">
-            <h2 class="h2 rv">Asked by every risk committee<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">The questions that decide these deals.</p>
+            <h2 class="h2 rv">Frequently asked questions<span class="amber">.</span></h2>
           </div>
         </div>
         <!-- DRAFT ANSWERS — marketing review required. Questions are verbatim from flowx.ai. -->
@@ -472,7 +449,7 @@
             <div class="faq__a"><p>Weeks, not quarters. A small joint team creates your environment, connects your systems, configures with you, and goes live — one fund management platform was built and launched in 8 weeks.</p></div>
           </details>
           <details class="faq__item">
-            <summary class="faq__q"><span class="faq__no mono">Q.03</span>What level of effort is required?<span class="faq__mark" aria-hidden="true">+</span></summary>
+            <summary class="faq__q"><span class="faq__no mono">Q.03</span>What level of effort will this require from our team?<span class="faq__mark" aria-hidden="true">+</span></summary>
             <div class="faq__a"><p>A small joint team, not a transformation program. Your people define the value stream and acceptance criteria; FlowX stands up the environment and the agent stacks.</p></div>
           </details>
           <details class="faq__item">
@@ -480,7 +457,7 @@
             <div class="faq__a"><p>Priced against the value stream it accelerates. In production these deployments have cut lending operational costs by 40% and projected $1.8M in annual savings — sizing starts from your numbers, in a customized demo.</p></div>
           </details>
           <details class="faq__item">
-            <summary class="faq__q"><span class="faq__no mono">Q.05</span>What's the timeline?<span class="faq__mark" aria-hidden="true">+</span></summary>
+            <summary class="faq__q"><span class="faq__no mono">Q.05</span>What does the timeline look like?<span class="faq__mark" aria-hidden="true">+</span></summary>
             <div class="faq__a"><p>Create your environment → connect your systems → configure and test → go live. Elapsed: weeks — with impact measured from the first live case.</p></div>
           </details>
         </div>
@@ -493,14 +470,14 @@
       <div class="shell">
         <span class="section__no mono">10 / Next</span>
         <h2 class="cta__title">
-          <span class="rv" style="--i:0">Stop piloting.</span>
-          <span class="rv" style="--i:1">Start deploying<span class="amber">.</span></span>
+          <span class="rv" style="--i:0">Accelerate mission-critical</span>
+          <span class="rv" style="--i:1">value streams with our</span>
+          <span class="rv" style="--i:2">AI agents<span class="amber">.</span></span>
         </h2>
-        <div class="cta__row rv" style="--i:2">
+        <div class="cta__row rv" style="--i:3">
           <a class="btn btn--primary btn--lg" id="ctaBtn" href="mailto:hello@flowx.ai?subject=Customized%20demo">Schedule a customized demo</a>
-          <a class="btn btn--ghost btn--lg" href="#blueprint">Compile a blueprint first</a>
+          <a class="btn btn--ghost btn--lg" href="#registry">Explore Agents</a>
         </div>
-        <p class="cta__note mono rv" style="--i:3">45 minutes · your stack · your security team welcome</p>
       </div>
     </section>
   </main>
@@ -548,8 +525,6 @@
       </div>
       <div class="footer__base mono">
         <span>© <span id="year">2026</span> FlowX.AI Business Systems — Bucharest · Menlo Park</span>
-        <!-- CLAIMS — verify before publish -->
-        <span>SOC 2 TYPE II · ISO 27001 · GDPR</span>
       </div>
     </div>
   </footer>
