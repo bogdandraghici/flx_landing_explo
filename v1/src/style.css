@@ -112,6 +112,7 @@ em { font-style: normal; }
   transition: color 0.2s ease;
 }
 .nav__links a:hover { color: var(--text); }
+.nav__links a[aria-current="page"] { color: var(--text); }
 .nav__right { display: flex; align-items: center; gap: 18px; }
 .nav__cert {
   font-size: 10.5px;
@@ -121,31 +122,6 @@ em { font-style: normal; }
 }
 
 /* minimal switch: toggles the two hero background animations */
-.bgtoggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  padding: 2px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.02);
-}
-.bgtoggle__opt {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.04em;
-  color: var(--text-faint);
-  padding: 4px 11px;
-  border-radius: 999px;
-  white-space: nowrap;
-  transition: color 0.2s ease, background 0.2s ease;
-}
-.bgtoggle__opt:hover { color: var(--text-dim); }
-.bgtoggle__opt.is-on {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.07);
-}
-
 /* ============================================================
    BUTTONS
    ============================================================ */
@@ -999,7 +975,7 @@ em { font-style: normal; }
   font-family: var(--font-display);
   font-size: clamp(2.9rem, 7.6vw, 6.6rem);
   font-weight: 680;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.022em;
   line-height: 1.0;
 }
 .cta__title > span { display: block; }
@@ -1080,6 +1056,24 @@ em { font-style: normal; }
 @keyframes rvIn { to { opacity: 1; transform: none; } }
 
 /* ============================================================
+   agents page
+   ============================================================ */
+.ahero { padding: clamp(150px, 20vh, 210px) 0 clamp(56px, 8vh, 96px); }
+.ahero .hero__sub { margin-top: 22px; }
+.astats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 34px;
+  margin-top: 36px;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.astats b { color: var(--text); font-weight: 500; margin-right: 6px; }
+.astats .amber { font-size: 9px; vertical-align: 2px; }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1080px) {
@@ -1096,7 +1090,7 @@ em { font-style: normal; }
   .voices { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 760px) {
-  .nav__links, .nav__cert, .bgtoggle { display: none; }
+  .nav__links, .nav__cert { display: none; }
   .why__row { grid-template-columns: 40px 1fr; }
   .why__fix { grid-column: 2; }
   .stats__row { grid-template-columns: 1fr; gap: 8px; align-items: start; }
