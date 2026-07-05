@@ -973,7 +973,7 @@ em { font-style: normal; }
 .section--cta .section__no { display: block; margin-bottom: 30px; }
 .cta__title {
   font-family: var(--font-display);
-  font-size: clamp(2.9rem, 7.6vw, 6.6rem);
+  font-size: clamp(2.7rem, 7vw, 6rem);
   font-weight: 680;
   letter-spacing: -0.022em;
   line-height: 1.0;

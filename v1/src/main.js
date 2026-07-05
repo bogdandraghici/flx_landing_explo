@@ -129,7 +129,7 @@ function logLine(msg, time, delay) {
 
 /* ================= blueprint generation ================= */
 const bp = $('#bp');
-const bpResult = $('#bpResult');
+const bpSection = $('#bpSection');
 const bpMeta = $('#bpMeta');
 const bpDiagram = $('#bpDiagram');
 const bpSpec = $('#bpSpec');
@@ -141,6 +141,14 @@ let stopPulses = null;
 let stopTyping = null;
 let compiling = false;
 
+/* while the terminal grows with each compile log line, ease the viewport down so
+   its bottom edge stays in view — the final reveal then scrolls on to the section */
+function followTermBottom() {
+  const margin = 28; // breathing room kept below the terminal
+  const overflow = term.getBoundingClientRect().bottom + margin - window.innerHeight;
+  if (overflow > 1) window.scrollBy({ top: overflow, behavior: 'smooth' });
+}
+
 function compile(rawInput) {
   if (compiling) return;
   compiling = true;
@@ -151,15 +159,21 @@ function compile(rawInput) {
   const steps = reduceMotion
     ? [0, 0, 0, 0]
     : [80, 560, 1060, 1560];
-  logLine('intent parsed', '128ms', steps[0]);
-  logLine(`matched pattern — ${t.slug}`, '412ms', steps[1]);
-  logLine('agents + guardrails composed', '590ms', steps[2]);
-  setTimeout(() => {
+  // append each line as its step fires so the terminal grows a line at a time;
+  // after each growth, nudge the viewport so its bottom edge stays in view
+  const emit = (fn) => {
+    fn();
+    if (!reduceMotion) followTermBottom();
+  };
+  setTimeout(() => emit(() => logLine('intent parsed', '128ms', 0)), steps[0]);
+  setTimeout(() => emit(() => logLine(`matched pattern — ${t.slug}`, '412ms', 0)), steps[1]);
+  setTimeout(() => emit(() => logLine('agents + guardrails composed', '590ms', 0)), steps[2]);
+  setTimeout(() => emit(() => {
     const ln = document.createElement('div');
     ln.className = 'ln';
     ln.innerHTML = `<span><span class="ok">▸</span>rendering blueprint ↓</span><span class="t"></span>`;
     log.appendChild(ln);
-  }, steps[3]);
+  }), steps[3]);
 
   setTimeout(() => {
     // header
@@ -183,9 +197,9 @@ function compile(rawInput) {
       bpMeta.appendChild(c);
     });
 
-    // reveal the compiled blueprint (the diagram stays hidden until first compile)
-    bp.hidden = false;
-    bpResult.hidden = false;
+    // reveal the compiled blueprint section (sits right below the hero; the
+    // section stays hidden — no layout gap — until the first compile)
+    bpSection.hidden = false;
 
     // diagram + spec
     if (stopPulses) stopPulses();
