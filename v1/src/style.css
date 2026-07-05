@@ -113,6 +113,12 @@ em { font-style: normal; }
 }
 .nav__links a:hover { color: var(--text); }
 .nav__links a[aria-current="page"] { color: var(--text); }
+/* pages not built yet — shown but non-interactive */
+.nav__links a[aria-disabled="true"] {
+  color: rgba(244, 245, 243, 0.22);
+  pointer-events: none;
+  cursor: default;
+}
 .nav__right { display: flex; align-items: center; gap: 18px; }
 .nav__cert {
   font-size: 10.5px;
