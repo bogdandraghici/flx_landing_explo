@@ -196,8 +196,7 @@ function logLine(msg, time, delay) {
 }
 
 /* ================= blueprint generation ================= */
-const bpSection = $('#blueprint');
-const bpEmpty = $('#bpEmpty');
+const bp = $('#bp');
 const bpResult = $('#bpResult');
 const bpMeta = $('#bpMeta');
 const bpDiagram = $('#bpDiagram');
@@ -252,9 +251,8 @@ function compile(rawInput) {
       bpMeta.appendChild(c);
     });
 
-    // reveal the section (hidden until first compile) and swap empty → result
-    bpSection.hidden = false;
-    bpEmpty.hidden = true;
+    // reveal the compiled blueprint (the diagram stays hidden until first compile)
+    bp.hidden = false;
     bpResult.hidden = false;
 
     // diagram + spec
@@ -263,9 +261,10 @@ function compile(rawInput) {
     stopPulses = renderDiagram(bpDiagram, t, { reduceMotion });
     stopTyping = typeSpec(bpSpec, bpSpecStatus, specText(t, rawInput), { reduceMotion });
 
-    document.getElementById('blueprint').scrollIntoView({
+    // scroll to the compiled result itself, not the section's marketing header above it
+    bp.scrollIntoView({
       behavior: reduceMotion ? 'auto' : 'smooth',
-      block: 'start',
+      block: 'center',
     });
 
     input.disabled = false;
@@ -288,17 +287,6 @@ $('#bpAgain').addEventListener('click', () => {
   log.innerHTML = '';
   document.getElementById('hero').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
   setTimeout(() => input.focus({ preventScroll: true }), reduceMotion ? 0 : 650);
-});
-
-// While the blueprint is still hidden, "Blueprint" in the nav sends you to the
-// compiler instead of a collapsed anchor.
-document.querySelectorAll('a[href="#blueprint"]').forEach((a) => {
-  a.addEventListener('click', (e) => {
-    if (!bpSection.hidden) return;
-    e.preventDefault();
-    document.getElementById('hero').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
-    setTimeout(() => input.focus({ preventScroll: true }), reduceMotion ? 0 : 650);
-  });
 });
 
 /* ================= audit ticker ================= */

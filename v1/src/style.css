@@ -246,7 +246,7 @@ em { font-style: normal; }
   max-width: 920px;
   margin: 0 auto clamp(24px, 3.5vh, 36px);
 }
-.hero__line { display: block; font-size: clamp(2.2rem, 5vw, 3.9rem); color: #8f8f88; }
+.hero__line { display: block; font-size: clamp(1.85rem, 4vw, 3.05rem); color: #8f8f88; }
 .hero__line .dim { color: #8f8f88; }
 .hero__line--big {
   margin-top: 0.06em;
@@ -255,11 +255,17 @@ em { font-style: normal; }
 .hero__line--big em { color: var(--amber); font-style: normal; }
 
 .hero__sub {
-  max-width: 42ch;
-  font-size: clamp(16px, 1.3vw, 18px);
+  max-width: 62ch;
+  font-size: clamp(15px, 1.2vw, 17px);
   line-height: 1.55;
   color: #b9b9b1;
-  margin: 0 auto clamp(32px, 5vh, 48px);
+  margin: 0 auto clamp(20px, 3vh, 28px);
+}
+
+/* CTAs grouped with the title/subtitle block, set apart from the terminal */
+.hero .hero__cta {
+  margin-top: clamp(18px, 2.2vh, 24px);
+  margin-bottom: clamp(40px, 7vh, 68px);
 }
 
 /* ---------- terminal ---------- */
@@ -464,22 +470,23 @@ em { font-style: normal; }
    ============================================================ */
 .section--blueprint { padding-top: clamp(80px, 10vh, 128px); }
 
-.bp__empty {
-  border: 1px dashed rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
-  padding: clamp(48px, 8vh, 88px) 24px;
-  display: grid;
-  justify-items: center;
-  gap: 28px;
-  text-align: center;
+.bp__cta { margin-top: 28px; }
+
+/* header of a compiled blueprint — sits above the diagram once a use case is compiled */
+.bp__result-head { margin-bottom: clamp(28px, 4vh, 44px); }
+.bp__result-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 620;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
-.bp__empty p { font-size: 12.5px; letter-spacing: 0.06em; color: var(--text-dim); line-height: 2; }
-.bp__ghost {
-  width: min(520px, 86%);
-  color: rgba(255, 255, 255, 0.13);
+.bp__result-lede {
+  margin-top: 12px;
+  max-width: 58ch;
+  font-size: 15.5px;
+  color: var(--text-dim);
 }
-.bp__ghost path { stroke-dasharray: 6 7; animation: ghostDash 30s linear infinite; }
-@keyframes ghostDash { to { stroke-dashoffset: -260; } }
 
 .bp__meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
 .bp__meta .chip {
@@ -579,6 +586,50 @@ em { font-style: normal; }
   animation: tickPulse 1s steps(2, start) infinite;
 }
 .bp__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+
+/* ---------- agent builder — copy + abstract wireframe ---------- */
+.abuild {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.abuild__text .section__no { display: block; margin-bottom: 22px; }
+.abuild__text .h2 { max-width: 18ch; }
+.abuild__text .section__lede { max-width: 46ch; }
+
+.abx {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 130% at 50% 0%, rgba(255, 255, 255, 0.04), transparent 62%),
+    var(--bg);
+  padding: clamp(16px, 2.4vw, 26px);
+}
+.abx svg { width: 100%; height: auto; display: block; }
+
+/* wireframe primitives — mirrors the blueprint diagram's line/amber language */
+.abx-tray { fill: rgba(255, 255, 255, 0.015); stroke: var(--line); stroke-width: 1; }
+.abx-frame { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; stroke-dasharray: 4 6; }
+.abx-div { stroke: var(--line-soft); stroke-width: 1; }
+.abx-node { fill: var(--bg); stroke: rgba(255, 255, 255, 0.1); stroke-width: 1; }
+.abx-node--live { fill: var(--bg); stroke: rgba(252, 184, 19, 0.34); }
+.abx-chip { fill: rgba(255, 255, 255, 0.03); stroke: rgba(255, 255, 255, 0.09); stroke-width: 1; }
+.abx-chip--pick { fill: rgba(252, 184, 19, 0.06); stroke: rgba(252, 184, 19, 0.4); }
+.abx-ico { fill: rgba(205, 212, 226, 0.18); }
+.abx-ico--pick { fill: rgba(252, 184, 19, 0.6); }
+.abx-edge { fill: none; stroke: rgba(255, 255, 255, 0.14); stroke-width: 1; }
+.abx-wire { stroke: rgba(252, 184, 19, 0.5); stroke-dasharray: 4 6; animation: abxWire 1.4s linear infinite; }
+.abx-port { fill: rgba(205, 212, 226, 0.42); }
+.abx-pulse { fill: var(--amber); }
+.abx-tdot { fill: rgba(205, 212, 226, 0.3); }
+.abx-dot--live { fill: var(--amber); animation: bpBreathe 4s ease-in-out infinite; }
+.abx-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.04em; fill: rgba(205, 212, 226, 0.62); }
+.abx-label--head { font-size: 9.5px; letter-spacing: 0.18em; fill: var(--text-faint); text-transform: uppercase; }
+.abx-label--live { fill: rgba(252, 184, 19, 0.9); }
+.abx-cat { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; fill: var(--text-faint); }
+.abx-sub { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.02em; fill: rgba(205, 212, 226, 0.4); }
+@keyframes abxWire { to { stroke-dashoffset: -20; } }
 
 /* ============================================================
    MARQUEE
@@ -1034,6 +1085,8 @@ em { font-style: normal; }
 @media (max-width: 1080px) {
   .bp__grid { grid-template-columns: 1fr; }
   .bp__spec-body { min-height: 220px; }
+  .abuild { grid-template-columns: 1fr; gap: 40px; }
+  .abx { max-width: 520px; }
   .why { grid-template-columns: 1fr; }
   .why__left { position: static; }
   .plat__cell, .plat__cell--wide { grid-column: span 12; }
@@ -1070,7 +1123,8 @@ em { font-style: normal; }
   .marquee__track { animation: none; }
   .tick, .rails__state, .bp__spec-body .cursor { animation: none; }
   .router__line::after { animation: none; opacity: 0; }
-  .bp__ghost path { animation: none; }
+  .abx-wire, .abx-dot--live { animation: none; }
+  .abx-pulse { display: none; }
   .bp-card { opacity: 1; transform: none; transition: none; }
   .bp-edge--soft { opacity: 1; transition: none; }
   .bp-glow, .bp-dot--live { animation: none; }
