@@ -249,7 +249,128 @@
         </div>
       </div>
     </section>
-    <!-- ================= 04 / LOGISTICS (Task 6) ================= -->
+    <!-- ================= LOGISTICS ================= -->
+    <section class="section" id="logistics">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">04 / Logistics</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Logistics agents, on the freight lifecycle<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">From quote to invoice — agents for carriers,
+              3PLs, brokers, forwarders, and shippers along the whole move.</p>
+          </div>
+        </div>
+
+        <figure class="vs rv" style="--i:2" role="img" aria-label="Freight lifecycle pipeline: quote, book, move, deliver, invoice — with agents attached to each stage">
+          <div class="vs__bar mono"><span>logistics / freight lifecycle</span><span class="vs__live"><i></i>agents live</span></div>
+          <div class="vs__scroll">
+            <svg viewBox="0 0 960 216" aria-hidden="true">
+              <path id="lgSpine" class="abx-edge" d="M20 59 H940"/>
+              <g class="vs-stage" data-stage="quote">
+                <rect class="abx-node" x="20" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="36" y="64">quote</text>
+                <text class="abx-sub" x="132" y="64">01</text>
+                <path class="abx-edge" d="M100 82 C100 112 106 128 106 148"/>
+                <rect class="abx-chip" x="28" y="148" width="140" height="38" rx="9"/>
+                <text class="abx-label" x="44" y="171">smart-quoting</text>
+              </g>
+              <g class="vs-stage" data-stage="book">
+                <rect class="abx-node" x="210" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="226" y="64">book</text>
+                <text class="abx-sub" x="322" y="64">02</text>
+              </g>
+              <g class="vs-stage" data-stage="move">
+                <rect class="abx-node" x="400" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="416" y="64">move</text>
+                <text class="abx-sub" x="512" y="64">03</text>
+                <path class="abx-edge" d="M480 82 C480 112 486 128 486 148"/>
+                <rect class="abx-chip" x="412" y="148" width="136" height="38" rx="9"/>
+                <text class="abx-label" x="428" y="171">track-trace</text>
+              </g>
+              <g class="vs-stage" data-stage="deliver">
+                <rect class="abx-node" x="590" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="606" y="64">deliver</text>
+                <text class="abx-sub" x="702" y="64">04</text>
+              </g>
+              <g class="vs-stage vs-stage--live" data-stage="invoice">
+                <rect class="abx-node abx-node--live" x="780" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label abx-label--live" x="796" y="64">invoice</text>
+                <circle class="abx-dot--live" cx="920" cy="59" r="4"/>
+                <path class="abx-edge" d="M860 82 C860 112 854 128 854 148"/>
+                <rect class="abx-chip abx-chip--pick" x="760" y="148" width="182" height="38" rx="9"/>
+                <text class="abx-label abx-label--live" x="776" y="171">invoice-recon +3</text>
+              </g>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#lgSpine"/></animateMotion></circle>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#lgSpine"/></animateMotion></circle>
+            </svg>
+          </div>
+        </figure>
+
+        <div class="segs segs--3">
+          <!-- DRAFT — marketing review: the five logistics segment descriptions are invented (source has none) -->
+          <article class="seg rv" style="--i:0" data-stages="move deliver invoice">
+            <h3 class="seg__name">Carriers</h3>
+            <p class="seg__desc">Agents that keep fleets moving — maintenance, fuel, pricing, and safety, without the back office drag.</p>
+            <ul class="seg__chips mono">
+              <li>Fleet optimization</li>
+              <li>Predictive maintenance</li>
+              <li>Load entry</li>
+              <li>Fuel efficiency</li>
+              <li>Compliance &amp; safety</li>
+              <li>Dynamic pricing</li>
+              <li>Invoicing</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:1" data-stages="quote book move invoice">
+            <h3 class="seg__name">3PLs</h3>
+            <p class="seg__desc">Agents that orchestrate inventory, routing, and customer commitments across the network.</p>
+            <ul class="seg__chips mono">
+              <li>Inventory optimization</li>
+              <li>Dynamic routing</li>
+              <li>Load entry</li>
+              <li>Smart quoting</li>
+              <li>Invoice reconciliation</li>
+              <li>Customer service</li>
+              <li>Exception management</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:2" data-stages="quote book invoice">
+            <h3 class="seg__name">Brokers</h3>
+            <p class="seg__desc">Agents that quote faster, match carriers smarter, and keep every margin visible.</p>
+            <ul class="seg__chips mono">
+              <li>Smart quoting</li>
+              <li>Carrier matching</li>
+              <li>Load entry</li>
+              <li>Invoice reconciliation</li>
+              <li>Inbox management</li>
+              <li>Performance analysis</li>
+              <li>Customs validation</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:3" data-stages="quote move deliver">
+            <h3 class="seg__name">Forwarders</h3>
+            <p class="seg__desc">Agents for cross-border moves — customs, compliance, and landed-cost certainty.</p>
+            <ul class="seg__chips mono">
+              <li>Customs validation</li>
+              <li>Smart quoting</li>
+              <li>Risk &amp; compliance</li>
+              <li>Invoice reconciliation</li>
+              <li>Cost prediction</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:4" data-stages="quote book invoice">
+            <h3 class="seg__name">Shippers</h3>
+            <p class="seg__desc">Agents that put tendering, quoting, and freight-spend reconciliation on autopilot.</p>
+            <ul class="seg__chips mono">
+              <li>Load tendering</li>
+              <li>Freight quoting</li>
+              <li>Invoice reconciliation</li>
+              <li>Demand forecasting</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
     <!-- ================= 05 / FEATURED (Task 8) ================= -->
 
     <!-- ================= CTA ================= -->
