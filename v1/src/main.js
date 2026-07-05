@@ -276,18 +276,65 @@ if (!reduceMotion && auditRows) {
   auditIO.observe(auditRows);
 }
 
-/* ================= model router rotation ================= */
-const models = document.querySelectorAll('.router__model');
-if (models.length && !reduceMotion) {
-  let active = 0;
-  models[0].classList.add('active');
-  setInterval(() => {
-    models[active].classList.remove('active');
-    active = (active + 1) % models.length;
-    models[active].classList.add('active');
-  }, 2400);
-} else if (models.length) {
-  models[0].classList.add('active');
+/* ================= runtime → systems branches ================= */
+/* Draw a curved branch from the flowx-runtime hub to each system card and send
+   an amber spark along each one. Built in JS at real pixel coordinates so the
+   curves aren't distorted and land on the actual card centres; rebuilt on
+   resize / font load. Same symmetric bezier the compile diagram uses. */
+const router = $('#router');
+if (router) {
+  const fan = router.querySelector('.router__fan');
+  const hub = router.querySelector('.router__hub');
+  const cards = [...router.querySelectorAll('.router__model')];
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const CYCLE = 2.6; // seconds, matches the spark animation
+
+  const hEdge = (x1, y1, x2, y2) => {
+    const mx = (x1 + x2) / 2;
+    return `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
+  };
+
+  function buildBranches() {
+    if (!fan || !hub || !cards.length) return;
+    const fr = fan.getBoundingClientRect();
+    if (fr.width < 1 || fr.height < 1) return;
+    const hr = hub.getBoundingClientRect();
+    const oy = hr.top + hr.height / 2 - fr.top; // branch origin: hub's right-centre
+    const paths = cards.map((card) => {
+      const cr = card.getBoundingClientRect();
+      return hEdge(0, oy, cr.left - fr.left, cr.top + cr.height / 2 - fr.top);
+    });
+
+    fan.innerHTML = '';
+    const svg = document.createElementNS(SVG_NS, 'svg');
+    svg.setAttribute('class', 'router__branches');
+    svg.setAttribute('viewBox', `0 0 ${fr.width} ${fr.height}`);
+    svg.setAttribute('width', fr.width);
+    svg.setAttribute('height', fr.height);
+    svg.setAttribute('aria-hidden', 'true');
+    paths.forEach((d) => {
+      const p = document.createElementNS(SVG_NS, 'path');
+      p.setAttribute('d', d);
+      svg.appendChild(p);
+    });
+    fan.appendChild(svg);
+
+    paths.forEach((d, i) => {
+      const spark = document.createElement('i');
+      spark.className = 'router__spark';
+      spark.style.offsetPath = `path("${d}")`;
+      spark.style.setProperty('--d', `${((i * CYCLE) / cards.length).toFixed(2)}s`);
+      fan.appendChild(spark);
+    });
+  }
+
+  buildBranches();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(buildBranches);
+  let rzTimer = 0;
+  addEventListener('resize', () => {
+    clearTimeout(rzTimer);
+    rzTimer = setTimeout(buildBranches, 150);
+  });
 }
 
 /* ================= stat count-ups ================= */

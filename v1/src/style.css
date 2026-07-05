@@ -827,28 +827,60 @@ em { font-style: normal; }
   width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--amber);
-  animation: travel 2.4s linear infinite;
+  animation: travel 2.6s linear infinite;
 }
-.router__line--fan::after { animation-delay: 1.2s; }
+/* same profile as the branch sparks: ride the line, then fade out before the
+   flowx-runtime hub instead of blasting into it */
 @keyframes travel {
-  0% { transform: translateX(0); opacity: 0; }
-  12% { opacity: 1; }
-  88% { opacity: 1; }
-  100% { transform: translateX(calc(100cqw)); opacity: 0; }
+  0%   { transform: translateX(0);            opacity: 0; }
+  15%  { opacity: 1; }
+  68%  { opacity: 1; }
+  100% { transform: translateX(calc(88cqw));  opacity: 0; }
 }
 .router__line { container-type: inline-size; }
+
+/* runtime → systems: branch lines fan out to each card, with amber sparks
+   that ride each branch and fade before reaching the cards */
+.router__fan {
+  position: relative;
+  flex: 1;
+  min-width: 32px;
+  align-self: stretch; /* full column height, so branches reach every card */
+  overflow: visible;   /* branches curve out to the card edges past the fan box */
+}
+.router__branches {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  display: block;
+}
+.router__branches path { fill: none; stroke: rgba(255, 255, 255, 0.14); stroke-width: 1; }
+.router__spark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  offset-rotate: 0deg;
+  opacity: 0;
+  pointer-events: none;
+  animation: routerSpark 2.6s linear infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes routerSpark {
+  0%   { offset-distance: 0%;  opacity: 0; }
+  15%  { opacity: 1; }
+  68%  { opacity: 1; }
+  100% { offset-distance: 90%; opacity: 0; } /* fade out before the cards */
+}
 .router__models { display: grid; gap: 8px; }
 .router__model {
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 8px 13px;
   color: var(--text-faint);
-  transition: border-color 0.4s ease, color 0.4s ease, background 0.4s ease;
-}
-.router__model.active {
-  border-color: var(--amber-line);
-  color: var(--text);
-  background: var(--amber-soft);
 }
 
 /* ============================================================
@@ -1614,7 +1646,7 @@ em { font-style: normal; }
   .rv, .rv-load { opacity: 1; transform: none; transition: none; animation: none; }
   .marquee__track { animation: none; }
   .tick, .rails__state, .bp__spec-body .cursor { animation: none; }
-  .router__line::after { animation: none; opacity: 0; }
+  .router__line::after, .router__spark { animation: none; opacity: 0; }
   .abx-wire, .abx-dot--live { animation: none; }
   .abx-pulse { display: none; }
   .bp-card { opacity: 1; transform: none; transition: none; }
