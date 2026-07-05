@@ -20,10 +20,14 @@ Deployed builds live in `docs/vN/` and are served by GitHub Pages.
 flx_landing_explo/
 ├── docs/vN/        # built output served by GitHub Pages (do not hand-edit)
 ├── v1/             # exploration 1 — a full Vite project
-│   ├── index.html  # all markup (nav, hero, sections, footer)
+│   ├── index.html    # all markup (nav, hero, sections, footer)
+│   ├── agents.html    # AI Agents page: value-stream schematics + featured bento
+│   ├── vite.config.js # multi-page build (index.html + agents.html entries)
 │   ├── public/     # static assets (flowx-logo.svg)
 │   └── src/
 │       ├── main.js       # entry: wires nav, reveals, terminal, sections
+│       ├── shared.js      # shared page chrome: grain, nav, reveals
+│       ├── agents.js      # agents-page entry
 │       ├── style.css      # all styles; design tokens in :root
 │       ├── field.js       # canvas hero background ("grid resolve" animation)
 │       └── blueprint.js   # mocked "solution compiler" (classify → SVG + yaml)
@@ -45,15 +49,23 @@ npm run preview
 ## v1 architecture
 
 - **Vanilla ES modules, no framework.** No React/Vue/build magic beyond Vite.
+- **`vite.config.js`** declares a multi-page build with two HTML entries —
+  `index.html` and `agents.html` — so both get built/optimized by Vite.
 - **`index.html`** holds all the markup. Sections: nav, hero, blueprint, compliance
   marquee, "why 95% fail", platform, proof, CTA, footer.
+- **`agents.html`** is the AI Agents page: hero, banking/insurance/logistics
+  value-stream schematics, a featured-agents bento, and a CTA.
 - **`src/style.css`** is the single stylesheet. Design tokens (colors, fonts,
   easing) are CSS custom properties in `:root` at the top — prefer these over
   hardcoded values, except when intentionally matching a specific exploration.
-- **`src/main.js`** is the entry point (imported by `index.html`). It sets up the
-  hero canvas, scroll-reveal IntersectionObservers, the terminal input +
-  placeholder animation, and the section behaviors (audit ticker, model router,
-  count-up stats).
+- **`src/shared.js`** — page chrome shared by both pages: grain overlay, nav
+  scroll state, and scroll-reveal IntersectionObservers.
+- **`src/main.js`** is the `index.html` entry point. It sets up the hero canvas,
+  the terminal input + placeholder animation, and the section behaviors (audit
+  ticker, model router, count-up stats), on top of the shared chrome.
+- **`src/agents.js`** is the `agents.html` entry point. It wires the CTA canvas,
+  segment-hover → value-stream stage highlighting, and the featured bento's
+  micro-visuals (screener feed, rate readout).
 - **`src/field.js`** — the hero background canvas animation.
 - **`src/blueprint.js`** — the mocked "solution compiler": classifies a free-text
   use case into one of six domain templates and renders an animated SVG diagram +
