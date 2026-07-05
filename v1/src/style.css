@@ -879,6 +879,34 @@ em { font-style: normal; }
 .stats__row dd { font-size: 15.5px; color: var(--text-dim); max-width: 44ch; }
 
 /* ============================================================
+   VOICES
+   ============================================================ */
+.voices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.voice {
+  background: var(--bg);
+  padding: clamp(24px, 2.8vw, 38px);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.voice p { font-size: 16px; line-height: 1.55; color: var(--text); }
+.voice cite {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* ============================================================
    CTA
    ============================================================ */
 .section--cta { padding-block: clamp(140px, 20vh, 240px); position: relative; overflow: clip; }
@@ -979,6 +1007,7 @@ em { font-style: normal; }
   .section__head { grid-template-columns: 1fr; gap: 16px; }
   .section--platform .h2 { white-space: normal; }
   .proc { grid-template-columns: repeat(2, 1fr); }
+  .voices { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 760px) {
   .nav__links, .nav__cert, .bgtoggle { display: none; }
@@ -997,6 +1026,7 @@ em { font-style: normal; }
   .reg__row { grid-template-columns: 1fr 56px; }
   .reg__caps, .reg__st { grid-column: 1 / -1; }
   .proc { grid-template-columns: 1fr; }
+  .voices { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
