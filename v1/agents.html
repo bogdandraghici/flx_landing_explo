@@ -62,7 +62,98 @@
       </div>
     </section>
 
-    <!-- ================= 02 / BANKING (Task 4) ================= -->
+    <!-- ================= BANKING ================= -->
+    <section class="section" id="banking">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">02 / Banking</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Banking agents, on the lending journey<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">From first application to funded account —
+              agents attach to every stage of origination, onboarding, and risk.</p>
+          </div>
+        </div>
+
+        <figure class="vs rv" style="--i:2" role="img" aria-label="Lending journey pipeline: apply, verify, underwrite, decide, onboard — with agents attached to each stage">
+          <div class="vs__bar mono"><span>banking / lending journey</span><span class="vs__live"><i></i>agents live</span></div>
+          <div class="vs__scroll">
+            <svg viewBox="0 0 960 216" aria-hidden="true">
+              <path id="bkSpine" class="abx-edge" d="M20 59 H940"/>
+              <g class="vs-stage" data-stage="apply">
+                <rect class="abx-node" x="20" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="36" y="64">apply</text>
+                <text class="abx-sub" x="132" y="64">01</text>
+              </g>
+              <g class="vs-stage" data-stage="verify">
+                <rect class="abx-node" x="210" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="226" y="64">verify</text>
+                <text class="abx-sub" x="322" y="64">02</text>
+                <path class="abx-edge" d="M290 82 C290 112 296 128 296 148"/>
+                <rect class="abx-chip" x="222" y="148" width="150" height="38" rx="9"/>
+                <text class="abx-label" x="238" y="171">doc-completeness</text>
+              </g>
+              <g class="vs-stage vs-stage--live" data-stage="underwrite">
+                <rect class="abx-node abx-node--live" x="400" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label abx-label--live" x="416" y="64">underwrite</text>
+                <circle class="abx-dot--live" cx="540" cy="59" r="4"/>
+                <path class="abx-edge" d="M480 82 C480 112 486 128 486 148"/>
+                <rect class="abx-chip abx-chip--pick" x="404" y="148" width="164" height="38" rx="9"/>
+                <text class="abx-label abx-label--live" x="420" y="171">income-analysis +8</text>
+              </g>
+              <g class="vs-stage" data-stage="decide">
+                <rect class="abx-node" x="590" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="606" y="64">decide</text>
+                <text class="abx-sub" x="702" y="64">04</text>
+                <path class="abx-edge" d="M670 82 C670 112 676 128 676 148"/>
+                <rect class="abx-chip" x="602" y="148" width="148" height="38" rx="9"/>
+                <text class="abx-label" x="618" y="171">collateral-check</text>
+              </g>
+              <g class="vs-stage" data-stage="onboard">
+                <rect class="abx-node" x="780" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="796" y="64">onboard</text>
+                <text class="abx-sub" x="892" y="64">05</text>
+              </g>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#bkSpine"/></animateMotion></circle>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#bkSpine"/></animateMotion></circle>
+            </svg>
+          </div>
+        </figure>
+
+        <div class="segs segs--3">
+          <article class="seg rv" style="--i:0" data-stages="apply underwrite onboard">
+            <h3 class="seg__name">Retail Banking</h3>
+            <p class="seg__desc">Agents for high-volume customer journeys; from mortgage origination to account opening and customer retention.</p>
+            <ul class="seg__chips mono">
+              <li>Retail mortgage underwriting</li>
+              <li>Customer churn &amp; retention</li>
+              <li>Quick wins</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:1" data-stages="apply verify decide">
+            <h3 class="seg__name">Commercial &amp; Corporate Banking</h3>
+            <p class="seg__desc">End-to-end automation for commercial lending, corporate onboarding, SME underwriting, and trade finance operations.</p>
+            <ul class="seg__chips mono">
+              <li>Commercial onboarding</li>
+              <li>Corporate account opening</li>
+              <li>Commercial lending</li>
+              <li>Trade finance invoice factoring</li>
+              <li>SME/Corporate underwriting financial insights</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:2" data-stages="verify decide">
+            <h3 class="seg__name">Risk &amp; Compliance</h3>
+            <p class="seg__desc">Production-ready agents for fraud investigation, AML/KYC checks, financial crime risk assessment, and regulatory processing.</p>
+            <ul class="seg__chips mono">
+              <li>Fraud investigation</li>
+              <li>AML &amp; KYC</li>
+              <li>Garnishment processing</li>
+              <li>Financial crime risk assessment</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= 03 / INSURANCE (Task 5) ================= -->
     <!-- ================= 04 / LOGISTICS (Task 6) ================= -->
     <!-- ================= 05 / FEATURED (Task 8) ================= -->
