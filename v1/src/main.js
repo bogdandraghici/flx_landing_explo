@@ -1,85 +1,17 @@
-import '@fontsource-variable/sora';
-import '@fontsource-variable/geist';
-import '@fontsource-variable/geist-mono';
-import './style.css';
-
-import { createField } from './field.js';
+import { $, reduceMotion, initChrome } from './shared.js';
 import { createOrderField, createStaticField } from './orderField.js';
-import { createGrain } from './grain.js';
 import { classify, renderDiagram, specText, typeSpec } from './blueprint.js';
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const $ = (sel) => document.querySelector(sel);
+initChrome();
 
 /* ================= hero field ================= */
-/* Two background animations, switchable from the nav toggle. Choice persists
-   across reloads; 'sweep' (the grid-resolve field) is the default. */
+/* The hero background is the "order field" animation (the only mode). */
 const canvas = $('#field');
-const BG_KEY = 'flx-hero-bg';
-const BG_MODES = { sweep: createField, field: createOrderField };
-let bgInstance = null;
-let bgMode = null;
-
-function setHeroBg(mode) {
-  if (!BG_MODES[mode]) mode = 'field';
-  if (mode === bgMode) return;
-  bgInstance?.destroy?.();
-  bgMode = mode;
-  bgInstance = BG_MODES[mode](canvas);
-  document.querySelectorAll('[data-bg-opt]').forEach((b) => {
-    const on = b.dataset.bgOpt === mode;
-    b.classList.toggle('is-on', on);
-    b.setAttribute('aria-pressed', String(on));
-  });
-  try { localStorage.setItem(BG_KEY, mode); } catch {}
-}
-
-if (canvas) {
-  let initial = 'field';
-  try { initial = localStorage.getItem(BG_KEY) || 'field'; } catch {}
-  setHeroBg(initial);
-  document.querySelectorAll('[data-bg-opt]').forEach((btn) => {
-    btn.addEventListener('click', () => setHeroBg(btn.dataset.bgOpt));
-  });
-}
-
-// site-wide film-grain / static overlay (fixed, covers the whole page)
-const grainCanvas = $('#grain');
-if (grainCanvas) createGrain(grainCanvas);
+if (canvas) createOrderField(canvas);
 
 /* ================= cta static grid ================= */
 const ctaCanvas = $('.cta__canvas');
 if (ctaCanvas) createStaticField(ctaCanvas);
-
-/* ================= nav ================= */
-const nav = $('#nav');
-let navTick = false;
-window.addEventListener(
-  'scroll',
-  () => {
-    if (navTick) return;
-    navTick = true;
-    requestAnimationFrame(() => {
-      nav.classList.toggle('scrolled', window.scrollY > 24);
-      navTick = false;
-    });
-  },
-  { passive: true }
-);
-
-/* ================= scroll reveals ================= */
-const revealIO = new IntersectionObserver(
-  (entries) => {
-    for (const e of entries) {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        revealIO.unobserve(e.target);
-      }
-    }
-  },
-  { threshold: 0.18, rootMargin: '0px 0px -40px 0px' }
-);
-document.querySelectorAll('.rv').forEach((n) => revealIO.observe(n));
 
 /* ================= terminal ================= */
 const term = $('#term');
@@ -374,29 +306,3 @@ const statIO = new IntersectionObserver(
   { threshold: 0.6 }
 );
 document.querySelectorAll('.stats__num').forEach((n) => statIO.observe(n));
-
-/* ================= magnetic CTA ================= */
-const ctaBtn = $('#ctaBtn');
-if (ctaBtn && !reduceMotion && matchMedia('(pointer: fine)').matches) {
-  let mx = 0, my = 0, cx = 0, cy = 0, rafId = 0;
-  const tickMag = () => {
-    cx += (mx - cx) * 0.18;
-    cy += (my - cy) * 0.18;
-    ctaBtn.style.transform = `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px)`;
-    if (Math.abs(mx - cx) > 0.1 || Math.abs(my - cy) > 0.1) rafId = requestAnimationFrame(tickMag);
-    else rafId = 0;
-  };
-  const kick = () => { if (!rafId) rafId = requestAnimationFrame(tickMag); };
-  ctaBtn.addEventListener('pointermove', (e) => {
-    const r = ctaBtn.getBoundingClientRect();
-    mx = (e.clientX - r.left - r.width / 2) * 0.18;
-    my = (e.clientY - r.top - r.height / 2) * 0.3;
-    kick();
-  });
-  ctaBtn.addEventListener('pointerleave', () => {
-    mx = 0; my = 0; kick();
-  });
-}
-
-/* ================= footer year ================= */
-$('#year').textContent = String(new Date().getFullYear());
