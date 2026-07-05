@@ -22,14 +22,14 @@ flx_landing_explo/
 ├── v1/             # exploration 1 — a full Vite project
 │   ├── index.html    # all markup (nav, hero, sections, footer)
 │   ├── agents.html    # AI Agents page: value-stream schematics + featured bento
-│   ├── vite.config.js # multi-page build (index.html + agents.html entries)
+│   ├── vite.config.js  # multi-page build (index.html + agents.html entries)
 │   ├── public/     # static assets (flowx-logo.svg)
 │   └── src/
-│       ├── main.js       # entry: wires nav, reveals, terminal, sections
+│       ├── main.js       # entry: hero canvas, terminal, blueprint, sections
 │       ├── shared.js      # shared page chrome: grain, nav, reveals
 │       ├── agents.js      # agents-page entry
 │       ├── style.css      # all styles; design tokens in :root
-│       ├── field.js       # canvas hero background ("grid resolve" animation)
+│       ├── orderField.js  # hero "order field" canvas animation + CTA static grid
 │       └── blueprint.js   # mocked "solution compiler" (classify → SVG + yaml)
 └── vN/             # future explorations follow the same shape
 ```
@@ -66,7 +66,9 @@ npm run preview
 - **`src/agents.js`** is the `agents.html` entry point. It wires the CTA canvas,
   segment-hover → value-stream stage highlighting, and the featured bento's
   micro-visuals (screener feed, rate readout).
-- **`src/field.js`** — the hero background canvas animation.
+- **`src/orderField.js`** — the hero background's "order field" canvas
+  animation; also exports the static, fully-resolved lattice frame used as the
+  CTA section's background grid.
 - **`src/blueprint.js`** — the mocked "solution compiler": classifies a free-text
   use case into one of six domain templates and renders an animated SVG diagram +
   typed `blueprint.yaml`. All client-side, no backend.
