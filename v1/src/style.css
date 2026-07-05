@@ -907,6 +907,36 @@ em { font-style: normal; }
 }
 
 /* ============================================================
+   FAQ
+   ============================================================ */
+.faq { border-top: 1px solid var(--line); }
+.faq__item { border-bottom: 1px solid var(--line); }
+.faq__q {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 24px 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 570;
+  letter-spacing: -0.01em;
+}
+.faq__q::-webkit-details-marker { display: none; }
+.faq__no { font-size: 11px; letter-spacing: 0.14em; color: var(--text-faint); flex-shrink: 0; }
+.faq__mark {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--amber);
+  transition: transform 0.3s var(--ease);
+}
+.faq__item[open] .faq__mark { transform: rotate(45deg); }
+.faq__a { padding: 0 0 26px 52px; }
+.faq__a p { max-width: 62ch; font-size: 15px; color: var(--text-dim); }
+
+/* ============================================================
    CTA
    ============================================================ */
 .section--cta { padding-block: clamp(140px, 20vh, 240px); position: relative; overflow: clip; }
@@ -1042,4 +1072,5 @@ em { font-style: normal; }
   .bp-edge--soft { opacity: 1; transition: none; }
   .bp-glow, .bp-dot--live { animation: none; }
   .term__log .ln, .bp__meta .chip { animation-duration: 0.01s; }
+  .faq__mark { transition: none; }
 }
