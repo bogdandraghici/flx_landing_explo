@@ -268,7 +268,7 @@
     <section class="section section--platform" id="platform">
       <div class="shell">
         <div class="section__head">
-          <span class="section__no mono">04 / Platform</span>
+          <span class="section__no mono">05 / Platform</span>
           <div class="section__headline">
             <h2 class="h2 rv">Built like infrastructure, because it is<span class="amber">.</span></h2>
             <p class="section__lede rv" style="--i:1">Not a chatbot wrapper. A governed execution layer for AI agents,
@@ -280,8 +280,8 @@
           <!-- Audit log — large block -->
           <article class="plat__cell plat__cell--wide rv" style="--i:0">
             <header class="plat__head">
-              <h3>Every decision, auditable</h3>
-              <p>Agents don't just act — they leave evidence. Hash-chained logs of every prompt, retrieval, tool call and human override, queryable for seven years.</p>
+              <h3>Banking-grade safety</h3>
+              <p>Agents don't just act — they leave evidence. Every prompt, retrieval, tool call and human override lands in an immutable audit log your examiner can replay.</p>
             </header>
             <div class="audit mono" id="audit" aria-hidden="true">
               <div class="audit__hd"><span>timestamp</span><span>agent</span><span>action</span><span>status</span></div>
@@ -292,21 +292,21 @@
           <!-- Guardrails -->
           <article class="plat__cell rv" style="--i:1">
             <header class="plat__head">
-              <h3>Deterministic guardrails</h3>
-              <p>Policies are compiled, not suggested. If a rule says a human signs off above €50k, no temperature setting changes that.</p>
+              <h3>Easy to deploy</h3>
+              <p>No transformation program. A small joint team takes your first agents from kickoff to production in weeks — not quarters.</p>
             </header>
             <ul class="rails mono">
-              <li><span class="rails__state rails__state--on"></span>pii.redaction<em>enforced</em></li>
-              <li><span class="rails__state rails__state--on"></span>data.residency = eu-central<em>enforced</em></li>
-              <li><span class="rails__state rails__state--on"></span>hitl.threshold &gt; 0.72<em>enforced</em></li>
-              <li><span class="rails__state rails__state--on"></span>audit.retention = 7y<em>enforced</em></li>
+              <li><span class="rails__state rails__state--on"></span>env.provision<em>wk 1</em></li>
+              <li><span class="rails__state rails__state--on"></span>systems.connect<em>wk 2</em></li>
+              <li><span class="rails__state rails__state--on"></span>configure.test<em>wk 3+</em></li>
+              <li><span class="rails__state rails__state--on"></span>go.live<em>live</em></li>
             </ul>
           </article>
 
           <!-- Perimeter -->
           <article class="plat__cell rv" style="--i:2">
             <header class="plat__head">
-              <h3>Runs inside your perimeter</h3>
+              <h3>Impeccable data privacy</h3>
               <p>On-prem Kubernetes, private VPC, or EU sovereign cloud. Your data never crosses a boundary you didn't draw.</p>
             </header>
             <ul class="targets mono">
@@ -320,18 +320,18 @@
           <!-- Model routing -->
           <article class="plat__cell plat__cell--wide rv" style="--i:3">
             <header class="plat__head">
-              <h3>Model-agnostic routing</h3>
-              <p>Route each task to the best model for it — frontier, open-weight or your own fine-tune — behind one governed interface.</p>
+              <h3>Plugs into your existing data</h3>
+              <p>Agents draw on the systems you already run — cores, mainframes, document stores — behind one governed interface. Nothing rewritten, nothing replaced.</p>
             </header>
             <div class="router mono" id="router" aria-hidden="true">
-              <span class="router__in">task</span>
+              <span class="router__in">agent</span>
               <span class="router__line"></span>
-              <span class="router__hub">policy<br/>router</span>
+              <span class="router__hub">flowx<br/>runtime</span>
               <span class="router__line router__line--fan"></span>
               <div class="router__models">
-                <span class="router__model" data-m="0">claude-fable-5</span>
-                <span class="router__model" data-m="1">private-llm / vllm</span>
-                <span class="router__model" data-m="2">rules-engine</span>
+                <span class="router__model" data-m="0">core-banking</span>
+                <span class="router__model" data-m="1">cobol-mainframe</span>
+                <span class="router__model" data-m="2">document-store</span>
               </div>
             </div>
           </article>
