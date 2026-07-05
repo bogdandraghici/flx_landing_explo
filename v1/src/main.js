@@ -114,11 +114,13 @@ function sizeInput() {
 }
 
 const PLACEHOLDERS = [
-  'automate KYC onboarding for retail customers',
+  'automate commercial onboarding for business clients',
+  'underwrite retail mortgages in days, not weeks',
   'triage motor insurance claims end to end',
-  'underwrite SME loans in under 24 hours',
-  'monitor transactions for AML, cut false positives',
-  'resolve regulated customer complaints inside SLA',
+  'quote commercial policies in minutes',
+  'reconcile supplier invoices automatically',
+  'track and trace shipments across carriers',
+  'cut churn with in-flow retention offers',
 ];
 
 let phTimer = 0;
