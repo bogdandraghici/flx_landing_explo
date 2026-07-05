@@ -1070,8 +1070,11 @@ em { font-style: normal; }
 .hero-agent { fill: var(--amber); }
 .hero-ring { fill: none; stroke: var(--line-soft); stroke-width: 1; }
 .hero-tag { fill: var(--bg); }
-.hero-x { stroke: var(--text); stroke-width: 8; stroke-linecap: round; fill: none; }
-.hero-x-bar { fill: var(--amber); }
+.hero-core { fill: var(--bg-raised); stroke: rgba(255, 255, 255, 0.2); stroke-width: 1.2; }
+.hero-chip-face { fill: url(#chipFace); stroke: none; }
+.hero-core-inner { fill: none; stroke: rgba(255, 255, 255, 0.09); stroke-width: 1; }
+.hero-logo-x { fill: var(--text); }
+.hero-logo-bar { fill: var(--amber); }
 /* opacity-only reveal — a translateY reveal here leaves the animated SVG in a
    composited layer that some engines rasterize empty */
 .ahero__viz { opacity: 0; animation: heroVizIn 0.85s var(--ease) 0.55s forwards; }
