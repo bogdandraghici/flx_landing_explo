@@ -1860,67 +1860,58 @@ em { font-style: normal; }
 .ivz-lbl { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; fill: var(--text-faint); }
 .ivz-tag { fill: var(--bg); }
 
-/* --- banking hero: decision core (bkc-*) ---
-   evidence particles stream in, the dial steps up and clears the threshold,
-   then the amber resolution: approved → funds stream → account fills.
-   Base (non-animated) values are the resolved pose, for reduced motion. */
-.bkc-guide { fill: none; stroke: rgba(255, 255, 255, 0.10); stroke-width: 1; stroke-dasharray: 3 5; }
-.bkc-src { fill: rgba(205, 212, 226, 0.35); }
-.bkc-p { fill: rgba(205, 212, 226, 0.42); }
-.bkc-track { fill: none; stroke: rgba(255, 255, 255, 0.05); stroke-width: 1; }
-.bkc-arc { fill: none; stroke: rgba(255, 255, 255, 0.22); stroke-width: 1.2; }
-.bkc-tick { stroke: rgba(205, 212, 226, 0.35); stroke-width: 1; }
-.bkc-spin { transform-origin: 230px 190px; animation: bkc-spin 26s linear infinite; }
-.bkc-spin--rev { animation: bkc-spin 20s linear infinite reverse; }
-.bkc-hub { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
-.bkc-score { fill: none; stroke: var(--amber); stroke-width: 1.2; opacity: 0.55; stroke-dasharray: 100; stroke-dashoffset: 48.9; animation: bkc-score 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
-.bkc-th { stroke: rgba(205, 212, 226, 0.35); stroke-width: 1; }
-.bkc-th--hot { stroke: var(--amber); stroke-width: 1.2; opacity: 0.9; animation: bkc-fire 12s linear infinite; }
-.bkc-dial { transform-origin: 230px 190px; transform: rotate(34deg); animation: bkc-dial 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
-.bkc-needle { stroke: rgba(255, 255, 255, 0.55); stroke-width: 1.4; stroke-linecap: round; }
-.bkc-tail { stroke: rgba(255, 255, 255, 0.25); stroke-width: 1.2; stroke-linecap: round; }
-.bkc-pivot { fill: none; stroke: rgba(255, 255, 255, 0.3); stroke-width: 1; }
-.bkc-bolt { fill: var(--amber); opacity: 0.9; animation: bkc-fire 12s linear infinite; }
-.bkc-pulse { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; transform-origin: 230px 190px; animation: bkc-pulse 12s ease-out infinite; }
-.bkc-tag-g { opacity: 0.9; animation: bkc-fire 12s linear infinite; }
-.bkc-stream { fill: none; stroke: var(--amber); stroke-width: 1.2; opacity: 0.9; stroke-dasharray: 100; stroke-dashoffset: 0; animation: bkc-stream 12s linear infinite; }
-.bkc-dot { fill: var(--amber); }
-.bkc-card { fill: var(--bg-raised); stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
-.bkc-title { fill: rgba(233, 236, 242, 0.45); }
-.bkc-line { stroke: rgba(205, 212, 226, 0.22); stroke-width: 2.4; stroke-linecap: round; }
-.bkc-fill { stroke: var(--amber); stroke-width: 2.4; stroke-linecap: round; opacity: 0.9; transform-origin: 174px 376px; transform: scaleX(1); animation: bkc-fund 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
-.bkc-arrive { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; }
-.bkc-ground { stroke: rgba(255, 255, 255, 0.06); stroke-width: 1; }
+/* --- banking hero: loan funnel (bkg-*) ---
+   applications from three channels (branch / web / api) drop into an origination
+   funnel and narrow through the verification stages (docs → kyc → bureau →
+   income). The first file jams at the neck and a queue stacks up behind it —
+   flagged. The agent clears it: the neck runs amber, the queue pours through,
+   and the account balance steps up one landing at a time — cleared, funded.
+   Base (non-animated) values are the resolved pose — neck open/amber, account
+   funded — for reduced motion. */
+.bkg-guide { fill: none; stroke: rgba(255, 255, 255, 0.10); stroke-width: 1; stroke-dasharray: 3 5; }
+.bkg-src { fill: rgba(205, 212, 226, 0.35); }
+.bkg-rim { stroke: rgba(255, 255, 255, 0.10); stroke-width: 1; stroke-dasharray: 2 6; }
+.bkg-level { stroke: rgba(255, 255, 255, 0.05); stroke-width: 1; stroke-dasharray: 2 6; }
+.bkg-wall { fill: none; stroke: rgba(233, 236, 242, 0.35); stroke-width: 1.2; stroke-linejoin: round; }
+.bkg-spout { stroke: rgba(233, 236, 242, 0.35); stroke-width: 1.2; stroke-linecap: round; }
+.bkg-spout-hot { stroke: var(--amber); stroke-width: 1.4; stroke-linecap: round; opacity: 0.9; animation: bkg-hot 12s linear infinite; }
+.bkg-dot { fill: rgba(233, 236, 242, 0.8); }
+.bkg-plug { stroke: rgba(233, 236, 242, 0.55); stroke-width: 1.4; stroke-linecap: round; opacity: 0; animation: bkg-plug 12s linear infinite; }
+.bkg-flash { fill: none; stroke: rgba(233, 236, 242, 0.8); stroke-width: 1; opacity: 0; transform-origin: 230px 289px; animation: bkg-flash 12s ease-out infinite; }
+.bkg-tag--flag { opacity: 0; animation: bkg-flag 12s linear infinite; }
+.bkg-tag--ok { opacity: 0.9; animation: bkg-ok 12s linear infinite; }
+.bkg-arr { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; transform-origin: 230px 344px; animation: bkg-arr 12s ease-out infinite; }
+.bkg-card { fill: var(--bg-raised); stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
+.bkg-title { fill: rgba(233, 236, 242, 0.45); }
+.bkg-line { stroke: rgba(205, 212, 226, 0.22); stroke-width: 2.4; stroke-linecap: round; }
+.bkg-fill { stroke: var(--amber); stroke-width: 2.4; stroke-linecap: round; opacity: 0.9; transform-origin: 174px 376px; transform: scaleX(1); animation: bkg-fund 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
+.bkg-ground { stroke: rgba(255, 255, 255, 0.06); stroke-width: 1; }
 
-@keyframes bkc-spin { to { transform: rotate(360deg); } }
-@keyframes bkc-dial {
-  0%, 4% { transform: rotate(-150deg); }
-  14%, 20% { transform: rotate(-104deg); }
-  30%, 36% { transform: rotate(-58deg); }
-  46%, 50% { transform: rotate(-8deg); }
-  55%, 86% { transform: rotate(34deg); }
-  100% { transform: rotate(-150deg); }
+/* the neck runs amber once the jam clears; dark again at the loop seam */
+@keyframes bkg-hot { 0%, 56% { opacity: 0; } 58.5%, 88% { opacity: 0.9; } 93%, 100% { opacity: 0; } }
+/* the plug: appears when the first file jams the neck, gone the moment it clears */
+@keyframes bkg-plug { 0%, 23% { opacity: 0; } 26%, 56% { opacity: 0.85; } 58%, 100% { opacity: 0; } }
+@keyframes bkg-flash { 0%, 24% { opacity: 0; transform: scale(0.5); } 25.5% { opacity: 0.75; transform: scale(1); } 28%, 100% { opacity: 0; transform: scale(1.5); } }
+@keyframes bkg-flag { 0%, 27% { opacity: 0; } 30%, 56% { opacity: 0.9; } 60%, 100% { opacity: 0; } }
+@keyframes bkg-ok { 0%, 57% { opacity: 0; } 59%, 86% { opacity: 0.9; } 92%, 100% { opacity: 0; } }
+/* one amber landing pulse per application reaching the account */
+@keyframes bkg-arr {
+  0%, 60.5% { opacity: 0; transform: scale(0.5); }
+  61.5% { opacity: 0.8; transform: scale(1); }
+  63.1% { opacity: 0; transform: scale(1.35); }
+  63.5%, 64.5% { opacity: 0; transform: scale(0.5); }
+  65.5% { opacity: 0.8; transform: scale(1); }
+  67.1% { opacity: 0; transform: scale(1.35); }
+  67.5%, 68.5% { opacity: 0; transform: scale(0.5); }
+  69.5% { opacity: 0.8; transform: scale(1); }
+  71.1%, 100% { opacity: 0; transform: scale(1.35); }
 }
-@keyframes bkc-score {
-  0%, 4% { stroke-dashoffset: 100; opacity: 0.55; }
-  14%, 20% { stroke-dashoffset: 87.2; }
-  30%, 36% { stroke-dashoffset: 74.4; }
-  46%, 50% { stroke-dashoffset: 60.6; }
-  55%, 86% { stroke-dashoffset: 48.9; opacity: 0.55; }
-  92%, 100% { stroke-dashoffset: 100; opacity: 0; }
-}
-@keyframes bkc-fire { 0%, 54% { opacity: 0; } 58%, 84% { opacity: 0.9; } 92%, 100% { opacity: 0; } }
-@keyframes bkc-pulse { 0%, 54% { opacity: 0; transform: scale(0.72); } 58% { opacity: 0.8; } 74%, 100% { opacity: 0; transform: scale(1.12); } }
-@keyframes bkc-stream {
-  0%, 56% { stroke-dashoffset: 100; opacity: 0; }
-  57% { stroke-dashoffset: 100; opacity: 0.9; }
-  63% { stroke-dashoffset: 0; }
-  84% { stroke-dashoffset: 0; opacity: 0.9; }
-  90%, 100% { stroke-dashoffset: 0; opacity: 0; }
-}
-@keyframes bkc-fund {
-  0%, 63% { transform: scaleX(0); opacity: 0.9; }
-  80%, 88% { transform: scaleX(1); opacity: 0.9; }
+/* the balance steps up once per landing */
+@keyframes bkg-fund {
+  0%, 61% { transform: scaleX(0); opacity: 0.9; }
+  62.5%, 64.5% { transform: scaleX(0.34); }
+  66%, 68% { transform: scaleX(0.67); }
+  69.5%, 88% { transform: scaleX(1); opacity: 0.9; }
   94%, 100% { transform: scaleX(1); opacity: 0; }
 }
 
@@ -2044,14 +2035,13 @@ em { font-style: normal; }
   .dna__rung { animation: none; }
   .nav__menu { transition: none; }
   /* industry hero visuals: freeze CSS motion on the resolved pose */
-  .bkc-spin, .bkc-spin--rev, .bkc-dial, .bkc-score, .bkc-stream, .bkc-fill,
-  .bkc-th--hot, .bkc-bolt, .bkc-pulse, .bkc-tag-g,
+  .bkg-spout-hot, .bkg-plug, .bkg-flash, .bkg-tag--flag, .bkg-tag--ok, .bkg-arr, .bkg-fill,
   .irv-sweep, .irv-b, .irv-inc, .irv-inc--set, .irv-brk, .irv-track,
   .irv-pulse, .irv-tag--fnol, .irv-tag--set,
   .lrv-plan-a, .lrv-plan-b, .lrv-detour, .lrv-x, .lrv-flash, .lrv-alt--scan,
   .lrv-tag--ex, .lrv-tag--re { animation: none; }
   /* SMIL movers can't be frozen by CSS — hide them; the static scene is the resolved pose */
-  .lrv-dot, .lrv-arrive, .lrv-amb, .bkc-p, .bkc-dot, .bkc-arrive { display: none; }
+  .lrv-dot, .lrv-arrive, .lrv-amb, .bkg-dot { display: none; }
 }
 
 /* ============================================================

@@ -72,120 +72,87 @@
           </p>
         </div>
 
-        <!-- decision core: evidence signals stream in, the dial clears the threshold, funds flow to the account -->
+        <!-- loan funnel: applications from every channel drop into the funnel and narrow through
+             the verification stages; one jams at the neck (flagged), the agent clears it, the neck
+             opens amber, the queue drains, and the funded balance fills one landing at a time -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="Data signals streaming into an underwriting core; the decision dial clears the threshold and funds flow down into the account — approved, funded">
-            <!-- signal guides: the evidence paths into the core -->
-            <path id="bkcIn1" class="bkc-guide" d="M52 150 Q120 168 167 176"/>
-            <path id="bkcIn2" class="bkc-guide" d="M128 58 Q150 100 191 139"/>
-            <path id="bkcIn3" class="bkc-guide" d="M252 30 Q244 78 239 127"/>
-            <path id="bkcIn4" class="bkc-guide" d="M368 66 Q320 100 278 147"/>
-            <path id="bkcIn5" class="bkc-guide" d="M420 176 Q356 180 294 185"/>
+          <svg viewBox="0 0 460 460" role="img" aria-label="Loan applications from every channel drop into an origination funnel and narrow through docs, KYC, bureau and income checks; one jams at the neck and is flagged, then the agent clears it — the neck opens, the queue drains, and the account balance fills: cleared, funded">
+            <!-- intake: three origination channels drop into the funnel mouth -->
+            <circle class="bkg-src" cx="118" cy="52" r="2.6"/>
+            <circle class="bkg-src" cx="230" cy="44" r="2.6"/>
+            <circle class="bkg-src" cx="342" cy="52" r="2.6"/>
+            <text class="ivz-lbl" x="118" y="38" text-anchor="middle">branch</text>
+            <text class="ivz-lbl" x="230" y="30" text-anchor="middle">web</text>
+            <text class="ivz-lbl" x="342" y="38" text-anchor="middle">api</text>
+            <path class="bkg-guide" d="M118 52 Q150 92 230 116"/>
+            <path class="bkg-guide" d="M230 44 L230 116"/>
+            <path class="bkg-guide" d="M342 52 Q310 92 230 116"/>
 
-            <!-- signal sources -->
-            <circle class="bkc-src" cx="52" cy="150" r="2.6"/>
-            <circle class="bkc-src" cx="128" cy="58" r="2.6"/>
-            <circle class="bkc-src" cx="252" cy="30" r="2.6"/>
-            <circle class="bkc-src" cx="368" cy="66" r="2.6"/>
-            <circle class="bkc-src" cx="420" cy="176" r="2.6"/>
-            <text class="ivz-lbl" x="52" y="172" text-anchor="middle">docs</text>
-            <text class="ivz-lbl" x="128" y="44" text-anchor="middle">kyc</text>
-            <text class="ivz-lbl" x="252" y="20" text-anchor="middle">bureau</text>
-            <text class="ivz-lbl" x="368" y="52" text-anchor="middle">income</text>
-            <text class="ivz-lbl" x="420" y="200" text-anchor="middle">application</text>
+            <!-- invisible motion rails: each channel drops in, descends the funnel centreline to its
+                 place in the queue above the neck, holds, then pours through into the account -->
+            <path id="bkgRunW" fill="none" stroke="none" d="M230 44 L230 286 L230 342"/>
+            <path id="bkgRunB" fill="none" stroke="none" d="M118 52 Q160 92 230 120 L230 266 L230 342"/>
+            <path id="bkgRunA" fill="none" stroke="none" d="M342 52 Q300 92 230 120 L230 246 L230 342"/>
 
-            <!-- evidence particles: two waves per signal path, absorbed by the core -->
-            <g class="bkc-p"><circle r="2.4"/>
-              <animateMotion dur="3.4s" begin="0s" repeatCount="indefinite"><mpath href="#bkcIn1"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="0s" repeatCount="indefinite"/>
+            <!-- faint funnel-mouth rim + interior stage gradations -->
+            <line class="bkg-rim" x1="96" y1="120" x2="364" y2="120"/>
+            <line class="bkg-level" x1="122.5" y1="158" x2="337.5" y2="158"/>
+            <line class="bkg-level" x1="149" y1="196" x2="311" y2="196"/>
+            <line class="bkg-level" x1="175.5" y1="234" x2="284.5" y2="234"/>
+            <line class="bkg-level" x1="202" y1="272" x2="258" y2="272"/>
+
+            <!-- the funnel: the strong central form — walls narrowing to a neck + spout -->
+            <path class="bkg-wall" d="M96 120 L216 292"/>
+            <path class="bkg-wall" d="M364 120 L244 292"/>
+            <line class="bkg-spout" x1="216" y1="292" x2="216" y2="316"/>
+            <line class="bkg-spout" x1="244" y1="292" x2="244" y2="316"/>
+            <!-- amber neck: the resolution — the spout runs amber once the jam clears -->
+            <line class="bkg-spout-hot" x1="216" y1="292" x2="216" y2="316"/>
+            <line class="bkg-spout-hot" x1="244" y1="292" x2="244" y2="316"/>
+
+            <!-- stage labels riding the funnel walls -->
+            <text class="ivz-lbl" x="114" y="161" text-anchor="end">docs</text>
+            <text class="ivz-lbl" x="140" y="199" text-anchor="end">kyc</text>
+            <text class="ivz-lbl" x="167" y="237" text-anchor="end">bureau</text>
+            <text class="ivz-lbl" x="193" y="275" text-anchor="end">income</text>
+            <text class="ivz-lbl" x="346" y="161" text-anchor="start">01</text>
+            <text class="ivz-lbl" x="320" y="199" text-anchor="start">02</text>
+            <text class="ivz-lbl" x="293" y="237" text-anchor="start">03</text>
+            <text class="ivz-lbl" x="267" y="275" text-anchor="start">04</text>
+
+            <!-- applications: three files drop in, stack at the neck (the jam), then pour through -->
+            <g class="bkg-dot"><circle r="3"/>
+              <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;0.815;0.815;1;1" keyTimes="0;0.02;0.25;0.575;0.615;1"><mpath href="#bkgRunW"/></animateMotion>
+              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.02;0.03;0.61;0.62;1" dur="12s" repeatCount="indefinite"/>
             </g>
-            <g class="bkc-p"><circle r="2.4"/>
-              <animateMotion dur="3.4s" begin="-1.7s" repeatCount="indefinite"><mpath href="#bkcIn1"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-1.7s" repeatCount="indefinite"/>
+            <g class="bkg-dot"><circle r="3"/>
+              <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;0.788;0.788;1;1" keyTimes="0;0.10;0.34;0.60;0.655;1"><mpath href="#bkgRunB"/></animateMotion>
+              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.10;0.11;0.65;0.66;1" dur="12s" repeatCount="indefinite"/>
             </g>
-            <g class="bkc-p"><circle r="2.4"/>
-              <animateMotion dur="3.4s" begin="-0.68s" repeatCount="indefinite"><mpath href="#bkcIn2"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-0.68s" repeatCount="indefinite"/>
-            </g>
-            <g class="bkc-p"><circle r="2.4"/>
-              <animateMotion dur="3.4s" begin="-2.38s" repeatCount="indefinite"><mpath href="#bkcIn2"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-2.38s" repeatCount="indefinite"/>
-            </g>
-            <g class="bkc-p"><circle r="2.4"/>
-              <animateMotion dur="3.4s" begin="-1.36s" repeatCount="indefinite"><mpath href="#bkcIn3"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-1.36s" repeatCount="indefinite"/>
-            </g>
-            <g class="bkc-p"><circle r="2.4"/>
-              <animateMotion dur="3.4s" begin="-3.06s" repeatCount="indefinite"><mpath href="#bkcIn3"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-3.06s" repeatCount="indefinite"/>
-            </g>
-            <g class="bkc-p"><circle r="2.4"/>
-              <animateMotion dur="3.4s" begin="-2.04s" repeatCount="indefinite"><mpath href="#bkcIn4"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-2.04s" repeatCount="indefinite"/>
-            </g>
-            <g class="bkc-p"><circle r="2.4"/>
-              <animateMotion dur="3.4s" begin="-0.34s" repeatCount="indefinite"><mpath href="#bkcIn4"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-0.34s" repeatCount="indefinite"/>
-            </g>
-            <g class="bkc-p"><circle r="2.4"/>
-              <animateMotion dur="3.4s" begin="-2.72s" repeatCount="indefinite"><mpath href="#bkcIn5"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-2.72s" repeatCount="indefinite"/>
-            </g>
-            <g class="bkc-p"><circle r="2.4"/>
-              <animateMotion dur="3.4s" begin="-1.02s" repeatCount="indefinite"><mpath href="#bkcIn5"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-1.02s" repeatCount="indefinite"/>
+            <g class="bkg-dot"><circle r="3"/>
+              <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;0.733;0.733;1;1" keyTimes="0;0.18;0.42;0.625;0.685;1"><mpath href="#bkgRunA"/></animateMotion>
+              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.18;0.19;0.68;0.69;1" dur="12s" repeatCount="indefinite"/>
             </g>
 
-            <!-- the underwriting core: static tracks + slow counter-rotating arcs -->
-            <circle class="bkc-track" cx="230" cy="190" r="112"/>
-            <circle class="bkc-track" cx="230" cy="190" r="88"/>
-            <g class="bkc-spin">
-              <circle class="bkc-arc" cx="230" cy="190" r="112" stroke-dasharray="663.7 40"/>
-              <line class="bkc-tick" x1="337" y1="190" x2="347" y2="190"/>
-              <line class="bkc-tick" x1="137.3" y1="243.5" x2="128.7" y2="248.5"/>
-            </g>
-            <g class="bkc-spin bkc-spin--rev">
-              <circle class="bkc-arc" cx="230" cy="190" r="88" stroke-dasharray="512.9 40"/>
-              <line class="bkc-tick" x1="230" y1="107" x2="230" y2="97"/>
-            </g>
-
-            <!-- score arc + decision dial: steps up as evidence lands, clears the threshold -->
-            <circle class="bkc-score" cx="230" cy="190" r="64" pathLength="100" transform="rotate(-240 230 190)"/>
-            <circle class="bkc-hub" cx="230" cy="190" r="56"/>
-            <line class="bkc-th" x1="259" y1="139.8" x2="265" y2="129.4"/>
-            <line class="bkc-th--hot" x1="259" y1="139.8" x2="265" y2="129.4"/>
-            <g class="bkc-dial">
-              <line class="bkc-needle" x1="230" y1="190" x2="230" y2="146"/>
-              <line class="bkc-tail" x1="230" y1="190" x2="230" y2="204"/>
-            </g>
-            <circle class="bkc-pivot" cx="230" cy="190" r="3"/>
-            <circle class="bkc-bolt" cx="230" cy="190" r="4.5"/>
-            <circle class="bkc-pulse" cx="230" cy="190" r="56"/>
-            <g class="bkc-tag-g" transform="translate(312 96)">
+            <!-- the jam: the neck plugs, flares, and is flagged until the agent clears it -->
+            <line class="bkg-plug" x1="214" y1="290" x2="246" y2="290"/>
+            <circle class="bkg-flash" cx="230" cy="289" r="7"/>
+            <g class="bkg-tag--flag" transform="translate(316 258)">
               <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
-              <text class="ivz-lbl" text-anchor="middle" y="1">approved</text>
+              <text class="ivz-lbl" text-anchor="middle" y="1">flagged</text>
+            </g>
+            <g class="bkg-tag--ok" transform="translate(316 258)">
+              <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1">cleared</text>
             </g>
 
-            <!-- resolution: funds flow from the core down into the account -->
-            <path id="bkcStream" class="bkc-stream" pathLength="100" d="M230 254 L230 342"/>
-            <g class="bkc-dot"><circle r="3"/>
-              <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.58;0.64;1"><mpath href="#bkcStream"/></animateMotion>
-              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.58;0.59;0.63;0.645;1" dur="12s" repeatCount="indefinite"/>
-            </g>
-            <g class="bkc-dot"><circle r="3"/>
-              <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.66;0.72;1"><mpath href="#bkcStream"/></animateMotion>
-              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.66;0.67;0.71;0.725;1" dur="12s" repeatCount="indefinite"/>
-            </g>
-
-            <!-- the funded account: balance line fills as the money lands -->
-            <rect class="bkc-card" x="158" y="344" width="144" height="48" rx="10"/>
-            <rect class="bkc-title" x="174" y="356" width="44" height="6" rx="3"/>
-            <line class="bkc-line" x1="174" y1="376" x2="286" y2="376"/>
-            <line class="bkc-fill" x1="174" y1="376" x2="286" y2="376"/>
-            <circle class="bkc-arrive" cx="230" cy="344" r="8">
-              <animate attributeName="opacity" values="0;0;0.85;0;0" keyTimes="0;0.62;0.65;0.73;1" dur="12s" repeatCount="indefinite"/>
-            </circle>
-            <line class="bkc-ground" x1="120" y1="404" x2="340" y2="404"/>
+            <!-- the funded account: the balance steps up as each application lands -->
+            <rect class="bkg-card" x="158" y="344" width="144" height="48" rx="10"/>
+            <rect class="bkg-title" x="174" y="356" width="44" height="6" rx="3"/>
+            <line class="bkg-line" x1="174" y1="376" x2="286" y2="376"/>
+            <line class="bkg-fill" x1="174" y1="376" x2="286" y2="376"/>
+            <circle class="bkg-arr" cx="230" cy="344" r="8"/>
+            <line class="bkg-ground" x1="120" y1="404" x2="340" y2="404"/>
           </svg>
         </div>
       </div>
