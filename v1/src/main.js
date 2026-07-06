@@ -285,6 +285,7 @@ const router = $('#router');
 if (router) {
   const fan = router.querySelector('.router__fan');
   const hub = router.querySelector('.router__hub');
+  const line = router.querySelector('.router__line');
   const cards = [...router.querySelectorAll('.router__model')];
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const CYCLE = 2.6; // seconds, matches the spark animation
@@ -328,12 +329,30 @@ if (router) {
     });
   }
 
-  buildBranches();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(buildBranches);
+  // Exact px distance for the agent→hub dot to travel, so it stops on the hub
+  // regardless of layout width. Measured here instead of via CSS cqw units,
+  // which are unreliable for a ::after querying its own container (Safari falls
+  // back to the viewport width and the dot flies past the hub).
+  function setDotTravel() {
+    if (!line || !hub) return;
+    const lr = line.getBoundingClientRect();
+    const hr = hub.getBoundingClientRect();
+    if (lr.width < 1) return;
+    const travel = Math.max(0, hr.left - lr.left); // dot starts at the line's left edge
+    line.style.setProperty('--router-travel', `${travel.toFixed(1)}px`);
+  }
+
+  function refresh() {
+    buildBranches();
+    setDotTravel();
+  }
+
+  refresh();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
   let rzTimer = 0;
   addEventListener('resize', () => {
     clearTimeout(rzTimer);
-    rzTimer = setTimeout(buildBranches, 150);
+    rzTimer = setTimeout(refresh, 150);
   });
 }
 

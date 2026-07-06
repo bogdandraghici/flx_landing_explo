@@ -60,6 +60,22 @@ if (fpsFeed) {
   }
 }
 
+/* ================= journey pipelines: swipeable-strip edge fades =================
+   The value-stream SVGs are wider than the viewport on mobile and scroll
+   horizontally. Toggle can-left / can-right so the CSS edge-fade hints which
+   direction still has content. On desktop the SVG fits, so no class is set. */
+document.querySelectorAll('.vs__scroll').forEach((strip) => {
+  const update = () => {
+    const max = strip.scrollWidth - strip.clientWidth;
+    strip.classList.toggle('can-left', strip.scrollLeft > 4);
+    strip.classList.toggle('can-right', max > 4 && strip.scrollLeft < max - 4);
+  };
+  update();
+  strip.addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(update);
+});
+
 /* rate readout — small random walk around $2.41/mi */
 const rateVal = document.querySelector('#rateVal');
 if (rateVal && !reduceMotion) {

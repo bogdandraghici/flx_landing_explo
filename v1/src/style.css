@@ -834,15 +834,18 @@ em { font-style: normal; }
   background: var(--amber);
   animation: travel 2.6s linear infinite;
 }
-/* ride the line up to the flowx-runtime hub, then vanish exactly on contact
-   (the hub sits one 14px flex-gap past the line, so travel = line + gap) */
+/* Ride the line up to the flowx-runtime hub, then vanish exactly on contact.
+   --router-travel is the exact px distance from the dot's start to the hub's
+   left edge, measured in JS (see main.js). Do NOT reintroduce cqw units here:
+   a ::after querying its own container is unreliable — Safari falls back to the
+   viewport width, sending the dot flying past the hub at high speed. */
 @keyframes travel {
-  0%   { transform: translateX(0);                 opacity: 0; }
+  0%   { transform: translateX(0);                       opacity: 0; }
   15%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateX(calc(100cqw + 8px)); opacity: 0; }
+  82%  { opacity: 1; }
+  92%  { opacity: 0; }
+  100% { transform: translateX(var(--router-travel, 120px)); opacity: 0; }
 }
-.router__line { container-type: inline-size; }
 
 /* runtime → systems: branch lines fan out to each card, with amber sparks
    that ride each branch and fade before reaching the cards */
@@ -1160,8 +1163,23 @@ em { font-style: normal; }
   background: var(--amber);
   animation: bpBreathe 4s ease-in-out infinite;
 }
-.vs__scroll { overflow-x: auto; padding: clamp(14px, 2.5vw, 26px); }
+.vs__scroll { overflow-x: auto; padding: clamp(14px, 2.5vw, 26px); -webkit-overflow-scrolling: touch; }
 .vs__scroll svg { width: 100%; min-width: 760px; height: auto; display: block; }
+/* When the pipeline is wider than its box (mobile), it becomes a swipeable
+   strip. JS toggles can-left / can-right so the edge fades hint which way
+   there's more to scroll. Desktop fits fully, so no class is ever set. */
+.vs__scroll.can-right {
+  -webkit-mask-image: linear-gradient(to left, transparent 0, #000 34px);
+  mask-image: linear-gradient(to left, transparent 0, #000 34px);
+}
+.vs__scroll.can-left {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 34px);
+  mask-image: linear-gradient(to right, transparent 0, #000 34px);
+}
+.vs__scroll.can-left.can-right {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+}
 .vs-stage { transition: opacity 0.3s var(--ease); }
 .vs-stage.hot .abx-node { stroke: var(--amber-line); }
 .vs-stage.hot .abx-label { fill: rgba(252, 184, 19, 0.9); }
@@ -1659,6 +1677,9 @@ em { font-style: normal; }
   .crew__photo { aspect-ratio: 4 / 3; }
   .crew__cap { position: static; }
   .tl__row { grid-template-columns: 52px 28px 1fr; }
+  /* Footer: 4 nav columns in a no-wrap flex row overflow the viewport on
+     mobile (a horizontal page scroll). Stack them into a 2×2 grid. */
+  .footer__cols { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 24px; }
 }
 
 /* ============================================================
