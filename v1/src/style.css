@@ -1758,7 +1758,7 @@ em { font-style: normal; }
 .bkv-hub { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
 .bkv-wheel { transform-origin: 230px 230px; animation: bkv-turn 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
 .bkv-spoke { stroke: rgba(255, 255, 255, 0.3); stroke-width: 1.2; stroke-linecap: round; }
-.bkv-bolt { fill: var(--amber); }
+.bkv-bolt { fill: var(--amber); opacity: 0.9; animation: bkv-open 12s linear infinite; }
 .bkv-channel { stroke: var(--amber); stroke-width: 1.2; opacity: 0.9; animation: bkv-open 12s linear infinite; }
 .bkv-pulse { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; transform-origin: 230px 230px; animation: bkv-pulse 12s ease-out infinite; }
 .bkv-tag-g { opacity: 0.9; animation: bkv-open 12s linear infinite; }
@@ -1795,7 +1795,7 @@ em { font-style: normal; }
   /* SMIL animateMotion ignores CSS animation rules — hide the orbiting dots instead */
   .ahero__viz .abx-port, .ahero__viz .hero-agent { display: none; }
   /* industry hero visuals: freeze CSS motion on the resolved pose */
-  .bkv-ring--1, .bkv-ring--2, .bkv-ring--3, .bkv-wheel, .bkv-channel, .bkv-pulse, .bkv-tag-g { animation: none; }
+  .bkv-ring--1, .bkv-ring--2, .bkv-ring--3, .bkv-wheel, .bkv-channel, .bkv-pulse, .bkv-bolt, .bkv-tag-g { animation: none; }
 }
 
 /* ============================================================
