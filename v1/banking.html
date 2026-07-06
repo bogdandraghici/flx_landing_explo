@@ -71,35 +71,51 @@
           </p>
         </div>
 
-        <!-- single industry ring: banking agents orbiting the FlowX core -->
+        <!-- vault unlocking: tumbler rings align, the channel opens — approval granted -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="Banking agents orbiting the FlowX core that powers them">
-            <path id="bkRing" class="hero-ring" d="M78 230 a152 152 0 1 0 304 0 a152 152 0 1 0 -304 0"/>
-            <g>
-              <circle class="abx-port" r="2.6"><animateMotion dur="18s" begin="0s" repeatCount="indefinite"><mpath href="#bkRing"/></animateMotion></circle>
-              <circle class="hero-agent" r="3.2"><animateMotion dur="18s" begin="-3s" repeatCount="indefinite"><mpath href="#bkRing"/></animateMotion></circle>
-              <circle class="abx-port" r="2.6"><animateMotion dur="18s" begin="-6s" repeatCount="indefinite"><mpath href="#bkRing"/></animateMotion></circle>
-              <circle class="abx-port" r="2.6"><animateMotion dur="18s" begin="-9s" repeatCount="indefinite"><mpath href="#bkRing"/></animateMotion></circle>
-              <circle class="hero-agent" r="3.2"><animateMotion dur="18s" begin="-12s" repeatCount="indefinite"><mpath href="#bkRing"/></animateMotion></circle>
-              <circle class="abx-port" r="2.6"><animateMotion dur="18s" begin="-15s" repeatCount="indefinite"><mpath href="#bkRing"/></animateMotion></circle>
+          <svg viewBox="0 0 460 460" role="img" aria-label="A bank vault's tumbler rings rotating into alignment and unlocking — approval granted">
+            <!-- static tracks under the tumblers -->
+            <circle class="bkv-track" cx="230" cy="230" r="170"/>
+            <circle class="bkv-track" cx="230" cy="230" r="136"/>
+            <circle class="bkv-track" cx="230" cy="230" r="102"/>
+
+            <!-- tumbler rings: each gapped arc rotates (CSS) from a scattered start
+                 angle into alignment; the attribute rotate(-90) puts each gap at
+                 12 o'clock in the aligned pose, so CSS rotate(0) = aligned -->
+            <g class="bkv-ring bkv-ring--1">
+              <circle class="bkv-arc" cx="230" cy="230" r="170" transform="rotate(-90 230 230)"
+                stroke-dasharray="1022.14 46" stroke-dashoffset="-23"/>
+              <line class="bkv-tick" x1="87.1" y1="312.5" x2="78.4" y2="317.5"/>
+              <line class="bkv-tick" x1="272.7" y1="70.6" x2="275.3" y2="61.0"/>
             </g>
-            <g>
-              <rect class="hero-tag" x="204" y="71" width="52" height="14"/>
-              <text class="abx-cat" x="230" y="81" text-anchor="middle">banking</text>
+            <g class="bkv-ring bkv-ring--2">
+              <circle class="bkv-arc" cx="230" cy="230" r="136" transform="rotate(-90 230 230)"
+                stroke-dasharray="814.51 40" stroke-dashoffset="-20"/>
+              <line class="bkv-tick" x1="295.5" y1="343.4" x2="300.5" y2="352.1"/>
+              <line class="bkv-tick" x1="106.9" y1="185.2" x2="97.5" y2="181.8"/>
             </g>
-            <circle class="abx-pulse" r="4"><animateMotion dur="18s" repeatCount="indefinite"><mpath href="#bkRing"/></animateMotion></circle>
-            <defs>
-              <linearGradient id="chipFace" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="rgba(255,255,255,0.05)"/>
-                <stop offset="0.55" stop-color="rgba(255,255,255,0)"/>
-              </linearGradient>
-            </defs>
-            <path class="hero-core" d="M200 188 L253 188 L272 207 L272 260 A12 12 0 0 1 260 272 L200 272 A12 12 0 0 1 188 260 L188 200 A12 12 0 0 1 200 188 Z"/>
-            <path class="hero-chip-face" d="M200 188 L253 188 L272 207 L272 260 A12 12 0 0 1 260 272 L200 272 A12 12 0 0 1 188 260 L188 200 A12 12 0 0 1 200 188 Z"/>
-            <path class="hero-core-inner" d="M203 194 L252 194 L266 208 L266 257 A9 9 0 0 1 257 266 L203 266 A9 9 0 0 1 194 257 L194 203 A9 9 0 0 1 203 194 Z"/>
-            <g transform="translate(230 230) scale(0.15) translate(-148 -148)">
-              <path class="hero-logo-bar" d="M255.769 231.28H40.4308V287.8H255.769V231.28Z"/>
-              <path class="hero-logo-x" d="M181.031 89.0438L255.769 174.759H186.87L146.232 127.113L105.593 174.759H40.6643L115.169 89.9781L42.5329 8H111.665L150.202 53.0762L188.739 8H253.901L181.031 89.0438Z"/>
+            <g class="bkv-ring bkv-ring--3">
+              <circle class="bkv-arc" cx="230" cy="230" r="102" transform="rotate(-90 230 230)"
+                stroke-dasharray="606.88 34" stroke-dashoffset="-17"/>
+              <line class="bkv-tick" x1="314.0" y1="181.5" x2="322.7" y2="176.5"/>
+            </g>
+
+            <!-- hub + handle wheel: quarter-turn when the vault opens -->
+            <circle class="bkv-hub" cx="230" cy="230" r="64"/>
+            <g class="bkv-wheel">
+              <circle class="bkv-hub" cx="230" cy="230" r="48"/>
+              <line class="bkv-spoke" x1="230" y1="216" x2="230" y2="182"/>
+              <line class="bkv-spoke" x1="242.1" y1="237" x2="271.6" y2="254"/>
+              <line class="bkv-spoke" x1="217.9" y1="237" x2="188.4" y2="254"/>
+            </g>
+            <circle class="bkv-bolt" cx="230" cy="230" r="7"/>
+
+            <!-- resolution: the unlocked channel through the aligned notches -->
+            <line class="bkv-channel" x1="230" y1="164" x2="230" y2="42"/>
+            <circle class="bkv-pulse" cx="230" cy="230" r="64"/>
+            <g class="bkv-tag-g" transform="translate(230 24)">
+              <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1">approved</text>
             </g>
           </svg>
         </div>

@@ -1741,6 +1741,36 @@ em { font-style: normal; }
 }
 
 /* ============================================================
+   INDUSTRY HERO VISUALS — bespoke metaphors (banking / insurance / logistics)
+   ============================================================ */
+/* shared label voice for all three visuals (same tone as .abx-cat) */
+.ivz-lbl { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; fill: var(--text-faint); }
+.ivz-tag { fill: var(--bg); }
+
+/* --- banking hero: vault unlocking (bkv-*) --- */
+.bkv-track { fill: none; stroke: rgba(255, 255, 255, 0.05); stroke-width: 1; }
+.bkv-arc { fill: none; stroke: rgba(255, 255, 255, 0.25); stroke-width: 1.2; }
+.bkv-tick { stroke: rgba(205, 212, 226, 0.35); stroke-width: 1; }
+.bkv-ring { transform-origin: 230px 230px; }
+.bkv-ring--1 { animation: bkv-r1 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
+.bkv-ring--2 { animation: bkv-r2 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
+.bkv-ring--3 { animation: bkv-r3 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
+.bkv-hub { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
+.bkv-wheel { transform-origin: 230px 230px; animation: bkv-turn 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
+.bkv-spoke { stroke: rgba(255, 255, 255, 0.3); stroke-width: 1.2; stroke-linecap: round; }
+.bkv-bolt { fill: var(--amber); }
+.bkv-channel { stroke: var(--amber); stroke-width: 1.2; opacity: 0.9; animation: bkv-open 12s linear infinite; }
+.bkv-pulse { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; transform-origin: 230px 230px; animation: bkv-pulse 12s ease-out infinite; }
+.bkv-tag-g { opacity: 0.9; animation: bkv-open 12s linear infinite; }
+
+@keyframes bkv-r1 { 0% { transform: rotate(210deg); } 22%, 86% { transform: rotate(0deg); } 100% { transform: rotate(210deg); } }
+@keyframes bkv-r2 { 0%, 10% { transform: rotate(-150deg); } 36%, 86% { transform: rotate(0deg); } 100% { transform: rotate(-150deg); } }
+@keyframes bkv-r3 { 0%, 24% { transform: rotate(120deg); } 50%, 86% { transform: rotate(0deg); } 100% { transform: rotate(120deg); } }
+@keyframes bkv-turn { 0%, 52% { transform: rotate(0deg); } 62%, 86% { transform: rotate(90deg); } 100% { transform: rotate(0deg); } }
+@keyframes bkv-open { 0%, 52% { opacity: 0; } 58%, 82% { opacity: 0.9; } 90%, 100% { opacity: 0; } }
+@keyframes bkv-pulse { 0%, 53% { opacity: 0; transform: scale(0.72); } 57% { opacity: 0.8; } 72%, 100% { opacity: 0; transform: scale(1.12); } }
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
@@ -1764,6 +1794,8 @@ em { font-style: normal; }
   .nav__menu { transition: none; }
   /* SMIL animateMotion ignores CSS animation rules — hide the orbiting dots instead */
   .ahero__viz .abx-port, .ahero__viz .hero-agent { display: none; }
+  /* industry hero visuals: freeze CSS motion on the resolved pose */
+  .bkv-ring--1, .bkv-ring--2, .bkv-ring--3, .bkv-wheel, .bkv-channel, .bkv-pulse, .bkv-tag-g { animation: none; }
 }
 
 /* ============================================================
