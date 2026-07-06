@@ -25,13 +25,14 @@ flx_landing_explo/
 ├── docs/vN/        # built output served by GitHub Pages (do not hand-edit)
 ├── v1/             # exploration 1 — a full Vite project
 │   ├── index.html    # all markup (nav, hero, sections, footer)
-│   ├── agents.html    # AI Agents page: value-stream schematics + featured bento
-│   ├── vite.config.js  # multi-page build (index.html + agents.html entries)
+│   ├── banking.html / insurance.html / logistics.html  # industry pages: hero, problem, value stream, segments, featured bento, workflows, CTA
+│   ├── agents.html    # redirect stub → banking.html (old /agents links)
+│   ├── vite.config.js  # multi-page build (index, banking, insurance, logistics, about, resources, blog-flowx-6, agents entries)
 │   ├── public/     # static assets (flowx-logo.svg)
 │   └── src/
 │       ├── main.js       # entry: hero canvas, terminal, blueprint, sections
-│       ├── shared.js      # shared page chrome: grain, nav, reveals
-│       ├── agents.js      # agents-page entry
+│       ├── shared.js      # shared page chrome: grain, nav (incl. CSS-only Industries dropdown), reveals
+│       ├── industry.js    # shared entry for the three industry pages
 │       ├── style.css      # all styles; design tokens in :root
 │       ├── orderField.js  # hero "order field" canvas animation + CTA static grid
 │       └── blueprint.js   # mocked "solution compiler" (classify → SVG + yaml)
@@ -53,23 +54,31 @@ npm run preview
 ## v1 architecture
 
 - **Vanilla ES modules, no framework.** No React/Vue/build magic beyond Vite.
-- **`vite.config.js`** declares a multi-page build with two HTML entries —
-  `index.html` and `agents.html` — so both get built/optimized by Vite.
-- **`index.html`** holds all the markup. Sections: nav, hero, blueprint, compliance
+- **`vite.config.js`** declares a multi-page build with entries for `index.html`,
+  `banking.html`, `insurance.html`, `logistics.html`, `about.html`,
+  `resources.html`, `blog-flowx-6.html`, plus `agents.html` (the redirect stub)
+  — so all of them get built/optimized by Vite.
+- **`index.html`** holds all the markup. Sections: nav (with a CSS-only
+  Industries dropdown — hover/focus-within, no JS), hero, blueprint, compliance
   marquee, "why 95% fail", platform, proof, CTA, footer.
-- **`agents.html`** is the AI Agents page: hero, banking/insurance/logistics
-  value-stream schematics, a featured-agents bento, and a CTA.
+- **`banking.html` / `insurance.html` / `logistics.html`** are the industry
+  pages, each with: a hero with a single-orbit viz, a problem section, a
+  value-stream schematic, segment cards, a featured-agents bento, workflows,
+  and a CTA.
+- **`agents.html`** is a meta-refresh redirect to `banking.html`, kept so old
+  `/agents` links still resolve.
 - **`src/style.css`** is the single stylesheet. Design tokens (colors, fonts,
   easing) are CSS custom properties in `:root` at the top — prefer these over
   hardcoded values, except when intentionally matching a specific exploration.
-- **`src/shared.js`** — page chrome shared by both pages: grain overlay, nav
+- **`src/shared.js`** — page chrome shared across pages: grain overlay, nav
   scroll state, and scroll-reveal IntersectionObservers.
 - **`src/main.js`** is the `index.html` entry point. It sets up the hero canvas,
   the terminal input + placeholder animation, and the section behaviors (audit
   ticker, model router, count-up stats), on top of the shared chrome.
-- **`src/agents.js`** is the `agents.html` entry point. It wires the CTA canvas,
-  segment-hover → value-stream stage highlighting, and the featured bento's
-  micro-visuals (screener feed, rate readout).
+- **`src/industry.js`** is the shared entry for the three industry pages. It
+  wires the CTA canvas, document-scoped segment-hover → value-stream stage
+  highlighting, and null-guarded micro-visual hooks — a screener feed on
+  banking, a rate readout on logistics.
 - **`src/orderField.js`** — the hero background's "order field" canvas
   animation; also exports the static, fully-resolved lattice frame used as the
   CTA section's background grid.
