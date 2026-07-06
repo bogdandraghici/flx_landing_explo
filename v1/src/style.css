@@ -1837,7 +1837,13 @@ em { font-style: normal; }
   .segs { grid-template-columns: 1fr; }
   .fcard--2, .fcard--3 { grid-column: span 6; }
   .fcard--wave { flex-direction: column; align-items: stretch; }
-  .ahero__viz { display: none; }
+  /* keep the bespoke industry / resource hero visuals on mobile — the grid has
+     already stacked them below the text at <=1080px. Drop the desktop max-width
+     cap so the SVG stretches to the full column like the about page's .mviz,
+     instead of being hidden (or rendered noticeably smaller than the other
+     pages' visuals). NB: no margin-inline:auto here — on a grid item that would
+     override justify-self:stretch and shrink it back to its intrinsic width. */
+  .ahero__viz { max-width: none; }
   .crew { grid-template-columns: 1fr; }
   .crew__photo { aspect-ratio: 4 / 3; }
   .crew__cap { position: static; }
