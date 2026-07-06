@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlowX — Logistics</title>
+  <meta name="description" content="FlowX.AI logistics agents on the freight lifecycle — network optimization, load processing, and billing reconciliation, for carriers, 3PLs, brokers, forwarders, and shippers." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M28 26 L60 62 M60 26 L28 62' stroke='%23F4F5F3' stroke-width='9'/%3E%3Crect x='28' y='70' width='44' height='9' fill='%23FCB813'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <canvas id="grain" class="grain" aria-hidden="true"></canvas>
+
+  <!-- ================= NAV ================= -->
+  <!-- copied from index.html — delta: aria-current on Logistics in the dropdown, Book a demo → #cta -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="./index.html" aria-label="FlowX home">
+        <svg class="nav__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+          <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor"/>
+          <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor"/>
+          <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor"/>
+          <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor"/>
+          <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813"/>
+          <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <!-- Industries dropdown is CSS-only (hover / focus-within); no aria-expanded — no JS to sync it -->
+        <div class="nav__drop">
+          <button class="nav__droptrigger" type="button" aria-haspopup="true">Industries</button>
+          <div class="nav__menu">
+            <div class="nav__menu-panel">
+              <a href="./banking.html">Banking</a>
+              <a href="./insurance.html">Insurance</a>
+              <a href="./logistics.html" aria-current="page">Logistics</a>
+            </div>
+          </div>
+        </div>
+        <a href="./resources.html">Resources</a>
+        <a href="./about.html">Company</a>
+      </nav>
+      <div class="nav__right">
+        <a class="btn btn--primary btn--sm" href="#cta">Book a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <section class="ahero" id="ihero">
+      <div class="shell ahero__grid">
+        <div class="ahero__text">
+          <p class="hero__eyebrow mono rv-load" style="--d:0">
+            <span class="tick" aria-hidden="true"></span>
+            Industries &middot; Logistics
+          </p>
+          <h1 class="hero__title">
+            <span class="hero__line hero__line--big rv-load" style="--d:1">Logistics agents, on the freight lifecycle<span class="amber">.</span></span>
+          </h1>
+          <!-- DRAFT — marketing review -->
+          <p class="hero__sub rv-load" style="--d:2">
+            From quote to invoice — agents for carriers, 3PLs, brokers,
+            forwarders, and shippers along the whole move. Built for networks
+            where failure is not an option.
+          </p>
+          <p class="astats mono rv-load" style="--d:3">
+            <span><b>220+</b> agents</span>
+            <span><b>3</b> industries</span>
+            <span><b class="amber">●</b> in production</span>
+          </p>
+        </div>
+
+        <!-- single industry ring: logistics agents orbiting the FlowX core -->
+        <div class="ahero__viz" aria-hidden="true">
+          <svg viewBox="0 0 460 460" role="img" aria-label="Logistics agents orbiting the FlowX core that powers them">
+            <path id="lgRing" class="hero-ring" d="M78 230 a152 152 0 1 0 304 0 a152 152 0 1 0 -304 0"/>
+            <g>
+              <circle class="abx-port" r="2.6"><animateMotion dur="20s" begin="0s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
+              <circle class="hero-agent" r="3.2"><animateMotion dur="20s" begin="-3.3s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
+              <circle class="abx-port" r="2.6"><animateMotion dur="20s" begin="-6.7s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
+              <circle class="abx-port" r="2.6"><animateMotion dur="20s" begin="-10s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
+              <circle class="hero-agent" r="3.2"><animateMotion dur="20s" begin="-13.3s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
+              <circle class="abx-port" r="2.6"><animateMotion dur="20s" begin="-16.7s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
+            </g>
+            <g>
+              <rect class="hero-tag" x="200" y="71" width="60" height="14"/>
+              <text class="abx-cat" x="230" y="81" text-anchor="middle">logistics</text>
+            </g>
+            <circle class="abx-pulse" r="4"><animateMotion dur="20s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
+            <defs>
+              <linearGradient id="chipFace" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="rgba(255,255,255,0.05)"/>
+                <stop offset="0.55" stop-color="rgba(255,255,255,0)"/>
+              </linearGradient>
+            </defs>
+            <path class="hero-core" d="M200 188 L253 188 L272 207 L272 260 A12 12 0 0 1 260 272 L200 272 A12 12 0 0 1 188 260 L188 200 A12 12 0 0 1 200 188 Z"/>
+            <path class="hero-chip-face" d="M200 188 L253 188 L272 207 L272 260 A12 12 0 0 1 260 272 L200 272 A12 12 0 0 1 188 260 L188 200 A12 12 0 0 1 200 188 Z"/>
+            <path class="hero-core-inner" d="M203 194 L252 194 L266 208 L266 257 A9 9 0 0 1 257 266 L203 266 A9 9 0 0 1 194 257 L194 203 A9 9 0 0 1 203 194 Z"/>
+            <g transform="translate(230 230) scale(0.15) translate(-148 -148)">
+              <path class="hero-logo-bar" d="M255.769 231.28H40.4308V287.8H255.769V231.28Z"/>
+              <path class="hero-logo-x" d="M181.031 89.0438L255.769 174.759H186.87L146.232 127.113L105.593 174.759H40.6643L115.169 89.9781L42.5329 8H111.665L150.202 53.0762L188.739 8H253.901L181.031 89.0438Z"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE PROBLEM ================= -->
+    <!-- DRAFT — marketing review: pain points paraphrased from flowx.ai/logistics -->
+    <section class="section" id="problem">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">01 / The problem</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Where logistics leaks margin<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">The network moves faster than the back office that runs it.</p>
+          </div>
+        </div>
+        <div class="segs segs--3">
+          <article class="seg rv" style="--i:0">
+            <h3 class="seg__name">Stale network decisions</h3>
+            <p class="seg__desc">Capacity and routing decisions lag the conditions on the ground — by the time the plan lands, the lane has moved.</p>
+          </article>
+          <article class="seg rv" style="--i:1">
+            <h3 class="seg__name">Manual load processing</h3>
+            <p class="seg__desc">Tenders, confirmations, and exceptions still move through inboxes — one load at a time.</p>
+          </article>
+          <article class="seg rv" style="--i:2">
+            <h3 class="seg__name">Billing disputes</h3>
+            <p class="seg__desc">Rate mismatches surface at invoice time — as revenue leakage, disputes, and days of reconciliation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VALUE STREAM ================= -->
+    <section class="section" id="value-stream">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">02 / Value stream</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">The freight lifecycle, end to end<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">From quote to invoice — agents for carriers,
+              3PLs, brokers, forwarders, and shippers along the whole move.</p>
+          </div>
+        </div>
+
+        <figure class="vs rv" style="--i:2" role="img" aria-label="Freight lifecycle pipeline: quote, book, move, deliver, invoice — with agents attached to each stage">
+          <div class="vs__bar mono"><span>logistics / freight lifecycle</span><span class="vs__live"><i></i>agents live</span></div>
+          <div class="vs__scroll">
+            <svg viewBox="0 0 960 216" aria-hidden="true">
+              <path id="lgSpine" class="abx-edge" d="M20 59 H940"/>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#lgSpine"/></animateMotion></circle>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#lgSpine"/></animateMotion></circle>
+              <g class="vs-stage" data-stage="quote">
+                <rect class="abx-node" x="20" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="36" y="64">quote</text>
+                <text class="abx-sub" x="132" y="64">01</text>
+                <path class="abx-edge" d="M100 82 C100 112 106 128 106 148"/>
+                <rect class="abx-chip" x="28" y="148" width="140" height="38" rx="9"/>
+                <text class="abx-label" x="44" y="171">smart-quoting</text>
+              </g>
+              <g class="vs-stage" data-stage="book">
+                <rect class="abx-node" x="210" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="226" y="64">book</text>
+                <text class="abx-sub" x="322" y="64">02</text>
+              </g>
+              <g class="vs-stage" data-stage="move">
+                <rect class="abx-node" x="400" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="416" y="64">move</text>
+                <text class="abx-sub" x="512" y="64">03</text>
+                <path class="abx-edge" d="M480 82 C480 112 486 128 486 148"/>
+                <rect class="abx-chip" x="412" y="148" width="136" height="38" rx="9"/>
+                <text class="abx-label" x="428" y="171">track-trace</text>
+              </g>
+              <g class="vs-stage" data-stage="deliver">
+                <rect class="abx-node" x="590" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="606" y="64">deliver</text>
+                <text class="abx-sub" x="702" y="64">04</text>
+              </g>
+              <g class="vs-stage vs-stage--live" data-stage="invoice">
+                <rect class="abx-node abx-node--live" x="780" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label abx-label--live" x="796" y="64">invoice</text>
+                <circle class="abx-dot--live" cx="920" cy="59" r="4"/>
+                <path class="abx-edge" d="M860 82 C860 112 854 128 854 148"/>
+                <rect class="abx-chip abx-chip--pick" x="760" y="148" width="182" height="38" rx="9"/>
+                <text class="abx-label abx-label--live" x="776" y="171">invoice-recon +3</text>
+              </g>
+            </svg>
+          </div>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ================= SEGMENTS ================= -->
+    <section class="section" id="segments">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">03 / Who it's for</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Built for every link in the chain<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Hover a segment to see where its
+              agents sit on the journey.</p>
+          </div>
+        </div>
+        <div class="segs segs--3">
+          <!-- DRAFT — marketing review: the five logistics segment descriptions are invented (source has none) -->
+          <article class="seg rv" style="--i:0" data-stages="move deliver invoice">
+            <h3 class="seg__name">Carriers</h3>
+            <p class="seg__desc">Agents that keep fleets moving — maintenance, fuel, pricing, and safety, without the back office drag.</p>
+            <ul class="seg__chips mono">
+              <li>Fleet optimization</li>
+              <li>Predictive maintenance</li>
+              <li>Load entry</li>
+              <li>Fuel efficiency</li>
+              <li>Compliance &amp; safety</li>
+              <li>Dynamic pricing</li>
+              <li>Invoicing</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:1" data-stages="quote book move invoice">
+            <h3 class="seg__name">3PLs</h3>
+            <p class="seg__desc">Agents that orchestrate inventory, routing, and customer commitments across the network.</p>
+            <ul class="seg__chips mono">
+              <li>Inventory optimization</li>
+              <li>Dynamic routing</li>
+              <li>Load entry</li>
+              <li>Smart quoting</li>
+              <li>Invoice reconciliation</li>
+              <li>Customer service</li>
+              <li>Exception management</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:2" data-stages="quote book invoice">
+            <h3 class="seg__name">Brokers</h3>
+            <p class="seg__desc">Agents that quote faster, match carriers smarter, and keep every margin visible.</p>
+            <ul class="seg__chips mono">
+              <li>Smart quoting</li>
+              <li>Carrier matching</li>
+              <li>Load entry</li>
+              <li>Invoice reconciliation</li>
+              <li>Inbox management</li>
+              <li>Performance analysis</li>
+              <li>Customs validation</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:3" data-stages="quote move deliver">
+            <h3 class="seg__name">Forwarders</h3>
+            <p class="seg__desc">Agents for cross-border moves — customs, compliance, and landed-cost certainty.</p>
+            <ul class="seg__chips mono">
+              <li>Customs validation</li>
+              <li>Smart quoting</li>
+              <li>Risk &amp; compliance</li>
+              <li>Invoice reconciliation</li>
+              <li>Cost prediction</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:4" data-stages="quote book invoice">
+            <h3 class="seg__name">Shippers</h3>
+            <p class="seg__desc">Agents that put tendering, quoting, and freight-spend reconciliation on autopilot.</p>
+            <ul class="seg__chips mono">
+              <li>Load tendering</li>
+              <li>Freight quoting</li>
+              <li>Invoice reconciliation</li>
+              <li>Demand forecasting</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FEATURED AGENTS ================= -->
+    <section class="section" id="featured">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">04 / Featured</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Featured agents, up close<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Eight logistics agents — what each one watches,
+              decides, and hands back to your team.</p>
+          </div>
+        </div>
+
+        <!-- DRAFT — marketing review: micro-visual data invented -->
+        <div class="feat">
+          <article class="fcard fcard--3 rv" style="--i:0">
+            <h3 class="fcard__name mono">rate-optimization</h3>
+            <p class="fcard__desc">Calculates optimal bid prices based on demand, distance, and target margin.</p>
+            <div class="fviz fviz--rate mono" aria-hidden="true">
+              <span class="fviz__big"><span class="amber">$</span><span id="rateVal">2.41</span>/mi</span>
+              <span class="fviz__ctx">lane CHI→DAL · target margin 14%</span>
+            </div>
+          </article>
+          <article class="fcard fcard--3 rv" style="--i:1">
+            <h3 class="fcard__name mono">route-optimization</h3>
+            <p class="fcard__desc">Rebalances routes against live demand, weather, and capacity constraints.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>lane CHI→DAL · reroute <em class="amber">−3.2h</em></span>
+              <span>fuel delta <em>−4%</em></span>
+              <span>utilization <em>91%</em></span>
+            </div>
+          </article>
+
+          <article class="fcard fcard--2 rv" style="--i:2">
+            <h3 class="fcard__name mono">smart-quoting-margin-performance</h3>
+            <p class="fcard__desc">Monitors quote outcomes and tunes pricing models for profitability.</p>
+            <div class="fviz fviz--bars" aria-hidden="true">
+              <i style="--h:34%"></i><i style="--h:58%"></i><i style="--h:41%"></i><i style="--h:72%"></i><i class="on" style="--h:88%"></i><i style="--h:64%"></i><i style="--h:79%"></i>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:3">
+            <h3 class="fcard__name mono">predictive-maintenance-cost</h3>
+            <p class="fcard__desc">Identifies vendor and part savings opportunities across repairs.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>brake pads · vendor B <em class="amber">−18%</em></span>
+              <span>axle service · bundled <em class="amber">−11%</em></span>
+              <span>tires · contract rate <em>−6%</em></span>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:4">
+            <h3 class="fcard__name mono">service-history-analyzer</h3>
+            <p class="fcard__desc">Analyzes maintenance logs to detect recurring issues and root causes.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>unit 4471 · coolant leak <em class="amber">4×</em></span>
+              <span>root cause · gasket batch <em>B-112</em></span>
+              <span>flagged fleet-wide <em>12 units</em></span>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:5">
+            <h3 class="fcard__name mono">maintenance-planner</h3>
+            <p class="fcard__desc">Recommends optimal service schedules based on utilization and condition.</p>
+            <div class="fviz fviz--dots mono" aria-hidden="true">
+              <span>wk</span><i></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:6">
+            <h3 class="fcard__name mono">market-intelligence</h3>
+            <p class="fcard__desc">Aggregates live rate indices, lane performance, and carrier availability.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>rate index <em class="amber">▲ 2.1%</em></span>
+              <span>lane volume · TX triangle <em>▲</em></span>
+              <span>carrier availability <em>tight</em></span>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:7">
+            <h3 class="fcard__name mono">failure-prediction</h3>
+            <p class="fcard__desc">Forecasts breakdown risk using historical repair and usage data.</p>
+            <div class="fviz fviz--risk mono" aria-hidden="true">
+              <span>unit 2209 · risk 0.72</span>
+              <div class="fviz__meter"><i style="--w:72%"></i></div>
+              <span class="fviz__ctx">recommend: inspect before load 7741</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WORKFLOWS ================= -->
+    <!-- DRAFT — marketing review: descriptions paraphrased from flowx.ai/logistics -->
+    <section class="section" id="workflows">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">05 / Workflows</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Three workflows, mission-critical<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Where logistics agent stacks go to work first.</p>
+          </div>
+        </div>
+        <div class="segs segs--3">
+          <article class="seg rv" style="--i:0">
+            <span class="seg__no mono">01</span>
+            <h3 class="seg__name">Network Optimization</h3>
+            <p class="seg__desc">Agents rebalance capacity and routes as conditions change, not at the next planning cycle.</p>
+          </article>
+          <article class="seg rv" style="--i:1">
+            <span class="seg__no mono">02</span>
+            <h3 class="seg__name">Load Processing</h3>
+            <p class="seg__desc">Tenders validated, loads entered, exceptions resolved — without the inbox in the middle.</p>
+          </article>
+          <article class="seg rv" style="--i:2">
+            <span class="seg__no mono">03</span>
+            <h3 class="seg__name">Billing Reconciliation</h3>
+            <p class="seg__desc">Rates matched against contracts with an audit trail attached — before the dispute, not after.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section section--cta" id="cta">
+      <canvas class="cta__canvas" aria-hidden="true"></canvas>
+      <div class="shell">
+        <span class="section__no mono">06 / Next</span>
+        <h2 class="cta__title">
+          <span class="rv" style="--i:0">Put agents on your</span>
+          <span class="rv" style="--i:1">freight lifecycle<span class="amber">.</span></span>
+        </h2>
+        <div class="cta__row rv" style="--i:2">
+          <a class="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Schedule a customized demo</a>
+          <a class="btn btn--ghost btn--lg" href="./index.html#hero">Compile your own agent</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <!-- copied from index.html:580-624 — only the Platform column hrefs change, see deltas above -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__top">
+        <div class="footer__id">
+          <svg class="footer__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+            <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor"/>
+            <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor"/>
+            <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor"/>
+            <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor"/>
+            <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813"/>
+            <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor"/>
+          </svg>
+          <address class="footer__offices mono">
+            Charles de Gaulle Plaza, Piata Charles de Gaulle 15, 9th floor, 011857 Bucharest, Romania<br />
+            352 Sharon Park Drive, Menlo Park, CA 94025
+          </address>
+        </div>
+        <nav class="footer__cols" aria-label="Footer">
+          <div>
+            <h4 class="mono">Platform</h4>
+            <a href="./banking.html">Banking</a>
+            <a href="./insurance.html">Insurance</a>
+            <a href="./logistics.html">Logistics</a>
+            <a href="./index.html#blueprint">Agent Builder</a>
+            <a href="./index.html#proof">Proof</a>
+          </div>
+          <div>
+            <h4 class="mono">Company</h4>
+            <a href="./about.html">About us</a>
+          </div>
+          <!-- VERIFY URLS before publish -->
+          <div>
+            <h4 class="mono">Resources</h4>
+            <a href="https://www.flowx.ai/blog" target="_blank" rel="noopener">Blog</a>
+            <a href="https://docs.flowx.ai" target="_blank" rel="noopener">Documentation</a>
+            <a href="https://academy.flowx.ai" target="_blank" rel="noopener">Academy</a>
+            <a href="#cta">Support</a>
+          </div>
+          <div>
+            <h4 class="mono">Legal</h4>
+            <a href="https://www.flowx.ai/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+            <a href="https://www.flowx.ai/cookies" target="_blank" rel="noopener">Cookies</a>
+            <a href="https://www.flowx.ai/terms-and-conditions" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__base mono">
+        <span>© <span id="year">2026</span> FlowX.AI Business Systems — Bucharest · Menlo Park</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/industry.js"></script>
+</body>
+</html>
