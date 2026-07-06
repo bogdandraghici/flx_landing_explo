@@ -71,35 +71,61 @@
           </p>
         </div>
 
-        <!-- single industry ring: insurance agents orbiting the FlowX core -->
+        <!-- shield deflecting risk: the covered asset stays whole; what lands is restored -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="Insurance agents orbiting the FlowX core that powers them">
-            <path id="insRing" class="hero-ring" d="M78 230 a152 152 0 1 0 304 0 a152 152 0 1 0 -304 0"/>
-            <g>
-              <circle class="abx-port" r="2.6"><animateMotion dur="22s" begin="0s" keyPoints="1;0" keyTimes="0;1" calcMode="linear" repeatCount="indefinite"><mpath href="#insRing"/></animateMotion></circle>
-              <circle class="hero-agent" r="3.2"><animateMotion dur="22s" begin="-3.7s" keyPoints="1;0" keyTimes="0;1" calcMode="linear" repeatCount="indefinite"><mpath href="#insRing"/></animateMotion></circle>
-              <circle class="abx-port" r="2.6"><animateMotion dur="22s" begin="-7.3s" keyPoints="1;0" keyTimes="0;1" calcMode="linear" repeatCount="indefinite"><mpath href="#insRing"/></animateMotion></circle>
-              <circle class="abx-port" r="2.6"><animateMotion dur="22s" begin="-11s" keyPoints="1;0" keyTimes="0;1" calcMode="linear" repeatCount="indefinite"><mpath href="#insRing"/></animateMotion></circle>
-              <circle class="hero-agent" r="3.2"><animateMotion dur="22s" begin="-14.7s" keyPoints="1;0" keyTimes="0;1" calcMode="linear" repeatCount="indefinite"><mpath href="#insRing"/></animateMotion></circle>
-              <circle class="abx-port" r="2.6"><animateMotion dur="22s" begin="-18.3s" keyPoints="1;0" keyTimes="0;1" calcMode="linear" repeatCount="indefinite"><mpath href="#insRing"/></animateMotion></circle>
+          <svg viewBox="0 0 460 460" role="img" aria-label="A shield arc deflecting falling risk while the insured asset beneath is kept whole">
+            <!-- risk particles: four deflect off the arc, one lands and is restored -->
+            <g class="shv-p">
+              <circle r="2.6"/>
+              <animateMotion dur="5.6s" begin="0s" repeatCount="indefinite" path="M150 -10 L150 200 Q150 216 128 228 T 74 254"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="0s" repeatCount="indefinite"/>
             </g>
-            <g>
-              <rect class="hero-tag" x="199" y="71" width="62" height="14"/>
-              <text class="abx-cat" x="230" y="81" text-anchor="middle">insurance</text>
+            <g class="shv-p">
+              <circle r="2.6"/>
+              <animateMotion dur="5.6s" begin="-1.4s" repeatCount="indefinite" path="M310 -10 L310 200 Q310 216 332 228 T 386 254"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="-1.4s" repeatCount="indefinite"/>
             </g>
-            <circle class="abx-pulse" r="4"><animateMotion dur="22s" keyPoints="1;0" keyTimes="0;1" calcMode="linear" repeatCount="indefinite"><mpath href="#insRing"/></animateMotion></circle>
-            <defs>
-              <linearGradient id="chipFace" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="rgba(255,255,255,0.05)"/>
-                <stop offset="0.55" stop-color="rgba(255,255,255,0)"/>
-              </linearGradient>
-            </defs>
-            <path class="hero-core" d="M200 188 L253 188 L272 207 L272 260 A12 12 0 0 1 260 272 L200 272 A12 12 0 0 1 188 260 L188 200 A12 12 0 0 1 200 188 Z"/>
-            <path class="hero-chip-face" d="M200 188 L253 188 L272 207 L272 260 A12 12 0 0 1 260 272 L200 272 A12 12 0 0 1 188 260 L188 200 A12 12 0 0 1 200 188 Z"/>
-            <path class="hero-core-inner" d="M203 194 L252 194 L266 208 L266 257 A9 9 0 0 1 257 266 L203 266 A9 9 0 0 1 194 257 L194 203 A9 9 0 0 1 203 194 Z"/>
-            <g transform="translate(230 230) scale(0.15) translate(-148 -148)">
-              <path class="hero-logo-bar" d="M255.769 231.28H40.4308V287.8H255.769V231.28Z"/>
-              <path class="hero-logo-x" d="M181.031 89.0438L255.769 174.759H186.87L146.232 127.113L105.593 174.759H40.6643L115.169 89.9781L42.5329 8H111.665L150.202 53.0762L188.739 8H253.901L181.031 89.0438Z"/>
+            <g class="shv-p">
+              <circle r="2.6"/>
+              <animateMotion dur="5.6s" begin="-2.8s" repeatCount="indefinite" path="M190 -10 L190 176 Q190 190 168 198 T 116 228"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="-2.8s" repeatCount="indefinite"/>
+            </g>
+            <g class="shv-p">
+              <circle r="2.6"/>
+              <animateMotion dur="5.6s" begin="-4.2s" repeatCount="indefinite" path="M262 -10 L262 174 Q262 186 284 194 T 340 222"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="-4.2s" repeatCount="indefinite"/>
+            </g>
+            <!-- the one that gets through: falls, lands on the asset, fades -->
+            <g class="shv-p">
+              <circle r="2.6"/>
+              <animateMotion dur="7s" begin="0s" repeatCount="indefinite" calcMode="linear"
+                keyPoints="0;1;1" keyTimes="0;0.2;1" path="M230 -10 L230 270"/>
+              <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.2;0.26;1" dur="7s" begin="0s" repeatCount="indefinite"/>
+            </g>
+
+            <!-- shield arcs over the asset -->
+            <path class="shv-arc--outer" d="M96 300 A134 134 0 0 1 364 300"/>
+            <path class="shv-arc" d="M110 300 A120 120 0 0 1 350 300"/>
+            <g transform="translate(230 166)">
+              <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1">covered</text>
+            </g>
+
+            <!-- the insured asset: intact card, same language as the resources doc stack -->
+            <rect class="shv-card" x="150" y="278" width="160" height="92" rx="12"/>
+            <rect class="shv-title" x="170" y="298" width="64" height="8" rx="4"/>
+            <line class="shv-line" x1="170" y1="322" x2="290" y2="322"/>
+            <line class="shv-line" x1="170" y1="338" x2="258" y2="338"/>
+            <line class="shv-ground" x1="120" y1="392" x2="340" y2="392"/>
+            <text class="ivz-lbl" x="230" y="412" text-anchor="middle">asset &#183; intact</text>
+
+            <!-- restore sweep: after the landed particle, the card is made whole -->
+            <g class="shv-restore">
+              <rect class="shv-glow" x="152" y="280" width="156" height="12" rx="3"/>
+              <rect class="shv-scan" x="152" y="286" width="156" height="1.6"/>
+              <animateTransform attributeName="transform" attributeType="XML" type="translate"
+                values="0 0; 0 0; 0 74; 0 74" keyTimes="0; 0.24; 0.52; 1" dur="7s" begin="0s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.22;0.26;0.5;0.56;1" dur="7s" begin="0s" repeatCount="indefinite"/>
             </g>
           </svg>
         </div>

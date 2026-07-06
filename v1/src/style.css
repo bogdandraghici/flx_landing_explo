@@ -1770,6 +1770,17 @@ em { font-style: normal; }
 @keyframes bkv-open { 0%, 52% { opacity: 0; } 58%, 82% { opacity: 0.9; } 90%, 100% { opacity: 0; } }
 @keyframes bkv-pulse { 0%, 53% { opacity: 0; transform: scale(0.72); } 57% { opacity: 0.8; } 72%, 100% { opacity: 0; transform: scale(1.12); } }
 
+/* --- insurance hero: shield deflecting risk (shv-*) --- */
+.shv-arc { fill: none; stroke: rgba(255, 255, 255, 0.30); stroke-width: 1.2; }
+.shv-arc--outer { fill: none; stroke: rgba(255, 255, 255, 0.08); stroke-width: 1; }
+.shv-card { fill: var(--bg-raised); stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
+.shv-title { fill: rgba(233, 236, 242, 0.45); }
+.shv-line { stroke: rgba(205, 212, 226, 0.22); stroke-width: 2.4; stroke-linecap: round; }
+.shv-ground { stroke: rgba(255, 255, 255, 0.06); stroke-width: 1; }
+.shv-p { fill: rgba(205, 212, 226, 0.42); }
+.shv-glow { fill: var(--amber); opacity: 0.10; }
+.shv-scan { fill: var(--amber); }
+
 /* ============================================================
    REDUCED MOTION
    ============================================================ */
@@ -1796,6 +1807,8 @@ em { font-style: normal; }
   .ahero__viz .abx-port, .ahero__viz .hero-agent { display: none; }
   /* industry hero visuals: freeze CSS motion on the resolved pose */
   .bkv-ring--1, .bkv-ring--2, .bkv-ring--3, .bkv-wheel, .bkv-channel, .bkv-pulse, .bkv-bolt, .bkv-tag-g { animation: none; }
+  /* SMIL movers can't be frozen by CSS — hide them; the static scene is the resolved pose */
+  .shv-p, .shv-restore { display: none; }
 }
 
 /* ============================================================
