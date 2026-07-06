@@ -11,9 +11,22 @@
  * (variant 2b, "order field").
  */
 
-const DOT_LO = [150, 160, 178];
-const DOT_HI = [240, 244, 252];
-const LINE = [210, 218, 232];
+// Palette by theme. Dark: cool near-white dots crystallizing on charcoal.
+// Light: the same lattice inverted to warm ink — a faint disordered grey (LO)
+// resolving into near-black (HI) on paper, so the field reads on a light ground.
+// LO is the disordered colour, HI the fully-ordered one; mix(LO,HI,order) runs
+// between them, so in light LO is *lighter* than HI (the crystal darkens).
+const PALETTES = {
+  dark: { DOT_LO: [150, 160, 178], DOT_HI: [240, 244, 252], LINE: [210, 218, 232] },
+  light: { DOT_LO: [176, 174, 166], DOT_HI: [28, 30, 36], LINE: [58, 62, 72] },
+};
+// live palette — mutated in place so every closure that captured it sees updates
+let DOT_LO = [0, 0, 0], DOT_HI = [0, 0, 0], LINE = [0, 0, 0];
+function applyPalette() {
+  const p = PALETTES[document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'];
+  DOT_LO = p.DOT_LO; DOT_HI = p.DOT_HI; LINE = p.LINE;
+}
+applyPalette();
 const GAP = 44; // lattice spacing — shared by the animated field and the static frame
 
 function smoothstep(v) {
@@ -403,6 +416,14 @@ export function createOrderField(canvas) {
   }
   document.addEventListener('visibilitychange', onVis);
 
+  // theme flip: swap the palette; the running loop picks it up next frame, and
+  // the reduced-motion still frame is repainted in the new colours.
+  function onTheme() {
+    applyPalette();
+    if (reduceMotion) drawStatic();
+  }
+  window.addEventListener('themechange', onTheme);
+
   return {
     destroy() {
       stop();
@@ -411,6 +432,7 @@ export function createOrderField(canvas) {
       hero.removeEventListener('pointerleave', onLeave);
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVis);
+      window.removeEventListener('themechange', onTheme);
       clearTimeout(resizeTimer);
       ctx.clearRect(0, 0, w, h);
     },
@@ -490,9 +512,13 @@ export function createStaticField(canvas) {
   });
   ro.observe(canvas);
 
+  function onTheme() { applyPalette(); draw(); }
+  window.addEventListener('themechange', onTheme);
+
   return {
     destroy() {
       ro.disconnect();
+      window.removeEventListener('themechange', onTheme);
       clearTimeout(timer);
       ctx.clearRect(0, 0, canvas.clientWidth || 0, canvas.clientHeight || 0);
     },

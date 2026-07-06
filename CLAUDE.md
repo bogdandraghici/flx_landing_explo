@@ -95,7 +95,17 @@ npm run preview
   (terminal/data), served locally via `@fontsource-variable/*`.
 - **Motion:** everything honors `prefers-reduced-motion`; guard new animations the
   same way (`reduceMotion` in `main.js`, the media query in `style.css`).
-- **Aesthetic:** dark, single-accent, Linear/Palantir-grade restraint.
+- **Aesthetic:** single-accent, Linear/Palantir-grade restraint. Dark is the
+  default; a neutral-paper **light theme** ships alongside it.
+- **Theming:** two themes share one token contract. Dark lives in `:root`,
+  light in `:root[data-theme="light"]`, both in `style.css`. Theme-varying
+  colors must go through tokens — solid hex tokens or `…-rgb` triplets consumed
+  as `rgba(var(--x), a)` so alpha-graded veils/lines flip with one override.
+  Never hardcode a new white/charcoal in a rule. The toggle + no-flash logic is
+  in `shared.js` (nav toggle, persists to `localStorage`, emits a `themechange`
+  event) and an inline `<head>` script in each page. Canvas visuals
+  (`orderField.js`, `grain.js`) read the theme and re-paint on `themechange`;
+  `blueprint.js` SVG stops are driven by CSS token classes.
 
 ## Git
 

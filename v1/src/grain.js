@@ -23,7 +23,14 @@ const FRAME_MS = 1000 / FPS;
 // i.e. finer grain.
 const SS = 1.6;
 
-function makeTiles() {
+// Grain is white static on the dark ground; on the light (paper) theme it has
+// to be near-black static instead, or it's invisible. `tone` is the grey value
+// the noise dots are painted in (255 = white for dark, ~20 = ink for light).
+function grainTone() {
+  return document.documentElement.dataset.theme === 'light' ? 20 : 255;
+}
+
+function makeTiles(tone) {
   const tiles = [];
   for (let n = 0; n < 6; n++) {
     const c = document.createElement('canvas');
@@ -33,7 +40,7 @@ function makeTiles() {
     const img = x.createImageData(TILE, TILE);
     const d = img.data;
     for (let i = 0; i < d.length; i += 4) {
-      d[i] = d[i + 1] = d[i + 2] = 255;
+      d[i] = d[i + 1] = d[i + 2] = tone;
       const r = Math.random();
       d[i + 3] = r > 0.82 ? Math.floor(((r - 0.82) / 0.18) * 90) : 0;
     }
@@ -55,7 +62,7 @@ export function createGrain(canvas) {
     return { destroy() {} };
   }
 
-  const tiles = makeTiles();
+  let tiles = makeTiles(grainTone());
 
   // Fixed full-viewport overlay: track the viewport, not the (document-tall) host.
   function size() {
@@ -120,11 +127,19 @@ export function createGrain(canvas) {
   }
   document.addEventListener('visibilitychange', onVis);
 
+  // theme flip: rebuild the noise tiles in the new tone (white ↔ ink) and repaint
+  function onTheme() {
+    tiles = makeTiles(grainTone());
+    if (reduceMotion || !running) draw();
+  }
+  window.addEventListener('themechange', onTheme);
+
   return {
     destroy() {
       stop();
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVis);
+      window.removeEventListener('themechange', onTheme);
       clearTimeout(resizeTimer);
     },
   };

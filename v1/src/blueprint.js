@@ -230,12 +230,14 @@ export function renderDiagram(container, t, { reduceMotion }) {
 
   // gradient defs: glass card fill + the ambient amber glow
   const defs = el('defs');
+  // stop colours are set from theme tokens via CSS classes (see style.css) so
+  // the compiled diagram's glass fill + amber glow flip with the theme
   const cardFill = el('linearGradient', { id: 'bpCardFill', x1: 0, y1: 0, x2: 0, y2: 1 });
-  cardFill.appendChild(el('stop', { offset: '0', 'stop-color': 'rgba(255,255,255,0.055)' }));
-  cardFill.appendChild(el('stop', { offset: '1', 'stop-color': 'rgba(255,255,255,0.012)' }));
+  cardFill.appendChild(el('stop', { offset: '0', class: 'bp-cardfill-0' }));
+  cardFill.appendChild(el('stop', { offset: '1', class: 'bp-cardfill-1' }));
   const glow = el('radialGradient', { id: 'bpGlow', cx: '0.5', cy: '0.5', r: '0.5' });
-  glow.appendChild(el('stop', { offset: '0', 'stop-color': 'rgba(252,184,19,0.09)' }));
-  glow.appendChild(el('stop', { offset: '1', 'stop-color': 'rgba(252,184,19,0)' }));
+  glow.appendChild(el('stop', { offset: '0', class: 'bp-glow-0' }));
+  glow.appendChild(el('stop', { offset: '1', class: 'bp-glow-1' }));
   defs.appendChild(cardFill);
   defs.appendChild(glow);
   svg.appendChild(defs);
