@@ -82,8 +82,13 @@ em { font-style: normal; }
   inset-inline: 0;
   top: 0;
   z-index: 50;
-  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
   border-bottom: 1px solid transparent;
+}
+/* Transitions are enabled by JS (.nav--ready) only after the first paint.
+   Without this, the border-bottom animates up from currentColor on every
+   page load — a white hairline that flashes under the header on navigation. */
+.nav--ready {
+  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
 }
 .nav.scrolled {
   background: rgba(10, 11, 13, 0.72);
@@ -1606,8 +1611,35 @@ em { font-style: normal; }
   .why__row { grid-template-columns: 40px 1fr; }
   .why__fix { grid-column: 2; }
   .stats__row { grid-template-columns: 1fr; gap: 8px; align-items: start; }
-  .router { flex-wrap: wrap; }
-  .router__line { min-width: 24px; }
+  /* Router: stack the three levels vertically on mobile. The pixel-drawn SVG
+     fan can't survive the levels wrapping, so we hide it (which also makes the
+     JS skip drawing, since the hidden fan measures 0px wide) and join agent →
+     flowx runtime → systems with simple vertical connector lines instead. */
+  .router { flex-direction: column; align-items: center; gap: 0; }
+  .router__line {
+    flex: none;
+    width: 1px;
+    min-width: 0;
+    height: 20px;
+  }
+  .router__line::after { display: none; } /* horizontal travel spark n/a when vertical */
+  .router__fan { display: none; }
+  .router__models {
+    align-self: stretch;
+    grid-template-columns: repeat(2, 1fr);
+    position: relative;
+    margin-top: 20px;
+  }
+  .router__models::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -20px;
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .router__model { text-align: center; }
   .hero__foot-right { display: none; }
   .term__ver { display: none; }
   /* stack the compile button below the input so the (auto-writing) input gets

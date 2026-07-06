@@ -15,19 +15,26 @@ export function initChrome() {
   if (grainCanvas) createGrain(grainCanvas);
 
   const nav = $('#nav');
-  let navTick = false;
-  window.addEventListener(
-    'scroll',
-    () => {
-      if (navTick) return;
-      navTick = true;
-      requestAnimationFrame(() => {
-        nav.classList.toggle('scrolled', window.scrollY > 24);
-        navTick = false;
-      });
-    },
-    { passive: true }
-  );
+  if (nav) {
+    const syncNav = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+    syncNav(); // set the correct state before enabling transitions
+    // enable transitions only after the first paint so the border doesn't
+    // animate in from currentColor on load (the white-line-on-nav flash)
+    requestAnimationFrame(() => nav.classList.add('nav--ready'));
+    let navTick = false;
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (navTick) return;
+        navTick = true;
+        requestAnimationFrame(() => {
+          syncNav();
+          navTick = false;
+        });
+      },
+      { passive: true }
+    );
+  }
 
   const revealIO = new IntersectionObserver(
     (entries) => {
