@@ -71,36 +71,56 @@
           </p>
         </div>
 
-        <!-- single industry ring: logistics agents orbiting the FlowX core -->
+        <!-- optimal route: the network considered, the best path chosen, the shipment moved -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="Logistics agents orbiting the FlowX core that powers them">
-            <path id="lgRing" class="hero-ring" d="M78 230 a152 152 0 1 0 304 0 a152 152 0 1 0 -304 0"/>
-            <g>
-              <circle class="abx-port" r="2.6"><animateMotion dur="20s" begin="0s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
-              <circle class="hero-agent" r="3.2"><animateMotion dur="20s" begin="-3.3s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
-              <circle class="abx-port" r="2.6"><animateMotion dur="20s" begin="-6.7s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
-              <circle class="abx-port" r="2.6"><animateMotion dur="20s" begin="-10s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
-              <circle class="hero-agent" r="3.2"><animateMotion dur="20s" begin="-13.3s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
-              <circle class="abx-port" r="2.6"><animateMotion dur="20s" begin="-16.7s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
-            </g>
-            <g>
-              <rect class="hero-tag" x="200" y="71" width="60" height="14"/>
-              <text class="abx-cat" x="230" y="81" text-anchor="middle">logistics</text>
-            </g>
-            <circle class="abx-pulse" r="4"><animateMotion dur="20s" repeatCount="indefinite"><mpath href="#lgRing"/></animateMotion></circle>
-            <defs>
-              <linearGradient id="chipFace" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="rgba(255,255,255,0.05)"/>
-                <stop offset="0.55" stop-color="rgba(255,255,255,0)"/>
-              </linearGradient>
-            </defs>
-            <path class="hero-core" d="M200 188 L253 188 L272 207 L272 260 A12 12 0 0 1 260 272 L200 272 A12 12 0 0 1 188 260 L188 200 A12 12 0 0 1 200 188 Z"/>
-            <path class="hero-chip-face" d="M200 188 L253 188 L272 207 L272 260 A12 12 0 0 1 260 272 L200 272 A12 12 0 0 1 188 260 L188 200 A12 12 0 0 1 200 188 Z"/>
-            <path class="hero-core-inner" d="M203 194 L252 194 L266 208 L266 257 A9 9 0 0 1 257 266 L203 266 A9 9 0 0 1 194 257 L194 203 A9 9 0 0 1 203 194 Z"/>
-            <g transform="translate(230 230) scale(0.15) translate(-148 -148)">
-              <path class="hero-logo-bar" d="M255.769 231.28H40.4308V287.8H255.769V231.28Z"/>
-              <path class="hero-logo-x" d="M181.031 89.0438L255.769 174.759H186.87L146.232 127.113L105.593 174.759H40.6643L115.169 89.9781L42.5329 8H111.665L150.202 53.0762L188.739 8H253.901L181.031 89.0438Z"/>
-            </g>
+          <svg viewBox="0 0 460 460" role="img" aria-label="A route network where the optimal path lights up and a shipment travels it from quote to invoice">
+            <!-- alternate edges: the network the optimiser considered -->
+            <line class="rtv-alt" x1="64" y1="300" x2="150" y2="218"/>
+            <line class="rtv-alt" x1="64" y1="300" x2="156" y2="352"/>
+            <line class="rtv-alt" x1="104" y1="120" x2="150" y2="218"/>
+            <line class="rtv-alt" x1="104" y1="120" x2="236" y2="132"/>
+            <line class="rtv-alt" x1="150" y1="218" x2="236" y2="132"/>
+            <line class="rtv-alt rtv-alt--scan" x1="150" y1="218" x2="250" y2="282"/>
+            <line class="rtv-alt" x1="156" y1="352" x2="250" y2="282"/>
+            <line class="rtv-alt" x1="156" y1="352" x2="262" y2="388"/>
+            <line class="rtv-alt rtv-alt--scan" x1="236" y1="132" x2="338" y2="206"/>
+            <line class="rtv-alt" x1="250" y1="282" x2="344" y2="330"/>
+            <line class="rtv-alt" x1="262" y1="388" x2="344" y2="330"/>
+            <line class="rtv-alt" x1="338" y1="206" x2="344" y2="330"/>
+            <line class="rtv-alt" x1="344" y1="330" x2="398" y2="262"/>
+
+            <!-- the optimal path: quote → invoice in 3 legs; pathLength=100 so the
+                 dash draw animates in percentages -->
+            <path id="rtvRoute" class="rtv-route" pathLength="100" d="M64 300 L250 282 L338 206 L398 262"/>
+
+            <!-- nodes -->
+            <circle class="rtv-node" cx="150" cy="218" r="3"/>
+            <circle class="rtv-node" cx="156" cy="352" r="3"/>
+            <circle class="rtv-node" cx="104" cy="120" r="3"/>
+            <circle class="rtv-node" cx="236" cy="132" r="3"/>
+            <circle class="rtv-node" cx="250" cy="282" r="3"/>
+            <circle class="rtv-node" cx="262" cy="388" r="3"/>
+            <circle class="rtv-node" cx="338" cy="206" r="3"/>
+            <circle class="rtv-node" cx="344" cy="330" r="3"/>
+            <circle class="rtv-node rtv-node--end" cx="64" cy="300" r="3.4"/>
+            <circle class="rtv-ring" cx="64" cy="300" r="7"/>
+            <circle class="rtv-node rtv-node--end" cx="398" cy="262" r="3.4"/>
+            <circle class="rtv-ring" cx="398" cy="262" r="7"/>
+
+            <!-- endpoints named in the page's own words: from quote to invoice -->
+            <text class="ivz-lbl" x="64" y="326" text-anchor="middle">quote</text>
+            <text class="ivz-lbl" x="398" y="244" text-anchor="middle">invoice</text>
+            <text class="ivz-lbl" x="64" y="428">3 legs &#183; cleared</text>
+
+            <!-- the shipment: departs once the route is drawn, arrival pulse at the end -->
+            <circle class="rtv-dot" r="3.4">
+              <animateMotion dur="9s" repeatCount="indefinite" calcMode="linear"
+                keyPoints="0;0;1;1" keyTimes="0;0.38;0.84;1"><mpath href="#rtvRoute"/></animateMotion>
+              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.38;0.41;0.84;0.88;1" dur="9s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="rtv-arrive" cx="398" cy="262" r="9">
+              <animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.84;0.87;0.95;1" dur="9s" repeatCount="indefinite"/>
+            </circle>
           </svg>
         </div>
       </div>
