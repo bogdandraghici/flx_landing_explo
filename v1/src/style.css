@@ -1747,6 +1747,8 @@ em { font-style: normal; }
   .mviz__live i { animation: none; }
   .dna__rung { animation: none; }
   .nav__menu { transition: none; }
+  /* SMIL animateMotion ignores CSS animation rules — hide the orbiting dots instead */
+  .ahero__viz .abx-port, .ahero__viz .hero-agent { display: none; }
 }
 
 /* ============================================================
