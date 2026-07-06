@@ -1155,14 +1155,6 @@ em { font-style: normal; }
 }
 .ahero .hero__sub { margin-top: 22px; }
 .ahero__viz svg { width: 100%; height: auto; display: block; }
-.hero-agent { fill: var(--amber); }
-.hero-ring { fill: none; stroke: var(--line-soft); stroke-width: 1; }
-.hero-tag { fill: var(--bg); }
-.hero-core { fill: var(--bg-raised); stroke: rgba(255, 255, 255, 0.2); stroke-width: 1.2; }
-.hero-chip-face { fill: url(#chipFace); stroke: none; }
-.hero-core-inner { fill: none; stroke: rgba(255, 255, 255, 0.09); stroke-width: 1; }
-.hero-logo-x { fill: var(--text); }
-.hero-logo-bar { fill: var(--amber); }
 /* opacity-only reveal — a translateY reveal here leaves the animated SVG in a
    composited layer that some engines rasterize empty */
 .ahero__viz { opacity: 0; animation: heroVizIn 0.85s var(--ease) 0.55s forwards; }
@@ -1822,8 +1814,6 @@ em { font-style: normal; }
   .mviz__live i { animation: none; }
   .dna__rung { animation: none; }
   .nav__menu { transition: none; }
-  /* SMIL animateMotion ignores CSS animation rules — hide the orbiting dots instead */
-  .ahero__viz .abx-port, .ahero__viz .hero-agent { display: none; }
   /* industry hero visuals: freeze CSS motion on the resolved pose */
   .bkv-ring--1, .bkv-ring--2, .bkv-ring--3, .bkv-wheel, .bkv-channel, .bkv-pulse, .bkv-bolt, .bkv-tag-g,
   .rtv-route, .rtv-alt--scan { animation: none; }
