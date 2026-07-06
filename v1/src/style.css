@@ -1243,6 +1243,16 @@ em { font-style: normal; }
 
 /* segment cards */
 .segs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+/* 5-persona grid (logistics): keep the 3-up first row, center the trailing two.
+   A 6-col track lets each card span 2 (== 3-up); the 4th/5th cards shift in by
+   one column so the second row of two is centered. Desktop-only — below 1080px
+   the base .segs 2-col / 1-col rules govern. */
+@media (min-width: 1081px) {
+  .segs--5 { grid-template-columns: repeat(6, 1fr); }
+  .segs--5 > .seg { grid-column: span 2; }
+  .segs--5 > .seg:nth-child(4) { grid-column: 2 / span 2; }
+  .segs--5 > .seg:nth-child(5) { grid-column: 4 / span 2; }
+}
 .seg {
   border: 1px solid var(--line);
   border-radius: 14px;
