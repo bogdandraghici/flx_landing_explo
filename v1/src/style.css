@@ -560,9 +560,7 @@ em { font-style: normal; }
   background: linear-gradient(180deg, rgba(var(--ink), 0.055), rgba(var(--ink), 0.02) 55%, rgba(var(--ink), 0.012));
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow:
-    var(--shadow-term),
-    inset 0 1px 0 rgba(var(--ink), 0.16);
+  box-shadow: var(--shadow-term);
   overflow: hidden;
   text-align: left;
 }
