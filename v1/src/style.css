@@ -132,6 +132,48 @@ em { font-style: normal; }
   white-space: nowrap;
 }
 
+/* Industries dropdown — CSS-only: opens on hover and on keyboard focus-within */
+.nav__drop { position: relative; }
+.nav__droptrigger {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
+}
+.nav__drop:hover .nav__droptrigger,
+.nav__drop:focus-within .nav__droptrigger,
+.nav__drop:has(a[aria-current="page"]) .nav__droptrigger { color: var(--text); }
+.nav__menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 18px; /* invisible bridge so the pointer can travel to the panel */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.nav__drop:hover .nav__menu,
+.nav__drop:focus-within .nav__menu { opacity: 1; visibility: visible; }
+.nav__menu-panel {
+  display: grid;
+  min-width: 168px;
+  padding: 8px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+.nav__menu a {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.nav__menu a:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
+.nav__menu a[aria-current="page"] { color: var(--text); }
+
 /* minimal switch: toggles the two hero background animations */
 /* ============================================================
    BUTTONS
@@ -1703,6 +1745,7 @@ em { font-style: normal; }
   .hero-spiral { stroke-dashoffset: 0; animation: none; }
   .mviz__live i { animation: none; }
   .dna__rung { animation: none; }
+  .nav__menu { transition: none; }
 }
 
 /* ============================================================

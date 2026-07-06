@@ -25,8 +25,17 @@
         </svg>
       </a>
       <nav class="nav__links" aria-label="Primary">
-        <a href="./agents.html">AI Agents</a>
-        <a data-page="industries" aria-disabled="true" title="Coming soon">Industries</a>
+        <!-- Industries dropdown is CSS-only (hover / focus-within); no aria-expanded — no JS to sync it -->
+        <div class="nav__drop">
+          <button class="nav__droptrigger" type="button" aria-haspopup="true">Industries</button>
+          <div class="nav__menu">
+            <div class="nav__menu-panel">
+              <a href="./banking.html">Banking</a>
+              <a href="./insurance.html">Insurance</a>
+              <a href="./logistics.html">Logistics</a>
+            </div>
+          </div>
+        </div>
         <a href="./resources.html" aria-current="page">Resources</a>
         <a href="./about.html">Company</a>
       </nav>
