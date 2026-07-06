@@ -486,6 +486,28 @@ em { font-style: normal; }
   font-size: 16.5px;
   color: var(--text-dim);
 }
+/* secondary heading inside a merged section (e.g. "Who it's for" under the
+   value-stream pipeline) — smaller than the section h2, with a mono eyebrow */
+.section__subhead {
+  margin-top: clamp(40px, 6vh, 72px);
+  margin-bottom: clamp(20px, 3vh, 34px);
+}
+.section__subhead__eyebrow {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 14px;
+}
+.section__subhead__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-weight: 620;
+  letter-spacing: -0.024em;
+  line-height: 1.08;
+  max-width: 22ch;
+}
 /* platform headline sits on a single line on desktop (wraps again <1080px,
    where the head stacks full-width and one line no longer fits) */
 .section--platform .h2 {
