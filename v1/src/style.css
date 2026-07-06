@@ -109,7 +109,7 @@ em { font-style: normal; }
 }
 .nav__brand { display: inline-flex; align-items: center; color: var(--text); }
 .nav__logo { height: 15px; width: auto; display: block; }
-.nav__links { display: flex; gap: 30px; }
+.nav__links { display: flex; align-items: center; gap: 30px; }
 .nav__links a {
   font-size: 13.5px;
   color: var(--text-dim);
@@ -125,6 +125,37 @@ em { font-style: normal; }
   cursor: default;
 }
 .nav__right { display: flex; align-items: center; gap: 18px; }
+
+/* Burger — hidden on desktop, shown at the mobile breakpoint (see @media below) */
+.nav__burger {
+  display: none;
+  width: 34px;
+  height: 34px;
+  margin-right: -6px; /* optically align to the inner padding edge */
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+.nav__burger:hover { color: var(--text); }
+.nav__burger-lines,
+.nav__burger-lines::before,
+.nav__burger-lines::after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.nav__burger-lines { position: relative; }
+.nav__burger-lines::before { position: absolute; top: -6px; left: 0; }
+.nav__burger-lines::after { position: absolute; top: 6px; left: 0; }
+/* open state → morph into an X */
+.nav--open .nav__burger-lines { background: transparent; }
+.nav--open .nav__burger-lines::before { transform: translateY(6px) rotate(45deg); }
+.nav--open .nav__burger-lines::after { transform: translateY(-6px) rotate(-45deg); }
 .nav__cert {
   font-size: 10.5px;
   letter-spacing: 0.16em;
@@ -135,6 +166,7 @@ em { font-style: normal; }
 /* Industries dropdown — CSS-only: opens on hover and on keyboard focus-within */
 .nav__drop { position: relative; }
 .nav__droptrigger {
+  display: block; /* not inline-block: baseline in .nav__drop's 16px line box drops it below the sibling links */
   font-size: 13.5px;
   color: var(--text-dim);
   letter-spacing: 0.01em;
@@ -1702,7 +1734,63 @@ em { font-style: normal; }
   .off { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
-  .nav__links, .nav__cert { display: none; }
+  .nav__cert { display: none; }
+
+  /* Mobile nav: the desktop links become a slide-down panel toggled by the
+     burger. Reuses the same .nav__links markup — no duplicate link list. */
+  .nav__burger { display: inline-flex; }
+  .nav__links {
+    position: fixed;
+    inset-inline: 0;
+    top: 66px; /* height of .nav__inner */
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px clamp(20px, 5vw, 72px) 20px;
+    background: rgba(10, 11, 13, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    /* hidden until opened */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* the always-visible industries sub-links must not catch taps while closed */
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  }
+  .nav--open .nav__links {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+  .nav__links > a,
+  .nav__droptrigger {
+    padding: 14px 0;
+    font-size: 16px;
+    border-top: 1px solid var(--line);
+  }
+  /* Industries: the CSS-only hover dropdown can't work on touch, so show the
+     three links inline (always expanded) inside the mobile panel. */
+  .nav__drop { border-top: 1px solid var(--line); }
+  .nav__droptrigger { border-top: 0; cursor: default; }
+  .nav__menu {
+    position: static;
+    transform: none;
+    padding-top: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+  .nav__menu-panel {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0 0 8px;
+    gap: 2px;
+  }
+  .nav__menu a { font-size: 15px; padding: 8px 12px; }
   .why__row { grid-template-columns: 40px 1fr; }
   .why__fix { grid-column: 2; }
   .stats__row { grid-template-columns: 1fr; gap: 8px; align-items: start; }
