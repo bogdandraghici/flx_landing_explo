@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlowX — Resources</title>
+  <meta name="description" content="FlowX.AI resources — product documentation, the FlowX Academy, and the latest articles and insights on building mission-critical AI agents." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M28 26 L60 62 M60 26 L28 62' stroke='%23F4F5F3' stroke-width='9'/%3E%3Crect x='28' y='70' width='44' height='9' fill='%23FCB813'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <canvas id="grain" class="grain" aria-hidden="true"></canvas>
+
+  <!-- ================= NAV ================= -->
+  <!-- copied from index.html — deltas: brand href, Resources → this page + aria-current -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="./index.html" aria-label="FlowX home">
+        <svg class="nav__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+          <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor"/>
+          <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor"/>
+          <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor"/>
+          <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor"/>
+          <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813"/>
+          <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="./agents.html">AI Agents</a>
+        <a data-page="industries" aria-disabled="true" title="Coming soon">Industries</a>
+        <a href="./resources.html" aria-current="page">Resources</a>
+        <a href="./about.html">Company</a>
+      </nav>
+      <div class="nav__right">
+        <a class="btn btn--primary btn--sm" href="#cta">Book a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <!-- two-column pattern mirrors agents.html / about.html: text left, viz right -->
+    <section class="ahero" id="rhero">
+      <div class="shell ahero__grid">
+        <div class="ahero__text">
+          <p class="hero__eyebrow mono rv-load" style="--d:0">
+            <span class="tick" aria-hidden="true"></span>
+            Resources &middot; Docs, Academy &amp; Blog
+          </p>
+          <h1 class="hero__title">
+            <span class="hero__line hero__line--big rv-load" style="--d:1">Everything you need to build with FlowX<span class="amber">.</span></span>
+          </h1>
+          <p class="hero__sub rv-load" style="--d:2">
+            Product documentation, hands-on training, and the latest thinking on
+            shipping mission-critical AI agents in regulated enterprises.
+          </p>
+          <p class="astats mono rv-load" style="--d:3">
+            <span><b>3</b> resource hubs</span>
+            <span><b>11</b> articles</span>
+            <span><b>20+</b> topics</span>
+            <span><b class="amber">●</b> updated weekly</span>
+          </p>
+        </div>
+
+        <!-- the metaphor: a body of reference being read + indexed — a stack of
+             docs, an amber read-head sweeping the front page while an index
+             marker tracks alongside on the rail. Purely decorative. -->
+        <div class="ahero__viz" aria-hidden="true">
+          <svg class="rk" viewBox="0 0 400 300" role="img" aria-label="A stack of reference documents being read and indexed, with an index rail tracking the reader">
+              <!-- index rail (table of contents) -->
+              <line class="rk-rail" x1="66" y1="86" x2="66" y2="248"/>
+              <circle class="rk-tick" cx="66" cy="96" r="2.6"/>
+              <circle class="rk-tick" cx="66" cy="134" r="2.6"/>
+              <circle class="rk-tick" cx="66" cy="172" r="2.6"/>
+              <circle class="rk-tick" cx="66" cy="210" r="2.6"/>
+
+              <!-- stacked reference docs (front on top) -->
+              <rect class="rk-card rk-card--back" x="142" y="44" width="196" height="196" rx="12"/>
+              <rect class="rk-card rk-card--back" x="126" y="58" width="196" height="196" rx="12"/>
+              <rect class="rk-card" x="110" y="72" width="196" height="196" rx="12"/>
+
+              <!-- front page: heading + lines of text -->
+              <rect class="rk-title" x="130" y="94" width="92" height="9" rx="4"/>
+              <line class="rk-line" x1="130" y1="126" x2="286" y2="126"/>
+              <line class="rk-line" x1="130" y1="144" x2="270" y2="144"/>
+              <line class="rk-line" x1="130" y1="162" x2="248" y2="162"/>
+              <line class="rk-line" x1="130" y1="180" x2="286" y2="180"/>
+              <line class="rk-line" x1="130" y1="198" x2="214" y2="198"/>
+              <line class="rk-line" x1="130" y1="216" x2="262" y2="216"/>
+              <line class="rk-line" x1="130" y1="234" x2="198" y2="234"/>
+
+              <!-- read head: sweeps the page top→bottom; the rail marker + a
+                   connector track the same line, tying index to content -->
+              <g class="rk-read">
+                <rect class="rk-glow" x="112" y="93" width="192" height="15" rx="3"/>
+                <line class="rk-conn" x1="66" y1="100" x2="110" y2="100"/>
+                <circle class="rk-marker" cx="66" cy="100" r="3.6"/>
+                <rect class="rk-scan" x="112" y="99.1" width="192" height="1.8"/>
+                <!-- SMIL (not CSS) so the reveal-layer doesn't rasterize empty -->
+                <animateTransform attributeName="transform" attributeType="XML" type="translate"
+                  values="0 0; 0 140" keyTimes="0; 1" dur="3.6s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.12; 0.8; 1" dur="3.6s" repeatCount="indefinite"/>
+              </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LEARN (docs + academy) ================= -->
+    <section class="section" id="learn">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">01 / Learn</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Documentation and hands-on training<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Start with the reference, then go deep in the Academy.</p>
+          </div>
+        </div>
+
+        <div class="portal">
+          <!-- VERIFY URL -->
+          <a class="portal__card rv" style="--i:0" href="https://docs.flowx.ai" target="_blank" rel="noopener">
+            <span class="portal__kicker mono">reference</span>
+            <h3 class="portal__title">Documentation</h3>
+            <p class="portal__desc">Guides, API references, and platform concepts — everything to design, build, integrate, and run agents on FlowX.</p>
+            <span class="portal__go mono">docs.flowx.ai <span class="portal__arrow" aria-hidden="true">↗</span></span>
+          </a>
+          <!-- VERIFY URL -->
+          <a class="portal__card rv" style="--i:1" href="https://academy.flowx.ai" target="_blank" rel="noopener">
+            <span class="portal__kicker mono">training</span>
+            <h3 class="portal__title">Academy</h3>
+            <p class="portal__desc">Structured courses and certifications that take teams from first agent to production, at their own pace.</p>
+            <span class="portal__go mono">academy.flowx.ai <span class="portal__arrow" aria-hidden="true">↗</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BLOG ================= -->
+    <!-- content pulled from https://www.flowx.ai/blog — cards link to the live articles -->
+    <section class="section" id="blog">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">02 / Blog</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Latest articles and insights<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Field notes on agentic AI, governance, and integration from the team building it.</p>
+          </div>
+        </div>
+
+        <!-- featured latest post -->
+        <a class="feat rv" href="./blog-flowx-6.html">
+          <div class="feat__body">
+            <p class="feat__meta mono"><span class="feat__tag">Updates</span><span>Jun 29, 2026</span></p>
+            <h3 class="feat__title">FlowX.AI 6 Release Summary</h3>
+            <p class="feat__excerpt">The questions every enterprise is asking about their agentic AI roadmap — answered in one release: real use cases, measurable ROI, zero-hallucination guardrails, and recurring self-improvement at scale.</p>
+            <span class="feat__go mono">Read the article <span aria-hidden="true">↗</span></span>
+          </div>
+          <div class="feat__side mono" aria-hidden="true">
+            <span class="feat__badge">featured</span>
+            <span class="feat__no">#06</span>
+          </div>
+        </a>
+
+        <!-- the rest of the feed -->
+        <div class="blog__grid">
+          <a class="post rv" style="--i:0" href="https://www.flowx.ai/blog/we-built-a-calculator-to-show-you-the-expected-roi-for-a-selection-of-ai-agents-or-agent-stacks" target="_blank" rel="noopener">
+            <p class="post__meta mono"><span class="post__tag">ROI</span><span>Jul 3, 2026</span></p>
+            <h3 class="post__title">We built a calculator for the expected ROI of AI agents and agent stacks</h3>
+            <p class="post__excerpt">Why measuring impact matters — and a way to project the return before you build.</p>
+            <span class="post__go mono" aria-hidden="true">↗</span>
+          </a>
+          <a class="post rv" style="--i:1" href="https://www.flowx.ai/blog/the-day-onboarding-stopped-being-a-loop" target="_blank" rel="noopener">
+            <p class="post__meta mono"><span class="post__tag">Use Cases</span><span>May 25, 2026</span></p>
+            <h3 class="post__title">The day onboarding stopped being a loop</h3>
+            <p class="post__excerpt">Turning commercial onboarding from an endless back-and-forth into a single agentic flow.</p>
+            <span class="post__go mono" aria-hidden="true">↗</span>
+          </a>
+          <a class="post rv" style="--i:2" href="https://www.flowx.ai/blog/the-five-tests-of-mission-critical-ai" target="_blank" rel="noopener">
+            <p class="post__meta mono"><span class="post__tag">Governance</span><span>Apr 28, 2026</span></p>
+            <h3 class="post__title">The five tests of mission-critical AI</h3>
+            <p class="post__excerpt">Pragmatic standards for judging whether an AI system is ready for real, regulated work.</p>
+            <span class="post__go mono" aria-hidden="true">↗</span>
+          </a>
+          <a class="post rv" style="--i:3" href="https://www.flowx.ai/blog/the-control-deficit-why-ai-copilots-fail-the-moment-they-touch-real-work" target="_blank" rel="noopener">
+            <p class="post__meta mono"><span class="post__tag">Governance</span><span>Apr 1, 2026</span></p>
+            <h3 class="post__title">The control deficit: why AI copilots fail the moment they touch real work</h3>
+            <p class="post__excerpt">The gap isn't intelligence. It's controllability: evidence, identity, oversight, and reliability under stress.</p>
+            <span class="post__go mono" aria-hidden="true">↗</span>
+          </a>
+          <a class="post rv" style="--i:4" href="https://www.flowx.ai/blog/copilots-raise-productivity-operating-models-create-outcomes" target="_blank" rel="noopener">
+            <p class="post__meta mono"><span class="post__tag">AI Agents</span><span>Mar 4, 2026</span></p>
+            <h3 class="post__title">Copilots raise productivity. Operating models create outcomes</h3>
+            <p class="post__excerpt">Copilots alone are incomplete — outcomes need an operating model built around them.</p>
+            <span class="post__go mono" aria-hidden="true">↗</span>
+          </a>
+          <a class="post rv" style="--i:5" href="https://www.flowx.ai/blog/your-ai-strategy-is-only-as-strong-as-your-integration-layer" target="_blank" rel="noopener">
+            <p class="post__meta mono"><span class="post__tag">Integration</span><span>Dec 16, 2025</span></p>
+            <h3 class="post__title">Your AI strategy is only as strong as your integration layer</h3>
+            <p class="post__excerpt">Where your AI gets its data decides how far your strategy can actually go.</p>
+            <span class="post__go mono" aria-hidden="true">↗</span>
+          </a>
+          <a class="post rv" style="--i:6" href="https://www.flowx.ai/blog/engines-vs-railroads-why-ai-agents-stall-in-enterprise-regulated-value-streams-and-how-to-make-them-work" target="_blank" rel="noopener">
+            <p class="post__meta mono"><span class="post__tag">AI Agents</span><span>Sep 15, 2025</span></p>
+            <h3 class="post__title">Engines vs. railroads: why AI agents stall in regulated value streams</h3>
+            <p class="post__excerpt">The barrier isn't model capability — it's the rails the agents have to run on.</p>
+            <span class="post__go mono" aria-hidden="true">↗</span>
+          </a>
+          <a class="post rv" style="--i:7" href="https://www.flowx.ai/blog/turn-ai-potential-into-production-reality-with-flowx-ai-s-integration-designer" target="_blank" rel="noopener">
+            <p class="post__meta mono"><span class="post__tag">Integration</span><span>Aug 12, 2025</span></p>
+            <h3 class="post__title">Turn AI potential into production reality with the Integration Designer</h3>
+            <p class="post__excerpt">Cutting the timeline from API spec to a live, production integration.</p>
+            <span class="post__go mono" aria-hidden="true">↗</span>
+          </a>
+          <a class="post rv" style="--i:8" href="https://www.flowx.ai/blog/bridging-the-operational-divide-what-banking-can-learn-from-process-heavy-industries" target="_blank" rel="noopener">
+            <p class="post__meta mono"><span class="post__tag">Banks</span><span>Jul 14, 2025</span></p>
+            <h3 class="post__title">Bridging the operational divide: what banking can learn from process-heavy industries</h3>
+            <p class="post__excerpt">Risk and compliance lessons banking can borrow from industries built on process.</p>
+            <span class="post__go mono" aria-hidden="true">↗</span>
+          </a>
+          <a class="post rv" style="--i:9" href="https://www.flowx.ai/blog/your-mainframe-is-not-legacy-the-way-you-are-using-is" target="_blank" rel="noopener">
+            <p class="post__meta mono"><span class="post__tag">Mainframe</span><span>Jul 3, 2025</span></p>
+            <h3 class="post__title">Your mainframe isn't legacy — the way you're using it is</h3>
+            <p class="post__excerpt">Rethinking mainframe modernization: the asset was never the problem.</p>
+            <span class="post__go mono" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section section--cta" id="cta">
+      <canvas class="cta__canvas" aria-hidden="true"></canvas>
+      <div class="shell">
+        <span class="section__no mono">03 / Next</span>
+        <h2 class="cta__title">
+          <span class="rv" style="--i:0">Read the docs, then</span>
+          <span class="rv" style="--i:1">build your first agent<span class="amber">.</span></span>
+        </h2>
+        <div class="cta__row rv" style="--i:2">
+          <a class="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Book a demo</a>
+          <a class="btn btn--ghost btn--lg" href="./agents.html">Explore Agents</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__top">
+        <div class="footer__id">
+          <svg class="footer__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+            <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor"/>
+            <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor"/>
+            <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor"/>
+            <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor"/>
+            <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813"/>
+            <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor"/>
+          </svg>
+          <address class="footer__offices mono">
+            Charles de Gaulle Plaza, Piata Charles de Gaulle 15, 9th floor, 011857 Bucharest, Romania<br />
+            352 Sharon Park Drive, Menlo Park, CA 94025
+          </address>
+        </div>
+        <nav class="footer__cols" aria-label="Footer">
+          <div>
+            <h4 class="mono">Platform</h4>
+            <a href="./agents.html">Agents</a>
+            <a href="./index.html#blueprint">Agent Builder</a>
+            <a href="./index.html#proof">Proof</a>
+          </div>
+          <div>
+            <h4 class="mono">Company</h4>
+            <a href="./about.html">About us</a>
+          </div>
+          <!-- VERIFY URLS before publish -->
+          <div>
+            <h4 class="mono">Resources</h4>
+            <a href="./resources.html">Blog</a>
+            <a href="https://docs.flowx.ai" target="_blank" rel="noopener">Documentation</a>
+            <a href="https://academy.flowx.ai" target="_blank" rel="noopener">Academy</a>
+            <a href="#cta">Support</a>
+          </div>
+          <div>
+            <h4 class="mono">Legal</h4>
+            <a href="https://www.flowx.ai/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+            <a href="https://www.flowx.ai/cookies" target="_blank" rel="noopener">Cookies</a>
+            <a href="https://www.flowx.ai/terms-and-conditions" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__base mono">
+        <span>© <span id="year">2026</span> FlowX.AI Business Systems — Bucharest · Menlo Park</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/resources.js"></script>
+</body>
+</html>
