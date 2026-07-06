@@ -25,7 +25,7 @@ flx_landing_explo/
 ├── docs/vN/        # built output served by GitHub Pages (do not hand-edit)
 ├── v1/             # exploration 1 — a full Vite project
 │   ├── index.html    # all markup (nav, hero, sections, footer)
-│   ├── banking.html / insurance.html / logistics.html  # industry pages: hero, problem, value stream, segments, featured bento, workflows, CTA
+│   ├── banking.html / insurance.html / logistics.html  # industry pages: hero, problem, value stream + who-it's-for (merged), featured bento, workflows, CTA
 │   ├── agents.html    # redirect stub → banking.html (old /agents links)
 │   ├── vite.config.js  # multi-page build (index, banking, insurance, logistics, about, resources, blog-flowx-6, agents entries)
 │   ├── public/     # static assets (flowx-logo.svg)
@@ -63,8 +63,10 @@ npm run preview
   marquee, "why 95% fail", platform, proof, CTA, footer.
 - **`banking.html` / `insurance.html` / `logistics.html`** are the industry
   pages, each with: a hero with a bespoke industry-metaphor viz (vault /
-  shield / route), a problem section, a value-stream schematic, segment cards,
-  a featured-agents bento, workflows, and a CTA.
+  shield / route), a problem section, a merged value-stream + who-it's-for
+  section (the pipeline schematic above the segment cards, so hovering a
+  segment highlights its stages in view), a featured-agents bento, workflows,
+  and a CTA.
 - **`agents.html`** is a meta-refresh redirect to `banking.html`, kept so old
   `/agents` links still resolve.
 - **`src/style.css`** is the single stylesheet. Design tokens (colors, fonts,
