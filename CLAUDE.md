@@ -62,9 +62,9 @@ npm run preview
   Industries dropdown — hover/focus-within, no JS), hero, blueprint, compliance
   marquee, "why 95% fail", platform, proof, CTA, footer.
 - **`banking.html` / `insurance.html` / `logistics.html`** are the industry
-  pages, each with: a hero with a single-orbit viz, a problem section, a
-  value-stream schematic, segment cards, a featured-agents bento, workflows,
-  and a CTA.
+  pages, each with: a hero with a bespoke industry-metaphor viz (vault /
+  shield / route), a problem section, a value-stream schematic, segment cards,
+  a featured-agents bento, workflows, and a CTA.
 - **`agents.html`** is a meta-refresh redirect to `banking.html`, kept so old
   `/agents` links still resolve.
 - **`src/style.css`** is the single stylesheet. Design tokens (colors, fonts,
