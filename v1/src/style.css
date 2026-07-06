@@ -1252,8 +1252,18 @@ em { font-style: normal; }
 }
 
 /* featured agents bento */
-.feat { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+/* featured-agents bento — its own grid class, decoupled from the Resources
+   `.feat` featured-post component further down this file (they collided).
+   minmax(0,1fr) + min-width:0 keep the six tracks equal so a long monospace
+   agent name can never blow a column out and break the row width. */
+.abento {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: minmax(96px, auto);
+  gap: 14px;
+}
 .fcard {
+  min-width: 0;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--bg-raised);
@@ -1261,11 +1271,16 @@ em { font-style: normal; }
   display: flex;
   flex-direction: column;
   gap: 10px;
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
 }
+.fcard:hover { border-color: var(--amber-line); transform: translateY(-3px); }
 .fcard--2 { grid-column: span 2; }
 .fcard--3 { grid-column: span 3; }
 .fcard--6 { grid-column: span 6; }
-.fcard__name { font-size: 13px; letter-spacing: 0.04em; color: var(--text); }
+/* feature cards (the wide top row) carry a faint amber hairline so the bento
+   reads as a hierarchy, not a uniform wall of equal cards */
+.fcard--3 { box-shadow: inset 0 2px 0 -1px var(--amber-line); }
+.fcard__name { font-size: 13px; letter-spacing: 0.04em; color: var(--text); overflow-wrap: anywhere; }
 .fcard__desc { font-size: 13.5px; line-height: 1.55; color: var(--text-dim); flex: 1; }
 .fviz { margin-top: 8px; font-size: 11.5px; color: var(--text-faint); }
 .fviz__ctx { display: block; font-size: 11px; color: var(--text-faint); margin-top: 6px; }
