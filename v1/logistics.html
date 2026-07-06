@@ -72,57 +72,89 @@
           </p>
         </div>
 
-        <!-- optimal route: the network considered, the best path chosen, the shipment moved -->
+        <!-- reroute: the planned route breaks mid-journey; the agent recomputes, an amber detour draws, the shipment still arrives — invoiced -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="A route network where the optimal path lights up and a shipment travels it from quote to invoice">
-            <!-- alternate edges: the network the optimiser considered -->
-            <line class="rtv-alt" x1="64" y1="300" x2="150" y2="218"/>
-            <line class="rtv-alt" x1="64" y1="300" x2="156" y2="352"/>
-            <line class="rtv-alt" x1="104" y1="120" x2="150" y2="218"/>
-            <line class="rtv-alt" x1="104" y1="120" x2="236" y2="132"/>
-            <line class="rtv-alt" x1="150" y1="218" x2="236" y2="132"/>
-            <line class="rtv-alt rtv-alt--scan" x1="150" y1="218" x2="250" y2="282"/>
-            <line class="rtv-alt" x1="156" y1="352" x2="250" y2="282"/>
-            <line class="rtv-alt" x1="156" y1="352" x2="262" y2="388"/>
-            <line class="rtv-alt rtv-alt--scan" x1="236" y1="132" x2="338" y2="206"/>
-            <line class="rtv-alt" x1="250" y1="282" x2="344" y2="330"/>
-            <line class="rtv-alt" x1="262" y1="388" x2="344" y2="330"/>
-            <line class="rtv-alt" x1="338" y1="206" x2="344" y2="330"/>
-            <line class="rtv-alt" x1="344" y1="330" x2="398" y2="262"/>
+          <svg viewBox="0 0 460 460" role="img" aria-label="A freight network where a leg of the planned route fails mid-journey; the agent instantly draws an amber detour and the shipment still arrives — rerouted, invoiced">
+            <!-- the wider network the planner knows about -->
+            <line class="lrv-alt" x1="64" y1="300" x2="96" y2="208"/>
+            <line class="lrv-alt" x1="96" y1="208" x2="104" y2="120"/>
+            <line class="lrv-alt" x1="104" y1="120" x2="226" y2="96"/>
+            <line class="lrv-alt" x1="226" y1="96" x2="356" y2="96"/>
+            <line class="lrv-alt" x1="226" y1="96" x2="248" y2="220"/>
+            <line class="lrv-alt" x1="356" y1="96" x2="330" y2="180"/>
+            <line class="lrv-alt" x1="356" y1="96" x2="398" y2="262"/>
+            <line class="lrv-alt" x1="96" y1="208" x2="150" y2="244"/>
+            <line class="lrv-alt" x1="64" y1="300" x2="156" y2="368"/>
+            <line class="lrv-alt" x1="156" y1="368" x2="262" y2="398"/>
+            <line class="lrv-alt lrv-alt--scan" x1="262" y1="398" x2="352" y2="310"/>
+            <line class="lrv-alt lrv-alt--scan" x1="156" y1="368" x2="284" y2="290"/>
+            <line class="lrv-alt lrv-alt--scan" x1="150" y1="244" x2="284" y2="290"/>
+            <line class="lrv-alt" x1="248" y1="220" x2="284" y2="290"/>
+            <line class="lrv-alt" x1="284" y1="290" x2="352" y2="310"/>
+            <line class="lrv-alt" x1="352" y1="310" x2="398" y2="262"/>
 
-            <!-- the optimal path: quote → invoice in 3 legs; pathLength=100 so the
-                 dash draw animates in percentages -->
-            <path id="rtvRoute" class="rtv-route" pathLength="100" d="M64 300 L250 282 L338 206 L398 262"/>
+            <!-- the planned route: drawn at dispatch; the leg past the break dims when it fails -->
+            <path class="lrv-plan lrv-plan-a" pathLength="100" d="M64 300 L150 244 L248 220"/>
+            <path class="lrv-plan lrv-plan-b" pathLength="100" d="M248 220 L330 180 L398 262"/>
+
+            <!-- the break: flash + mark on the dead leg -->
+            <circle class="lrv-flash" cx="289" cy="200" r="9"/>
+            <g class="lrv-x">
+              <line x1="284" y1="195" x2="294" y2="205"/>
+              <line x1="294" y1="195" x2="284" y2="205"/>
+            </g>
+
+            <!-- the agent's fix: the amber detour, drawn the moment the leg dies -->
+            <path class="lrv-detour" pathLength="100" d="M248 220 L284 290 L352 310 L398 262"/>
 
             <!-- nodes -->
-            <circle class="rtv-node" cx="150" cy="218" r="3"/>
-            <circle class="rtv-node" cx="156" cy="352" r="3"/>
-            <circle class="rtv-node" cx="104" cy="120" r="3"/>
-            <circle class="rtv-node" cx="236" cy="132" r="3"/>
-            <circle class="rtv-node" cx="250" cy="282" r="3"/>
-            <circle class="rtv-node" cx="262" cy="388" r="3"/>
-            <circle class="rtv-node" cx="338" cy="206" r="3"/>
-            <circle class="rtv-node" cx="344" cy="330" r="3"/>
-            <circle class="rtv-node rtv-node--end" cx="64" cy="300" r="3.4"/>
-            <circle class="rtv-ring" cx="64" cy="300" r="7"/>
-            <circle class="rtv-node rtv-node--end" cx="398" cy="262" r="3.4"/>
-            <circle class="rtv-ring" cx="398" cy="262" r="7"/>
+            <circle class="lrv-node" cx="150" cy="244" r="3"/>
+            <circle class="lrv-node" cx="248" cy="220" r="3"/>
+            <circle class="lrv-node" cx="330" cy="180" r="3"/>
+            <circle class="lrv-node" cx="284" cy="290" r="3"/>
+            <circle class="lrv-node" cx="352" cy="310" r="3"/>
+            <circle class="lrv-node" cx="96" cy="208" r="3"/>
+            <circle class="lrv-node" cx="104" cy="120" r="3"/>
+            <circle class="lrv-node" cx="226" cy="96" r="3"/>
+            <circle class="lrv-node" cx="356" cy="96" r="3"/>
+            <circle class="lrv-node" cx="156" cy="368" r="3"/>
+            <circle class="lrv-node" cx="262" cy="398" r="3"/>
+            <circle class="lrv-node lrv-node--end" cx="64" cy="300" r="3.4"/>
+            <circle class="lrv-ring" cx="64" cy="300" r="7"/>
+            <circle class="lrv-node lrv-node--end" cx="398" cy="262" r="3.4"/>
+            <circle class="lrv-ring" cx="398" cy="262" r="7"/>
 
-            <!-- endpoints named in the page's own words: from quote to invoice -->
+            <!-- endpoints named in the page's own words -->
             <text class="ivz-lbl" x="64" y="326" text-anchor="middle">quote</text>
             <rect class="ivz-tag" x="367" y="234" width="62" height="14"/>
             <text class="ivz-lbl" x="398" y="244" text-anchor="middle">invoice</text>
-            <text class="ivz-lbl" x="64" y="428">3 legs &#183; cleared</text>
 
-            <!-- the shipment: departs once the route is drawn, arrival pulse at the end -->
-            <circle class="rtv-dot" r="3.4">
-              <animateMotion dur="9s" repeatCount="indefinite" calcMode="linear"
-                keyPoints="0;0;1;1" keyTimes="0;0.38;0.84;1"><mpath href="#rtvRoute"/></animateMotion>
-              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.38;0.41;0.84;0.88;1" dur="9s" repeatCount="indefinite"/>
+            <!-- ambient traffic on a northern lane: the network never sleeps -->
+            <circle class="lrv-amb" r="2.2">
+              <animateMotion dur="9s" repeatCount="indefinite" path="M104 120 L226 96 L356 96"/>
+              <animate attributeName="opacity" values="0;0.35;0.35;0" keyTimes="0;0.08;0.9;1" dur="9s" repeatCount="indefinite"/>
             </circle>
-            <circle class="rtv-arrive" cx="398" cy="262" r="9">
-              <animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.84;0.87;0.95;1" dur="9s" repeatCount="indefinite"/>
+
+            <!-- the shipment: departs, halts at the break, takes the detour, arrives -->
+            <circle class="lrv-dot" r="3.4">
+              <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear"
+                keyPoints="0;0;0.4851;0.4851;1;1" keyTimes="0;0.12;0.34;0.50;0.76;1"
+                path="M64 300 L150 244 L248 220 L284 290 L352 310 L398 262"/>
+              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.115;0.125;0.765;0.80;1" dur="12s" repeatCount="indefinite"/>
             </circle>
+            <circle class="lrv-arrive" cx="398" cy="262" r="9">
+              <animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.76;0.79;0.87;1" dur="12s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- status tags -->
+            <g class="lrv-tag--ex" transform="translate(289 154)">
+              <rect class="ivz-tag" x="-36" y="-10" width="72" height="14"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1">exception</text>
+            </g>
+            <g class="lrv-tag--re" transform="translate(318 342)">
+              <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1">rerouted</text>
+            </g>
           </svg>
         </div>
       </div>

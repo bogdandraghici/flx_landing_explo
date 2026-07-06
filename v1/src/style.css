@@ -1854,58 +1854,166 @@ em { font-style: normal; }
 .ivz-lbl { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; fill: var(--text-faint); }
 .ivz-tag { fill: var(--bg); }
 
-/* --- banking hero: vault unlocking (bkv-*) --- */
-.bkv-track { fill: none; stroke: rgba(255, 255, 255, 0.05); stroke-width: 1; }
-.bkv-arc { fill: none; stroke: rgba(255, 255, 255, 0.25); stroke-width: 1.2; }
-.bkv-tick { stroke: rgba(205, 212, 226, 0.35); stroke-width: 1; }
-.bkv-ring { transform-origin: 230px 230px; }
-.bkv-ring--1 { animation: bkv-r1 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
-.bkv-ring--2 { animation: bkv-r2 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
-.bkv-ring--3 { animation: bkv-r3 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
-.bkv-hub { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
-.bkv-wheel { transform-origin: 230px 230px; animation: bkv-turn 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
-.bkv-spoke { stroke: rgba(255, 255, 255, 0.3); stroke-width: 1.2; stroke-linecap: round; }
-.bkv-bolt { fill: var(--amber); opacity: 0.9; animation: bkv-open 12s linear infinite; }
-.bkv-channel { stroke: var(--amber); stroke-width: 1.2; opacity: 0.9; animation: bkv-open 12s linear infinite; }
-.bkv-pulse { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; transform-origin: 230px 230px; animation: bkv-pulse 12s ease-out infinite; }
-.bkv-tag-g { opacity: 0.9; animation: bkv-open 12s linear infinite; }
+/* --- banking hero: decision core (bkc-*) ---
+   evidence particles stream in, the dial steps up and clears the threshold,
+   then the amber resolution: approved → funds stream → account fills.
+   Base (non-animated) values are the resolved pose, for reduced motion. */
+.bkc-guide { fill: none; stroke: rgba(255, 255, 255, 0.10); stroke-width: 1; stroke-dasharray: 3 5; }
+.bkc-src { fill: rgba(205, 212, 226, 0.35); }
+.bkc-p { fill: rgba(205, 212, 226, 0.42); }
+.bkc-track { fill: none; stroke: rgba(255, 255, 255, 0.05); stroke-width: 1; }
+.bkc-arc { fill: none; stroke: rgba(255, 255, 255, 0.22); stroke-width: 1.2; }
+.bkc-tick { stroke: rgba(205, 212, 226, 0.35); stroke-width: 1; }
+.bkc-spin { transform-origin: 230px 190px; animation: bkc-spin 26s linear infinite; }
+.bkc-spin--rev { animation: bkc-spin 20s linear infinite reverse; }
+.bkc-hub { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
+.bkc-score { fill: none; stroke: var(--amber); stroke-width: 1.2; opacity: 0.55; stroke-dasharray: 100; stroke-dashoffset: 48.9; animation: bkc-score 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
+.bkc-th { stroke: rgba(205, 212, 226, 0.35); stroke-width: 1; }
+.bkc-th--hot { stroke: var(--amber); stroke-width: 1.2; opacity: 0.9; animation: bkc-fire 12s linear infinite; }
+.bkc-dial { transform-origin: 230px 190px; transform: rotate(34deg); animation: bkc-dial 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
+.bkc-needle { stroke: rgba(255, 255, 255, 0.55); stroke-width: 1.4; stroke-linecap: round; }
+.bkc-tail { stroke: rgba(255, 255, 255, 0.25); stroke-width: 1.2; stroke-linecap: round; }
+.bkc-pivot { fill: none; stroke: rgba(255, 255, 255, 0.3); stroke-width: 1; }
+.bkc-bolt { fill: var(--amber); opacity: 0.9; animation: bkc-fire 12s linear infinite; }
+.bkc-pulse { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; transform-origin: 230px 190px; animation: bkc-pulse 12s ease-out infinite; }
+.bkc-tag-g { opacity: 0.9; animation: bkc-fire 12s linear infinite; }
+.bkc-stream { fill: none; stroke: var(--amber); stroke-width: 1.2; opacity: 0.9; stroke-dasharray: 100; stroke-dashoffset: 0; animation: bkc-stream 12s linear infinite; }
+.bkc-dot { fill: var(--amber); }
+.bkc-card { fill: var(--bg-raised); stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
+.bkc-title { fill: rgba(233, 236, 242, 0.45); }
+.bkc-line { stroke: rgba(205, 212, 226, 0.22); stroke-width: 2.4; stroke-linecap: round; }
+.bkc-fill { stroke: var(--amber); stroke-width: 2.4; stroke-linecap: round; opacity: 0.9; transform-origin: 174px 376px; transform: scaleX(1); animation: bkc-fund 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
+.bkc-arrive { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; }
+.bkc-ground { stroke: rgba(255, 255, 255, 0.06); stroke-width: 1; }
 
-@keyframes bkv-r1 { 0% { transform: rotate(210deg); } 22%, 86% { transform: rotate(0deg); } 100% { transform: rotate(210deg); } }
-@keyframes bkv-r2 { 0%, 10% { transform: rotate(-150deg); } 36%, 86% { transform: rotate(0deg); } 100% { transform: rotate(-150deg); } }
-@keyframes bkv-r3 { 0%, 24% { transform: rotate(120deg); } 50%, 86% { transform: rotate(0deg); } 100% { transform: rotate(120deg); } }
-@keyframes bkv-turn { 0%, 52% { transform: rotate(0deg); } 62%, 86% { transform: rotate(90deg); } 100% { transform: rotate(0deg); } }
-@keyframes bkv-open { 0%, 52% { opacity: 0; } 58%, 82% { opacity: 0.9; } 90%, 100% { opacity: 0; } }
-@keyframes bkv-pulse { 0%, 53% { opacity: 0; transform: scale(0.72); } 57% { opacity: 0.8; } 72%, 100% { opacity: 0; transform: scale(1.12); } }
-
-/* --- insurance hero: shield deflecting risk (shv-*) --- */
-.shv-arc { fill: none; stroke: rgba(255, 255, 255, 0.30); stroke-width: 1.2; }
-.shv-arc--outer { fill: none; stroke: rgba(255, 255, 255, 0.08); stroke-width: 1; }
-.shv-card { fill: var(--bg-raised); stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
-.shv-title { fill: rgba(233, 236, 242, 0.45); }
-.shv-line { stroke: rgba(205, 212, 226, 0.22); stroke-width: 2.4; stroke-linecap: round; }
-.shv-ground { stroke: rgba(255, 255, 255, 0.06); stroke-width: 1; }
-.shv-p { fill: rgba(205, 212, 226, 0.42); }
-.shv-glow { fill: var(--amber); opacity: 0.10; }
-.shv-scan { fill: var(--amber); }
-
-/* --- logistics hero: optimal route (rtv-*) --- */
-.rtv-alt { stroke: rgba(255, 255, 255, 0.10); stroke-width: 1; stroke-dasharray: 3 5; }
-.rtv-alt--scan { stroke: rgba(255, 255, 255, 0.28); opacity: 0.2; animation: rtv-consider 9s linear infinite; }
-.rtv-node { fill: rgba(205, 212, 226, 0.35); }
-.rtv-node--end { fill: rgba(233, 236, 242, 0.6); }
-.rtv-ring { fill: none; stroke: rgba(255, 255, 255, 0.18); stroke-width: 1; }
-.rtv-route { fill: none; stroke: var(--amber); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 0; animation: rtv-draw 9s linear infinite; }
-.rtv-dot { fill: var(--amber); }
-.rtv-arrive { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; }
-
-@keyframes rtv-draw {
-  0% { stroke-dashoffset: 100; opacity: 0; }
-  8% { stroke-dashoffset: 100; opacity: 1; }
-  36% { stroke-dashoffset: 0; opacity: 1; }
-  94% { stroke-dashoffset: 0; opacity: 1; }
-  100% { stroke-dashoffset: 0; opacity: 0; }
+@keyframes bkc-spin { to { transform: rotate(360deg); } }
+@keyframes bkc-dial {
+  0%, 4% { transform: rotate(-150deg); }
+  14%, 20% { transform: rotate(-104deg); }
+  30%, 36% { transform: rotate(-58deg); }
+  46%, 50% { transform: rotate(-8deg); }
+  55%, 86% { transform: rotate(34deg); }
+  100% { transform: rotate(-150deg); }
 }
-@keyframes rtv-consider { 0% { opacity: 0.2; } 8%, 26% { opacity: 1; } 40%, 100% { opacity: 0.2; } }
+@keyframes bkc-score {
+  0%, 4% { stroke-dashoffset: 100; opacity: 0.55; }
+  14%, 20% { stroke-dashoffset: 87.2; }
+  30%, 36% { stroke-dashoffset: 74.4; }
+  46%, 50% { stroke-dashoffset: 60.6; }
+  55%, 86% { stroke-dashoffset: 48.9; opacity: 0.55; }
+  92%, 100% { stroke-dashoffset: 100; opacity: 0; }
+}
+@keyframes bkc-fire { 0%, 54% { opacity: 0; } 58%, 84% { opacity: 0.9; } 92%, 100% { opacity: 0; } }
+@keyframes bkc-pulse { 0%, 54% { opacity: 0; transform: scale(0.72); } 58% { opacity: 0.8; } 74%, 100% { opacity: 0; transform: scale(1.12); } }
+@keyframes bkc-stream {
+  0%, 56% { stroke-dashoffset: 100; opacity: 0; }
+  57% { stroke-dashoffset: 100; opacity: 0.9; }
+  63% { stroke-dashoffset: 0; }
+  84% { stroke-dashoffset: 0; opacity: 0.9; }
+  90%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes bkc-fund {
+  0%, 63% { transform: scaleX(0); opacity: 0.9; }
+  80%, 88% { transform: scaleX(1); opacity: 0.9; }
+  94%, 100% { transform: scaleX(1); opacity: 0; }
+}
+
+/* --- insurance hero: risk radar (irv-*) ---
+   a sweep watches a quiet field of blips; one flares into an incident, is
+   bracketed (fnol), tracked, then resolves amber — settled. The 6s sweep runs
+   twice per 12s story loop; blip glow delays are synced to the beam angle.
+   Base (non-animated) values are the resolved pose. */
+.irv-grid { fill: none; stroke: rgba(255, 255, 255, 0.05); stroke-width: 1; }
+.irv-edge { fill: none; stroke: rgba(255, 255, 255, 0.10); stroke-width: 1; }
+.irv-axis { stroke: rgba(255, 255, 255, 0.04); stroke-width: 1; }
+.irv-tick line { stroke: rgba(205, 212, 226, 0.30); stroke-width: 1; }
+.irv-b { fill: rgba(205, 212, 226, 0.6); opacity: 0.18; animation: irv-b 6s linear infinite; }
+.irv-sweep { transform-origin: 230px 230px; animation: irv-rotate 6s linear infinite; }
+.irv-wedge { fill: rgba(233, 236, 242, 0.035); }
+.irv-beam { stroke: rgba(233, 236, 242, 0.35); stroke-width: 1.2; }
+.irv-hub { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1; }
+.irv-core { fill: rgba(233, 236, 242, 0.5); }
+.irv-inc { fill: rgba(233, 236, 242, 0.9); opacity: 0; transform-origin: 307px 166px; animation: irv-inc 12s linear infinite; }
+.irv-inc--set { fill: var(--amber); opacity: 0.9; animation: irv-set 12s linear infinite; }
+.irv-brk { fill: none; stroke: rgba(233, 236, 242, 0.7); stroke-width: 1; opacity: 0; transform-origin: 307px 166px; animation: irv-brk 12s cubic-bezier(0.7, 0, 0.25, 1) infinite; }
+.irv-track { fill: none; stroke: rgba(233, 236, 242, 0.4); stroke-width: 1; opacity: 0; stroke-dasharray: 100; stroke-dashoffset: 0; animation: irv-track 12s linear infinite; }
+.irv-pulse { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; transform-origin: 307px 166px; animation: irv-pulse 12s ease-out infinite; }
+.irv-tag--fnol { opacity: 0; animation: irv-claim 12s linear infinite; }
+.irv-tag--set { opacity: 0.9; animation: irv-settle 12s linear infinite; }
+
+@keyframes irv-rotate { to { transform: rotate(360deg); } }
+@keyframes irv-b { 0% { opacity: 0.8; } 30%, 100% { opacity: 0.18; } }
+@keyframes irv-inc {
+  0%, 6% { opacity: 0.25; transform: scale(1); }
+  8% { opacity: 1; transform: scale(1.5); }
+  54% { opacity: 1; transform: scale(1.5); }
+  58%, 100% { opacity: 0; transform: scale(1.5); }
+}
+@keyframes irv-set { 0%, 56% { opacity: 0; } 60%, 84% { opacity: 0.9; } 92%, 100% { opacity: 0; } }
+@keyframes irv-brk {
+  0%, 9% { opacity: 0; transform: scale(1.5); }
+  13%, 52% { opacity: 0.8; transform: scale(1); }
+  57%, 100% { opacity: 0; transform: scale(1); }
+}
+@keyframes irv-track {
+  0%, 28% { stroke-dashoffset: 100; opacity: 0; }
+  30% { stroke-dashoffset: 100; opacity: 0.7; }
+  44% { stroke-dashoffset: 0; }
+  52% { stroke-dashoffset: 0; opacity: 0.7; }
+  58%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes irv-claim { 0%, 13% { opacity: 0; } 16%, 52% { opacity: 0.9; } 57%, 100% { opacity: 0; } }
+@keyframes irv-settle { 0%, 60% { opacity: 0; } 64%, 86% { opacity: 0.9; } 94%, 100% { opacity: 0; } }
+@keyframes irv-pulse { 0%, 58% { opacity: 0; transform: scale(0.6); } 62% { opacity: 0.8; } 76%, 100% { opacity: 0; transform: scale(1.3); } }
+
+/* --- logistics hero: reroute (lrv-*) ---
+   the planned route draws and the shipment departs; a leg dies mid-journey
+   (exception), the agent recomputes — candidate lanes flicker, the amber
+   detour draws — and the shipment still arrives. Amber is reserved for the
+   agent's fix. Base (non-animated) values are the resolved pose. */
+.lrv-alt { stroke: rgba(255, 255, 255, 0.10); stroke-width: 1; stroke-dasharray: 3 5; }
+.lrv-alt--scan { stroke: rgba(255, 255, 255, 0.28); opacity: 0.2; animation: lrv-scan 12s linear infinite; }
+.lrv-node { fill: rgba(205, 212, 226, 0.35); }
+.lrv-node--end { fill: rgba(233, 236, 242, 0.6); }
+.lrv-ring { fill: none; stroke: rgba(255, 255, 255, 0.18); stroke-width: 1; }
+.lrv-plan { fill: none; stroke: rgba(233, 236, 242, 0.4); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 0; }
+.lrv-plan-a { animation: lrv-plana 12s linear infinite; }
+.lrv-plan-b { opacity: 0.3; animation: lrv-planb 12s linear infinite; }
+.lrv-detour { fill: none; stroke: var(--amber); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 0; opacity: 0.9; animation: lrv-det 12s linear infinite; }
+.lrv-flash { fill: none; stroke: rgba(233, 236, 242, 0.8); stroke-width: 1; opacity: 0; transform-origin: 289px 200px; animation: lrv-flash 12s ease-out infinite; }
+.lrv-x { opacity: 0.9; animation: lrv-x 12s linear infinite; }
+.lrv-x line { stroke: rgba(233, 236, 242, 0.7); stroke-width: 1.2; stroke-linecap: round; }
+.lrv-dot { fill: var(--amber); }
+.lrv-arrive { fill: none; stroke: var(--amber); stroke-width: 1; opacity: 0; }
+.lrv-amb { fill: rgba(205, 212, 226, 0.5); }
+.lrv-tag--ex { opacity: 0; animation: lrv-ex 12s linear infinite; }
+.lrv-tag--re { opacity: 0.9; animation: lrv-re 12s linear infinite; }
+
+@keyframes lrv-plana {
+  0%, 2% { stroke-dashoffset: 100; opacity: 1; }
+  6% { stroke-dashoffset: 0; }
+  92% { opacity: 1; }
+  98%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes lrv-planb {
+  0%, 6% { stroke-dashoffset: 100; opacity: 1; }
+  10% { stroke-dashoffset: 0; }
+  35% { opacity: 1; }
+  39%, 88% { opacity: 0.3; }
+  94%, 100% { opacity: 0; }
+}
+@keyframes lrv-det {
+  0%, 44% { stroke-dashoffset: 100; opacity: 0; }
+  45% { stroke-dashoffset: 100; opacity: 0.9; }
+  52% { stroke-dashoffset: 0; }
+  88% { stroke-dashoffset: 0; opacity: 0.9; }
+  94%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes lrv-flash { 0%, 33% { opacity: 0; transform: scale(0.5); } 35.5% { opacity: 0.85; } 42%, 100% { opacity: 0; transform: scale(1.45); } }
+@keyframes lrv-x { 0%, 34% { opacity: 0; } 37%, 86% { opacity: 0.9; } 92%, 100% { opacity: 0; } }
+@keyframes lrv-scan { 0%, 36% { opacity: 0.2; } 38%, 43% { opacity: 1; } 47%, 100% { opacity: 0.2; } }
+@keyframes lrv-ex { 0%, 36% { opacity: 0; } 38%, 56% { opacity: 0.9; } 62%, 100% { opacity: 0; } }
+@keyframes lrv-re { 0%, 52% { opacity: 0; } 56%, 88% { opacity: 0.9; } 94%, 100% { opacity: 0; } }
 
 /* ============================================================
    REDUCED MOTION
@@ -1930,10 +2038,14 @@ em { font-style: normal; }
   .dna__rung { animation: none; }
   .nav__menu { transition: none; }
   /* industry hero visuals: freeze CSS motion on the resolved pose */
-  .bkv-ring--1, .bkv-ring--2, .bkv-ring--3, .bkv-wheel, .bkv-channel, .bkv-pulse, .bkv-bolt, .bkv-tag-g,
-  .rtv-route, .rtv-alt--scan { animation: none; }
+  .bkc-spin, .bkc-spin--rev, .bkc-dial, .bkc-score, .bkc-stream, .bkc-fill,
+  .bkc-th--hot, .bkc-bolt, .bkc-pulse, .bkc-tag-g,
+  .irv-sweep, .irv-b, .irv-inc, .irv-inc--set, .irv-brk, .irv-track,
+  .irv-pulse, .irv-tag--fnol, .irv-tag--set,
+  .lrv-plan-a, .lrv-plan-b, .lrv-detour, .lrv-x, .lrv-flash, .lrv-alt--scan,
+  .lrv-tag--ex, .lrv-tag--re { animation: none; }
   /* SMIL movers can't be frozen by CSS — hide them; the static scene is the resolved pose */
-  .shv-p, .shv-restore, .rtv-dot, .rtv-arrive { display: none; }
+  .lrv-dot, .lrv-arrive, .lrv-amb, .bkc-p, .bkc-dot, .bkc-arrive { display: none; }
 }
 
 /* ============================================================

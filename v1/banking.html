@@ -72,52 +72,120 @@
           </p>
         </div>
 
-        <!-- vault unlocking: tumbler rings align, the channel opens — approval granted -->
+        <!-- decision core: evidence signals stream in, the dial clears the threshold, funds flow to the account -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="A bank vault's tumbler rings rotating into alignment and unlocking — approval granted">
-            <!-- static tracks under the tumblers -->
-            <circle class="bkv-track" cx="230" cy="230" r="170"/>
-            <circle class="bkv-track" cx="230" cy="230" r="136"/>
-            <circle class="bkv-track" cx="230" cy="230" r="102"/>
+          <svg viewBox="0 0 460 460" role="img" aria-label="Data signals streaming into an underwriting core; the decision dial clears the threshold and funds flow down into the account — approved, funded">
+            <!-- signal guides: the evidence paths into the core -->
+            <path id="bkcIn1" class="bkc-guide" d="M52 150 Q120 168 167 176"/>
+            <path id="bkcIn2" class="bkc-guide" d="M128 58 Q150 100 191 139"/>
+            <path id="bkcIn3" class="bkc-guide" d="M252 30 Q244 78 239 127"/>
+            <path id="bkcIn4" class="bkc-guide" d="M368 66 Q320 100 278 147"/>
+            <path id="bkcIn5" class="bkc-guide" d="M420 176 Q356 180 294 185"/>
 
-            <!-- tumbler rings: each gapped arc rotates (CSS) from a scattered start
-                 angle into alignment; the attribute rotate(-90) puts each gap at
-                 12 o'clock in the aligned pose, so CSS rotate(0) = aligned -->
-            <g class="bkv-ring bkv-ring--1">
-              <circle class="bkv-arc" cx="230" cy="230" r="170" transform="rotate(-90 230 230)"
-                stroke-dasharray="1022.14 46" stroke-dashoffset="-23"/>
-              <line class="bkv-tick" x1="87.1" y1="312.5" x2="78.4" y2="317.5"/>
-              <line class="bkv-tick" x1="272.7" y1="70.6" x2="275.3" y2="61.0"/>
+            <!-- signal sources -->
+            <circle class="bkc-src" cx="52" cy="150" r="2.6"/>
+            <circle class="bkc-src" cx="128" cy="58" r="2.6"/>
+            <circle class="bkc-src" cx="252" cy="30" r="2.6"/>
+            <circle class="bkc-src" cx="368" cy="66" r="2.6"/>
+            <circle class="bkc-src" cx="420" cy="176" r="2.6"/>
+            <text class="ivz-lbl" x="52" y="172" text-anchor="middle">docs</text>
+            <text class="ivz-lbl" x="128" y="44" text-anchor="middle">kyc</text>
+            <text class="ivz-lbl" x="252" y="20" text-anchor="middle">bureau</text>
+            <text class="ivz-lbl" x="368" y="52" text-anchor="middle">income</text>
+            <text class="ivz-lbl" x="420" y="200" text-anchor="middle">application</text>
+
+            <!-- evidence particles: two waves per signal path, absorbed by the core -->
+            <g class="bkc-p"><circle r="2.4"/>
+              <animateMotion dur="3.4s" begin="0s" repeatCount="indefinite"><mpath href="#bkcIn1"/></animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="0s" repeatCount="indefinite"/>
             </g>
-            <g class="bkv-ring bkv-ring--2">
-              <circle class="bkv-arc" cx="230" cy="230" r="136" transform="rotate(-90 230 230)"
-                stroke-dasharray="814.51 40" stroke-dashoffset="-20"/>
-              <line class="bkv-tick" x1="295.5" y1="343.4" x2="300.5" y2="352.1"/>
-              <line class="bkv-tick" x1="106.9" y1="185.2" x2="97.5" y2="181.8"/>
+            <g class="bkc-p"><circle r="2.4"/>
+              <animateMotion dur="3.4s" begin="-1.7s" repeatCount="indefinite"><mpath href="#bkcIn1"/></animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-1.7s" repeatCount="indefinite"/>
             </g>
-            <g class="bkv-ring bkv-ring--3">
-              <circle class="bkv-arc" cx="230" cy="230" r="102" transform="rotate(-90 230 230)"
-                stroke-dasharray="606.88 34" stroke-dashoffset="-17"/>
-              <line class="bkv-tick" x1="314.0" y1="181.5" x2="322.7" y2="176.5"/>
+            <g class="bkc-p"><circle r="2.4"/>
+              <animateMotion dur="3.4s" begin="-0.68s" repeatCount="indefinite"><mpath href="#bkcIn2"/></animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-0.68s" repeatCount="indefinite"/>
+            </g>
+            <g class="bkc-p"><circle r="2.4"/>
+              <animateMotion dur="3.4s" begin="-2.38s" repeatCount="indefinite"><mpath href="#bkcIn2"/></animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-2.38s" repeatCount="indefinite"/>
+            </g>
+            <g class="bkc-p"><circle r="2.4"/>
+              <animateMotion dur="3.4s" begin="-1.36s" repeatCount="indefinite"><mpath href="#bkcIn3"/></animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-1.36s" repeatCount="indefinite"/>
+            </g>
+            <g class="bkc-p"><circle r="2.4"/>
+              <animateMotion dur="3.4s" begin="-3.06s" repeatCount="indefinite"><mpath href="#bkcIn3"/></animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-3.06s" repeatCount="indefinite"/>
+            </g>
+            <g class="bkc-p"><circle r="2.4"/>
+              <animateMotion dur="3.4s" begin="-2.04s" repeatCount="indefinite"><mpath href="#bkcIn4"/></animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-2.04s" repeatCount="indefinite"/>
+            </g>
+            <g class="bkc-p"><circle r="2.4"/>
+              <animateMotion dur="3.4s" begin="-0.34s" repeatCount="indefinite"><mpath href="#bkcIn4"/></animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-0.34s" repeatCount="indefinite"/>
+            </g>
+            <g class="bkc-p"><circle r="2.4"/>
+              <animateMotion dur="3.4s" begin="-2.72s" repeatCount="indefinite"><mpath href="#bkcIn5"/></animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-2.72s" repeatCount="indefinite"/>
+            </g>
+            <g class="bkc-p"><circle r="2.4"/>
+              <animateMotion dur="3.4s" begin="-1.02s" repeatCount="indefinite"><mpath href="#bkcIn5"/></animateMotion>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="3.4s" begin="-1.02s" repeatCount="indefinite"/>
             </g>
 
-            <!-- hub + handle wheel: quarter-turn when the vault opens -->
-            <circle class="bkv-hub" cx="230" cy="230" r="64"/>
-            <g class="bkv-wheel">
-              <circle class="bkv-hub" cx="230" cy="230" r="48"/>
-              <line class="bkv-spoke" x1="230" y1="216" x2="230" y2="182"/>
-              <line class="bkv-spoke" x1="242.1" y1="237" x2="271.6" y2="254"/>
-              <line class="bkv-spoke" x1="217.9" y1="237" x2="188.4" y2="254"/>
+            <!-- the underwriting core: static tracks + slow counter-rotating arcs -->
+            <circle class="bkc-track" cx="230" cy="190" r="112"/>
+            <circle class="bkc-track" cx="230" cy="190" r="88"/>
+            <g class="bkc-spin">
+              <circle class="bkc-arc" cx="230" cy="190" r="112" stroke-dasharray="663.7 40"/>
+              <line class="bkc-tick" x1="337" y1="190" x2="347" y2="190"/>
+              <line class="bkc-tick" x1="137.3" y1="243.5" x2="128.7" y2="248.5"/>
             </g>
-            <circle class="bkv-bolt" cx="230" cy="230" r="7"/>
+            <g class="bkc-spin bkc-spin--rev">
+              <circle class="bkc-arc" cx="230" cy="190" r="88" stroke-dasharray="512.9 40"/>
+              <line class="bkc-tick" x1="230" y1="107" x2="230" y2="97"/>
+            </g>
 
-            <!-- resolution: the unlocked channel through the aligned notches -->
-            <line class="bkv-channel" x1="230" y1="164" x2="230" y2="42"/>
-            <circle class="bkv-pulse" cx="230" cy="230" r="64"/>
-            <g class="bkv-tag-g" transform="translate(230 24)">
+            <!-- score arc + decision dial: steps up as evidence lands, clears the threshold -->
+            <circle class="bkc-score" cx="230" cy="190" r="64" pathLength="100" transform="rotate(-240 230 190)"/>
+            <circle class="bkc-hub" cx="230" cy="190" r="56"/>
+            <line class="bkc-th" x1="259" y1="139.8" x2="265" y2="129.4"/>
+            <line class="bkc-th--hot" x1="259" y1="139.8" x2="265" y2="129.4"/>
+            <g class="bkc-dial">
+              <line class="bkc-needle" x1="230" y1="190" x2="230" y2="146"/>
+              <line class="bkc-tail" x1="230" y1="190" x2="230" y2="204"/>
+            </g>
+            <circle class="bkc-pivot" cx="230" cy="190" r="3"/>
+            <circle class="bkc-bolt" cx="230" cy="190" r="4.5"/>
+            <circle class="bkc-pulse" cx="230" cy="190" r="56"/>
+            <g class="bkc-tag-g" transform="translate(312 96)">
               <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
               <text class="ivz-lbl" text-anchor="middle" y="1">approved</text>
             </g>
+
+            <!-- resolution: funds flow from the core down into the account -->
+            <path id="bkcStream" class="bkc-stream" pathLength="100" d="M230 254 L230 342"/>
+            <g class="bkc-dot"><circle r="3"/>
+              <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.58;0.64;1"><mpath href="#bkcStream"/></animateMotion>
+              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.58;0.59;0.63;0.645;1" dur="12s" repeatCount="indefinite"/>
+            </g>
+            <g class="bkc-dot"><circle r="3"/>
+              <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.66;0.72;1"><mpath href="#bkcStream"/></animateMotion>
+              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.66;0.67;0.71;0.725;1" dur="12s" repeatCount="indefinite"/>
+            </g>
+
+            <!-- the funded account: balance line fills as the money lands -->
+            <rect class="bkc-card" x="158" y="344" width="144" height="48" rx="10"/>
+            <rect class="bkc-title" x="174" y="356" width="44" height="6" rx="3"/>
+            <line class="bkc-line" x1="174" y1="376" x2="286" y2="376"/>
+            <line class="bkc-fill" x1="174" y1="376" x2="286" y2="376"/>
+            <circle class="bkc-arrive" cx="230" cy="344" r="8">
+              <animate attributeName="opacity" values="0;0;0.85;0;0" keyTimes="0;0.62;0.65;0.73;1" dur="12s" repeatCount="indefinite"/>
+            </circle>
+            <line class="bkc-ground" x1="120" y1="404" x2="340" y2="404"/>
           </svg>
         </div>
       </div>

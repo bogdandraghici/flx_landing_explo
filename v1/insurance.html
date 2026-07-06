@@ -72,61 +72,65 @@
           </p>
         </div>
 
-        <!-- shield deflecting risk: the covered asset stays whole; what lands is restored -->
+        <!-- risk radar: the sweep watches a quiet field; one blip flares into an incident, is bracketed, tracked, and resolved amber — settled -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="A shield arc deflecting falling risk while the insured asset beneath is kept whole">
-            <!-- risk particles: four deflect off the arc, one lands and is restored -->
-            <g class="shv-p">
-              <circle r="2.6"/>
-              <animateMotion dur="5.6s" begin="0s" repeatCount="indefinite" path="M150 -10 L150 200 Q150 216 128 228 T 74 254"/>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="0s" repeatCount="indefinite"/>
-            </g>
-            <g class="shv-p">
-              <circle r="2.6"/>
-              <animateMotion dur="5.6s" begin="-1.4s" repeatCount="indefinite" path="M310 -10 L310 200 Q310 216 332 228 T 386 254"/>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="-1.4s" repeatCount="indefinite"/>
-            </g>
-            <g class="shv-p">
-              <circle r="2.6"/>
-              <animateMotion dur="5.6s" begin="-2.8s" repeatCount="indefinite" path="M190 -10 L190 176 Q190 190 168 198 T 116 228"/>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="-2.8s" repeatCount="indefinite"/>
-            </g>
-            <g class="shv-p">
-              <circle r="2.6"/>
-              <animateMotion dur="5.6s" begin="-4.2s" repeatCount="indefinite" path="M262 -10 L262 174 Q262 186 284 194 T 340 222"/>
-              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="-4.2s" repeatCount="indefinite"/>
-            </g>
-            <!-- the one that gets through: falls, lands on the asset, fades -->
-            <g class="shv-p">
-              <circle r="2.6"/>
-              <animateMotion dur="7s" begin="0s" repeatCount="indefinite" calcMode="linear"
-                keyPoints="0;1;1" keyTimes="0;0.2;1" path="M230 -10 L230 270"/>
-              <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.2;0.26;1" dur="7s" begin="0s" repeatCount="indefinite"/>
+          <svg viewBox="0 0 460 460" role="img" aria-label="A radar sweep over a field of quiet risk blips; one flares into an incident, is bracketed and tracked as a claim, then resolves amber — settled">
+            <!-- scope: range rings, axes, degree ticks -->
+            <circle class="irv-grid" cx="230" cy="230" r="48"/>
+            <circle class="irv-grid" cx="230" cy="230" r="96"/>
+            <circle class="irv-grid" cx="230" cy="230" r="144"/>
+            <circle class="irv-edge" cx="230" cy="230" r="184"/>
+            <line class="irv-axis" x1="46" y1="230" x2="414" y2="230"/>
+            <line class="irv-axis" x1="230" y1="46" x2="230" y2="414"/>
+            <g class="irv-tick">
+              <line x1="230" y1="50" x2="230" y2="42"/>
+              <line x1="320" y1="74.1" x2="324" y2="67.2"/>
+              <line x1="385.9" y1="140" x2="392.8" y2="136"/>
+              <line x1="410" y1="230" x2="418" y2="230"/>
+              <line x1="385.9" y1="320" x2="392.8" y2="324"/>
+              <line x1="320" y1="385.9" x2="324" y2="392.8"/>
+              <line x1="230" y1="410" x2="230" y2="418"/>
+              <line x1="140" y1="385.9" x2="136" y2="392.8"/>
+              <line x1="74.1" y1="320" x2="67.2" y2="324"/>
+              <line x1="50" y1="230" x2="42" y2="230"/>
+              <line x1="74.1" y1="140" x2="67.2" y2="136"/>
+              <line x1="140" y1="74.1" x2="136" y2="67.2"/>
             </g>
 
-            <!-- shield arcs over the asset -->
-            <path class="shv-arc--outer" d="M96 300 A134 134 0 0 1 364 300"/>
-            <path class="shv-arc" d="M110 300 A120 120 0 0 1 350 300"/>
-            <g transform="translate(230 166)">
+            <!-- quiet field: blips glow as the beam passes (delays synced to sweep angle) -->
+            <circle class="irv-b" cx="343" cy="295" r="2.6" style="animation-delay:-4s"/>
+            <circle class="irv-b" cx="206" cy="296" r="2.6" style="animation-delay:-2.67s"/>
+            <circle class="irv-b" cx="95" cy="266" r="2.6" style="animation-delay:-1.75s"/>
+            <circle class="irv-b" cx="148" cy="183" r="2.6" style="animation-delay:-1s"/>
+            <circle class="irv-b" cx="177" cy="84" r="2.6" style="animation-delay:-0.33s"/>
+            <circle class="irv-b" cx="286" cy="385" r="2.6" style="animation-delay:-3.33s"/>
+
+            <!-- the sweep: leading beam + trailing wedge, one rotation per 6s -->
+            <g class="irv-sweep">
+              <path class="irv-wedge" d="M230 230 L138 70.7 A184 184 0 0 1 230 46 Z"/>
+              <line class="irv-beam" x1="230" y1="230" x2="230" y2="46"/>
+            </g>
+            <circle class="irv-hub" cx="230" cy="230" r="10"/>
+            <circle class="irv-core" cx="230" cy="230" r="2.6"/>
+
+            <!-- the incident: flares on the first pass, bracketed and tracked as a claim -->
+            <circle class="irv-inc" cx="307" cy="166" r="3.2"/>
+            <circle class="irv-inc--set" cx="307" cy="166" r="3.2"/>
+            <g class="irv-brk">
+              <path d="M293 159 L293 152 L300 152"/>
+              <path d="M314 152 L321 152 L321 159"/>
+              <path d="M321 173 L321 180 L314 180"/>
+              <path d="M300 180 L293 180 L293 173"/>
+            </g>
+            <circle class="irv-track" cx="307" cy="166" r="20" pathLength="100"/>
+            <circle class="irv-pulse" cx="307" cy="166" r="20"/>
+            <g class="irv-tag--fnol" transform="translate(307 122)">
               <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
-              <text class="ivz-lbl" text-anchor="middle" y="1">covered</text>
+              <text class="ivz-lbl" text-anchor="middle" y="1">fnol</text>
             </g>
-
-            <!-- the insured asset: intact card, same language as the resources doc stack -->
-            <rect class="shv-card" x="150" y="278" width="160" height="92" rx="12"/>
-            <rect class="shv-title" x="170" y="298" width="64" height="8" rx="4"/>
-            <line class="shv-line" x1="170" y1="322" x2="290" y2="322"/>
-            <line class="shv-line" x1="170" y1="338" x2="258" y2="338"/>
-            <line class="shv-ground" x1="120" y1="392" x2="340" y2="392"/>
-            <text class="ivz-lbl" x="230" y="412" text-anchor="middle">asset &#183; intact</text>
-
-            <!-- restore sweep: after the landed particle, the card is made whole -->
-            <g class="shv-restore">
-              <rect class="shv-glow" x="152" y="280" width="156" height="12" rx="3"/>
-              <rect class="shv-scan" x="152" y="286" width="156" height="1.6"/>
-              <animateTransform attributeName="transform" attributeType="XML" type="translate"
-                values="0 0; 0 0; 0 74; 0 74" keyTimes="0; 0.24; 0.52; 1" dur="7s" begin="0s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.22;0.26;0.5;0.56;1" dur="7s" begin="0s" repeatCount="indefinite"/>
+            <g class="irv-tag--set" transform="translate(307 122)">
+              <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1">settled</text>
             </g>
           </svg>
         </div>
