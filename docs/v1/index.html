@@ -6,9 +6,9 @@
   <title>FlowX — Be in the 5%</title>
   <meta name="description" content="FlowX.AI — deploy banking, insurance, and logistics AI agents in weeks, proven in production. 220+ enterprise-ready agents for regulated industries, or build your own." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M28 26 L60 62 M60 26 L28 62' stroke='%23F4F5F3' stroke-width='9'/%3E%3Crect x='28' y='70' width='44' height='9' fill='%23FCB813'/%3E%3C/svg%3E" />
-  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/main-trr9A-4f.js"></script>
-  <link rel="modulepreload" crossorigin href="/flx_landing_explo/v1/assets/orderField-MGsYo9K6.js">
-  <link rel="stylesheet" crossorigin href="/flx_landing_explo/v1/assets/orderField-DdsdmXTB.css">
+  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/main-BG854gCx.js"></script>
+  <link rel="modulepreload" crossorigin href="/flx_landing_explo/v1/assets/orderField-B_6C3SKG.js">
+  <link rel="stylesheet" crossorigin href="/flx_landing_explo/v1/assets/orderField-Dw9HA3Mj.css">
 </head>
 <body>
   <canvas id="grain" class="grain" aria-hidden="true"></canvas>
@@ -27,9 +27,17 @@
         </svg>
       </a>
       <nav class="nav__links" aria-label="Primary">
-        <!-- labels match flowx.ai; Industries/Resources/Company become their own pages later -->
-        <a href="./agents.html">AI Agents</a>
-        <a data-page="industries" aria-disabled="true" title="Coming soon">Industries</a>
+        <!-- Industries dropdown is CSS-only (hover / focus-within); no aria-expanded — no JS to sync it -->
+        <div class="nav__drop">
+          <button class="nav__droptrigger" type="button" aria-haspopup="true">Industries</button>
+          <div class="nav__menu">
+            <div class="nav__menu-panel">
+              <a href="./banking.html">Banking</a>
+              <a href="./insurance.html">Insurance</a>
+              <a href="./logistics.html">Logistics</a>
+            </div>
+          </div>
+        </div>
         <a href="./resources.html">Resources</a>
         <a href="./about.html">Company</a>
       </nav>
@@ -210,7 +218,7 @@
           <p class="reg__foot mono dim2">220+ agents · 20 categories · ready to plug into your legacy systems</p>
         </div>
         <div class="cta__row rv" style="--i:3">
-          <a class="btn btn--primary" href="./agents.html">Explore All Agents</a>
+          <a class="btn btn--primary" href="./banking.html">Explore Industries</a>
           <a class="btn btn--ghost" href="#proof">Calculate ROI</a>
         </div>
       </div>
@@ -607,7 +615,9 @@
         <nav class="footer__cols" aria-label="Footer">
           <div>
             <h4 class="mono">Platform</h4>
-            <a href="./agents.html">Agents</a>
+            <a href="./banking.html">Banking</a>
+            <a href="./insurance.html">Insurance</a>
+            <a href="./logistics.html">Logistics</a>
             <a href="#blueprint">Agent Builder</a>
             <a href="#proof">Proof</a>
           </div>

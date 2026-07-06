@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlowX — Banking</title>
+  <meta name="description" content="FlowX.AI banking agents on the lending journey — onboarding & KYC, underwriting, and financial insights, for retail, commercial, and risk & compliance teams." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M28 26 L60 62 M60 26 L28 62' stroke='%23F4F5F3' stroke-width='9'/%3E%3Crect x='28' y='70' width='44' height='9' fill='%23FCB813'/%3E%3C/svg%3E" />
+  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/orderField-B_6C3SKG.js"></script>
+  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/industry-B6i38Cnm.js"></script>
+  <link rel="stylesheet" crossorigin href="/flx_landing_explo/v1/assets/orderField-Dw9HA3Mj.css">
+</head>
+<body>
+  <canvas id="grain" class="grain" aria-hidden="true"></canvas>
+
+  <!-- ================= NAV ================= -->
+  <!-- copied from index.html — delta: aria-current on Banking in the dropdown, Book a demo → #cta -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="./index.html" aria-label="FlowX home">
+        <svg class="nav__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+          <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor"/>
+          <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor"/>
+          <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor"/>
+          <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor"/>
+          <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813"/>
+          <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <!-- Industries dropdown is CSS-only (hover / focus-within); no aria-expanded — no JS to sync it -->
+        <div class="nav__drop">
+          <button class="nav__droptrigger" type="button" aria-haspopup="true">Industries</button>
+          <div class="nav__menu">
+            <div class="nav__menu-panel">
+              <a href="./banking.html" aria-current="page">Banking</a>
+              <a href="./insurance.html">Insurance</a>
+              <a href="./logistics.html">Logistics</a>
+            </div>
+          </div>
+        </div>
+        <a href="./resources.html">Resources</a>
+        <a href="./about.html">Company</a>
+      </nav>
+      <div class="nav__right">
+        <a class="btn btn--primary btn--sm" href="#cta">Book a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <section class="ahero" id="ihero">
+      <div class="shell ahero__grid">
+        <div class="ahero__text">
+          <p class="hero__eyebrow mono rv-load" style="--d:0">
+            <span class="tick" aria-hidden="true"></span>
+            Industries &middot; Banking
+          </p>
+          <h1 class="hero__title">
+            <span class="hero__line hero__line--big rv-load" style="--d:1">Banking agents, on the lending journey<span class="amber">.</span></span>
+          </h1>
+          <!-- DRAFT — marketing review -->
+          <p class="hero__sub rv-load" style="--d:2">
+            From first application to funded account — agents attach to every
+            stage of origination, onboarding, and risk. Built for banks where
+            failure is not an option.
+          </p>
+          <p class="astats mono rv-load" style="--d:3">
+            <span><b>220+</b> agents</span>
+            <span><b>3</b> industries</span>
+            <span><b class="amber">●</b> in production</span>
+          </p>
+        </div>
+
+        <!-- vault unlocking: tumbler rings align, the channel opens — approval granted -->
+        <div class="ahero__viz" aria-hidden="true">
+          <svg viewBox="0 0 460 460" role="img" aria-label="A bank vault's tumbler rings rotating into alignment and unlocking — approval granted">
+            <!-- static tracks under the tumblers -->
+            <circle class="bkv-track" cx="230" cy="230" r="170"/>
+            <circle class="bkv-track" cx="230" cy="230" r="136"/>
+            <circle class="bkv-track" cx="230" cy="230" r="102"/>
+
+            <!-- tumbler rings: each gapped arc rotates (CSS) from a scattered start
+                 angle into alignment; the attribute rotate(-90) puts each gap at
+                 12 o'clock in the aligned pose, so CSS rotate(0) = aligned -->
+            <g class="bkv-ring bkv-ring--1">
+              <circle class="bkv-arc" cx="230" cy="230" r="170" transform="rotate(-90 230 230)"
+                stroke-dasharray="1022.14 46" stroke-dashoffset="-23"/>
+              <line class="bkv-tick" x1="87.1" y1="312.5" x2="78.4" y2="317.5"/>
+              <line class="bkv-tick" x1="272.7" y1="70.6" x2="275.3" y2="61.0"/>
+            </g>
+            <g class="bkv-ring bkv-ring--2">
+              <circle class="bkv-arc" cx="230" cy="230" r="136" transform="rotate(-90 230 230)"
+                stroke-dasharray="814.51 40" stroke-dashoffset="-20"/>
+              <line class="bkv-tick" x1="295.5" y1="343.4" x2="300.5" y2="352.1"/>
+              <line class="bkv-tick" x1="106.9" y1="185.2" x2="97.5" y2="181.8"/>
+            </g>
+            <g class="bkv-ring bkv-ring--3">
+              <circle class="bkv-arc" cx="230" cy="230" r="102" transform="rotate(-90 230 230)"
+                stroke-dasharray="606.88 34" stroke-dashoffset="-17"/>
+              <line class="bkv-tick" x1="314.0" y1="181.5" x2="322.7" y2="176.5"/>
+            </g>
+
+            <!-- hub + handle wheel: quarter-turn when the vault opens -->
+            <circle class="bkv-hub" cx="230" cy="230" r="64"/>
+            <g class="bkv-wheel">
+              <circle class="bkv-hub" cx="230" cy="230" r="48"/>
+              <line class="bkv-spoke" x1="230" y1="216" x2="230" y2="182"/>
+              <line class="bkv-spoke" x1="242.1" y1="237" x2="271.6" y2="254"/>
+              <line class="bkv-spoke" x1="217.9" y1="237" x2="188.4" y2="254"/>
+            </g>
+            <circle class="bkv-bolt" cx="230" cy="230" r="7"/>
+
+            <!-- resolution: the unlocked channel through the aligned notches -->
+            <line class="bkv-channel" x1="230" y1="164" x2="230" y2="42"/>
+            <circle class="bkv-pulse" cx="230" cy="230" r="64"/>
+            <g class="bkv-tag-g" transform="translate(230 24)">
+              <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1">approved</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE PROBLEM ================= -->
+    <!-- DRAFT — marketing review: pain points paraphrased from flowx.ai/banking -->
+    <section class="section" id="problem">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">01 / The problem</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Where banking leaks time<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">The bottleneck isn't ambition —
+              it's the manual handoffs between systems that were never meant to talk.</p>
+          </div>
+        </div>
+        <div class="segs segs--3">
+          <article class="seg rv" style="--i:0">
+            <h3 class="seg__name">Onboarding that stalls</h3>
+            <p class="seg__desc">KYC and onboarding drag across days of manual checks — customers wait while documents bounce between teams.</p>
+          </article>
+          <article class="seg rv" style="--i:1">
+            <h3 class="seg__name">Lending bottlenecks</h3>
+            <p class="seg__desc">Underwriting queues grow faster than headcount. Every exception is a handoff, and every handoff is a day.</p>
+          </article>
+          <article class="seg rv" style="--i:2">
+            <h3 class="seg__name">Reporting overhead</h3>
+            <p class="seg__desc">Financial reporting eats analyst time reconciling numbers across systems instead of explaining them.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VALUE STREAM ================= -->
+    <section class="section" id="value-stream">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">02 / Value stream</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">The lending journey, end to end<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">From first application to funded account —
+              agents attach to every stage of origination, onboarding, and risk.</p>
+          </div>
+        </div>
+
+        <figure class="vs rv" style="--i:2" role="img" aria-label="Lending journey pipeline: apply, verify, underwrite, decide, onboard — with agents attached to each stage">
+          <div class="vs__bar mono"><span>banking / lending journey</span><span class="vs__live"><i></i>agents live</span></div>
+          <div class="vs__scroll">
+            <svg viewBox="0 0 960 216" aria-hidden="true">
+              <path id="bkSpine" class="abx-edge" d="M20 59 H940"/>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#bkSpine"/></animateMotion></circle>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#bkSpine"/></animateMotion></circle>
+              <g class="vs-stage" data-stage="apply">
+                <rect class="abx-node" x="20" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="36" y="64">apply</text>
+                <text class="abx-sub" x="132" y="64">01</text>
+              </g>
+              <g class="vs-stage" data-stage="verify">
+                <rect class="abx-node" x="210" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="226" y="64">verify</text>
+                <text class="abx-sub" x="322" y="64">02</text>
+                <path class="abx-edge" d="M290 82 C290 112 296 128 296 148"/>
+                <rect class="abx-chip" x="222" y="148" width="150" height="38" rx="9"/>
+                <text class="abx-label" x="238" y="171">doc-completeness</text>
+              </g>
+              <g class="vs-stage vs-stage--live" data-stage="underwrite">
+                <rect class="abx-node abx-node--live" x="400" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label abx-label--live" x="416" y="64">underwrite</text>
+                <circle class="abx-dot--live" cx="540" cy="59" r="4"/>
+                <path class="abx-edge" d="M480 82 C480 112 486 128 486 148"/>
+                <rect class="abx-chip abx-chip--pick" x="404" y="148" width="164" height="38" rx="9"/>
+                <text class="abx-label abx-label--live" x="420" y="171">income-analysis +8</text>
+              </g>
+              <g class="vs-stage" data-stage="decide">
+                <rect class="abx-node" x="590" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="606" y="64">decide</text>
+                <text class="abx-sub" x="702" y="64">04</text>
+                <path class="abx-edge" d="M670 82 C670 112 676 128 676 148"/>
+                <rect class="abx-chip" x="602" y="148" width="148" height="38" rx="9"/>
+                <text class="abx-label" x="618" y="171">collateral-check</text>
+              </g>
+              <g class="vs-stage" data-stage="onboard">
+                <rect class="abx-node" x="780" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="796" y="64">onboard</text>
+                <text class="abx-sub" x="892" y="64">05</text>
+              </g>
+            </svg>
+          </div>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ================= SEGMENTS ================= -->
+    <section class="section" id="segments">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">03 / Who it's for</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Built for every banking desk<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Hover a segment to see where its
+              agents sit on the journey.</p>
+          </div>
+        </div>
+        <div class="segs segs--3">
+          <article class="seg rv" style="--i:0" data-stages="apply underwrite onboard">
+            <h3 class="seg__name">Retail Banking</h3>
+            <p class="seg__desc">Agents for high-volume customer journeys; from mortgage origination to account opening and customer retention.</p>
+            <ul class="seg__chips mono">
+              <li>Retail mortgage underwriting</li>
+              <li>Customer churn &amp; retention</li>
+              <li>Quick wins</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:1" data-stages="apply verify decide">
+            <h3 class="seg__name">Commercial &amp; Corporate Banking</h3>
+            <p class="seg__desc">End-to-end automation for commercial lending, corporate onboarding, SME underwriting, and trade finance operations.</p>
+            <ul class="seg__chips mono">
+              <li>Commercial onboarding</li>
+              <li>Corporate account opening</li>
+              <li>Commercial lending</li>
+              <li>Trade finance invoice factoring</li>
+              <li>SME/Corporate underwriting financial insights</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:2" data-stages="verify decide">
+            <h3 class="seg__name">Risk &amp; Compliance</h3>
+            <p class="seg__desc">Production-ready agents for fraud investigation, AML/KYC checks, financial crime risk assessment, and regulatory processing.</p>
+            <ul class="seg__chips mono">
+              <li>Fraud investigation</li>
+              <li>AML &amp; KYC</li>
+              <li>Garnishment processing</li>
+              <li>Financial crime risk assessment</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FEATURED AGENTS ================= -->
+    <section class="section" id="featured">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">04 / Featured</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Featured agents, up close<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Nine banking agents — what each one watches,
+              decides, and hands back to your team.</p>
+          </div>
+        </div>
+
+        <!-- DRAFT — marketing review: micro-visual data invented -->
+        <div class="abento">
+          <article class="fcard fcard--3 rv" style="--i:0">
+            <h3 class="fcard__name mono">false-positive-screener</h3>
+            <p class="fcard__desc">Reasons through transaction context to filter obvious false positives before human review</p>
+            <div class="fviz fviz--feed mono" id="fpsFeed" aria-hidden="true"></div>
+          </article>
+          <article class="fcard fcard--3 rv" style="--i:1">
+            <h3 class="fcard__name mono">sar-report-compiler</h3>
+            <p class="fcard__desc">Drafts suspicious-activity reports from case evidence, ready for compliance review.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>case 4471-A · draft ready <em class="amber">6 min</em></span>
+              <span>sections auto-filled <em>11/13</em></span>
+              <span>reviewer edits <em>−72%</em></span>
+            </div>
+          </article>
+
+          <article class="fcard fcard--2 rv" style="--i:2">
+            <h3 class="fcard__name mono">alert-triage</h3>
+            <p class="fcard__desc">Ranks incoming alerts by risk so analysts open the ones that matter first.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>ALR-2210 · low risk <em>closed</em></span>
+              <span>ALR-2214 · duplicate <em>merged</em></span>
+              <span>ALR-2216 · pattern hit <em class="amber">escalated</em></span>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:3">
+            <h3 class="fcard__name mono">case-narrative-generator</h3>
+            <p class="fcard__desc">Writes the case narrative from transaction history and analyst notes.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>sources cited <em>14</em></span>
+              <span>timeline attached <em>yes</em></span>
+              <span>review status <em class="amber">ready</em></span>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:4">
+            <h3 class="fcard__name mono">timeline-generator</h3>
+            <p class="fcard__desc">Reconstructs event timelines across accounts and counterparties.</p>
+            <div class="fviz fviz--dots mono" aria-hidden="true">
+              <span>evt</span><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i></i><i class="on"></i>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:5">
+            <h3 class="fcard__name mono">evidence-compiler</h3>
+            <p class="fcard__desc">Gathers statements, logs, and documents into one indexed evidence pack.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>documents pulled <em>27</em></span>
+              <span>duplicates removed <em>9</em></span>
+              <span>pack indexed <em class="amber">done</em></span>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:6">
+            <h3 class="fcard__name mono">business-activity-classification</h3>
+            <p class="fcard__desc">Classifies counterparty business activity for KYC risk scoring.</p>
+            <div class="fviz fviz--bars" aria-hidden="true">
+              <i style="--h:42%"></i><i style="--h:66%"></i><i class="on" style="--h:84%"></i><i style="--h:31%"></i><i style="--h:57%"></i><i style="--h:48%"></i><i style="--h:73%"></i>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:7">
+            <h3 class="fcard__name mono">legal-contract-drafting</h3>
+            <p class="fcard__desc">Drafts standard clauses from term sheets, flagging deviations from policy.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>clauses drafted <em>18</em></span>
+              <span>deviations flagged <em class="amber">2</em></span>
+              <span>playbook match <em>96%</em></span>
+            </div>
+          </article>
+
+          <article class="fcard fcard--6 fcard--wave rv" style="--i:8">
+            <div>
+              <h3 class="fcard__name mono">voice-call-transcriber</h3>
+              <p class="fcard__desc">Converts MP3 call recordings to searchable timestamped transcripts with keyword indexing</p>
+              <p class="fviz__ctx mono">00:03:12 — “…confirm the delivery window for Thursday…”</p>
+            </div>
+            <div class="fviz fviz--wave" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WORKFLOWS ================= -->
+    <!-- DRAFT — marketing review: descriptions paraphrased from flowx.ai/banking -->
+    <section class="section" id="workflows">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">05 / Workflows</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Three workflows, mission-critical<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Where banking agent stacks go to work first.</p>
+          </div>
+        </div>
+        <div class="segs segs--3">
+          <article class="seg rv" style="--i:0">
+            <span class="seg__no mono">01</span>
+            <h3 class="seg__name">Onboarding &amp; KYC</h3>
+            <p class="seg__desc">Agents verify identity, screen documents, and assemble the case file before a human ever opens it.</p>
+          </article>
+          <article class="seg rv" style="--i:1">
+            <span class="seg__no mono">02</span>
+            <h3 class="seg__name">Underwriting</h3>
+            <p class="seg__desc">Income analysis, collateral checks, and policy pricing run in parallel — the underwriter reviews instead of retyping.</p>
+          </article>
+          <article class="seg rv" style="--i:2">
+            <span class="seg__no mono">03</span>
+            <h3 class="seg__name">Financial Insights</h3>
+            <p class="seg__desc">Agents reconcile positions and draft reports with sources attached, on schedule.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section section--cta" id="cta">
+      <canvas class="cta__canvas" aria-hidden="true"></canvas>
+      <div class="shell">
+        <span class="section__no mono">06 / Next</span>
+        <h2 class="cta__title">
+          <span class="rv" style="--i:0">Put agents on your</span>
+          <span class="rv" style="--i:1">lending journey<span class="amber">.</span></span>
+        </h2>
+        <div class="cta__row rv" style="--i:2">
+          <a class="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Schedule a customized demo</a>
+          <a class="btn btn--ghost btn--lg" href="./index.html#hero">Compile your own agent</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <!-- copied from index.html:580-624 — only the Platform column hrefs change, see deltas above -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__top">
+        <div class="footer__id">
+          <svg class="footer__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+            <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor"/>
+            <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor"/>
+            <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor"/>
+            <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor"/>
+            <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813"/>
+            <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor"/>
+          </svg>
+          <address class="footer__offices mono">
+            Charles de Gaulle Plaza, Piata Charles de Gaulle 15, 9th floor, 011857 Bucharest, Romania<br />
+            352 Sharon Park Drive, Menlo Park, CA 94025
+          </address>
+        </div>
+        <nav class="footer__cols" aria-label="Footer">
+          <div>
+            <h4 class="mono">Platform</h4>
+            <a href="./banking.html">Banking</a>
+            <a href="./insurance.html">Insurance</a>
+            <a href="./logistics.html">Logistics</a>
+            <a href="./index.html#blueprint">Agent Builder</a>
+            <a href="./index.html#proof">Proof</a>
+          </div>
+          <div>
+            <h4 class="mono">Company</h4>
+            <a href="./about.html">About us</a>
+          </div>
+          <!-- VERIFY URLS before publish -->
+          <div>
+            <h4 class="mono">Resources</h4>
+            <a href="https://www.flowx.ai/blog" target="_blank" rel="noopener">Blog</a>
+            <a href="https://docs.flowx.ai" target="_blank" rel="noopener">Documentation</a>
+            <a href="https://academy.flowx.ai" target="_blank" rel="noopener">Academy</a>
+            <a href="#cta">Support</a>
+          </div>
+          <div>
+            <h4 class="mono">Legal</h4>
+            <a href="https://www.flowx.ai/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+            <a href="https://www.flowx.ai/cookies" target="_blank" rel="noopener">Cookies</a>
+            <a href="https://www.flowx.ai/terms-and-conditions" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__base mono">
+        <span>© <span id="year">2026</span> FlowX.AI Business Systems — Bucharest · Menlo Park</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

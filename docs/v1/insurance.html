@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlowX — Insurance</title>
+  <meta name="description" content="FlowX.AI insurance agents on the claims journey — underwriting, claims processing, and fraud detection, for carriers, brokers, and reinsurers." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M28 26 L60 62 M60 26 L28 62' stroke='%23F4F5F3' stroke-width='9'/%3E%3Crect x='28' y='70' width='44' height='9' fill='%23FCB813'/%3E%3C/svg%3E" />
+  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/orderField-B_6C3SKG.js"></script>
+  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/industry-B6i38Cnm.js"></script>
+  <link rel="stylesheet" crossorigin href="/flx_landing_explo/v1/assets/orderField-Dw9HA3Mj.css">
+</head>
+<body>
+  <canvas id="grain" class="grain" aria-hidden="true"></canvas>
+
+  <!-- ================= NAV ================= -->
+  <!-- copied from index.html — delta: aria-current on Insurance in the dropdown, Book a demo → #cta -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="./index.html" aria-label="FlowX home">
+        <svg class="nav__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+          <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor"/>
+          <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor"/>
+          <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor"/>
+          <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor"/>
+          <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813"/>
+          <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <!-- Industries dropdown is CSS-only (hover / focus-within); no aria-expanded — no JS to sync it -->
+        <div class="nav__drop">
+          <button class="nav__droptrigger" type="button" aria-haspopup="true">Industries</button>
+          <div class="nav__menu">
+            <div class="nav__menu-panel">
+              <a href="./banking.html">Banking</a>
+              <a href="./insurance.html" aria-current="page">Insurance</a>
+              <a href="./logistics.html">Logistics</a>
+            </div>
+          </div>
+        </div>
+        <a href="./resources.html">Resources</a>
+        <a href="./about.html">Company</a>
+      </nav>
+      <div class="nav__right">
+        <a class="btn btn--primary btn--sm" href="#cta">Book a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <section class="ahero" id="ihero">
+      <div class="shell ahero__grid">
+        <div class="ahero__text">
+          <p class="hero__eyebrow mono rv-load" style="--d:0">
+            <span class="tick" aria-hidden="true"></span>
+            Industries &middot; Insurance
+          </p>
+          <h1 class="hero__title">
+            <span class="hero__line hero__line--big rv-load" style="--d:1">Insurance agents, on the claims journey<span class="amber">.</span></span>
+          </h1>
+          <!-- DRAFT — marketing review -->
+          <p class="hero__sub rv-load" style="--d:2">
+            From first notice of loss to settlement — agents for carriers,
+            brokers, and reinsurers at every step of the claim. Built for
+            insurers where failure is not an option.
+          </p>
+          <p class="astats mono rv-load" style="--d:3">
+            <span><b>220+</b> agents</span>
+            <span><b>3</b> industries</span>
+            <span><b class="amber">●</b> in production</span>
+          </p>
+        </div>
+
+        <!-- shield deflecting risk: the covered asset stays whole; what lands is restored -->
+        <div class="ahero__viz" aria-hidden="true">
+          <svg viewBox="0 0 460 460" role="img" aria-label="A shield arc deflecting falling risk while the insured asset beneath is kept whole">
+            <!-- risk particles: four deflect off the arc, one lands and is restored -->
+            <g class="shv-p">
+              <circle r="2.6"/>
+              <animateMotion dur="5.6s" begin="0s" repeatCount="indefinite" path="M150 -10 L150 200 Q150 216 128 228 T 74 254"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="0s" repeatCount="indefinite"/>
+            </g>
+            <g class="shv-p">
+              <circle r="2.6"/>
+              <animateMotion dur="5.6s" begin="-1.4s" repeatCount="indefinite" path="M310 -10 L310 200 Q310 216 332 228 T 386 254"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="-1.4s" repeatCount="indefinite"/>
+            </g>
+            <g class="shv-p">
+              <circle r="2.6"/>
+              <animateMotion dur="5.6s" begin="-2.8s" repeatCount="indefinite" path="M190 -10 L190 176 Q190 190 168 198 T 116 228"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="-2.8s" repeatCount="indefinite"/>
+            </g>
+            <g class="shv-p">
+              <circle r="2.6"/>
+              <animateMotion dur="5.6s" begin="-4.2s" repeatCount="indefinite" path="M262 -10 L262 174 Q262 186 284 194 T 340 222"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.88;1" dur="5.6s" begin="-4.2s" repeatCount="indefinite"/>
+            </g>
+            <!-- the one that gets through: falls, lands on the asset, fades -->
+            <g class="shv-p">
+              <circle r="2.6"/>
+              <animateMotion dur="7s" begin="0s" repeatCount="indefinite" calcMode="linear"
+                keyPoints="0;1;1" keyTimes="0;0.2;1" path="M230 -10 L230 270"/>
+              <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.2;0.26;1" dur="7s" begin="0s" repeatCount="indefinite"/>
+            </g>
+
+            <!-- shield arcs over the asset -->
+            <path class="shv-arc--outer" d="M96 300 A134 134 0 0 1 364 300"/>
+            <path class="shv-arc" d="M110 300 A120 120 0 0 1 350 300"/>
+            <g transform="translate(230 166)">
+              <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1">covered</text>
+            </g>
+
+            <!-- the insured asset: intact card, same language as the resources doc stack -->
+            <rect class="shv-card" x="150" y="278" width="160" height="92" rx="12"/>
+            <rect class="shv-title" x="170" y="298" width="64" height="8" rx="4"/>
+            <line class="shv-line" x1="170" y1="322" x2="290" y2="322"/>
+            <line class="shv-line" x1="170" y1="338" x2="258" y2="338"/>
+            <line class="shv-ground" x1="120" y1="392" x2="340" y2="392"/>
+            <text class="ivz-lbl" x="230" y="412" text-anchor="middle">asset &#183; intact</text>
+
+            <!-- restore sweep: after the landed particle, the card is made whole -->
+            <g class="shv-restore">
+              <rect class="shv-glow" x="152" y="280" width="156" height="12" rx="3"/>
+              <rect class="shv-scan" x="152" y="286" width="156" height="1.6"/>
+              <animateTransform attributeName="transform" attributeType="XML" type="translate"
+                values="0 0; 0 0; 0 74; 0 74" keyTimes="0; 0.24; 0.52; 1" dur="7s" begin="0s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.22;0.26;0.5;0.56;1" dur="7s" begin="0s" repeatCount="indefinite"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE PROBLEM ================= -->
+    <!-- DRAFT — marketing review: pain points paraphrased from flowx.ai/insurance -->
+    <section class="section" id="problem">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">01 / The problem</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Where insurance leaks time<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Fragmented data and manual reviews —
+              the claim is decided long before anyone decides it.</p>
+          </div>
+        </div>
+        <div class="segs segs--3">
+          <article class="seg rv" style="--i:0">
+            <h3 class="seg__name">Fragmented data</h3>
+            <p class="seg__desc">Policy, claims, and telematics live in different systems — underwriters stitch them together by hand.</p>
+          </article>
+          <article class="seg rv" style="--i:1">
+            <h3 class="seg__name">Manual reviews</h3>
+            <p class="seg__desc">Every claim above the threshold waits for a reviewer — including the majority that are routine.</p>
+          </article>
+          <article class="seg rv" style="--i:2">
+            <h3 class="seg__name">Exceptions everywhere</h3>
+            <p class="seg__desc">Fraud signals hide in the noise, and exception handling swallows adjuster capacity.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VALUE STREAM ================= -->
+    <section class="section" id="value-stream">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">02 / Value stream</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">The claims journey, end to end<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">From first notice of loss to settlement —
+              agents for carriers, brokers, and reinsurers at every step.</p>
+          </div>
+        </div>
+
+        <figure class="vs rv" style="--i:2" role="img" aria-label="Claims journey pipeline: FNOL, docs, assess, decide, settle — with agents attached to each stage">
+          <div class="vs__bar mono"><span>insurance / claims journey</span><span class="vs__live"><i></i>agents live</span></div>
+          <div class="vs__scroll">
+            <svg viewBox="0 0 960 216" aria-hidden="true">
+              <path id="insSpine" class="abx-edge" d="M20 59 H940"/>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#insSpine"/></animateMotion></circle>
+              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#insSpine"/></animateMotion></circle>
+              <g class="vs-stage" data-stage="fnol">
+                <rect class="abx-node" x="20" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="36" y="64">fnol</text>
+                <text class="abx-sub" x="132" y="64">01</text>
+              </g>
+              <g class="vs-stage" data-stage="docs">
+                <rect class="abx-node" x="210" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="226" y="64">docs</text>
+                <text class="abx-sub" x="322" y="64">02</text>
+                <path class="abx-edge" d="M290 82 C290 112 296 128 296 148"/>
+                <rect class="abx-chip" x="222" y="148" width="150" height="38" rx="9"/>
+                <text class="abx-label" x="238" y="171">doc-completeness</text>
+              </g>
+              <g class="vs-stage vs-stage--live" data-stage="assess">
+                <rect class="abx-node abx-node--live" x="400" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label abx-label--live" x="416" y="64">assess</text>
+                <circle class="abx-dot--live" cx="540" cy="59" r="4"/>
+                <path class="abx-edge" d="M480 82 C480 112 486 128 486 148"/>
+                <rect class="abx-chip abx-chip--pick" x="398" y="148" width="176" height="38" rx="9"/>
+                <text class="abx-label abx-label--live" x="414" y="171">damage-extraction +5</text>
+              </g>
+              <g class="vs-stage" data-stage="decide">
+                <rect class="abx-node" x="590" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="606" y="64">decide</text>
+                <text class="abx-sub" x="702" y="64">04</text>
+                <path class="abx-edge" d="M670 82 C670 112 676 128 676 148"/>
+                <rect class="abx-chip" x="606" y="148" width="140" height="38" rx="9"/>
+                <text class="abx-label" x="622" y="171">fraud-signals</text>
+              </g>
+              <g class="vs-stage" data-stage="settle">
+                <rect class="abx-node" x="780" y="36" width="160" height="46" rx="10"/>
+                <text class="abx-label" x="796" y="64">settle</text>
+                <text class="abx-sub" x="892" y="64">05</text>
+              </g>
+            </svg>
+          </div>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ================= SEGMENTS ================= -->
+    <section class="section" id="segments">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">03 / Who it's for</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Built for every side of the risk<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Hover a segment to see where its
+              agents sit on the journey.</p>
+          </div>
+        </div>
+        <div class="segs segs--3">
+          <article class="seg rv" style="--i:0" data-stages="fnol docs assess decide settle">
+            <h3 class="seg__name">Insurers &amp; Carriers</h3>
+            <p class="seg__desc">Core operational agents for insurance companies managing policies and claims directly.</p>
+            <ul class="seg__chips mono">
+              <li>Policy onboarding</li>
+              <li>Claims processing</li>
+              <li>Underwriting assessment</li>
+              <li>Fraud detection &amp; alerting</li>
+              <li>Regulatory &amp; Compliance</li>
+              <li>Complaints &amp; disputes</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:1" data-stages="fnol docs settle">
+            <h3 class="seg__name">Brokers</h3>
+            <p class="seg__desc">Agents focused on distribution, client management, and sales optimization.</p>
+            <ul class="seg__chips mono">
+              <li>Distribution</li>
+              <li>Renewals &amp; Upsell</li>
+              <li>Policy onboarding</li>
+              <li>Complaints &amp; disputes</li>
+              <li>Regulatory &amp; Compliance</li>
+            </ul>
+          </article>
+          <article class="seg rv" style="--i:2" data-stages="assess decide">
+            <h3 class="seg__name">Reinsurance</h3>
+            <p class="seg__desc">Agents tailored for risk transfer, treaty management, and portfolio analysis.</p>
+            <ul class="seg__chips mono">
+              <li>Reinsurance coordination</li>
+              <li>Underwriting assessment</li>
+              <li>Fraud detection &amp; alerting</li>
+              <li>Regulatory &amp; Compliance</li>
+              <li>Claims processing</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FEATURED AGENTS ================= -->
+    <section class="section" id="featured">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">04 / Featured</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Featured agents, up close<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Eight insurance agents — what each one watches,
+              decides, and hands back to your team.</p>
+          </div>
+        </div>
+
+        <!-- DRAFT — marketing review: micro-visual data invented -->
+        <div class="abento">
+          <article class="fcard fcard--3 rv" style="--i:0">
+            <h3 class="fcard__name mono">quote-optimization</h3>
+            <p class="fcard__desc">Tunes quote pricing against bind probability and portfolio targets.</p>
+            <div class="fviz fviz--rate mono" aria-hidden="true">
+              <span class="fviz__big"><span class="amber">$</span><span>1,284</span>/yr</span>
+              <span class="fviz__ctx">motor · bind probability 68%</span>
+            </div>
+          </article>
+          <article class="fcard fcard--3 rv" style="--i:1">
+            <h3 class="fcard__name mono">premium-change-explainer</h3>
+            <p class="fcard__desc">Explains premium changes in plain language, from rating factors to renewal letters.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>premium <em class="amber">+$112</em></span>
+              <span>driver added · age band</span>
+              <span>letter drafted <em>ready</em></span>
+            </div>
+          </article>
+
+          <article class="fcard fcard--2 rv" style="--i:2">
+            <h3 class="fcard__name mono">telematics-interpreter</h3>
+            <p class="fcard__desc">Turns raw telematics streams into underwriting-ready risk scores.</p>
+            <div class="fviz fviz--bars" aria-hidden="true">
+              <i style="--h:38%"></i><i style="--h:52%"></i><i style="--h:44%"></i><i class="on" style="--h:81%"></i><i style="--h:60%"></i><i style="--h:47%"></i><i style="--h:69%"></i>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:3">
+            <h3 class="fcard__name mono">commission-rule-validation</h3>
+            <p class="fcard__desc">Validates incentive and commission calculations against distributor contracts.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>statements checked <em>412</em></span>
+              <span>mismatches <em class="amber">3</em></span>
+              <span>recovered <em>$8.2k</em></span>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:4">
+            <h3 class="fcard__name mono">contract-compliance-checker</h3>
+            <p class="fcard__desc">Checks distributor contracts for clauses that drift from the approved playbook.</p>
+            <div class="fviz fviz--risk mono" aria-hidden="true">
+              <span>policy drift · 0.18</span>
+              <div class="fviz__meter"><i style="--w:18%"></i></div>
+              <span class="fviz__ctx">recommend: legal review §7.2</span>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:5">
+            <h3 class="fcard__name mono">sales-script-compliance</h3>
+            <p class="fcard__desc">Reviews recorded sales calls against script and suitability requirements.</p>
+            <div class="fviz fviz--dots mono" aria-hidden="true">
+              <span>call</span><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:6">
+            <h3 class="fcard__name mono">cross-sell-trigger</h3>
+            <p class="fcard__desc">Spots life events and coverage gaps that warrant a cross-sell conversation.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>P-8841 · new home <em class="amber">trigger</em></span>
+              <span>coverage gap · contents</span>
+              <span>next best action <em>queued</em></span>
+            </div>
+          </article>
+          <article class="fcard fcard--2 rv" style="--i:7">
+            <h3 class="fcard__name mono">suitability-validator</h3>
+            <p class="fcard__desc">Validates product recommendations against customer profile and regulation.</p>
+            <div class="fviz fviz--rows mono" aria-hidden="true">
+              <span>profile match <em>0.91</em></span>
+              <span>regulation check <em>pass</em></span>
+              <span>re-match suggested <em class="amber">1</em></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WORKFLOWS ================= -->
+    <!-- DRAFT — marketing review: descriptions paraphrased from flowx.ai/insurance -->
+    <section class="section" id="workflows">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">05 / Workflows</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Three workflows, mission-critical<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Where insurance agent stacks go to work first.</p>
+          </div>
+        </div>
+        <div class="segs segs--3">
+          <article class="seg rv" style="--i:0">
+            <span class="seg__no mono">01</span>
+            <h3 class="seg__name">Underwriting</h3>
+            <p class="seg__desc">Agents assemble the risk picture from fragmented sources so underwriters price with the full file.</p>
+          </article>
+          <article class="seg rv" style="--i:1">
+            <span class="seg__no mono">02</span>
+            <h3 class="seg__name">Claims Processing</h3>
+            <p class="seg__desc">Routine claims move straight through — documents checked, damage assessed, settlement queued.</p>
+          </article>
+          <article class="seg rv" style="--i:2">
+            <span class="seg__no mono">03</span>
+            <h3 class="seg__name">Fraud Detection</h3>
+            <p class="seg__desc">Signals surface early with the evidence attached, instead of at the bottom of an exception queue.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section section--cta" id="cta">
+      <canvas class="cta__canvas" aria-hidden="true"></canvas>
+      <div class="shell">
+        <span class="section__no mono">06 / Next</span>
+        <h2 class="cta__title">
+          <span class="rv" style="--i:0">Put agents on your</span>
+          <span class="rv" style="--i:1">claims journey<span class="amber">.</span></span>
+        </h2>
+        <div class="cta__row rv" style="--i:2">
+          <a class="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Schedule a customized demo</a>
+          <a class="btn btn--ghost btn--lg" href="./index.html#hero">Compile your own agent</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <!-- copied from index.html:580-624 — only the Platform column hrefs change, see deltas above -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__top">
+        <div class="footer__id">
+          <svg class="footer__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+            <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor"/>
+            <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor"/>
+            <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor"/>
+            <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor"/>
+            <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813"/>
+            <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor"/>
+          </svg>
+          <address class="footer__offices mono">
+            Charles de Gaulle Plaza, Piata Charles de Gaulle 15, 9th floor, 011857 Bucharest, Romania<br />
+            352 Sharon Park Drive, Menlo Park, CA 94025
+          </address>
+        </div>
+        <nav class="footer__cols" aria-label="Footer">
+          <div>
+            <h4 class="mono">Platform</h4>
+            <a href="./banking.html">Banking</a>
+            <a href="./insurance.html">Insurance</a>
+            <a href="./logistics.html">Logistics</a>
+            <a href="./index.html#blueprint">Agent Builder</a>
+            <a href="./index.html#proof">Proof</a>
+          </div>
+          <div>
+            <h4 class="mono">Company</h4>
+            <a href="./about.html">About us</a>
+          </div>
+          <!-- VERIFY URLS before publish -->
+          <div>
+            <h4 class="mono">Resources</h4>
+            <a href="https://www.flowx.ai/blog" target="_blank" rel="noopener">Blog</a>
+            <a href="https://docs.flowx.ai" target="_blank" rel="noopener">Documentation</a>
+            <a href="https://academy.flowx.ai" target="_blank" rel="noopener">Academy</a>
+            <a href="#cta">Support</a>
+          </div>
+          <div>
+            <h4 class="mono">Legal</h4>
+            <a href="https://www.flowx.ai/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+            <a href="https://www.flowx.ai/cookies" target="_blank" rel="noopener">Cookies</a>
+            <a href="https://www.flowx.ai/terms-and-conditions" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__base mono">
+        <span>© <span id="year">2026</span> FlowX.AI Business Systems — Bucharest · Menlo Park</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
