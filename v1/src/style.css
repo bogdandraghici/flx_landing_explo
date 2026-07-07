@@ -2552,7 +2552,7 @@ em { font-style: normal; }
 .cit-pick { fill: none; stroke: var(--amber); stroke-width: 1.4; animation: cit-pick 12s linear infinite; }
 .cit-line { fill: none; stroke: var(--amber); stroke-width: 1.3; stroke-dasharray: 176; stroke-dashoffset: 0; opacity: 1; animation: cit-line 12s linear infinite; }
 .cit-arr { fill: var(--amber); animation: cit-land 12s linear infinite; }
-.cit-mark { font-family: var(--font-mono); font-size: 10px; font-weight: 500; fill: var(--amber); animation: cit-land 12s linear infinite; }
+.cit-mark { font-size: 7px; font-weight: 600; fill: var(--amber); animation: cit-land 12s linear infinite; }
 .cit-clause-hot { stroke: var(--amber); stroke-width: 1.3; stroke-linecap: round; animation: cit-land 12s linear infinite; }
 .cit-note { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.14em; fill: var(--text-faint); animation: cit-note 12s linear infinite; }
 .cit-note-num { fill: var(--amber); font-weight: 600; }
@@ -2560,23 +2560,26 @@ em { font-style: normal; }
 .cit-tag--live { opacity: 0; animation: cit-taglive 12s linear infinite; }
 .cit-tag--ok { opacity: 0.9; animation: cit-tagok 12s linear infinite; }
 
+/* the run dot streams in, PARKS in the cited slot while the citation resolves
+   above it, then resumes to the right — 250px = the cited node (translateX 186) */
 @keyframes cit-run {
   0% { opacity: 0; transform: translateX(0); }
-  3% { opacity: 1; }
-  28% { opacity: 1; transform: translateX(332px); }
-  31%, 100% { opacity: 0; transform: translateX(332px); }
+  3% { opacity: 1; transform: translateX(0); }
+  20%, 72% { opacity: 1; transform: translateX(186px); }
+  86% { opacity: 1; transform: translateX(332px); }
+  90%, 100% { opacity: 0; transform: translateX(332px); }
 }
-@keyframes cit-pick { 0%, 32% { opacity: 0; } 37%, 96% { opacity: 1; } 99%, 100% { opacity: 0; } }
+@keyframes cit-pick { 0%, 18% { opacity: 0; } 22%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
 @keyframes cit-line {
-  0%, 40% { opacity: 0; stroke-dashoffset: 176; }
-  44% { opacity: 1; stroke-dashoffset: 176; }
-  58%, 96% { opacity: 1; stroke-dashoffset: 0; }
-  99%, 100% { opacity: 0; stroke-dashoffset: 0; }
+  0%, 24% { opacity: 0; stroke-dashoffset: 176; }
+  28% { opacity: 1; stroke-dashoffset: 176; }
+  44%, 94% { opacity: 1; stroke-dashoffset: 0; }
+  98%, 100% { opacity: 0; stroke-dashoffset: 0; }
 }
-@keyframes cit-land { 0%, 58% { opacity: 0; } 63%, 96% { opacity: 1; } 99%, 100% { opacity: 0; } }
-@keyframes cit-note { 0%, 68% { opacity: 0; } 74%, 96% { opacity: 1; } 99%, 100% { opacity: 0; } }
-@keyframes cit-taglive { 0%, 3% { opacity: 0; } 7%, 58% { opacity: 0.9; } 64%, 100% { opacity: 0; } }
-@keyframes cit-tagok { 0%, 64% { opacity: 0; } 70%, 96% { opacity: 0.9; } 99%, 100% { opacity: 0; } }
+@keyframes cit-land { 0%, 46% { opacity: 0; } 52%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
+@keyframes cit-note { 0%, 56% { opacity: 0; } 62%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
+@keyframes cit-taglive { 0%, 3% { opacity: 0; } 7%, 46% { opacity: 0.9; } 52%, 100% { opacity: 0; } }
+@keyframes cit-tagok { 0%, 52% { opacity: 0; } 58%, 94% { opacity: 0.9; } 98%, 100% { opacity: 0; } }
 
 /* ============================================================
    REDUCED MOTION

@@ -7,9 +7,9 @@
   <meta name="description" content="Observatory is FlowX.AI's observability and governance plane. GAVEL enforces policy on live agent telemetry, harvests compliance evidence from every trace, and answers an audit by walking evidence back to the regulation." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Ccircle cx='50' cy='46' r='17' fill='none' stroke='%23F4F5F3' stroke-width='9'/%3E%3Ccircle cx='50' cy='46' r='4' fill='%23F4F5F3'/%3E%3Crect x='30' y='74' width='40' height='8' fill='%23FCB813'/%3E%3C/svg%3E" />
   <script>(function(){try{var t=localStorage.getItem("flx-theme");if(t!=="light"&&t!=="dark")t="dark";document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="dark";}})();</script>
-  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/observatory-DuIHBUZV.js"></script>
-  <link rel="modulepreload" crossorigin href="/flx_landing_explo/v1/assets/orderField-C2osPtI_.js">
-  <link rel="stylesheet" crossorigin href="/flx_landing_explo/v1/assets/orderField-B9phBTWV.css">
+  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/observatory-0QqA-NM9.js"></script>
+  <link rel="modulepreload" crossorigin href="/flx_landing_explo/v1/assets/orderField-ByqqE3Z3.js">
+  <link rel="stylesheet" crossorigin href="/flx_landing_explo/v1/assets/orderField-BrDATb7X.css">
 </head>
 <body>
   <canvas id="grain" class="grain" aria-hidden="true"></canvas>
@@ -290,15 +290,14 @@
             <rect class="cit-rule" x="64" y="104" width="300" height="4" rx="2"/>
             <rect class="cit-rule" x="64" y="116" width="332" height="4" rx="2"/>
             <!-- the active clause: the compliance requirement, legible; its footnote marker + underline light on resolution -->
-            <text class="cit-clause" x="64" y="134">no action exceeds its permissions</text>
-            <text class="cit-mark" x="245" y="130">2</text>
-            <line class="cit-clause-hot" x1="64" y1="139" x2="239" y2="139"/>
+            <text class="cit-clause" x="64" y="134">no action exceeds its permissions<tspan class="cit-mark" dy="-4">2</tspan></text>
+            <line class="cit-clause-hot" x1="64" y1="139" x2="248" y2="139"/>
             <rect class="cit-rule" x="64" y="150" width="250" height="4" rx="2"/>
             <rect class="cit-rule" x="64" y="162" width="170" height="4" rx="2"/>
 
             <!-- the citation line: rises from the cited event up to the clause -->
-            <line class="cit-line" x1="242" y1="324" x2="242" y2="148"/>
-            <path class="cit-arr" d="M238 154 l4 -6 l4 6 z"/>
+            <line class="cit-line" x1="250" y1="324" x2="250" y2="148"/>
+            <path class="cit-arr" d="M246 154 l4 -6 l4 6 z"/>
 
             <!-- RUNTIME: the live execution trace -->
             <text class="ivz-lbl" x="64" y="300" text-anchor="start">runtime · live trace</text>
@@ -306,7 +305,7 @@
             <circle class="cit-node" cx="80" cy="330" r="5"/>
             <circle class="cit-node" cx="134" cy="330" r="5"/>
             <circle class="cit-node" cx="188" cy="330" r="5"/>
-            <circle class="cit-node" cx="242" cy="330" r="5"/>
+            <circle class="cit-node" cx="250" cy="330" r="5"/>
             <circle class="cit-node" cx="298" cy="330" r="5"/>
             <circle class="cit-node" cx="352" cy="330" r="5"/>
             <circle class="cit-node" cx="396" cy="330" r="5"/>
@@ -315,7 +314,7 @@
               <line class="cit-tick" x1="80" y1="338" x2="80" y2="346"/>
               <line class="cit-tick" x1="134" y1="338" x2="134" y2="344"/>
               <line class="cit-tick" x1="188" y1="338" x2="188" y2="348"/>
-              <line class="cit-tick" x1="242" y1="338" x2="242" y2="343"/>
+              <line class="cit-tick" x1="250" y1="338" x2="250" y2="343"/>
               <line class="cit-tick" x1="298" y1="338" x2="298" y2="347"/>
               <line class="cit-tick" x1="352" y1="338" x2="352" y2="345"/>
               <line class="cit-tick" x1="396" y1="338" x2="396" y2="342"/>
@@ -324,7 +323,7 @@
             <!-- the streaming run -->
             <circle class="cit-run" cx="64" cy="330" r="3.6"/>
             <!-- the cited event: picked out of the trace, where the citation lands -->
-            <circle class="cit-pick" cx="242" cy="330" r="9"/>
+            <circle class="cit-pick" cx="250" cy="330" r="9"/>
 
             <!-- the footnote: the citation resolves to real trace metadata -->
             <text class="cit-note" x="64" y="390"><tspan class="cit-note-num">2</tspan>  trace 0x9f4a · permission check · pass · 14:32:07Z</text>
