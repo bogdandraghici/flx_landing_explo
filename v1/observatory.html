@@ -287,15 +287,15 @@
             <rect class="cit-rule" x="64" y="104" width="300" height="4" rx="2"/>
             <rect class="cit-rule" x="64" y="116" width="332" height="4" rx="2"/>
             <!-- the active clause: the compliance requirement, legible; its footnote marker + underline light on resolution -->
-            <text class="cit-clause" x="64" y="134">access limited to least-privilege scope</text>
-            <text class="cit-mark" x="292" y="130">2</text>
-            <line class="cit-clause-hot" x1="64" y1="139" x2="286" y2="139"/>
+            <text class="cit-clause" x="64" y="134">no action exceeds its permissions</text>
+            <text class="cit-mark" x="245" y="130">2</text>
+            <line class="cit-clause-hot" x1="64" y1="139" x2="239" y2="139"/>
             <rect class="cit-rule" x="64" y="150" width="250" height="4" rx="2"/>
             <rect class="cit-rule" x="64" y="162" width="170" height="4" rx="2"/>
 
             <!-- the citation line: rises from the cited event up to the clause -->
-            <line class="cit-line" x1="298" y1="324" x2="298" y2="148"/>
-            <path class="cit-arr" d="M294 154 l4 -6 l4 6 z"/>
+            <line class="cit-line" x1="242" y1="324" x2="242" y2="148"/>
+            <path class="cit-arr" d="M238 154 l4 -6 l4 6 z"/>
 
             <!-- RUNTIME: the live execution trace -->
             <text class="ivz-lbl" x="64" y="300" text-anchor="start">runtime · live trace</text>
@@ -321,10 +321,10 @@
             <!-- the streaming run -->
             <circle class="cit-run" cx="64" cy="330" r="3.6"/>
             <!-- the cited event: picked out of the trace, where the citation lands -->
-            <circle class="cit-pick" cx="298" cy="330" r="9"/>
+            <circle class="cit-pick" cx="242" cy="330" r="9"/>
 
             <!-- the footnote: the citation resolves to real trace metadata -->
-            <text class="cit-note" x="64" y="390"><tspan class="cit-note-num">2</tspan>  trace 0x9f4a · scope-check pass · 14:32:07Z</text>
+            <text class="cit-note" x="64" y="390"><tspan class="cit-note-num">2</tspan>  trace 0x9f4a · permission check · pass · 14:32:07Z</text>
 
             <!-- status tags -->
             <g class="cit-tag--live" transform="translate(230 418)">
