@@ -329,15 +329,7 @@ em { font-style: normal; }
 }
 .nav__brand { display: inline-flex; align-items: center; color: var(--text); }
 .nav__logo { height: 15px; width: auto; display: block; }
-.nav__links { display: flex; align-items: center; gap: 30px; }
-.nav__links a {
-  font-size: 13.5px;
-  color: var(--text-dim);
-  letter-spacing: 0.01em;
-  transition: color 0.2s ease;
-}
-.nav__links a:hover { color: var(--text); }
-.nav__links a[aria-current="page"] { color: var(--text); }
+.nav__links { display: flex; align-items: stretch; align-self: stretch; gap: 8px; }
 /* pages not built yet — shown but non-interactive */
 .nav__links a[aria-disabled="true"] {
   color: rgba(var(--text-rgb), 0.22);
@@ -383,48 +375,153 @@ em { font-style: normal; }
   white-space: nowrap;
 }
 
-/* Industries dropdown — CSS-only: opens on hover and on keyboard focus-within */
-.nav__drop { position: relative; }
-.nav__droptrigger {
-  display: block; /* not inline-block: baseline in .nav__drop's 16px line box drops it below the sibling links */
+/* ------------------------------------------------------------------
+   MEGA MENU — disclosure navigation (button + aria-expanded + panel).
+   Desktop: each .nav__item spans the full 66px bar so the pointer can
+   travel from trigger to panel without a dead zone; the panel itself is
+   a floating sheet anchored to the fixed header (.nav is the positioned
+   ancestor — .nav__item deliberately is NOT position:relative), centered
+   under the bar like the site's other popovers.
+   JS adds .nav--js and drives open state via .nav__item--open; without
+   JS the :hover / :focus-within fallback below keeps every link reachable.
+   ------------------------------------------------------------------ */
+.nav__item { display: flex; align-items: center; }
+.nav__trigger,
+.nav__top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
   font-size: 13.5px;
   color: var(--text-dim);
   letter-spacing: 0.01em;
   transition: color 0.2s ease;
 }
-.nav__drop:hover .nav__droptrigger,
-.nav__drop:focus-within .nav__droptrigger,
-.nav__drop:has(a[aria-current="page"]) .nav__droptrigger { color: var(--text); }
-.nav__menu {
-  position: absolute;
+.nav__trigger:hover,
+.nav__top:hover,
+.nav__top[aria-current="page"],
+.nav__item--open .nav__trigger,
+.nav__item:has([aria-current="page"]) .nav__trigger { color: var(--text); }
+.nav__caret {
+  width: 8px;
+  height: 5px;
+  flex: none;
+  opacity: 0.6;
+  transition: transform 0.2s var(--ease);
+}
+.nav__item--open .nav__caret { transform: rotate(180deg); }
+
+.nav__panel {
+  position: absolute; /* anchored to .nav (fixed), not .nav__item */
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  padding-top: 18px; /* invisible bridge so the pointer can travel to the panel */
+  max-width: min(1360px, calc(100vw - 32px));
+  padding-top: 10px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition: opacity 0.22s var(--ease), visibility 0.22s var(--ease);
 }
-.nav__drop:hover .nav__menu,
-.nav__drop:focus-within .nav__menu { opacity: 1; visibility: visible; }
-.nav__menu-panel {
-  display: grid;
-  min-width: 168px;
-  padding: 8px;
+.nav__sheet {
   background: var(--bg-raised);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: var(--shadow-pop);
+  padding: 24px 28px 18px;
+  transform: translateY(-6px);
+  transition: transform 0.22s var(--ease);
 }
-.nav__menu a {
+.nav__item--open .nav__panel { opacity: 1; visibility: visible; }
+.nav__item--open .nav__sheet { transform: none; }
+/* no-JS fallback: hover / keyboard focus opens the panel (desktop) */
+.nav:not(.nav--js) .nav__item:is(:hover, :focus-within) .nav__panel {
+  opacity: 1;
+  visibility: visible;
+}
+.nav:not(.nav--js) .nav__item:is(:hover, :focus-within) .nav__sheet { transform: none; }
+.nav:not(.nav--js) .nav__item:is(:hover, :focus-within) .nav__caret { transform: rotate(180deg); }
+
+.nav__cols { display: flex; align-items: stretch; }
+.nav__group { min-width: 188px; max-width: 232px; }
+.nav__group--wide { min-width: 296px; max-width: 320px; }
+.nav__group + .nav__group {
+  margin-left: 28px;
+  padding-left: 28px;
+  border-left: 1px solid var(--line-soft);
+}
+.nav__glabel {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0 0 10px 10px;
+}
+.nav__panel a {
+  display: block;
+  padding: 7px 10px;
+  border-radius: 8px;
   font-size: 13.5px;
   color: var(--text-dim);
-  padding: 8px 12px;
-  border-radius: 8px;
+  line-height: 1.4;
   transition: color 0.2s ease, background 0.2s ease;
 }
-.nav__menu a:hover { color: var(--text); background: rgba(var(--ink), 0.05); }
-.nav__menu a[aria-current="page"] { color: var(--text); }
+.nav__panel a:hover { color: var(--text); background: rgba(var(--ink), 0.05); }
+.nav__panel a[aria-current="page"] { color: var(--text); }
+.nav__panel a[aria-current="page"] .nav__link-t::after {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-left: 8px;
+  vertical-align: 2px;
+  background: var(--amber);
+}
+.nav__link-t { display: block; }
+.nav__link--desc .nav__link-t { font-weight: 500; }
+.nav__link-d {
+  display: block;
+  margin-top: 1px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-faint);
+}
+/* research papers read in the site's data voice */
+.nav__link--mono { font-family: var(--font-mono); font-size: 12.5px; }
+/* external-destination marker */
+.nav__ext { font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); margin-left: 6px; }
+.nav__panel a:hover .nav__ext { color: var(--text-dim); }
+
+/* featured posts (Resources → Latest) */
+.nav__post-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 3px;
+}
+.nav__post-tag { color: var(--amber-text); }
+.nav__post + .nav__post { margin-top: 4px; }
+
+/* panel foot — overview link for the whole section */
+.nav__foot {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+}
+.nav__foot a {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 12px;
+  color: var(--text-dim);
+  border-radius: 6px;
+  transition: color 0.2s ease;
+}
+.nav__foot a:hover { color: var(--text); background: none; }
+.nav__arr { display: inline-block; transition: transform 0.2s var(--ease); }
+.nav__foot a:hover .nav__arr { transform: translateX(3px); }
 
 /* minimal switch: toggles the two hero background animations */
 /* ============================================================
@@ -1951,31 +2048,45 @@ em { font-style: normal; }
   .crew { grid-template-columns: repeat(2, 1fr); }
   .off { grid-template-columns: 1fr; }
 }
-@media (max-width: 760px) {
+/* ------------------------------------------------------------------
+   MEGA MENU — mobile (<900px): logo + burger; the links become a
+   full-height drawer, each top-level item an accordion row. Same markup,
+   same JS-driven .nav__item--open state. Without JS the drawer renders
+   statically stacked at the top of the page so every link stays reachable.
+   ------------------------------------------------------------------ */
+@media (max-width: 899px) {
   .nav__cert { display: none; }
-
-  /* Mobile nav: the desktop links become a slide-down panel toggled by the
-     burger. Reuses the same .nav__links markup — no duplicate link list. */
   .nav__burger { display: inline-flex; }
+
+  /* Bar needs a ground while the drawer is open (it may sit over the hero).
+     NO backdrop-filter here — a filter on the header would turn it into the
+     containing block for the position:fixed drawer below, collapsing the
+     drawer onto the 66px bar. (.nav.nav--open also out-specifies .nav.scrolled,
+     whose blur has the same effect.) */
+  .nav.nav--open {
+    background: rgba(var(--scrim), 0.96);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .nav__links {
     position: fixed;
     inset-inline: 0;
     top: 66px; /* height of .nav__inner */
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 8px clamp(20px, 5vw, 72px) 20px;
-    background: rgba(var(--scrim), 0.94);
+    bottom: 0;
+    display: block;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 4px clamp(20px, 5vw, 72px) 32px;
+    background: rgba(var(--scrim), 0.96);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
-    box-shadow: var(--shadow-pop);
     /* hidden until opened */
     opacity: 0;
     visibility: hidden;
-    pointer-events: none; /* the always-visible industries sub-links must not catch taps while closed */
+    pointer-events: none;
     transform: translateY(-8px);
-    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s var(--ease);
   }
   .nav--open .nav__links {
     opacity: 1;
@@ -1983,32 +2094,88 @@ em { font-style: normal; }
     pointer-events: auto;
     transform: none;
   }
-  .nav__links > a,
-  .nav__droptrigger {
-    padding: 14px 0;
+
+  /* accordion rows */
+  .nav__item { display: block; }
+  .nav__item + .nav__item .nav__trigger,
+  .nav__item + .nav__top,
+  .nav__top + .nav__top { border-top: 1px solid var(--line); }
+  .nav__trigger,
+  .nav__top {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 15px 2px;
     font-size: 16px;
-    border-top: 1px solid var(--line);
+    border-radius: 0;
   }
-  /* Industries: the CSS-only hover dropdown can't work on touch, so show the
-     three links inline (always expanded) inside the mobile panel. */
-  .nav__drop { border-top: 1px solid var(--line); }
-  .nav__droptrigger { border-top: 0; cursor: default; }
-  .nav__menu {
+  .nav__caret { width: 10px; height: 6px; }
+
+  /* panels flow inline; closed = display:none so links leave the tab order */
+  .nav__panel {
+    display: none;
     position: static;
-    transform: none;
+    max-width: none;
     padding-top: 0;
+    transform: none;
     opacity: 1;
     visibility: visible;
+    transition: none;
   }
-  .nav__menu-panel {
+  .nav__item--open .nav__panel { display: block; }
+  .nav__sheet {
     background: none;
     border: 0;
     border-radius: 0;
     box-shadow: none;
-    padding: 0 0 8px;
-    gap: 2px;
+    padding: 2px 0 18px;
+    transform: none;
   }
-  .nav__menu a { font-size: 15px; padding: 8px 12px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .nav__item--open .nav__sheet { animation: navSheetIn 0.25s var(--ease); }
+  }
+
+  .nav__cols { display: block; }
+  .nav__group,
+  .nav__group--wide { min-width: 0; max-width: none; }
+  .nav__group + .nav__group {
+    margin: 16px 0 0;
+    padding: 0;
+    border-left: 0;
+  }
+  .nav__glabel { margin-left: 10px; }
+  .nav__panel a { font-size: 15px; padding: 8px 10px; }
+  .nav__link--mono { font-size: 13px; }
+  .nav__foot { margin-top: 12px; }
+
+  /* no-JS: the drawer can't open, so render everything stacked in flow —
+     the bar wraps and the full link tree flows below it, panels open */
+  .nav:not(.nav--js) { position: static; background: var(--bg); }
+  .nav:not(.nav--js) .nav__burger { display: none; }
+  .nav:not(.nav--js) .nav__inner { height: auto; flex-wrap: wrap; padding-block: 16px 0; }
+  .nav:not(.nav--js) .nav__links {
+    position: static;
+    width: 100%;
+    order: 3; /* below brand + CTA */
+    padding-inline: 0;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+  .nav:not(.nav--js) .nav__panel { display: block; }
+}
+@keyframes navSheetIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 760px) {
   .why__row { grid-template-columns: 40px 1fr; }
   .why__fix { grid-column: 2; }
   .stats__row { grid-template-columns: 1fr; gap: 8px; align-items: start; }
@@ -2251,7 +2418,8 @@ em { font-style: normal; }
   .hero-spiral { stroke-dashoffset: 0; animation: none; }
   .mviz__live i { animation: none; }
   .dna__rung { animation: none; }
-  .nav__menu { transition: none; }
+  .nav__panel, .nav__sheet, .nav__caret, .nav__links, .nav__arr { transition: none; }
+  .nav__item--open .nav__sheet { animation: none; }
   /* industry hero visuals: freeze CSS motion on the resolved pose */
   .bkg-spout-hot, .bkg-plug, .bkg-flash, .bkg-tag--flag, .bkg-tag--ok, .bkg-arr, .bkg-fill,
   .irv-sweep, .irv-b, .irv-inc, .irv-inc--set, .irv-brk, .irv-track,

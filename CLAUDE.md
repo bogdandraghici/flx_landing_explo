@@ -31,7 +31,8 @@ flx_landing_explo/
 │   ├── public/     # static assets (flowx-logo.svg)
 │   └── src/
 │       ├── main.js       # entry: hero canvas, terminal, blueprint, sections
-│       ├── shared.js      # shared page chrome: grain, nav (incl. CSS-only Industries dropdown), reveals
+│       ├── shared.js      # shared page chrome: grain, nav scroll state, reveals
+│       ├── megamenu.js    # mega-menu behavior (disclosure pattern + mobile drawer)
 │       ├── industry.js    # shared entry for the three industry pages
 │       ├── style.css      # all styles; design tokens in :root
 │       ├── orderField.js  # hero "order field" canvas animation + CTA static grid
@@ -58,9 +59,12 @@ npm run preview
   `banking.html`, `insurance.html`, `logistics.html`, `about.html`,
   `resources.html`, `blog-flowx-6.html`, plus `agents.html` (the redirect stub)
   — so all of them get built/optimized by Vite.
-- **`index.html`** holds all the markup. Sections: nav (with a CSS-only
-  Industries dropdown — hover/focus-within, no JS), hero, blueprint, compliance
-  marquee, "why 95% fail", platform, proof, CTA, footer.
+- **`index.html`** holds all the markup. Sections: nav (mega-menu — WAI-ARIA
+  disclosure pattern, driven by `src/megamenu.js`, with a CSS-only no-JS
+  fallback), hero, blueprint, compliance marquee, "why 95% fail", platform,
+  proof, CTA, footer. **The nav markup is duplicated across all 7 pages**
+  (index, banking, insurance, logistics, about, resources, blog-flowx-6) with
+  per-page `aria-current` — edit it in every page, not just one.
 - **`banking.html` / `insurance.html` / `logistics.html`** are the industry
   pages, each with: a hero with a bespoke industry-metaphor viz (vault /
   shield / route), a problem section, a merged value-stream + who-it's-for

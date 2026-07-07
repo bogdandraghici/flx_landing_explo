@@ -26,19 +26,217 @@
         </svg>
       </a>
       <nav class="nav__links" id="nav-links" aria-label="Primary">
-        <!-- Industries dropdown is CSS-only (hover / focus-within); no aria-expanded — no JS to sync it -->
-        <div class="nav__drop">
-          <button class="nav__droptrigger" type="button" aria-haspopup="true">Industries</button>
-          <div class="nav__menu">
-            <div class="nav__menu-panel">
-              <a href="./banking.html" aria-current="page">Banking</a>
-              <a href="./insurance.html">Insurance</a>
-              <a href="./logistics.html">Logistics</a>
+        <!-- Mega menu — WAI-ARIA disclosure pattern. megamenu.js drives hover intent,
+             one-open-at-a-time, Escape/outside-click and the mobile drawer; without JS
+             the CSS-only fallback (.nav:not(.nav--js)) keeps every link reachable. -->
+        <div class="nav__item">
+          <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="panel-platform">Platform <svg class="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav__panel" id="panel-platform">
+            <div class="nav__sheet">
+              <div class="nav__cols">
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Build</p>
+                  <a class="nav__link--desc" href="/platform/agent-builder">
+                    <span class="nav__link-t">Agent Builder</span>
+                    <span class="nav__link-d">Design, evaluate, and ship AI agents</span>
+                  </a>
+                  <a class="nav__link--desc" href="/platform/flowx-code">
+                    <span class="nav__link-t">FlowX Code</span>
+                    <span class="nav__link-d">The full platform, expressed as code</span>
+                  </a>
+                  <a class="nav__link--desc" href="/platform/developer-agents">
+                    <span class="nav__link-t">Developer Agents</span>
+                    <span class="nav__link-d">Agents that build alongside your team</span>
+                  </a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Govern &amp; measure</p>
+                  <a class="nav__link--desc" href="/platform/observatory">
+                    <span class="nav__link-t">Observatory</span>
+                    <span class="nav__link-d">Trace every agent decision in production</span>
+                  </a>
+                  <a class="nav__link--desc" href="/platform/roi-hub">
+                    <span class="nav__link-t">ROI Hub</span>
+                    <span class="nav__link-d">Measure impact against a real baseline</span>
+                  </a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Foundation</p>
+                  <a class="nav__link--desc" href="/platform/ontology">
+                    <span class="nav__link-t">Ontology Layer</span>
+                    <span class="nav__link-d">One shared model of your business</span>
+                  </a>
+                  <a class="nav__link--desc" href="/platform/integrations">
+                    <span class="nav__link-t">Integrations &amp; Connectors</span>
+                    <span class="nav__link-d">Plug into core and legacy systems</span>
+                  </a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Run</p>
+                  <a class="nav__link--desc" href="/platform/security">
+                    <span class="nav__link-t">Security &amp; Compliance</span>
+                    <span class="nav__link-d">Controls built for regulated work</span>
+                  </a>
+                  <a class="nav__link--desc" href="/platform/deployment">
+                    <span class="nav__link-t">Deployment</span>
+                    <span class="nav__link-d">Cloud, hybrid, or on-prem</span>
+                  </a>
+                </div>
+              </div>
+              <p class="nav__foot mono"><a href="/platform">Platform overview <span class="nav__arr" aria-hidden="true">→</span></a></p>
             </div>
           </div>
         </div>
-        <a href="./resources.html">Resources</a>
-        <a href="./about.html">Company</a>
+        <div class="nav__item">
+          <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="panel-solutions">Solutions <svg class="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav__panel" id="panel-solutions">
+            <div class="nav__sheet">
+              <div class="nav__cols">
+                <div class="nav__group">
+                  <p class="nav__glabel mono">By industry</p>
+                  <a href="./banking.html" aria-current="page"><span class="nav__link-t">Banking</span></a>
+                  <a href="./insurance.html"><span class="nav__link-t">Insurance</span></a>
+                  <a href="./logistics.html"><span class="nav__link-t">Logistics</span></a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">By use case</p>
+                  <a href="/solutions/onboarding"><span class="nav__link-t">Onboarding</span></a>
+                  <a href="/solutions/lending"><span class="nav__link-t">Lending</span></a>
+                  <a href="/solutions/underwriting"><span class="nav__link-t">Underwriting</span></a>
+                  <a href="/solutions/claims"><span class="nav__link-t">Claims</span></a>
+                  <a href="/solutions/quoting"><span class="nav__link-t">Quoting</span></a>
+                  <a href="/solutions/track-and-trace"><span class="nav__link-t">Track &amp; trace</span></a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Explore</p>
+                  <a href="https://www.flowx.ai/ai-agents" target="_blank" rel="noopener"><span class="nav__link-t">All AI agents <span class="nav__ext" aria-hidden="true">↗</span></span></a>
+                  <a href="https://www.flowx.ai/business-agents-roi-calculator" target="_blank" rel="noopener"><span class="nav__link-t">ROI calculator <span class="nav__ext" aria-hidden="true">↗</span></span></a>
+                </div>
+              </div>
+              <p class="nav__foot mono"><a href="/solutions">All solutions <span class="nav__arr" aria-hidden="true">→</span></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="nav__item">
+          <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="panel-research">Research <svg class="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav__panel" id="panel-research">
+            <div class="nav__sheet">
+              <div class="nav__cols">
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Papers · eXponential6</p>
+                  <a class="nav__link--mono" href="/research/vera"><span class="nav__link-t">VERA</span></a>
+                  <a class="nav__link--mono" href="/research/orna-autotune"><span class="nav__link-t">ORNA / AutoTune</span></a>
+                  <a class="nav__link--mono" href="/research/halo"><span class="nav__link-t">HALO</span></a>
+                  <a class="nav__link--mono" href="/research/gavel"><span class="nav__link-t">GAVEL</span></a>
+                  <a class="nav__link--mono" href="/research/sift"><span class="nav__link-t">SIFT</span></a>
+                  <a class="nav__link--mono" href="/research/rails"><span class="nav__link-t">RAILS</span></a>
+                  <a class="nav__link--mono" href="/research/mneme"><span class="nav__link-t">MNEMĒ</span></a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Open models</p>
+                  <a href="/models"><span class="nav__link-t">Models overview</span></a>
+                  <a href="https://huggingface.co/flowx-ai" target="_blank" rel="noopener"><span class="nav__link-t">Download on Hugging Face <span class="nav__ext" aria-hidden="true">↗</span></span></a>
+                  <a href="/models#benchmarks"><span class="nav__link-t">Benchmarks</span></a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Approach</p>
+                  <a href="/research/methodology"><span class="nav__link-t">Methodology</span></a>
+                  <a href="/research/safety"><span class="nav__link-t">Safety &amp; governance</span></a>
+                </div>
+              </div>
+              <p class="nav__foot mono"><a href="/research">Research overview <span class="nav__arr" aria-hidden="true">→</span></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="nav__item">
+          <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="panel-developers">Developers <svg class="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav__panel" id="panel-developers">
+            <div class="nav__sheet">
+              <div class="nav__cols">
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Learn</p>
+                  <a href="https://docs.flowx.ai/" target="_blank" rel="noopener"><span class="nav__link-t">Documentation <span class="nav__ext" aria-hidden="true">↗</span></span></a>
+                  <a href="https://academy.flowx.ai/" target="_blank" rel="noopener"><span class="nav__link-t">Academy <span class="nav__ext" aria-hidden="true">↗</span></span></a>
+                  <a href="/developers/cookbooks"><span class="nav__link-t">Cookbooks</span></a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Reference</p>
+                  <a href="https://docs.flowx.ai/api" target="_blank" rel="noopener"><span class="nav__link-t">API reference <span class="nav__ext" aria-hidden="true">↗</span></span></a>
+                  <a href="/developers/changelog"><span class="nav__link-t">Changelog</span></a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Models</p>
+                  <a href="https://huggingface.co/flowx-ai" target="_blank" rel="noopener"><span class="nav__link-t">Open weights on Hugging Face <span class="nav__ext" aria-hidden="true">↗</span></span></a>
+                  <a href="/models"><span class="nav__link-t">Model cards &amp; licenses</span></a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Start</p>
+                  <a href="https://docs.flowx.ai/quickstart" target="_blank" rel="noopener"><span class="nav__link-t">Quickstart <span class="nav__ext" aria-hidden="true">↗</span></span></a>
+                  <a href="https://flowxai.zendesk.com/" target="_blank" rel="noopener"><span class="nav__link-t">Support <span class="nav__ext" aria-hidden="true">↗</span></span></a>
+                </div>
+              </div>
+              <p class="nav__foot mono"><a href="https://docs.flowx.ai/" target="_blank" rel="noopener">docs.flowx.ai <span class="nav__arr" aria-hidden="true">→</span></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="nav__item">
+          <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="panel-resources">Resources <svg class="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav__panel" id="panel-resources">
+            <div class="nav__sheet">
+              <div class="nav__cols">
+                <div class="nav__group nav__group--wide">
+                  <p class="nav__glabel mono">Latest</p>
+                  <a class="nav__link--desc nav__post" href="https://www.flowx.ai/blog/we-built-a-calculator-to-show-you-the-expected-roi-for-a-selection-of-ai-agents-or-agent-stacks" target="_blank" rel="noopener">
+                    <span class="nav__post-meta mono"><span class="nav__post-tag">ROI</span>Jul 3, 2026</span>
+                    <span class="nav__link-t">We built a calculator for the expected ROI of AI agents <span class="nav__ext" aria-hidden="true">↗</span></span>
+                  </a>
+                  <a class="nav__link--desc nav__post" href="https://www.flowx.ai/blog/the-day-onboarding-stopped-being-a-loop" target="_blank" rel="noopener">
+                    <span class="nav__post-meta mono"><span class="nav__post-tag">Use Cases</span>May 25, 2026</span>
+                    <span class="nav__link-t">The day onboarding stopped being a loop <span class="nav__ext" aria-hidden="true">↗</span></span>
+                  </a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Categories</p>
+                  <a href="/blog/category/product"><span class="nav__link-t">Product</span></a>
+                  <a href="/blog/category/engineering"><span class="nav__link-t">Engineering</span></a>
+                  <a href="/blog/category/banking-insurance"><span class="nav__link-t">Banking &amp; Insurance</span></a>
+                  <a href="/blog/category/governance-compliance"><span class="nav__link-t">Governance &amp; Compliance</span></a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">More</p>
+                  <a href="./blog-flowx-6.html"><span class="nav__link-t">Events — FlowX.AI 6</span></a>
+                  <a href="/resources/webinars"><span class="nav__link-t">Webinars</span></a>
+                  <a href="/resources/whitepapers"><span class="nav__link-t">Whitepapers</span></a>
+                </div>
+              </div>
+              <p class="nav__foot mono"><a href="./resources.html">All resources <span class="nav__arr" aria-hidden="true">→</span></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="nav__item">
+          <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="panel-customers">Customers <svg class="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav__panel" id="panel-customers">
+            <div class="nav__sheet">
+              <div class="nav__cols">
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Featured</p>
+                  <a href="/customers"><span class="nav__link-t">Success stories</span></a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Browse</p>
+                  <a href="/customers#industry"><span class="nav__link-t">By industry</span></a>
+                  <a href="/customers#use-case"><span class="nav__link-t">By use case</span></a>
+                </div>
+                <div class="nav__group">
+                  <p class="nav__glabel mono">Prove it</p>
+                  <a href="https://www.flowx.ai/business-agents-roi-calculator" target="_blank" rel="noopener"><span class="nav__link-t">ROI calculator <span class="nav__ext" aria-hidden="true">↗</span></span></a>
+                </div>
+              </div>
+              <p class="nav__foot mono"><a href="/customers">All customers <span class="nav__arr" aria-hidden="true">→</span></a></p>
+            </div>
+          </div>
+        </div>
+        <a class="nav__top" href="./about.html">Company</a>
       </nav>
       <div class="nav__right">
         <a class="btn btn--primary btn--sm" href="#cta">Book a demo</a>
