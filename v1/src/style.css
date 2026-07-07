@@ -2527,6 +2527,60 @@ em { font-style: normal; }
 @keyframes fxc-tagok { 0%, 87% { opacity: 0; } 91%, 97% { opacity: 0.9; } 99%, 100% { opacity: 0; } }
 
 /* ============================================================
+   OBSERVATORY — hero viz "the evidence chain"
+   A live agent trace streams; a policy scan sweeps the telemetry and catches a
+   privilege-excess violation; evidence is harvested from that node; then an
+   amber chain lights back up (evidence → policy → requirement) — the audit,
+   answered. 12s story loop. Base opacities encode the resolved pose so
+   reduced-motion freezes on "evidence chain · complete". Amber traces only the
+   governance conclusions (flag, harvest, chain, matched clause); the machine's
+   watching (run, scan, trace) stays neutral.
+   ============================================================ */
+/* persistent scaffolding */
+.obv-clause { fill: rgba(var(--ink), 0.02); stroke: rgba(var(--ink), 0.12); stroke-width: 1; }
+.obv-spine { stroke: rgba(var(--ink), 0.14); stroke-width: 1; }
+.obv-branch { fill: none; stroke: rgba(var(--ink), 0.12); stroke-width: 1; }
+.obv-node { fill: var(--bg-raised); stroke: rgba(var(--ink), 0.18); stroke-width: 1; }
+.obv-tick { stroke: rgba(var(--dia-dim), 0.35); stroke-width: 1.2; stroke-linecap: round; }
+.obv-rec { fill: rgba(var(--ink), 0.015); stroke: rgba(var(--ink), 0.1); stroke-width: 1; stroke-dasharray: 4 5; }
+
+/* neutral movers — the machine watching (hidden in the resolved pose) */
+.obv-run { fill: rgba(var(--dia-bright), 0.9); opacity: 0; animation: obv-run 12s linear infinite; }
+.obv-scan { stroke: rgba(var(--dia-bright), 0.5); stroke-width: 1; stroke-dasharray: 2 4; opacity: 0; animation: obv-scan 12s linear infinite; }
+
+/* amber = governance conclusions */
+.obv-flag { fill: none; stroke: var(--amber); stroke-width: 1.4; animation: obv-flag 12s linear infinite; }
+.obv-drop { stroke: var(--amber); stroke-width: 1.2; }
+.obv-rec-hot { fill: rgba(var(--amber-rgb), 0.06); stroke: var(--amber); stroke-width: 1.1; }
+.obv-ev-mark { fill: none; stroke: var(--amber); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.obv-harvest { animation: obv-harvest 12s linear infinite; }
+.obv-link { stroke: var(--amber); stroke-width: 1.3; }
+.obv-arr { fill: var(--amber); }
+.obv-chain { animation: obv-chain 12s linear infinite; }
+.obv-clause-hot { fill: rgba(var(--amber-rgb), 0.06); stroke: var(--amber); stroke-width: 1.1; animation: obv-chain 12s linear infinite; }
+
+.obv-tag--watch { opacity: 0; animation: obv-tagwatch 12s linear infinite; }
+.obv-tag--ok { opacity: 0.9; animation: obv-tagok 12s linear infinite; }
+
+@keyframes obv-run {
+  0% { opacity: 0; transform: translateX(0); }
+  3% { opacity: 1; }
+  38% { opacity: 1; transform: translateX(330px); }
+  41%, 100% { opacity: 0; transform: translateX(330px); }
+}
+@keyframes obv-scan {
+  0%, 26% { opacity: 0; transform: translateX(0); }
+  30% { opacity: 0.8; transform: translateX(0); }
+  52% { opacity: 0.8; transform: translateX(330px); }
+  56%, 100% { opacity: 0; transform: translateX(330px); }
+}
+@keyframes obv-flag { 0%, 44% { opacity: 0; } 48%, 96% { opacity: 1; } 99%, 100% { opacity: 0; } }
+@keyframes obv-harvest { 0%, 56% { opacity: 0; } 61%, 96% { opacity: 1; } 99%, 100% { opacity: 0; } }
+@keyframes obv-chain { 0%, 70% { opacity: 0; } 75%, 96% { opacity: 1; } 99%, 100% { opacity: 0; } }
+@keyframes obv-tagwatch { 0%, 3% { opacity: 0; } 7%, 66% { opacity: 0.9; } 70%, 100% { opacity: 0; } }
+@keyframes obv-tagok { 0%, 72% { opacity: 0; } 77%, 97% { opacity: 0.9; } 99%, 100% { opacity: 0; } }
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
@@ -2565,6 +2619,10 @@ em { font-style: normal; }
   .fxc-check, .fxc-frame-lock, .fxc-wait, .fxc-savehot, .fxc-cursor,
   .fxc-commit, .fxc-tag--draft, .fxc-tag--ok { animation: none; }
   .fxc-mover { display: none; }
+  /* observatory hero: freeze on the resolved pose (flagged, harvested, chain complete) */
+  .obv-flag, .obv-harvest, .obv-chain, .obv-clause-hot,
+  .obv-tag--watch, .obv-tag--ok { animation: none; }
+  .obv-run, .obv-scan { animation: none; display: none; }
 }
 
 /* ============================================================

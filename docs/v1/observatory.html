@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FlowX — Insurance</title>
-  <meta name="description" content="FlowX.AI insurance agents on the claims journey — underwriting, claims processing, and fraud detection, for carriers, brokers, and reinsurers." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M28 26 L60 62 M60 26 L28 62' stroke='%23F4F5F3' stroke-width='9'/%3E%3Crect x='28' y='70' width='44' height='9' fill='%23FCB813'/%3E%3C/svg%3E" />
+  <title>FlowX — Observatory</title>
+  <meta name="description" content="Observatory is FlowX.AI's observability and governance plane. GAVEL enforces policy on live agent telemetry, harvests compliance evidence from every trace, and answers an audit by walking evidence back to the regulation." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Ccircle cx='50' cy='46' r='17' fill='none' stroke='%23F4F5F3' stroke-width='9'/%3E%3Ccircle cx='50' cy='46' r='4' fill='%23F4F5F3'/%3E%3Crect x='30' y='74' width='40' height='8' fill='%23FCB813'/%3E%3C/svg%3E" />
   <script>(function(){try{var t=localStorage.getItem("flx-theme");if(t!=="light"&&t!=="dark")t="dark";document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="dark";}})();</script>
-  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/orderField-CYwDNQLr.js"></script>
-  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/industry-BEJ_BY3R.js"></script>
+  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/observatory-Bx0pIy03.js"></script>
+  <link rel="modulepreload" crossorigin href="/flx_landing_explo/v1/assets/orderField-CYwDNQLr.js">
   <link rel="stylesheet" crossorigin href="/flx_landing_explo/v1/assets/orderField-C3tDVm0G.css">
 </head>
 <body>
   <canvas id="grain" class="grain" aria-hidden="true"></canvas>
 
   <!-- ================= NAV ================= -->
-  <!-- copied from index.html — delta: aria-current on Insurance in the dropdown, Book a demo → #cta -->
+  <!-- copied from index.html — delta: aria-current on Observatory in the Platform panel, Book a demo → #cta -->
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a class="nav__brand" href="./index.html" aria-label="FlowX home">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="nav__group">
                   <p class="nav__glabel mono">Govern &amp; measure</p>
-                  <a class="nav__link--desc" href="./observatory.html">
+                  <a class="nav__link--desc" href="./observatory.html" aria-current="page">
                     <span class="nav__link-t">Observatory</span>
                     <span class="nav__link-d">Trace every agent decision in production</span>
                   </a>
@@ -98,7 +98,7 @@
                 <div class="nav__group">
                   <p class="nav__glabel mono">By industry</p>
                   <a href="./banking.html"><span class="nav__link-t">Banking</span></a>
-                  <a href="./insurance.html" aria-current="page"><span class="nav__link-t">Insurance</span></a>
+                  <a href="./insurance.html"><span class="nav__link-t">Insurance</span></a>
                   <a href="./logistics.html"><span class="nav__link-t">Logistics</span></a>
                 </div>
                 <div class="nav__group">
@@ -251,339 +251,232 @@
   <main id="top">
 
     <!-- ================= HERO ================= -->
-    <section class="ahero" id="ihero">
+    <section class="ahero" id="phero">
       <div class="shell ahero__grid">
         <div class="ahero__text">
           <p class="hero__eyebrow mono rv-load" style="--d:0">
             <span class="tick" aria-hidden="true"></span>
-            Industries &middot; Insurance
+            Platform &middot; Observatory
           </p>
           <h1 class="hero__title">
-            <span class="hero__line hero__line--big rv-load" style="--d:1">Insurance agents, on the claims journey<span class="amber">.</span></span>
+            <span class="hero__line rv-load" style="--d:1"><span class="dim">Governance that runs</span></span>
+            <span class="hero__line hero__line--big rv-load" style="--d:2">where the agent runs<span class="amber">.</span></span>
           </h1>
-          <!-- DRAFT — marketing review -->
-          <p class="hero__sub rv-load" style="--d:2">
-            From first notice of loss to settlement — agents for carriers,
-            brokers, and reinsurers at every step of the claim. Built for
-            insurers where failure is not an option.
+          <p class="hero__sub rv-load" style="--d:3">
+            Observatory is FlowX.AI's observability and governance plane. GAVEL
+            enforces policy on live agent telemetry, harvests compliance evidence
+            from every trace, and answers an audit by walking evidence back to the
+            regulation.
           </p>
-          <p class="astats mono rv-load" style="--d:3">
-            <span><b>220+</b> agents</span>
-            <span><b>3</b> industries</span>
-            <span><b class="amber">●</b> in production</span>
+          <div class="abd-hero__cta rv-load" style="--d:4">
+            <a class="btn btn--primary btn--lg" href="#cta">Book a demo</a>
+            <a class="btn btn--ghost btn--lg" href="#how">See how it works</a>
+          </div>
+          <p class="astats mono rv-load" style="--d:5">
+            <span>enforced at runtime · evidence by default</span>
           </p>
         </div>
 
-        <!-- risk radar: the sweep watches a quiet field; one blip flares into an incident, is bracketed, tracked, and resolved amber — settled -->
+        <!-- the evidence chain: a live agent trace streams; a policy scan sweeps the
+             telemetry and catches a privilege-excess violation; evidence is harvested
+             from that exact node; then an amber chain lights back up — evidence → policy
+             → requirement — the audit answered, grounded in what the agent actually did. -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="A radar sweep over a field of quiet risk blips; one flares into an incident, is bracketed and tracked as a claim, then resolves amber — settled">
-            <!-- scope: range rings, axes, degree ticks -->
-            <circle class="irv-grid" cx="230" cy="230" r="48"/>
-            <circle class="irv-grid" cx="230" cy="230" r="96"/>
-            <circle class="irv-grid" cx="230" cy="230" r="144"/>
-            <circle class="irv-edge" cx="230" cy="230" r="184"/>
-            <line class="irv-axis" x1="46" y1="230" x2="414" y2="230"/>
-            <line class="irv-axis" x1="230" y1="46" x2="230" y2="414"/>
-            <g class="irv-tick">
-              <line x1="230" y1="50" x2="230" y2="42"/>
-              <line x1="320" y1="74.1" x2="324" y2="67.2"/>
-              <line x1="385.9" y1="140" x2="392.8" y2="136"/>
-              <line x1="410" y1="230" x2="418" y2="230"/>
-              <line x1="385.9" y1="320" x2="392.8" y2="324"/>
-              <line x1="320" y1="385.9" x2="324" y2="392.8"/>
-              <line x1="230" y1="410" x2="230" y2="418"/>
-              <line x1="140" y1="385.9" x2="136" y2="392.8"/>
-              <line x1="74.1" y1="320" x2="67.2" y2="324"/>
-              <line x1="50" y1="230" x2="42" y2="230"/>
-              <line x1="74.1" y1="140" x2="67.2" y2="136"/>
-              <line x1="140" y1="74.1" x2="136" y2="67.2"/>
+          <svg viewBox="0 0 460 460" role="img" aria-label="A live agent trace is watched by a policy engine; a privilege-excess violation is caught, evidence is harvested from that step, and an amber evidence chain links it from the runtime event up through policy to the regulation it satisfies — the audit, answered">
+
+            <!-- REGULATION lane: a machine-checkable policy pack -->
+            <text class="ivz-lbl" x="64" y="104" text-anchor="start">regulation · policy pack</text>
+            <rect class="obv-clause" x="65" y="116" width="70" height="20" rx="5"/>
+            <rect class="obv-clause" x="152" y="116" width="70" height="20" rx="5"/>
+            <rect class="obv-clause" x="239" y="116" width="70" height="20" rx="5"/>
+            <rect class="obv-clause" x="326" y="116" width="70" height="20" rx="5"/>
+            <!-- the requirement the evidence chain lands on -->
+            <rect class="obv-clause-hot" x="239" y="116" width="70" height="20" rx="5"/>
+
+            <!-- RUNTIME lane: the live execution trace -->
+            <text class="ivz-lbl" x="64" y="192" text-anchor="start">runtime · live trace</text>
+            <line class="obv-spine" x1="64" y1="224" x2="396" y2="224"/>
+            <!-- a hint of hierarchy: a sub-call branching off a node -->
+            <path class="obv-branch" d="M210 224 C210 210 222 206 232 204"/>
+            <circle class="obv-node" cx="234" cy="203" r="3"/>
+            <circle class="obv-node" cx="90" cy="224" r="6"/>
+            <circle class="obv-node" cx="150" cy="224" r="6"/>
+            <circle class="obv-node" cx="210" cy="224" r="6"/>
+            <circle class="obv-node" cx="274" cy="224" r="6"/>
+            <circle class="obv-node" cx="334" cy="224" r="6"/>
+            <circle class="obv-node" cx="394" cy="224" r="6"/>
+            <!-- telemetry: token · cost · latency per event -->
+            <g class="obv-tickset">
+              <line class="obv-tick" x1="90" y1="234" x2="90" y2="241"/>
+              <line class="obv-tick" x1="150" y1="234" x2="150" y2="243"/>
+              <line class="obv-tick" x1="210" y1="234" x2="210" y2="240"/>
+              <line class="obv-tick" x1="274" y1="234" x2="274" y2="244"/>
+              <line class="obv-tick" x1="334" y1="234" x2="334" y2="239"/>
+              <line class="obv-tick" x1="394" y1="234" x2="394" y2="242"/>
+            </g>
+            <text class="ivz-lbl" x="64" y="258" text-anchor="start">token · cost · latency</text>
+            <!-- policy scan sweeping the telemetry -->
+            <line class="obv-scan" x1="64" y1="206" x2="64" y2="248"/>
+            <!-- the streaming run -->
+            <circle class="obv-run" cx="64" cy="224" r="3.6"/>
+            <!-- the caught violation: privilege excess -->
+            <circle class="obv-flag" cx="274" cy="224" r="11"/>
+
+            <!-- EVIDENCE lane: audit-ready records -->
+            <text class="ivz-lbl" x="64" y="300" text-anchor="start">evidence · audit-ready</text>
+            <rect class="obv-rec" x="118" y="312" width="64" height="26" rx="6"/>
+            <rect class="obv-rec" x="242" y="312" width="64" height="26" rx="6"/>
+            <rect class="obv-rec" x="366" y="312" width="64" height="26" rx="6"/>
+            <!-- evidence harvested from the flagged node -->
+            <g class="obv-harvest">
+              <line class="obv-drop" x1="274" y1="235" x2="274" y2="312"/>
+              <rect class="obv-rec-hot" x="242" y="312" width="64" height="26" rx="6"/>
+              <path class="obv-ev-mark" d="M262 325 l4 5 l9 -11"/>
             </g>
 
-            <!-- quiet field: blips glow as the beam passes (delays synced to sweep angle) -->
-            <circle class="irv-b" cx="343" cy="295" r="2.6" style="animation-delay:-4s"/>
-            <circle class="irv-b" cx="206" cy="296" r="2.6" style="animation-delay:-2.67s"/>
-            <circle class="irv-b" cx="95" cy="266" r="2.6" style="animation-delay:-1.75s"/>
-            <circle class="irv-b" cx="148" cy="183" r="2.6" style="animation-delay:-1s"/>
-            <circle class="irv-b" cx="177" cy="84" r="2.6" style="animation-delay:-0.33s"/>
-            <circle class="irv-b" cx="286" cy="385" r="2.6" style="animation-delay:-3.33s"/>
+            <!-- the answered audit: walk evidence → policy → requirement (amber chain) -->
+            <g class="obv-chain">
+              <line class="obv-link" x1="274" y1="138" x2="274" y2="211"/>
+              <path class="obv-arr" d="M270 152 l4 -6 l4 6 z"/>
+              <path class="obv-arr" d="M270 218 l4 -6 l4 6 z"/>
+            </g>
 
-            <!-- the sweep: leading beam + trailing wedge, one rotation per 6s -->
-            <g class="irv-sweep">
-              <path class="irv-wedge" d="M230 230 L138 70.7 A184 184 0 0 1 230 46 Z"/>
-              <line class="irv-beam" x1="230" y1="230" x2="230" y2="46"/>
+            <!-- status tags -->
+            <g class="obv-tag--watch" transform="translate(230 408)">
+              <rect class="ivz-tag" x="-58" y="-10" width="116" height="15"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1.5">watching · live</text>
             </g>
-            <circle class="irv-hub" cx="230" cy="230" r="10"/>
-            <circle class="irv-core" cx="230" cy="230" r="2.6"/>
-
-            <!-- the incident: flares on the first pass, bracketed and tracked as a claim -->
-            <circle class="irv-inc" cx="307" cy="166" r="3.2"/>
-            <circle class="irv-inc--set" cx="307" cy="166" r="3.2"/>
-            <g class="irv-brk">
-              <path d="M293 159 L293 152 L300 152"/>
-              <path d="M314 152 L321 152 L321 159"/>
-              <path d="M321 173 L321 180 L314 180"/>
-              <path d="M300 180 L293 180 L293 173"/>
-            </g>
-            <circle class="irv-track" cx="307" cy="166" r="20" pathLength="100"/>
-            <circle class="irv-pulse" cx="307" cy="166" r="20"/>
-            <g class="irv-tag--fnol" transform="translate(307 122)">
-              <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
-              <text class="ivz-lbl" text-anchor="middle" y="1">fnol</text>
-            </g>
-            <g class="irv-tag--set" transform="translate(307 122)">
-              <rect class="ivz-tag" x="-31" y="-10" width="62" height="14"/>
-              <text class="ivz-lbl" text-anchor="middle" y="1">settled</text>
+            <g class="obv-tag--ok" transform="translate(230 408)">
+              <rect class="ivz-tag" x="-82" y="-10" width="164" height="15"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1.5">evidence chain · complete</text>
             </g>
           </svg>
         </div>
       </div>
     </section>
 
-    <!-- ================= THE PROBLEM ================= -->
-    <!-- DRAFT — marketing review: pain points paraphrased from flowx.ai/insurance -->
-    <section class="section" id="problem">
+    <!-- ================= THESIS ================= -->
+    <section class="abd-thesis">
+      <div class="shell">
+        <blockquote class="rv">A policy that lives in a document cannot govern an agent that chains a dozen tool calls in a <span class="amber">second</span>.</blockquote>
+        <p class="rv" style="--i:1">The dominant failure mode in production isn't hallucination — it's privilege excess: an agent
+          doing something it was technically able to but never should have, faster than any review cycle can
+          follow. Governance has to run where the agent runs, check what the agent actually did, and leave
+          behind the evidence that it did.</p>
+        <span class="abd-thesis__tag mono rv" style="--i:2">GAVEL · Governed Autonomy, Verified by an Evidence Layer</span>
+      </div>
+    </section>
+
+    <!-- ================= REGULATION TO RUNTIME ================= -->
+    <section class="section" id="how">
       <div class="shell">
         <div class="section__head">
-          <span class="section__no mono">01 / The problem</span>
+          <span class="section__no mono">01 / Regulation to runtime</span>
           <div class="section__headline">
-            <h2 class="h2 rv">Where insurance leaks time<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">Fragmented data and manual reviews —
-              the claim is decided long before anyone decides it.</p>
+            <h2 class="h2 rv">Enforced and evidenced at runtime<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Document suites pass a paper audit while agents misbehave;
+              control planes stop agents but prove nothing. GAVEL closes the gap — one evidence chain from
+              regulation to what the agent did.</p>
           </div>
         </div>
-        <div class="segs segs--3">
+        <div class="segs abd-pipe">
           <article class="seg rv" style="--i:0">
-            <h3 class="seg__name">Fragmented data</h3>
-            <p class="seg__desc">Policy, claims, and telematics live in different systems — underwriters stitch them together by hand.</p>
+            <span class="seg__no mono">01</span>
+            <h3 class="seg__name">Compile</h3>
+            <p class="seg__desc">Organizational and regulatory rules become machine-checkable policies — a metric, an operator, a threshold — grouped into packs like an EU AI Act High-Risk Pack.</p>
           </article>
           <article class="seg rv" style="--i:1">
-            <h3 class="seg__name">Manual reviews</h3>
-            <p class="seg__desc">Every claim above the threshold waits for a reviewer — including the majority that are routine.</p>
+            <span class="seg__no mono">02</span>
+            <h3 class="seg__name">Enforce</h3>
+            <p class="seg__desc">Policies evaluate against live execution telemetry, not a questionnaire — mandatory or advisory, continuously. A policy being violated says so the moment it happens.</p>
           </article>
           <article class="seg rv" style="--i:2">
-            <h3 class="seg__name">Exceptions everywhere</h3>
-            <p class="seg__desc">Fraud signals hide in the noise, and exception handling swallows adjuster capacity.</p>
+            <span class="seg__no mono">03</span>
+            <h3 class="seg__name">Evidence</h3>
+            <p class="seg__desc">Compliance evidence is auto-harvested from traces as a byproduct of enforcement — collect, review, approve.</p>
+          </article>
+          <article class="seg rv" style="--i:3">
+            <span class="seg__no mono">04</span>
+            <h3 class="seg__name">Answer</h3>
+            <p class="seg__desc">An audit is answered by walking evidence back through policy to requirement — every link grounded in what the agent actually did.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ================= VALUE STREAM + WHO IT'S FOR ================= -->
-    <section class="section" id="value-stream">
+    <!-- ================= WHAT IT DOES ================= -->
+    <section class="section" id="capabilities">
       <div class="shell">
         <div class="section__head">
-          <span class="section__no mono">02 / Value stream</span>
+          <span class="section__no mono">02 / What it does</span>
           <div class="section__headline">
-            <h2 class="h2 rv">The claims journey, end to end<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">From first notice of loss to settlement —
-              agents for carriers, brokers, and reinsurers at every step. Hover a role below to
-              see where its agents sit.</p>
-          </div>
-        </div>
-
-        <figure class="vs rv" style="--i:2" role="img" aria-label="Claims journey pipeline: FNOL, docs, assess, decide, settle — with agents attached to each stage">
-          <div class="vs__bar mono"><span>insurance / claims journey</span><span class="vs__live"><i></i>agents live</span></div>
-          <div class="vs__scroll">
-            <svg viewBox="0 0 960 216" aria-hidden="true">
-              <path id="insSpine" class="abx-edge" d="M20 59 H940"/>
-              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#insSpine"/></animateMotion></circle>
-              <circle class="abx-pulse" r="2.6"><animateMotion dur="6s" begin="3s" repeatCount="indefinite"><mpath href="#insSpine"/></animateMotion></circle>
-              <g class="vs-stage" data-stage="fnol">
-                <rect class="abx-node" x="20" y="36" width="160" height="46" rx="10"/>
-                <text class="abx-label" x="36" y="64">fnol</text>
-                <text class="abx-sub" x="132" y="64">01</text>
-              </g>
-              <g class="vs-stage" data-stage="docs">
-                <rect class="abx-node" x="210" y="36" width="160" height="46" rx="10"/>
-                <text class="abx-label" x="226" y="64">docs</text>
-                <text class="abx-sub" x="322" y="64">02</text>
-                <path class="abx-edge" d="M290 82 C290 112 296 128 296 148"/>
-                <rect class="abx-chip" x="222" y="148" width="150" height="38" rx="9"/>
-                <text class="abx-label" x="238" y="171">doc-completeness</text>
-              </g>
-              <g class="vs-stage vs-stage--live" data-stage="assess">
-                <rect class="abx-node abx-node--live" x="400" y="36" width="160" height="46" rx="10"/>
-                <text class="abx-label abx-label--live" x="416" y="64">assess</text>
-                <circle class="abx-dot--live" cx="540" cy="59" r="4"/>
-                <path class="abx-edge" d="M480 82 C480 112 486 128 486 148"/>
-                <rect class="abx-chip abx-chip--pick" x="398" y="148" width="176" height="38" rx="9"/>
-                <text class="abx-label abx-label--live" x="414" y="171">damage-extraction +5</text>
-              </g>
-              <g class="vs-stage" data-stage="decide">
-                <rect class="abx-node" x="590" y="36" width="160" height="46" rx="10"/>
-                <text class="abx-label" x="606" y="64">decide</text>
-                <text class="abx-sub" x="702" y="64">04</text>
-                <path class="abx-edge" d="M670 82 C670 112 676 128 676 148"/>
-                <rect class="abx-chip" x="606" y="148" width="140" height="38" rx="9"/>
-                <text class="abx-label" x="622" y="171">fraud-signals</text>
-              </g>
-              <g class="vs-stage" data-stage="settle">
-                <rect class="abx-node" x="780" y="36" width="160" height="46" rx="10"/>
-                <text class="abx-label" x="796" y="64">settle</text>
-                <text class="abx-sub" x="892" y="64">05</text>
-              </g>
-            </svg>
-          </div>
-        </figure>
-
-        <div class="section__subhead">
-          <span class="section__subhead__eyebrow mono rv">Who it's for</span>
-          <h3 class="section__subhead__title rv" style="--i:1">Built for every side of the risk<span class="amber">.</span></h3>
-        </div>
-
-        <div class="segs segs--3">
-          <article class="seg rv" style="--i:0" data-stages="fnol docs assess decide settle">
-            <h3 class="seg__name">Insurers &amp; Carriers</h3>
-            <p class="seg__desc">Core operational agents for insurance companies managing policies and claims directly.</p>
-            <ul class="seg__chips mono">
-              <li>Policy onboarding</li>
-              <li>Claims processing</li>
-              <li>Underwriting assessment</li>
-              <li>Fraud detection &amp; alerting</li>
-              <li>Regulatory &amp; Compliance</li>
-              <li>Complaints &amp; disputes</li>
-            </ul>
-          </article>
-          <article class="seg rv" style="--i:1" data-stages="fnol docs settle">
-            <h3 class="seg__name">Brokers</h3>
-            <p class="seg__desc">Agents focused on distribution, client management, and sales optimization.</p>
-            <ul class="seg__chips mono">
-              <li>Distribution</li>
-              <li>Renewals &amp; Upsell</li>
-              <li>Policy onboarding</li>
-              <li>Complaints &amp; disputes</li>
-              <li>Regulatory &amp; Compliance</li>
-            </ul>
-          </article>
-          <article class="seg rv" style="--i:2" data-stages="assess decide">
-            <h3 class="seg__name">Reinsurance</h3>
-            <p class="seg__desc">Agents tailored for risk transfer, treaty management, and portfolio analysis.</p>
-            <ul class="seg__chips mono">
-              <li>Reinsurance coordination</li>
-              <li>Underwriting assessment</li>
-              <li>Fraud detection &amp; alerting</li>
-              <li>Regulatory &amp; Compliance</li>
-              <li>Claims processing</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= FEATURED AGENTS ================= -->
-    <section class="section" id="featured">
-      <div class="shell">
-        <div class="section__head">
-          <span class="section__no mono">03 / Featured</span>
-          <div class="section__headline">
-            <h2 class="h2 rv">Featured agents, up close<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">Eight insurance agents — what each one watches,
-              decides, and hands back to your team.</p>
-          </div>
-        </div>
-
-        <!-- DRAFT — marketing review: micro-visual data invented -->
-        <div class="abento">
-          <article class="fcard fcard--3 rv" style="--i:0">
-            <h3 class="fcard__name mono">quote-optimization</h3>
-            <p class="fcard__desc">Tunes quote pricing against bind probability and portfolio targets.</p>
-            <div class="fviz fviz--rate mono" aria-hidden="true">
-              <span class="fviz__big"><span class="amber">$</span><span>1,284</span>/yr</span>
-              <span class="fviz__ctx">motor · bind probability 68%</span>
-            </div>
-          </article>
-          <article class="fcard fcard--3 rv" style="--i:1">
-            <h3 class="fcard__name mono">premium-change-explainer</h3>
-            <p class="fcard__desc">Explains premium changes in plain language, from rating factors to renewal letters.</p>
-            <div class="fviz fviz--rows mono" aria-hidden="true">
-              <span>premium <em class="amber">+$112</em></span>
-              <span>driver added · age band</span>
-              <span>letter drafted <em>ready</em></span>
-            </div>
-          </article>
-
-          <article class="fcard fcard--2 rv" style="--i:2">
-            <h3 class="fcard__name mono">telematics-interpreter</h3>
-            <p class="fcard__desc">Turns raw telematics streams into underwriting-ready risk scores.</p>
-            <div class="fviz fviz--bars" aria-hidden="true">
-              <i style="--h:38%"></i><i style="--h:52%"></i><i style="--h:44%"></i><i class="on" style="--h:81%"></i><i style="--h:60%"></i><i style="--h:47%"></i><i style="--h:69%"></i>
-            </div>
-          </article>
-          <article class="fcard fcard--2 rv" style="--i:3">
-            <h3 class="fcard__name mono">commission-rule-validation</h3>
-            <p class="fcard__desc">Validates incentive and commission calculations against distributor contracts.</p>
-            <div class="fviz fviz--rows mono" aria-hidden="true">
-              <span>statements checked <em>412</em></span>
-              <span>mismatches <em class="amber">3</em></span>
-              <span>recovered <em>$8.2k</em></span>
-            </div>
-          </article>
-          <article class="fcard fcard--2 rv" style="--i:4">
-            <h3 class="fcard__name mono">contract-compliance-checker</h3>
-            <p class="fcard__desc">Checks distributor contracts for clauses that drift from the approved playbook.</p>
-            <div class="fviz fviz--risk mono" aria-hidden="true">
-              <span>policy drift · 0.18</span>
-              <div class="fviz__meter"><i style="--w:18%"></i></div>
-              <span class="fviz__ctx">recommend: legal review §7.2</span>
-            </div>
-          </article>
-          <article class="fcard fcard--2 rv" style="--i:5">
-            <h3 class="fcard__name mono">sales-script-compliance</h3>
-            <p class="fcard__desc">Reviews recorded sales calls against script and suitability requirements.</p>
-            <div class="fviz fviz--dots mono" aria-hidden="true">
-              <span>call</span><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i>
-            </div>
-          </article>
-          <article class="fcard fcard--2 rv" style="--i:6">
-            <h3 class="fcard__name mono">cross-sell-trigger</h3>
-            <p class="fcard__desc">Spots life events and coverage gaps that warrant a cross-sell conversation.</p>
-            <div class="fviz fviz--rows mono" aria-hidden="true">
-              <span>P-8841 · new home <em class="amber">trigger</em></span>
-              <span>coverage gap · contents</span>
-              <span>next best action <em>queued</em></span>
-            </div>
-          </article>
-          <article class="fcard fcard--2 rv" style="--i:7">
-            <h3 class="fcard__name mono">suitability-validator</h3>
-            <p class="fcard__desc">Validates product recommendations against customer profile and regulation.</p>
-            <div class="fviz fviz--rows mono" aria-hidden="true">
-              <span>profile match <em>0.91</em></span>
-              <span>regulation check <em>pass</em></span>
-              <span>re-match suggested <em class="amber">1</em></span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= WORKFLOWS ================= -->
-    <!-- DRAFT — marketing review: descriptions paraphrased from flowx.ai/insurance -->
-    <section class="section" id="workflows">
-      <div class="shell">
-        <div class="section__head">
-          <span class="section__no mono">04 / Workflows</span>
-          <div class="section__headline">
-            <h2 class="h2 rv">Three workflows, mission-critical<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">Where insurance agent stacks go to work first.</p>
+            <h2 class="h2 rv">Observability and governance, in one plane<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Every agent run is captured, evaluated against policy, and
+              turned into audit-ready evidence — without a parallel record to maintain.</p>
           </div>
         </div>
         <div class="segs segs--3">
           <article class="seg rv" style="--i:0">
             <span class="seg__no mono">01</span>
-            <h3 class="seg__name">Underwriting</h3>
-            <p class="seg__desc">Agents assemble the risk picture from fragmented sources so underwriters price with the full file.</p>
+            <h3 class="seg__name">Policy engine</h3>
+            <p class="seg__desc">Machine-checkable rules enforced against live telemetry, grouped into reusable regulatory packs.</p>
           </article>
           <article class="seg rv" style="--i:1">
             <span class="seg__no mono">02</span>
-            <h3 class="seg__name">Claims Processing</h3>
-            <p class="seg__desc">Routine claims move straight through — documents checked, damage assessed, settlement queued.</p>
+            <h3 class="seg__name">Evidence pipeline</h3>
+            <p class="seg__desc">Compliance evidence auto-collected from traces, with a collect → review → approve workflow.</p>
           </article>
           <article class="seg rv" style="--i:2">
             <span class="seg__no mono">03</span>
-            <h3 class="seg__name">Fraud Detection</h3>
-            <p class="seg__desc">Signals surface early with the evidence attached, instead of at the bottom of an exception queue.</p>
+            <h3 class="seg__name">Regulatory mapping</h3>
+            <p class="seg__desc">EU AI Act, GDPR, HIPAA, SOC 2, PCI-DSS, ISO 27001 — requirement → policy → evidence, with continuous gap analysis.</p>
+          </article>
+          <article class="seg rv" style="--i:3">
+            <span class="seg__no mono">04</span>
+            <h3 class="seg__name">Execution tracing</h3>
+            <p class="seg__desc">Hierarchical traces of every run, tool call, retrieval and decision, with token, cost and latency telemetry.</p>
+          </article>
+          <article class="seg rv" style="--i:4">
+            <span class="seg__no mono">05</span>
+            <h3 class="seg__name">Risk-based oversight</h3>
+            <p class="seg__desc">In-the-loop for high-risk, on-the-loop otherwise, with a kill switch — human review recorded as evidence.</p>
+          </article>
+          <article class="seg rv" style="--i:5">
+            <span class="seg__no mono">06</span>
+            <h3 class="seg__name">Immutable audit trail</h3>
+            <p class="seg__desc">Every access, enforcement action and human review recorded, tamper-evident, and retained for years.</p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- ================= WHY NOW ================= -->
+    <section class="section" id="why">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">03 / Why now</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Autonomy is outpacing oversight<span class="amber">.</span></h2>
+          </div>
+        </div>
+        <dl class="stats">
+          <div class="stats__row rv" style="--i:0">
+            <dt><span class="stats__num">71%</span></dt>
+            <dd>of organizations deploying agents have no formal governance framework.</dd>
+          </div>
+          <div class="stats__row rv" style="--i:1">
+            <dt><span class="stats__num">80%</span></dt>
+            <dd>have already observed risky agent behaviors, like unauthorized data access.</dd>
+          </div>
+          <div class="stats__row rv" style="--i:2">
+            <dt><span class="stats__num">Aug 2026</span></dt>
+            <dd>EU AI Act reaches full effect — binding human oversight and multi-year record-keeping.</dd>
+          </div>
+          <div class="stats__row rv" style="--i:3">
+            <dt><span class="stats__num">6</span></dt>
+            <dd>regulatory frameworks mapped out of the box, from EU AI Act to ISO 27001.</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
@@ -591,21 +484,23 @@
     <section class="section section--cta" id="cta">
       <canvas class="cta__canvas" aria-hidden="true"></canvas>
       <div class="shell">
-        <span class="section__no mono">05 / Next</span>
+        <span class="section__no mono">04 / Next</span>
         <h2 class="cta__title">
-          <span class="rv" style="--i:0">Put agents on your</span>
-          <span class="rv" style="--i:1">claims journey<span class="amber">.</span></span>
+          <span class="rv" style="--i:0">Govern the autonomy</span>
+          <span class="rv" style="--i:1">you grant<span class="amber">.</span></span>
         </h2>
-        <div class="cta__row rv" style="--i:2">
-          <a class="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Schedule a customized demo</a>
-          <a class="btn btn--ghost btn--lg" href="./index.html#hero">Compile your own agent</a>
+        <p class="abd-cta__sub rv" style="--i:2">Bring a high-risk workflow — we'll enforce a policy pack against a
+          live run and hand you the evidence chain.</p>
+        <div class="cta__row rv" style="--i:3">
+          <a class="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Observatory%20demo">Book a demo</a>
+          <a class="btn btn--ghost btn--lg" href="#how">See how it works</a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- ================= FOOTER ================= -->
-  <!-- copied from index.html:580-624 — only the Platform column hrefs change, see deltas above -->
+  <!-- copied from index.html — delta: build/govern pages point at their pages -->
   <footer class="footer">
     <div class="shell">
       <div class="footer__top">
@@ -630,13 +525,14 @@
             <a href="./insurance.html">Insurance</a>
             <a href="./logistics.html">Logistics</a>
             <a href="./agent-builder.html">Agent Builder</a>
+            <a href="./flowx-code.html">FlowX Code</a>
+            <a href="./observatory.html">Observatory</a>
             <a href="./index.html#proof">Proof</a>
           </div>
           <div>
             <h4 class="mono">Company</h4>
             <a href="./about.html">About us</a>
           </div>
-          <!-- VERIFY URLS before publish -->
           <div>
             <h4 class="mono">Resources</h4>
             <a href="https://www.flowx.ai/blog" target="_blank" rel="noopener">Blog</a>
