@@ -2397,47 +2397,64 @@ em { font-style: normal; }
 @keyframes lrv-ex { 0%, 36% { opacity: 0; } 38%, 56% { opacity: 0.9; } 62%, 100% { opacity: 0; } }
 @keyframes lrv-re { 0%, 52% { opacity: 0; } 56%, 88% { opacity: 0.9; } 94%, 100% { opacity: 0; } }
 
-/* --- agent-builder hero: "the compile" (abv-*) — agent-builder.html;
+/* --- agent-builder hero: "the build" (abv-*) — agent-builder.html;
    the page's layout styles live in the AGENT BUILDER PAGE section below.
-   a hand-sketched agent graph (loose, dashed, unordered) snaps onto phase
-   columns as a precise state machine; a run then executes through it — pulses
-   cross the parallel phase and the bounded llm node, checkpoints tick amber
-   along the log rail, the end contract lights: run complete · replayable.
-   Amber is reserved for the resolution (the persisted, replayable run).
-   Base (non-animated) values are the resolved pose — compiled machine,
-   checkpoints filled, end lit — for reduced motion. */
-.abv-sk { opacity: 0; animation: abv-sk 12s linear infinite; }
-.abv-sk rect, .abv-sk path { fill: none; stroke: rgba(var(--dia-dim), 0.55); stroke-width: 1.1; stroke-linecap: round; stroke-dasharray: 6 4; }
-.abv-cm { opacity: 0.95; animation: abv-cm 12s linear infinite; }
-.abv-phase { stroke: rgba(var(--ink), 0.06); stroke-width: 1; stroke-dasharray: 2 6; }
+   typed bricks are dragged from a palette (agent · tool · memory) and lock into
+   an aligned grid one at a time; connectors snap as each seats; the moment a
+   path exists a pulse threads input→output and keeps looping — re-routing
+   through each new brick — until it lands on a typed output that resolves amber.
+   Amber is reserved for the resolution (the lit output + the tag). Base
+   (non-animated) values are the resolved pose — grid whole, edges drawn, output
+   lit, tag shown — so reduced motion freezes on a finished, sensible scene. */
 .abv-node { fill: var(--bg-raised); stroke: rgba(var(--ink), 0.14); stroke-width: 1; }
-.abv-bounds { fill: none; stroke: rgba(var(--dia-bright), 0.38); stroke-width: 1; stroke-dasharray: 3 5; }
-.abv-edge { fill: none; stroke: rgba(var(--ink), 0.16); stroke-width: 1; }
-.abv-port { fill: rgba(var(--dia-dim), 0.42); }
-.abv-rail { stroke: rgba(var(--ink), 0.08); stroke-width: 1; }
-.abv-ck { fill: var(--amber); opacity: 0.9; animation: abv-ck 12s linear infinite; animation-delay: calc(var(--k, 0) * 0.66s); }
-.abv-hot { fill: none; stroke: var(--amber); stroke-width: 1.2; opacity: 0.9; animation: abv-hot 12s linear infinite; }
-.abv-dot { fill: rgba(var(--dia-bright), 0.85); }
-.abv-sweep { stroke: rgba(var(--dia-bright), 0.55); stroke-width: 1; opacity: 0; animation: abv-sweep 12s linear infinite; }
-.abv-tag--draft { opacity: 0; animation: abv-draft 12s linear infinite; }
-.abv-tag--ok { opacity: 0.9; animation: abv-ok 12s linear infinite; }
+.abv-slot { fill: none; stroke: rgba(var(--ink), 0.10); stroke-width: 1; stroke-dasharray: 3 5; }
+.abv-slots { opacity: 0.9; animation: abvSlots 12s linear infinite; }
+.abv-fam.fa { fill: rgba(var(--dia-bright), 0.78); }
+.abv-fam.ft { fill: rgba(var(--dia-dim), 0.55); }
+.abv-fam.fm { fill: rgba(var(--dia-dim2), 0.62); }
 
-/* the draft: sketch fades in, holds while the author draws, gone at compile */
-@keyframes abv-sk { 0%, 3% { opacity: 0; } 8%, 24% { opacity: 0.8; } 28%, 100% { opacity: 0; } }
-/* the machine: appears the moment the sweep passes, dark again at the loop seam */
-@keyframes abv-cm { 0%, 27% { opacity: 0; } 31%, 92% { opacity: 0.95; } 98%, 100% { opacity: 0; } }
-@keyframes abv-sweep {
-  0%, 25.5% { opacity: 0; transform: translateX(0); }
-  27% { opacity: 0.85; }
-  31% { opacity: 0.85; transform: translateX(340px); }
-  33%, 100% { opacity: 0; transform: translateX(340px); }
+/* palette — the drag source; sits dimmed to the side */
+.abv-pal { opacity: 0.62; animation: abvPal 12s linear infinite; }
+.abv-pal-box { fill: none; stroke: rgba(var(--ink), 0.10); stroke-width: 1; }
+
+/* ports — the typed in/out contracts */
+.abv-port-pill { opacity: 1; animation: abvPort 12s linear infinite; }
+.abv-out-hot { fill: none; stroke: var(--amber); stroke-width: 1.3; opacity: 0.9; animation: abvOutHot 12s linear infinite; }
+
+/* edges — draw in as their downstream brick seats (staggered per --n) */
+.abv-edge { fill: none; stroke: rgba(var(--ink), 0.18); stroke-width: 1; stroke-dasharray: 1 1; stroke-dashoffset: 0; opacity: 1; animation: abvEdge 12s linear infinite; animation-delay: calc(var(--n, 0) * 0.55s + 0.3s); }
+
+/* bricks — lock into the grid one at a time (staggered per --n) */
+.abv-brick { opacity: 1; transform: none; transform-box: fill-box; transform-origin: center; animation: abvBrick 12s var(--ease) infinite; animation-delay: calc(var(--n, 0) * 0.55s); }
+
+/* the run pulse — diagram-blue, never amber (amber is the resolution only) */
+.abv-dot { fill: rgba(var(--dia-bright), 0.9); }
+
+/* resolution tag — appears once the run lands */
+.abv-tag { opacity: 0.9; animation: abvTag 12s linear infinite; }
+
+/* palette + grid hold, then fade at the loop seam */
+@keyframes abvSlots { 0%, 3% { opacity: 0; } 7%, 92% { opacity: 0.9; } 98%, 100% { opacity: 0; } }
+@keyframes abvPal { 0%, 3% { opacity: 0; } 7%, 92% { opacity: 0.62; } 98%, 100% { opacity: 0; } }
+@keyframes abvPort { 0%, 2% { opacity: 0; } 6%, 92% { opacity: 1; } 98%, 100% { opacity: 0; } }
+/* each brick waits in the palette, then slides in and locks; sequential teardown at the seam */
+@keyframes abvBrick {
+  0%, 4% { opacity: 0; transform: translateX(-30px) scale(0.94); }
+  9% { opacity: 1; transform: translateX(0) scale(1); }
+  90% { opacity: 1; transform: translateX(0) scale(1); }
+  97%, 100% { opacity: 0; transform: translateX(-14px) scale(0.97); }
 }
-/* checkpoints tick amber as the run passes (staggered per --k via delay) */
-@keyframes abv-ck { 0%, 40% { opacity: 0.12; } 43%, 88% { opacity: 0.9; } 96%, 100% { opacity: 0.12; } }
-/* the end contract lights once the run lands */
-@keyframes abv-hot { 0%, 58% { opacity: 0; } 62%, 90% { opacity: 0.9; } 96%, 100% { opacity: 0; } }
-@keyframes abv-draft { 0%, 4% { opacity: 0; } 8%, 24% { opacity: 0.9; } 28%, 100% { opacity: 0; } }
-@keyframes abv-ok { 0%, 62% { opacity: 0; } 66%, 90% { opacity: 0.9; } 96%, 100% { opacity: 0; } }
+/* connectors snap: dashoffset 1→0 (pathLength=1) just after the brick seats */
+@keyframes abvEdge {
+  0%, 6% { stroke-dashoffset: 1; opacity: 0; }
+  8% { opacity: 1; }
+  15% { stroke-dashoffset: 0; }
+  90% { stroke-dashoffset: 0; opacity: 1; }
+  97%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+/* the output contract lights amber as the run lands */
+@keyframes abvOutHot { 0%, 87% { opacity: 0; } 90%, 96% { opacity: 0.9; } 99%, 100% { opacity: 0; } }
+@keyframes abvTag { 0%, 88% { opacity: 0; } 91%, 97% { opacity: 0.9; } 100% { opacity: 0; } }
 
 /* ============================================================
    FLOWX CODE — hero viz "the gate"
@@ -2610,9 +2627,9 @@ em { font-style: normal; }
   .irv-pulse, .irv-tag--fnol, .irv-tag--set,
   .lrv-plan-a, .lrv-plan-b, .lrv-detour, .lrv-x, .lrv-flash, .lrv-alt--scan,
   .lrv-tag--ex, .lrv-tag--re { animation: none; }
-  /* agent-builder hero: freeze on the resolved pose (compiled, checkpointed) */
-  .abv-sk, .abv-cm, .abv-sweep, .abv-ck, .abv-hot,
-  .abv-tag--draft, .abv-tag--ok { animation: none; }
+  /* agent-builder hero: freeze on the resolved pose (grid whole, output lit) */
+  .abv-slots, .abv-pal, .abv-port-pill, .abv-out-hot,
+  .abv-edge, .abv-brick, .abv-tag { animation: none; }
   /* SMIL movers can't be frozen by CSS — hide them; the static scene is the resolved pose */
   .lrv-dot, .lrv-arrive, .lrv-amb, .bkg-dot, .abv-dot { display: none; }
   /* flowx-code hero: freeze on the resolved pose (validated, saved, committed) */
