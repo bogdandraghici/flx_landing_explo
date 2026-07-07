@@ -7,6 +7,7 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         agents: fileURLToPath(new URL('./agents.html', import.meta.url)),
+        agentbuilder: fileURLToPath(new URL('./agent-builder.html', import.meta.url)),
         banking: fileURLToPath(new URL('./banking.html', import.meta.url)),
         insurance: fileURLToPath(new URL('./insurance.html', import.meta.url)),
         logistics: fileURLToPath(new URL('./logistics.html', import.meta.url)),
