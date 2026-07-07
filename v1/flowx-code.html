@@ -273,118 +273,79 @@
           </p>
         </div>
 
-        <!-- the gate: a one-sentence request grounds against a live registry, drafts an
-             artifact into a typed contract, passes a validator (a malformed field is
-             rejected, then corrects), then STOPS at a human gate — "awaiting Save" — and
-             only crosses into production on the human click, where amber finally lights:
-             "saved · committed". The loop's stopping condition is a human, on purpose. -->
+        <!-- contract compiler rail: natural language enters the CLI, is grounded by
+             the live registry, becomes one schema-bound resource bundle, validates,
+             then stops at the human Save gate before anything commits. -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="A one-sentence request is drafted into a typed artifact against a live registry, validated (a malformed field is rejected then corrected), held at a human Save gate, and only committed to production when a person clicks Save — saved and persisted">
-
-            <!-- persistent scaffolding: phase separators + zone labels -->
-            <g class="fxc-scaff">
-              <line class="fxc-phase" x1="116" y1="112" x2="116" y2="300"/>
-              <line class="fxc-phase" x1="266" y1="112" x2="266" y2="300"/>
-              <line class="fxc-phase" x1="326" y1="112" x2="326" y2="300"/>
-              <line class="fxc-phase" x1="376" y1="112" x2="376" y2="300"/>
-              <text class="ivz-lbl" x="66" y="100" text-anchor="middle">in</text>
-              <text class="ivz-lbl" x="191" y="100" text-anchor="middle">draft · grounded</text>
-              <text class="ivz-lbl" x="296" y="100" text-anchor="middle">validate</text>
-              <text class="ivz-lbl" x="351" y="100" text-anchor="middle">gate</text>
-              <text class="ivz-lbl" x="418" y="100" text-anchor="middle">committed</text>
+          <svg viewBox="0 0 460 460" role="img" aria-label="A natural-language CLI request is compiled into a live-registry-grounded, contract-validated resource bundle, then committed only after a human Save action">
+            <g class="fxc-zones">
+              <line x1="210" y1="108" x2="210" y2="338"/>
+              <line x1="364" y1="108" x2="364" y2="338"/>
+              <text class="ivz-lbl" x="112" y="96" text-anchor="middle">write</text>
+              <text class="ivz-lbl" x="288" y="96" text-anchor="middle">compile resource</text>
+              <text class="ivz-lbl" x="406" y="96" text-anchor="middle">save</text>
             </g>
 
-            <!-- IN: the one-sentence request -->
-            <g class="fxc-prose">
-              <rect class="fxc-slot-box" x="24" y="150" width="82" height="30" rx="7"/>
-              <line class="fxc-word" x1="34" y1="162" x2="72" y2="162"/>
-              <line class="fxc-word" x1="34" y1="169" x2="60" y2="169"/>
-              <rect class="fxc-caret" x="76" y="157" width="2" height="16"/>
+            <g class="fxc-terminal">
+              <rect class="fxc-term-shell" x="40" y="130" width="154" height="118" rx="12"/>
+              <circle class="fxc-dot" cx="58" cy="148" r="2.5"/>
+              <circle class="fxc-dot" cx="69" cy="148" r="2.5"/>
+              <circle class="fxc-dot" cx="80" cy="148" r="2.5"/>
+              <text class="fxc-cli" x="58" y="174">&gt; describe</text>
+              <line class="fxc-type fxc-type--one" x1="58" y1="194" x2="166" y2="194"/>
+              <line class="fxc-type fxc-type--two" x1="58" y1="214" x2="138" y2="214"/>
+              <g class="fxc-caret-track">
+                <rect class="fxc-caret" x="60" y="187" width="2" height="14"/>
+              </g>
             </g>
 
-            <!-- IN: the live registry it grounds against (persistent) -->
-            <text class="ivz-lbl" x="66" y="212" text-anchor="middle">live registry</text>
-            <g class="fxc-reg">
-              <rect class="fxc-reg-box" x="24" y="220" width="82" height="60" rx="7"/>
-              <line class="fxc-reg-row" x1="34" y1="234" x2="96" y2="234"/>
-              <line class="fxc-reg-row" x1="34" y1="246" x2="96" y2="246"/>
-              <line class="fxc-reg-row" x1="34" y1="258" x2="96" y2="258"/>
-              <line class="fxc-reg-row" x1="34" y1="270" x2="96" y2="270"/>
-            </g>
-            <!-- grounding connectors: registry constrains the draft -->
-            <path class="fxc-conn" style="--c:0" d="M106 240 C122 240 122 196 132 196"/>
-            <path class="fxc-conn" style="--c:1" d="M106 258 C122 258 122 232 132 232"/>
+            <line class="fxc-rail" x1="194" y1="210" x2="376" y2="210"/>
+            <line class="fxc-rail-hot" x1="194" y1="210" x2="376" y2="210"/>
 
-            <!-- DRAFT: the artifact assembled into a typed contract -->
-            <rect class="fxc-frame" x="130" y="150" width="120" height="120" rx="12"/>
-            <rect class="fxc-frame-lock" x="130" y="150" width="120" height="120" rx="12"/>
-            <g class="fxc-draft">
-              <rect class="fxc-card" x="136" y="156" width="108" height="108" rx="9"/>
-              <text class="ivz-lbl" x="148" y="174" text-anchor="start">artifact</text>
-              <line class="fxc-cardline" x1="148" y1="182" x2="232" y2="182"/>
-              <!-- contract slots (empty baselines) -->
-              <line class="fxc-slot" x1="148" y1="198" x2="232" y2="198"/>
-              <line class="fxc-slot" x1="148" y1="216" x2="232" y2="216"/>
-              <line class="fxc-slot" x1="148" y1="234" x2="232" y2="234"/>
-              <line class="fxc-slot" x1="148" y1="252" x2="232" y2="252"/>
-              <!-- field labels -->
-              <line class="fxc-key" x1="148" y1="198" x2="168" y2="198"/>
-              <line class="fxc-key" x1="148" y1="216" x2="168" y2="216"/>
-              <line class="fxc-key" x1="148" y1="234" x2="168" y2="234"/>
-              <line class="fxc-key" x1="148" y1="252" x2="168" y2="252"/>
+            <text class="ivz-lbl" x="112" y="284" text-anchor="middle">live registry</text>
+            <g class="fxc-registry">
+              <rect class="fxc-reg-box" x="54" y="296" width="116" height="44" rx="8"/>
+              <line class="fxc-reg-row" x1="68" y1="310" x2="154" y2="310"/>
+              <line class="fxc-reg-row" x1="68" y1="318" x2="140" y2="318"/>
+              <line class="fxc-reg-row" x1="68" y1="326" x2="150" y2="326"/>
             </g>
-            <!-- values filling in (staggered) -->
-            <g class="fxc-vals">
-              <line class="fxc-val" style="--r:0" x1="176" y1="198" x2="232" y2="198"/>
-              <line class="fxc-val" style="--r:1" x1="176" y1="216" x2="224" y2="216"/>
-              <line class="fxc-val fxc-val--bad" style="--r:2" x1="176" y1="234" x2="232" y2="234"/>
-              <line class="fxc-val" style="--r:3" x1="176" y1="252" x2="220" y2="252"/>
+            <path class="fxc-ground" d="M170 318 C202 318 204 286 238 286"/>
+
+            <g class="fxc-bundle">
+              <rect class="fxc-bundle-ghost" x="230" y="126" width="104" height="150" rx="12"/>
+              <rect class="fxc-bundle-card" x="238" y="136" width="116" height="160" rx="12"/>
+              <text class="ivz-lbl fxc-bundle-title" x="254" y="160" text-anchor="start" textLength="84" lengthAdjust="spacingAndGlyphs">resource bundle</text>
+              <line class="fxc-rule" x1="254" y1="174" x2="338" y2="174"/>
+              <line class="fxc-slot" x1="254" y1="200" x2="338" y2="200"/>
+              <line class="fxc-slot" x1="254" y1="226" x2="338" y2="226"/>
+              <line class="fxc-slot" x1="254" y1="252" x2="338" y2="252"/>
+              <line class="fxc-key" x1="254" y1="200" x2="276" y2="200"/>
+              <line class="fxc-key" x1="254" y1="226" x2="276" y2="226"/>
+              <line class="fxc-key" x1="254" y1="252" x2="276" y2="252"/>
+              <line class="fxc-field" style="--r:0" x1="286" y1="200" x2="338" y2="200"/>
+              <line class="fxc-field" style="--r:1" x1="286" y1="226" x2="328" y2="226"/>
+              <line class="fxc-field" style="--r:2" x1="286" y1="252" x2="334" y2="252"/>
             </g>
 
-            <!-- VALIDATE: the membrane rejects the malformed field, then it corrects -->
-            <g class="fxc-reject">
-              <path d="M236 230 l6 8 M242 230 l-6 8"/>
-            </g>
-            <g class="fxc-check">
-              <circle class="fxc-check-ring" cx="296" cy="210" r="13"/>
-              <path class="fxc-check-mark" d="M290 210 l4 5 l8 -11"/>
-              <text class="ivz-lbl" x="296" y="238" text-anchor="middle">contract</text>
-            </g>
-
-            <!-- GATE: the artifact halts at a human Save gate -->
-            <line class="fxc-gatepost" x1="351" y1="150" x2="351" y2="196"/>
-            <line class="fxc-gatepost" x1="351" y1="224" x2="351" y2="270"/>
+            <line class="fxc-gatepost" x1="406" y1="132" x2="406" y2="186"/>
+            <line class="fxc-gatepost" x1="406" y1="234" x2="406" y2="294"/>
             <g class="fxc-wait">
-              <line class="fxc-barrier" x1="351" y1="196" x2="351" y2="224"/>
-              <text class="ivz-lbl" x="351" y="286" text-anchor="middle">awaiting save</text>
+              <line class="fxc-barrier" x1="406" y1="186" x2="406" y2="234"/>
+              <text class="ivz-lbl" x="406" y="314" text-anchor="middle">awaiting save</text>
             </g>
 
-            <!-- the human Save control -->
-            <rect class="fxc-savebtn" x="329" y="300" width="44" height="17" rx="5"/>
-            <rect class="fxc-savehot" x="329" y="300" width="44" height="17" rx="5"/>
-            <text class="ivz-lbl" x="351" y="312" text-anchor="middle">save</text>
-            <!-- cursor arrives at commit -->
-            <path class="fxc-cursor" d="M0 0 l0 15 l4 -4 l3 6 l3 -1 l-3 -6 l6 0 z" transform="translate(360 292)"/>
-
-            <!-- PROD: the committed artifact, persisted -->
-            <text class="ivz-lbl" x="416" y="168" text-anchor="middle">production</text>
-            <rect class="fxc-prod" x="388" y="176" width="56" height="80" rx="9"/>
             <g class="fxc-commit">
-              <rect class="fxc-commit-glow" x="396" y="196" width="40" height="40" rx="7"/>
-              <rect class="fxc-commit-card" x="400" y="200" width="32" height="32" rx="6"/>
-              <path class="fxc-commit-mark" d="M408 216 l4 5 l9 -12"/>
+              <rect class="fxc-commit-glow" x="424" y="198" width="32" height="24" rx="6"/>
+              <rect class="fxc-commit-card" x="428" y="201" width="25" height="18" rx="5"/>
+              <path class="fxc-commit-mark" d="M434 210 l4 4 l9 -10"/>
             </g>
 
-            <!-- the artifact crossing the gate at commit -->
-            <circle class="fxc-mover" cx="248" cy="210" r="3.4"/>
-
-            <!-- status tags: drafted then saved -->
             <g class="fxc-tag--draft" transform="translate(230 402)">
-              <rect class="ivz-tag" x="-70" y="-10" width="140" height="15"/>
-              <text class="ivz-lbl" text-anchor="middle" y="1.5">drafted · not saved</text>
+              <rect class="ivz-tag" x="-78" y="-10" width="156" height="15"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1.5">drafted · validated · waiting</text>
             </g>
             <g class="fxc-tag--ok" transform="translate(230 402)">
-              <rect class="ivz-tag" x="-74" y="-10" width="148" height="15"/>
+              <rect class="ivz-tag" x="-70" y="-10" width="140" height="15"/>
               <text class="ivz-lbl" text-anchor="middle" y="1.5">saved · committed</text>
             </g>
           </svg>

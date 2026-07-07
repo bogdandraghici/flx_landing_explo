@@ -2457,91 +2457,96 @@ em { font-style: normal; }
 @keyframes abvTag { 0%, 88% { opacity: 0; } 91%, 97% { opacity: 0.9; } 100% { opacity: 0; } }
 
 /* ============================================================
-   FLOWX CODE — hero viz "the gate"
-   A one-sentence request grounds against a live registry, drafts an artifact
-   into a typed contract, is validated (a malformed field rejected then
-   corrected), HALTS at a human Save gate, and only commits to production on
-   the click — where amber (resolution only) finally lights. 12s story loop.
-   Base opacities encode the resolved pose so reduced-motion freezes on
-   "saved · committed". Amber is reserved for the human act (Save + commit);
-   machine validation stays neutral, reinforcing that the stop is a human.
+   FLOWX CODE — hero viz "contract compiler rail"
+   A natural-language CLI request compiles into one grounded resource bundle,
+   receives a neutral contract-valid seal, then waits at the human Save gate.
+   Amber is reserved for Save and the committed stamp.
    ============================================================ */
-/* persistent scaffolding */
-.fxc-phase { stroke: rgba(var(--ink), 0.06); stroke-width: 1; stroke-dasharray: 2 6; }
-.fxc-reg-box, .fxc-slot-box { fill: rgba(var(--ink), 0.015); stroke: rgba(var(--ink), 0.12); stroke-width: 1; }
-.fxc-prod { fill: none; stroke: rgba(var(--ink), 0.1); stroke-width: 1; stroke-dasharray: 4 6; }
-.fxc-reg-row { stroke: rgba(var(--dia-dim), 0.35); stroke-width: 1.2; stroke-linecap: round; }
-.fxc-word { stroke: rgba(var(--dia-dim), 0.5); stroke-width: 1.4; stroke-linecap: round; }
+.fxc-zones line { stroke: rgba(var(--ink), 0.06); stroke-width: 1; stroke-dasharray: 2 7; }
+.fxc-term-shell, .fxc-reg-box, .fxc-bundle-card, .fxc-bundle-ghost {
+  fill: rgba(var(--ink), 0.018);
+  stroke: rgba(var(--ink), 0.14);
+  stroke-width: 1;
+}
+.fxc-term-shell { fill: var(--bg-raised); }
+.fxc-bundle-card { fill: var(--bg-raised); }
+.fxc-bundle-ghost { fill: rgba(var(--ink), 0.012); stroke-dasharray: 4 6; }
+.fxc-dot { fill: rgba(var(--dia-dim), 0.55); }
+.fxc-cli {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: rgba(var(--dia-bright), 0.88);
+  letter-spacing: 0.04em;
+}
+.fxc-type, .fxc-reg-row, .fxc-rule, .fxc-slot, .fxc-key, .fxc-field {
+  stroke: rgba(var(--dia-dim), 0.55);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.fxc-reg-row { stroke-width: 1.2; opacity: 0.7; }
+.fxc-rule, .fxc-slot { stroke: rgba(var(--ink), 0.12); stroke-width: 1; }
+.fxc-key { stroke: rgba(var(--dia-dim), 0.55); stroke-width: 2.2; }
+.fxc-field { stroke: rgba(var(--dia-bright), 0.62); stroke-width: 2.2; }
+.fxc-bundle-title { font-size: 7.5px; letter-spacing: 0.08em; }
+.fxc-caret { fill: rgba(var(--dia-bright), 0.85); animation: fxc-caret-blink 1.05s steps(1) infinite; }
+.fxc-rail {
+  fill: none;
+  stroke: rgba(var(--ink), 0.10);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-dasharray: 4 6;
+}
+.fxc-rail-hot, .fxc-ground {
+  fill: none;
+  stroke: rgba(var(--dia-bright), 0.54);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-dasharray: 182;
+  stroke-dashoffset: 182;
+  opacity: 0;
+  animation: fxc-rail 12s linear infinite;
+}
+.fxc-ground { stroke-dasharray: 92; stroke-dashoffset: 92; animation: fxc-ground 12s linear infinite; }
 .fxc-gatepost { stroke: rgba(var(--dia-bright), 0.6); stroke-width: 3; stroke-linecap: round; }
-.fxc-savebtn { fill: none; stroke: rgba(var(--ink), 0.18); stroke-width: 1; }
-
-/* draft card + typed contract */
-.fxc-card { fill: var(--bg-raised); stroke: rgba(var(--ink), 0.14); stroke-width: 1; }
-.fxc-cardline { stroke: rgba(var(--ink), 0.12); stroke-width: 1; }
-.fxc-frame { fill: none; stroke: rgba(var(--ink), 0.12); stroke-width: 1; stroke-dasharray: 4 6; }
-.fxc-slot { stroke: rgba(var(--ink), 0.1); stroke-width: 1; }
-.fxc-key { stroke: rgba(var(--dia-dim), 0.5); stroke-width: 2.2; stroke-linecap: round; }
-.fxc-val { stroke: rgba(var(--dia-bright), 0.55); stroke-width: 2.2; stroke-linecap: round; }
-.fxc-conn { fill: none; stroke: rgba(var(--dia-dim), 0.42); stroke-width: 1; stroke-dasharray: 3 4; }
-
-/* validation — neutral (machine), not amber */
-.fxc-frame-lock { fill: none; stroke: rgba(var(--dia-bright), 0.4); stroke-width: 1; }
-.fxc-check-ring { fill: var(--bg); stroke: rgba(var(--dia-bright), 0.5); stroke-width: 1.2; }
-.fxc-check-mark { fill: none; stroke: rgba(var(--dia-bright), 0.9); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.fxc-reject { fill: none; stroke: rgba(var(--dia-dim), 0.8); stroke-width: 1.6; stroke-linecap: round; }
-
-/* the gate + the human act (amber) */
-.fxc-barrier { stroke: rgba(var(--dia-dim), 0.6); stroke-width: 1.4; stroke-dasharray: 2 4; }
-.fxc-savehot { fill: none; stroke: var(--amber); stroke-width: 1.3; }
-.fxc-cursor { fill: var(--text); stroke: var(--bg); stroke-width: 0.6; }
-
-/* committed artifact in production (amber = resolution) */
+.fxc-barrier { stroke: rgba(var(--dia-dim), 0.62); stroke-width: 1.4; stroke-dasharray: 2 4; }
+.fxc-commit { opacity: 0; animation: fxc-commit 12s linear infinite; }
 .fxc-commit-glow { fill: var(--amber); opacity: 0.12; }
 .fxc-commit-card { fill: rgba(var(--amber-rgb), 0.06); stroke: var(--amber); stroke-width: 1.1; }
 .fxc-commit-mark { fill: none; stroke: var(--amber); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.fxc-mover { fill: rgba(var(--dia-bright), 0.9); }
 
-/* animated layers — base opacity = resolved pose */
-.fxc-prose { opacity: 0; animation: fxc-prose 12s linear infinite; }
-.fxc-caret { fill: rgba(var(--dia-bright), 0.85); animation: fxc-caret 1.1s steps(1) infinite; }
-.fxc-conn { animation: fxc-conn 12s linear infinite; animation-delay: calc(var(--c, 0) * 0.3s); }
-.fxc-draft { opacity: 0.98; animation: fxc-draft 12s linear infinite; }
-.fxc-val { animation: fxc-val 12s linear infinite; animation-delay: calc(var(--r, 0) * 0.45s); }
-.fxc-reject { opacity: 0; animation: fxc-reject 12s linear infinite; }
-.fxc-check { animation: fxc-check 12s linear infinite; }
-.fxc-frame-lock { animation: fxc-check 12s linear infinite; }
+.fxc-type {
+  opacity: 0;
+}
+.fxc-field {
+  stroke-dasharray: 58;
+  stroke-dashoffset: 58;
+  animation: fxc-field 12s linear infinite;
+  animation-delay: calc(var(--r, 0) * 0.45s);
+}
 .fxc-wait { opacity: 0; animation: fxc-wait 12s linear infinite; }
-.fxc-savehot { opacity: 0.9; animation: fxc-savehot 12s linear infinite; }
-.fxc-cursor { opacity: 0; animation: fxc-cursor 12s linear infinite; }
-.fxc-mover { animation: fxc-mover 12s linear infinite; }
-.fxc-commit { animation: fxc-commit 12s linear infinite; }
 .fxc-tag--draft { opacity: 0; animation: fxc-tagdraft 12s linear infinite; }
 .fxc-tag--ok { opacity: 0.9; animation: fxc-tagok 12s linear infinite; }
 
-@keyframes fxc-prose { 0%, 2% { opacity: 0; } 6%, 30% { opacity: 1; } 36%, 100% { opacity: 0; } }
-@keyframes fxc-caret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.12; } }
-@keyframes fxc-conn { 0%, 32% { opacity: 0; } 38%, 92% { opacity: 0.9; } 96%, 100% { opacity: 0; } }
-@keyframes fxc-draft { 0%, 30% { opacity: 0; } 36%, 92% { opacity: 0.98; } 96%, 100% { opacity: 0; } }
-@keyframes fxc-val { 0%, 30% { opacity: 0; } 37%, 92% { opacity: 1; } 96%, 100% { opacity: 0; } }
-@keyframes fxc-reject { 0%, 43% { opacity: 0; } 45%, 50% { opacity: 1; } 53%, 100% { opacity: 0; } }
-@keyframes fxc-check { 0%, 52% { opacity: 0; } 56%, 92% { opacity: 1; } 96%, 100% { opacity: 0; } }
-@keyframes fxc-wait { 0%, 57% { opacity: 0; } 61%, 78% { opacity: 1; } 82%, 100% { opacity: 0; } }
-@keyframes fxc-savehot { 0%, 79% { opacity: 0; } 83%, 92% { opacity: 0.95; } 96%, 100% { opacity: 0; } }
-@keyframes fxc-cursor {
-  0%, 74% { opacity: 0; transform: translate(6px, 6px); }
-  79% { opacity: 1; transform: translate(0, 0); }
-  85% { opacity: 1; transform: translate(0, 0); }
-  89%, 100% { opacity: 0; transform: translate(0, 0); }
+@keyframes fxc-caret-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.14; } }
+@keyframes fxc-rail {
+  0%, 20% { opacity: 0; stroke-dashoffset: 182; }
+  28%, 86% { opacity: 0.9; stroke-dashoffset: 0; }
+  96%, 100% { opacity: 0; stroke-dashoffset: 0; }
 }
-@keyframes fxc-mover {
-  0%, 80% { opacity: 0; transform: translateX(0); }
-  82% { opacity: 1; transform: translateX(0); }
-  90% { opacity: 1; transform: translateX(168px); }
-  92%, 100% { opacity: 0; transform: translateX(168px); }
+@keyframes fxc-ground {
+  0%, 28% { opacity: 0; stroke-dashoffset: 92; }
+  36%, 86% { opacity: 0.75; stroke-dashoffset: 0; }
+  96%, 100% { opacity: 0; stroke-dashoffset: 0; }
 }
-@keyframes fxc-commit { 0%, 87% { opacity: 0; } 91%, 96% { opacity: 1; } 99%, 100% { opacity: 0; } }
-@keyframes fxc-tagdraft { 0%, 6% { opacity: 0; } 10%, 82% { opacity: 0.9; } 86%, 100% { opacity: 0; } }
-@keyframes fxc-tagok { 0%, 87% { opacity: 0; } 91%, 97% { opacity: 0.9; } 99%, 100% { opacity: 0; } }
+@keyframes fxc-field {
+  0%, 32% { opacity: 0; stroke-dashoffset: 58; }
+  42%, 88% { opacity: 1; stroke-dashoffset: 0; }
+  96%, 100% { opacity: 0; stroke-dashoffset: 0; }
+}
+@keyframes fxc-wait { 0%, 57% { opacity: 0; } 62%, 78% { opacity: 1; } 84%, 100% { opacity: 0; } }
+@keyframes fxc-commit { 0%, 86% { opacity: 0; } 91%, 97% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes fxc-tagdraft { 0%, 32% { opacity: 0; } 40%, 82% { opacity: 0.9; } 87%, 100% { opacity: 0; } }
+@keyframes fxc-tagok { 0%, 86% { opacity: 0; } 91%, 97% { opacity: 0.9; } 100% { opacity: 0; } }
 
 /* ============================================================
    OBSERVATORY — hero viz "the live citation"
@@ -2633,10 +2638,16 @@ em { font-style: normal; }
   /* SMIL movers can't be frozen by CSS — hide them; the static scene is the resolved pose */
   .lrv-dot, .lrv-arrive, .lrv-amb, .bkg-dot, .abv-dot { display: none; }
   /* flowx-code hero: freeze on the resolved pose (validated, saved, committed) */
-  .fxc-prose, .fxc-caret, .fxc-conn, .fxc-draft, .fxc-val, .fxc-reject,
-  .fxc-check, .fxc-frame-lock, .fxc-wait, .fxc-savehot, .fxc-cursor,
-  .fxc-commit, .fxc-tag--draft, .fxc-tag--ok { animation: none; }
-  .fxc-mover { display: none; }
+  .fxc-caret, .fxc-type, .fxc-rail-hot, .fxc-ground, .fxc-field,
+  .fxc-wait, .fxc-commit,
+  .fxc-tag--draft, .fxc-tag--ok { animation: none; }
+  .fxc-rail-hot, .fxc-ground, .fxc-field {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  .fxc-type { opacity: 1; }
+  .fxc-commit, .fxc-tag--ok { opacity: 1; }
+  .fxc-wait, .fxc-tag--draft { opacity: 0; }
   /* observatory hero: freeze on the resolved pose (event cited, clause backed) */
   .cit-pick, .cit-line, .cit-arr, .cit-mark, .cit-clause-hot,
   .cit-note, .cit-tag--live, .cit-tag--ok { animation: none; }
