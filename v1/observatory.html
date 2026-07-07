@@ -274,78 +274,66 @@
           </p>
         </div>
 
-        <!-- the evidence chain: a live agent trace streams; a policy scan sweeps the
-             telemetry and catches a privilege-excess violation; evidence is harvested
-             from that exact node; then an amber chain lights back up — evidence → policy
-             → requirement — the audit answered, grounded in what the agent actually did. -->
+        <!-- the live citation: a live agent trace streams; one runtime event is picked out
+             and an amber citation line rises from it up to the regulation clause it
+             satisfies — the clause's footnote marker lights, and the footnote resolves to
+             the real trace metadata that proves it. compliance, footnoted to reality. 12s loop. -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="A live agent trace is watched by a policy engine; a privilege-excess violation is caught, evidence is harvested from that step, and an amber evidence chain links it from the runtime event up through policy to the regulation it satisfies — the audit, answered">
+          <svg viewBox="0 0 460 460" role="img" aria-label="A regulation clause states a compliance requirement; below it a live agent trace streams. One runtime event is picked out and an amber citation line rises from that event up to the clause, whose footnote marker lights — and the footnote resolves to the real trace metadata that proves it. Compliance, footnoted to reality.">
 
-            <!-- REGULATION lane: a machine-checkable policy pack -->
-            <text class="ivz-lbl" x="64" y="104" text-anchor="start">regulation · policy pack</text>
-            <rect class="obv-clause" x="65" y="116" width="70" height="20" rx="5"/>
-            <rect class="obv-clause" x="152" y="116" width="70" height="20" rx="5"/>
-            <rect class="obv-clause" x="239" y="116" width="70" height="20" rx="5"/>
-            <rect class="obv-clause" x="326" y="116" width="70" height="20" rx="5"/>
-            <!-- the requirement the evidence chain lands on -->
-            <rect class="obv-clause-hot" x="239" y="116" width="70" height="20" rx="5"/>
+            <!-- REGULATION: the clause that states a compliance requirement -->
+            <text class="ivz-lbl" x="64" y="88" text-anchor="start">regulation · § 4.2</text>
+            <line class="cit-edge" x1="57" y1="98" x2="57" y2="170"/>
+            <rect class="cit-rule" x="64" y="104" width="300" height="4" rx="2"/>
+            <rect class="cit-rule" x="64" y="116" width="332" height="4" rx="2"/>
+            <!-- the active clause: the compliance requirement, legible; its footnote marker + underline light on resolution -->
+            <text class="cit-clause" x="64" y="134">access limited to least-privilege scope</text>
+            <text class="cit-mark" x="292" y="130">2</text>
+            <line class="cit-clause-hot" x1="64" y1="139" x2="286" y2="139"/>
+            <rect class="cit-rule" x="64" y="150" width="250" height="4" rx="2"/>
+            <rect class="cit-rule" x="64" y="162" width="170" height="4" rx="2"/>
 
-            <!-- RUNTIME lane: the live execution trace -->
-            <text class="ivz-lbl" x="64" y="192" text-anchor="start">runtime · live trace</text>
-            <line class="obv-spine" x1="64" y1="224" x2="396" y2="224"/>
-            <!-- a hint of hierarchy: a sub-call branching off a node -->
-            <path class="obv-branch" d="M210 224 C210 210 222 206 232 204"/>
-            <circle class="obv-node" cx="234" cy="203" r="3"/>
-            <circle class="obv-node" cx="90" cy="224" r="6"/>
-            <circle class="obv-node" cx="150" cy="224" r="6"/>
-            <circle class="obv-node" cx="210" cy="224" r="6"/>
-            <circle class="obv-node" cx="274" cy="224" r="6"/>
-            <circle class="obv-node" cx="334" cy="224" r="6"/>
-            <circle class="obv-node" cx="394" cy="224" r="6"/>
+            <!-- the citation line: rises from the cited event up to the clause -->
+            <line class="cit-line" x1="298" y1="324" x2="298" y2="148"/>
+            <path class="cit-arr" d="M294 154 l4 -6 l4 6 z"/>
+
+            <!-- RUNTIME: the live execution trace -->
+            <text class="ivz-lbl" x="64" y="300" text-anchor="start">runtime · live trace</text>
+            <line class="cit-spine" x1="64" y1="330" x2="396" y2="330"/>
+            <circle class="cit-node" cx="80" cy="330" r="5"/>
+            <circle class="cit-node" cx="134" cy="330" r="5"/>
+            <circle class="cit-node" cx="188" cy="330" r="5"/>
+            <circle class="cit-node" cx="242" cy="330" r="5"/>
+            <circle class="cit-node" cx="298" cy="330" r="5"/>
+            <circle class="cit-node" cx="352" cy="330" r="5"/>
+            <circle class="cit-node" cx="396" cy="330" r="5"/>
             <!-- telemetry: token · cost · latency per event -->
-            <g class="obv-tickset">
-              <line class="obv-tick" x1="90" y1="234" x2="90" y2="241"/>
-              <line class="obv-tick" x1="150" y1="234" x2="150" y2="243"/>
-              <line class="obv-tick" x1="210" y1="234" x2="210" y2="240"/>
-              <line class="obv-tick" x1="274" y1="234" x2="274" y2="244"/>
-              <line class="obv-tick" x1="334" y1="234" x2="334" y2="239"/>
-              <line class="obv-tick" x1="394" y1="234" x2="394" y2="242"/>
+            <g class="cit-tickset">
+              <line class="cit-tick" x1="80" y1="338" x2="80" y2="346"/>
+              <line class="cit-tick" x1="134" y1="338" x2="134" y2="344"/>
+              <line class="cit-tick" x1="188" y1="338" x2="188" y2="348"/>
+              <line class="cit-tick" x1="242" y1="338" x2="242" y2="343"/>
+              <line class="cit-tick" x1="298" y1="338" x2="298" y2="347"/>
+              <line class="cit-tick" x1="352" y1="338" x2="352" y2="345"/>
+              <line class="cit-tick" x1="396" y1="338" x2="396" y2="342"/>
             </g>
-            <text class="ivz-lbl" x="64" y="258" text-anchor="start">token · cost · latency</text>
-            <!-- policy scan sweeping the telemetry -->
-            <line class="obv-scan" x1="64" y1="206" x2="64" y2="248"/>
+            <text class="ivz-lbl" x="64" y="364" text-anchor="start">token · cost · latency</text>
             <!-- the streaming run -->
-            <circle class="obv-run" cx="64" cy="224" r="3.6"/>
-            <!-- the caught violation: privilege excess -->
-            <circle class="obv-flag" cx="274" cy="224" r="11"/>
+            <circle class="cit-run" cx="64" cy="330" r="3.6"/>
+            <!-- the cited event: picked out of the trace, where the citation lands -->
+            <circle class="cit-pick" cx="298" cy="330" r="9"/>
 
-            <!-- EVIDENCE lane: audit-ready records -->
-            <text class="ivz-lbl" x="64" y="300" text-anchor="start">evidence · audit-ready</text>
-            <rect class="obv-rec" x="118" y="312" width="64" height="26" rx="6"/>
-            <rect class="obv-rec" x="242" y="312" width="64" height="26" rx="6"/>
-            <rect class="obv-rec" x="366" y="312" width="64" height="26" rx="6"/>
-            <!-- evidence harvested from the flagged node -->
-            <g class="obv-harvest">
-              <line class="obv-drop" x1="274" y1="235" x2="274" y2="312"/>
-              <rect class="obv-rec-hot" x="242" y="312" width="64" height="26" rx="6"/>
-              <path class="obv-ev-mark" d="M262 325 l4 5 l9 -11"/>
-            </g>
-
-            <!-- the answered audit: walk evidence → policy → requirement (amber chain) -->
-            <g class="obv-chain">
-              <line class="obv-link" x1="274" y1="138" x2="274" y2="211"/>
-              <path class="obv-arr" d="M270 152 l4 -6 l4 6 z"/>
-              <path class="obv-arr" d="M270 218 l4 -6 l4 6 z"/>
-            </g>
+            <!-- the footnote: the citation resolves to real trace metadata -->
+            <text class="cit-note" x="64" y="390"><tspan class="cit-note-num">2</tspan>  trace 0x9f4a · scope-check pass · 14:32:07Z</text>
 
             <!-- status tags -->
-            <g class="obv-tag--watch" transform="translate(230 408)">
-              <rect class="ivz-tag" x="-58" y="-10" width="116" height="15"/>
-              <text class="ivz-lbl" text-anchor="middle" y="1.5">watching · live</text>
+            <g class="cit-tag--live" transform="translate(230 418)">
+              <rect class="ivz-tag" x="-52" y="-10" width="104" height="15"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1.5">runtime · live</text>
             </g>
-            <g class="obv-tag--ok" transform="translate(230 408)">
-              <rect class="ivz-tag" x="-82" y="-10" width="164" height="15"/>
-              <text class="ivz-lbl" text-anchor="middle" y="1.5">evidence chain · complete</text>
+            <g class="cit-tag--ok" transform="translate(230 418)">
+              <rect class="ivz-tag" x="-66" y="-10" width="132" height="15"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1.5">cited · compliant</text>
             </g>
           </svg>
         </div>
