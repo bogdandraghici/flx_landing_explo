@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FlowX — Agent Builder</title>
-  <meta name="description" content="Agent Builder is FlowX.AI's visual workflow engine. Draw an agent as typed nodes and edges; it compiles to a deterministic state machine you can audit, resume, and run in production." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M28 26 L60 62 M60 26 L28 62' stroke='%23F4F5F3' stroke-width='9'/%3E%3Crect x='28' y='70' width='44' height='9' fill='%23FCB813'/%3E%3C/svg%3E" />
+  <title>FlowX — FlowX Code</title>
+  <meta name="description" content="FlowX Code is a build copilot for regulated platforms. Describe a resource in one sentence; it drafts a contract-validated platform artifact — grounded in your live project, validated before it persists, and committed only when you click Save." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M40 34 L24 50 L40 66 M60 34 L76 50 L60 66' stroke='%23F4F5F3' stroke-width='9' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='30' y='74' width='40' height='8' fill='%23FCB813'/%3E%3C/svg%3E" />
   <script>(function(){try{var t=localStorage.getItem("flx-theme");if(t!=="light"&&t!=="dark")t="dark";document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="dark";}})();</script>
-  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/agentbuilder-CyUbfnXw.js"></script>
+  <script type="module" crossorigin src="/flx_landing_explo/v1/assets/flowxcode-CyUbfnXw.js"></script>
   <link rel="modulepreload" crossorigin href="/flx_landing_explo/v1/assets/orderField-CvDUwXRK.js">
   <link rel="stylesheet" crossorigin href="/flx_landing_explo/v1/assets/orderField-CnhSGGGB.css">
 </head>
@@ -15,7 +15,7 @@
   <canvas id="grain" class="grain" aria-hidden="true"></canvas>
 
   <!-- ================= NAV ================= -->
-  <!-- copied from index.html — delta: aria-current on Agent Builder in the Platform panel, Book a demo → #cta -->
+  <!-- copied from index.html — delta: aria-current on FlowX Code in the Platform panel, Book a demo → #cta -->
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a class="nav__brand" href="./index.html" aria-label="FlowX home">
@@ -39,11 +39,11 @@
               <div class="nav__cols">
                 <div class="nav__group">
                   <p class="nav__glabel mono">Build</p>
-                  <a class="nav__link--desc" href="./agent-builder.html" aria-current="page">
+                  <a class="nav__link--desc" href="./agent-builder.html">
                     <span class="nav__link-t">Agent Builder</span>
                     <span class="nav__link-d">Design, evaluate, and ship AI agents</span>
                   </a>
-                  <a class="nav__link--desc" href="./flowx-code.html">
+                  <a class="nav__link--desc" href="./flowx-code.html" aria-current="page">
                     <span class="nav__link-t">FlowX Code</span>
                     <span class="nav__link-d">The full platform, expressed as code</span>
                   </a>
@@ -256,125 +256,139 @@
         <div class="ahero__text">
           <p class="hero__eyebrow mono rv-load" style="--d:0">
             <span class="tick" aria-hidden="true"></span>
-            Platform &middot; Agent Builder
+            Platform &middot; FlowX Code
           </p>
           <h1 class="hero__title">
-            <span class="hero__line rv-load" style="--d:1"><span class="dim">Compose intelligence,</span></span>
-            <span class="hero__line hero__line--big rv-load" style="--d:2">brick by brick<span class="amber">.</span></span>
+            <span class="hero__line rv-load" style="--d:1"><span class="dim">The build copilot for</span></span>
+            <span class="hero__line hero__line--big rv-load" style="--d:2">regulated platforms<span class="amber">.</span></span>
           </h1>
-          <!-- DRAFT — marketing review -->
           <p class="hero__sub rv-load" style="--d:3">
-            Drag agents, tools and memory into a living graph — the flow keeps
-            running.
+            Describe a resource in one sentence; FlowX Code drafts a
+            contract-validated platform artifact — grounded in your live project,
+            validated before it persists, and committed only when you click Save.
           </p>
           <div class="abd-hero__cta rv-load" style="--d:4">
             <a class="btn btn--primary btn--lg" href="#cta">Book a demo</a>
             <a class="btn btn--ghost btn--lg" href="#how">See how it works</a>
           </div>
           <p class="astats mono rv-load" style="--d:5">
-            <span>drag a node · reliable by construction</span>
+            <span>grounded · validated · human-gated</span>
           </p>
         </div>
 
-        <!-- the compile: a hand-sketched agent graph (loose, dashed, unordered) snaps onto
-             phase columns as a precise state machine; a run then executes through it — the
-             pulse crosses the parallel phase and the bounded llm node, checkpoints tick amber
-             along the log rail, the end contract lights, "run complete · replayable" -->
+        <!-- the gate: a one-sentence request grounds against a live registry, drafts an
+             artifact into a typed contract, passes a validator (a malformed field is
+             rejected, then corrects), then STOPS at a human gate — "awaiting Save" — and
+             only crosses into production on the human click, where amber finally lights:
+             "saved · committed". The loop's stopping condition is a human, on purpose. -->
         <div class="ahero__viz" aria-hidden="true">
-          <svg viewBox="0 0 460 460" role="img" aria-label="A hand-drawn agent sketch compiles into a deterministic state machine: start fans out to two parallel nodes, joins at a bounded LLM node, and reaches a typed end; a run pulses through while checkpoints fill amber — run complete, replayable">
-            <!-- sketch layer: the draft — jittered nodes, curvy edges, a pencil scribble -->
-            <g class="abv-sk">
-              <rect x="36" y="178" width="58" height="38" rx="9" transform="rotate(-4 65 197)"/>
-              <rect x="118" y="104" width="88" height="40" rx="10" transform="rotate(3 162 124)"/>
-              <rect x="142" y="262" width="88" height="40" rx="10" transform="rotate(-2.5 186 282)"/>
-              <rect x="240" y="168" width="88" height="48" rx="10" transform="rotate(2 284 192)"/>
-              <rect x="372" y="210" width="56" height="38" rx="9" transform="rotate(5 400 229)"/>
-              <path d="M94 194 C116 188 106 130 118 120"/>
-              <path d="M92 210 C114 232 128 260 144 272"/>
-              <path d="M206 120 C240 112 230 178 242 178"/>
-              <path d="M230 286 C272 296 252 216 250 208"/>
-              <path d="M328 190 C352 180 362 216 374 224"/>
-              <path d="M310 150 c8 -12 20 -6 12 4 c-7 9 -18 2 -9 -8"/>
+          <svg viewBox="0 0 460 460" role="img" aria-label="A one-sentence request is drafted into a typed artifact against a live registry, validated (a malformed field is rejected then corrected), held at a human Save gate, and only committed to production when a person clicks Save — saved and persisted">
+
+            <!-- persistent scaffolding: phase separators + zone labels -->
+            <g class="fxc-scaff">
+              <line class="fxc-phase" x1="116" y1="112" x2="116" y2="300"/>
+              <line class="fxc-phase" x1="266" y1="112" x2="266" y2="300"/>
+              <line class="fxc-phase" x1="326" y1="112" x2="326" y2="300"/>
+              <line class="fxc-phase" x1="376" y1="112" x2="376" y2="300"/>
+              <text class="ivz-lbl" x="66" y="100" text-anchor="middle">in</text>
+              <text class="ivz-lbl" x="191" y="100" text-anchor="middle">draft · grounded</text>
+              <text class="ivz-lbl" x="296" y="100" text-anchor="middle">validate</text>
+              <text class="ivz-lbl" x="351" y="100" text-anchor="middle">gate</text>
+              <text class="ivz-lbl" x="418" y="100" text-anchor="middle">committed</text>
             </g>
 
-            <!-- compiled layer: the state machine — phase columns, typed contracts, checkpoint rail -->
-            <g class="abv-cm">
-              <!-- phase gradations + labels -->
-              <line class="abv-phase" x1="104" y1="96" x2="104" y2="316"/>
-              <line class="abv-phase" x1="232" y1="96" x2="232" y2="316"/>
-              <line class="abv-phase" x1="358" y1="96" x2="358" y2="316"/>
-              <text class="ivz-lbl" x="57" y="84" text-anchor="middle">in</text>
-              <text class="ivz-lbl" x="172" y="84" text-anchor="middle">phase 1</text>
-              <text class="ivz-lbl" x="296" y="84" text-anchor="middle">phase 2</text>
-              <text class="ivz-lbl" x="408" y="84" text-anchor="middle">out</text>
-
-              <!-- edges: fan out to the parallel phase, join at the bounded core -->
-              <path class="abv-edge" d="M86 215 C106 215 108 146 128 146"/>
-              <path class="abv-edge" d="M86 215 C106 215 108 270 128 270"/>
-              <path class="abv-edge" d="M216 146 C234 146 232 215 252 215"/>
-              <path class="abv-edge" d="M216 270 C234 270 232 215 252 215"/>
-              <path class="abv-edge" d="M340 215 L380 215"/>
-              <circle class="abv-port" cx="86" cy="215" r="2"/>
-              <circle class="abv-port" cx="380" cy="215" r="2"/>
-
-              <!-- nodes -->
-              <rect class="abv-node" x="28" y="196" width="58" height="38" rx="9"/>
-              <text class="abx-label" x="57" y="219" text-anchor="middle">start</text>
-              <rect class="abv-node" x="128" y="126" width="88" height="40" rx="9"/>
-              <text class="abx-label" x="172" y="150" text-anchor="middle">extract</text>
-              <rect class="abv-node" x="128" y="250" width="88" height="40" rx="9"/>
-              <text class="abx-label" x="172" y="274" text-anchor="middle">classify</text>
-
-              <!-- the stochastic core, confined: dashed bounds around the one generative node -->
-              <rect class="abv-bounds" x="242" y="180" width="108" height="70" rx="12"/>
-              <text class="ivz-lbl" x="296" y="172" text-anchor="middle">bounded</text>
-              <rect class="abv-node" x="252" y="192" width="88" height="46" rx="9"/>
-              <text class="abx-label" x="296" y="212" text-anchor="middle">reason</text>
-              <text class="ivz-lbl" x="296" y="228" text-anchor="middle">llm</text>
-
-              <rect class="abv-node" x="380" y="196" width="56" height="38" rx="9"/>
-              <rect class="abv-hot" x="380" y="196" width="56" height="38" rx="9"/>
-              <text class="abx-label" x="408" y="219" text-anchor="middle">end</text>
-
-              <!-- typed contracts -->
-              <text class="ivz-lbl" x="57" y="256" text-anchor="middle">typed in</text>
-              <text class="ivz-lbl" x="408" y="256" text-anchor="middle">typed out</text>
-
-              <!-- checkpoint rail: the run's amber trail, persisted -->
-              <text class="ivz-lbl" x="45" y="340" text-anchor="start">checkpoint log</text>
-              <text class="ivz-lbl" x="420" y="340" text-anchor="end">postgres</text>
-              <line class="abv-rail" x1="45" y1="356" x2="420" y2="356"/>
-              <circle class="abv-ck" style="--k:0" cx="57" cy="356" r="3.2"/>
-              <circle class="abv-ck" style="--k:1" cx="172" cy="356" r="3.2"/>
-              <circle class="abv-ck" style="--k:2" cx="296" cy="356" r="3.2"/>
-              <circle class="abv-ck" style="--k:3" cx="408" cy="356" r="3.2"/>
+            <!-- IN: the one-sentence request -->
+            <g class="fxc-prose">
+              <rect class="fxc-slot-box" x="24" y="150" width="82" height="30" rx="7"/>
+              <line class="fxc-word" x1="34" y1="162" x2="72" y2="162"/>
+              <line class="fxc-word" x1="34" y1="169" x2="60" y2="169"/>
+              <rect class="fxc-caret" x="76" y="157" width="2" height="16"/>
             </g>
 
-            <!-- compile sweep: the moment the sketch becomes a machine -->
-            <line class="abv-sweep" x1="60" y1="96" x2="60" y2="330"/>
-
-            <!-- invisible motion rails for the run -->
-            <path id="abvRunA" fill="none" stroke="none" d="M57 215 C100 215 104 146 124 146 L216 146 C234 146 232 215 252 215 L408 215"/>
-            <path id="abvRunB" fill="none" stroke="none" d="M57 215 C100 215 104 270 124 270 L216 270 C234 270 232 215 252 215 L408 215"/>
-
-            <!-- the run: two inputs pulse through the compiled graph -->
-            <g class="abv-dot"><circle r="3"/>
-              <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.38;0.60;1"><mpath href="#abvRunA"/></animateMotion>
-              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.38;0.39;0.59;0.60;1" dur="12s" repeatCount="indefinite"/>
+            <!-- IN: the live registry it grounds against (persistent) -->
+            <text class="ivz-lbl" x="66" y="212" text-anchor="middle">live registry</text>
+            <g class="fxc-reg">
+              <rect class="fxc-reg-box" x="24" y="220" width="82" height="60" rx="7"/>
+              <line class="fxc-reg-row" x1="34" y1="234" x2="96" y2="234"/>
+              <line class="fxc-reg-row" x1="34" y1="246" x2="96" y2="246"/>
+              <line class="fxc-reg-row" x1="34" y1="258" x2="96" y2="258"/>
+              <line class="fxc-reg-row" x1="34" y1="270" x2="96" y2="270"/>
             </g>
-            <g class="abv-dot"><circle r="3"/>
-              <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.42;0.64;1"><mpath href="#abvRunB"/></animateMotion>
-              <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.43;0.63;0.64;1" dur="12s" repeatCount="indefinite"/>
+            <!-- grounding connectors: registry constrains the draft -->
+            <path class="fxc-conn" style="--c:0" d="M106 240 C122 240 122 196 132 196"/>
+            <path class="fxc-conn" style="--c:1" d="M106 258 C122 258 122 232 132 232"/>
+
+            <!-- DRAFT: the artifact assembled into a typed contract -->
+            <rect class="fxc-frame" x="130" y="150" width="120" height="120" rx="12"/>
+            <rect class="fxc-frame-lock" x="130" y="150" width="120" height="120" rx="12"/>
+            <g class="fxc-draft">
+              <rect class="fxc-card" x="136" y="156" width="108" height="108" rx="9"/>
+              <text class="ivz-lbl" x="148" y="174" text-anchor="start">artifact</text>
+              <line class="fxc-cardline" x1="148" y1="182" x2="232" y2="182"/>
+              <!-- contract slots (empty baselines) -->
+              <line class="fxc-slot" x1="148" y1="198" x2="232" y2="198"/>
+              <line class="fxc-slot" x1="148" y1="216" x2="232" y2="216"/>
+              <line class="fxc-slot" x1="148" y1="234" x2="232" y2="234"/>
+              <line class="fxc-slot" x1="148" y1="252" x2="232" y2="252"/>
+              <!-- field labels -->
+              <line class="fxc-key" x1="148" y1="198" x2="168" y2="198"/>
+              <line class="fxc-key" x1="148" y1="216" x2="168" y2="216"/>
+              <line class="fxc-key" x1="148" y1="234" x2="168" y2="234"/>
+              <line class="fxc-key" x1="148" y1="252" x2="168" y2="252"/>
+            </g>
+            <!-- values filling in (staggered) -->
+            <g class="fxc-vals">
+              <line class="fxc-val" style="--r:0" x1="176" y1="198" x2="232" y2="198"/>
+              <line class="fxc-val" style="--r:1" x1="176" y1="216" x2="224" y2="216"/>
+              <line class="fxc-val fxc-val--bad" style="--r:2" x1="176" y1="234" x2="232" y2="234"/>
+              <line class="fxc-val" style="--r:3" x1="176" y1="252" x2="220" y2="252"/>
             </g>
 
-            <!-- status tags: draft while sketching, replayable once the run lands -->
-            <g class="abv-tag--draft" transform="translate(230 402)">
-              <rect class="ivz-tag" x="-62" y="-10" width="124" height="15"/>
-              <text class="ivz-lbl" text-anchor="middle" y="1.5">draft · uncompiled</text>
+            <!-- VALIDATE: the membrane rejects the malformed field, then it corrects -->
+            <g class="fxc-reject">
+              <path d="M236 230 l6 8 M242 230 l-6 8"/>
             </g>
-            <g class="abv-tag--ok" transform="translate(230 402)">
-              <rect class="ivz-tag" x="-90" y="-10" width="180" height="15"/>
-              <text class="ivz-lbl" text-anchor="middle" y="1.5">run complete · replayable</text>
+            <g class="fxc-check">
+              <circle class="fxc-check-ring" cx="296" cy="210" r="13"/>
+              <path class="fxc-check-mark" d="M290 210 l4 5 l8 -11"/>
+              <text class="ivz-lbl" x="296" y="238" text-anchor="middle">contract</text>
+            </g>
+
+            <!-- GATE: the artifact halts at a human Save gate -->
+            <line class="fxc-gatepost" x1="351" y1="150" x2="351" y2="196"/>
+            <line class="fxc-gatepost" x1="351" y1="224" x2="351" y2="270"/>
+            <g class="fxc-wait">
+              <line class="fxc-barrier" x1="351" y1="196" x2="351" y2="224"/>
+              <text class="ivz-lbl" x="351" y="286" text-anchor="middle">awaiting save</text>
+            </g>
+
+            <!-- the human Save control -->
+            <rect class="fxc-savebtn" x="329" y="300" width="44" height="17" rx="5"/>
+            <rect class="fxc-savehot" x="329" y="300" width="44" height="17" rx="5"/>
+            <text class="ivz-lbl" x="351" y="312" text-anchor="middle">save</text>
+            <!-- cursor arrives at commit -->
+            <path class="fxc-cursor" d="M0 0 l0 15 l4 -4 l3 6 l3 -1 l-3 -6 l6 0 z" transform="translate(360 292)"/>
+
+            <!-- PROD: the committed artifact, persisted -->
+            <text class="ivz-lbl" x="416" y="168" text-anchor="middle">production</text>
+            <rect class="fxc-prod" x="388" y="176" width="56" height="80" rx="9"/>
+            <g class="fxc-commit">
+              <rect class="fxc-commit-glow" x="396" y="196" width="40" height="40" rx="7"/>
+              <rect class="fxc-commit-card" x="400" y="200" width="32" height="32" rx="6"/>
+              <path class="fxc-commit-mark" d="M408 216 l4 5 l9 -12"/>
+            </g>
+
+            <!-- the artifact crossing the gate at commit -->
+            <circle class="fxc-mover" cx="248" cy="210" r="3.4"/>
+
+            <!-- status tags: drafted then saved -->
+            <g class="fxc-tag--draft" transform="translate(230 402)">
+              <rect class="ivz-tag" x="-70" y="-10" width="140" height="15"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1.5">drafted · not saved</text>
+            </g>
+            <g class="fxc-tag--ok" transform="translate(230 402)">
+              <rect class="ivz-tag" x="-74" y="-10" width="148" height="15"/>
+              <text class="ivz-lbl" text-anchor="middle" y="1.5">saved · committed</text>
             </g>
           </svg>
         </div>
@@ -382,148 +396,142 @@
     </section>
 
     <!-- ================= THESIS ================= -->
-    <!-- DRAFT — marketing review: thesis copy from the RAILS positioning -->
     <section class="abd-thesis">
       <div class="shell">
-        <blockquote class="rv">A workflow can be deterministic even when its nodes are <span class="amber">not</span>.</blockquote>
-        <p class="rv" style="--i:1">You don't get reliable agents by making the model predictable. You get
-          them by building a harness whose control flow, contracts and side effects are predictable — and
-          placing the model inside as one bounded, observed node. Reliability is an architectural property,
-          engineered into the graph, not a model property to hope for.</p>
-        <span class="abd-thesis__tag mono rv" style="--i:2">RAILS · Reliable Agent Execution via Layered State-machines</span>
+        <blockquote class="rv">In a code repository, a reviewer and a compiler stand between an agent's mistake and production. In a regulated platform, there is <span class="amber">neither</span>.</blockquote>
+        <p class="rv" style="--i:1">A build copilot's output isn't free-text code — it's a schema-bound artifact
+          that takes effect the moment it's saved, with no diff review and no compiler in between. So FlowX Code
+          inverts the field's optimization: not maximal autonomy, but grounded, validated, human-gated
+          construction. The grounding, the validation and the human gate aren't friction — they're the compiler
+          and the reviewer, moved into the agent.</p>
+        <span class="abd-thesis__tag mono rv" style="--i:2">FlowX Code · The most important thing to engineer into the loop is where it stops — at a human</span>
       </div>
     </section>
 
-    <!-- ================= HOW IT WORKS ================= -->
+    <!-- ================= THE LOOP ================= -->
     <section class="section" id="how">
       <div class="shell">
         <div class="section__head">
-          <span class="section__no mono">01 / Pipeline</span>
+          <span class="section__no mono">01 / The loop</span>
           <div class="section__headline">
-            <h2 class="h2 rv">From a visual workflow to a running state machine<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">The author draws nodes and edges; the platform
-              compiles them ahead of time; the compiled graph executes phase by phase with
-              checkpointed state.</p>
+            <h2 class="h2 rv">Loop engineering, constrained<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">A turn runs from a natural-language request to a
+              committed artifact — routed, grounded, validated, and gated behind a human, on purpose.</p>
           </div>
         </div>
         <div class="segs abd-pipe">
           <article class="seg rv" style="--i:0">
             <span class="seg__no mono">01</span>
-            <h3 class="seg__name">Draw</h3>
-            <p class="seg__desc">Author the agent as typed nodes and edges on a visual canvas, with typed Start and End contracts that define its API.</p>
+            <h3 class="seg__name">Ground</h3>
+            <p class="seg__desc">At session start it loads your live node registry, project metadata and permissions — so it can only emit capabilities the backend actually has.</p>
           </article>
           <article class="seg rv" style="--i:1">
             <span class="seg__no mono">02</span>
-            <h3 class="seg__name">Compile</h3>
-            <p class="seg__desc">A topological sort orders nodes into parallel phases and builds a LangGraph state machine — control flow fixed at compile time, not by the model at runtime.</p>
+            <h3 class="seg__name">Draft</h3>
+            <p class="seg__desc">A complexity-aware router picks the right model; per-kind specialist sub-agents build the artifact against that live grounding.</p>
           </article>
           <article class="seg rv" style="--i:2">
             <span class="seg__no mono">03</span>
-            <h3 class="seg__name">Run</h3>
-            <p class="seg__desc">Execution streams every phase transition over SSE while persisting the full run to a checkpointer.</p>
+            <h3 class="seg__name">Validate</h3>
+            <p class="seg__desc">Per-kind contracts and Java-mirror validators reject a malformed emission before it persists — with the exact error the backend would return.</p>
           </article>
           <article class="seg rv" style="--i:3">
             <span class="seg__no mono">04</span>
-            <h3 class="seg__name">Resume &amp; audit</h3>
-            <p class="seg__desc">Checkpointed state makes any run replayable and resumable — reconstruct what ran, in what order, on what input, at what cost.</p>
+            <h3 class="seg__name">Commit</h3>
+            <p class="seg__desc">Nothing mutates until you click Keep or Save. The loop's stopping condition is a human, on purpose.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ================= DETERMINISM GRADIENT ================= -->
-    <section class="section" id="gradient">
+    <!-- ================= ARTIFACT KINDS ================= -->
+    <section class="section" id="artifacts">
       <div class="shell">
         <div class="section__head">
-          <span class="section__no mono">02 / Node catalog</span>
+          <span class="section__no mono">02 / Artifact kinds</span>
           <div class="section__headline">
-            <h2 class="h2 rv">Place the stochastic core on a gradient<span class="amber">.</span></h2>
-            <p class="section__lede rv" style="--i:1">Node types span a gradient from fully deterministic
-              to fully generative. Good design keeps control flow and contracts on the deterministic end
-              and confines generation to clearly marked nodes.</p>
-          </div>
-        </div>
-        <div class="abd-rail rv" aria-hidden="true"></div>
-        <div class="segs segs--3">
-          <article class="seg rv" style="--i:0">
-            <p class="abd-grad__hd mono"><span class="abd-grad__dot" style="background:var(--text-faint)"></span>Deterministic</p>
-            <p class="seg__desc">Same output every run.</p>
-            <ul class="seg__chips mono">
-              <li>Condition</li>
-              <li>Custom Python</li>
-              <li>Data Transformation</li>
-              <li>Convert to PDF</li>
-              <li>Integration Workflow</li>
-            </ul>
-          </article>
-          <article class="seg rv" style="--i:1">
-            <p class="abd-grad__hd mono"><span class="abd-grad__dot" style="background:var(--text-dim)"></span>Bounded</p>
-            <p class="seg__desc">The model picks within a fixed set.</p>
-            <ul class="seg__chips mono">
-              <li>Orchestrator</li>
-              <li>Document / Text Extraction</li>
-              <li>ML Prediction</li>
-              <li>Guardrails / Data Privacy</li>
-              <li>Aggregator (AND / OR)</li>
-            </ul>
-          </article>
-          <article class="seg rv" style="--i:2">
-            <p class="abd-grad__hd mono"><span class="abd-grad__dot" style="background:var(--amber)"></span>Generative</p>
-            <p class="seg__desc">Free-form text &amp; reasoning.</p>
-            <ul class="seg__chips mono">
-              <li>Text Generation</li>
-              <li>Conversation / Complex Agent</li>
-              <li>Deep Agent / Deep Research</li>
-              <li>Aggregator (SYNTHESIZE)</li>
-              <li>Image Description</li>
-            </ul>
-          </article>
-        </div>
-        <p class="abd-note mono rv">Confine generation, then convert it back to deterministic form — a schema, a branch, a validated field — as early as possible.</p>
-      </div>
-    </section>
-
-    <!-- ================= CAPABILITIES ================= -->
-    <section class="section" id="capabilities">
-      <div class="shell">
-        <div class="section__head">
-          <span class="section__no mono">03 / Capabilities</span>
-          <div class="section__headline">
-            <h2 class="h2 rv">Everything an enterprise agent needs, built in<span class="amber">.</span></h2>
+            <h2 class="h2 rv">Twelve kinds of platform artifact, from a sentence<span class="amber">.</span></h2>
+            <p class="section__lede rv" style="--i:1">Integrations, processes, agents, UIs, data models and more — each with a
+              typed contract and a validator that pre-empts backend rejections.</p>
           </div>
         </div>
         <div class="segs segs--3">
           <article class="seg rv" style="--i:0">
-            <span class="seg__no mono abd-k">Build</span>
-            <h3 class="seg__name">Visual workflow engine</h3>
-            <p class="seg__desc">A drag-and-drop canvas that compiles directly to an executable state machine. No ML expertise, no glue code.</p>
+            <span class="seg__no mono">01</span>
+            <h3 class="seg__name">Integration</h3>
+            <p class="seg__desc">REST and 10 other system types, with a discriminated auth union.</p>
           </article>
           <article class="seg rv" style="--i:1">
-            <span class="seg__no mono abd-k">Catalog</span>
-            <h3 class="seg__name">30+ node types</h3>
-            <p class="seg__desc">Reasoning agents, orchestrators, document extraction, RAG, A2A, MCP and more — covering most enterprise automation patterns out of the box.</p>
+            <span class="seg__no mono">02</span>
+            <h3 class="seg__name">Agent workflow</h3>
+            <p class="seg__desc">Agent-builder node graphs, grounded in the live node registry.</p>
           </article>
           <article class="seg rv" style="--i:2">
-            <span class="seg__no mono abd-k">Models</span>
-            <h3 class="seg__name">7 LLM providers</h3>
-            <p class="seg__desc">Anthropic, OpenAI, Google, Azure, Mistral, xAI, Ollama. Switch per node — optimise cost and quality, with no vendor lock-in.</p>
+            <span class="seg__no mono">03</span>
+            <h3 class="seg__name">Deep agent</h3>
+            <p class="seg__desc">System-prompted agents with tools, toolkits and knowledge bases.</p>
           </article>
           <article class="seg rv" style="--i:3">
-            <span class="seg__no mono abd-k">Coordinate</span>
-            <h3 class="seg__name">Multi-agent</h3>
-            <p class="seg__desc">A2A, MCP and AP2 protocols for agent-to-agent collaboration and mandate-based, agent-led payments.</p>
+            <span class="seg__no mono">04</span>
+            <h3 class="seg__name">BPMN process</h3>
+            <p class="seg__desc">Business processes — swimlanes and nodes expanded onto the canvas.</p>
           </article>
           <article class="seg rv" style="--i:4">
-            <span class="seg__no mono abd-k">Ground</span>
-            <h3 class="seg__name">Agentic RAG</h3>
-            <p class="seg__desc">Query decomposition, relevance grading and adaptive retry keep agents grounded in your proprietary data.</p>
+            <span class="seg__no mono">05</span>
+            <h3 class="seg__name">Dynamic classifier</h3>
+            <p class="seg__desc">Classifier domains with labels, policies and F1-gated promotion.</p>
           </article>
           <article class="seg rv" style="--i:5">
-            <span class="seg__no mono abd-k">Operate</span>
-            <h3 class="seg__name">Production-ready</h3>
-            <p class="seg__desc">PostgreSQL state, execution resume, SSE streaming, per-node timeouts and retry policies, full execution traces.</p>
+            <span class="seg__no mono">06</span>
+            <h3 class="seg__name">UI flow &amp; templates</h3>
+            <p class="seg__desc">Standalone multi-screen navigation and user-task screens.</p>
+          </article>
+          <article class="seg rv" style="--i:6">
+            <span class="seg__no mono">07</span>
+            <h3 class="seg__name">Function</h3>
+            <p class="seg__desc">Reusable Python or JavaScript business rules, safety-checked.</p>
+          </article>
+          <article class="seg rv" style="--i:7">
+            <span class="seg__no mono">08</span>
+            <h3 class="seg__name">Custom component</h3>
+            <p class="seg__desc">Reusable React building blocks embedded in your UIs.</p>
+          </article>
+          <article class="seg rv" style="--i:8">
+            <span class="seg__no mono">09</span>
+            <h3 class="seg__name">Data model</h3>
+            <p class="seg__desc">Typed project entities and fields — the schema everything binds to.</p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- ================= SAFE BY STRUCTURE ================= -->
+    <section class="section" id="safe">
+      <div class="shell">
+        <div class="section__head">
+          <span class="section__no mono">03 / Safe by structure</span>
+          <div class="section__headline">
+            <h2 class="h2 rv">Autonomy is the wrong target here<span class="amber">.</span></h2>
+          </div>
+        </div>
+        <dl class="stats">
+          <div class="stats__row rv" style="--i:0">
+            <dt><span class="stats__num">12</span></dt>
+            <dd>platform artifact kinds, each contract-validated before it persists.</dd>
+          </div>
+          <div class="stats__row rv" style="--i:1">
+            <dt><span class="stats__num">0</span></dt>
+            <dd>write tools — persistence requires an explicit human Save click.</dd>
+          </div>
+          <div class="stats__row rv" style="--i:2">
+            <dt><span class="stats__num">Live</span></dt>
+            <dd>grounding against the running node registry, so unsupported capabilities can't be emitted.</dd>
+          </div>
+          <div class="stats__row rv" style="--i:3">
+            <dt><span class="stats__num">RBAC</span></dt>
+            <dd>inherited from you — the agent acts with your session, never a service account.</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
@@ -533,21 +541,21 @@
       <div class="shell">
         <span class="section__no mono">04 / Next</span>
         <h2 class="cta__title">
-          <span class="rv" style="--i:0">Design your</span>
-          <span class="rv" style="--i:1">first agent<span class="amber">.</span></span>
+          <span class="rv" style="--i:0">Build platform artifacts</span>
+          <span class="rv" style="--i:1">by describing them<span class="amber">.</span></span>
         </h2>
-        <p class="abd-cta__sub rv" style="--i:2">Bring a regulated process. We'll draw it as an agent,
-          compile it, and show you the audit trail — on your stack.</p>
+        <p class="abd-cta__sub rv" style="--i:2">Describe an integration, a process, or a UI — we'll draft it,
+          validated against your live project, and you click Save.</p>
         <div class="cta__row rv" style="--i:3">
-          <a class="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Schedule a customized demo</a>
-          <a class="btn btn--ghost btn--lg" href="./index.html#hero">Compile your own agent</a>
+          <a class="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=FlowX%20Code%20demo">Book a demo</a>
+          <a class="btn btn--ghost btn--lg" href="#how">See how it works</a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- ================= FOOTER ================= -->
-  <!-- copied from index.html — delta: Agent Builder points at this page -->
+  <!-- copied from index.html — delta: FlowX Code + Agent Builder point at their pages -->
   <footer class="footer">
     <div class="shell">
       <div class="footer__top">
@@ -572,13 +580,13 @@
             <a href="./insurance.html">Insurance</a>
             <a href="./logistics.html">Logistics</a>
             <a href="./agent-builder.html">Agent Builder</a>
+            <a href="./flowx-code.html">FlowX Code</a>
             <a href="./index.html#proof">Proof</a>
           </div>
           <div>
             <h4 class="mono">Company</h4>
             <a href="./about.html">About us</a>
           </div>
-          <!-- VERIFY URLS before publish -->
           <div>
             <h4 class="mono">Resources</h4>
             <a href="https://www.flowx.ai/blog" target="_blank" rel="noopener">Blog</a>
