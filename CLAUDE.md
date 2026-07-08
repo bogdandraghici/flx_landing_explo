@@ -99,6 +99,11 @@ npm run preview
   (terminal/data), served locally via `@fontsource-variable/*`.
 - **Motion:** everything honors `prefers-reduced-motion`; guard new animations the
   same way (`reduceMotion` in `main.js`, the media query in `style.css`).
+- **Hover:** only *actionable* elements (links, buttons, and other interactive
+  controls) get a hover effect. Static content — headings, body copy, plain
+  cards, decorative visuals — must not change on hover, so a hover cue always
+  signals "you can click this." Don't add `:hover` styles to non-interactive
+  elements.
 - **Aesthetic:** single-accent, Linear/Palantir-grade restraint. Dark is the
   default; a neutral-paper **light theme** ships alongside it.
 - **Theming:** two themes share one token contract. Dark lives in `:root`,
