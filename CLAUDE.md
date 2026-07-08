@@ -114,5 +114,26 @@ npm run preview
 ## Git
 
 Standard flow — feature branches merged into `main` via PR, or push straight to
-`main` for small changes. `docs/vN/` holds the built output served by GitHub
-Pages; rebuild (`npm run build`) rather than hand-editing it.
+`main` for small changes.
+
+### Deploying to the live site (don't skip this)
+
+**Committing a `vN/` source change does NOT update the live site.** GitHub Pages
+serves the *built output* in `docs/vN/`, so a source-only commit leaves the live
+page stale — you must rebuild and commit `docs/vN/` as a separate step.
+
+Do **not** use a plain `npm run build`: it emits root-absolute `/assets/...`
+URLs that 404 under the Pages subpath. Build with the base path, then clean-copy:
+
+```bash
+cd v1
+npx vite build --base=/flx_landing_explo/v1/    # NOT `npm run build`
+cd ..
+rm -rf docs/v1 && cp -R v1/dist docs/v1         # clean copy; blog/team assets come from public/, don't hand-preserve
+git add docs/v1 && git commit && git push
+```
+
+Verify before committing: `grep -o 'href="[^"]*\.css"' docs/v1/index.html` — the
+paths must start with `/flx_landing_explo/v1/`. Pages takes ~1–2 min to
+redeploy; hard-refresh (Cmd+Shift+R) to bypass cache. Never hand-edit
+`docs/vN/`.
