@@ -2894,19 +2894,21 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 /* --- hero text: cta row between sub and glance stats --- */
 .abd-hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 
-/* --- thesis: the RAILS claim, set apart between hairlines --- */
-.abd-thesis { border-block: 1px solid var(--line-soft); padding: clamp(56px, 9vh, 104px) 0; }
+/* --- thesis: the RAILS claim, centered as a deliberate pause between hairlines --- */
+.abd-thesis { border-block: 1px solid var(--line-soft); padding: clamp(72px, 12vh, 128px) 0; text-align: center; }
 .abd-thesis blockquote {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem);
   font-weight: 560;
-  line-height: 1.22;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: -0.022em;
   color: var(--text);
-  max-width: 24ch;
+  max-width: 22ch;
+  margin-inline: auto;
+  text-wrap: balance;
 }
-.abd-thesis p { margin-top: 24px; max-width: 60ch; font-size: 16.5px; color: var(--text-dim); line-height: 1.65; }
-.abd-thesis__tag { display: block; margin-top: 22px; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); }
+.abd-thesis p { margin: 26px auto 0; max-width: 62ch; font-size: 16.5px; color: var(--text-dim); line-height: 1.65; text-wrap: pretty; }
+.abd-thesis__tag { display: block; margin-top: 26px; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); }
 
 /* --- pipeline: four steps on one row --- */
 .abd-pipe { grid-template-columns: repeat(2, 1fr); }
