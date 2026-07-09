@@ -297,12 +297,12 @@ export default function Observatory() {
               <article className="seg seg--g rv" style={{ '--i': 5 }}>
                 {/* sealed ledger: recorded rows, tamper-evident seal */}
                 <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
-                  <rect className="og" x="6" y="6" width="20" height="26" rx="2" />
-                  <line className="og" x1="11" y1="13" x2="21" y2="13" />
-                  <line className="og" x1="11" y1="18" x2="21" y2="18" />
-                  <line className="og" x1="11" y1="23" x2="18" y2="23" />
-                  <circle className="og" cx="34" cy="31" r="7" />
-                  <polyline className="og" points="31,31 33,33.5 37,27.5" />
+                  <rect className="og" x="9" y="7" width="17" height="25" rx="2.5" />
+                  <line className="og" x1="13" y1="13" x2="22" y2="13" />
+                  <line className="og" x1="13" y1="17.5" x2="22" y2="17.5" />
+                  <line className="og" x1="13" y1="22" x2="19" y2="22" />
+                  <circle className="og og--seal" cx="29" cy="30" r="7" />
+                  <polyline className="og" points="26,30 28.5,32.5 32.5,27" />
                 </svg>
                 <span className="seg__no mono">06</span>
                 <h3 className="seg__name">Immutable audit trail</h3>

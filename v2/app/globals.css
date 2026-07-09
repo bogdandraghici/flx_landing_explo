@@ -2692,6 +2692,7 @@ em { font-style: normal; }
 .og--dim { stroke: rgba(var(--ink), 0.17); }
 .og--sight { stroke-dasharray: 2 3; }
 .og--node { fill: rgba(var(--ink), 0.28); stroke: none; }
+.og--seal { fill: var(--bg-raised); }
 
 /* stat meters (03 / why now) — one shared hairline track per row, restating
    the number as marks: fill / fill / timeline+deadline / six on the rail */
