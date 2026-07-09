@@ -2647,13 +2647,12 @@ em { font-style: normal; }
 @media (min-width: 1080px) { .obp { display: block; } }
 .obp svg { width: 100%; height: auto; display: block; overflow: visible; }
 .obp-spine { stroke: rgba(var(--ink), 0.12); stroke-width: 1; }
-.obp-rule { stroke: rgba(var(--ink), 0.15); stroke-width: 3; stroke-linecap: round; }
-.obp-link { stroke: rgba(var(--ink), 0.18); stroke-width: 1; }
-.obp-box { fill: none; stroke: rgba(var(--dia-bright), 0.4); stroke-width: 1.2; }
-.obp-inner { stroke: rgba(var(--ink), 0.15); stroke-width: 2; stroke-linecap: round; }
-.obp-gate { fill: var(--bg); stroke: rgba(var(--dia-bright), 0.45); stroke-width: 1.2; stroke-linejoin: round; }
-.obp-check { fill: none; stroke: rgba(var(--dia-bright), 0.6); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
-.obp-ask { fill: var(--bg-raised); stroke: rgba(var(--dia-bright), 0.5); stroke-width: 1.2; }
+/* four identical stations: node on the spine, stem, chip; marks differ inside */
+.obp-node { fill: var(--bg-raised); stroke: rgba(var(--ink), 0.25); stroke-width: 1; }
+.obp-stem { stroke: rgba(var(--ink), 0.18); stroke-width: 1; }
+.obp-chip { fill: none; stroke: rgba(var(--dia-bright), 0.38); stroke-width: 1.2; }
+.obp-mark { stroke: rgba(var(--ink), 0.3); stroke-width: 2.4; stroke-linecap: round; }
+.obp-fine { fill: none; stroke: rgba(var(--ink), 0.4); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
 /* stations brighten as the run passes; resolved pose = all bright */
 .obp-st { opacity: 1; }
 .obp-st--1 { animation: obp-st1 12s linear infinite; }
@@ -2684,22 +2683,26 @@ em { font-style: normal; }
 }
 @keyframes obp-land { 0%, 76% { opacity: 0; } 80%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
 
-/* capability glyphs (02 / what it does) — static ink line-art, one per card */
+/* capability glyphs (02 / what it does) — static ink line-art, all on one
+   44px armature: one stroke weight, rules + nodes + chips only */
 .seg--g { position: relative; }
 .seg--g .seg__name { padding-right: 52px; }
-.seg__glyph { position: absolute; top: 22px; right: 20px; width: 42px; height: 42px; }
-.og { fill: none; stroke: rgba(var(--ink), 0.34); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
-.og--dim { stroke: rgba(var(--ink), 0.16); }
+.seg__glyph { position: absolute; top: 24px; right: 22px; width: 38px; height: 38px; }
+.og { fill: none; stroke: rgba(var(--ink), 0.38); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.og--dim { stroke: rgba(var(--ink), 0.17); }
+.og--sight { stroke-dasharray: 2 3; }
+.og--node { fill: rgba(var(--ink), 0.28); stroke: none; }
 
-/* stat meters (03 / why now) — hairline restatement of each number */
+/* stat meters (03 / why now) — one shared hairline track per row, restating
+   the number as marks: fill / fill / timeline+deadline / six on the rail */
 .stats--obs .stats__row dt { flex-direction: column; align-items: flex-start; gap: 14px; }
-.stats__meter { display: block; width: 180px; max-width: 70%; height: auto; overflow: visible; }
+.stats__meter { display: block; width: 200px; max-width: 70%; height: auto; overflow: visible; }
 .om-track { stroke: rgba(var(--ink), 0.10); stroke-width: 1; }
 .om-fill { stroke: rgba(var(--dia-bright), 0.55); stroke-width: 3; }
 .om-cap { stroke: rgba(var(--dia-bright), 0.75); stroke-width: 1.2; }
 .om-tick { stroke: rgba(var(--ink), 0.18); stroke-width: 1; }
 .om-mark { stroke: var(--amber); stroke-width: 1.6; }
-.om-count { stroke: rgba(var(--dia-bright), 0.55); stroke-width: 2.4; stroke-linecap: round; }
+.om-count { stroke: rgba(var(--dia-bright), 0.6); stroke-width: 2; stroke-linecap: round; }
 
 /* ============================================================
    REDUCED MOTION
