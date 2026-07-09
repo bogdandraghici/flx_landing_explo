@@ -2638,6 +2638,69 @@ em { font-style: normal; }
 @keyframes cit-taglive { 0%, 3% { opacity: 0; } 7%, 46% { opacity: 0.9; } 52%, 100% { opacity: 0; } }
 @keyframes cit-tagok { 0%, 52% { opacity: 0; } 58%, 94% { opacity: 0.9; } 98%, 100% { opacity: 0; } }
 
+/* --- observatory sections: pipeline spine + capability glyphs + stat meters ---
+   the spine schematic connects the four "regulation to runtime" cards: a run
+   travels the trace left to right (compile → enforce → evidence → answer), then
+   the amber arc walks the answer BACK to the regulation and lights the rule.
+   Base (non-animated) values are the answered pose for reduced motion. */
+.obp { display: none; margin: 0 0 44px; }
+@media (min-width: 1080px) { .obp { display: block; } }
+.obp svg { width: 100%; height: auto; display: block; overflow: visible; }
+.obp-spine { stroke: rgba(var(--ink), 0.12); stroke-width: 1; }
+.obp-rule { stroke: rgba(var(--ink), 0.15); stroke-width: 3; stroke-linecap: round; }
+.obp-link { stroke: rgba(var(--ink), 0.18); stroke-width: 1; }
+.obp-box { fill: none; stroke: rgba(var(--dia-bright), 0.4); stroke-width: 1.2; }
+.obp-inner { stroke: rgba(var(--ink), 0.15); stroke-width: 2; stroke-linecap: round; }
+.obp-gate { fill: var(--bg); stroke: rgba(var(--dia-bright), 0.45); stroke-width: 1.2; stroke-linejoin: round; }
+.obp-check { fill: none; stroke: rgba(var(--dia-bright), 0.6); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.obp-ask { fill: var(--bg-raised); stroke: rgba(var(--dia-bright), 0.5); stroke-width: 1.2; }
+/* stations brighten as the run passes; resolved pose = all bright */
+.obp-st { opacity: 1; }
+.obp-st--1 { animation: obp-st1 12s linear infinite; }
+.obp-st--2 { animation: obp-st2 12s linear infinite; }
+.obp-st--3 { animation: obp-st3 12s linear infinite; }
+.obp-st--4 { animation: obp-st4 12s linear infinite; }
+.obp-run { fill: rgba(var(--dia-bright), 0.9); opacity: 0; animation: obp-run 12s linear infinite; }
+.obp-arc { fill: none; stroke: var(--amber); stroke-width: 1.3; stroke-dasharray: 1200; stroke-dashoffset: 0; opacity: 0.9; animation: obp-arc 12s linear infinite; }
+.obp-arr { fill: var(--amber); opacity: 1; animation: obp-land 12s linear infinite; }
+.obp-rule-hot { stroke: var(--amber); stroke-width: 3; stroke-linecap: round; opacity: 1; animation: obp-land 12s linear infinite; }
+@keyframes obp-st1 { 0%, 2.4% { opacity: 0.45; } 3.4%, 96% { opacity: 1; } 100% { opacity: 0.45; } }
+@keyframes obp-st2 { 0%, 17.4% { opacity: 0.45; } 18.4%, 96% { opacity: 1; } 100% { opacity: 0.45; } }
+@keyframes obp-st3 { 0%, 32.5% { opacity: 0.45; } 33.5%, 96% { opacity: 1; } 100% { opacity: 0.45; } }
+@keyframes obp-st4 { 0%, 47.5% { opacity: 0.45; } 48.5%, 96% { opacity: 1; } 100% { opacity: 0.45; } }
+@keyframes obp-run {
+  0% { transform: translateX(0); opacity: 0; }
+  2% { opacity: 1; }
+  48% { opacity: 1; }
+  50% { transform: translateX(1140px); opacity: 0; }
+  100% { transform: translateX(1140px); opacity: 0; }
+}
+@keyframes obp-arc {
+  0%, 54% { stroke-dashoffset: 1200; opacity: 0; }
+  56% { opacity: 0.9; }
+  78% { stroke-dashoffset: 0; }
+  94% { stroke-dashoffset: 0; opacity: 0.9; }
+  98%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes obp-land { 0%, 76% { opacity: 0; } 80%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
+
+/* capability glyphs (02 / what it does) — static ink line-art, one per card */
+.seg--g { position: relative; }
+.seg--g .seg__name { padding-right: 52px; }
+.seg__glyph { position: absolute; top: 22px; right: 20px; width: 42px; height: 42px; }
+.og { fill: none; stroke: rgba(var(--ink), 0.34); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.og--dim { stroke: rgba(var(--ink), 0.16); }
+
+/* stat meters (03 / why now) — hairline restatement of each number */
+.stats--obs .stats__row dt { flex-direction: column; align-items: flex-start; gap: 14px; }
+.stats__meter { display: block; width: 180px; max-width: 70%; height: auto; overflow: visible; }
+.om-track { stroke: rgba(var(--ink), 0.10); stroke-width: 1; }
+.om-fill { stroke: rgba(var(--dia-bright), 0.55); stroke-width: 3; }
+.om-cap { stroke: rgba(var(--dia-bright), 0.75); stroke-width: 1.2; }
+.om-tick { stroke: rgba(var(--ink), 0.18); stroke-width: 1; }
+.om-mark { stroke: var(--amber); stroke-width: 1.6; }
+.om-count { stroke: rgba(var(--dia-bright), 0.55); stroke-width: 2.4; stroke-linecap: round; }
+
 /* ============================================================
    REDUCED MOTION
    ============================================================ */
@@ -2687,6 +2750,10 @@ em { font-style: normal; }
   .cit-pick, .cit-line, .cit-arr, .cit-mark, .cit-clause-hot,
   .cit-note, .cit-tag--live, .cit-tag--ok { animation: none; }
   .cit-run { animation: none; display: none; }
+  /* observatory pipeline spine: freeze on the answered pose (arc walked back, rule lit) */
+  .obp-st--1, .obp-st--2, .obp-st--3, .obp-st--4,
+  .obp-arc, .obp-arr, .obp-rule-hot { animation: none; }
+  .obp-run { animation: none; display: none; }
 }
 
 /* ============================================================

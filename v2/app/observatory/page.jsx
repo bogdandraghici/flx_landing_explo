@@ -126,6 +126,62 @@ export default function Observatory() {
                   regulation to what the agent did.</p>
               </div>
             </div>
+
+            {/* the evidence chain, drawn: a run travels the pipeline left to right —
+                 regulation lines compile into a policy pack, pass the enforcement gate
+                 on the live trace, seal into an evidence receipt — and then the answer
+                 walks the chain BACK: an amber arc rises from Answer and lands on the
+                 regulation, lighting the rule it satisfies. 12s loop; reduced motion
+                 shows the answered pose. Stations align to the four cards below. */}
+            <div className="obp rv" aria-hidden="true">
+              <svg viewBox="0 0 1360 132" preserveAspectRatio="xMidYMid meet">
+                {/* the runtime spine the whole chain hangs off */}
+                <line className="obp-spine" x1="40" y1="100" x2="1320" y2="100" />
+
+                {/* 01 · compile — regulation lines condense into a policy pack */}
+                <g className="obp-st obp-st--1">
+                  <line className="obp-rule" x1="143" y1="38" x2="187" y2="38" />
+                  <line className="obp-rule" x1="139" y1="48" x2="191" y2="48" />
+                  <line className="obp-rule" x1="147" y1="58" x2="179" y2="58" />
+                  <line className="obp-link" x1="165" y1="62" x2="165" y2="70" />
+                  <rect className="obp-box" x="143" y="70" width="44" height="18" rx="4" />
+                  <line className="obp-inner" x1="151" y1="76" x2="171" y2="76" />
+                  <line className="obp-inner" x1="151" y1="82" x2="163" y2="82" />
+                  <line className="obp-link" x1="165" y1="88" x2="165" y2="100" />
+                </g>
+
+                {/* 02 · enforce — the policy drops onto the trace through a gate */}
+                <g className="obp-st obp-st--2">
+                  <rect className="obp-box" x="494" y="40" width="28" height="14" rx="3" />
+                  <line className="obp-link" x1="508" y1="54" x2="508" y2="86" />
+                  <path className="obp-gate" d="M508 86 L522 100 L508 114 L494 100 Z" />
+                  <polyline className="obp-check" points="503,100 507,104 514,96" />
+                </g>
+
+                {/* 03 · evidence — the event rises off the trace into a sealed receipt */}
+                <g className="obp-st obp-st--3">
+                  <line className="obp-link" x1="852" y1="100" x2="852" y2="78" />
+                  <rect className="obp-box" x="824" y="58" width="56" height="20" rx="3" />
+                  <line className="obp-inner" x1="832" y1="65" x2="858" y2="65" />
+                  <line className="obp-inner" x1="832" y1="71" x2="852" y2="71" />
+                  <polyline className="obp-check" points="864,68 867,71 872,64" />
+                </g>
+
+                {/* 04 · answer — the audit point; the amber walk-back starts here */}
+                <g className="obp-st obp-st--4">
+                  <circle className="obp-ask" cx="1195" cy="100" r="7" />
+                </g>
+
+                {/* the answer, walking evidence back to the regulation */}
+                <path className="obp-arc" d="M1195 88 C 1060 10, 300 10, 165 30" />
+                <path className="obp-arr" d="M160 26 L165 36 L170 26 Z" />
+                <line className="obp-rule-hot" x1="143" y1="38" x2="187" y2="38" />
+
+                {/* the run travelling the spine */}
+                <circle className="obp-run" cx="100" cy="100" r="3.6" />
+              </svg>
+            </div>
+
             <div className="segs abd-pipe">
               <article className="seg rv" style={{ '--i': 0 }}>
                 <span className="seg__no mono">01</span>
@@ -162,33 +218,85 @@ export default function Observatory() {
                   turned into audit-ready evidence — without a parallel record to maintain.</p>
               </div>
             </div>
+            {/* each capability carries a small line-glyph — ink only, static, one
+                 distinct silhouette per card: gate / tray / chain / waterfall / eye / ledger */}
             <div className="segs segs--3">
-              <article className="seg rv" style={{ '--i': 0 }}>
+              <article className="seg seg--g rv" style={{ '--i': 0 }}>
+                {/* comparator gate: a metric passes through a check */}
+                <svg className="seg__glyph" viewBox="0 0 48 48" aria-hidden="true">
+                  <line className="og og--dim" x1="5" y1="24" x2="15" y2="24" />
+                  <path className="og" d="M24 15 L33 24 L24 33 L15 24 Z" />
+                  <polyline className="og" points="20.5,24 23,26.5 28,20.5" />
+                  <line className="og og--dim" x1="33" y1="24" x2="43" y2="24" />
+                </svg>
                 <span className="seg__no mono">01</span>
                 <h3 className="seg__name">Policy engine</h3>
                 <p className="seg__desc">Machine-checkable rules enforced against live telemetry, grouped into reusable regulatory packs.</p>
               </article>
-              <article className="seg rv" style={{ '--i': 1 }}>
+              <article className="seg seg--g rv" style={{ '--i': 1 }}>
+                {/* harvest tray: traces converge into a reviewed batch */}
+                <svg className="seg__glyph" viewBox="0 0 48 48" aria-hidden="true">
+                  <circle className="og og--dim" cx="12" cy="11" r="2.5" />
+                  <circle className="og og--dim" cx="24" cy="8" r="2.5" />
+                  <circle className="og og--dim" cx="36" cy="11" r="2.5" />
+                  <path className="og og--dim" d="M12 14 L24 25 M24 11 L24 25 M36 14 L24 25" />
+                  <path className="og" d="M12 28 V38 H36 V28" />
+                  <polyline className="og" points="19,32 23,36 30,29" />
+                </svg>
                 <span className="seg__no mono">02</span>
                 <h3 className="seg__name">Evidence pipeline</h3>
                 <p className="seg__desc">Compliance evidence auto-collected from traces, with a collect → review → approve workflow.</p>
               </article>
-              <article className="seg rv" style={{ '--i': 2 }}>
+              <article className="seg seg--g rv" style={{ '--i': 2 }}>
+                {/* stepped chain: requirement → policy → evidence */}
+                <svg className="seg__glyph" viewBox="0 0 48 48" aria-hidden="true">
+                  <rect className="og" x="8" y="8" width="11" height="8" rx="2" />
+                  <path className="og og--dim" d="M13.5 16 V23.5 H19" />
+                  <rect className="og" x="19" y="20" width="11" height="8" rx="2" />
+                  <path className="og og--dim" d="M24.5 28 V35.5 H30" />
+                  <rect className="og" x="30" y="32" width="11" height="8" rx="2" />
+                </svg>
                 <span className="seg__no mono">03</span>
                 <h3 className="seg__name">Regulatory mapping</h3>
                 <p className="seg__desc">EU AI Act, GDPR, HIPAA, SOC 2, PCI-DSS, ISO 27001 — requirement → policy → evidence, with continuous gap analysis.</p>
               </article>
-              <article className="seg rv" style={{ '--i': 3 }}>
+              <article className="seg seg--g rv" style={{ '--i': 3 }}>
+                {/* trace waterfall: a run, its calls, their spans */}
+                <svg className="seg__glyph" viewBox="0 0 48 48" aria-hidden="true">
+                  <line className="og" x1="8" y1="12" x2="34" y2="12" />
+                  <line className="og og--dim" x1="14" y1="19" x2="30" y2="19" />
+                  <line className="og og--dim" x1="14" y1="26" x2="40" y2="26" />
+                  <line className="og og--dim" x1="20" y1="33" x2="32" y2="33" />
+                  <line className="og og--dim" x1="8" y1="12" x2="8" y2="26" />
+                </svg>
                 <span className="seg__no mono">04</span>
                 <h3 className="seg__name">Execution tracing</h3>
                 <p className="seg__desc">Hierarchical traces of every run, tool call, retrieval and decision, with token, cost and latency telemetry.</p>
               </article>
-              <article className="seg rv" style={{ '--i': 4 }}>
+              <article className="seg seg--g rv" style={{ '--i': 4 }}>
+                {/* oversight: an eye on the run, with the pause that can stop it */}
+                <svg className="seg__glyph" viewBox="0 0 48 48" aria-hidden="true">
+                  <path className="og" d="M8 21 Q24 9 40 21 Q24 33 8 21 Z" />
+                  <circle className="og" cx="24" cy="21" r="4" />
+                  <line className="og og--dim" x1="8" y1="39" x2="19" y2="39" />
+                  <line className="og" x1="22.5" y1="36" x2="22.5" y2="42" />
+                  <line className="og" x1="26" y1="36" x2="26" y2="42" />
+                  <line className="og og--dim" x1="29.5" y1="39" x2="40" y2="39" />
+                </svg>
                 <span className="seg__no mono">05</span>
                 <h3 className="seg__name">Risk-based oversight</h3>
                 <p className="seg__desc">In-the-loop for high-risk, on-the-loop otherwise, with a kill switch — human review recorded as evidence.</p>
               </article>
-              <article className="seg rv" style={{ '--i': 5 }}>
+              <article className="seg seg--g rv" style={{ '--i': 5 }}>
+                {/* sealed ledger: recorded rows, tamper-evident seal */}
+                <svg className="seg__glyph" viewBox="0 0 48 48" aria-hidden="true">
+                  <rect className="og" x="9" y="9" width="27" height="26" rx="3" />
+                  <line className="og og--dim" x1="14" y1="17" x2="31" y2="17" />
+                  <line className="og og--dim" x1="14" y1="23" x2="31" y2="23" />
+                  <line className="og og--dim" x1="14" y1="29" x2="25" y2="29" />
+                  <circle className="og" cx="35" cy="34" r="6" />
+                  <polyline className="og" points="32.5,34 34.5,36 38,31.5" />
+                </svg>
                 <span className="seg__no mono">06</span>
                 <h3 className="seg__name">Immutable audit trail</h3>
                 <p className="seg__desc">Every access, enforcement action and human review recorded, tamper-evident, and retained for years.</p>
@@ -206,21 +314,60 @@ export default function Observatory() {
                 <h2 className="h2 rv">Autonomy is outpacing oversight<span className="amber">.</span></h2>
               </div>
             </div>
-            <dl className="stats">
+            {/* each number carries a hairline meter restating it as a mark:
+                 a proportion, a proportion, a date closing in (the one amber tick),
+                 and a count of six */}
+            <dl className="stats stats--obs">
               <div className="stats__row rv" style={{ '--i': 0 }}>
-                <dt><span className="stats__num">71%</span></dt>
+                <dt>
+                  <span className="stats__num">71%</span>
+                  <svg className="stats__meter" viewBox="0 0 180 12" aria-hidden="true">
+                    <line className="om-track" x1="0" y1="6" x2="180" y2="6" />
+                    <line className="om-fill" x1="0" y1="6" x2="127.8" y2="6" />
+                    <line className="om-cap" x1="127.8" y1="1.5" x2="127.8" y2="10.5" />
+                  </svg>
+                </dt>
                 <dd>of organizations deploying agents have no formal governance framework.</dd>
               </div>
               <div className="stats__row rv" style={{ '--i': 1 }}>
-                <dt><span className="stats__num">80%</span></dt>
+                <dt>
+                  <span className="stats__num">80%</span>
+                  <svg className="stats__meter" viewBox="0 0 180 12" aria-hidden="true">
+                    <line className="om-track" x1="0" y1="6" x2="180" y2="6" />
+                    <line className="om-fill" x1="0" y1="6" x2="144" y2="6" />
+                    <line className="om-cap" x1="144" y1="1.5" x2="144" y2="10.5" />
+                  </svg>
+                </dt>
                 <dd>have already observed risky agent behaviors, like unauthorized data access.</dd>
               </div>
               <div className="stats__row rv" style={{ '--i': 2 }}>
-                <dt><span className="stats__num">Aug 2026</span></dt>
+                <dt>
+                  <span className="stats__num">Aug 2026</span>
+                  {/* a timeline: quarter ticks, and the deadline sitting one tick away */}
+                  <svg className="stats__meter" viewBox="0 0 180 12" aria-hidden="true">
+                    <line className="om-track" x1="0" y1="6" x2="180" y2="6" />
+                    <line className="om-tick" x1="1" y1="2.5" x2="1" y2="9.5" />
+                    <line className="om-tick" x1="45" y1="2.5" x2="45" y2="9.5" />
+                    <line className="om-tick" x1="90" y1="2.5" x2="90" y2="9.5" />
+                    <line className="om-tick" x1="179" y1="2.5" x2="179" y2="9.5" />
+                    <line className="om-fill" x1="0" y1="6" x2="135" y2="6" />
+                    <line className="om-mark" x1="142.5" y1="0.5" x2="142.5" y2="11.5" />
+                  </svg>
+                </dt>
                 <dd>EU AI Act reaches full effect — binding human oversight and multi-year record-keeping.</dd>
               </div>
               <div className="stats__row rv" style={{ '--i': 3 }}>
-                <dt><span className="stats__num">6</span></dt>
+                <dt>
+                  <span className="stats__num">6</span>
+                  <svg className="stats__meter" viewBox="0 0 180 12" aria-hidden="true">
+                    <line className="om-count" x1="2" y1="1.5" x2="2" y2="10.5" />
+                    <line className="om-count" x1="16" y1="1.5" x2="16" y2="10.5" />
+                    <line className="om-count" x1="30" y1="1.5" x2="30" y2="10.5" />
+                    <line className="om-count" x1="44" y1="1.5" x2="44" y2="10.5" />
+                    <line className="om-count" x1="58" y1="1.5" x2="58" y2="10.5" />
+                    <line className="om-count" x1="72" y1="1.5" x2="72" y2="10.5" />
+                  </svg>
+                </dt>
                 <dd>regulatory frameworks mapped out of the box, from EU AI Act to ISO 27001.</dd>
               </div>
             </dl>
