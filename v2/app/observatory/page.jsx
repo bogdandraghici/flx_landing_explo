@@ -127,118 +127,61 @@ export default function Observatory() {
               </div>
             </div>
 
-            {/* the governance plane, isometric: the REGULATION cube feeds the
-                 OBSERVATORY / GAVEL core sitting on the runtime plane; AGENT RUNTIME
-                 and 3rd-party agents connect through dashed telemetry conduits, and
-                 EVIDENCE collects in the foreground. The one amber thread is the
-                 AUDIT being answered — walking back to the exact rule it satisfies.
-                 Desktop-only; the four cards below carry the story on smaller screens. */}
+            {/* the evidence chain, isometric and horizontal: four stages along
+                 the runtime rail — a pack of rules compiles, the GAVEL core
+                 enforces on the live run, evidence seals into a receipt, an answer
+                 is produced — and the amber thread is the audit answered, arcing
+                 back to the exact rule it satisfies. Aligned to the four cards
+                 below; desktop-only. */}
             <div className="obp rv" aria-hidden="true">
-              <svg viewBox="0 -30 1360 620" preserveAspectRatio="xMidYMid meet">
-                {/* runtime plane */}
-                <polygon className="iso-plane" points="250,309.8 730,549.8 730,556 250,316" />
-                <polygon className="iso-plane" points="1170,329.8 730,549.8 730,556 1170,336" />
-                <polygon className="iso-plane" points="690,89.8 1170,329.8 730,549.8 250,309.8" />
-                {/* dashed telemetry / evidence conduits */}
-                <line className="iso-conduit" x1="614" y1="281.1" x2="700" y2="324.1" />
-                <line className="iso-conduit" x1="798" y1="385.1" x2="902" y2="437.1" />
-                <line className="iso-conduit" x1="682" y1="355.1" x2="562" y2="371.1" />
-                {/* AGENT RUNTIME — field of cubes */}
-                <polygon className="iso-face" points="512,165.4 550,184.4 550,224 512,205" />
-                <polygon className="iso-face" points="588,165.4 550,184.4 550,224 588,205" />
-                <polygon className="iso-face" points="550,146.4 588,165.4 550,184.4 512,165.4" />
-                <polygon className="iso-face" points="556,187.4 594,206.4 594,246 556,227" />
-                <polygon className="iso-face" points="468,187.4 506,206.4 506,246 468,227" />
-                <polygon className="iso-face" points="632,187.4 594,206.4 594,246 632,227" />
-                <polygon className="iso-face" points="544,187.4 506,206.4 506,246 544,227" />
-                <polygon className="iso-face" points="594,168.4 632,187.4 594,206.4 556,187.4" />
-                <polygon className="iso-face" points="506,168.4 544,187.4 506,206.4 468,187.4" />
-                {/* REGULATION — floating cube */}
-                <polygon className="iso-face" points="566,18 630,50 630,120.4 566,88.4" />
-                <polygon className="iso-face" points="694,18 630,50 630,120.4 694,88.4" />
-                <polygon className="iso-face" points="630,-14 694,18 630,50 566,18" />
-                <polygon className="iso-face" points="512,209.4 550,228.4 550,268 512,249" />
-                <polygon className="iso-face" points="424,209.4 462,228.4 462,268 424,249" />
-                <polygon className="iso-face" points="588,209.4 550,228.4 550,268 588,249" />
-                <polygon className="iso-face" points="500,209.4 462,228.4 462,268 500,249" />
-                <polygon className="iso-face" points="550,190.4 588,209.4 550,228.4 512,209.4" />
-                <polygon className="iso-face" points="462,190.4 500,209.4 462,228.4 424,209.4" />
-                <polygon className="iso-face" points="556,231.4 594,250.4 594,290 556,271" />
-                <polygon className="iso-face" points="468,231.4 506,250.4 506,290 468,271" />
-                <polygon className="iso-face" points="632,231.4 594,250.4 594,290 632,271" />
-                <polygon className="iso-face" points="544,231.4 506,250.4 506,290 544,271" />
-                <polygon className="iso-face" points="594,212.4 632,231.4 594,250.4 556,231.4" />
-                <polygon className="iso-face" points="506,212.4 544,231.4 506,250.4 468,231.4" />
-                <polygon className="iso-face" points="512,253.4 550,272.4 550,312 512,293" />
-                <polygon className="iso-face" points="588,253.4 550,272.4 550,312 588,293" />
-                <polygon className="iso-face" points="550,234.4 588,253.4 550,272.4 512,253.4" />
-                {/* OBSERVATORY / GAVEL core — stepped massif */}
-                <polygon className="iso-face" points="666,308.8 770,360.8 770,396 666,344" />
-                <polygon className="iso-face" points="874,308.8 770,360.8 770,396 874,344" />
-                <polygon className="iso-face" points="770,256.8 874,308.8 770,360.8 666,308.8" />
-                <polygon className="iso-face" points="724,165 770,188 770,306.8 724,283.8" />
-                <polygon className="iso-face" points="816,165 770,188 770,306.8 816,283.8" />
-                <polygon className="iso-face" points="770,142 816,165 770,188 724,165" />
-                <polygon className="iso-face" points="774,220.8 820,243.8 820,331.8 774,308.8" />
-                <polygon className="iso-face" points="674,251.6 720,274.6 720,331.8 674,308.8" />
-                <polygon className="iso-face" points="866,220.8 820,243.8 820,331.8 866,308.8" />
-                <polygon className="iso-face" points="766,251.6 720,274.6 720,331.8 766,308.8" />
-                <polygon className="iso-face" points="820,197.8 866,220.8 820,243.8 774,220.8" />
-                <polygon className="iso-face" points="720,228.6 766,251.6 720,274.6 674,251.6" />
-                {/* EVIDENCE — foreground disc */}
-                <polygon className="iso-face" points="430,356.6 514,398.6 514,436 430,394" />
-                <polygon className="iso-face" points="598,356.6 514,398.6 514,436 598,394" />
-                <polygon className="iso-face" points="514,314.6 598,356.6 514,398.6 430,356.6" />
-                <ellipse className="iso-edge" cx="514" cy="356.6" rx="42.0" ry="21.0" />
-                <polygon className="iso-face" points="724,261.2 770,284.2 770,356.8 724,333.8" />
-                <polygon className="iso-face" points="816,261.2 770,284.2 770,356.8 816,333.8" />
-                <polygon className="iso-face" points="770,238.2 816,261.2 770,284.2 724,261.2" />
-                <polygon className="iso-face" points="732,125.2 770,144.2 770,186 732,167" />
-                <polygon className="iso-face" points="808,125.2 770,144.2 770,186 808,167" />
-                <polygon className="iso-face" points="770,106.2 808,125.2 770,144.2 732,125.2" />
-                {/* 3RD-PARTY AGENTS — cluster */}
-                <polygon className="iso-face" points="816,375.2 854,394.2 854,436 816,417" />
-                <polygon className="iso-face" points="892,375.2 854,394.2 854,436 892,417" />
-                <polygon className="iso-face" points="854,356.2 892,375.2 854,394.2 816,375.2" />
-                <polygon className="iso-face" points="916,389.2 954,408.2 954,450 916,431" />
-                <polygon className="iso-face" points="992,389.2 954,408.2 954,450 992,431" />
-                <polygon className="iso-face" points="954,370.2 992,389.2 954,408.2 916,389.2" />
-                <polygon className="iso-face" points="860,397.2 898,416.2 898,458 860,439" />
-                <polygon className="iso-face" points="772,397.2 810,416.2 810,458 772,439" />
-                <polygon className="iso-face" points="936,397.2 898,416.2 898,458 936,439" />
-                <polygon className="iso-face" points="848,397.2 810,416.2 810,458 848,439" />
-                <polygon className="iso-face" points="898,378.2 936,397.2 898,416.2 860,397.2" />
-                <polygon className="iso-face" points="810,378.2 848,397.2 810,416.2 772,397.2" />
-                <polygon className="iso-face" points="816,419.2 854,438.2 854,480 816,461" />
-                <polygon className="iso-face" points="892,419.2 854,438.2 854,480 892,461" />
-                <polygon className="iso-face" points="854,400.2 892,419.2 854,438.2 816,419.2" />
-                {/* connector leaders + node dots */}
-                <line className="iso-line" x1="630" y1="88.4" x2="630" y2="194" />
-                <line className="iso-line" x1="638" y1="214.4" x2="638" y2="152.8" />
-                <line className="iso-line" x1="734" y1="230.4" x2="734" y2="168.8" />
-                <line className="iso-line" x1="762" y1="388.4" x2="762" y2="326.8" />
-                <line className="iso-line" x1="578" y1="344.4" x2="578" y2="282.8" />
-                <circle className="iso-dot" cx="638" cy="152.8" r="5" />
-                <circle className="iso-dot" cx="734" cy="168.8" r="5" />
-                <circle className="iso-dot" cx="762" cy="326.8" r="5" />
-                <circle className="iso-dot" cx="578" cy="282.8" r="5" />
-                {/* AUDIT — answered, walking back to the rule (amber) */}
-                <line className="iso-line" x1="642" y1="379.1" x2="642" y2="314" />
-                <circle className="iso-dot" cx="642" cy="314" r="5" />
-                <path className="iso-hot" d="M642 314 C 502 164, 600 288.4, 630 88.4" />
-                <circle className="iso-hot-dot" cx="630" cy="88.4" r="4" />
-                {/* labels */}
-                <text className="iso-label" x="150" y="150"><tspan x="150" dy="0">REGULATION</tspan></text>
-                <text className="iso-label" x="120" y="360"><tspan x="120" dy="0">AGENT</tspan><tspan x="120" dy="16">RUNTIME</tspan></text>
-                <text className="iso-label" x="980" y="150"><tspan x="980" dy="0">OBSERVATORY</tspan><tspan x="980" dy="16">CORE</tspan></text>
-                <text className="iso-label" x="1120" y="380"><tspan x="1120" dy="0">3RD-PARTY</tspan><tspan x="1120" dy="16">AGENTS</tspan></text>
-                <text className="iso-label" x="300" y="560"><tspan x="300" dy="0">EVIDENCE</tspan></text>
-                <text className="iso-label iso-label--hot" x="658" y="318">AUDIT</text>
-                <path className="iso-arrow" d="M150 162 l14 8 m0 0 l-6 0 m6 0 l0 -6" />
-                <path className="iso-arrow" d="M120 388 l14 8 m0 0 l-6 0 m6 0 l0 -6" />
-                <path className="iso-arrow" d="M980 178 l-14 8 m0 0 l6 0 m-6 0 l0 -6" />
-                <path className="iso-arrow" d="M1120 408 l-14 8 m0 0 l6 0 m-6 0 l0 -6" />
-                <path className="iso-arrow" d="M300 572 l14 8 m0 0 l-6 0 m6 0 l0 -6" />
+              <svg viewBox="0 0 1360 250" preserveAspectRatio="xMidYMid meet">
+                {/* base faces of the four stations */}
+                <polygon className="iso-face" points="117.5,164.2 170,190.5 170,200 117.5,173.8" />
+                <polygon className="iso-face" points="443.5,149.8 510,183 510,200 443.5,166.8" />
+                <polygon className="iso-face" points="794,153.3 850,181.3 850,200 794,172" />
+                <polygon className="iso-face" points="1142.8,130.5 1190,154.1 1190,200 1142.8,176.4" />
+                <polygon className="iso-face" points="222.5,164.2 170,190.5 170,200 222.5,173.8" />
+                <polygon className="iso-face" points="576.5,149.8 510,183 510,200 576.5,166.8" />
+                <polygon className="iso-face" points="906,153.3 850,181.3 850,200 906,172" />
+                <polygon className="iso-face" points="1237.3,130.5 1190,154.1 1190,200 1237.3,176.4" />
+                <polygon className="iso-face" points="170,138 222.5,164.2 170,190.5 117.5,164.2" />
+                <polygon className="iso-face" points="510,116.5 576.5,149.8 510,183 443.5,149.8" />
+                <polygon className="iso-face" points="850,125.3 906,153.3 850,181.3 794,153.3" />
+                <polygon className="iso-face" points="1190,106.8 1237.3,130.5 1190,154.1 1142.8,130.5" />
+                {/* dashed runtime rail through the stations */}
+                <line className="iso-rail" x1="70" y1="206" x2="1290" y2="206" />
+                <circle className="iso-dot" cx="170" cy="206" r="4.5" />
+                <circle className="iso-dot" cx="510" cy="206" r="4.5" />
+                <circle className="iso-dot" cx="850" cy="206" r="4.5" />
+                <circle className="iso-dot" cx="1190" cy="206" r="4.5" />
+                {/* upper faces, painted back-to-front: rule pack (top plate = the
+                     lit rule), GAVEL core, evidence disc, answer cube */}
+                <polygon className="iso-face" points="117.5,150.6 170,176.9 170,186.4 117.5,160.2" />
+                <polygon className="iso-face" points="222.5,150.6 170,176.9 170,186.4 222.5,160.2" />
+                <polygon className="iso-face" points="170,124.4 222.5,150.6 170,176.9 117.5,150.6" />
+                <polygon className="iso-face" points="480.3,75.3 510,90.2 510,148 480.3,133.1" />
+                <polygon className="iso-face" points="539.8,75.3 510,90.2 510,148 539.8,133.1" />
+                <polygon className="iso-face" points="510,60.4 539.8,75.3 510,90.2 480.3,75.3" />
+                <polygon className="iso-hot-face" points="117.5,137 170,163.3 170,172.8 117.5,146.6" />
+                <polygon className="iso-hot-face" points="222.5,137 170,163.3 170,172.8 222.5,146.6" />
+                <polygon className="iso-hot-face" points="170,110.8 222.5,137 170,163.3 117.5,137" />
+                <polygon className="iso-face" points="513.5,112.3 543.3,127.2 543.3,164.6 513.5,149.8" />
+                <polygon className="iso-face" points="447,126 476.8,140.8 476.8,164.6 447,149.8" />
+                <polygon className="iso-face" points="573,112.3 543.3,127.2 543.3,164.6 573,149.8" />
+                <polygon className="iso-face" points="506.5,126 476.8,140.8 476.8,164.6 506.5,149.8" />
+                <polygon className="iso-face" points="543.3,97.5 573,112.3 543.3,127.2 513.5,112.3" />
+                <polygon className="iso-face" points="476.8,111.1 506.5,126 476.8,140.8 447,126" />
+                <ellipse className="iso-edge" cx="850" cy="153.3" rx="28" ry="14" />
+                <polygon className="iso-face" points="480.3,134.1 510,148.9 510,181.3 480.3,166.4" />
+                <polygon className="iso-face" points="539.8,134.1 510,148.9 510,181.3 539.8,166.4" />
+                <polygon className="iso-face" points="510,119.2 539.8,134.1 510,148.9 480.3,134.1" />
+                <polygon className="iso-face" points="489,55.8 510,66.3 510,86.7 489,76.2" />
+                <polygon className="iso-face" points="531,55.8 510,66.3 510,86.7 531,76.2" />
+                <polygon className="iso-face" points="510,45.3 531,55.8 510,66.3 489,55.8" />
+                {/* the audit answered — walking back to the rule (amber) */}
+                <path className="iso-hot" d="M1190 130.5 C 930 46, 430 46, 170 137" />
+                <circle className="iso-hot-dot" cx="1190" cy="130.5" r="4" />
+                <circle className="iso-hot-dot" cx="170" cy="137" r="4" />
               </svg>
             </div>
 
