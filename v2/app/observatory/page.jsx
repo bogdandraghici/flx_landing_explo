@@ -127,58 +127,118 @@ export default function Observatory() {
               </div>
             </div>
 
-            {/* the evidence chain, closed: the live run travels the bottom lane
-                 left→right through four stations — a rule pack compiles, passes the
-                 enforcement gate, seals into a verified receipt, reaches an answer —
-                 and the answer returns as an amber pulse along the top lane, back to
-                 the exact rule it satisfies, lighting it. 12s loop; reduced motion
-                 shows the answered pose. Stations align to the four cards below. */}
+            {/* the governance plane, isometric: the REGULATION cube feeds the
+                 OBSERVATORY / GAVEL core sitting on the runtime plane; AGENT RUNTIME
+                 and 3rd-party agents connect through dashed telemetry conduits, and
+                 EVIDENCE collects in the foreground. The one amber thread is the
+                 AUDIT being answered — walking back to the exact rule it satisfies.
+                 Desktop-only; the four cards below carry the story on smaller screens. */}
             <div className="obp rv" aria-hidden="true">
-              <svg viewBox="0 0 1360 128" preserveAspectRatio="xMidYMid meet">
-                {/* the closed circuit: forward runtime lane + return lane */}
-                <path className="obp-track" d="M100 96 H1260 C1316 96 1316 24 1260 24 H100 C44 24 44 96 100 96 Z" />
-
-                {/* 01 · compile — the regulation, as a pack of written rules */}
-                <g className="obp-st obp-st--1">
-                  <line className="obp-stem" x1="165" y1="91" x2="165" y2="73" />
-                  <circle className="obp-node" cx="165" cy="96" r="5" />
-                  <line className="obp-gl" x1="149" y1="47" x2="149" y2="67" />
-                  <line className="obp-gl" x1="154" y1="49" x2="179" y2="49" />
-                  <line className="obp-gl" x1="154" y1="57" x2="171" y2="57" />
-                  <line className="obp-gl" x1="154" y1="65" x2="176" y2="65" />
-                </g>
-
-                {/* 02 · enforce — the gate the live run must pass */}
-                <g className="obp-st obp-st--2">
-                  <line className="obp-stem" x1="508" y1="91" x2="508" y2="73" />
-                  <circle className="obp-node" cx="508" cy="96" r="5" />
-                  <path className="obp-gl" d="M508 47 L518 57 L508 67 L498 57 Z" />
-                  <line className="obp-gl" x1="492" y1="57" x2="498" y2="57" />
-                  <line className="obp-gl" x1="518" y1="57" x2="524" y2="57" />
-                </g>
-
-                {/* 03 · evidence — the run, sealed as a verified receipt */}
-                <g className="obp-st obp-st--3">
-                  <line className="obp-stem" x1="852" y1="91" x2="852" y2="73" />
-                  <circle className="obp-node" cx="852" cy="96" r="5" />
-                  <rect className="obp-gl" x="839" y="46" width="26" height="22" rx="4" />
-                  <polyline className="obp-gl" points="846,57 851,62 859,51" />
-                </g>
-
-                {/* 04 · answer — points back the way the evidence came */}
-                <g className="obp-st obp-st--4">
-                  <line className="obp-stem" x1="1195" y1="91" x2="1195" y2="73" />
-                  <circle className="obp-node" cx="1195" cy="96" r="5" />
-                  <line className="obp-gl" x1="1209" y1="57" x2="1187" y2="57" />
-                  <polyline className="obp-gl" points="1193,51 1187,57 1193,63" />
-                </g>
-
-                {/* the answer walking the evidence back to the exact rule it satisfies */}
-                <path className="obp-return" pathLength="100" d="M1195 96 H1260 C1316 96 1316 24 1260 24 H100 C44 24 44 96 100 96 H165" />
-                <line className="obp-rule-hot" x1="154" y1="49" x2="179" y2="49" />
-
-                {/* the live run travelling the runtime lane */}
-                <circle className="obp-run" cx="100" cy="96" r="4" />
+              <svg viewBox="0 -30 1360 620" preserveAspectRatio="xMidYMid meet">
+                {/* runtime plane */}
+                <polygon className="iso-plane" points="250,309.8 730,549.8 730,556 250,316" />
+                <polygon className="iso-plane" points="1170,329.8 730,549.8 730,556 1170,336" />
+                <polygon className="iso-plane" points="690,89.8 1170,329.8 730,549.8 250,309.8" />
+                {/* dashed telemetry / evidence conduits */}
+                <line className="iso-conduit" x1="614" y1="281.1" x2="700" y2="324.1" />
+                <line className="iso-conduit" x1="798" y1="385.1" x2="902" y2="437.1" />
+                <line className="iso-conduit" x1="682" y1="355.1" x2="562" y2="371.1" />
+                {/* AGENT RUNTIME — field of cubes */}
+                <polygon className="iso-face" points="512,165.4 550,184.4 550,224 512,205" />
+                <polygon className="iso-face" points="588,165.4 550,184.4 550,224 588,205" />
+                <polygon className="iso-face" points="550,146.4 588,165.4 550,184.4 512,165.4" />
+                <polygon className="iso-face" points="556,187.4 594,206.4 594,246 556,227" />
+                <polygon className="iso-face" points="468,187.4 506,206.4 506,246 468,227" />
+                <polygon className="iso-face" points="632,187.4 594,206.4 594,246 632,227" />
+                <polygon className="iso-face" points="544,187.4 506,206.4 506,246 544,227" />
+                <polygon className="iso-face" points="594,168.4 632,187.4 594,206.4 556,187.4" />
+                <polygon className="iso-face" points="506,168.4 544,187.4 506,206.4 468,187.4" />
+                {/* REGULATION — floating cube */}
+                <polygon className="iso-face" points="566,18 630,50 630,120.4 566,88.4" />
+                <polygon className="iso-face" points="694,18 630,50 630,120.4 694,88.4" />
+                <polygon className="iso-face" points="630,-14 694,18 630,50 566,18" />
+                <polygon className="iso-face" points="512,209.4 550,228.4 550,268 512,249" />
+                <polygon className="iso-face" points="424,209.4 462,228.4 462,268 424,249" />
+                <polygon className="iso-face" points="588,209.4 550,228.4 550,268 588,249" />
+                <polygon className="iso-face" points="500,209.4 462,228.4 462,268 500,249" />
+                <polygon className="iso-face" points="550,190.4 588,209.4 550,228.4 512,209.4" />
+                <polygon className="iso-face" points="462,190.4 500,209.4 462,228.4 424,209.4" />
+                <polygon className="iso-face" points="556,231.4 594,250.4 594,290 556,271" />
+                <polygon className="iso-face" points="468,231.4 506,250.4 506,290 468,271" />
+                <polygon className="iso-face" points="632,231.4 594,250.4 594,290 632,271" />
+                <polygon className="iso-face" points="544,231.4 506,250.4 506,290 544,271" />
+                <polygon className="iso-face" points="594,212.4 632,231.4 594,250.4 556,231.4" />
+                <polygon className="iso-face" points="506,212.4 544,231.4 506,250.4 468,231.4" />
+                <polygon className="iso-face" points="512,253.4 550,272.4 550,312 512,293" />
+                <polygon className="iso-face" points="588,253.4 550,272.4 550,312 588,293" />
+                <polygon className="iso-face" points="550,234.4 588,253.4 550,272.4 512,253.4" />
+                {/* OBSERVATORY / GAVEL core — stepped massif */}
+                <polygon className="iso-face" points="666,308.8 770,360.8 770,396 666,344" />
+                <polygon className="iso-face" points="874,308.8 770,360.8 770,396 874,344" />
+                <polygon className="iso-face" points="770,256.8 874,308.8 770,360.8 666,308.8" />
+                <polygon className="iso-face" points="724,165 770,188 770,306.8 724,283.8" />
+                <polygon className="iso-face" points="816,165 770,188 770,306.8 816,283.8" />
+                <polygon className="iso-face" points="770,142 816,165 770,188 724,165" />
+                <polygon className="iso-face" points="774,220.8 820,243.8 820,331.8 774,308.8" />
+                <polygon className="iso-face" points="674,251.6 720,274.6 720,331.8 674,308.8" />
+                <polygon className="iso-face" points="866,220.8 820,243.8 820,331.8 866,308.8" />
+                <polygon className="iso-face" points="766,251.6 720,274.6 720,331.8 766,308.8" />
+                <polygon className="iso-face" points="820,197.8 866,220.8 820,243.8 774,220.8" />
+                <polygon className="iso-face" points="720,228.6 766,251.6 720,274.6 674,251.6" />
+                {/* EVIDENCE — foreground disc */}
+                <polygon className="iso-face" points="430,356.6 514,398.6 514,436 430,394" />
+                <polygon className="iso-face" points="598,356.6 514,398.6 514,436 598,394" />
+                <polygon className="iso-face" points="514,314.6 598,356.6 514,398.6 430,356.6" />
+                <ellipse className="iso-edge" cx="514" cy="356.6" rx="42.0" ry="21.0" />
+                <polygon className="iso-face" points="724,261.2 770,284.2 770,356.8 724,333.8" />
+                <polygon className="iso-face" points="816,261.2 770,284.2 770,356.8 816,333.8" />
+                <polygon className="iso-face" points="770,238.2 816,261.2 770,284.2 724,261.2" />
+                <polygon className="iso-face" points="732,125.2 770,144.2 770,186 732,167" />
+                <polygon className="iso-face" points="808,125.2 770,144.2 770,186 808,167" />
+                <polygon className="iso-face" points="770,106.2 808,125.2 770,144.2 732,125.2" />
+                {/* 3RD-PARTY AGENTS — cluster */}
+                <polygon className="iso-face" points="816,375.2 854,394.2 854,436 816,417" />
+                <polygon className="iso-face" points="892,375.2 854,394.2 854,436 892,417" />
+                <polygon className="iso-face" points="854,356.2 892,375.2 854,394.2 816,375.2" />
+                <polygon className="iso-face" points="916,389.2 954,408.2 954,450 916,431" />
+                <polygon className="iso-face" points="992,389.2 954,408.2 954,450 992,431" />
+                <polygon className="iso-face" points="954,370.2 992,389.2 954,408.2 916,389.2" />
+                <polygon className="iso-face" points="860,397.2 898,416.2 898,458 860,439" />
+                <polygon className="iso-face" points="772,397.2 810,416.2 810,458 772,439" />
+                <polygon className="iso-face" points="936,397.2 898,416.2 898,458 936,439" />
+                <polygon className="iso-face" points="848,397.2 810,416.2 810,458 848,439" />
+                <polygon className="iso-face" points="898,378.2 936,397.2 898,416.2 860,397.2" />
+                <polygon className="iso-face" points="810,378.2 848,397.2 810,416.2 772,397.2" />
+                <polygon className="iso-face" points="816,419.2 854,438.2 854,480 816,461" />
+                <polygon className="iso-face" points="892,419.2 854,438.2 854,480 892,461" />
+                <polygon className="iso-face" points="854,400.2 892,419.2 854,438.2 816,419.2" />
+                {/* connector leaders + node dots */}
+                <line className="iso-line" x1="630" y1="88.4" x2="630" y2="194" />
+                <line className="iso-line" x1="638" y1="214.4" x2="638" y2="152.8" />
+                <line className="iso-line" x1="734" y1="230.4" x2="734" y2="168.8" />
+                <line className="iso-line" x1="762" y1="388.4" x2="762" y2="326.8" />
+                <line className="iso-line" x1="578" y1="344.4" x2="578" y2="282.8" />
+                <circle className="iso-dot" cx="638" cy="152.8" r="5" />
+                <circle className="iso-dot" cx="734" cy="168.8" r="5" />
+                <circle className="iso-dot" cx="762" cy="326.8" r="5" />
+                <circle className="iso-dot" cx="578" cy="282.8" r="5" />
+                {/* AUDIT — answered, walking back to the rule (amber) */}
+                <line className="iso-line" x1="642" y1="379.1" x2="642" y2="314" />
+                <circle className="iso-dot" cx="642" cy="314" r="5" />
+                <path className="iso-hot" d="M642 314 C 502 164, 600 288.4, 630 88.4" />
+                <circle className="iso-hot-dot" cx="630" cy="88.4" r="4" />
+                {/* labels */}
+                <text className="iso-label" x="150" y="150"><tspan x="150" dy="0">REGULATION</tspan></text>
+                <text className="iso-label" x="120" y="360"><tspan x="120" dy="0">AGENT</tspan><tspan x="120" dy="16">RUNTIME</tspan></text>
+                <text className="iso-label" x="980" y="150"><tspan x="980" dy="0">OBSERVATORY</tspan><tspan x="980" dy="16">CORE</tspan></text>
+                <text className="iso-label" x="1120" y="380"><tspan x="1120" dy="0">3RD-PARTY</tspan><tspan x="1120" dy="16">AGENTS</tspan></text>
+                <text className="iso-label" x="300" y="560"><tspan x="300" dy="0">EVIDENCE</tspan></text>
+                <text className="iso-label iso-label--hot" x="658" y="318">AUDIT</text>
+                <path className="iso-arrow" d="M150 162 l14 8 m0 0 l-6 0 m6 0 l0 -6" />
+                <path className="iso-arrow" d="M120 388 l14 8 m0 0 l-6 0 m6 0 l0 -6" />
+                <path className="iso-arrow" d="M980 178 l-14 8 m0 0 l6 0 m-6 0 l0 -6" />
+                <path className="iso-arrow" d="M1120 408 l-14 8 m0 0 l6 0 m-6 0 l0 -6" />
+                <path className="iso-arrow" d="M300 572 l14 8 m0 0 l-6 0 m6 0 l0 -6" />
               </svg>
             </div>
 
