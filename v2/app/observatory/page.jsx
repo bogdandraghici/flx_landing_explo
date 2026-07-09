@@ -230,9 +230,9 @@ export default function Observatory() {
                 {/* comparator gate on a trace: metric in, check, metric out */}
                 <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
                   <circle className="og--node" cx="7" cy="22" r="2" />
-                  <line className="og og--dim" x1="9" y1="22" x2="15" y2="22" />
+                  <line className="og" x1="9" y1="22" x2="15" y2="22" />
                   <path className="og" d="M22 15 L29 22 L22 29 L15 22 Z" />
-                  <line className="og og--dim" x1="29" y1="22" x2="35" y2="22" />
+                  <line className="og" x1="29" y1="22" x2="35" y2="22" />
                   <circle className="og--node" cx="37" cy="22" r="2" />
                 </svg>
                 <span className="seg__no mono">01</span>
@@ -245,7 +245,7 @@ export default function Observatory() {
                   <circle className="og--node" cx="10" cy="9" r="2" />
                   <circle className="og--node" cx="22" cy="9" r="2" />
                   <circle className="og--node" cx="34" cy="9" r="2" />
-                  <path className="og og--dim" d="M10 11 L22 24 M22 11 L22 24 M34 11 L22 24" />
+                  <path className="og" d="M10 11 L22 24 M22 11 L22 24 M34 11 L22 24" />
                   <rect className="og" x="12" y="26" width="20" height="12" rx="2" />
                   <polyline className="og" points="18,32 21,35 26.5,28.5" />
                 </svg>
@@ -257,9 +257,9 @@ export default function Observatory() {
                 {/* stepped chain: requirement → policy → evidence */}
                 <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
                   <rect className="og" x="6" y="6" width="12" height="8" rx="2" />
-                  <path className="og og--dim" d="M12 14 V22 H16" />
+                  <path className="og" d="M12 14 V22 H16" />
                   <rect className="og" x="16" y="18" width="12" height="8" rx="2" />
-                  <path className="og og--dim" d="M22 26 V34 H26" />
+                  <path className="og" d="M22 26 V34 H26" />
                   <rect className="og" x="26" y="30" width="12" height="8" rx="2" />
                 </svg>
                 <span className="seg__no mono">03</span>
@@ -271,9 +271,9 @@ export default function Observatory() {
                 <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
                   <circle className="og--node" cx="7" cy="10" r="2" />
                   <line className="og" x1="11" y1="10" x2="33" y2="10" />
-                  <line className="og og--dim" x1="16" y1="18" x2="30" y2="18" />
-                  <line className="og og--dim" x1="16" y1="26" x2="37" y2="26" />
-                  <line className="og og--dim" x1="21" y1="34" x2="31" y2="34" />
+                  <line className="og" x1="16" y1="18" x2="30" y2="18" />
+                  <line className="og" x1="16" y1="26" x2="37" y2="26" />
+                  <line className="og" x1="21" y1="34" x2="31" y2="34" />
                 </svg>
                 <span className="seg__no mono">04</span>
                 <h3 className="seg__name">Execution tracing</h3>
@@ -285,10 +285,10 @@ export default function Observatory() {
                   <circle className="og" cx="22" cy="13" r="6" />
                   <circle className="og--node" cx="22" cy="13" r="2" />
                   <line className="og og--sight" x1="22" y1="21" x2="22" y2="27" />
-                  <line className="og og--dim" x1="6" y1="33" x2="17" y2="33" />
+                  <line className="og" x1="6" y1="33" x2="17" y2="33" />
                   <line className="og" x1="20.5" y1="29.5" x2="20.5" y2="36.5" />
                   <line className="og" x1="23.5" y1="29.5" x2="23.5" y2="36.5" />
-                  <line className="og og--dim" x1="27" y1="33" x2="38" y2="33" />
+                  <line className="og" x1="27" y1="33" x2="38" y2="33" />
                 </svg>
                 <span className="seg__no mono">05</span>
                 <h3 className="seg__name">Risk-based oversight</h3>
@@ -297,12 +297,12 @@ export default function Observatory() {
               <article className="seg seg--g rv" style={{ '--i': 5 }}>
                 {/* sealed ledger: recorded rows, tamper-evident seal */}
                 <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
-                  <rect className="og" x="7" y="7" width="23" height="24" rx="2" />
-                  <line className="og og--dim" x1="12" y1="14" x2="25" y2="14" />
-                  <line className="og og--dim" x1="12" y1="19" x2="25" y2="19" />
-                  <line className="og og--dim" x1="12" y1="24" x2="21" y2="24" />
-                  <circle className="og" cx="31" cy="30" r="6" />
-                  <polyline className="og" points="28.5,30 30.5,32 34,27.5" />
+                  <rect className="og" x="6" y="6" width="20" height="26" rx="2" />
+                  <line className="og" x1="11" y1="13" x2="21" y2="13" />
+                  <line className="og" x1="11" y1="18" x2="21" y2="18" />
+                  <line className="og" x1="11" y1="23" x2="18" y2="23" />
+                  <circle className="og" cx="34" cy="31" r="7" />
+                  <polyline className="og" points="31,31 33,33.5 37,27.5" />
                 </svg>
                 <span className="seg__no mono">06</span>
                 <h3 className="seg__name">Immutable audit trail</h3>
