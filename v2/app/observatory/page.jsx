@@ -127,62 +127,58 @@ export default function Observatory() {
               </div>
             </div>
 
-            {/* the evidence chain, drawn: a run travels the pipeline left to right —
-                 regulation lines compile into a policy pack, pass the enforcement gate
-                 on the live trace, seal into an evidence receipt — and then the answer
-                 walks the chain BACK: an amber arc rises from Answer and lands on the
-                 regulation, lighting the rule it satisfies. 12s loop; reduced motion
+            {/* the evidence chain, closed: the live run travels the bottom lane
+                 left→right through four stations — a rule pack compiles, passes the
+                 enforcement gate, seals into a verified receipt, reaches an answer —
+                 and the answer returns as an amber pulse along the top lane, back to
+                 the exact rule it satisfies, lighting it. 12s loop; reduced motion
                  shows the answered pose. Stations align to the four cards below. */}
             <div className="obp rv" aria-hidden="true">
-              <svg viewBox="0 0 1360 100" preserveAspectRatio="xMidYMid meet">
-                {/* the runtime spine; four identical stations — node, stem, chip —
-                     only the mark inside each chip differs */}
-                <line className="obp-spine" x1="40" y1="84" x2="1320" y2="84" />
+              <svg viewBox="0 0 1360 128" preserveAspectRatio="xMidYMid meet">
+                {/* the closed circuit: forward runtime lane + return lane */}
+                <path className="obp-track" d="M100 96 H1260 C1316 96 1316 24 1260 24 H100 C44 24 44 96 100 96 Z" />
 
-                {/* 01 · compile — the regulation, as written rules */}
+                {/* 01 · compile — the regulation, as a pack of written rules */}
                 <g className="obp-st obp-st--1">
-                  <rect className="obp-chip" x="138" y="34" width="54" height="30" rx="5" />
-                  <line className="obp-stem" x1="165" y1="64" x2="165" y2="79" />
-                  <circle className="obp-node" cx="165" cy="84" r="4.5" />
-                  <line className="obp-mark" x1="149" y1="42.5" x2="181" y2="42.5" />
-                  <line className="obp-mark" x1="149" y1="49" x2="173" y2="49" />
-                  <line className="obp-mark" x1="149" y1="55.5" x2="167" y2="55.5" />
+                  <line className="obp-stem" x1="165" y1="91" x2="165" y2="73" />
+                  <circle className="obp-node" cx="165" cy="96" r="5" />
+                  <line className="obp-gl" x1="149" y1="47" x2="149" y2="67" />
+                  <line className="obp-gl" x1="154" y1="49" x2="179" y2="49" />
+                  <line className="obp-gl" x1="154" y1="57" x2="171" y2="57" />
+                  <line className="obp-gl" x1="154" y1="65" x2="176" y2="65" />
                 </g>
 
-                {/* 02 · enforce — the gate the run must pass */}
+                {/* 02 · enforce — the gate the live run must pass */}
                 <g className="obp-st obp-st--2">
-                  <rect className="obp-chip" x="481" y="34" width="54" height="30" rx="5" />
-                  <line className="obp-stem" x1="508" y1="64" x2="508" y2="79" />
-                  <circle className="obp-node" cx="508" cy="84" r="4.5" />
-                  <path className="obp-fine" d="M508 41 L516 49 L508 57 L500 49 Z" />
+                  <line className="obp-stem" x1="508" y1="91" x2="508" y2="73" />
+                  <circle className="obp-node" cx="508" cy="96" r="5" />
+                  <path className="obp-gl" d="M508 47 L518 57 L508 67 L498 57 Z" />
+                  <line className="obp-gl" x1="492" y1="57" x2="498" y2="57" />
+                  <line className="obp-gl" x1="518" y1="57" x2="524" y2="57" />
                 </g>
 
-                {/* 03 · evidence — the sealed receipt */}
+                {/* 03 · evidence — the run, sealed as a verified receipt */}
                 <g className="obp-st obp-st--3">
-                  <rect className="obp-chip" x="825" y="34" width="54" height="30" rx="5" />
-                  <line className="obp-stem" x1="852" y1="64" x2="852" y2="79" />
-                  <circle className="obp-node" cx="852" cy="84" r="4.5" />
-                  <line className="obp-mark" x1="836" y1="44.5" x2="858" y2="44.5" />
-                  <line className="obp-mark" x1="836" y1="51" x2="853" y2="51" />
-                  <polyline className="obp-fine" points="860,50.5 863,53.5 868,45.5" />
+                  <line className="obp-stem" x1="852" y1="91" x2="852" y2="73" />
+                  <circle className="obp-node" cx="852" cy="96" r="5" />
+                  <rect className="obp-gl" x="839" y="46" width="26" height="22" rx="4" />
+                  <polyline className="obp-gl" points="846,57 851,62 859,51" />
                 </g>
 
                 {/* 04 · answer — points back the way the evidence came */}
                 <g className="obp-st obp-st--4">
-                  <rect className="obp-chip" x="1168" y="34" width="54" height="30" rx="5" />
-                  <line className="obp-stem" x1="1195" y1="64" x2="1195" y2="79" />
-                  <circle className="obp-node" cx="1195" cy="84" r="4.5" />
-                  <line className="obp-mark" x1="1188" y1="49" x2="1206" y2="49" />
-                  <polyline className="obp-fine" points="1191,43.5 1185,49 1191,54.5" />
+                  <line className="obp-stem" x1="1195" y1="91" x2="1195" y2="73" />
+                  <circle className="obp-node" cx="1195" cy="96" r="5" />
+                  <line className="obp-gl" x1="1209" y1="57" x2="1187" y2="57" />
+                  <polyline className="obp-gl" points="1193,51 1187,57 1193,63" />
                 </g>
 
-                {/* the answer, walking evidence back to the regulation */}
-                <path className="obp-arc" d="M1195 34 C 1080 0, 280 0, 165 34" />
-                <path className="obp-arr" d="M160 26 L165 34 L170 26 Z" />
-                <line className="obp-rule-hot" x1="149" y1="42.5" x2="181" y2="42.5" />
+                {/* the answer walking the evidence back to the exact rule it satisfies */}
+                <path className="obp-return" pathLength="100" d="M1195 96 H1260 C1316 96 1316 24 1260 24 H100 C44 24 44 96 100 96 H165" />
+                <line className="obp-rule-hot" x1="154" y1="49" x2="179" y2="49" />
 
-                {/* the run travelling the spine */}
-                <circle className="obp-run" cx="100" cy="84" r="3.6" />
+                {/* the live run travelling the runtime lane */}
+                <circle className="obp-run" cx="100" cy="96" r="4" />
               </svg>
             </div>
 
