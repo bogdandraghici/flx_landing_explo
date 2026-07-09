@@ -1,0 +1,223 @@
+/*
+ * FlowX hero background — "full-bleed grid resolve".
+ * A flat architectural grid where a compile sweep snaps scattered dots
+ * onto the lattice and draws the connecting lines, holds, tears back
+ * down, rests, and repeats. Ported from the Claude Design exploration
+ * "Flowx Background Variants" (variant 2c).
+ */
+
+const YEL = '#fdb913';
+
+function smoothstep(v) {
+  v = Math.max(0, Math.min(1, v));
+  return v * v * (3 - 2 * v);
+}
+
+function makeDust(n, w, h) {
+  const d = [];
+  for (let i = 0; i < n; i++) {
+    d.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      yel: Math.random() < 0.06,
+      a: 0.05 + Math.random() * 0.11,
+      s: 1 + Math.random() * 1.4,
+    });
+  }
+  return d;
+}
+
+function drawDust(ctx, dust, t) {
+  for (const p of dust) {
+    ctx.globalAlpha = p.a * (0.7 + 0.3 * Math.sin(t * 0.5 + p.x));
+    ctx.fillStyle = p.yel ? YEL : '#fff';
+    ctx.fillRect(p.x, p.y, p.s, p.s);
+  }
+  ctx.globalAlpha = 1;
+}
+
+function buildGrid(w, h) {
+  const SP = 52;
+  const grid = [];
+  const pts = [];
+  for (let r = 0; r * SP <= h; r++) {
+    const row = [];
+    for (let c = 0; c * SP <= w; c++) {
+      row.push(pts.length);
+      pts.push({
+        gx: c * SP,
+        gy: r * SP,
+        sx: c * SP + (Math.random() - 0.5) * 380,
+        sy: r * SP + (Math.random() - 0.5) * 340,
+        ph: Math.random() * 6.28,
+        yel: Math.random() < 0.05,
+      });
+    }
+    grid.push(row);
+  }
+  return { grid, pts };
+}
+
+function waveFront(y, t) {
+  return (
+    Math.sin(y * 0.0052 + t * 0.85) * 165 +
+    Math.sin(y * 0.0143 + t * 1.6 + 1.3) * 74 +
+    Math.sin(y * 0.027 - t * 0.55 + 2.1) * 34
+  );
+}
+
+export function createField(canvas) {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let ctx;
+  try {
+    ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('2d context unavailable');
+  } catch {
+    canvas.style.display = 'none';
+    return { destroy() {} };
+  }
+
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const SPD = 120; // px/s sweep speed
+  const HOLD = 1.8; // seconds fully resolved
+  const REST = 1.2; // seconds fully torn down
+
+  let w = 0, h = 0, grid = [], pts = [], dust = [];
+  let span = 0, buildDur = 0, period = 0;
+
+  function layout() {
+    w = canvas.clientWidth || window.innerWidth;
+    h = canvas.clientHeight || window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ({ grid, pts } = buildGrid(w, h));
+    dust = makeDust(50, w, h);
+    span = w + 1200;
+    buildDur = span / SPD;
+    period = 2 * buildDur + HOLD + REST;
+  }
+  layout();
+
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+    drawDust(ctx, dust, t);
+
+    const tt = t % period;
+    const xBuild = -400 + Math.min(tt, buildDur) * SPD;
+    const xTear = -400 + Math.max(0, tt - buildDur - HOLD) * SPD;
+
+    const resolvedAmt = (p) => {
+      const o = waveFront(p.gy, t);
+      return smoothstep((xBuild + o - p.gx) / 180) * (1 - smoothstep((xTear + o - p.gx) / 180));
+    };
+
+    ctx.strokeStyle = 'rgba(255,255,255,0.055)';
+    ctx.lineWidth = 1;
+    for (const row of grid) {
+      ctx.beginPath();
+      let open = false;
+      for (let k = 0; k < row.length - 1; k++) {
+        const a = pts[row[k]], b = pts[row[k + 1]];
+        if (resolvedAmt(a) > 0.8 && resolvedAmt(b) > 0.8) {
+          if (!open) { ctx.moveTo(a.gx, a.gy); open = true; }
+          ctx.lineTo(b.gx, b.gy);
+        } else open = false;
+      }
+      ctx.stroke();
+    }
+    for (let c = 0; c < grid[0].length; c++) {
+      ctx.beginPath();
+      let open = false;
+      for (let r = 0; r < grid.length - 1; r++) {
+        const a = pts[grid[r][c]], b = pts[grid[r + 1][c]];
+        if (resolvedAmt(a) > 0.8 && resolvedAmt(b) > 0.8) {
+          if (!open) { ctx.moveTo(a.gx, a.gy); open = true; }
+          ctx.lineTo(b.gx, b.gy);
+        } else open = false;
+      }
+      ctx.stroke();
+    }
+
+    for (const p of pts) {
+      const r = resolvedAmt(p);
+      const jx = Math.sin(t * 1.1 + p.ph) * 34 * (1 - r);
+      const jy = Math.cos(t * 0.8 + p.ph * 1.7) * 28 * (1 - r);
+      const x = p.sx + (p.gx - p.sx) * r + jx;
+      const y = p.sy + (p.gy - p.sy) * r + jy;
+      if (p.yel && r > 0.5) {
+        ctx.globalAlpha = 0.6 * r;
+        ctx.strokeStyle = YEL;
+        ctx.beginPath();
+        ctx.moveTo(x - 5, y); ctx.lineTo(x + 5, y);
+        ctx.moveTo(x, y - 5); ctx.lineTo(x, y + 5);
+        ctx.stroke();
+      } else {
+        ctx.globalAlpha = 0.24 + 0.18 * r;
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(x, y, 1.7 + r, 1.7 + r);
+      }
+    }
+
+    ctx.globalAlpha = 1;
+  }
+
+  let raf = 0;
+  let running = false;
+  let t0 = null;
+
+  function frame(now) {
+    raf = requestAnimationFrame(frame);
+    if (t0 === null) t0 = now;
+    draw((now - t0) / 1000);
+  }
+  function start() {
+    if (running || reduceMotion) return;
+    running = true;
+    raf = requestAnimationFrame(frame);
+  }
+  function stop() {
+    running = false;
+    cancelAnimationFrame(raf);
+  }
+
+  if (reduceMotion) {
+    draw(buildDur + HOLD * 0.5); // settled, mid-hold frame
+  } else {
+    start();
+  }
+
+  let resizeTimer = 0;
+  function onResize() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      t0 = null;
+      layout();
+      if (reduceMotion) draw(buildDur + HOLD * 0.5);
+    }, 150);
+  }
+  window.addEventListener('resize', onResize);
+
+  const hero = canvas.closest('section') || canvas;
+  const io = new IntersectionObserver(
+    ([entry]) => (entry.isIntersecting ? start() : stop()),
+    { threshold: 0.02 }
+  );
+  io.observe(hero);
+  function onVis() {
+    if (document.hidden) stop();
+    else start();
+  }
+  document.addEventListener('visibilitychange', onVis);
+
+  return {
+    destroy() {
+      stop();
+      io.disconnect();
+      window.removeEventListener('resize', onResize);
+      document.removeEventListener('visibilitychange', onVis);
+      clearTimeout(resizeTimer);
+    },
+  };
+}
