@@ -1,3 +1,4 @@
+import { bp } from '@/components/lib/base';
 import CtaFieldInit from '@/components/CtaFieldInit';
 
 export const metadata = {
@@ -317,7 +318,7 @@ export default function AgentBuilder() {
               compile it, and show you the audit trail — on your stack.</p>
             <div className="cta__row rv" style={{ '--i': 3 }}>
               <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Schedule a customized demo</a>
-              <a className="btn btn--ghost btn--lg" href="/#hero">Compile your own agent</a>
+              <a className="btn btn--ghost btn--lg" href={bp("/#hero")}>Compile your own agent</a>
             </div>
           </div>
         </section>

@@ -1,3 +1,4 @@
+import { bp } from './lib/base';
 /* Site footer — verbatim port of the v1 footer markup. Canonical across all
    pages (v1's per-page variants differed only in a couple of links); cross-page
    anchors use root-absolute paths so they resolve from any route. #year is
@@ -24,24 +25,24 @@ export default function Footer() {
           <nav className="footer__cols" aria-label="Footer">
             <div>
               <h4 className="mono">Platform</h4>
-              <a href="/banking">Banking</a>
-              <a href="/insurance">Insurance</a>
-              <a href="/logistics">Logistics</a>
-              <a href="/agent-builder">Agent Builder</a>
-              <a href="/flowx-code">FlowX Code</a>
-              <a href="/observatory">Observatory</a>
-              <a href="/#proof">Proof</a>
+              <a href={bp("/banking")}>Banking</a>
+              <a href={bp("/insurance")}>Insurance</a>
+              <a href={bp("/logistics")}>Logistics</a>
+              <a href={bp("/agent-builder")}>Agent Builder</a>
+              <a href={bp("/flowx-code")}>FlowX Code</a>
+              <a href={bp("/observatory")}>Observatory</a>
+              <a href={bp("/#proof")}>Proof</a>
             </div>
             <div>
               <h4 className="mono">Company</h4>
-              <a href="/about">About us</a>
+              <a href={bp("/about")}>About us</a>
             </div>
             <div>
               <h4 className="mono">Resources</h4>
-              <a href="/resources">Blog</a>
+              <a href={bp("/resources")}>Blog</a>
               <a href="https://docs.flowx.ai" target="_blank" rel="noopener">Documentation</a>
               <a href="https://academy.flowx.ai" target="_blank" rel="noopener">Academy</a>
-              <a href="/#cta">Support</a>
+              <a href={bp("/#cta")}>Support</a>
             </div>
             <div>
               <h4 className="mono">Legal</h4>

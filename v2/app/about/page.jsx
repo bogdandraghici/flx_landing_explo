@@ -1,3 +1,4 @@
+import { bp } from '@/components/lib/base';
 import AboutInit from '@/components/AboutInit';
 
 export const metadata = {
@@ -136,7 +137,7 @@ export default function About() {
             <ul className="crew">
               <li className="crew__card rv" style={{ '--i': 0 }}>
                 <figure className="crew__photo">
-                  <img src="/team/ioan-iacob.jpg" alt="Ioan Iacob, CEO and Founder of FlowX.AI" width="1024" height="1024" loading="lazy" />
+                  <img src={bp("/team/ioan-iacob.jpg")} alt="Ioan Iacob, CEO and Founder of FlowX.AI" width="1024" height="1024" loading="lazy" />
                 </figure>
                 <div className="crew__meta">
                   <h3 className="crew__name">Ioan Iacob</h3>
@@ -146,7 +147,7 @@ export default function About() {
               </li>
               <li className="crew__card rv" style={{ '--i': 1 }}>
                 <figure className="crew__photo">
-                  <img src="/team/serban-chiricescu.jpg" alt="Serban Chiricescu, CTO and Co-Founder of FlowX.AI" width="1024" height="1024" loading="lazy" />
+                  <img src={bp("/team/serban-chiricescu.jpg")} alt="Serban Chiricescu, CTO and Co-Founder of FlowX.AI" width="1024" height="1024" loading="lazy" />
                 </figure>
                 <div className="crew__meta">
                   <h3 className="crew__name">Serban Chiricescu</h3>
@@ -156,7 +157,7 @@ export default function About() {
               </li>
               <li className="crew__card rv" style={{ '--i': 2 }}>
                 <figure className="crew__photo">
-                  <img src="/team/adrian-tomoiaga.jpg" alt="Adrian Tomoiaga, CCO of FlowX.AI" width="1024" height="1024" loading="lazy" />
+                  <img src={bp("/team/adrian-tomoiaga.jpg")} alt="Adrian Tomoiaga, CCO of FlowX.AI" width="1024" height="1024" loading="lazy" />
                 </figure>
                 <div className="crew__meta">
                   <h3 className="crew__name">Adrian Tomoiaga</h3>
@@ -166,7 +167,7 @@ export default function About() {
               </li>
               <li className="crew__card rv" style={{ '--i': 3 }}>
                 <figure className="crew__photo">
-                  <img src="/team/radu-cautis.jpg" alt="Radu Cautis, Executive Chairman of FlowX.AI" width="1024" height="1024" loading="lazy" />
+                  <img src={bp("/team/radu-cautis.jpg")} alt="Radu Cautis, Executive Chairman of FlowX.AI" width="1024" height="1024" loading="lazy" />
                 </figure>
                 <div className="crew__meta">
                   <h3 className="crew__name">Radu Cautis</h3>
@@ -177,7 +178,7 @@ export default function About() {
             </ul>
 
             <figure className="crew__wide rv">
-              <img src="/team/team-snapshot.jpg" alt="FlowX.AI team snapshot" width="2048" height="1152" loading="lazy" />
+              <img src={bp("/team/team-snapshot.jpg")} alt="FlowX.AI team snapshot" width="2048" height="1152" loading="lazy" />
               <figcaption className="crew__cap mono">
                 <span>team.snapshot — the people behind the platform</span>
                 <span>bucharest · menlo park</span>
@@ -284,7 +285,7 @@ export default function About() {
             </h2>
             <div className="cta__row rv" style={{ '--i': 2 }}>
               <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Book a demo</a>
-              <a className="btn btn--ghost btn--lg" href="/banking">Explore Industries</a>
+              <a className="btn btn--ghost btn--lg" href={bp("/banking")}>Explore Industries</a>
             </div>
           </div>
         </section>

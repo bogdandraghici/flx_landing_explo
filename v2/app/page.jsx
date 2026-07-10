@@ -1,3 +1,4 @@
+import { bp } from '@/components/lib/base';
 import HomeInit from '@/components/HomeInit';
 
 export default function Home() {
@@ -171,7 +172,7 @@ export default function Home() {
               <p className="reg__foot mono dim2">220+ agents · 20 categories · ready to plug into your legacy systems</p>
             </div>
             <div className="cta__row rv" style={{ '--i': 3 }}>
-              <a className="btn btn--primary" href="/banking">Explore Industries</a>
+              <a className="btn btn--primary" href={bp("/banking")}>Explore Industries</a>
               <a className="btn btn--ghost" href="#proof">Calculate ROI</a>
             </div>
           </div>

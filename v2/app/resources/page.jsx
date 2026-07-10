@@ -1,3 +1,4 @@
+import { bp } from '@/components/lib/base';
 import CtaFieldInit from '@/components/CtaFieldInit';
 
 export const metadata = {
@@ -121,7 +122,7 @@ export default function Resources() {
             </div>
 
             {/* featured latest post */}
-            <a className="feat rv" href="/blog-flowx-6">
+            <a className="feat rv" href={bp("/blog-flowx-6")}>
               <div className="feat__body">
                 <p className="feat__meta mono"><span className="feat__tag">Updates</span><span>Jun 29, 2026</span></p>
                 <h3 className="feat__title">FlowX.AI 6 Release Summary</h3>
@@ -211,7 +212,7 @@ export default function Resources() {
             </h2>
             <div className="cta__row rv" style={{ '--i': 2 }}>
               <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Book a demo</a>
-              <a className="btn btn--ghost btn--lg" href="/banking">Explore Industries</a>
+              <a className="btn btn--ghost btn--lg" href={bp("/banking")}>Explore Industries</a>
             </div>
           </div>
         </section>
