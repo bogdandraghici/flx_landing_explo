@@ -298,29 +298,91 @@ export default function Home() {
                 <h2 className="h2 rv">Success stories with FlowX.AI<span className="amber">.</span></h2>
               </div>
             </div>
-            <dl className="stats">
+            <dl className="stats stats--obs">
               <div className="stats__row rv" style={{ '--i': 0 }}>
-                <dt><span className="stats__val"><span className="stats__num mono" data-count="80" data-dec="0">0</span></span><span className="stats__unit mono">%</span></dt>
+                <dt>
+                  <span className="stats__val"><span className="stats__num mono" data-count="80" data-dec="0">0</span><span className="stats__unit mono">%</span></span>
+                  {/* proportion: filled to 80% of the rail */}
+                  <svg className="stats__meter" viewBox="0 0 200 12" aria-hidden="true">
+                    <line className="om-track" x1="0" y1="6" x2="200" y2="6" />
+                    <line className="om-fill" x1="0" y1="6" x2="160" y2="6" />
+                    <line className="om-cap" x1="160" y1="1.5" x2="160" y2="10.5" />
+                  </svg>
+                </dt>
                 <dd>of manual handoffs in lending flows automated — European commercial bank</dd>
               </div>
               <div className="stats__row rv" style={{ '--i': 1 }}>
-                <dt><span className="stats__val"><span className="stats__pre mono">−</span><span className="stats__num mono" data-count="40" data-dec="0">0</span></span><span className="stats__unit mono">%</span></dt>
+                <dt>
+                  <span className="stats__val"><span className="stats__pre mono">−</span><span className="stats__num mono" data-count="40" data-dec="0">0</span><span className="stats__unit mono">%</span></span>
+                  {/* proportion cut: filled to 40% of the rail */}
+                  <svg className="stats__meter" viewBox="0 0 200 12" aria-hidden="true">
+                    <line className="om-track" x1="0" y1="6" x2="200" y2="6" />
+                    <line className="om-fill" x1="0" y1="6" x2="80" y2="6" />
+                    <line className="om-cap" x1="80" y1="1.5" x2="80" y2="10.5" />
+                  </svg>
+                </dt>
                 <dd>lower operational cost for lending flows — bank with 4M+ clients</dd>
               </div>
               <div className="stats__row rv" style={{ '--i': 2 }}>
-                <dt><span className="stats__val"><span className="stats__pre mono">−</span><span className="stats__num mono" data-count="65" data-dec="0">0</span></span><span className="stats__unit mono">%</span></dt>
+                <dt>
+                  <span className="stats__val"><span className="stats__pre mono">−</span><span className="stats__num mono" data-count="65" data-dec="0">0</span><span className="stats__unit mono">%</span></span>
+                  {/* proportion cut: filled to 65% of the rail */}
+                  <svg className="stats__meter" viewBox="0 0 200 12" aria-hidden="true">
+                    <line className="om-track" x1="0" y1="6" x2="200" y2="6" />
+                    <line className="om-fill" x1="0" y1="6" x2="130" y2="6" />
+                    <line className="om-cap" x1="130" y1="1.5" x2="130" y2="10.5" />
+                  </svg>
+                </dt>
                 <dd>reduction in processing time for underwriting — global bank</dd>
               </div>
               <div className="stats__row rv" style={{ '--i': 3 }}>
-                <dt><span className="stats__val"><span className="stats__pre mono">−</span><span className="stats__num mono" data-count="62" data-dec="0">0</span></span><span className="stats__unit mono">%</span></dt>
+                <dt>
+                  <span className="stats__val"><span className="stats__pre mono">−</span><span className="stats__num mono" data-count="62" data-dec="0">0</span><span className="stats__unit mono">%</span></span>
+                  {/* proportion cut: filled to 62% of the rail */}
+                  <svg className="stats__meter" viewBox="0 0 200 12" aria-hidden="true">
+                    <line className="om-track" x1="0" y1="6" x2="200" y2="6" />
+                    <line className="om-fill" x1="0" y1="6" x2="124" y2="6" />
+                    <line className="om-cap" x1="124" y1="1.5" x2="124" y2="10.5" />
+                  </svg>
+                </dt>
                 <dd>reduction in time-to-yes in an approval flow — large financial institution</dd>
               </div>
               <div className="stats__row rv" style={{ '--i': 4 }}>
-                <dt><span className="stats__val"><span className="stats__pre mono">$</span><span className="stats__num mono" data-count="1.8" data-dec="1">0.0</span></span><span className="stats__unit mono">M</span></dt>
+                <dt>
+                  <span className="stats__val"><span className="stats__pre mono">$</span><span className="stats__num mono" data-count="1.8" data-dec="1">0.0</span><span className="stats__unit mono">M</span></span>
+                  {/* ruler: ten $0.2M gradations, filled to $1.8M */}
+                  <svg className="stats__meter" viewBox="0 0 200 12" aria-hidden="true">
+                    <line className="om-track" x1="0" y1="6" x2="200" y2="6" />
+                    <line className="om-tick" x1="20" y1="3" x2="20" y2="9" />
+                    <line className="om-tick" x1="40" y1="3" x2="40" y2="9" />
+                    <line className="om-tick" x1="60" y1="3" x2="60" y2="9" />
+                    <line className="om-tick" x1="80" y1="3" x2="80" y2="9" />
+                    <line className="om-tick" x1="100" y1="3" x2="100" y2="9" />
+                    <line className="om-tick" x1="120" y1="3" x2="120" y2="9" />
+                    <line className="om-tick" x1="140" y1="3" x2="140" y2="9" />
+                    <line className="om-tick" x1="160" y1="3" x2="160" y2="9" />
+                    <line className="om-tick" x1="200" y1="3" x2="200" y2="9" />
+                    <line className="om-fill" x1="0" y1="6" x2="180" y2="6" />
+                    <line className="om-cap" x1="180" y1="1.5" x2="180" y2="10.5" />
+                  </svg>
+                </dt>
                 <dd>projected annual savings — global insurer, after a stack of AI agents</dd>
               </div>
               <div className="stats__row rv" style={{ '--i': 5 }}>
-                <dt><span className="stats__val"><span className="stats__num mono" data-count="8" data-dec="0">0</span></span><span className="stats__unit mono">wks</span></dt>
+                <dt>
+                  <span className="stats__val"><span className="stats__num mono" data-count="8" data-dec="0">0</span><span className="stats__unit mono">wks</span></span>
+                  {/* timeline: a 12-week quarter in fortnight ticks, launched by week 8 */}
+                  <svg className="stats__meter" viewBox="0 0 200 12" aria-hidden="true">
+                    <line className="om-track" x1="0" y1="6" x2="200" y2="6" />
+                    <line className="om-tick" x1="33.3" y1="3" x2="33.3" y2="9" />
+                    <line className="om-tick" x1="66.7" y1="3" x2="66.7" y2="9" />
+                    <line className="om-tick" x1="100" y1="3" x2="100" y2="9" />
+                    <line className="om-tick" x1="166.7" y1="3" x2="166.7" y2="9" />
+                    <line className="om-tick" x1="200" y1="3" x2="200" y2="9" />
+                    <line className="om-fill" x1="0" y1="6" x2="133.3" y2="6" />
+                    <line className="om-cap" x1="133.3" y1="1.5" x2="133.3" y2="10.5" />
+                  </svg>
+                </dt>
                 <dd>fund management platform built and launched — asset manager</dd>
               </div>
             </dl>

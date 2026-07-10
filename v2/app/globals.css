@@ -2849,6 +2849,9 @@ em { font-style: normal; }
 /* stat meters (03 / why now) — one shared hairline track per row, restating
    the number as marks: fill / fill / timeline+deadline / six on the rail */
 .stats--obs .stats__row dt { flex-direction: column; align-items: flex-start; gap: 14px; }
+/* unit sits inside .stats__val here (so the meter can stack below), so restore
+   the spacing the dt flex gap used to give it — but keep the −/$ prefix tight */
+.stats--obs .stats__val .stats__unit { margin-left: 8px; }
 .stats__meter { display: block; width: 200px; max-width: 70%; height: auto; overflow: visible; }
 .om-track { stroke: rgba(var(--ink), 0.10); stroke-width: 1; }
 .om-fill { stroke: rgba(var(--dia-bright), 0.55); stroke-width: 3; }
