@@ -11,7 +11,7 @@ page. Explorations are kept side by side, not merged into one app.
 | Version | Stack | Source | Run | Live |
 | --- | --- | --- | --- | --- |
 | v1 | Vite (vanilla HTML/CSS/JS) | [`v1/`](v1/) | `cd v1 && npm run dev` → :4321 | https://bogdandraghici.github.io/flx_landing_explo/v1/ |
-| v2 | Next.js 15 + Tailwind v4 | [`v2/`](v2/) | `cd v2 && npm run dev` → :3200 | — |
+| v2 | Next.js 15 + Tailwind v4 | [`v2/`](v2/) | `cd v2 && npm run dev` → :3200 | https://bogdandraghici.github.io/flx_landing_explo/v2/ |
 
 Deployed builds live in `docs/vN/` and are served by GitHub Pages.
 
@@ -186,3 +186,32 @@ Verify before committing: `grep -o 'href="[^"]*\.css"' docs/v1/index.html` — t
 paths must start with `/flx_landing_explo/v1/`. Pages takes ~1–2 min to
 redeploy; hard-refresh (Cmd+Shift+R) to bypass cache. Never hand-edit
 `docs/vN/`.
+
+#### v2 (Next.js) deploy recipe
+
+v2 is different from v1 — it's a Next.js static export, NOT Vite. The subpath is
+wired in `v2/next.config.mjs` (basePath/assetPrefix + `NEXT_PUBLIC_BASE_PATH`,
+which feeds the `bp()` helper in `components/lib/base.js` that prefixes
+root-absolute `<a href>`/`<img src>`). So the build flag is `GITHUB_PAGES=true`,
+not a `--base` arg:
+
+```bash
+cd v2
+rm -rf .next out && GITHUB_PAGES=true npm run build   # exports to v2/out/
+cd ..
+rm -rf docs/v2 && cp -R v2/out docs/v2                # clean copy
+git add docs/v2 && git commit && git push
+```
+
+Two gotchas, both already handled but don't undo them:
+- **`docs/.nojekyll` must exist.** Next emits assets under `_next/`, and Pages'
+  legacy Jekyll build skips underscore-prefixed folders → every asset 404s.
+  `.nojekyll` at the docs root disables Jekyll. (v1/Vite avoids this by using
+  `assets/`.)
+- **The `.nojekyll` only takes effect on a *fresh* build.** If Pages last built a
+  commit that predated `.nojekyll`, force a rebuild:
+  `gh api -X POST repos/bogdandraghici/flx_landing_explo/pages/builds`.
+
+Verify: `grep -o 'href="[^"]*\.css"' docs/v2/index.html` must start with
+`/flx_landing_explo/v2/_next/`, and after deploy the CSS URL must return 200
+(not just the page) — a 200 page with 404 CSS means Jekyll ate `_next`.
