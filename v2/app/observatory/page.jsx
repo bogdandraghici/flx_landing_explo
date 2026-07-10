@@ -8,7 +8,7 @@ export const metadata = {
 export default function Observatory() {
   return (
     <>
-      <main id="top">
+      <main id="top" className="page-observatory">
 
         {/* ================= HERO ================= */}
         <section className="ahero" id="phero">
@@ -40,64 +40,62 @@ export default function Observatory() {
             {/* the live citation: a live agent trace streams; one runtime event is picked out
                  and an amber citation line rises from it up to the regulation clause it
                  satisfies — the clause's footnote marker lights, and the footnote resolves to
-                 the real trace metadata that proves it. compliance, footnoted to reality. 12s loop. */}
-            <div className="ahero__viz" aria-hidden="true">
-              <svg viewBox="0 0 460 460" role="img" aria-label="A regulation clause states a compliance requirement; below it a live agent trace streams. One runtime event is picked out and an amber citation line rises from that event up to the clause, whose footnote marker lights — and the footnote resolves to the real trace metadata that proves it. Compliance, footnoted to reality.">
+                 the real trace metadata that proves it. compliance, footnoted to reality. 12s loop.
 
-                {/* REGULATION: the clause that states a compliance requirement */}
-                <text className="ivz-lbl" x="64" y="88" textAnchor="start">regulation · § 4.2</text>
-                <line className="cit-edge" x1="57" y1="98" x2="57" y2="170" />
-                <rect className="cit-rule" x="64" y="104" width="300" height="4" rx="2" />
-                <rect className="cit-rule" x="64" y="116" width="332" height="4" rx="2" />
-                {/* the active clause: the compliance requirement, legible; its footnote marker + underline light on resolution */}
-                <text className="cit-clause" x="64" y="134">no action exceeds its permissions<tspan className="cit-mark" dy="-4">2</tspan></text>
-                <line className="cit-clause-hot" x1="64" y1="139" x2="248" y2="139" />
-                <rect className="cit-rule" x="64" y="150" width="250" height="4" rx="2" />
-                <rect className="cit-rule" x="64" y="162" width="170" height="4" rx="2" />
+                 Built in HTML/CSS on a fixed-vertical / fluid-horizontal layer (not a single
+                 scaling SVG): every label, the clause and the footnote sit at fixed legible px
+                 sizes, while the trace nodes and the citation line ride a percentage grid — so
+                 on narrow viewports the figure compresses horizontally instead of shrinking the
+                 text with everything else. Same construction as the stitch diagram below. */}
+            <div className="ahero__viz cit" aria-hidden="true">
+              {/* REGULATION — the clause that states a compliance requirement */}
+              <p className="cit__lbl cit__lbl--reg">regulation · § 4.2</p>
+              <div className="cit__doc">
+                <span className="cit__bar" style={{ width: '86%' }} />
+                <span className="cit__bar" style={{ width: '72%' }} />
+                {/* the active clause: legible; its footnote marker + underline light on resolution */}
+                <p className="cit__clause">
+                  <span className="cit__clause-t">no action exceeds its permissions<span className="cit__ul" /></span><sup className="cit__mark">2</sup>
+                </p>
+                <span className="cit__bar" style={{ width: '54%' }} />
+                <span className="cit__bar" style={{ width: '37%' }} />
+              </div>
 
-                {/* the citation line: rises from the cited event up to the clause */}
-                <line className="cit-line" x1="250" y1="324" x2="250" y2="148" />
-                <path className="cit-arr" d="M246 154 l4 -6 l4 6 z" />
+              {/* the citation line: rises from the cited event up to the clause */}
+              <span className="cit__link"><span className="cit__arr" /></span>
 
-                {/* RUNTIME: the live execution trace */}
-                <text className="ivz-lbl" x="64" y="300" textAnchor="start">runtime · live trace</text>
-                <line className="cit-spine" x1="64" y1="330" x2="396" y2="330" />
-                <circle className="cit-node" cx="80" cy="330" r="5" />
-                <circle className="cit-node" cx="134" cy="330" r="5" />
-                <circle className="cit-node" cx="188" cy="330" r="5" />
-                <circle className="cit-node" cx="250" cy="330" r="5" />
-                <circle className="cit-node" cx="298" cy="330" r="5" />
-                <circle className="cit-node" cx="352" cy="330" r="5" />
-                <circle className="cit-node" cx="396" cy="330" r="5" />
-                {/* telemetry: token · cost · latency per event */}
-                <g className="cit-tickset">
-                  <line className="cit-tick" x1="80" y1="338" x2="80" y2="346" />
-                  <line className="cit-tick" x1="134" y1="338" x2="134" y2="344" />
-                  <line className="cit-tick" x1="188" y1="338" x2="188" y2="348" />
-                  <line className="cit-tick" x1="250" y1="338" x2="250" y2="343" />
-                  <line className="cit-tick" x1="298" y1="338" x2="298" y2="347" />
-                  <line className="cit-tick" x1="352" y1="338" x2="352" y2="345" />
-                  <line className="cit-tick" x1="396" y1="338" x2="396" y2="342" />
-                </g>
-                <text className="ivz-lbl" x="64" y="364" textAnchor="start">token · cost · latency</text>
-                {/* the streaming run */}
-                <circle className="cit-run" cx="64" cy="330" r="3.6" />
-                {/* the cited event: picked out of the trace, where the citation lands */}
-                <circle className="cit-pick" cx="250" cy="330" r="9" />
+              {/* RUNTIME — the live execution trace */}
+              <p className="cit__lbl cit__lbl--run">runtime · live trace</p>
+              <div className="cit__rail">
+                <span className="cit__node" style={{ left: '4%' }} />
+                <span className="cit__node" style={{ left: '20%' }} />
+                <span className="cit__node" style={{ left: '36%' }} />
+                <span className="cit__node cit__node--cited" style={{ left: '52%' }} />
+                <span className="cit__node" style={{ left: '66%' }} />
+                <span className="cit__node" style={{ left: '82%' }} />
+                <span className="cit__node" style={{ left: '96%' }} />
+                {/* telemetry ticks under each event */}
+                <span className="cit__tick" style={{ left: '4%', height: '8px' }} />
+                <span className="cit__tick" style={{ left: '20%', height: '6px' }} />
+                <span className="cit__tick" style={{ left: '36%', height: '10px' }} />
+                <span className="cit__tick" style={{ left: '52%', height: '5px' }} />
+                <span className="cit__tick" style={{ left: '66%', height: '9px' }} />
+                <span className="cit__tick" style={{ left: '82%', height: '7px' }} />
+                <span className="cit__tick" style={{ left: '96%', height: '4px' }} />
+                {/* the streaming run, and the cited event picked out of the trace */}
+                <span className="cit__run" />
+                <span className="cit__pick" />
+              </div>
+              <p className="cit__lbl cit__lbl--tel">token · cost · latency</p>
 
-                {/* the footnote: the citation resolves to real trace metadata */}
-                <text className="cit-note" x="64" y="390"><tspan className="cit-note-num">2</tspan>  trace 0x9f4a · permission check · pass · 14:32:07Z</text>
+              {/* the footnote: the citation resolves to real trace metadata */}
+              <p className="cit__note"><span className="cit__note-num">2</span> trace 0x9f4a · permission check · pass · 14:32:07Z</p>
 
-                {/* status tags */}
-                <g className="cit-tag--live" transform="translate(230 418)">
-                  <rect className="ivz-tag" x="-52" y="-10" width="104" height="15" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1.5">runtime · live</text>
-                </g>
-                <g className="cit-tag--ok" transform="translate(230 418)">
-                  <rect className="ivz-tag" x="-66" y="-10" width="132" height="15" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1.5">cited · compliant</text>
-                </g>
-              </svg>
+              {/* status tag — swaps from "runtime · live" to "cited · compliant" */}
+              <div className="cit__tags">
+                <span className="cit__tag cit__tag--live">runtime · live</span>
+                <span className="cit__tag cit__tag--ok">cited · compliant</span>
+              </div>
             </div>
           </div>
         </section>
@@ -127,62 +125,43 @@ export default function Observatory() {
               </div>
             </div>
 
-            {/* the evidence chain, isometric and horizontal: four stages along
-                 the runtime rail — a pack of rules compiles, the GAVEL core
-                 enforces on the live run, evidence seals into a receipt, an answer
-                 is produced — and the amber thread is the audit answered, arcing
-                 back to the exact rule it satisfies. Aligned to the four cards
-                 below; desktop-only. */}
+            {/* the stitch: regulation and runtime are two rails, tied together at
+                 each of the four steps by a single amber thread. The clause (§ 4.2)
+                 rides the top rail, the live trace runs along the bottom, and every
+                 step stitches one to the other — the answer step resolved into a
+                 sealed node on the trace. Threads align to the four cards below;
+                 desktop-only. */}
             <div className="obp rv" aria-hidden="true">
-              <svg viewBox="0 0 1360 250" preserveAspectRatio="xMidYMid meet">
-                {/* base faces of the four stations */}
-                <polygon className="iso-face" points="117.5,164.2 170,190.5 170,200 117.5,173.8" />
-                <polygon className="iso-face" points="443.5,149.8 510,183 510,200 443.5,166.8" />
-                <polygon className="iso-face" points="794,153.3 850,181.3 850,200 794,172" />
-                <polygon className="iso-face" points="1142.8,130.5 1190,154.1 1190,200 1142.8,176.4" />
-                <polygon className="iso-face" points="222.5,164.2 170,190.5 170,200 222.5,173.8" />
-                <polygon className="iso-face" points="576.5,149.8 510,183 510,200 576.5,166.8" />
-                <polygon className="iso-face" points="906,153.3 850,181.3 850,200 906,172" />
-                <polygon className="iso-face" points="1237.3,130.5 1190,154.1 1190,200 1237.3,176.4" />
-                <polygon className="iso-face" points="170,138 222.5,164.2 170,190.5 117.5,164.2" />
-                <polygon className="iso-face" points="510,116.5 576.5,149.8 510,183 443.5,149.8" />
-                <polygon className="iso-face" points="850,125.3 906,153.3 850,181.3 794,153.3" />
-                <polygon className="iso-face" points="1190,106.8 1237.3,130.5 1190,154.1 1142.8,130.5" />
-                {/* dashed runtime rail through the stations */}
-                <line className="iso-rail" x1="70" y1="206" x2="1290" y2="206" />
-                <circle className="iso-dot" cx="170" cy="206" r="4.5" />
-                <circle className="iso-dot" cx="510" cy="206" r="4.5" />
-                <circle className="iso-dot" cx="850" cy="206" r="4.5" />
-                <circle className="iso-dot" cx="1190" cy="206" r="4.5" />
-                {/* upper faces, painted back-to-front: rule pack (top plate = the
-                     lit rule), GAVEL core, evidence disc, answer cube */}
-                <polygon className="iso-face" points="117.5,150.6 170,176.9 170,186.4 117.5,160.2" />
-                <polygon className="iso-face" points="222.5,150.6 170,176.9 170,186.4 222.5,160.2" />
-                <polygon className="iso-face" points="170,124.4 222.5,150.6 170,176.9 117.5,150.6" />
-                <polygon className="iso-face" points="480.3,75.3 510,90.2 510,148 480.3,133.1" />
-                <polygon className="iso-face" points="539.8,75.3 510,90.2 510,148 539.8,133.1" />
-                <polygon className="iso-face" points="510,60.4 539.8,75.3 510,90.2 480.3,75.3" />
-                <polygon className="iso-hot-face" points="117.5,137 170,163.3 170,172.8 117.5,146.6" />
-                <polygon className="iso-hot-face" points="222.5,137 170,163.3 170,172.8 222.5,146.6" />
-                <polygon className="iso-hot-face" points="170,110.8 222.5,137 170,163.3 117.5,137" />
-                <polygon className="iso-face" points="513.5,112.3 543.3,127.2 543.3,164.6 513.5,149.8" />
-                <polygon className="iso-face" points="447,126 476.8,140.8 476.8,164.6 447,149.8" />
-                <polygon className="iso-face" points="573,112.3 543.3,127.2 543.3,164.6 573,149.8" />
-                <polygon className="iso-face" points="506.5,126 476.8,140.8 476.8,164.6 506.5,149.8" />
-                <polygon className="iso-face" points="543.3,97.5 573,112.3 543.3,127.2 513.5,112.3" />
-                <polygon className="iso-face" points="476.8,111.1 506.5,126 476.8,140.8 447,126" />
-                <ellipse className="iso-edge" cx="850" cy="153.3" rx="28" ry="14" />
-                <polygon className="iso-face" points="480.3,134.1 510,148.9 510,181.3 480.3,166.4" />
-                <polygon className="iso-face" points="539.8,134.1 510,148.9 510,181.3 539.8,166.4" />
-                <polygon className="iso-face" points="510,119.2 539.8,134.1 510,148.9 480.3,134.1" />
-                <polygon className="iso-face" points="489,55.8 510,66.3 510,86.7 489,76.2" />
-                <polygon className="iso-face" points="531,55.8 510,66.3 510,86.7 531,76.2" />
-                <polygon className="iso-face" points="510,45.3 531,55.8 510,66.3 489,55.8" />
-                {/* the audit answered — walking back to the rule (amber) */}
-                <path className="iso-hot" d="M1190 130.5 C 930 46, 430 46, 170 137" />
-                <circle className="iso-hot-dot" cx="1190" cy="130.5" r="4" />
-                <circle className="iso-hot-dot" cx="170" cy="137" r="4" />
-              </svg>
+              <div className="stitch">
+                {/* step labels — one per stitch, aligned over the four cards */}
+                <div className="stitch__steps">
+                  <span className="stitch__step">compile</span>
+                  <span className="stitch__step">enforce</span>
+                  <span className="stitch__step">evidence</span>
+                  <span className="stitch__step stitch__step--answer">answer</span>
+                </div>
+
+                {/* two rails — regulation (top) and runtime (bottom) — stitched by
+                     four amber threads. Built in HTML with fixed vertical sizes and
+                     text so labels stay legible; the threads sit on a percentage
+                     grid, so on narrow viewports the diagram compresses horizontally
+                     rather than shrinking the whole thing. */}
+                <div className="stitch__body">
+                  <span className="stitch__lbl stitch__lbl--reg">regulation · clauses</span>
+                  <div className="stitch__rail stitch__rail--reg" />
+                  <span className="stitch__cite">§ 4.2</span>
+
+                  <div className="stitch__threads">
+                    <span className="stitch__thread"><span className="stitch__flow" /></span>
+                    <span className="stitch__thread"><span className="stitch__flow" /></span>
+                    <span className="stitch__thread"><span className="stitch__flow" /></span>
+                    <span className="stitch__thread stitch__thread--answer"><span className="stitch__flow" /></span>
+                  </div>
+
+                  <div className="stitch__rail stitch__rail--run" />
+                  <span className="stitch__lbl stitch__lbl--run">runtime · live trace</span>
+                </div>
+              </div>
             </div>
 
             <div className="segs abd-pipe">
@@ -221,88 +200,33 @@ export default function Observatory() {
                   turned into audit-ready evidence — without a parallel record to maintain.</p>
               </div>
             </div>
-            {/* each capability carries a small line-glyph — ink only, static, all six
-                 drawn on one 44px armature from the same primitives (rules, nodes,
-                 chips) at one stroke weight; only the composition differs */}
             <div className="segs segs--3">
-              <article className="seg seg--g rv" style={{ '--i': 0 }}>
-                {/* comparator gate on a trace: metric in, check, metric out */}
-                <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
-                  <circle className="og--node" cx="7" cy="22" r="2" />
-                  <line className="og" x1="9" y1="22" x2="15" y2="22" />
-                  <path className="og" d="M22 15 L29 22 L22 29 L15 22 Z" />
-                  <line className="og" x1="29" y1="22" x2="35" y2="22" />
-                  <circle className="og--node" cx="37" cy="22" r="2" />
-                </svg>
+              <article className="seg rv" style={{ '--i': 0 }}>
                 <span className="seg__no mono">01</span>
                 <h3 className="seg__name">Policy engine</h3>
                 <p className="seg__desc">Machine-checkable rules enforced against live telemetry, grouped into reusable regulatory packs.</p>
               </article>
-              <article className="seg seg--g rv" style={{ '--i': 1 }}>
-                {/* harvest: three trace events converge into a checked chip */}
-                <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
-                  <circle className="og--node" cx="10" cy="9" r="2" />
-                  <circle className="og--node" cx="22" cy="9" r="2" />
-                  <circle className="og--node" cx="34" cy="9" r="2" />
-                  <path className="og" d="M10 11 L22 24 M22 11 L22 24 M34 11 L22 24" />
-                  <rect className="og" x="12" y="26" width="20" height="12" rx="2" />
-                  <polyline className="og" points="18,32 21,35 26.5,28.5" />
-                </svg>
+              <article className="seg rv" style={{ '--i': 1 }}>
                 <span className="seg__no mono">02</span>
                 <h3 className="seg__name">Evidence pipeline</h3>
                 <p className="seg__desc">Compliance evidence auto-collected from traces, with a collect → review → approve workflow.</p>
               </article>
-              <article className="seg seg--g rv" style={{ '--i': 2 }}>
-                {/* stepped chain: requirement → policy → evidence */}
-                <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
-                  <rect className="og" x="6" y="6" width="12" height="8" rx="2" />
-                  <path className="og" d="M12 14 V22 H16" />
-                  <rect className="og" x="16" y="18" width="12" height="8" rx="2" />
-                  <path className="og" d="M22 26 V34 H26" />
-                  <rect className="og" x="26" y="30" width="12" height="8" rx="2" />
-                </svg>
+              <article className="seg rv" style={{ '--i': 2 }}>
                 <span className="seg__no mono">03</span>
                 <h3 className="seg__name">Regulatory mapping</h3>
                 <p className="seg__desc">EU AI Act, GDPR, HIPAA, SOC 2, PCI-DSS, ISO 27001 — requirement → policy → evidence, with continuous gap analysis.</p>
               </article>
-              <article className="seg seg--g rv" style={{ '--i': 3 }}>
-                {/* trace waterfall: a run, its calls, their spans */}
-                <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
-                  <circle className="og--node" cx="7" cy="10" r="2" />
-                  <line className="og" x1="11" y1="10" x2="33" y2="10" />
-                  <line className="og" x1="16" y1="18" x2="30" y2="18" />
-                  <line className="og" x1="16" y1="26" x2="37" y2="26" />
-                  <line className="og" x1="21" y1="34" x2="31" y2="34" />
-                </svg>
+              <article className="seg rv" style={{ '--i': 3 }}>
                 <span className="seg__no mono">04</span>
                 <h3 className="seg__name">Execution tracing</h3>
                 <p className="seg__desc">Hierarchical traces of every run, tool call, retrieval and decision, with token, cost and latency telemetry.</p>
               </article>
-              <article className="seg seg--g rv" style={{ '--i': 4 }}>
-                {/* oversight: the observer ring watches the trace; it can pause it */}
-                <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
-                  <circle className="og" cx="22" cy="13" r="6" />
-                  <circle className="og--node" cx="22" cy="13" r="2" />
-                  <line className="og og--sight" x1="22" y1="21" x2="22" y2="27" />
-                  <line className="og" x1="6" y1="33" x2="17" y2="33" />
-                  <line className="og" x1="20.5" y1="29.5" x2="20.5" y2="36.5" />
-                  <line className="og" x1="23.5" y1="29.5" x2="23.5" y2="36.5" />
-                  <line className="og" x1="27" y1="33" x2="38" y2="33" />
-                </svg>
+              <article className="seg rv" style={{ '--i': 4 }}>
                 <span className="seg__no mono">05</span>
                 <h3 className="seg__name">Risk-based oversight</h3>
                 <p className="seg__desc">In-the-loop for high-risk, on-the-loop otherwise, with a kill switch — human review recorded as evidence.</p>
               </article>
-              <article className="seg seg--g rv" style={{ '--i': 5 }}>
-                {/* sealed ledger: recorded rows, tamper-evident seal */}
-                <svg className="seg__glyph" viewBox="0 0 44 44" aria-hidden="true">
-                  <rect className="og" x="9" y="7" width="17" height="25" rx="2.5" />
-                  <line className="og" x1="13" y1="13" x2="22" y2="13" />
-                  <line className="og" x1="13" y1="17.5" x2="22" y2="17.5" />
-                  <line className="og" x1="13" y1="22" x2="19" y2="22" />
-                  <circle className="og og--seal" cx="29" cy="30" r="7" />
-                  <polyline className="og" points="26,30 28.5,32.5 32.5,27" />
-                </svg>
+              <article className="seg rv" style={{ '--i': 5 }}>
                 <span className="seg__no mono">06</span>
                 <h3 className="seg__name">Immutable audit trail</h3>
                 <p className="seg__desc">Every access, enforcement action and human review recorded, tamper-evident, and retained for years.</p>
