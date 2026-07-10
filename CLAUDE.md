@@ -5,18 +5,26 @@ Guidance for Claude Code when working in this repo.
 ## What this is
 
 Design explorations for the **FlowX** landing page. A monorepo where each `vN/`
-folder is a **self-contained Vite project** — an independent take on the landing
+folder is a **self-contained project** — an independent take on the landing
 page. Explorations are kept side by side, not merged into one app.
 
-| Version | Source | Live |
-| --- | --- | --- |
-| v1 | [`v1/`](v1/) | https://bogdandraghici.github.io/flx_landing_explo/v1/ |
+| Version | Stack | Source | Run | Live |
+| --- | --- | --- | --- | --- |
+| v1 | Vite (vanilla HTML/CSS/JS) | [`v1/`](v1/) | `cd v1 && npm run dev` → :4321 | https://bogdandraghici.github.io/flx_landing_explo/v1/ |
+| v2 | Next.js 15 + Tailwind v4 | [`v2/`](v2/) | `cd v2 && npm run dev` → :3200 | — |
 
 Deployed builds live in `docs/vN/` and are served by GitHub Pages.
 
-> **Active version:** `v1/` is the version we're actively working on — treat it
-> as the source of truth. The `FLX Landing v2/` and `FLX Landing v3/` folders in
-> the parent directory are separate/older explorations; ignore them unless asked.
+> **Active version:** `v2/` (the Next.js port) is what we're actively working on.
+> It's a 1:1 rebuild of v1 with identical content and style — v1 is the
+> reference/source-of-truth, so read it to match, but make changes in `v2/`.
+> The `FLX Landing v2/` and `FLX Landing v3/` folders in the *parent* directory
+> are unrelated older explorations (not this repo's `v2/`); ignore them.
+>
+> **Collaboration:** the repo is shared with Bogdan Raduta. He owns the
+> engineering/logic PRs into `v2/` (e.g. migrating the ROI calculator); we own
+> the design/visual polish. Pull before starting and work on a branch to avoid
+> colliding with his in-flight PRs.
 
 ## Layout
 
@@ -26,8 +34,10 @@ flx_landing_explo/
 ├── v1/             # exploration 1 — a full Vite project
 │   ├── index.html    # all markup (nav, hero, sections, footer)
 │   ├── banking.html / insurance.html / logistics.html  # industry pages: hero, problem, value stream + who-it's-for (merged), featured bento, workflows, CTA
+│   ├── agent-builder.html / flowx-code.html / observatory.html  # product pages
+│   ├── about.html / resources.html / blog-flowx-6.html  # company / content pages
 │   ├── agents.html    # redirect stub → banking.html (old /agents links)
-│   ├── vite.config.js  # multi-page build (index, banking, insurance, logistics, about, resources, blog-flowx-6, agents entries)
+│   ├── vite.config.js  # multi-page build (all 11 .html entries: index, banking, insurance, logistics, agent-builder, flowx-code, observatory, about, resources, blog-flowx-6, agents)
 │   ├── public/     # static assets (flowx-logo.svg)
 │   └── src/
 │       ├── main.js       # entry: hero canvas, terminal, blueprint, sections
@@ -52,19 +62,53 @@ npm run build      # production build → dist/
 npm run preview
 ```
 
-## v1 architecture
+## v2 architecture (active)
+
+`v2/` is a 1:1 Next.js + Tailwind rebuild of v1 — **identical page structure and
+content**, with v1's `style.css` kept verbatim as the source of truth (bridged
+into Tailwind `@theme` tokens) and every v1 animation preserved as a client-side
+init module.
+
+```bash
+cd v2
+npm install
+npm run dev        # http://localhost:3200
+npm run build      # production build; all pages prerender as static
+```
+
+- **`app/layout.jsx`** — shared shell: fonts (`@fontsource` Sora/Geist/Geist
+  Mono, matching v1), no-flash theme script, grain canvas, `<Nav>`/`<Footer>`,
+  and `<Chrome>` (runs v1's shared `initChrome`).
+- **`app/<route>/page.jsx`** — each page renders only its `<main>`; the v1 markup
+  converted to JSX. Routes: `/`, `/agents` (→ `/banking`), `/agent-builder`,
+  `/flowx-code`, `/observatory`, `/banking`, `/insurance`, `/logistics`,
+  `/about`, `/blog-flowx-6`, `/resources`.
+- **`lib/v1/*.js`** — v1's JS (grain, order field, blueprint, mega-menu,
+  industry, about, flowx-code CLI) ported as importable modules; each page mounts
+  its own `*Init` client component.
+- **`app/globals.css`** — Tailwind import + `@theme` token bridge + v1
+  `style.css` verbatim. Design/theming conventions below still apply — the tokens
+  and single-accent rules carried over from v1.
+
+To verify parity against v1: run both dev servers (v1 :4321, v2 :3200) and
+compare the same routes.
+
+## v1 architecture (reference)
 
 - **Vanilla ES modules, no framework.** No React/Vue/build magic beyond Vite.
-- **`vite.config.js`** declares a multi-page build with entries for `index.html`,
-  `banking.html`, `insurance.html`, `logistics.html`, `about.html`,
+- **`vite.config.js`** declares a multi-page build with entries for all 11 pages:
+  `index.html`, `banking.html`, `insurance.html`, `logistics.html`,
+  `agent-builder.html`, `flowx-code.html`, `observatory.html`, `about.html`,
   `resources.html`, `blog-flowx-6.html`, plus `agents.html` (the redirect stub)
   — so all of them get built/optimized by Vite.
 - **`index.html`** holds all the markup. Sections: nav (mega-menu — WAI-ARIA
   disclosure pattern, driven by `src/megamenu.js`, with a CSS-only no-JS
   fallback), hero, blueprint, compliance marquee, "why 95% fail", platform,
-  proof, CTA, footer. **The nav markup is duplicated across all 7 pages**
-  (index, banking, insurance, logistics, about, resources, blog-flowx-6) with
-  per-page `aria-current` — edit it in every page, not just one.
+  proof, CTA, footer. **The nav markup is duplicated across all 10 content pages**
+  (index, banking, insurance, logistics, agent-builder, flowx-code, observatory,
+  about, resources, blog-flowx-6) with per-page `aria-current` — edit it in every
+  page, not just one. (`agents.html` is the 11th entry but a bare redirect stub
+  with no nav.)
 - **`banking.html` / `insurance.html` / `logistics.html`** are the industry
   pages, each with: a hero with a bespoke industry-metaphor viz (vault /
   shield / route), a problem section, a merged value-stream + who-it's-for
