@@ -188,9 +188,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="plat">
+            <div className="plat rv">
               {/* Audit log — large block */}
-              <article className="plat__cell plat__cell--wide rv" style={{ '--i': 0 }}>
+              <article className="plat__cell plat__cell--wide">
                 <header className="plat__head">
                   <h3>Banking-Grade Safety</h3>
                   <p>Centralized governance: audit trails, zero hallucinations, deterministic outputs — built for regulators.</p>
@@ -202,7 +202,7 @@ export default function Home() {
               </article>
 
               {/* Guardrails */}
-              <article className="plat__cell rv" style={{ '--i': 1 }}>
+              <article className="plat__cell">
                 <header className="plat__head">
                   <h3>Easy to Deploy</h3>
                   <p>Small teams deploy our agents. Go live while others are still planning.</p>
@@ -216,7 +216,7 @@ export default function Home() {
               </article>
 
               {/* Perimeter */}
-              <article className="plat__cell rv" style={{ '--i': 2 }}>
+              <article className="plat__cell">
                 <header className="plat__head">
                   <h3>Impeccable Data Privacy</h3>
                   <p>Data stays inside your perimeter, agents run next to your systems under your policies.</p>
@@ -230,7 +230,7 @@ export default function Home() {
               </article>
 
               {/* Model routing */}
-              <article className="plat__cell plat__cell--wide rv" style={{ '--i': 3 }}>
+              <article className="plat__cell plat__cell--wide">
                 <header className="plat__head">
                   <h3>Plugs Into Your Existing Data</h3>
                   <p>Jack Henry, FIS, Finastra, Temenos, COBOL mainframe, transportation management systems — we connect to any type of system.</p>
@@ -264,23 +264,23 @@ export default function Home() {
                 <p className="section__lede rv" style={{ '--i': 1 }}>Four steps from kickoff to production — weeks, not quarters.</p>
               </div>
             </div>
-            <ol className="proc">
-              <li className="proc__step rv" style={{ '--i': 0 }}>
+            <ol className="proc rv">
+              <li className="proc__step">
                 <span className="proc__no mono">01</span>
                 <h3>We create your environment</h3>
                 <p>Validate the gap with your team. Lock in the agent or agent stack that fixes your biggest pain.</p>
               </li>
-              <li className="proc__step rv" style={{ '--i': 1 }}>
+              <li className="proc__step">
                 <span className="proc__no mono">02</span>
                 <h3>We connect your systems</h3>
                 <p>We do the heavy lifting. Your legacy systems stay untouched. No disruption.</p>
               </li>
-              <li className="proc__step rv" style={{ '--i': 2 }}>
+              <li className="proc__step">
                 <span className="proc__no mono">03</span>
                 <h3>We configure and you test</h3>
                 <p>We train the agent on your data under your rules and compliance. Safe AI.</p>
               </li>
-              <li className="proc__step rv" style={{ '--i': 3 }}>
+              <li className="proc__step">
                 <span className="proc__no mono">04</span>
                 <h3>Go live and see the impact</h3>
                 <p>Launch. Measure impact. Show the board real numbers. Plan the next agent.</p>
@@ -336,28 +336,28 @@ export default function Home() {
                 <h2 className="h2 rv">Global companies, including financial institutions, trust FlowX.AI<span className="amber">.</span></h2>
               </div>
             </div>
-            <div className="voices">
-              <blockquote className="voice rv" style={{ '--i': 0 }}>
+            <div className="voices rv">
+              <blockquote className="voice">
                 <p>“To us, FlowX.AI is a business asset, not an IT asset. We&apos;re shifting from technology that is a constraint, to an enabler.”</p>
                 <cite>COO of Major Custodian Bank</cite>
               </blockquote>
-              <blockquote className="voice rv" style={{ '--i': 1 }}>
+              <blockquote className="voice">
                 <p>“We now see FlowX.AI as the engine that powers user experiences across our entire digital portfolio.”</p>
                 <cite>Deputy Director of CEE Bank Group</cite>
               </blockquote>
-              <blockquote className="voice rv" style={{ '--i': 2 }}>
+              <blockquote className="voice">
                 <p>“I have delivered more functionality in production with FlowX.AI in three months than in the rest of my entire career with the bank of six years.”</p>
                 <cite>Solution Architect of a European Bank</cite>
               </blockquote>
-              <blockquote className="voice rv" style={{ '--i': 3 }}>
+              <blockquote className="voice">
                 <p>“Before FlowX.AI, just like everyone else, it would take us a year to launch a new product. Today, we are able to launch new products in 2-4 weeks. This would have been unthinkable a few years ago.”</p>
                 <cite>Insurance Executive</cite>
               </blockquote>
-              <blockquote className="voice rv" style={{ '--i': 4 }}>
+              <blockquote className="voice">
                 <p>“FlowX.AI delivers value, multiple times faster, through its ability to integrate its modern tech platform with existing stack, through plug-and-play functionality.”</p>
                 <cite>CTO of European Insurer</cite>
               </blockquote>
-              <blockquote className="voice rv" style={{ '--i': 5 }}>
+              <blockquote className="voice">
                 <p>“FlowX.AI is the future of software development. It is exactly what we need to transform the entire bank.”</p>
                 <cite>SVP Technology Architecture &amp; Strategy</cite>
               </blockquote>
