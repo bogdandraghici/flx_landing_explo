@@ -31,10 +31,6 @@ export default function Nav() {
                       <span className="nav__link-t">FlowX Code</span>
                       <span className="nav__link-d">The full platform, expressed as code</span>
                     </a>
-                    <a className="nav__link--desc" href="/platform/developer-agents">
-                      <span className="nav__link-t">Developer Agents</span>
-                      <span className="nav__link-d">Agents that build alongside your team</span>
-                    </a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Govern &amp; measure</p>
