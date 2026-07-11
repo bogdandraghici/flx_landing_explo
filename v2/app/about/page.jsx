@@ -157,16 +157,6 @@ export default function About() {
               </li>
               <li className="crew__card rv" style={{ '--i': 2 }}>
                 <figure className="crew__photo">
-                  <img src={bp("/team/adrian-tomoiaga.jpg")} alt="Adrian Tomoiaga, CCO of FlowX.AI" width="1024" height="1024" loading="lazy" />
-                </figure>
-                <div className="crew__meta">
-                  <h3 className="crew__name">Adrian Tomoiaga</h3>
-                  <p className="crew__role mono">CCO</p>
-                  <p className="crew__bio">Morale-boosting mentor, turning routine into inspiration</p>
-                </div>
-              </li>
-              <li className="crew__card rv" style={{ '--i': 3 }}>
-                <figure className="crew__photo">
                   <img src={bp("/team/radu-cautis.jpg")} alt="Radu Cautis, Executive Chairman of FlowX.AI" width="1024" height="1024" loading="lazy" />
                 </figure>
                 <div className="crew__meta">
@@ -193,7 +183,7 @@ export default function About() {
             <div className="section__head">
               <span className="section__no mono">04 / Timeline</span>
               <div className="section__headline">
-                <h2 className="h2 rv">From framework to FlowX 5<span className="amber">.</span></h2>
+                <h2 className="h2 rv">From framework to FlowX 6<span className="amber">.</span></h2>
               </div>
             </div>
             <ol className="tl">
@@ -238,12 +228,22 @@ export default function About() {
               </li>
               <li className="tl__row rv" style={{ '--i': 4 }}>
                 <span className="tl__year mono">2025</span>
-                <span className="tl__node tl__node--live" aria-hidden="true"></span>
+                <span className="tl__node" aria-hidden="true"></span>
                 <div className="tl__body">
                   <span className="tl__slug mono">#0005 — doubling-down-on-ai</span>
                   <h3>Doubling-down on AI</h3>
                   <p>We launched our AI Agent Builder. We launched FlowX 5, our
                     biggest update yet.</p>
+                </div>
+              </li>
+              <li className="tl__row rv" style={{ '--i': 5 }}>
+                <span className="tl__year mono">2026</span>
+                <span className="tl__node tl__node--live" aria-hidden="true"></span>
+                <div className="tl__body">
+                  <span className="tl__slug mono">#0006 — agents-in-production</span>
+                  <h3>AI agents in production, at scale</h3>
+                  <p>We shipped FlowX 6 and moved AI agents into production at
+                    scale — running live across banking, insurance, and logistics.</p>
                 </div>
               </li>
             </ol>
