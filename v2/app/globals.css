@@ -2875,7 +2875,7 @@ em { font-style: normal; }
    ------------------------------------------------------------------ */
 .eled {
   display: grid;
-  grid-template-columns: minmax(300px, 440px) 1fr;
+  grid-template-columns: minmax(340px, 1.25fr) minmax(0, 0.85fr);
   border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--bg-raised);
