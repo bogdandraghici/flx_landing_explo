@@ -5,6 +5,42 @@ export const metadata = {
   description: "Observatory is FlowX.AI's observability and governance plane. GAVEL enforces policy on live agent telemetry, harvests compliance evidence from every trace, and answers an audit by walking evidence back to the regulation.",
 };
 
+// the evidence ledger's rows — each a captured run, its policy verdict, and the
+// sealed evidence hash. Static (SSR-stable) so the same set scrolls on a loop;
+// the track renders this twice for a seamless wrap. hash = per-cell on/off bits.
+const LEDGER_ROWS = [
+  { id: '9f4a·0271', verdict: 'pass', hash: '101101' },
+  { id: '9f4a·0270', verdict: 'pass', hash: '110011' },
+  { id: '9f4a·026f', verdict: 'flag', hash: '011010' },
+  { id: '9f4a·026e', verdict: 'pass', hash: '101011' },
+  { id: '9f4a·026d', verdict: 'pass', hash: '110110' },
+  { id: '9f4a·026c', verdict: 'flag', hash: '010111' },
+  { id: '9f4a·026b', verdict: 'pass', hash: '101100' },
+];
+
+function LedgerRow({ id, verdict, hash }) {
+  return (
+    <div className="eled__row">
+      <span className="eled__run">
+        <i className="eled__runled" />run <span className="eled__id">{id}</span>
+      </span>
+      <span className={`eled__verdict eled__verdict--${verdict}`}>
+        <i className="eled__vdot" />{verdict}
+      </span>
+      <span className="eled__ev">
+        <span className="eled__hash">
+          {hash.split('').map((b, i) => (
+            <i key={i} className={b === '1' ? 'is-on' : ''} />
+          ))}
+        </span>
+        <svg className="eled__seal" viewBox="0 0 12 12" aria-hidden="true">
+          <path d="M2.5 6.2 L5 8.7 L9.5 3.5" />
+        </svg>
+      </span>
+    </div>
+  );
+}
+
 export default function Observatory() {
   return (
     <>
@@ -192,15 +228,38 @@ export default function Observatory() {
         {/* ================= WHAT IT DOES ================= */}
         <section className="section" id="capabilities">
           <div className="shell">
-            <div className="section__head">
-              <span className="section__no mono">02 / What it does</span>
-              <div className="section__headline">
-                <h2 className="h2 rv">Observability and governance, in one plane<span className="amber">.</span></h2>
-                <p className="section__lede rv" style={{ '--i': 1 }}>Every agent run is captured, evaluated against policy, and
+            {/* the evidence ledger: the section's claim, shown as the thing itself —
+                 a live pane where each agent run streams in with its policy verdict
+                 and a sealed evidence hash beside it, capture / verdict / evidence in
+                 one plane. Copy on the left, the ledger scrolling on the right. Built
+                 in HTML/CSS (mono text stays legible, theme-aware) so it compresses
+                 horizontally and stacks under the copy on narrow viewports. */}
+            <div className="eled rv">
+              <div className="eled__copy">
+                <p className="section__no mono eled__eyebrow">
+                  <span className="tick" aria-hidden="true" />02 / What it does
+                </p>
+                <h2 className="h2">Observability and governance, in one plane<span className="amber">.</span></h2>
+                <p className="section__lede">Every agent run is captured, evaluated against policy, and
                   turned into audit-ready evidence — without a parallel record to maintain.</p>
               </div>
+
+              <div className="eled__viz" aria-hidden="true">
+                <div className="eled__head">
+                  <span>Run</span>
+                  <span>Policy</span>
+                  <span>Evidence</span>
+                </div>
+                <div className="eled__stream">
+                  <div className="eled__track">
+                    {LEDGER_ROWS.map((r) => <LedgerRow key={r.id} {...r} />)}
+                    {LEDGER_ROWS.map((r) => <LedgerRow key={`${r.id}-b`} {...r} />)}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="segs segs--3">
+
+            <div className="segs segs--3 eled__cards">
               <article className="seg rv" style={{ '--i': 0 }}>
                 <span className="seg__no mono">01</span>
                 <h3 className="seg__name">Policy engine</h3>

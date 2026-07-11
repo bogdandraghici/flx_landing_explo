@@ -2866,6 +2866,136 @@ em { font-style: normal; }
 .page-observatory .seg { transition: none; }
 .page-observatory .seg:hover { border-color: var(--line); }
 
+/* ------------------------------------------------------------------
+   WHAT IT DOES — the evidence ledger
+   A single bordered pane: copy on the left, a live ledger on the right
+   where captured runs stream in with policy verdict + sealed evidence.
+   Built in HTML/CSS on the page tokens so it stays legible and theme-
+   aware, compresses horizontally, and stacks under the copy when narrow.
+   ------------------------------------------------------------------ */
+.eled {
+  display: grid;
+  grid-template-columns: minmax(300px, 440px) 1fr;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-raised);
+  overflow: hidden;
+  margin-bottom: clamp(40px, 6vh, 72px);
+}
+.eled__copy {
+  padding: clamp(30px, 3.4vw, 52px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.eled__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-top: 0;
+  margin-bottom: 20px;
+}
+.eled__copy .h2 { margin: 0; }
+.eled__copy .section__lede { margin-top: 18px; max-width: 42ch; }
+
+.eled__viz {
+  position: relative;
+  border-left: 1px solid var(--line);
+  padding: clamp(24px, 2.4vw, 36px) clamp(24px, 2.4vw, 34px);
+  min-height: 372px;
+  display: flex;
+  flex-direction: column;
+}
+.eled__head,
+.eled__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.95fr) minmax(0, 1.15fr);
+  align-items: center;
+  column-gap: 16px;
+}
+.eled__head {
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.eled__stream {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+}
+.eled__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  animation: eled-scroll 24s linear infinite;
+}
+@keyframes eled-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.eled__row { height: 46px; }
+
+.eled__run {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.eled__runled {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(var(--dia-dim), 0.5);
+  flex: none;
+}
+.eled__id { color: var(--text); }
+
+.eled__verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: start;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 10px 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.eled__vdot { width: 5px; height: 5px; border-radius: 50%; flex: none; }
+.eled__verdict--pass { color: var(--text-dim); }
+.eled__verdict--pass .eled__vdot { background: rgba(var(--dia-bright), 0.85); }
+.eled__verdict--flag { color: var(--text-faint); }
+.eled__verdict--flag .eled__vdot { background: transparent; border: 1px solid rgba(var(--ink), 0.28); }
+
+.eled__ev { display: flex; align-items: center; gap: 12px; }
+.eled__hash { display: inline-flex; gap: 3px; }
+.eled__hash i {
+  width: 5px; height: 5px; border-radius: 1px;
+  background: rgba(var(--ink), 0.12);
+}
+.eled__hash i.is-on { background: rgba(var(--dia-dim), 0.5); }
+.eled__seal { width: 13px; height: 13px; flex: none; }
+.eled__seal path {
+  fill: none;
+  stroke: rgba(var(--dia-bright), 0.7);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 900px) {
+  .eled { grid-template-columns: 1fr; }
+  .eled__viz { border-left: none; border-top: 1px solid var(--line); min-height: 320px; }
+}
+
 /* ============================================================
    REDUCED MOTION
    ============================================================ */
@@ -2921,6 +3051,8 @@ em { font-style: normal; }
      (threads drawn, sealed node set) — drop the traveling pulse */
   .stitch__flow { animation: none; opacity: 0; }
   .stitch__thread--answer::after { animation: none; }
+  /* evidence ledger: hold the filled pane still (first set of rows fills it) */
+  .eled__track { animation: none; }
 }
 
 /* ============================================================
