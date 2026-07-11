@@ -3718,6 +3718,62 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .ac__more { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 32px; }
 .ac__more-count { font-size: 11px; letter-spacing: 0.08em; color: var(--text-faint); }
 
+/* ============================================================
+   RESEARCH  (/research + /research/[slug])
+   ============================================================ */
+/* ---- paper summary page ---- */
+.rp-hero { padding-bottom: clamp(32px, 5vh, 64px); }
+.rp__hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+@media (max-width: 860px) { .rp__hero-grid { grid-template-columns: 1fr; } }
+.rp__title { font-family: var(--font-display); font-weight: 680; letter-spacing: -0.03em; line-height: 1.05; font-size: clamp(2.1rem, 4.4vw, 3.4rem); margin: 18px 0 0; }
+.rp__title .amber { color: var(--amber-text); }
+.rp-hero .section__lede { margin-top: 18px; }
+.rp__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.rp__kw { list-style: none; display: flex; flex-wrap: wrap; gap: 7px; margin-top: 26px; }
+.rp__kw li { font-size: 11px; letter-spacing: 0.02em; color: var(--text-dim); border: 1px solid var(--line); border-radius: 7px; padding: 5px 10px; background: rgba(var(--ink), 0.02); }
+.rp__cover {
+  display: block; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  box-shadow: var(--shadow-pop); background: var(--bg-panel);
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.rp__cover:hover { transform: translateY(-3px); border-color: var(--amber-line); }
+.rp__cover img { display: block; width: 100%; height: auto; }
+
+.rp-thesis { padding-block: clamp(40px, 6vh, 80px); border-block: 1px solid var(--line); background: var(--bg-panel); }
+.rp__thesis-kicker { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 18px; }
+.rp__thesis { font-family: var(--font-display); font-size: clamp(1.4rem, 2.8vw, 2.2rem); font-weight: 560; letter-spacing: -0.02em; line-height: 1.32; max-width: 30ch; }
+
+.rp__body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); gap: clamp(32px, 5vw, 64px); align-items: start; }
+@media (max-width: 860px) { .rp__body { grid-template-columns: 1fr; } }
+.rp__h { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); font-weight: 500; margin-bottom: 16px; }
+.rp__abstract-p { font-size: 16.5px; line-height: 1.7; color: var(--lede); }
+.rp__contents { border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); padding: 24px; position: sticky; top: 96px; }
+.rp__toc { list-style: none; counter-reset: rp; display: flex; flex-direction: column; gap: 10px; }
+.rp__toc li { counter-increment: rp; position: relative; padding-left: 30px; font-size: 13.5px; color: var(--text-dim); line-height: 1.4; }
+.rp__toc li::before { content: counter(rp, decimal-leading-zero); position: absolute; left: 0; top: 1px; font-family: var(--font-mono); font-size: 10.5px; color: var(--amber-text); }
+.rp__toc-cta { width: 100%; margin-top: 20px; }
+
+/* ---- research overview ---- */
+.rlist-section { padding-top: clamp(24px, 4vh, 48px); }
+.rlist { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+.rlist__card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-raised); overflow: hidden; box-shadow: var(--shadow-card); transition: border-color 0.25s var(--ease), transform 0.25s var(--ease); }
+.rlist__card:hover { border-color: var(--amber-line); transform: translateY(-2px); }
+.rlist__cover { display: block; border-bottom: 1px solid var(--line); background: var(--bg-panel); aspect-ratio: 16 / 9; overflow: hidden; }
+.rlist__cover img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
+.rlist__meta { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.rlist__code { font-size: 11px; letter-spacing: 0.2em; color: var(--amber-text); }
+.rlist__name { font-family: var(--font-display); font-size: 18px; font-weight: 620; letter-spacing: -0.015em; line-height: 1.2; }
+.rlist__name a { transition: color 0.2s ease; }
+.rlist__name a:hover { color: var(--amber-text); }
+.rlist__tagline { font-size: 13.5px; line-height: 1.55; color: var(--text-dim); flex: 1; }
+.rlist__links { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+.rlist__link { font-size: 13px; color: var(--text); transition: color 0.2s ease; }
+.rlist__link span { display: inline-block; transition: transform 0.2s var(--ease); }
+.rlist__link:hover { color: var(--amber-text); }
+.rlist__link:hover span { transform: translateX(3px); }
+.rlist__pdf { font-size: 11.5px; letter-spacing: 0.06em; color: var(--text-dim); border: 1px solid var(--line); border-radius: 7px; padding: 5px 10px; transition: border-color 0.2s var(--ease), color 0.2s var(--ease); }
+.rlist__pdf:hover { border-color: var(--amber-line); color: var(--amber-text); }
+
 /* card grid */
 .ac__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
 .ac__card {
