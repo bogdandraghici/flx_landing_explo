@@ -97,7 +97,7 @@ export default function Nav() {
                   <div className="nav__group">
                     <p className="nav__glabel mono">Explore</p>
                     <a href="https://www.flowx.ai/ai-agents" target="_blank" rel="noopener"><span className="nav__link-t">All AI agents <span className="nav__ext" aria-hidden="true">↗</span></span></a>
-                    <a href="https://www.flowx.ai/business-agents-roi-calculator" target="_blank" rel="noopener"><span className="nav__link-t">ROI calculator <span className="nav__ext" aria-hidden="true">↗</span></span></a>
+                    <a href="/roi-calculator"><span className="nav__link-t">ROI calculator</span></a>
                   </div>
                 </div>
                 <p className="nav__foot mono"><a href="/solutions">All solutions <span className="nav__arr" aria-hidden="true">→</span></a></p>
@@ -216,7 +216,7 @@ export default function Nav() {
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Prove it</p>
-                    <a href="https://www.flowx.ai/business-agents-roi-calculator" target="_blank" rel="noopener"><span className="nav__link-t">ROI calculator <span className="nav__ext" aria-hidden="true">↗</span></span></a>
+                    <a href="/roi-calculator"><span className="nav__link-t">ROI calculator</span></a>
                   </div>
                 </div>
                 <p className="nav__foot mono"><a href="/customers">All customers <span className="nav__arr" aria-hidden="true">→</span></a></p>

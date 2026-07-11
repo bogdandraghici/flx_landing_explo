@@ -2966,3 +2966,255 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 
 /* --- cta: supporting line under the title --- */
 .abd-cta__sub { margin-top: 22px; max-width: 48ch; color: var(--text-dim); font-size: 16.5px; line-height: 1.6; }
+
+/* ============================================================
+   ROI CALCULATOR  (/roi-calculator)
+   A re-skin of the flowx.ai embed into the v2 token system: charcoal
+   ground, one amber accent (reserved for the automated/positive read and
+   the resolved value), hairline cards, mono for data. All colour flows
+   through tokens so the page flips with the light theme like the rest of
+   the site. Hover cues live only on the interactive controls.
+   ============================================================ */
+.roi-hero { padding-bottom: clamp(24px, 4vh, 48px); }
+.roi-section { padding-top: clamp(24px, 4vh, 48px); }
+
+.roi__rail { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 20px; }
+.roi__rail-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
+.roi__mini-select,
+.roi__select,
+.roi__input {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--well-bg);
+  border: 1px solid rgba(var(--ink), 0.16);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.roi__mini-select { padding: 7px 12px; border-radius: 8px; font-size: 12.5px; }
+.roi__select:hover:not(:disabled),
+.roi__mini-select:hover { border-color: rgba(var(--ink), 0.3); }
+.roi__select:focus,
+.roi__input:focus,
+.roi__mini-select:focus { border-color: var(--amber-line); background: var(--well-bg-focus); }
+.roi__select:disabled { opacity: 0.5; }
+.roi__mini-select { cursor: pointer; }
+
+/* ---- layout ---- */
+.roi__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  grid-template-areas:
+    "config hero"
+    "config chart"
+    "breakdown breakdown";
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .roi__layout {
+    grid-template-columns: 1fr;
+    grid-template-areas: "config" "hero" "chart" "breakdown";
+  }
+}
+
+/* ---- config panel ---- */
+.roi__config {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-panel);
+  padding: clamp(18px, 2vw, 24px);
+  box-shadow: var(--shadow-card);
+}
+.roi__config-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.roi__config-title { font-family: var(--font-display); font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; }
+.roi__chip {
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-dim); border: 1px solid var(--line); border-radius: 999px; padding: 4px 9px;
+}
+
+.roi__step {
+  padding: 16px 4px;
+  border-top: 1px solid var(--line-soft);
+}
+.roi__step.is-active {
+  border-top-color: transparent;
+  border: 1px solid var(--amber-line);
+  background: var(--amber-soft);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 10px 0;
+}
+.roi__step-head { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 14.5px; font-weight: 560; margin-bottom: 14px; }
+.roi__step-no {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; flex: none;
+  border: 1px solid var(--line); border-radius: 50%;
+  font-size: 11px; color: var(--text-dim);
+}
+.roi__step.is-active .roi__step-no { border-color: var(--amber-line); color: var(--amber-text); }
+
+.roi__label { display: block; font-size: 12.5px; color: var(--text-dim); margin: 12px 0 6px; }
+.roi__step > .roi__label:first-of-type { margin-top: 0; }
+.roi__select, .roi__input { width: 100%; }
+.roi__input::placeholder { color: var(--text-faint); }
+.roi__help { font-size: 11.5px; color: var(--text-faint); line-height: 1.5; margin-top: 8px; }
+
+/* number input — strip the spinners for a cleaner data field */
+.roi__input[type="number"] { -moz-appearance: textfield; }
+.roi__input[type="number"]::-webkit-outer-spin-button,
+.roi__input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+.roi__presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+.roi__preset {
+  padding: 8px 6px; font-size: 12px; color: var(--text-dim);
+  border: 1px solid var(--line); border-radius: 8px; background: rgba(var(--ink), 0.02);
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.roi__preset:hover { border-color: var(--amber-line); color: var(--text); background: var(--amber-soft); }
+
+.roi__fte-head { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+.roi__fte-pill {
+  font-size: 12px; color: var(--amber-ink); font-weight: 600;
+  background: var(--amber); border-radius: 8px; padding: 4px 9px;
+}
+:root[data-theme="light"] .roi__fte-pill { color: var(--amber-ink); }
+.roi__range {
+  width: 100%; margin-top: 12px; height: 4px; border-radius: 4px; cursor: pointer;
+  -webkit-appearance: none; appearance: none;
+  background: rgba(var(--ink), 0.14);
+  accent-color: var(--amber);
+}
+.roi__range::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--amber); border: 2px solid var(--bg); cursor: pointer;
+}
+.roi__range::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--amber); border: 2px solid var(--bg); cursor: pointer;
+}
+
+.roi__agents-top { display: flex; justify-content: space-between; align-items: center; }
+.roi__selectall {
+  font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim);
+  border: 1px solid var(--line); border-radius: 7px; padding: 4px 9px;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.roi__selectall:hover { border-color: var(--amber-line); color: var(--text); }
+.roi__agent-list {
+  margin-top: 10px; max-height: 320px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 4px; border: 1px solid var(--line-soft); border-radius: 10px;
+}
+.roi__empty { padding: 24px 12px; text-align: center; font-size: 12px; color: var(--text-faint); }
+.roi__agent {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 12px; border-radius: 8px; cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.roi__agent:hover { background: rgba(var(--ink), 0.04); border-color: var(--line); }
+.roi__agent.is-on { background: var(--amber-soft); border-color: var(--amber-line); }
+.roi__agent input { margin-top: 3px; flex: none; accent-color: var(--amber); cursor: pointer; }
+.roi__agent-info { display: flex; flex-direction: column; gap: 2px; }
+.roi__agent-name { font-size: 13px; line-height: 1.35; color: var(--text); }
+.roi__agent-dept { font-size: 10.5px; color: var(--text-faint); letter-spacing: 0.02em; }
+
+.roi__export { width: 100%; margin-top: 16px; }
+.roi .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.roi .btn:disabled:hover { background: var(--amber); }
+
+/* ---- result panels (hero / chart / breakdown) ---- */
+.roi__panel {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-raised);
+  padding: clamp(20px, 2.2vw, 28px);
+  box-shadow: var(--shadow-card);
+  transition: opacity 0.3s var(--ease), filter 0.3s var(--ease);
+}
+.roi__panel.is-dim { opacity: 0.5; filter: grayscale(0.4); }
+.roi__panel-head { display: flex; justify-content: space-between; align-items: center; }
+.roi__panel-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); }
+
+/* hero */
+.roi__value {
+  font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em;
+  font-size: clamp(2.6rem, 5.5vw, 4rem); line-height: 1; margin: 12px 0 6px;
+  overflow-wrap: anywhere;
+}
+.roi__value .amber { color: var(--amber-text); }
+.roi__value-sub { font-family: var(--font-display); font-size: 17px; font-weight: 560; color: var(--text-dim); }
+.roi__value-desc { margin-top: 16px; font-size: 14px; line-height: 1.6; color: var(--text-dim); max-width: 54ch; }
+.roi__value-desc em { color: var(--text); font-style: normal; }
+.roi__value-desc strong { color: var(--text); font-weight: 600; }
+.roi__stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line);
+}
+.roi__stat { display: flex; flex-direction: column; gap: 4px; }
+.roi__stat-v { font-family: var(--font-display); font-size: 26px; font-weight: 640; letter-spacing: -0.02em; }
+.roi__stat-k { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); }
+
+/* chart */
+.roi__bars { display: flex; flex-direction: column; gap: 24px; margin-top: 22px; }
+.roi__bar-row { display: flex; align-items: center; gap: 14px; }
+.roi__bar-label { min-width: 56px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
+.roi__bar-track { flex: 1; height: 12px; }
+.roi__bar { display: block; height: 100%; border-radius: 6px; min-width: 6px; }
+.roi__bar--manual { background: rgba(var(--ink), 0.22); }
+.roi__bar--auto { background: var(--amber); }
+@media (prefers-reduced-motion: no-preference) {
+  .roi__bar { transition: width 0.7s var(--ease); }
+}
+.roi__bar-val { font-size: 13px; font-weight: 600; white-space: nowrap; color: var(--text-dim); min-width: 56px; }
+.roi__bar-val.amber { color: var(--amber-text); }
+.roi__legend { display: flex; gap: 20px; justify-content: center; margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); }
+.roi__legend-item { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: 0.06em; color: var(--text-faint); }
+.roi__swatch { width: 10px; height: 10px; border-radius: 3px; }
+.roi__swatch--manual { background: rgba(var(--ink), 0.28); }
+.roi__swatch--auto { background: var(--amber); }
+
+/* breakdown */
+.roi__breakdown { padding-bottom: clamp(16px, 2vw, 22px); }
+.roi__table-wrap { overflow-x: auto; margin-top: 14px; }
+.roi__table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.roi__table th {
+  text-align: left; padding: 10px 10px; white-space: nowrap;
+  font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint);
+  border-bottom: 1px solid var(--line);
+}
+.roi__table th.r, .roi__table td.r { text-align: right; }
+.roi__table td { padding: 12px 10px; border-bottom: 1px solid var(--line-soft); color: var(--text-dim); vertical-align: top; }
+.roi__td-name { color: var(--text); }
+.roi__td-annual { color: var(--text); font-weight: 600; }
+.roi__table-empty { text-align: center; padding: 40px 12px; color: var(--text-faint); }
+.roi__note { margin-top: 16px; font-size: 12px; color: var(--text-faint); line-height: 1.6; }
+.roi__note strong { color: var(--text-dim); font-weight: 600; }
+
+/* ---- lead modal ---- */
+.roi__modal {
+  position: fixed; inset: 0; z-index: 80;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  background: rgba(var(--scrim), 0.72);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.roi__modal-card {
+  position: relative; width: 100%; max-width: 440px;
+  background: var(--bg-raised); border: 1px solid var(--line); border-radius: 16px;
+  padding: 32px; box-shadow: var(--shadow-pop);
+}
+.roi__modal-close {
+  position: absolute; top: 14px; right: 18px; font-size: 24px; line-height: 1;
+  color: var(--text-faint); transition: color 0.2s ease;
+}
+.roi__modal-close:hover { color: var(--text); }
+.roi__modal-title { font-family: var(--font-display); font-size: 20px; font-weight: 620; letter-spacing: -0.01em; }
+.roi__modal-sub { margin-top: 6px; margin-bottom: 8px; font-size: 13.5px; color: var(--text-dim); }
+.roi__modal-card .roi__input { width: 100%; }
+.roi__consent { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0; font-size: 12px; color: var(--text-dim); line-height: 1.5; cursor: pointer; }
+.roi__consent input { margin-top: 2px; flex: none; accent-color: var(--amber); cursor: pointer; }
+.roi__modal-submit { width: 100%; }
