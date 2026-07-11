@@ -109,7 +109,7 @@ export default function Nav() {
                   <div className="nav__group">
                     <p className="nav__glabel mono">Papers · eXponential6</p>
                     <a className="nav__link--mono" href={bp("/research/vera")}><span className="nav__link-t">VERA</span></a>
-                    <a className="nav__link--mono" href={bp("/research/orna-autotune")}><span className="nav__link-t">ORNA / AutoTune</span></a>
+                    <a className="nav__link--mono" href={bp("/research/orna-autotune")}><span className="nav__link-t">ORNA</span></a>
                     <a className="nav__link--mono" href={bp("/research/halo")}><span className="nav__link-t">HALO</span></a>
                     <a className="nav__link--mono" href={bp("/research/gavel")}><span className="nav__link-t">GAVEL</span></a>
                     <a className="nav__link--mono" href={bp("/research/sift")}><span className="nav__link-t">SIFT</span></a>
