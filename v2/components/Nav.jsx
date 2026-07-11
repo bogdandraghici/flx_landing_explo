@@ -119,7 +119,7 @@ export default function Nav() {
                   <div className="nav__group">
                     <p className="nav__glabel mono">Open models</p>
                     <a href={bp("/models")}><span className="nav__link-t">Models overview</span></a>
-                    <a href="https://huggingface.co/flowxai" target="_blank" rel="noopener"><span className="nav__link-t">Download on Hugging Face <span className="nav__ext" aria-hidden="true">↗</span></span></a>
+                    <a href="https://huggingface.co/flowxai" target="_blank" rel="noopener"><span className="nav__link-t">Hugging Face <span className="nav__ext" aria-hidden="true">↗</span></span></a>
                     <a href={bp("/models#benchmarks")}><span className="nav__link-t">Benchmarks</span></a>
                   </div>
                   <div className="nav__group">
