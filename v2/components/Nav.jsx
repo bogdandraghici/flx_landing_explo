@@ -93,7 +93,7 @@ export default function Nav() {
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Explore</p>
-                    <a href="https://www.flowx.ai/ai-agents" target="_blank" rel="noopener"><span className="nav__link-t">All AI agents <span className="nav__ext" aria-hidden="true">↗</span></span></a>
+                    <a href={bp("/ai-agents")}><span className="nav__link-t">All AI agents</span></a>
                     <a href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span></a>
                   </div>
                 </div>
@@ -185,6 +185,17 @@ export default function Nav() {
                     <a href={bp("/blog/category/engineering")}><span className="nav__link-t">Engineering</span></a>
                     <a href={bp("/blog/category/banking-insurance")}><span className="nav__link-t">Banking &amp; Insurance</span></a>
                     <a href={bp("/blog/category/governance-compliance")}><span className="nav__link-t">Governance &amp; Compliance</span></a>
+                  </div>
+                  <div className="nav__group">
+                    <p className="nav__glabel mono">Tools</p>
+                    <a className="nav__link--desc" href={bp("/ai-agents")}>
+                      <span className="nav__link-t">AI agents catalog</span>
+                      <span className="nav__link-d">Browse 140+ agents by industry &amp; effort</span>
+                    </a>
+                    <a className="nav__link--desc" href={bp("/roi-calculator")}>
+                      <span className="nav__link-t">ROI calculator</span>
+                      <span className="nav__link-d">Estimate savings for an agent stack</span>
+                    </a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">More</p>
