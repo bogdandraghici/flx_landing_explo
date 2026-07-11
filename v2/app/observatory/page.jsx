@@ -73,65 +73,57 @@ export default function Observatory() {
               </p>
             </div>
 
-            {/* the live citation: a live agent trace streams; one runtime event is picked out
-                 and an amber citation line rises from it up to the regulation clause it
-                 satisfies — the clause's footnote marker lights, and the footnote resolves to
-                 the real trace metadata that proves it. compliance, footnoted to reality. 12s loop.
+            {/* audit walk-back (Hero Variations 1c): a live runtime trace on a
+                 timeline; the cited event walks to its slot, an amber citation
+                 arrow rises to the exact regulation clause it satisfies, holds,
+                 then retreats and the trace continues.
 
-                 Built in HTML/CSS on a fixed-vertical / fluid-horizontal layer (not a single
-                 scaling SVG): every label, the clause and the footnote sit at fixed legible px
-                 sizes, while the trace nodes and the citation line ride a percentage grid — so
-                 on narrow viewports the figure compresses horizontally instead of shrinking the
-                 text with everything else. Same construction as the stitch diagram below. */}
-            <div className="ahero__viz cit" aria-hidden="true">
+                 Built in HTML/CSS on a fixed-vertical / fluid-horizontal layer
+                 (not a scaling canvas): labels, the clause and the trace line sit
+                 at fixed legible px sizes while the timeline nodes and citation
+                 arrow ride a percentage grid — so on narrow viewports the figure
+                 compresses horizontally instead of shrinking the text. Theme-aware
+                 via tokens; reduced-motion freezes on the resolved (cited) pose.
+                 Font sizes + colors carried over from the prior hero visual. 23s loop. */}
+            <div className="ahero__viz awb" aria-hidden="true">
               {/* REGULATION — the clause that states a compliance requirement */}
-              <p className="cit__lbl cit__lbl--reg">regulation · § 4.2</p>
-              <div className="cit__doc">
-                <span className="cit__bar" style={{ width: '86%' }} />
-                <span className="cit__bar" style={{ width: '72%' }} />
-                {/* the active clause: legible; its footnote marker + underline light on resolution */}
-                <p className="cit__clause">
-                  <span className="cit__clause-t">no action exceeds its permissions<span className="cit__ul" /></span><sup className="cit__mark">2</sup>
+              <p className="awb__lbl awb__lbl--reg">regulation · § 4.2</p>
+              <div className="awb__doc">
+                <span className="awb__bar" style={{ width: '72%' }} />
+                <span className="awb__bar" style={{ width: '60%' }} />
+                {/* the active clause: a placeholder bar until the citation lands,
+                     then the real clause with its amber underline */}
+                <p className="awb__clause">
+                  <span className="awb__ph" />
+                  <span className="awb__clause-t">no action exceeds its permissions<span className="awb__ul" /></span>
                 </p>
-                <span className="cit__bar" style={{ width: '54%' }} />
-                <span className="cit__bar" style={{ width: '37%' }} />
+                <span className="awb__bar" style={{ width: '46%' }} />
+                <span className="awb__bar" style={{ width: '34%' }} />
               </div>
 
-              {/* the citation line: rises from the cited event up to the clause */}
-              <span className="cit__link"><span className="cit__arr" /></span>
+              {/* the citation arrow: rises from the cited slot up to the clause */}
+              <span className="awb__arrow"><span className="awb__arrowhead" /></span>
 
-              {/* RUNTIME — the live execution trace */}
-              <p className="cit__lbl cit__lbl--run">runtime · live trace</p>
-              <div className="cit__rail">
-                <span className="cit__node" style={{ left: '4%' }} />
-                <span className="cit__node" style={{ left: '20%' }} />
-                <span className="cit__node" style={{ left: '36%' }} />
-                <span className="cit__node cit__node--cited" style={{ left: '52%' }} />
-                <span className="cit__node" style={{ left: '66%' }} />
-                <span className="cit__node" style={{ left: '82%' }} />
-                <span className="cit__node" style={{ left: '96%' }} />
+              {/* RUNTIME — the live execution trace on a timeline axis */}
+              <p className="awb__lbl awb__lbl--run">runtime · live trace</p>
+              <div className="awb__rail">
+                {/* glow behind the cited slot */}
+                <span className="awb__halo" style={{ left: '50%' }} />
+                {/* event slots — the 4th (index 3, at 50%) is the cited one */}
+                {[8.5, 22.3, 36.2, 50, 63.8, 77.7, 91.5].map((x, i) => (
+                  <span key={i} className={`awb__node${i === 3 ? ' awb__node--sel' : ''}`} style={{ left: `${x}%` }} />
+                ))}
                 {/* telemetry ticks under each event */}
-                <span className="cit__tick" style={{ left: '4%', height: '8px' }} />
-                <span className="cit__tick" style={{ left: '20%', height: '6px' }} />
-                <span className="cit__tick" style={{ left: '36%', height: '10px' }} />
-                <span className="cit__tick" style={{ left: '52%', height: '5px' }} />
-                <span className="cit__tick" style={{ left: '66%', height: '9px' }} />
-                <span className="cit__tick" style={{ left: '82%', height: '7px' }} />
-                <span className="cit__tick" style={{ left: '96%', height: '4px' }} />
-                {/* the streaming run, and the cited event picked out of the trace */}
-                <span className="cit__run" />
-                <span className="cit__pick" />
+                {[8.5, 22.3, 36.2, 50, 63.8, 77.7, 91.5].map((x, i) => (
+                  <span key={`t${i}`} className={`awb__tick${i === 3 ? ' awb__tick--sel' : ''}`} style={{ left: `${x}%` }} />
+                ))}
+                {/* the travelling cited event — walks to the slot, then parks */}
+                <span className="awb__dot" />
               </div>
-              <p className="cit__lbl cit__lbl--tel">token · cost · latency</p>
 
-              {/* the footnote: the citation resolves to real trace metadata */}
-              <p className="cit__note"><span className="cit__note-num">2</span> trace 0x9f4a · permission check · pass · 14:32:07Z</p>
-
-              {/* status tag — swaps from "runtime · live" to "cited · compliant" */}
-              <div className="cit__tags">
-                <span className="cit__tag cit__tag--live">runtime · live</span>
-                <span className="cit__tag cit__tag--ok">cited · compliant</span>
-              </div>
+              {/* the trace metadata the citation resolves to */}
+              <p className="awb__lbl awb__lbl--tok">token · cost · latency</p>
+              <p className="awb__trace">trace 0x9f4a · permission check · pass · 14:32:07Z</p>
             </div>
           </div>
         </section>
