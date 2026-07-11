@@ -1,4 +1,5 @@
 'use client';
+import { bp } from '@/components/lib/base';
 import { useEffect } from 'react';
 
 /* v1 kept /agents alive as a redirect to /banking (the agents directory became
@@ -11,7 +12,7 @@ export default function Agents() {
     <main id="top">
       <section className="section">
         <div className="shell">
-          <p className="section__lede">The agents directory is now organized by industry — <a href="/banking">continue to Banking</a>.</p>
+          <p className="section__lede">The agents directory is now organized by industry — <a href={bp("/banking")}>continue to Banking</a>.</p>
         </div>
       </section>
     </main>

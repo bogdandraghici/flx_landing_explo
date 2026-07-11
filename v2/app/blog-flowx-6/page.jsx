@@ -1,3 +1,4 @@
+import { bp } from '@/components/lib/base';
 import CtaFieldInit from '@/components/CtaFieldInit';
 
 export const metadata = {
@@ -13,7 +14,7 @@ export default function BlogFlowx6() {
         {/* ================= ARTICLE HERO ================= */}
         <section className="post-hero">
           <div className="shell">
-            <a className="post-back" href="/resources">← Resources</a>
+            <a className="post-back" href={bp("/resources")}>← Resources</a>
             <p className="post-meta"><span className="amber">Updates</span><span>Jun 29, 2026</span><span>6 min read</span></p>
             <h1 className="post-title">FlowX.AI 6 Release Summary<span className="amber">.</span></h1>
             <div className="post-tags">
@@ -185,7 +186,7 @@ export default function BlogFlowx6() {
               <figure className="fig fig--wide">
                 <div className="shot">
                   <div className="shot__bar" aria-hidden="true"><i /><i /><i /></div>
-                  <img src="/blog/observatory-governance.png" alt="FlowX.AI Observatory — the Governance Hub dashboard showing observability, governance, and evidence capture" width="3840" height="2160" loading="lazy" />
+                  <img src={bp("/blog/observatory-governance.png")} alt="FlowX.AI Observatory — the Governance Hub dashboard showing observability, governance, and evidence capture" width="3840" height="2160" loading="lazy" />
                 </div>
                 <figcaption>Governance Hub in FlowX.AI 6 — compliance captured as the work happens</figcaption>
               </figure>
@@ -199,7 +200,7 @@ export default function BlogFlowx6() {
               <figure className="fig fig--wide">
                 <div className="shot">
                   <div className="shot__bar" aria-hidden="true"><i /><i /><i /></div>
-                  <img src="/blog/roi-hub.png" alt="FlowX.AI ROI Hub — net return from AI, time returned to employees, cost per outcome, and per-agent contribution" width="3840" height="2160" loading="lazy" />
+                  <img src={bp("/blog/roi-hub.png")} alt="FlowX.AI ROI Hub — net return from AI, time returned to employees, cost per outcome, and per-agent contribution" width="3840" height="2160" loading="lazy" />
                 </div>
                 <figcaption>ROI Hub in FlowX.AI 6 — live value from execution data</figcaption>
               </figure>
@@ -282,7 +283,7 @@ export default function BlogFlowx6() {
             </h2>
             <div className="cta__row rv" style={{ '--i': 2 }}>
               <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Book a demo</a>
-              <a className="btn btn--ghost btn--lg" href="/resources">More articles</a>
+              <a className="btn btn--ghost btn--lg" href={bp("/resources")}>More articles</a>
             </div>
           </div>
         </section>

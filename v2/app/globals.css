@@ -2584,59 +2584,451 @@ em { font-style: normal; }
 @keyframes fxc-tagok { 0%, 86% { opacity: 0; } 91%, 97% { opacity: 0.9; } 100% { opacity: 0; } }
 
 /* ============================================================
-   OBSERVATORY — hero viz "the live citation"
-   A live agent trace streams; one runtime event is picked out and an amber
-   citation line rises from it up to the regulation clause it satisfies — the
-   clause's footnote marker lights, and the footnote resolves to the real trace
-   metadata that proves it. Compliance, footnoted to reality. 12s story loop.
-   Base opacities encode the resolved pose so reduced-motion freezes on
-   "cited · compliant". Amber traces only the governance conclusion (the picked
-   event, the citation line, the clause marker, the footnote); the machine's
-   watching (the run dot, the trace, the telemetry) stays neutral.
+   OBSERVATORY — hero viz "audit walk-back" (Hero Variations 1c)
+   A live runtime trace runs along a timeline; the cited event walks to its
+   slot, then an amber citation arrow rises from the axis up to the exact
+   regulation clause it satisfies, holds while the clause resolves, and
+   retreats as the trace continues. Compliance, walked back to the rule. 23s
+   story loop. Base states encode the resolved pose so reduced-motion freezes
+   on the cited/compliant frame. Amber traces only the governance conclusion
+   (the cited slot, the arrow, the clause underline); the timeline stays neutral.
    ============================================================ */
-/* persistent scaffolding — the regulation document + the live trace */
-.cit-edge { stroke: rgba(var(--ink), 0.10); stroke-width: 1; }
-.cit-rule { fill: rgba(var(--ink), 0.09); }
-.cit-clause { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.02em; fill: rgba(var(--ink), 0.5); }
-.cit-spine { stroke: rgba(var(--ink), 0.14); stroke-width: 1; }
-.cit-node { fill: var(--bg-raised); stroke: rgba(var(--ink), 0.18); stroke-width: 1; }
-.cit-tick { stroke: rgba(var(--dia-dim), 0.35); stroke-width: 1.2; stroke-linecap: round; }
+/* Built in HTML/CSS, not a scaling canvas: the viz is a fixed-height coordinate
+   layer (fixed vertical positions in px) whose horizontal positions ride a
+   percentage grid. Every label, the clause and the trace line keep a fixed,
+   legible font-size — sizes and colors carried over from the prior hero visual;
+   on narrow viewports the figure compresses horizontally instead of shrinking
+   the text. --awb-arrow-h is the citation arrow's full travel from axis to clause. */
+.awb { position: relative; width: 100%; height: 440px; overflow: hidden; --awb-arrow-h: 212px; }
 
-/* neutral mover — the machine watching (hidden in the resolved pose) */
-.cit-run { fill: rgba(var(--dia-bright), 0.9); opacity: 0; animation: cit-run 12s linear infinite; }
-
-/* amber = the governance conclusion (the cited chain) */
-.cit-pick { fill: none; stroke: var(--amber); stroke-width: 1.4; animation: cit-pick 12s linear infinite; }
-.cit-line { fill: none; stroke: var(--amber); stroke-width: 1.3; stroke-dasharray: 176; stroke-dashoffset: 0; opacity: 1; animation: cit-line 12s linear infinite; }
-.cit-arr { fill: var(--amber); animation: cit-land 12s linear infinite; }
-.cit-mark { font-size: 7px; font-weight: 600; fill: var(--amber); animation: cit-land 12s linear infinite; }
-.cit-clause-hot { stroke: var(--amber); stroke-width: 1.3; stroke-linecap: round; animation: cit-land 12s linear infinite; }
-.cit-note { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.14em; fill: var(--text-faint); animation: cit-note 12s linear infinite; }
-.cit-note-num { fill: var(--amber); font-weight: 600; }
-
-.cit-tag--live { opacity: 0; animation: cit-taglive 12s linear infinite; }
-.cit-tag--ok { opacity: 0.9; animation: cit-tagok 12s linear infinite; }
-
-/* the run dot streams in, PARKS in the cited slot while the citation resolves
-   above it, then resumes to the right — 250px = the cited node (translateX 186) */
-@keyframes cit-run {
-  0% { opacity: 0; transform: translateX(0); }
-  3% { opacity: 1; transform: translateX(0); }
-  20%, 72% { opacity: 1; transform: translateX(186px); }
-  86% { opacity: 1; transform: translateX(332px); }
-  90%, 100% { opacity: 0; transform: translateX(332px); }
+/* labels — fixed legible size, pinned at fixed vertical positions */
+.awb__lbl {
+  position: absolute; left: 0; margin: 0;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-faint); white-space: nowrap;
 }
-@keyframes cit-pick { 0%, 18% { opacity: 0; } 22%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
-@keyframes cit-line {
-  0%, 24% { opacity: 0; stroke-dashoffset: 176; }
-  28% { opacity: 1; stroke-dashoffset: 176; }
-  44%, 94% { opacity: 1; stroke-dashoffset: 0; }
-  98%, 100% { opacity: 0; stroke-dashoffset: 0; }
+.awb__lbl--reg { top: 2px; }
+.awb__lbl--run { top: 254px; }
+.awb__lbl--tok { top: 340px; }
+
+/* REGULATION document — the clause plus faint redacted rule bars */
+.awb__doc { position: absolute; top: 30px; left: 0; right: 0; }
+.awb__bar { display: block; height: 4px; border-radius: 2px; background: rgba(var(--ink), 0.09); margin-bottom: 12px; }
+.awb__clause {
+  position: relative; margin: 4px 0 14px; height: 18px;
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.01em;
+  line-height: 18px; color: rgba(var(--ink), 0.5);
 }
-@keyframes cit-land { 0%, 46% { opacity: 0; } 52%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
-@keyframes cit-note { 0%, 56% { opacity: 0; } 62%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
-@keyframes cit-taglive { 0%, 3% { opacity: 0; } 7%, 46% { opacity: 0.9; } 52%, 100% { opacity: 0; } }
-@keyframes cit-tagok { 0%, 52% { opacity: 0; } 58%, 94% { opacity: 0.9; } 98%, 100% { opacity: 0; } }
+/* abstract placeholder that fades out as the real clause fades in with the arrow */
+.awb__ph {
+  position: absolute; left: 0; top: 6px; width: 62%; height: 5px; border-radius: 2.5px;
+  background: rgba(var(--ink), 0.11); opacity: 0; animation: awb-ph 23s linear infinite;
+}
+.awb__clause-t { position: relative; opacity: 1; animation: awb-clause 23s linear infinite; }
+/* the clause's amber underline lights when the citation lands */
+.awb__ul {
+  position: absolute; left: 0; right: 0; bottom: -5px; height: 1.3px;
+  background: var(--amber); border-radius: 1px;
+  opacity: 0.9; animation: awb-ul 23s linear infinite;
+}
+
+/* the citation arrow — a vertical amber thread from the cited slot up to the
+   clause; grows upward (height, bottom pinned on the axis) as the dot arrives */
+.awb__arrow {
+  position: absolute; left: 50%; margin-left: -0.75px; bottom: 140px;
+  width: 0; height: var(--awb-arrow-h);
+  border-left: 1.5px solid var(--amber); animation: awb-arrow 23s linear infinite;
+}
+.awb__arrowhead {
+  position: absolute; top: -6px; left: -4px; width: 0; height: 0;
+  border-left: 4px solid transparent; border-right: 4px solid transparent;
+  border-bottom: 6px solid var(--amber);
+  opacity: 1; animation: awb-head 23s linear infinite;
+}
+
+/* RUNTIME axis — a horizontal timeline with event slots + telemetry ticks */
+.awb__rail { position: absolute; top: 300px; left: 0; right: 0; height: 0; border-top: 1px solid rgba(var(--ink), 0.12); }
+.awb__node {
+  position: absolute; top: 0; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--bg-raised); border: 1px solid rgba(var(--ink), 0.18);
+  transform: translate(-50%, -50%);
+}
+/* the cited slot — a larger amber ring with a bright center pip */
+.awb__node--sel { width: 18px; height: 18px; border-color: var(--amber); border-width: 1.6px; }
+.awb__node--sel::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 7px; height: 7px;
+  border-radius: 50%; background: rgba(var(--ink), 0.92); transform: translate(-50%, -50%);
+}
+.awb__tick {
+  position: absolute; top: 9px; width: 0; height: 7px;
+  border-left: 1.2px solid rgba(var(--dia-dim), 0.4); border-radius: 1px;
+  transform: translateX(-50%);
+}
+.awb__tick--sel { height: 11px; border-left-color: var(--amber-line); }
+/* glow behind the cited slot; intensifies while the citation is held */
+.awb__halo {
+  position: absolute; top: 0; width: 40px; height: 40px; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(var(--amber-rgb), 0.5) 0%, rgba(var(--amber-rgb), 0) 70%);
+  opacity: 0.9; animation: awb-halo 23s linear infinite;
+}
+/* the travelling cited event — a solid amber dot that walks the axis, then parks */
+.awb__dot {
+  position: absolute; top: 0; left: 50%; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--amber); transform: translate(-50%, -50%);
+  animation: awb-dot 23s linear infinite;
+}
+
+/* the trace metadata the citation resolves to — fixed legible size */
+.awb__trace {
+  position: absolute; left: 0; right: 0; top: 360px; margin: 0;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+  line-height: 1.45; color: var(--text-faint);
+}
+
+/* phased 23s loop: walk in (7s) → arrow extends (1s) → hold (6s) → arrow
+   retreats (1s) → walk out (7s) → gap (1s). Percentages below map that timeline. */
+@keyframes awb-dot {
+  0%    { left: 8.5%; animation-timing-function: ease-in-out; }
+  30.4% { left: 50%;  animation-timing-function: linear; }
+  65.2% { left: 50%;  animation-timing-function: ease-in-out; }
+  95.7% { left: 91.5%; }
+  100%  { left: 91.5%; }
+}
+@keyframes awb-arrow {
+  0%    { height: 0; }
+  30.4% { height: 0; animation-timing-function: ease-out; }
+  34.8% { height: var(--awb-arrow-h); }
+  60.9% { height: var(--awb-arrow-h); animation-timing-function: ease-in; }
+  65.2% { height: 0; }
+  100%  { height: 0; }
+}
+@keyframes awb-head { 0%, 33.9% { opacity: 0; } 34.8%, 60.9% { opacity: 1; } 65.2%, 100% { opacity: 0; } }
+@keyframes awb-clause { 0%, 32% { opacity: 0; } 34.8%, 60.9% { opacity: 1; } 65.2%, 100% { opacity: 0; } }
+@keyframes awb-ph { 0%, 32% { opacity: 1; } 34.8%, 60.9% { opacity: 0; } 65.2%, 100% { opacity: 1; } }
+@keyframes awb-ul { 0%, 32% { opacity: 0; } 34.8%, 60.9% { opacity: 0.9; } 65.2%, 100% { opacity: 0; } }
+@keyframes awb-halo { 0%, 30.4% { opacity: 0.28; } 34.8%, 60.9% { opacity: 0.9; } 65.2%, 100% { opacity: 0.28; } }
+
+/* --- observatory sections: pipeline spine + stat meters ---
+   the spine schematic connects the four "regulation to runtime" cards with a
+   sparse geometric evidence path from rule to trace to answer. */
+.obp { display: block; margin: 8px 0 44px; }
+/* the stitch: regulation and runtime as two rails, tied together at each of the
+   four steps by a single amber thread — the clause rides the top rail, the live
+   trace runs the bottom, the answer step resolves into a sealed node. Built in
+   HTML (not a scaling SVG) so vertical size and label text stay fixed and
+   legible; the threads sit on a percentage grid, so narrow viewports compress
+   the diagram horizontally instead of shrinking the whole thing. */
+.stitch__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 6px;
+}
+.stitch__step {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(var(--ink), 0.5);
+}
+.stitch__step--answer { color: var(--amber-text); }
+
+.stitch__body { position: relative; height: 120px; }
+
+/* the two rails: regulation (dashed) and runtime (solid, with a sampled band) */
+.stitch__rail { position: absolute; left: 0; right: 0; height: 0; }
+.stitch__rail--reg { top: 18px; border-top: 1px dashed rgba(var(--ink), 0.2); }
+.stitch__rail--run { top: 102px; border-top: 1px solid rgba(var(--ink), 0.16); }
+.stitch__rail--run::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: -7px;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, rgba(var(--ink), 0.28) 0 1px, transparent 1px 14px);
+}
+
+/* the § 4.2 clause chip anchored on the regulation rail */
+.stitch__cite {
+  position: absolute;
+  left: 0; top: 18px;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--amber-text);
+  /* opaque page-bg base under the amber tint so the dashed rail it sits on
+     doesn't show through the translucent --amber-soft */
+  background: linear-gradient(var(--amber-soft), var(--amber-soft)), var(--bg);
+  border: 1px solid var(--amber-line);
+  border-radius: 4px;
+  padding: 3px 9px;
+}
+
+/* the rail context labels */
+.stitch__lbl {
+  position: absolute;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.stitch__lbl--reg { top: 0; }
+.stitch__lbl--run { top: 108px; }
+
+/* the four amber threads, centered in a 4-column grid that tracks the cards */
+.stitch__threads {
+  position: absolute;
+  left: 0; right: 0;
+  top: 18px;
+  height: 84px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.stitch__thread {
+  position: relative;
+  justify-self: center;
+  align-self: stretch;
+  width: 1px;
+  background: var(--amber);
+}
+.stitch__thread::before,
+.stitch__thread::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--amber);
+  transform: translate(-50%, -50%);
+}
+.stitch__thread::before { top: 0; }
+.stitch__thread::after { top: 100%; }
+/* answer — the closing stitch, resolved into a sealed node on the trace */
+.stitch__thread--answer::after {
+  width: 8px; height: 8px;
+  box-shadow: 0 0 0 5px rgba(var(--amber-rgb), 0.18);
+}
+
+/* the stitch in motion: a soft amber pulse descends each thread from the
+   regulation rail down to the runtime rail — evidence flowing rule → live
+   trace — staggered left→right across compile · enforce · evidence · answer.
+   Subtle, slow, amber-only; the drawn threads stay the resolved pose, and the
+   answer's sealed node gives a quiet bloom as the closing stitch lands. */
+.stitch__flow {
+  position: absolute;
+  left: 50%; top: 0;
+  width: 3px; height: 22px;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, transparent, var(--amber));
+  box-shadow: 0 0 5px rgba(var(--amber-rgb), 0.55);
+  opacity: 0;
+  transform: translate(-50%, -22px);
+  animation: stitch-flow 5s var(--ease) infinite;
+}
+.stitch__thread:nth-child(2) .stitch__flow { animation-delay: 0.5s; }
+.stitch__thread:nth-child(3) .stitch__flow { animation-delay: 1s; }
+.stitch__thread:nth-child(4) .stitch__flow { animation-delay: 1.5s; }
+.stitch__thread--answer::after { animation: stitch-seal 5s var(--ease) 1.5s infinite; }
+
+@keyframes stitch-flow {
+  0% { opacity: 0; transform: translate(-50%, -22px); }
+  12% { opacity: 0.9; }
+  50% { opacity: 0.9; transform: translate(-50%, 62px); }
+  62%, 100% { opacity: 0; transform: translate(-50%, 84px); }
+}
+@keyframes stitch-seal {
+  0%, 46% { box-shadow: 0 0 0 5px rgba(var(--amber-rgb), 0.14); }
+  56% { box-shadow: 0 0 0 7px rgba(var(--amber-rgb), 0.28); }
+  70%, 100% { box-shadow: 0 0 0 5px rgba(var(--amber-rgb), 0.14); }
+}
+
+/* on smaller screens the columns get narrow: drop the faint rail captions and
+   the clause chip (which would otherwise overlap the first thread) — the four
+   stitches, step labels and both rails still carry the diagram */
+@media (max-width: 640px) {
+  .stitch__lbl,
+  .stitch__cite { display: none; }
+  .stitch__step { font-size: 10px; letter-spacing: 0.14em; }
+}
+
+/* stat meters (03 / why now) — one shared hairline track per row, restating
+   the number as marks: fill / fill / timeline+deadline / six on the rail */
+.stats--obs .stats__row dt { flex-direction: column; align-items: flex-start; gap: 14px; }
+/* unit sits inside .stats__val here (so the meter can stack below), so restore
+   the spacing the dt flex gap used to give it — but keep the −/$ prefix tight */
+.stats--obs .stats__val .stats__unit { margin-left: 8px; }
+.stats__meter { display: block; width: 200px; max-width: 70%; height: auto; overflow: visible; }
+.om-track { stroke: rgba(var(--ink), 0.10); stroke-width: 1; }
+.om-fill { stroke: rgba(var(--dia-bright), 0.55); stroke-width: 3; }
+.om-cap { stroke: rgba(var(--dia-bright), 0.75); stroke-width: 1.2; }
+.om-tick { stroke: rgba(var(--ink), 0.18); stroke-width: 1; }
+.om-mark { stroke: var(--amber); stroke-width: 1.6; }
+.om-count { stroke: rgba(var(--dia-bright), 0.6); stroke-width: 2; stroke-linecap: round; }
+
+/* the .seg cards on this page are static content, not links or interactive
+   controls (unlike the industry pages' [data-stages] segments), so they carry
+   no hover cue — a hover response must always signal "you can click this". */
+.page-observatory .seg { transition: none; }
+.page-observatory .seg:hover { border-color: var(--line); }
+
+/* ------------------------------------------------------------------
+   WHAT IT DOES — the evidence ledger
+   A single bordered pane: copy on the left, a live ledger on the right
+   where captured runs stream in with policy verdict + sealed evidence.
+   Built in HTML/CSS on the page tokens so it stays legible and theme-
+   aware, compresses horizontally, and stacks under the copy when narrow.
+   ------------------------------------------------------------------ */
+.eled {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-raised);
+  overflow: hidden;
+}
+.eled__top {
+  display: grid;
+  grid-template-columns: minmax(340px, 1.25fr) minmax(0, 0.85fr);
+}
+/* the six capability cards, joined to the pane as one unit: a hairline grid
+   (1px gaps over a line-colored bed) gives separators that match the divider
+   between the copy and ledger panels above. */
+.eled__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+}
+.eled__cards .seg {
+  border: 0;
+  border-radius: 0;
+  background: var(--bg-raised);
+  padding: clamp(24px, 2.2vw, 30px);
+}
+.eled__copy {
+  padding: clamp(30px, 3.4vw, 52px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.eled__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-top: 0;
+  margin-bottom: 20px;
+}
+/* the copy sits in a wide left column, so let the title and lede fill it
+   rather than wrapping early against the base .h2 / lede measures */
+.eled__copy .h2 { margin: 0; max-width: none; }
+.eled__copy .section__lede { margin-top: 18px; max-width: none; }
+
+.eled__viz {
+  position: relative;
+  border-left: 1px solid var(--line);
+  padding: clamp(24px, 2.4vw, 36px) clamp(24px, 2.4vw, 34px);
+  min-height: 372px;
+  display: flex;
+  flex-direction: column;
+}
+.eled__head,
+.eled__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.95fr) minmax(0, 1.15fr);
+  align-items: center;
+  column-gap: 16px;
+}
+.eled__head {
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.eled__stream {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+}
+.eled__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  animation: eled-scroll 24s linear infinite;
+}
+@keyframes eled-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.eled__row { height: 46px; }
+
+.eled__run {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.eled__runled {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(var(--dia-dim), 0.5);
+  flex: none;
+}
+.eled__id { color: var(--text); }
+
+.eled__verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: start;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 10px 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.eled__vdot { width: 5px; height: 5px; border-radius: 50%; flex: none; }
+.eled__verdict--pass { color: var(--text-dim); }
+.eled__verdict--pass .eled__vdot { background: rgba(var(--dia-bright), 0.85); }
+.eled__verdict--flag { color: var(--text-faint); }
+.eled__verdict--flag .eled__vdot { background: transparent; border: 1px solid rgba(var(--ink), 0.28); }
+
+.eled__ev { display: flex; align-items: center; gap: 12px; }
+.eled__hash { display: inline-flex; gap: 3px; }
+.eled__hash i {
+  width: 5px; height: 5px; border-radius: 1px;
+  background: rgba(var(--ink), 0.12);
+}
+.eled__hash i.is-on { background: rgba(var(--dia-dim), 0.5); }
+.eled__seal { width: 13px; height: 13px; flex: none; }
+.eled__seal path {
+  fill: none;
+  stroke: rgba(var(--dia-bright), 0.7);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 900px) {
+  .eled__top { grid-template-columns: 1fr; }
+  .eled__viz { border-left: none; border-top: 1px solid var(--line); min-height: 320px; }
+  .eled__cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .eled__cards { grid-template-columns: 1fr; }
+}
 
 /* ============================================================
    REDUCED MOTION
@@ -2683,10 +3075,17 @@ em { font-style: normal; }
   .fxc-type { opacity: 1; }
   .fxc-commit, .fxc-tag--ok { opacity: 1; }
   .fxc-wait, .fxc-tag--draft { opacity: 0; }
-  /* observatory hero: freeze on the resolved pose (event cited, clause backed) */
-  .cit-pick, .cit-line, .cit-arr, .cit-mark, .cit-clause-hot,
-  .cit-note, .cit-tag--live, .cit-tag--ok { animation: none; }
-  .cit-run { animation: none; display: none; }
+  /* observatory hero: freeze on the resolved pose (event cited, clause backed);
+     base states already encode the resolved pose, so cutting the animation lands
+     there — arrow extended to the clause, underline lit, cited dot parked */
+  .awb__clause-t, .awb__ph, .awb__ul, .awb__arrow, .awb__arrowhead,
+  .awb__halo, .awb__dot { animation: none; }
+  /* observatory regulation→runtime stitch: freeze on the fully-stitched pose
+     (threads drawn, sealed node set) — drop the traveling pulse */
+  .stitch__flow { animation: none; opacity: 0; }
+  .stitch__thread--answer::after { animation: none; }
+  /* evidence ledger: hold the filled pane still (first set of rows fills it) */
+  .eled__track { animation: none; }
 }
 
 /* ============================================================
@@ -2930,19 +3329,22 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .abd-hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 
 /* --- thesis: the RAILS claim, centered as a deliberate pause between hairlines --- */
-.abd-thesis { border-block: 1px solid var(--line-soft); padding: clamp(72px, 12vh, 128px) 0; text-align: center; }
+.abd-thesis { border-block: 1px solid var(--line-soft); padding: clamp(64px, 10vh, 112px) 0; }
+/* a distinct, full-width statement — deliberately NOT on the section__head grid
+   the numbered sections use, so the thesis reads as its own beat rather than
+   echoing the section header that follows it */
 .abd-thesis blockquote {
+  margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 3.4vw, 2.7rem);
-  font-weight: 560;
-  line-height: 1.2;
-  letter-spacing: -0.022em;
+  font-size: clamp(2rem, 3.9vw, 3.4rem);
+  font-weight: 620;
+  line-height: 1.05;
+  letter-spacing: -0.032em;
   color: var(--text);
-  max-width: 22ch;
-  margin-inline: auto;
+  max-width: 24ch;
   text-wrap: balance;
 }
-.abd-thesis p { margin: 26px auto 0; max-width: 62ch; font-size: 16.5px; color: var(--text-dim); line-height: 1.65; text-wrap: pretty; }
+.abd-thesis p { margin-top: 20px; max-width: 58ch; line-height: 1.65; text-wrap: pretty; }
 .abd-thesis__tag { display: block; margin-top: 26px; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); }
 
 /* --- pipeline: four steps on one row --- */

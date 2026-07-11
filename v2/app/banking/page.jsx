@@ -1,3 +1,4 @@
+import { bp } from '@/components/lib/base';
 import IndustryInit from '@/components/IndustryInit';
 
 export const metadata = {
@@ -383,7 +384,7 @@ export default function Banking() {
             </h2>
             <div className="cta__row rv" style={{ '--i': 2 }}>
               <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Schedule a customized demo</a>
-              <a className="btn btn--ghost btn--lg" href="/#hero">Compile your own agent</a>
+              <a className="btn btn--ghost btn--lg" href={bp("/#hero")}>Compile your own agent</a>
             </div>
           </div>
         </section>

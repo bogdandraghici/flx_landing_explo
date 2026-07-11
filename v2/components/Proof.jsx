@@ -34,7 +34,7 @@ const STATS = [
   [6.4, 1, 'wks', 'median time from kickoff to first agent in production'],
   [2.7, 1, 'M+/day', 'governed agent decisions executed across live deployments'],
   [97.3, 1, '%', 'straight-through processing on document-heavy flows'],
-  [0, 0, ' ', 'agent actions outside the audit log — by construction, not by policy'],
+  [0, 0, ' ', 'agent actions outside the audit log — by construction, not by policy'],
 ];
 
 export default function Proof() {

@@ -1,5 +1,6 @@
 import RoiCalculator from '@/components/RoiCalculator';
 import CtaFieldInit from '@/components/CtaFieldInit';
+import { bp } from '@/components/lib/base';
 
 export const metadata = {
   title: 'FlowX — Agent ROI Calculator',
@@ -122,7 +123,7 @@ export default function RoiCalculatorPage() {
           </p>
           <div className="cta__row rv" style={{ '--i': 3 }}>
             <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Agent%20ROI%20review">Book an ROI review</a>
-            <a className="btn btn--ghost btn--lg" href="/agents">Browse the agent catalog</a>
+            <a className="btn btn--ghost btn--lg" href={bp('/agents')}>Browse the agent catalog</a>
           </div>
         </div>
       </section>
