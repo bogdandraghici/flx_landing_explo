@@ -235,6 +235,7 @@ export default function Observatory() {
                  in HTML/CSS (mono text stays legible, theme-aware) so it compresses
                  horizontally and stacks under the copy on narrow viewports. */}
             <div className="eled rv">
+              <div className="eled__top">
               <div className="eled__copy">
                 <p className="section__no mono eled__eyebrow">
                   <span className="tick" aria-hidden="true" />02 / What it does
@@ -257,39 +258,40 @@ export default function Observatory() {
                   </div>
                 </div>
               </div>
-            </div>
+              </div>
 
-            <div className="segs segs--3 eled__cards">
-              <article className="seg rv" style={{ '--i': 0 }}>
-                <span className="seg__no mono">01</span>
-                <h3 className="seg__name">Policy engine</h3>
-                <p className="seg__desc">Machine-checkable rules enforced against live telemetry, grouped into reusable regulatory packs.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 1 }}>
-                <span className="seg__no mono">02</span>
-                <h3 className="seg__name">Evidence pipeline</h3>
-                <p className="seg__desc">Compliance evidence auto-collected from traces, with a collect → review → approve workflow.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 2 }}>
-                <span className="seg__no mono">03</span>
-                <h3 className="seg__name">Regulatory mapping</h3>
-                <p className="seg__desc">EU AI Act, GDPR, HIPAA, SOC 2, PCI-DSS, ISO 27001 — requirement → policy → evidence, with continuous gap analysis.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 3 }}>
-                <span className="seg__no mono">04</span>
-                <h3 className="seg__name">Execution tracing</h3>
-                <p className="seg__desc">Hierarchical traces of every run, tool call, retrieval and decision, with token, cost and latency telemetry.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 4 }}>
-                <span className="seg__no mono">05</span>
-                <h3 className="seg__name">Risk-based oversight</h3>
-                <p className="seg__desc">In-the-loop for high-risk, on-the-loop otherwise, with a kill switch — human review recorded as evidence.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 5 }}>
-                <span className="seg__no mono">06</span>
-                <h3 className="seg__name">Immutable audit trail</h3>
-                <p className="seg__desc">Every access, enforcement action and human review recorded, tamper-evident, and retained for years.</p>
-              </article>
+              <div className="eled__cards">
+                <article className="seg">
+                  <span className="seg__no mono">01</span>
+                  <h3 className="seg__name">Policy engine</h3>
+                  <p className="seg__desc">Machine-checkable rules enforced against live telemetry, grouped into reusable regulatory packs.</p>
+                </article>
+                <article className="seg">
+                  <span className="seg__no mono">02</span>
+                  <h3 className="seg__name">Evidence pipeline</h3>
+                  <p className="seg__desc">Compliance evidence auto-collected from traces, with a collect → review → approve workflow.</p>
+                </article>
+                <article className="seg">
+                  <span className="seg__no mono">03</span>
+                  <h3 className="seg__name">Regulatory mapping</h3>
+                  <p className="seg__desc">EU AI Act, GDPR, HIPAA, SOC 2, PCI-DSS, ISO 27001 — requirement → policy → evidence, with continuous gap analysis.</p>
+                </article>
+                <article className="seg">
+                  <span className="seg__no mono">04</span>
+                  <h3 className="seg__name">Execution tracing</h3>
+                  <p className="seg__desc">Hierarchical traces of every run, tool call, retrieval and decision, with token, cost and latency telemetry.</p>
+                </article>
+                <article className="seg">
+                  <span className="seg__no mono">05</span>
+                  <h3 className="seg__name">Risk-based oversight</h3>
+                  <p className="seg__desc">In-the-loop for high-risk, on-the-loop otherwise, with a kill switch — human review recorded as evidence.</p>
+                </article>
+                <article className="seg">
+                  <span className="seg__no mono">06</span>
+                  <h3 className="seg__name">Immutable audit trail</h3>
+                  <p className="seg__desc">Every access, enforcement action and human review recorded, tamper-evident, and retained for years.</p>
+                </article>
+              </div>
             </div>
           </div>
         </section>

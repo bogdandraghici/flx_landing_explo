@@ -2874,13 +2874,30 @@ em { font-style: normal; }
    aware, compresses horizontally, and stacks under the copy when narrow.
    ------------------------------------------------------------------ */
 .eled {
-  display: grid;
-  grid-template-columns: minmax(340px, 1.25fr) minmax(0, 0.85fr);
   border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--bg-raised);
   overflow: hidden;
-  margin-bottom: clamp(40px, 6vh, 72px);
+}
+.eled__top {
+  display: grid;
+  grid-template-columns: minmax(340px, 1.25fr) minmax(0, 0.85fr);
+}
+/* the six capability cards, joined to the pane as one unit: a hairline grid
+   (1px gaps over a line-colored bed) gives separators that match the divider
+   between the copy and ledger panels above. */
+.eled__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+}
+.eled__cards .seg {
+  border: 0;
+  border-radius: 0;
+  background: var(--bg-raised);
+  padding: clamp(24px, 2.2vw, 30px);
 }
 .eled__copy {
   padding: clamp(30px, 3.4vw, 52px);
@@ -2992,8 +3009,12 @@ em { font-style: normal; }
 }
 
 @media (max-width: 900px) {
-  .eled { grid-template-columns: 1fr; }
+  .eled__top { grid-template-columns: 1fr; }
   .eled__viz { border-left: none; border-top: 1px solid var(--line); min-height: 320px; }
+  .eled__cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .eled__cards { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
