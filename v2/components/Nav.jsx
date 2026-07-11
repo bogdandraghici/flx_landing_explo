@@ -84,12 +84,12 @@ export default function Nav() {
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">By use case</p>
-                    <a href={bp("/solutions/onboarding")}><span className="nav__link-t">Onboarding</span></a>
-                    <a href={bp("/solutions/lending")}><span className="nav__link-t">Lending</span></a>
-                    <a href={bp("/solutions/underwriting")}><span className="nav__link-t">Underwriting</span></a>
-                    <a href={bp("/solutions/claims")}><span className="nav__link-t">Claims</span></a>
-                    <a href={bp("/solutions/quoting")}><span className="nav__link-t">Quoting</span></a>
-                    <a href={bp("/solutions/track-and-trace")}><span className="nav__link-t">Track &amp; trace</span></a>
+                    <a href={bp("/ai-agents?use=onboarding")}><span className="nav__link-t">Onboarding</span></a>
+                    <a href={bp("/ai-agents?use=lending")}><span className="nav__link-t">Lending</span></a>
+                    <a href={bp("/ai-agents?use=underwriting")}><span className="nav__link-t">Underwriting</span></a>
+                    <a href={bp("/ai-agents?use=claims")}><span className="nav__link-t">Claims</span></a>
+                    <a href={bp("/ai-agents?use=quoting")}><span className="nav__link-t">Quoting</span></a>
+                    <a href={bp("/ai-agents?industry=Logistics")}><span className="nav__link-t">Track &amp; trace</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Explore</p>

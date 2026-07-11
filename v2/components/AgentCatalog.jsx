@@ -15,6 +15,22 @@ const INDUSTRIES = ['All', 'Banking', 'Insurance', 'Logistics'];
 const EFFORTS = ['All', 'Low', 'Medium', 'High'];
 const EFFORT_LEVEL = { Low: 1, Medium: 2, High: 3 };
 
+/* Use cases mirror the site's "Solutions → by use case" taxonomy. Each is a
+   curated keyword preset matched across an agent's category + descriptive text
+   (the dataset has no single use-case field). Track & trace is intentionally
+   absent — the logistics agents here are pricing/routing/maintenance, with no
+   clean visibility subset — so its nav link filters by the Logistics industry
+   instead. */
+const USE_CASES = [
+  { id: 'onboarding', label: 'Onboarding', kw: ['onboarding', 'account opening', 'kyc', 'know your customer', 'due diligence'] },
+  { id: 'lending', label: 'Lending', kw: ['lending', 'loan', 'mortgage', 'factoring', 'credit facility', 'borrower'] },
+  { id: 'underwriting', label: 'Underwriting', kw: ['underwrit'] },
+  { id: 'claims', label: 'Claims', kw: ['claim'] },
+  { id: 'quoting', label: 'Quoting & pricing', kw: ['quoting', 'quote', 'pricing', 'fee quoter', 'premium rating', 'rate optimization'] },
+];
+const USE_BY_ID = Object.fromEntries(USE_CASES.map((u) => [u.id, u]));
+const useHaystack = (a) => `${a.stack || ''} ${a.sector || ''} ${a.name} ${a.does} ${a.problem || ''}`.toLowerCase();
+
 function EffortMeter({ level, label = false }) {
   const n = EFFORT_LEVEL[level] || 2;
   return (
@@ -28,11 +44,29 @@ function EffortMeter({ level, label = false }) {
   );
 }
 
+/* Default rows shown before "Load more". The grid is 4-up on desktop, so 12 ≈
+   three rows there (fewer columns → more rows, still a sensible first screen). */
+const PAGE_SIZE = 12;
+
 export default function AgentCatalog() {
   const [query, setQuery] = useState('');
   const [industry, setIndustry] = useState('All');
   const [effort, setEffort] = useState('All');
+  const [useCase, setUseCase] = useState('All');
+  const [visible, setVisible] = useState(PAGE_SIZE);
   const [selected, setSelected] = useState(null);
+
+  // deep-link support: /ai-agents?use=claims or ?industry=Logistics (read on
+  // mount; window-based to stay static-export friendly, no Suspense needed).
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    const u = p.get('use');
+    if (u && USE_BY_ID[u]) setUseCase(u);
+    const ind = p.get('industry');
+    if (ind && INDUSTRIES.includes(ind)) setIndustry(ind);
+    const q = p.get('q');
+    if (q) setQuery(q);
+  }, []);
 
   const byName = useMemo(() => {
     const m = new Map();
@@ -48,15 +82,20 @@ export default function AgentCatalog() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
+    const uc = useCase !== 'All' ? USE_BY_ID[useCase] : null;
     return AGENTS.filter((a) => {
       if (industry !== 'All' && a.industry !== industry) return false;
       if (effort !== 'All' && a.complexity !== effort) return false;
+      if (uc && !uc.kw.some((w) => useHaystack(a).includes(w))) return false;
       if (!q) return true;
       return [a.name, a.does, a.problem, a.stack, a.sector, a.funcs]
         .filter(Boolean)
         .some((f) => f.toLowerCase().includes(q));
     });
-  }, [query, industry, effort]);
+  }, [query, industry, effort, useCase]);
+
+  // reset the visible window whenever the result set changes
+  useEffect(() => { setVisible(PAGE_SIZE); }, [query, industry, effort, useCase]);
 
   // close the drawer on Escape
   useEffect(() => {
@@ -108,13 +147,22 @@ export default function AgentCatalog() {
               </button>
             ))}
           </div>
+
+          <label className="ac__usecase">
+            <span className="ac__usecase-label mono">Use case</span>
+            <select className="ac__usecase-select mono" value={useCase} onChange={(e) => setUseCase(e.target.value)}>
+              <option value="All">Any use case</option>
+              {USE_CASES.map((u) => <option key={u.id} value={u.id}>{u.label}</option>)}
+            </select>
+          </label>
         </div>
       </div>
 
       <p className="ac__count mono">
         {filtered.length} {filtered.length === 1 ? 'agent' : 'agents'}
-        {(industry !== 'All' || effort !== 'All' || query) && (
-          <button type="button" className="ac__clear" onClick={() => { setQuery(''); setIndustry('All'); setEffort('All'); }}>
+        {useCase !== 'All' && <span className="ac__count-tag">· {USE_BY_ID[useCase].label}</span>}
+        {(industry !== 'All' || effort !== 'All' || useCase !== 'All' || query) && (
+          <button type="button" className="ac__clear" onClick={() => { setQuery(''); setIndustry('All'); setEffort('All'); setUseCase('All'); }}>
             Clear filters
           </button>
         )}
@@ -124,21 +172,31 @@ export default function AgentCatalog() {
       {filtered.length === 0 ? (
         <p className="ac__empty">No agents match that. Try a broader search or clear the filters.</p>
       ) : (
-        <div className="ac__grid">
-          {filtered.map((a) => (
-            <button key={a.slug} type="button" className="ac__card" onClick={() => setSelected(a)}>
-              <span className="ac__card-eyebrow mono">
-                {a.industry}{a.sector ? ` · ${a.sector}` : ''}
-              </span>
-              <span className="ac__card-name">{a.name}</span>
-              <span className="ac__card-does">{a.does}</span>
-              <span className="ac__card-foot">
-                <EffortMeter level={a.complexity} />
-                <span className="ac__card-more mono">Details →</span>
-              </span>
-            </button>
-          ))}
-        </div>
+        <>
+          <div className="ac__grid">
+            {filtered.slice(0, visible).map((a) => (
+              <button key={a.slug} type="button" className="ac__card" onClick={() => setSelected(a)}>
+                <span className="ac__card-eyebrow mono">
+                  {a.industry}{a.sector ? ` · ${a.sector}` : ''}
+                </span>
+                <span className="ac__card-name">{a.name}</span>
+                <span className="ac__card-does">{a.does}</span>
+                <span className="ac__card-foot">
+                  <EffortMeter level={a.complexity} />
+                  <span className="ac__card-more mono">Details →</span>
+                </span>
+              </button>
+            ))}
+          </div>
+          {visible < filtered.length && (
+            <div className="ac__more">
+              <button type="button" className="btn btn--ghost" onClick={() => setVisible((v) => v + PAGE_SIZE)}>
+                Load more
+              </button>
+              <span className="ac__more-count mono">Showing {Math.min(visible, filtered.length)} of {filtered.length}</span>
+            </div>
+          )}
+        </>
       )}
 
       {/* ---- detail drawer ---- */}
