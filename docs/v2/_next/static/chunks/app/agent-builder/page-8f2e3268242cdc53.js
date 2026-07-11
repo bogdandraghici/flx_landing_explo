@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[234,597,752,997],{716:(e,t,u)=>{"use strict";u.d(t,{default:()=>c});var n=u(2115),s=u(7267);function c(){return(0,n.useEffect)(()=>{let e=document.querySelector(".cta__canvas");e&&(0,s.B)(e)},[]),null}},9947:(e,t,u)=>{Promise.resolve().then(u.bind(u,716))}},e=>{e.O(0,[267,441,255,358],()=>e(e.s=9947)),_N_E=e.O()}]);
