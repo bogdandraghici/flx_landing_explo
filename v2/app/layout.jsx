@@ -22,8 +22,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // suppressHydrationWarning: the no-flash THEME_SCRIPT sets data-theme on
+  // <html> before React hydrates, so the client attribute intentionally differs
+  // from the server HTML. Scoped to this element's own attributes.
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <link rel="icon" href={FAVICON} />
