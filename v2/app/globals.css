@@ -3194,6 +3194,47 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .roi__table-empty { text-align: center; padding: 40px 12px; color: var(--text-faint); }
 .roi__note { margin-top: 16px; font-size: 12px; color: var(--text-faint); line-height: 1.6; }
 .roi__note strong { color: var(--text-dim); font-weight: 600; }
+.roi__note a { color: var(--amber-text); border-bottom: 1px solid var(--amber-line); }
+
+/* optional-field marker + methodology link under the headline value */
+.roi__opt { color: var(--text-faint); font-weight: 400; }
+.roi__valnote { display: inline-block; margin-top: 12px; font-size: 11.5px; color: var(--text-dim); border-bottom: 1px dashed rgba(var(--ink), 0.2); transition: color 0.2s ease, border-color 0.2s ease; }
+.roi__valnote:hover { color: var(--text); border-color: var(--amber-line); }
+
+/* net-of-cost strip in the hero (shown once a platform cost is entered) */
+.roi__net {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px;
+  margin-top: 16px; padding: 12px 14px;
+  border: 1px solid var(--line); border-radius: 10px; background: rgba(var(--ink), 0.02);
+  font-size: 12.5px; color: var(--text-faint);
+}
+.roi__net-op { color: var(--text-faint); }
+.roi__net-total { color: var(--text); font-weight: 600; }
+
+/* ---- on-page methodology explainer ---- */
+.roi-method { padding-top: clamp(48px, 8vh, 96px); }
+.roi-method__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(28px, 4vw, 64px); align-items: start; }
+@media (max-width: 900px) { .roi-method__grid { grid-template-columns: 1fr; } }
+.roi-method__steps { list-style: none; display: flex; flex-direction: column; gap: 4px; counter-reset: rm; }
+.roi-method__step { display: grid; grid-template-columns: 30px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
+.roi-method__step:first-child { border-top: none; }
+.roi-method__step::before {
+  counter-increment: rm; content: counter(rm);
+  font-family: var(--font-mono); font-size: 11px; color: var(--amber-text);
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border: 1px solid var(--amber-line); border-radius: 50%;
+}
+.roi-method__step h3 { font-family: var(--font-display); font-size: 15.5px; font-weight: 560; letter-spacing: -0.01em; margin-bottom: 4px; }
+.roi-method__step p { font-size: 13.5px; color: var(--text-dim); line-height: 1.55; }
+.roi-method__formula { display: block; margin-top: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--amber-text); background: var(--amber-soft); border: 1px solid var(--amber-line); border-radius: 8px; padding: 8px 10px; overflow-x: auto; }
+.roi-method__aside { border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); padding: clamp(20px, 2.2vw, 28px); box-shadow: var(--shadow-card); }
+.roi-method__aside h3 { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 12px; }
+.roi-method__aside h3:not(:first-child) { margin-top: 22px; }
+.roi-method__list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.roi-method__list li { font-size: 13px; color: var(--text-dim); line-height: 1.5; padding-left: 16px; position: relative; }
+.roi-method__list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--amber); }
+.roi-method__list li strong { color: var(--text); font-weight: 600; }
+.roi-method__honest { margin-top: 22px; font-size: 12.5px; color: var(--text-faint); line-height: 1.6; border-top: 1px solid var(--line-soft); padding-top: 16px; }
 
 /* ---- lead modal ---- */
 .roi__modal {
