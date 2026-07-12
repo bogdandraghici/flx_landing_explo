@@ -18,6 +18,11 @@ const nextConfig = isPages
       // out-pages/ IS the export to copy to docs/v2. Lets us publish while
       // `npm run dev` is running.
       distDir: 'out-pages',
+      // Pin the build ID so identical source produces a byte-identical export
+      // (Next randomizes it per build otherwise). Keeps auto-publish from
+      // committing pure build-ID churn to docs/v2 on every push. Chunk files
+      // are still content-hashed, so real changes still surface.
+      generateBuildId: () => 'flx-v2',
       trailingSlash: true,
       images: { unoptimized: true },
       basePath: BASE_PATH,
