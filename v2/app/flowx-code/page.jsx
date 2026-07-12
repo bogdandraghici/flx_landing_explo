@@ -1,4 +1,5 @@
 import FlowxCodeInit from '@/components/FlowxCodeInit';
+import FlowxCodeHeroViz from '@/components/FlowxCodeHeroViz';
 
 export const metadata = {
   title: 'FlowX — FlowX Code',
@@ -36,83 +37,10 @@ export default function FlowxCode() {
               </p>
             </div>
 
-            {/* contract compiler rail: natural language enters the CLI, is grounded by
-                 the live registry, becomes one schema-bound resource bundle, validates,
-                 then stops at the human Save gate before anything commits. */}
-            <div className="ahero__viz" aria-hidden="true">
-              <svg viewBox="0 0 460 460" role="img" aria-label="A natural-language CLI request is compiled into a live-registry-grounded, contract-validated resource bundle, then committed only after a human Save action">
-                <g className="fxc-zones">
-                  <line x1="210" y1="108" x2="210" y2="338" />
-                  <line x1="364" y1="108" x2="364" y2="338" />
-                  <text className="ivz-lbl" x="112" y="96" textAnchor="middle">write</text>
-                  <text className="ivz-lbl" x="288" y="96" textAnchor="middle">compile resource</text>
-                  <text className="ivz-lbl" x="406" y="96" textAnchor="middle">save</text>
-                </g>
-
-                <g className="fxc-terminal">
-                  <rect className="fxc-term-shell" x="40" y="130" width="154" height="118" rx="12" />
-                  <circle className="fxc-dot" cx="58" cy="148" r="2.5" />
-                  <circle className="fxc-dot" cx="69" cy="148" r="2.5" />
-                  <circle className="fxc-dot" cx="80" cy="148" r="2.5" />
-                  <text className="fxc-cli" x="58" y="174">&gt; describe</text>
-                  <line className="fxc-type fxc-type--one" x1="58" y1="194" x2="166" y2="194" />
-                  <line className="fxc-type fxc-type--two" x1="58" y1="214" x2="138" y2="214" />
-                  <g className="fxc-caret-track">
-                    <rect className="fxc-caret" x="60" y="187" width="2" height="14" />
-                  </g>
-                </g>
-
-                <line className="fxc-rail" x1="194" y1="210" x2="376" y2="210" />
-                <line className="fxc-rail-hot" x1="194" y1="210" x2="376" y2="210" />
-
-                <text className="ivz-lbl" x="112" y="284" textAnchor="middle">live registry</text>
-                <g className="fxc-registry">
-                  <rect className="fxc-reg-box" x="54" y="296" width="116" height="44" rx="8" />
-                  <line className="fxc-reg-row" x1="68" y1="310" x2="154" y2="310" />
-                  <line className="fxc-reg-row" x1="68" y1="318" x2="140" y2="318" />
-                  <line className="fxc-reg-row" x1="68" y1="326" x2="150" y2="326" />
-                </g>
-                <path className="fxc-ground" d="M170 318 C202 318 204 286 238 286" />
-
-                <g className="fxc-bundle">
-                  <rect className="fxc-bundle-ghost" x="230" y="126" width="104" height="150" rx="12" />
-                  <rect className="fxc-bundle-card" x="238" y="136" width="116" height="160" rx="12" />
-                  <text className="ivz-lbl fxc-bundle-title" x="254" y="160" textAnchor="start" textLength="84" lengthAdjust="spacingAndGlyphs">resource bundle</text>
-                  <line className="fxc-rule" x1="254" y1="174" x2="338" y2="174" />
-                  <line className="fxc-slot" x1="254" y1="200" x2="338" y2="200" />
-                  <line className="fxc-slot" x1="254" y1="226" x2="338" y2="226" />
-                  <line className="fxc-slot" x1="254" y1="252" x2="338" y2="252" />
-                  <line className="fxc-key" x1="254" y1="200" x2="276" y2="200" />
-                  <line className="fxc-key" x1="254" y1="226" x2="276" y2="226" />
-                  <line className="fxc-key" x1="254" y1="252" x2="276" y2="252" />
-                  <line className="fxc-field" style={{ '--r': 0 }} x1="286" y1="200" x2="338" y2="200" />
-                  <line className="fxc-field" style={{ '--r': 1 }} x1="286" y1="226" x2="328" y2="226" />
-                  <line className="fxc-field" style={{ '--r': 2 }} x1="286" y1="252" x2="334" y2="252" />
-                </g>
-
-                <line className="fxc-gatepost" x1="406" y1="132" x2="406" y2="186" />
-                <line className="fxc-gatepost" x1="406" y1="234" x2="406" y2="294" />
-                <g className="fxc-wait">
-                  <line className="fxc-barrier" x1="406" y1="186" x2="406" y2="234" />
-                  <text className="ivz-lbl" x="406" y="314" textAnchor="middle">awaiting save</text>
-                </g>
-
-                <g className="fxc-commit">
-                  <rect className="fxc-commit-glow" x="424" y="198" width="32" height="24" rx="6" />
-                  <rect className="fxc-commit-card" x="428" y="201" width="25" height="18" rx="5" />
-                  <path className="fxc-commit-mark" d="M434 210 l4 4 l9 -10" />
-                </g>
-
-                <g className="fxc-tag--draft" transform="translate(230 402)">
-                  <rect className="ivz-tag" x="-78" y="-10" width="156" height="15" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1.5">drafted · validated · waiting</text>
-                </g>
-                <g className="fxc-tag--ok" transform="translate(230 402)">
-                  <rect className="ivz-tag" x="-70" y="-10" width="140" height="15" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1.5">saved · committed</text>
-                </g>
-              </svg>
-            </div>
+            {/* Layers · terminal panel: a natural-language request is typed into a
+                 terminal session, then each word falls onto its platform layer
+                 (process / steps / rules / data) as the binding sweep lands. */}
+            <FlowxCodeHeroViz className="ahero__viz" />
           </div>
         </section>
 
