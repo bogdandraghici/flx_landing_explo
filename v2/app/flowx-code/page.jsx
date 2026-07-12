@@ -69,32 +69,37 @@ export default function FlowxCode() {
                   committed artifact — routed, grounded, validated, and gated behind a human, on purpose.</p>
               </div>
             </div>
-            {/* 1B · timeline lanes: one turn sweeping REQUEST→ARTIFACT across the
-                four lanes below, held at a human gate before COMMIT lands */}
-            <div className="abd-pipe-viz rv" style={{ '--i': 0 }}>
-              <TheLoopLanesViz />
-            </div>
-            <div className="segs abd-pipe">
-              <article className="seg rv" style={{ '--i': 0 }}>
-                <span className="seg__no mono">01</span>
-                <h3 className="seg__name">Ground</h3>
-                <p className="seg__desc">At session start it loads your live node registry, project metadata and permissions — so it can only emit capabilities the backend actually has.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 1 }}>
-                <span className="seg__no mono">02</span>
-                <h3 className="seg__name">Draft</h3>
-                <p className="seg__desc">A complexity-aware router picks the right model; per-kind specialist sub-agents build the artifact against that live grounding.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 2 }}>
-                <span className="seg__no mono">03</span>
-                <h3 className="seg__name">Validate</h3>
-                <p className="seg__desc">Per-kind contracts and Java-mirror validators reject a malformed emission before it persists — with the exact error the backend would return.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 3 }}>
-                <span className="seg__no mono">04</span>
-                <h3 className="seg__name">Commit</h3>
-                <p className="seg__desc">Nothing mutates until you click Keep or Save. The loop&apos;s stopping condition is a human, on purpose.</p>
-              </article>
+            {/* the loop, shown as one unit: the timeline band (a turn sweeping
+                REQUEST→ARTIFACT across four lanes, held at a human gate before
+                COMMIT lands) joined to the four step cards it maps onto — each
+                card sits under its lane, hairline-divided like the observatory
+                "what it does" pane. */}
+            <div className="abd-loop rv" style={{ '--i': 0 }}>
+              <div className="abd-loop__viz">
+                <TheLoopLanesViz />
+              </div>
+              <div className="abd-loop__cards">
+                <article className="seg">
+                  <span className="seg__no mono">01</span>
+                  <h3 className="seg__name">Ground</h3>
+                  <p className="seg__desc">At session start it loads your live node registry, project metadata and permissions — so it can only emit capabilities the backend actually has.</p>
+                </article>
+                <article className="seg">
+                  <span className="seg__no mono">02</span>
+                  <h3 className="seg__name">Draft</h3>
+                  <p className="seg__desc">A complexity-aware router picks the right model; per-kind specialist sub-agents build the artifact against that live grounding.</p>
+                </article>
+                <article className="seg">
+                  <span className="seg__no mono">03</span>
+                  <h3 className="seg__name">Validate</h3>
+                  <p className="seg__desc">Per-kind contracts and Java-mirror validators reject a malformed emission before it persists — with the exact error the backend would return.</p>
+                </article>
+                <article className="seg">
+                  <span className="seg__no mono">04</span>
+                  <h3 className="seg__name">Commit</h3>
+                  <p className="seg__desc">Nothing mutates until you click Keep or Save. The loop&apos;s stopping condition is a human, on purpose.</p>
+                </article>
+              </div>
             </div>
           </div>
         </section>

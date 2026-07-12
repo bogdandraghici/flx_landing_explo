@@ -99,6 +99,19 @@ export default function TheLoopLanesViz({ className = '' }) {
       ctx.textAlign = 'left'; ctx.fillText('REQUEST', x0, y0 - 34);
       ctx.textAlign = 'right'; ctx.fillText('ARTIFACT', x1, y0 - 34);
 
+      // Each lane's box scales with the (fluid) canvas width but the labels are
+      // fixed-size, so on narrow viewports a name can outgrow its box. Decide
+      // once, for the whole figure: show every stage name only if all of them
+      // fit their box — otherwise show numbers only, so we never render a mix of
+      // named and numbered lanes. The four step cards below repeat these names,
+      // so dropping them here loses no information.
+      const inset = 9;
+      mono(10);
+      const showNames = names.every((name, i) => {
+        const bw = aw * (blocks[i][0][1] - blocks[i][0][0]);
+        return ctx.measureText(nums[i]).width + 9 + ctx.measureText(name).width <= bw - inset * 2;
+      });
+
       const pp = (t * 0.075) % 1; const px = x0 + aw * pp;
       blocks.forEach((row, i) => {
         const ly = y0 + lh * i + lh / 2;
@@ -115,11 +128,14 @@ export default function TheLoopLanesViz({ className = '' }) {
           ctx.strokeRect(bx + 0.5, ly - 12.5, bw - 1, 25);
           if (active) { ctx.fillStyle = accA(0.95); ctx.beginPath(); ctx.arc(px, ly, 3.2, 0, PI2); ctx.fill(); }
         });
-        // stage label rides on the lane's first box
-        const lx = x0 + aw * row[0][0] + 9;
+        // stage label rides on the lane's first box (number always, name only
+        // when the whole figure can show them — see showNames above)
+        const lx = x0 + aw * row[0][0] + inset;
         mono(10); ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
         ctx.fillStyle = inkA(0.42); ctx.fillText(nums[i], lx, ly);
-        ctx.fillStyle = inkA(0.74); ctx.fillText(names[i], lx + ctx.measureText(nums[i]).width + 9, ly);
+        if (showNames) {
+          ctx.fillStyle = inkA(0.74); ctx.fillText(names[i], lx + ctx.measureText(nums[i]).width + 9, ly);
+        }
       });
 
       // playhead

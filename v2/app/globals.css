@@ -3259,6 +3259,41 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 @media (min-width: 1080px) { .abd-pipe { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 640px) { .abd-pipe { grid-template-columns: 1fr; } }
 
+/* --- the loop, as one card: the timeline band joined to the four step cards
+   it maps onto (each card under its lane), same hairline-joined construction as
+   the observatory `.eled` "what it does" pane. --- */
+.abd-loop {
+  margin-top: 32px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-raised);
+  overflow: hidden;
+}
+.abd-loop__viz {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 1;
+  min-height: 260px;
+  background: var(--bg-panel);
+}
+/* four step cards joined to the band as one unit: a hairline grid (1px gaps
+   over a line-colored bed) matches the divider under the timeline. */
+.abd-loop__cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+}
+.abd-loop__cards .seg {
+  border: 0;
+  border-radius: 0;
+  background: var(--bg-raised);
+  padding: clamp(24px, 2.2vw, 30px);
+}
+@media (max-width: 900px) { .abd-loop__cards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .abd-loop__cards { grid-template-columns: 1fr; } }
+
 /* --- determinism gradient: header dots + the rail running faint → amber --- */
 .abd-rail {
   height: 2px;
