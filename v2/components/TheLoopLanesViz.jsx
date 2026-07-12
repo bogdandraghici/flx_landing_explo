@@ -36,12 +36,13 @@ export default function TheLoopLanesViz({ className = '' }) {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ---- theme palette (re-read on themechange) ----------------------------
-    const P = { ink: '255, 255, 255', acc: '233, 236, 242' };
+    const P = { ink: '255, 255, 255', acc: '233, 236, 242', panel: '#0C0E11' };
     const readPalette = () => {
       const cs = getComputedStyle(document.documentElement);
       const get = (name, fallback) => cs.getPropertyValue(name).trim() || fallback;
       P.ink = get('--ink', P.ink);
       P.acc = get('--dia-bright', P.acc);
+      P.panel = get('--bg-panel', P.panel); // opaque box fill (hides the lane line)
     };
     readPalette();
 
@@ -78,11 +79,10 @@ export default function TheLoopLanesViz({ className = '' }) {
       ctx.clearRect(0, 0, w, h);
       grid(w, h);
 
-      // source used fixed padL=200 / padR=100 at 1680px wide; make responsive so
-      // the track compresses horizontally on narrow viewports.
-      const padL = Math.max(112, Math.min(200, w * 0.14));
-      const padR = Math.max(56, Math.min(100, w * 0.08));
-      const numX = 24, nameX = 52;              // label columns, fixed left insets
+      // labels ride on the boxes now, so no left gutter — the track fills the
+      // width, with a modest inset both sides (compresses on narrow viewports).
+      const padL = Math.max(44, Math.min(64, w * 0.045));
+      const padR = Math.max(56, Math.min(96, w * 0.06));
       const x0 = padL, x1 = w - padR, aw = x1 - x0;
       const y0 = h * 0.26, y1 = h * 0.82, lh = (y1 - y0) / 4;
       const names = ['GROUND', 'DRAFT', 'VALIDATE', 'COMMIT'];
@@ -102,20 +102,24 @@ export default function TheLoopLanesViz({ className = '' }) {
       const pp = (t * 0.075) % 1; const px = x0 + aw * pp;
       blocks.forEach((row, i) => {
         const ly = y0 + lh * i + lh / 2;
-        mono(11); ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-        ctx.fillStyle = inkA(0.3); ctx.fillText(nums[i], numX, ly);
-        ctx.fillStyle = inkA(0.55); ctx.fillText(names[i], nameX, ly);
+        // lane line first, so the opaque boxes below sit over it (not through it)
         ctx.strokeStyle = inkA(0.06); ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(x0, ly); ctx.lineTo(x1, ly); ctx.stroke();
         row.forEach((b) => {
           const bx = x0 + aw * b[0], bw = aw * (b[1] - b[0]);
           const active = pp >= b[0] && pp <= b[1];
-          ctx.fillStyle = active ? accA(0.16) : inkA(0.045);
+          ctx.fillStyle = P.panel; ctx.fillRect(bx, ly - 13, bw, 26); // opaque base
+          ctx.fillStyle = active ? accA(0.16) : inkA(0.05);
           ctx.fillRect(bx, ly - 13, bw, 26);
           ctx.strokeStyle = active ? accA(0.6) : inkA(0.12);
           ctx.strokeRect(bx + 0.5, ly - 12.5, bw - 1, 25);
           if (active) { ctx.fillStyle = accA(0.95); ctx.beginPath(); ctx.arc(px, ly, 3.2, 0, PI2); ctx.fill(); }
         });
+        // stage label rides on the lane's first box
+        const lx = x0 + aw * row[0][0] + 9;
+        mono(10); ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+        ctx.fillStyle = inkA(0.42); ctx.fillText(nums[i], lx, ly);
+        ctx.fillStyle = inkA(0.74); ctx.fillText(names[i], lx + ctx.measureText(nums[i]).width + 9, ly);
       });
 
       // playhead
@@ -136,7 +140,7 @@ export default function TheLoopLanesViz({ className = '' }) {
     };
 
     // ---- lifecycle ---------------------------------------------------------
-    const FROZEN_T = 8; // playhead mid-VALIDATE lane
+    const FROZEN_T = 9; // playhead inside the VALIDATE block, clear of its label
     let raf = 0;
     let start = 0;
     const frame = (now) => {
