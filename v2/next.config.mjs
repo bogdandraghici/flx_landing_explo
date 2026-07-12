@@ -12,6 +12,12 @@ const BASE_PATH = isPages ? '/flx_landing_explo/v2' : '';
 const nextConfig = isPages
   ? {
       output: 'export',
+      // Separate output dir so a Pages/publish build never clobbers the dev
+      // server's default `.next` (dev doesn't set GITHUB_PAGES). With a custom
+      // distDir, `output: 'export'` writes the static site straight into it, so
+      // out-pages/ IS the export to copy to docs/v2. Lets us publish while
+      // `npm run dev` is running.
+      distDir: 'out-pages',
       trailingSlash: true,
       images: { unoptimized: true },
       basePath: BASE_PATH,
