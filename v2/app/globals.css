@@ -2767,6 +2767,12 @@ em { font-style: normal; }
 .page-agent-builder .seg { transition: none; }
 .page-agent-builder .seg:hover { border-color: var(--line); }
 
+/* Same on the flowx-code page: its .seg cards (Ground/Draft/Validate/Commit,
+   the artifact kinds) are static content, not links, so they carry no hover
+   cue. */
+.page-flowx-code .seg { transition: none; }
+.page-flowx-code .seg:hover { border-color: var(--line); }
+
 /* ------------------------------------------------------------------
    WHAT IT DOES — the evidence ledger
    A single bordered pane: copy on the left, a live ledger on the right

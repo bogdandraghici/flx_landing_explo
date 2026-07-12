@@ -9,7 +9,7 @@ export const metadata = {
 export default function FlowxCode() {
   return (
     <>
-      <main id="top">
+      <main id="top" className="page-flowx-code">
 
         {/* ================= HERO ================= */}
         <section className="ahero" id="phero">
