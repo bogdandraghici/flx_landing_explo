@@ -2712,150 +2712,34 @@ em { font-style: normal; }
 /* --- observatory sections: pipeline spine + stat meters ---
    the spine schematic connects the four "regulation to runtime" cards with a
    sparse geometric evidence path from rule to trace to answer. */
-.obp { display: block; margin: 8px 0 44px; }
-/* the stitch: regulation and runtime as two rails, tied together at each of the
-   four steps by a single amber thread — the clause rides the top rail, the live
-   trace runs the bottom, the answer step resolves into a sealed node. Built in
-   HTML (not a scaling SVG) so vertical size and label text stay fixed and
-   legible; the threads sit on a percentage grid, so narrow viewports compress
-   the diagram horizontally instead of shrinking the whole thing. */
-.stitch__steps {
+/* Regulation-to-runtime — four 1:1 illustrated cards (art on top, copy below).
+   Ported from the Claude Design "Pipeline Illustrations" exploration (Turn 03).
+   The card keeps the standard .seg chrome (border, radius, raised bg) and the
+   .seg__* type ramp; we only reset its padding so the instrument canvas sits
+   flush to the top edge with the copy padded beneath. The illustration is a 1:1
+   square that scales with the card width (fluid horizontally) — the copy text
+   stays fixed-size and legible. Canvases are decorative (aria-hidden); the real
+   labels live in the HTML copy below. */
+.obp-sq {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-bottom: 6px;
+  gap: 14px;
+  margin-top: 34px;
 }
-.stitch__step {
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(var(--ink), 0.5);
-}
-.stitch__step--answer { color: var(--amber-text); }
+@media (max-width: 1080px) { .obp-sq { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .obp-sq { grid-template-columns: 1fr; } }
 
-.stitch__body { position: relative; height: 120px; }
-
-/* the two rails: regulation (dashed) and runtime (solid, with a sampled band) */
-.stitch__rail { position: absolute; left: 0; right: 0; height: 0; }
-.stitch__rail--reg { top: 18px; border-top: 1px dashed rgba(var(--ink), 0.2); }
-.stitch__rail--run { top: 102px; border-top: 1px solid rgba(var(--ink), 0.16); }
-.stitch__rail--run::before {
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  top: -7px;
-  height: 6px;
-  background: repeating-linear-gradient(90deg, rgba(var(--ink), 0.28) 0 1px, transparent 1px 14px);
-}
-
-/* the § 4.2 clause chip anchored on the regulation rail */
-.stitch__cite {
-  position: absolute;
-  left: 0; top: 18px;
-  transform: translateY(-50%);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--amber-text);
-  /* opaque page-bg base under the amber tint so the dashed rail it sits on
-     doesn't show through the translucent --amber-soft */
-  background: linear-gradient(var(--amber-soft), var(--amber-soft)), var(--bg);
-  border: 1px solid var(--amber-line);
-  border-radius: 4px;
-  padding: 3px 9px;
-}
-
-/* the rail context labels */
-.stitch__lbl {
-  position: absolute;
-  right: 0;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-}
-.stitch__lbl--reg { top: 0; }
-.stitch__lbl--run { top: 108px; }
-
-/* the four amber threads, centered in a 4-column grid that tracks the cards */
-.stitch__threads {
-  position: absolute;
-  left: 0; right: 0;
-  top: 18px;
-  height: 84px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-.stitch__thread {
+.obp-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.obp-card__viz {
   position: relative;
-  justify-self: center;
-  align-self: stretch;
-  width: 1px;
-  background: var(--amber);
+  aspect-ratio: 1 / 1;
+  border-bottom: 1px solid var(--line);
 }
-.stitch__thread::before,
-.stitch__thread::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--amber);
-  transform: translate(-50%, -50%);
-}
-.stitch__thread::before { top: 0; }
-.stitch__thread::after { top: 100%; }
-/* answer — the closing stitch, resolved into a sealed node on the trace */
-.stitch__thread--answer::after {
-  width: 8px; height: 8px;
-  box-shadow: 0 0 0 5px rgba(var(--amber-rgb), 0.18);
-}
-
-/* the stitch in motion: a soft amber pulse descends each thread from the
-   regulation rail down to the runtime rail — evidence flowing rule → live
-   trace — staggered left→right across compile · enforce · evidence · answer.
-   Subtle, slow, amber-only; the drawn threads stay the resolved pose, and the
-   answer's sealed node gives a quiet bloom as the closing stitch lands. */
-.stitch__flow {
-  position: absolute;
-  left: 50%; top: 0;
-  width: 3px; height: 22px;
-  border-radius: 2px;
-  background: linear-gradient(to bottom, transparent, var(--amber));
-  box-shadow: 0 0 5px rgba(var(--amber-rgb), 0.55);
-  opacity: 0;
-  transform: translate(-50%, -22px);
-  animation: stitch-flow 5s var(--ease) infinite;
-}
-.stitch__thread:nth-child(2) .stitch__flow { animation-delay: 0.5s; }
-.stitch__thread:nth-child(3) .stitch__flow { animation-delay: 1s; }
-.stitch__thread:nth-child(4) .stitch__flow { animation-delay: 1.5s; }
-.stitch__thread--answer::after { animation: stitch-seal 5s var(--ease) 1.5s infinite; }
-
-@keyframes stitch-flow {
-  0% { opacity: 0; transform: translate(-50%, -22px); }
-  12% { opacity: 0.9; }
-  50% { opacity: 0.9; transform: translate(-50%, 62px); }
-  62%, 100% { opacity: 0; transform: translate(-50%, 84px); }
-}
-@keyframes stitch-seal {
-  0%, 46% { box-shadow: 0 0 0 5px rgba(var(--amber-rgb), 0.14); }
-  56% { box-shadow: 0 0 0 7px rgba(var(--amber-rgb), 0.28); }
-  70%, 100% { box-shadow: 0 0 0 5px rgba(var(--amber-rgb), 0.14); }
-}
-
-/* on smaller screens the columns get narrow: drop the faint rail captions and
-   the clause chip (which would otherwise overlap the first thread) — the four
-   stitches, step labels and both rails still carry the diagram */
-@media (max-width: 640px) {
-  .stitch__lbl,
-  .stitch__cite { display: none; }
-  .stitch__step { font-size: 10px; letter-spacing: 0.14em; }
-}
+.obp-card__canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.obp-card__body { padding: 22px 22px 24px; }
+/* .seg__no already leads the block here, and there's no trailing content after
+   the description, so trim the ramp's outer margins */
+.obp-card__body .seg__desc { margin-bottom: 0; }
 
 /* stat meters (03 / why now) — one shared hairline track per row, restating
    the number as marks: fill / fill / timeline+deadline / six on the rail */
@@ -3080,10 +2964,8 @@ em { font-style: normal; }
      there — arrow extended to the clause, underline lit, cited dot parked */
   .awb__clause-t, .awb__ph, .awb__ul, .awb__arrow, .awb__arrowhead,
   .awb__halo, .awb__dot { animation: none; }
-  /* observatory regulation→runtime stitch: freeze on the fully-stitched pose
-     (threads drawn, sealed node set) — drop the traveling pulse */
-  .stitch__flow { animation: none; opacity: 0; }
-  .stitch__thread--answer::after { animation: none; }
+  /* observatory regulation→runtime illustrations: the canvas init reads this
+     same media query and freezes each instrument on a resolved frame */
   /* evidence ledger: hold the filled pane still (first set of rows fills it) */
   .eled__track { animation: none; }
 }

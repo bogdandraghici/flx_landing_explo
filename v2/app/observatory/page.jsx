@@ -1,4 +1,5 @@
 import CtaFieldInit from '@/components/CtaFieldInit';
+import ObpIllustrationsInit from '@/components/ObpIllustrationsInit';
 
 export const metadata = {
   title: 'FlowX — Observatory',
@@ -16,6 +17,29 @@ const LEDGER_ROWS = [
   { id: '9f4a·026d', verdict: 'pass', hash: '110110' },
   { id: '9f4a·026c', verdict: 'flag', hash: '010111' },
   { id: '9f4a·026b', verdict: 'pass', hash: '101100' },
+];
+
+// "Regulation to runtime" — the four pipeline steps, each rendered as a 1:1
+// illustrated card (a live instrument canvas above the copy). `draw` selects
+// the canvas visual in lib/v1/obpIllustrations.js. Copy is unchanged from the
+// prior card list.
+const PIPELINE_STEPS = [
+  {
+    n: '01', h: 'Compile', draw: 'compile',
+    b: 'Organizational and regulatory rules become machine-checkable policies — a metric, an operator, a threshold — grouped into packs like an EU AI Act High-Risk Pack.',
+  },
+  {
+    n: '02', h: 'Enforce', draw: 'enforce',
+    b: 'Policies evaluate against live execution telemetry, not a questionnaire — mandatory or advisory, continuously. A policy being violated says so the moment it happens.',
+  },
+  {
+    n: '03', h: 'Evidence', draw: 'evidence',
+    b: 'Compliance evidence is auto-harvested from traces as a byproduct of enforcement — collect, review, approve.',
+  },
+  {
+    n: '04', h: 'Answer', draw: 'answer',
+    b: 'An audit is answered by walking evidence back through policy to requirement — every link grounded in what the agent actually did.',
+  },
 ];
 
 function LedgerRow({ id, verdict, hash }) {
@@ -153,66 +177,28 @@ export default function Observatory() {
               </div>
             </div>
 
-            {/* the stitch: regulation and runtime are two rails, tied together at
-                 each of the four steps by a single amber thread. The clause (§ 4.2)
-                 rides the top rail, the live trace runs along the bottom, and every
-                 step stitches one to the other — the answer step resolved into a
-                 sealed node on the trace. Threads align to the four cards below;
-                 desktop-only. */}
-            <div className="obp rv" aria-hidden="true">
-              <div className="stitch">
-                {/* step labels — one per stitch, aligned over the four cards */}
-                <div className="stitch__steps">
-                  <span className="stitch__step">compile</span>
-                  <span className="stitch__step">enforce</span>
-                  <span className="stitch__step">evidence</span>
-                  <span className="stitch__step stitch__step--answer">answer</span>
-                </div>
-
-                {/* two rails — regulation (top) and runtime (bottom) — stitched by
-                     four amber threads. Built in HTML with fixed vertical sizes and
-                     text so labels stay legible; the threads sit on a percentage
-                     grid, so on narrow viewports the diagram compresses horizontally
-                     rather than shrinking the whole thing. */}
-                <div className="stitch__body">
-                  <span className="stitch__lbl stitch__lbl--reg">regulation · clauses</span>
-                  <div className="stitch__rail stitch__rail--reg" />
-                  <span className="stitch__cite">§ 4.2</span>
-
-                  <div className="stitch__threads">
-                    <span className="stitch__thread"><span className="stitch__flow" /></span>
-                    <span className="stitch__thread"><span className="stitch__flow" /></span>
-                    <span className="stitch__thread"><span className="stitch__flow" /></span>
-                    <span className="stitch__thread stitch__thread--answer"><span className="stitch__flow" /></span>
+            {/* Four 1:1 illustrated cards — a live instrument sits on top of each
+                 step (compile · enforce · evidence · answer), the copy below.
+                 Ported from the Claude Design "Pipeline Illustrations" exploration
+                 (Turn 03 — square illustrations, art over copy). The card keeps the
+                 standard .seg chrome + type; only its padding is reset so the canvas
+                 sits flush to the top. Canvases are decorative (aria-hidden) and
+                 theme-aware, and freeze on a resolved frame under reduced-motion —
+                 driven by ObpIllustrationsInit. The square scales with the card
+                 width (fluid horizontally) while the copy stays fixed and legible. */}
+            <div className="obp-sq">
+              {PIPELINE_STEPS.map((s, i) => (
+                <article className="seg obp-card rv" key={s.n} style={{ '--i': i }}>
+                  <div className="obp-card__viz" aria-hidden="true">
+                    <canvas className="obp-card__canvas" data-obp={s.draw} />
                   </div>
-
-                  <div className="stitch__rail stitch__rail--run" />
-                  <span className="stitch__lbl stitch__lbl--run">runtime · live trace</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="segs abd-pipe">
-              <article className="seg rv" style={{ '--i': 0 }}>
-                <span className="seg__no mono">01</span>
-                <h3 className="seg__name">Compile</h3>
-                <p className="seg__desc">Organizational and regulatory rules become machine-checkable policies — a metric, an operator, a threshold — grouped into packs like an EU AI Act High-Risk Pack.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 1 }}>
-                <span className="seg__no mono">02</span>
-                <h3 className="seg__name">Enforce</h3>
-                <p className="seg__desc">Policies evaluate against live execution telemetry, not a questionnaire — mandatory or advisory, continuously. A policy being violated says so the moment it happens.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 2 }}>
-                <span className="seg__no mono">03</span>
-                <h3 className="seg__name">Evidence</h3>
-                <p className="seg__desc">Compliance evidence is auto-harvested from traces as a byproduct of enforcement — collect, review, approve.</p>
-              </article>
-              <article className="seg rv" style={{ '--i': 3 }}>
-                <span className="seg__no mono">04</span>
-                <h3 className="seg__name">Answer</h3>
-                <p className="seg__desc">An audit is answered by walking evidence back through policy to requirement — every link grounded in what the agent actually did.</p>
-              </article>
+                  <div className="obp-card__body">
+                    <span className="seg__no mono">{s.n}</span>
+                    <h3 className="seg__name">{s.h}</h3>
+                    <p className="seg__desc">{s.b}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -379,6 +365,7 @@ export default function Observatory() {
         </section>
       </main>
       <CtaFieldInit />
+      <ObpIllustrationsInit />
     </>
   );
 }
