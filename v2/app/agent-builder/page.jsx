@@ -114,7 +114,6 @@ export default function AgentBuilder() {
                   and confines generation to clearly marked nodes.</p>
               </div>
             </div>
-            <div className="abd-rail rv" aria-hidden="true" />
             <div className="segs segs--3">
               <article className="seg rv" style={{ '--i': 0 }}>
                 <p className="abd-grad__hd mono"><span className="abd-grad__dot" style={{ background: 'var(--text-faint)' }} />Deterministic</p>
