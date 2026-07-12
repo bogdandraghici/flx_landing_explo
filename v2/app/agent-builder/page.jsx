@@ -1,5 +1,6 @@
 import { bp } from '@/components/lib/base';
 import CtaFieldInit from '@/components/CtaFieldInit';
+import AgentBuilderHeroViz from '@/components/AgentBuilderHeroViz';
 
 export const metadata = {
   title: 'FlowX — Agent Builder',
@@ -37,125 +38,13 @@ export default function AgentBuilder() {
               </p>
             </div>
 
-            {/* the build: typed bricks are dragged out of a palette (agent · tool · memory) and
-                 lock into an aligned grid one at a time; 'in' fans out to three parallel enrichers
-                 (extract · classify · memory) that merge into reason, then guard, then out. the
-                 moment a path exists a pulse starts on each branch and keeps flowing — until it
-                 lands on a typed output that resolves amber: flow running, typed output.
-                 Amber is reserved for the resolution (the lit output + tag). Base (non-animated)
-                 values are the resolved pose — grid whole, output lit — for reduced motion. */}
-            <div className="ahero__viz" aria-hidden="true">
-              <svg viewBox="0 0 460 460" role="img" aria-label="Typed bricks — agent, tool, memory — are dragged from a palette and lock into an aligned grid: input fans out to three parallel enrichers — extract, classify and memory — which merge into a reasoning core, then pass a guard to a typed output. As the bricks seat, a pulse runs on each branch and keeps looping; the output lights amber — flow running, typed output">
-
-                {/* ghost slots: the grid the bricks snap into */}
-                <g className="abv-slots">
-                  <rect className="abv-slot" x="172" y="150" width="88" height="36" rx="8" />
-                  <rect className="abv-slot" x="172" y="210" width="88" height="36" rx="8" />
-                  <rect className="abv-slot" x="172" y="286" width="88" height="36" rx="8" />
-                  <rect className="abv-slot" x="292" y="168" width="92" height="44" rx="9" />
-                  <rect className="abv-slot" x="292" y="250" width="88" height="36" rx="8" />
-                </g>
-
-                {/* palette: the three things you drag in (echoes the sub-headline) */}
-                <g className="abv-pal">
-                  <rect className="abv-pal-box" x="18" y="176" width="78" height="128" rx="12" />
-                  <text className="ivz-lbl" x="57" y="168" textAnchor="middle">palette</text>
-                  <g className="abv-chip">
-                    <rect className="abv-node" x="26" y="186" width="62" height="30" rx="7" />
-                    <circle className="abv-fam fa" cx="34" cy="201" r="2.6" />
-                    <text className="abx-label" x="60" y="205" textAnchor="middle">agent</text>
-                  </g>
-                  <g className="abv-chip">
-                    <rect className="abv-node" x="26" y="222" width="62" height="30" rx="7" />
-                    <circle className="abv-fam ft" cx="34" cy="237" r="2.6" />
-                    <text className="abx-label" x="60" y="241" textAnchor="middle">tool</text>
-                  </g>
-                  <g className="abv-chip">
-                    <rect className="abv-node" x="26" y="258" width="62" height="30" rx="7" />
-                    <circle className="abv-fam fm" cx="34" cy="273" r="2.6" />
-                    <text className="abx-label" x="60" y="277" textAnchor="middle">memory</text>
-                  </g>
-                </g>
-
-                {/* edges: drawn as their downstream brick seats.
-                     painted first so the run dots ride on top of the lines */}
-                <path className="abv-edge" style={{ '--n': 0 }} pathLength="1" d="M150 234 C164 234 160 168 172 168" />
-                <path className="abv-edge" style={{ '--n': 1 }} pathLength="1" d="M150 234 C164 234 162 228 172 228" />
-                <path className="abv-edge" style={{ '--n': 2 }} pathLength="1" d="M150 234 C164 234 160 304 172 304" />
-                <path className="abv-edge" style={{ '--n': 3 }} pathLength="1" d="M260 168 C278 168 276 190 292 190" />
-                <path className="abv-edge" style={{ '--n': 3 }} pathLength="1" d="M260 228 C278 228 278 190 292 190" />
-                <path className="abv-edge" style={{ '--n': 3 }} pathLength="1" d="M260 304 C280 304 280 204 292 204" />
-                <path className="abv-edge" style={{ '--n': 4 }} pathLength="1" d="M338 212 C338 230 336 238 336 250" />
-                <path className="abv-edge" style={{ '--n': 4 }} pathLength="1" d="M380 268 C396 268 402 234 406 234" />
-
-                {/* invisible motion rails: one per enricher branch, stitched from the exact
-                     edge segments so the dots ride the visible lines and pass through nodes.
-                     all three fan out of 'in', through their enricher, and merge into reason */}
-                <path id="abvRunExtract" fill="none" stroke="none" d="M134 234 L150 234 C164 234 160 168 172 168 L260 168 C278 168 276 190 292 190 L338 190 L338 212 C338 230 336 238 336 250 L336 268 L380 268 C396 268 402 234 406 234 L421 234" />
-                <path id="abvRunClassify" fill="none" stroke="none" d="M134 234 L150 234 C164 234 162 228 172 228 L260 228 C278 228 278 190 292 190 L338 190 L338 212 C338 230 336 238 336 250 L336 268 L380 268 C396 268 402 234 406 234 L421 234" />
-                <path id="abvRunMemory" fill="none" stroke="none" d="M134 234 L150 234 C164 234 160 304 172 304 L260 304 C280 304 280 204 292 204 L338 204 L338 212 C338 230 336 238 336 250 L336 268 L380 268 C396 268 402 234 406 234 L421 234" />
-
-                {/* the run: a pulse on each parallel branch, staggered so they cascade out of
-                     'in' and merge into reason. dots ride the edges and slip UNDER the nodes
-                     (painted before the ports + bricks, so a node's fill occludes the pass-through) */}
-                <g className="abv-dot"><circle r="2.8" />
-                  <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.40;0.66;1"><mpath href="#abvRunExtract" /></animateMotion>
-                  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.40;0.41;0.65;0.66;1" dur="12s" repeatCount="indefinite" />
-                </g>
-                <g className="abv-dot"><circle r="2.8" />
-                  <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.51;0.78;1"><mpath href="#abvRunClassify" /></animateMotion>
-                  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.51;0.52;0.77;0.78;1" dur="12s" repeatCount="indefinite" />
-                </g>
-                <g className="abv-dot"><circle r="2.8" />
-                  <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.62;0.90;1"><mpath href="#abvRunMemory" /></animateMotion>
-                  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.62;0.63;0.89;0.90;1" dur="12s" repeatCount="indefinite" />
-                </g>
-
-                {/* typed contracts: input / output ports (paint over the dots) */}
-                <g className="abv-port-pill">
-                  <rect className="abv-node" x="118" y="222" width="32" height="24" rx="6" />
-                  <text className="ivz-lbl" x="134" y="237" textAnchor="middle">in</text>
-                </g>
-                <g className="abv-port-pill">
-                  <rect className="abv-node" x="406" y="222" width="30" height="24" rx="6" />
-                  <rect className="abv-out-hot" x="406" y="222" width="30" height="24" rx="6" />
-                  <text className="ivz-lbl" x="421" y="237" textAnchor="middle">out</text>
-                </g>
-
-                {/* bricks: lock into the grid one at a time (paint over the dots) */}
-                <g className="abv-brick" style={{ '--n': 0 }}>
-                  <rect className="abv-node" x="172" y="150" width="88" height="36" rx="8" />
-                  <circle className="abv-fam fa" cx="183" cy="161" r="2.6" />
-                  <text className="abx-label" x="216" y="172" textAnchor="middle">extract</text>
-                </g>
-                <g className="abv-brick" style={{ '--n': 1 }}>
-                  <rect className="abv-node" x="172" y="210" width="88" height="36" rx="8" />
-                  <circle className="abv-fam fa" cx="183" cy="221" r="2.6" />
-                  <text className="abx-label" x="216" y="232" textAnchor="middle">classify</text>
-                </g>
-                <g className="abv-brick" style={{ '--n': 2 }}>
-                  <rect className="abv-node" x="172" y="286" width="88" height="36" rx="8" />
-                  <circle className="abv-fam fm" cx="183" cy="297" r="2.6" />
-                  <text className="abx-label" x="216" y="308" textAnchor="middle">memory</text>
-                </g>
-                <g className="abv-brick" style={{ '--n': 3 }}>
-                  <rect className="abv-node" x="292" y="168" width="92" height="44" rx="9" />
-                  <circle className="abv-fam fa" cx="303" cy="179" r="2.6" />
-                  <text className="abx-label" x="338" y="194" textAnchor="middle">reason</text>
-                </g>
-                <g className="abv-brick" style={{ '--n': 4 }}>
-                  <rect className="abv-node" x="292" y="250" width="88" height="36" rx="8" />
-                  <circle className="abv-fam ft" cx="303" cy="261" r="2.6" />
-                  <text className="abx-label" x="336" y="272" textAnchor="middle">guard</text>
-                </g>
-
-                {/* resolution tag: appears once the run lands on a typed output */}
-                <g className="abv-tag" transform="translate(230 402)">
-                  <rect className="ivz-tag" x="-78" y="-10" width="156" height="15" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1.5">flow running · typed output</text>
-                </g>
-              </svg>
-            </div>
+            {/* Builder canvas (design variant 5a): typed nodes on a dot grid with a
+                 palette rail — Input→Agent is a live flowing dashed wire, and a second
+                 wire drags from Agent down to Output until it snaps home and the Output
+                 lights amber (the resolution beat). Flow/wires stay neutral schematic
+                 ink; amber is reserved for the resolution. Reduced motion → resolved
+                 pose (wire landed, output lit), no animation. */}
+            <AgentBuilderHeroViz className="ahero__viz" />
           </div>
         </section>
 
