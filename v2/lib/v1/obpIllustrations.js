@@ -77,65 +77,113 @@ export function createPipelineIllustrations(root) {
   function drawCompile(ctx, w, h) {
     const W = a => `rgba(${INK[0]},${INK[1]},${INK[2]},${a})`;
     const A = a => `rgba(${SIG[0]},${SIG[1]},${SIG[2]},${a})`;
-    const padX = 24, top = 26, bot = h - 24;
-    const leftX = padX, leftW = w * 0.28;
-    const rightX = w * 0.46, rightW = w - padX - rightX;
-    const rows = 6, gap = (bot - top) / (rows - 1);
-    const p = (t * 0.14) % 1, sx = leftX + p * leftW;
+    // Compile — prose rules are read one at a time by a descending compile
+    // cursor and land as uniform predicates (metric · operator · threshold)
+    // in a policy pack that grows to enclose them, then holds and resets.
+    const padX = 22, top = 40, bot = h - 24;
+    const rows = 5;
+    const leftX = padX, leftW = (w - 2 * padX) * 0.30;
+    const packX = padX + leftW + (w - 2 * padX) * 0.13;
+    const packW = (w - padX) - packX;
+    const rowGap = (bot - top) / rows;
+    const yFor = i => top + (i + 0.5) * rowGap;
+
+    const period = rows + 3;                 // build all rows, then hold, then reset
+    const cyc = (t * 0.5) % period;
+    const done = Math.floor(cyc);
+    const building = done < rows;            // a rule is still compiling
+    const built = Math.min(rows, done);      // predicates already in the pack
+    const frac = building ? cyc - done : 0;  // in-progress row fill, 0..1
+    const cursor = building ? built : -1;    // the rule currently being read
+
+    // region labels
+    ctx.font = '10px ui-monospace,Menlo,monospace';
+    ctx.fillStyle = W(0.28);
+    ctx.fillText('RULES', leftX, top - 14);
+    ctx.fillText('POLICY PACK', packX, top - 14);
+
+    // source prose (left): dim sentences; a rule fades once it's compiled
     ctx.lineWidth = 1;
     for (let i = 0; i < rows; i++) {
-      const y = top + i * gap; let x = leftX; let seed = i * 13.7 + 7;
-      while (x < leftX + leftW - 6) {
-        seed += 1.6;
-        const seg = 6 + (Math.sin(seed) * 0.5 + 0.5) * 20;
-        const gp = 5 + (Math.cos(seed * 1.3) * 0.5 + 0.5) * 9;
-        ctx.strokeStyle = W(x < sx ? 0.05 : 0.13);
-        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(Math.min(x + seg, leftX + leftW - 6), y); ctx.stroke();
-        x += seg + gp;
+      const y = yFor(i);
+      const consumed = i < built;
+      let x = leftX, seed = i * 12.9 + 5;
+      const segN = 3 + (i % 2);
+      for (let s = 0; s < segN; s++) {
+        seed += 1.7;
+        const segW = 9 + (Math.sin(seed) * 0.5 + 0.5) * (leftW * 0.30);
+        if (x + segW > leftX + leftW) break;
+        ctx.strokeStyle = W(consumed ? 0.07 : 0.15);
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + segW, y); ctx.stroke();
+        x += segW + 6;
+      }
+      if (i === cursor) {
+        ctx.fillStyle = A(0.9); // ▸ compile cursor on the rule being read
+        ctx.beginPath();
+        ctx.moveTo(leftX - 12, y - 4); ctx.lineTo(leftX - 12, y + 4); ctx.lineTo(leftX - 6, y);
+        ctx.closePath(); ctx.fill();
       }
     }
-    const g = ctx.createLinearGradient(sx - 26, 0, sx, 0);
-    g.addColorStop(0, A(0)); g.addColorStop(1, A(0.10));
-    ctx.fillStyle = g; ctx.fillRect(sx - 26, top, 26, bot - top);
-    ctx.strokeStyle = A(0.7); ctx.beginPath(); ctx.moveTo(sx, top - 5); ctx.lineTo(sx, bot); ctx.stroke();
-    ctx.fillStyle = A(0.9); ctx.fillRect(sx - 2, top - 7, 4, 4);
-    const cyc = (t * 0.5) % (rows + 3);
-    const built = Math.min(rows, Math.floor(cyc));
-    const frac = Math.min(1, cyc - Math.floor(cyc));
-    const colGap = 10;
-    const c1w = rightW * 0.34, c2w = rightW * 0.15, c3w = rightW - c1w - c2w - colGap * 2 - 8;
+
+    // the pack: a container that grows to enclose each predicate as it lands
+    const fillH = (built + frac) * rowGap;
+    if (built + frac > 0) {
+      const complete = !building;
+      const x0 = packX - 6, x1 = packX + packW + 3, y0 = top - 4, y1 = top + fillH + 4;
+      ctx.strokeStyle = complete ? A(0.5) : W(0.16);
+      ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+      if (complete) { ctx.fillStyle = A(0.035); ctx.fillRect(x0, y0, x1 - x0, y1 - y0); }
+    }
+
+    // predicate rows — metric · operator · threshold, uniform across the pack
+    const gapC = 8, opW = 13, inpad = 10;
+    const tokX = packX + inpad, tokW = packW - inpad * 2;
+    const metricW = tokW * 0.44;
+    const threshW = tokW - metricW - opW - gapC * 2;
     for (let i = 0; i < rows; i++) {
-      const a = i < built ? 1 : (i === built ? frac : 0);
-      if (a <= 0) continue;
-      const y = top + i * gap;
-      const fill = Math.sin(i * 2.1) * 0.5 + 0.5;
-      ctx.strokeStyle = W(0.05 * a); ctx.beginPath(); ctx.moveTo(leftX + leftW, y); ctx.lineTo(rightX, y); ctx.stroke();
-      const x1 = rightX;
-      ctx.strokeStyle = W(0.14 * a); ctx.strokeRect(x1, y - 6, c1w, 12);
-      ctx.fillStyle = A(0.16 * a); ctx.fillRect(x1 + 1.5, y - 4.5, (c1w - 3) * (0.3 + 0.6 * fill), 9);
-      const x2 = x1 + c1w + colGap;
-      ctx.strokeStyle = W(0.10 * a); ctx.strokeRect(x2, y - 6, c2w, 12);
-      ctx.fillStyle = W(0.5 * a); ctx.font = '9px ui-monospace,Menlo,monospace';
+      const appear = i < built ? 1 : (i === cursor ? frac : 0);
+      if (appear <= 0) continue;
+      const y = yFor(i);
+      const active = i === cursor;
+      const a = { x: leftX + leftW, y }, b = { x: packX - 6, y };
+
+      // connector rule → predicate (only the compiling one is lit)
+      edge(ctx, a, b, active ? A(0.5) : W(0.06));
+
+      // metric — a labelled bar with a partial fill
+      ctx.strokeStyle = W(0.14 * appear); ctx.strokeRect(tokX, y - 6, metricW, 12);
+      const fillP = 0.34 + (Math.sin(i * 2.1) * 0.5 + 0.5) * 0.5;
+      ctx.fillStyle = A((active ? 0.3 : 0.16) * appear);
+      ctx.fillRect(tokX + 1.5, y - 4.5, (metricW - 3) * fillP, 9);
+
+      // operator — a glyph in a small box
+      const ox = tokX + metricW + gapC;
+      ctx.strokeStyle = W(0.12 * appear); ctx.strokeRect(ox, y - 6, opW, 12);
+      ctx.fillStyle = W(0.55 * appear); ctx.font = '9px ui-monospace,Menlo,monospace';
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(['≥', '<', '=', '≤', '>', '≠'][i % 6], x2 + c2w / 2, y);
+      ctx.fillText(['≥', '≤', '=', '<', '>', '≠'][i % 6], ox + opW / 2 + 0.5, y + 0.5);
       ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
-      const x3 = x2 + c2w + colGap;
-      ctx.strokeStyle = W(0.10 * a); ctx.beginPath(); ctx.moveTo(x3, y); ctx.lineTo(x3 + c3w, y); ctx.stroke();
-      for (let k = 0; k < 5; k++) {
-        const tx = x3 + k / 4 * c3w;
-        ctx.strokeStyle = W(0.12 * a); ctx.beginPath(); ctx.moveTo(tx, y - 3); ctx.lineTo(tx, y + 3); ctx.stroke();
+
+      // threshold — a track with two end stops and a single value marker
+      const tx = ox + opW + gapC;
+      ctx.strokeStyle = W(0.10 * appear);
+      ctx.beginPath(); ctx.moveTo(tx, y); ctx.lineTo(tx + threshW, y); ctx.stroke();
+      ctx.strokeStyle = W(0.12 * appear);
+      ctx.beginPath();
+      ctx.moveTo(tx, y - 3); ctx.lineTo(tx, y + 3);
+      ctx.moveTo(tx + threshW, y - 3); ctx.lineTo(tx + threshW, y + 3);
+      ctx.stroke();
+      const mk = tx + (0.25 + (Math.cos(i * 1.7) * 0.5 + 0.5) * 0.5) * threshW;
+      ctx.fillStyle = A((active ? 0.95 : 0.85) * appear);
+      ctx.beginPath(); ctx.arc(mk, y, 2.5, 0, 7); ctx.fill();
+
+      // the compile signal rides the active connector as the predicate fills in
+      if (active) {
+        const pk = cub(a, b, frac);
+        ctx.fillStyle = A(0.95); ctx.beginPath(); ctx.arc(pk.x, pk.y, 2.5, 0, 7); ctx.fill();
+        ctx.fillStyle = A(0.16); ctx.beginPath(); ctx.arc(pk.x, pk.y, 5, 0, 7); ctx.fill();
       }
-      const mk = x3 + (0.2 + 0.6 * fill) * c3w;
-      ctx.fillStyle = A(0.9 * a); ctx.beginPath(); ctx.arc(mk, y, 2.5, 0, 7); ctx.fill();
     }
-    if (built > 0) {
-      const by0 = top - 6, by1 = top + (built - 1 + frac) * gap + 6, bx = rightX + rightW;
-      ctx.strokeStyle = W(0.16); ctx.beginPath();
-      ctx.moveTo(bx - 4, by0); ctx.lineTo(bx, by0); ctx.lineTo(bx, by1); ctx.lineTo(bx - 4, by1); ctx.stroke();
-    }
-    ctx.font = '10px ui-monospace,Menlo,monospace'; ctx.fillStyle = W(0.28);
-    ctx.fillText('RULES', leftX, top - 10);
-    ctx.fillText('POLICY PACK', rightX, top - 10);
   }
 
   function drawEnforce(ctx, w, h) {
