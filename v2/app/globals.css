@@ -2761,6 +2761,12 @@ em { font-style: normal; }
 .page-observatory .seg { transition: none; }
 .page-observatory .seg:hover { border-color: var(--line); }
 
+/* Same story on the agent-builder page: its .seg cards (Draw/Compile/Run, the
+   node catalog, the capabilities grid) are static content, not links, so they
+   carry no hover cue. */
+.page-agent-builder .seg { transition: none; }
+.page-agent-builder .seg:hover { border-color: var(--line); }
+
 /* ------------------------------------------------------------------
    WHAT IT DOES — the evidence ledger
    A single bordered pane: copy on the left, a live ledger on the right
