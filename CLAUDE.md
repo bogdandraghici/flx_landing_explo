@@ -193,13 +193,39 @@ v2 is different from v1 — it's a Next.js static export, NOT Vite. The subpath 
 wired in `v2/next.config.mjs` (basePath/assetPrefix + `NEXT_PUBLIC_BASE_PATH`,
 which feeds the `bp()` helper in `components/lib/base.js` that prefixes
 root-absolute `<a href>`/`<img src>`). So the build flag is `GITHUB_PAGES=true`,
-not a `--base` arg:
+not a `--base` arg.
+
+**Just run the publish script** — it does the whole recipe (build → copy to
+`docs/v2` → verify asset paths → commit → push), only on `main`, and is a no-op
+if `docs/v2` is unchanged:
+
+```bash
+./publish-v2.sh        # from the flx_landing_explo/ repo root
+```
+
+Two things the script relies on (don't undo them):
+- The Pages build uses `distDir: out-pages` (not the default `.next`), so it
+  never clobbers a running `npm run dev` (which uses `.next`). Publishing is
+  therefore safe while the dev server is up.
+- `generateBuildId: () => 'flx-v2'` pins the build ID, so an unchanged source
+  tree produces a byte-identical export — that's what makes the script a true
+  no-op and keeps auto-publish (below) from committing build-ID churn.
+
+**Auto-publish on push:** a personal `PostToolUse` hook (in
+`../.claude/settings.local.json`, i.e. the workspace root above the repo — not
+committed, so it's Bogdan's only, not Raduta's) runs `publish-v2.sh` after every
+`git push`. So pushing v2 source to `main` republishes the live site
+automatically. It only acts on `main` and no-ops when `docs/v2` is unchanged.
+The hook activates when a session starts with that settings file present (open
+`/hooks` once or restart to pick up a freshly-created one).
+
+The equivalent by hand, if you ever need it:
 
 ```bash
 cd v2
-rm -rf .next out && GITHUB_PAGES=true npm run build   # exports to v2/out/
+rm -rf out-pages && GITHUB_PAGES=true npm run build   # exports to v2/out-pages/
 cd ..
-rm -rf docs/v2 && cp -R v2/out docs/v2                # clean copy
+rm -rf docs/v2 && cp -R v2/out-pages docs/v2          # clean copy
 git add docs/v2 && git commit && git push
 ```
 
