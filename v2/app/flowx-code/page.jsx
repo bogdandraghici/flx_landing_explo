@@ -1,5 +1,6 @@
 import FlowxCodeInit from '@/components/FlowxCodeInit';
 import FlowxCodeHeroViz from '@/components/FlowxCodeHeroViz';
+import TheLoopLanesViz from '@/components/TheLoopLanesViz';
 
 export const metadata = {
   title: 'FlowX — FlowX Code',
@@ -67,6 +68,11 @@ export default function FlowxCode() {
                 <p className="section__lede rv" style={{ '--i': 1 }}>A turn runs from a natural-language request to a
                   committed artifact — routed, grounded, validated, and gated behind a human, on purpose.</p>
               </div>
+            </div>
+            {/* 1B · timeline lanes: one turn sweeping REQUEST→ARTIFACT across the
+                four lanes below, held at a human gate before COMMIT lands */}
+            <div className="abd-pipe-viz rv" style={{ '--i': 0 }}>
+              <TheLoopLanesViz />
             </div>
             <div className="segs abd-pipe">
               <article className="seg rv" style={{ '--i': 0 }}>
