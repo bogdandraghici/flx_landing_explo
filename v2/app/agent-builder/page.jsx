@@ -1,6 +1,7 @@
 import { bp } from '@/components/lib/base';
 import CtaFieldInit from '@/components/CtaFieldInit';
 import AgentBuilderHeroViz from '@/components/AgentBuilderHeroViz';
+import PipelineLifecycleViz from '@/components/PipelineLifecycleViz';
 
 export const metadata = {
   title: 'FlowX — Agent Builder',
@@ -73,6 +74,9 @@ export default function AgentBuilder() {
                   checkpointed state.</p>
               </div>
             </div>
+            {/* 5A lifecycle instrument — one graph played through the four stages as
+                staged acts (draw → compile → run → resume), looping. */}
+            <PipelineLifecycleViz className="abd-pipe-viz rv" />
             <div className="segs abd-pipe">
               <article className="seg rv" style={{ '--i': 0 }}>
                 <span className="seg__no mono">01</span>

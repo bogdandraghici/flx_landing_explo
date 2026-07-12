@@ -3229,6 +3229,19 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .abd-thesis p { margin-top: 20px; max-width: 58ch; line-height: 1.65; text-wrap: pretty; }
 .abd-thesis__tag { display: block; margin-top: 26px; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); }
 
+/* --- pipeline: 4A editorial instrument (21:9 figure above the four steps) --- */
+.abd-pipe-viz {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 1;
+  min-height: 260px;
+  margin: 22px 0 28px;
+  background: var(--bg-panel);
+  border: 1px solid rgba(var(--ink), 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
 /* --- pipeline: four steps on one row --- */
 .abd-pipe { grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 1080px) { .abd-pipe { grid-template-columns: repeat(4, 1fr); } }
