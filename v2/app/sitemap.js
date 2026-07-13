@@ -15,6 +15,7 @@ export default function sitemap() {
     ['/models', 0.8],
     ['/research', 0.8],
     ['/blog', 0.8],
+    ['/customers', 0.7],
     ['/agent-builder', 0.7],
     ['/flowx-code', 0.7],
     ['/observatory', 0.7],
@@ -24,6 +25,9 @@ export default function sitemap() {
     ['/about', 0.6],
     ['/resources', 0.5],
     ['/blog-flowx-6', 0.4],
+    ['/privacy-policy', 0.3],
+    ['/cookie-policy', 0.3],
+    ['/terms-and-conditions', 0.3],
   ].map(([path, priority]) => ({ url: absUrl(path), changeFrequency: 'monthly', priority }));
 
   const papers = PAPERS.map((p) => ({ url: absUrl(`/research/${p.slug}`), changeFrequency: 'yearly', priority: 0.6 }));
