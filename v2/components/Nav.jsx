@@ -93,23 +93,23 @@ export default function Nav() {
                 <div className="nav__cols">
                   <div className="nav__group">
                     <p className="nav__glabel mono">By industry</p>
-                    <a href={bp("/banking")}><span className="nav__link-t">Banking</span></a>
-                    <a href={bp("/insurance")}><span className="nav__link-t">Insurance</span></a>
-                    <a href={bp("/logistics")}><span className="nav__link-t">Logistics</span></a>
+                    <a className="nav__link--desc" href={bp("/banking")}><span className="nav__link-t">Banking</span><span className="nav__link-d">Onboarding, lending, fraud, AML</span></a>
+                    <a className="nav__link--desc" href={bp("/insurance")}><span className="nav__link-t">Insurance</span><span className="nav__link-d">Claims, underwriting, distribution</span></a>
+                    <a className="nav__link--desc" href={bp("/logistics")}><span className="nav__link-t">Logistics</span><span className="nav__link-d">Freight, fleet, visibility</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">By use case</p>
-                    <a href={bp("/ai-agents?use=onboarding")}><span className="nav__link-t">Onboarding</span></a>
-                    <a href={bp("/ai-agents?use=lending")}><span className="nav__link-t">Lending</span></a>
-                    <a href={bp("/ai-agents?use=underwriting")}><span className="nav__link-t">Underwriting</span></a>
-                    <a href={bp("/ai-agents?use=claims")}><span className="nav__link-t">Claims</span></a>
-                    <a href={bp("/ai-agents?use=quoting")}><span className="nav__link-t">Quoting</span></a>
-                    <a href={bp("/ai-agents?industry=Logistics")}><span className="nav__link-t">Track &amp; trace</span></a>
+                    <a className="nav__link--desc" href={bp("/ai-agents?use=onboarding")}><span className="nav__link-t">Onboarding</span><span className="nav__link-d">KYC and account opening</span></a>
+                    <a className="nav__link--desc" href={bp("/ai-agents?use=lending")}><span className="nav__link-t">Lending</span><span className="nav__link-d">Origination and credit</span></a>
+                    <a className="nav__link--desc" href={bp("/ai-agents?use=underwriting")}><span className="nav__link-t">Underwriting</span><span className="nav__link-d">Risk, pricing, decisioning</span></a>
+                    <a className="nav__link--desc" href={bp("/ai-agents?use=claims")}><span className="nav__link-t">Claims</span><span className="nav__link-d">Intake to settlement</span></a>
+                    <a className="nav__link--desc" href={bp("/ai-agents?use=quoting")}><span className="nav__link-t">Quoting</span><span className="nav__link-d">Pricing and rate optimization</span></a>
+                    <a className="nav__link--desc" href={bp("/ai-agents?industry=Logistics")}><span className="nav__link-t">Track &amp; trace</span><span className="nav__link-d">Shipment visibility</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Explore</p>
-                    <a href={bp("/ai-agents")}><span className="nav__link-t">All AI agents</span></a>
-                    <a href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span></a>
+                    <a className="nav__link--desc" href={bp("/ai-agents")}><span className="nav__link-t">All AI agents</span><span className="nav__link-d">140+ production-ready agents</span></a>
+                    <a className="nav__link--desc" href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span><span className="nav__link-d">Size the payback</span></a>
                   </div>
                 </div>
                 <p className="nav__foot mono"><a href={bp("/ai-agents")}>Browse all AI agents <span className="nav__arr" aria-hidden="true">→</span></a></p>
@@ -123,24 +123,24 @@ export default function Nav() {
                 <div className="nav__cols">
                   <div className="nav__group">
                     <p className="nav__glabel mono">Papers · eXponential6</p>
-                    <a className="nav__link--mono" href={bp("/research/vera")}><span className="nav__link-t">VERA</span></a>
-                    <a className="nav__link--mono" href={bp("/research/orna-autotune")}><span className="nav__link-t">ORNA</span></a>
-                    <a className="nav__link--mono" href={bp("/research/halo")}><span className="nav__link-t">HALO</span></a>
-                    <a className="nav__link--mono" href={bp("/research/gavel")}><span className="nav__link-t">GAVEL</span></a>
-                    <a className="nav__link--mono" href={bp("/research/sift")}><span className="nav__link-t">SIFT</span></a>
-                    <a className="nav__link--mono" href={bp("/research/rails")}><span className="nav__link-t">RAILS</span></a>
-                    <a className="nav__link--mono" href={bp("/research/mneme")}><span className="nav__link-t">MNEMĒ</span></a>
+                    <a className="nav__link--desc" href={bp("/research/vera")}><span className="nav__link-t mono">VERA</span><span className="nav__link-d">Evidence-graded ROI for agents</span></a>
+                    <a className="nav__link--desc" href={bp("/research/orna-autotune")}><span className="nav__link-t mono">ORNA</span><span className="nav__link-d">Agent self-adaptation in production</span></a>
+                    <a className="nav__link--desc" href={bp("/research/halo")}><span className="nav__link-t mono">HALO</span><span className="nav__link-d">Zero hallucination, by construction</span></a>
+                    <a className="nav__link--desc" href={bp("/research/gavel")}><span className="nav__link-t mono">GAVEL</span><span className="nav__link-d">Governance, evidenced at runtime</span></a>
+                    <a className="nav__link--desc" href={bp("/research/sift")}><span className="nav__link-t mono">SIFT</span><span className="nav__link-d">A classifier that teaches itself</span></a>
+                    <a className="nav__link--desc" href={bp("/research/rails")}><span className="nav__link-t mono">RAILS</span><span className="nav__link-d">Deterministic graphs, stochastic nodes</span></a>
+                    <a className="nav__link--desc" href={bp("/research/mneme")}><span className="nav__link-t mono">MNEMĒ</span><span className="nav__link-d">Safe, active agent memory</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Open models</p>
-                    <a href={bp("/models")}><span className="nav__link-t">Models overview</span></a>
-                    <a href="https://huggingface.co/flowxai" target="_blank" rel="noopener"><span className="nav__link-t">Hugging Face <span className="nav__ext" aria-hidden="true">↗</span></span></a>
-                    <a href={bp("/models#benchmarks")}><span className="nav__link-t">Benchmarks</span></a>
+                    <a className="nav__link--desc" href={bp("/models")}><span className="nav__link-t">Models overview</span><span className="nav__link-d">Open-weight models, benchmarked</span></a>
+                    <a className="nav__link--desc" href="https://huggingface.co/flowxai" target="_blank" rel="noopener"><span className="nav__link-t">Hugging Face <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">Download the open weights</span></a>
+                    <a className="nav__link--desc" href={bp("/models#benchmarks")}><span className="nav__link-t">Benchmarks</span><span className="nav__link-d">Head-to-head vs frontier models</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Approach</p>
-                    <a href={bp("/research/methodology")}><span className="nav__link-t">Methodology</span></a>
-                    <a href={bp("/research/safety")}><span className="nav__link-t">Safety &amp; governance</span></a>
+                    <a className="nav__link--desc" href={bp("/research/methodology")}><span className="nav__link-t">Methodology</span><span className="nav__link-d">How we build and evaluate</span></a>
+                    <a className="nav__link--desc" href={bp("/research/safety")}><span className="nav__link-t">Safety &amp; governance</span><span className="nav__link-d">Controls for regulated AI</span></a>
                   </div>
                 </div>
                 <p className="nav__foot mono"><a href={bp("/research")}>Research overview <span className="nav__arr" aria-hidden="true">→</span></a></p>
@@ -154,24 +154,24 @@ export default function Nav() {
                 <div className="nav__cols">
                   <div className="nav__group">
                     <p className="nav__glabel mono">Learn</p>
-                    <a href="https://docs.flowx.ai/" target="_blank" rel="noopener"><span className="nav__link-t">Documentation <span className="nav__ext" aria-hidden="true">↗</span></span></a>
-                    <a href="https://academy.flowx.ai/" target="_blank" rel="noopener"><span className="nav__link-t">Academy <span className="nav__ext" aria-hidden="true">↗</span></span></a>
-                    <a href="https://docs.flowx.ai/5.9/cookbooks/overview" target="_blank" rel="noopener"><span className="nav__link-t">Cookbooks <span className="nav__ext" aria-hidden="true">↗</span></span></a>
+                    <a className="nav__link--desc" href="https://docs.flowx.ai/" target="_blank" rel="noopener"><span className="nav__link-t">Documentation <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">Guides and platform reference</span></a>
+                    <a className="nav__link--desc" href="https://academy.flowx.ai/" target="_blank" rel="noopener"><span className="nav__link-t">Academy <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">Courses and certification</span></a>
+                    <a className="nav__link--desc" href="https://docs.flowx.ai/5.9/cookbooks/overview" target="_blank" rel="noopener"><span className="nav__link-t">Cookbooks <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">Recipes and patterns</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Reference</p>
-                    <a href="https://docs.flowx.ai/api" target="_blank" rel="noopener"><span className="nav__link-t">API reference <span className="nav__ext" aria-hidden="true">↗</span></span></a>
-                    <a href="https://docs.flowx.ai/release-notes/overview" target="_blank" rel="noopener"><span className="nav__link-t">Release notes <span className="nav__ext" aria-hidden="true">↗</span></span></a>
+                    <a className="nav__link--desc" href="https://docs.flowx.ai/api" target="_blank" rel="noopener"><span className="nav__link-t">API reference <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">Endpoints and schemas</span></a>
+                    <a className="nav__link--desc" href="https://docs.flowx.ai/release-notes/overview" target="_blank" rel="noopener"><span className="nav__link-t">Release notes <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">What&apos;s new each version</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Models</p>
-                    <a href="https://huggingface.co/flowxai" target="_blank" rel="noopener"><span className="nav__link-t">Open weights on Hugging Face <span className="nav__ext" aria-hidden="true">↗</span></span></a>
-                    <a href={bp("/models")}><span className="nav__link-t">Model cards &amp; licenses</span></a>
+                    <a className="nav__link--desc" href="https://huggingface.co/flowxai" target="_blank" rel="noopener"><span className="nav__link-t">Hugging Face <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">Pull the open weights</span></a>
+                    <a className="nav__link--desc" href={bp("/models")}><span className="nav__link-t">Model cards &amp; licenses</span><span className="nav__link-d">Specs, benchmarks, terms</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Start</p>
-                    <a href="https://docs.flowx.ai/quickstart" target="_blank" rel="noopener"><span className="nav__link-t">Quickstart <span className="nav__ext" aria-hidden="true">↗</span></span></a>
-                    <a href="https://flowxai.zendesk.com/" target="_blank" rel="noopener"><span className="nav__link-t">Support <span className="nav__ext" aria-hidden="true">↗</span></span></a>
+                    <a className="nav__link--desc" href="https://docs.flowx.ai/quickstart" target="_blank" rel="noopener"><span className="nav__link-t">Quickstart <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">From zero to running</span></a>
+                    <a className="nav__link--desc" href="https://flowxai.zendesk.com/" target="_blank" rel="noopener"><span className="nav__link-t">Support <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">Get help from our team</span></a>
                   </div>
                 </div>
                 <p className="nav__foot mono"><a href="https://docs.flowx.ai/" target="_blank" rel="noopener">docs.flowx.ai <span className="nav__arr" aria-hidden="true">→</span></a></p>
@@ -229,16 +229,16 @@ export default function Nav() {
                 <div className="nav__cols">
                   <div className="nav__group">
                     <p className="nav__glabel mono">Featured</p>
-                    <a href={bp("/customers")}><span className="nav__link-t">Success stories</span></a>
+                    <a className="nav__link--desc" href={bp("/customers")}><span className="nav__link-t">Success stories</span><span className="nav__link-d">Banks and insurers running on FlowX</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Browse</p>
-                    <a href={bp("/customers#industry")}><span className="nav__link-t">By industry</span></a>
-                    <a href={bp("/customers#use-case")}><span className="nav__link-t">By use case</span></a>
+                    <a className="nav__link--desc" href={bp("/customers#industry")}><span className="nav__link-t">By industry</span><span className="nav__link-d">Banking, insurance, logistics</span></a>
+                    <a className="nav__link--desc" href={bp("/customers#use-case")}><span className="nav__link-t">By outcome</span><span className="nav__link-d">Automation, time saved, cost</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Prove it</p>
-                    <a href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span></a>
+                    <a className="nav__link--desc" href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span><span className="nav__link-d">Estimate your savings</span></a>
                   </div>
                 </div>
                 <p className="nav__foot mono"><a href={bp("/customers")}>All customers <span className="nav__arr" aria-hidden="true">→</span></a></p>
