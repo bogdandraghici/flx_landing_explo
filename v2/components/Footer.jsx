@@ -9,13 +9,16 @@ export default function Footer() {
       <div className="shell">
         <div className="footer__top">
           <div className="footer__id">
-            <svg className="footer__logo" viewBox="0 0 108 21" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
+            <svg className="footer__logo" viewBox="0 0 143 21" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX.AI">
               <path d="M 107.652 16.06 L 93.191 16.06 L 93.191 19.858 L 107.652 19.858 Z" fill="#FCB813" />
               <path d="M 102.63 6.505 L 107.652 12.262 L 103.028 12.262 L 100.294 9.062 L 97.559 12.262 L 93.191 12.262 L 98.198 6.569 L 93.319 1.065 L 97.957 1.065 L 100.549 4.087 L 103.142 1.065 L 107.524 1.065 Z" fill="currentColor" />
               <path d="M 5.028 5.132 L 5.028 8.858 L 15.918 8.858 L 15.918 13.303 L 5.028 13.303 L 5.028 20.217 L 0 20.217 L 0 0.637 L 18.062 0.637 L 18.062 5.148 L 5.028 5.148 Z" fill="currentColor" />
               <path d="M 37.327 15.624 L 37.327 20.217 L 20.684 20.217 L 20.684 0.637 L 25.713 0.637 L 25.713 15.624 Z" fill="currentColor" />
               <path d="M 38.206 10.427 C 38.206 3.792 42.618 0 49.451 0 C 56.284 0 60.711 3.808 60.711 10.427 C 60.711 17.046 56.268 20.854 49.451 20.854 C 42.618 20.854 38.206 17.063 38.206 10.427 Z M 55.59 10.427 C 55.59 6.733 53.245 4.642 49.451 4.642 C 45.687 4.642 43.312 6.733 43.312 10.427 C 43.312 14.121 45.656 16.213 49.451 16.213 C 53.245 16.213 55.59 14.121 55.59 10.427 Z" fill="currentColor" />
               <path d="M 91.868 0.637 L 85.591 20.217 L 80.593 20.217 L 76.583 6.586 L 72.541 20.217 L 67.59 20.217 L 61.282 0.637 L 66.433 0.637 L 70.197 14.088 L 74.315 0.637 L 78.943 0.637 L 83.061 14.088 L 86.825 0.637 Z" fill="currentColor" />
+              <path d="M 110.686 19.318 C 110.686 18.68 111.133 18.206 111.796 18.206 C 112.46 18.206 112.907 18.68 112.907 19.318 C 112.907 19.955 112.46 20.429 111.796 20.429 C 111.133 20.446 110.686 19.972 110.686 19.318 Z" fill="currentColor" />
+              <path d="M 133.159 14.431 L 120.094 14.431 L 117.056 20.217 L 115.529 20.217 L 125.878 0.637 L 127.405 0.637 L 137.755 20.217 L 136.228 20.217 Z M 132.465 13.091 L 126.603 1.978 L 120.773 13.091 Z" fill="currentColor" />
+              <path d="M 141.627 20.217 L 141.627 0.637 L 143 0.637 L 143 20.217 Z" fill="currentColor" />
             </svg>
             <address className="footer__offices mono">
               Charles de Gaulle Plaza, Piata Charles de Gaulle 15, 9th floor, 011857 Bucharest, Romania<br />
