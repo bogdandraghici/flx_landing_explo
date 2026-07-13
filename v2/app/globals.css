@@ -3909,6 +3909,10 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .blog-prose th { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--text); font-weight: 600; font-family: var(--font-mono); font-size: 12px; white-space: nowrap; }
 .blog-prose td { padding: 10px 12px; border-bottom: 1px solid var(--line-soft); color: var(--text-dim); vertical-align: top; }
 
+/* ---- FAQ accordion (reuses home .faq styles) ---- */
+.blog-faq { margin-top: clamp(40px, 6vh, 72px); padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 90px; }
+.blog-faq__h { font-family: var(--font-display); font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 620; letter-spacing: -0.02em; margin-bottom: 18px; }
+
 /* ---- further reading ---- */
 .blog-refs { margin-top: clamp(40px, 6vh, 72px); padding-top: 28px; border-top: 1px solid var(--line); }
 .blog-refs__h { font-family: var(--font-display); font-size: 1.2rem; font-weight: 620; margin-bottom: 16px; }

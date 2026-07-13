@@ -55,9 +55,15 @@ export default async function BlogPost({ params }) {
   const { slug } = await params;
   const p = POSTS.find((x) => x.slug === slug);
   if (!p) notFound();
-  const body = readBody(slug);
+  const rawBody = readBody(slug);
   const byline = [fmtDate(p.date), `${p.readingMins} min read`].filter(Boolean).join(' · ');
   const url = absUrl(`/blog/${slug}`);
+
+  // The source articles end with a flat "Frequently Asked Questions" section.
+  // When we have the structured FAQ, cut that section from the prose and re-render
+  // it below as a collapsible accordion (same design as the home page).
+  const faqIdx = p.faq?.length ? rawBody.search(/<h2[^>]*id="frequently-asked-questions"/i) : -1;
+  const body = faqIdx >= 0 ? rawBody.slice(0, faqIdx) : rawBody;
 
   // Key takeaways — the first sentence of each of the first few FAQ answers.
   // Real content (answer-first), so it's exactly what answer engines lift.
@@ -145,6 +151,24 @@ export default async function BlogPost({ params }) {
               )}
             </aside>
           </div>
+
+          {/* ================= FAQ (collapsible, home-style) ================= */}
+          {p.faq?.length > 0 && (
+            <div className="blog-faq" id="frequently-asked-questions">
+              <h2 className="blog-faq__h">Frequently asked questions</h2>
+              <div className="faq">
+                {p.faq.map((f, i) => (
+                  <details className="faq__item" key={i}>
+                    <summary className="faq__q">
+                      <span className="faq__no mono">Q.{String(i + 1).padStart(2, '0')}</span>{f.q}
+                      <span className="faq__mark" aria-hidden="true">+</span>
+                    </summary>
+                    <div className="faq__a"><p>{f.a}</p></div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* ================= FURTHER READING ================= */}
           {(p.related?.length > 0 || p.resource) && (
