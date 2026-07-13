@@ -1,0 +1,73 @@
+# FlowX.AI
+
+> FlowX.AI is an enterprise platform for building and deploying AI agents in regulated industries (banking, insurance, logistics). It wraps legacy core systems with a deterministic, auditable multi-agent orchestration layer — modernizing workflows in weeks without rip-and-replace. 220+ production-ready agents, a visual Agent Builder, open-weight models, and published research.
+
+## Key pages
+- [AI agents catalog](https://bogdandraghici.github.io/flx_landing_explo/v2/ai-agents): 140+ production-ready agents for banking, insurance and logistics, filterable by industry, use case and deploy effort.
+- [ROI calculator](https://bogdandraghici.github.io/flx_landing_explo/v2/roi-calculator): estimate annual savings and FTE capacity freed by a chosen agent stack, with a transparent labor-cost-avoidance model.
+- [Open models](https://bogdandraghici.github.io/flx_landing_explo/v2/models): open-weight (Apache-2.0) models on Hugging Face, benchmarked against frontier models.
+- [Research papers](https://bogdandraghici.github.io/flx_landing_explo/v2/research): the FlowX.AI technical-paper series on agent reliability, governance, measurement and memory.
+- [Blog](https://bogdandraghici.github.io/flx_landing_explo/v2/blog): field guides and playbooks on modernizing banking operations with AI agents.
+- [Agent Builder](https://bogdandraghici.github.io/flx_landing_explo/v2/agent-builder): visual workflow engine that compiles agents to deterministic state machines.
+- [Observatory](https://bogdandraghici.github.io/flx_landing_explo/v2/observatory): trace and audit every agent decision in production.
+- [About](https://bogdandraghici.github.io/flx_landing_explo/v2/about): company, mission and leadership.
+
+## Research papers
+- [VERA: Evidence-Graded ROI for Production Agents](https://bogdandraghici.github.io/flx_landing_explo/v2/research/vera): Bringing counterfactual measurement, causal validation, and confidence-graded accounting to the business case for enterprise AI agents.
+- [ORNA: Agent Self-Adaptation in Production](https://bogdandraghici.github.io/flx_landing_explo/v2/research/orna-autotune): Closing the loop between observability, validation, and node-level refinement for LLM agents in regulated industries.
+- [HALO: Zero Hallucination, by Construction](https://bogdandraghici.github.io/flx_landing_explo/v2/research/halo): Why trustworthy enterprise AI is a property of the harness around the model, not of the model itself: grounding, multi-signal verification, calibrated abstention, and continuous oversight in the FlowX.AI Platform.
+- [GAVEL: Governance That Runs Where the Agent Runs](https://bogdandraghici.github.io/flx_landing_explo/v2/research/gavel): Why governing autonomous AI agents means enforcing policy and producing audit evidence at runtime, over the agent s own telemetry, rather than asserting compliance on paper.
+- [SIFT: A Classifier That Teaches Itself](https://bogdandraghici.github.io/flx_landing_explo/v2/research/sift): A cost-tiered document classifier whose corpus grows from production traffic and whose autonomous retraining is made safe by a frozen evaluation gate.
+- [RAILS: The Graph Is Deterministic, Even When the Nodes Are Not](https://bogdandraghici.github.io/flx_landing_explo/v2/research/rails): How Agent Builder makes enterprise AI agents reliable by compiling visual workflows into deterministic state machines, in which the stochastic model is one bounded, typed node among many.
+- [MNEMĒ: A Knowledge Graph Agents Can Write To, Safely](https://bogdandraghici.github.io/flx_landing_explo/v2/research/mneme): MNEME, the FlowX.AI Ontology Layer: a provenance-tracked structured-memory graph that agents read, validate against, and contribute to, without corrupting the institutional source of truth.
+
+## Open models
+- [ScamGuard 1.7B (1.7B)](https://bogdandraghici.github.io/flx_landing_explo/v2/models): Scam & fraud detection — Qwen3-1.7B (LoRA), Apache-2.0. https://huggingface.co/flowxai/scam-guard-qwen17b
+- [ScamGuard 0.6B (0.6B)](https://bogdandraghici.github.io/flx_landing_explo/v2/models): Scam & fraud detection — Qwen3-0.6B (LoRA), Apache-2.0. https://huggingface.co/flowxai/scam-guard-qwen06b
+- [CEE-PII (~300M)](https://bogdandraghici.github.io/flx_landing_explo/v2/models): PII / sensitive-entity detection — GLiNER multi-v2.1 (mDeBERTa-v3), Apache-2.0. https://huggingface.co/flowxai/cee-pii
+- [Caveat (4B)](https://bogdandraghici.github.io/flx_landing_explo/v2/models): Risky-clause detection — Qwen3-4B, Apache-2.0. https://huggingface.co/flowxai/caveat
+- [Sentinel Gate (4B)](https://bogdandraghici.github.io/flx_landing_explo/v2/models): Escalation gate — Qwen3-4B, Apache-2.0. https://huggingface.co/flowxai/sentinel-gate
+- [Semantic Mapper (4B)](https://bogdandraghici.github.io/flx_landing_explo/v2/models): Ontology extraction — Qwen3-4B (LoRA), Apache-2.0. https://huggingface.co/flowxai/semantic-mapper
+
+## Blog articles
+- [AI Banking Automation Platforms That Bridge Legacy Cores in 2026](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026)
+- [Asset Manager Fund Platforms: Build vs. Buy in CEE](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/asset-manager-fund-platforms-build-vs-buy-cee)
+- [Budget-Constrained Core Modernization: Automation Tools for Banks](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/budget-constrained-core-modernization-automation-tools-for-banks)
+- [Hitting a Compliance Deadline on a Fixed Budget: A Banking Playbook](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/hitting-a-compliance-deadline-on-a-fixed-b)
+- [How CFOs Justify Banking Automation Spend on a Pre-Internet Core](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/how-cfos-justify-banking-automation-spend)
+- [How to Evaluate Banking Automation Vendors When SaaS Is Off the Table](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/how-to-evaluate-banking-automation-vendors)
+- [Integration Patterns for Modern Workflows and Legacy Bank Cores](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/integration-patterns-that-make-modern-work)
+- [Launch a Wealth Advisory Onboarding Journey in 8 Weeks: Bank Playbook](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/launching-a-wealth-advisory-onboarding-jou)
+- [Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks)
+- [Six-Month Rollout Plans for Banking Automation on Aging Mainframes](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/six-month-rollout-plans-for-banking-automation-aging-mainframes)
+- [Banking Operations Automation Software for Public-Sector Lending](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/top-banking-operations-automation-software)
+- [Total Cost of Ownership Comparison: Banking Automation Overlays](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/total-cost-of-ownership-comparison-banking)
+- [Automating Paper-Heavy Credit-Union Lending Without LOS Replacement](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/automating-paper-heavy-lending-at-mid-size)
+- [Back-Office Automation for Scaling Fintechs (100-250 Employees)](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/back-office-automation-for-scaling-fintech)
+- [Cutting Loan-Approval and Underwriting Cycle Times with AI Agents](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/cutting-loan-approval-and-underwriting-cycle-times-with-ai-agents)
+- [Fastest-to-Deploy Banking Automation Tools for 6-Month Deadlines](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/fastest-to-deploy-banking-automation-tools)
+- [Replacing Paper Workflows in Banking Operations: A Modern Field Guide](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/replacing-paper-workflows-in-banking-operations)
+- [Spinning Up an AI Agent Platform Without a Consulting Army](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/spinning-up-an-ai-agent-platform-without-a)
+- [A CIO's Guide to Choosing Private-Cloud AI Agent Platforms for Banks](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/a-cio-s-guide-to-choosing-private-cloud-ai-agent-platforms-for-regulated-financial-institutions)
+- [Behind-the-Firewall AI Agent Builders for Banks With Data Residency](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/behind-the-firewall-ai-agent-builders-for-banks)
+- [Best Enterprise AI Platforms for Banks With Technical Debt](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/best-enterprise-ai-platforms-for-banks-with-technical-debt)
+- [Best Private-Cloud AI Agent Platforms for Banks With Data Residency](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/best-private-cloud-ai-agent-platforms-for-banks-with-data-residency)
+- [Customer Service Automation for Digital Banks: AI Agents on Your Core](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/customer-service-automation-digital-banks-ai-agents-on-core)
+- [Evaluating Banking Automation Vendors: Integration, Security, Cores](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/evaluating-banking-automation-vendors-integration-security-cores)
+- [Fastest-to-Deploy Secure AI Agent Platforms for Banks](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/fastest-to-deploy-secure-ai-agent-platforms-for-banks)
+- [Fortune 500 Bank Tech Stacks: Which AI Agent Platforms Win](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/fortune-500-bank-tech-stacks-which-enterprise-ai-agent-platforms-win)
+- [How CEE Retail Banks Wrap Temenos and FIS Cores with AI Agents](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/how-cee-retail-banks-wrap-temenos-fis-cores-with-ai-agents)
+- [How CEE Tier-1 Banks Cut Lending Costs ~40% Without Replacing the Core](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/how-cee-tier-1-banks-are-cutting-lending-operational-costs-without-replacing-the-core)
+- [How Mid-Size Banks Are Modernizing Customer Service Without Replacing Their Core Banking Systems](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/how-mid-size-banks-modernize-customer-service-without-replacing-core)
+- [Low-Code Automation Platforms Fortune 500 Banks Trust](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/low-code-automation-platforms-fortune-500-banks)
+- [Low-Code Banking Automation Tools That Deploy in Weeks](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/low-code-banking-automation-tools-deploy-in-weeks)
+- [How Mid-Size Banks Automate Operations Without Replacing the Core](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/mid-size-banks-automate-operations-without-core-replacement)
+- [Reducing Manual Back-Office Work at Global Banks](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/reducing-manual-back-office-work-at-global-banks)
+- [Reducing Manual Operations Work at Large Legacy Banks](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/reducing-manual-operations-work-without-replacing-the-core)
+- [Top Banking Automation Platforms That Connect AI Agents to Legacy Mainframes in Weeks, Not Years](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/top-banking-automation-platforms-that-connect)
+- [What a CDO Must Demand Before a 7-Figure Underwriting Contract](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/what-a-cdo-must-demand-before-a-7-figure-underwriting-contract)
+- [Why Fortune 500 Banks Pick Low-Code AI Agents Behind the Firewall](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/why-fortune-500-banks-are-picking-low-code-ai)
+- [Workflow Automation Platforms for Banks Under Heavy Compliance Audits](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/workflow-automation-platforms-for-banks-under-heavy-compliance-audits)
+- [Wrapping 30-Year-Old Core Banking Systems With AI, Not Replacing](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/wrapping-30-year-old-core-banking-systems-with-ai-without-a-rip-and-replace-project)
+- [Connecting AI Agents to Mainframe Cores: A Banking Buyer's Guide](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/connecting-ai-agents-to-mainframe-cores-a-banking-buyers-guide)
+- [Customer Service AI Agents for Banks on Legacy Cores](https://bogdandraghici.github.io/flx_landing_explo/v2/blog/customer-service-ai-agents-for-banks-legacy-cores)
