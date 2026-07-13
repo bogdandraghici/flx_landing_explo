@@ -76,6 +76,10 @@ export default function Nav() {
                       <span className="nav__link-t">Deployment</span>
                       <span className="nav__link-d">Cloud, hybrid, or on-prem</span>
                     </a>
+                    <a className="nav__link--desc" href={bp("/platform/status")}>
+                      <span className="nav__link-t">Status</span>
+                      <span className="nav__link-d">Live uptime across US &amp; EU</span>
+                    </a>
                   </div>
                 </div>
                 <p className="nav__foot mono"><a href={bp("/platform")}>Platform overview <span className="nav__arr" aria-hidden="true">→</span></a></p>
