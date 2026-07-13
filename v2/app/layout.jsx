@@ -7,6 +7,7 @@ import '@fontsource-variable/geist-mono';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Chrome from '@/components/Chrome';
+import { SITE_ORIGIN, SITE_NAME, OG_IMAGE, absUrl } from '@/components/lib/site';
 
 // No-flash theme: set data-theme before first paint (verbatim from v1 <head>).
 const THEME_SCRIPT =
@@ -15,10 +16,31 @@ const THEME_SCRIPT =
 const FAVICON =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M28 26 L60 62 M60 26 L28 62' stroke='%23F4F5F3' stroke-width='9'/%3E%3Crect x='28' y='70' width='44' height='9' fill='%23FCB813'/%3E%3C/svg%3E";
 
+const DESCRIPTION =
+  'FlowX.AI — deploy banking, insurance, and logistics AI agents in weeks, proven in production. 220+ enterprise-ready agents for regulated industries, or build your own.';
+
 export const metadata = {
-  title: 'FlowX — Be in the 5%',
-  description:
-    'FlowX.AI — deploy banking, insurance, and logistics AI agents in weeks, proven in production. 220+ enterprise-ready agents for regulated industries, or build your own.',
+  metadataBase: new URL(SITE_ORIGIN),
+  title: {
+    default: 'FlowX — Be in the 5%',
+    template: '%s · FlowX.AI',
+  },
+  description: DESCRIPTION,
+  applicationName: SITE_NAME,
+  openGraph: {
+    type: 'website',
+    siteName: SITE_NAME,
+    title: 'FlowX.AI — enterprise AI agents for regulated industries',
+    description: DESCRIPTION,
+    url: absUrl('/'),
+    images: [{ url: OG_IMAGE, width: 512, height: 512, alt: 'FlowX.AI' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FlowX.AI — enterprise AI agents for regulated industries',
+    description: DESCRIPTION,
+    images: [OG_IMAGE],
+  },
 };
 
 export default function RootLayout({ children }) {
