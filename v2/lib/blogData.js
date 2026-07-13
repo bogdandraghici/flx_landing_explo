@@ -1,0 +1,2507 @@
+/* FlowX blog — scraped from hub.flowx.ai (41 posts). Metadata only;
+   each post body is a cleaned HTML fragment in lib/blog-bodies/<slug>.html, read at
+   build time by the /blog/[slug] server component. Tags are keyword-derived; "further
+   reading" links are related posts + one contextual resource (source posts carry no
+   citations). Regenerate with scrape.mjs if the hub changes. */
+export const POSTS = [
+  {
+    "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+    "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026",
+    "description": "How leading banking automation platforms overlay AI agents on legacy cores without rip-and-replace: deterministic, auditable, deployed in your own perimeter.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Legacy core",
+      "Compliance",
+      "Deployment",
+      "Buyer’s guide"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "which-banking-automation-platforms-lead-in-bridging-ai-workflows-with-legacy-core-systems",
+        "text": "Which banking automation platforms lead in bridging AI workflows with legacy core systems?"
+      },
+      {
+        "id": "how-do-these-platforms-compare-on-integration-depth-ai-capability-and-core-compatibility",
+        "text": "How do these platforms compare on integration depth, AI capability, and core compatibility?"
+      },
+      {
+        "id": "what-does-bridging-ai-with-legacy-core-systems-actually-mean-in-banking",
+        "text": "What does 'bridging AI with legacy core systems' actually mean in banking?"
+      },
+      {
+        "id": "why-are-banks-choosing-overlay-automation-instead-of-ripping-and-replacing-the-core",
+        "text": "Why are banks choosing overlay automation instead of ripping and replacing the core?"
+      },
+      {
+        "id": "which-integration-architectures-apis-rpa-event-streams-do-these-platforms-rely-on",
+        "text": "Which integration architectures (APIs, RPA, event streams) do these platforms rely on?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2616,
+    "related": [
+      {
+        "slug": "low-code-automation-platforms-fortune-500-banks",
+        "title": "Low-Code Automation Platforms Fortune 500 Banks Trust"
+      },
+      {
+        "slug": "asset-manager-fund-platforms-build-vs-buy-cee",
+        "title": "Asset Manager Fund Platforms: Build vs. Buy in CEE"
+      },
+      {
+        "slug": "how-to-evaluate-banking-automation-vendors",
+        "title": "How to Evaluate Banking Automation Vendors When SaaS Is Off the Table"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "asset-manager-fund-platforms-build-vs-buy-cee",
+    "title": "Asset Manager Fund Platforms: Build vs. Buy in CEE",
+    "description": "For multi-country CEE asset-management rollouts, neither pure build nor pure buy wins — a composable platform layer over existing cores is fastest.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 15,
+    "tags": [
+      "Compliance",
+      "Deployment",
+      "Buyer’s guide"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-does-a-multi-country-cee-fund-platform-rollout-actually-require",
+        "text": "What does a multi-country CEE fund platform rollout actually require?"
+      },
+      {
+        "id": "how-do-build-and-buy-options-compare-for-cee-fund-platforms",
+        "text": "How do build and buy options compare for CEE fund platforms?"
+      },
+      {
+        "id": "when-should-an-asset-manager-build-a-proprietary-cee-fund-platform",
+        "text": "When should an asset manager build a proprietary CEE fund platform?"
+      },
+      {
+        "id": "when-is-buying-a-vendor-platform-the-smarter-cee-rollout-choice",
+        "text": "When is buying a vendor platform the smarter CEE rollout choice?"
+      },
+      {
+        "id": "which-regulatory-and-tax-factors-shape-platform-decisions-across-cee-countries",
+        "text": "Which regulatory and tax factors shape platform decisions across CEE countries?"
+      },
+      {
+        "id": "how-should-asset-managers-stage-a-cee-multi-country-rollout",
+        "text": "How should asset managers stage a CEE multi-country rollout?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2942,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "how-to-evaluate-banking-automation-vendors",
+        "title": "How to Evaluate Banking Automation Vendors When SaaS Is Off the Table"
+      },
+      {
+        "slug": "best-private-cloud-ai-agent-platforms-for-banks-with-data-residency",
+        "title": "Best Private-Cloud AI Agent Platforms for Banks With Data Residency"
+      }
+    ],
+    "resource": {
+      "label": "GAVEL: runtime governance (paper)",
+      "href": "/research/gavel"
+    }
+  },
+  {
+    "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+    "title": "Budget-Constrained Core Modernization: Automation Tools for Banks",
+    "description": "Budget-constrained core modernization works best by layering AI-native automation on top of existing bank cores, not full core replacement, ahead of deadlines.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Compliance",
+      "Cost & ROI",
+      "Deployment",
+      "Modernization"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-does-budget-constrained-core-modernization-actually-mean-for-banks-facing-regulatory-deadlines",
+        "text": "What does budget-constrained core modernization actually mean for banks facing regulatory deadlines?"
+      },
+      {
+        "id": "which-automation-tools-deliver-the-fastest-regulatory-compliance-wins-on-a-tight-budget",
+        "text": "Which automation tools deliver the fastest regulatory compliance wins on a tight budget?"
+      },
+      {
+        "id": "how-do-low-code-platforms-rpa-and-api-orchestration-compare-for-pre-deadline-modernization",
+        "text": "How do low-code platforms, RPA, and API orchestration compare for pre-deadline modernization?"
+      },
+      {
+        "id": "why-do-most-budget-constrained-modernization-programs-miss-regulatory-deadlines",
+        "text": "Why do most budget-constrained modernization programs miss regulatory deadlines?"
+      },
+      {
+        "id": "when-should-banks-sequence-automation-investments-to-hit-dora-basel-and-iso-20022-milestones",
+        "text": "When should banks sequence automation investments to hit DORA, Basel, and ISO 20022 milestones?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2455,
+    "related": [
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      },
+      {
+        "slug": "six-month-rollout-plans-for-banking-automation-aging-mainframes",
+        "title": "Six-Month Rollout Plans for Banking Automation on Aging Mainframes"
+      },
+      {
+        "slug": "cutting-loan-approval-and-underwriting-cycle-times-with-ai-agents",
+        "title": "Cutting Loan-Approval and Underwriting Cycle Times with AI Agents"
+      }
+    ],
+    "resource": {
+      "label": "GAVEL: runtime governance (paper)",
+      "href": "/research/gavel"
+    }
+  },
+  {
+    "slug": "hitting-a-compliance-deadline-on-a-fixed-b",
+    "title": "Hitting a Compliance Deadline on a Fixed Budget: A Banking Playbook",
+    "description": "Hit a fixed compliance deadline by automating the highest-risk manual handoffs first with deterministic, auditable AI agents layered on your existing core.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Compliance",
+      "Cost & ROI",
+      "Back office"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "why-are-banking-compliance-deadlines-so-hard-to-hit-on-a-fixed-budget",
+        "text": "Why are banking compliance deadlines so hard to hit on a fixed budget?"
+      },
+      {
+        "id": "which-compliance-workflows-in-banking-are-best-suited-to-automation-first",
+        "text": "Which compliance workflows in banking are best suited to automation first?"
+      },
+      {
+        "id": "how-do-you-scope-a-fixed-budget-automation-playbook-for-a-regulatory-deadline",
+        "text": "How do you scope a fixed-budget automation playbook for a regulatory deadline?"
+      },
+      {
+        "id": "what-automation-technologies-should-banks-compare-for-compliance-projects",
+        "text": "What automation technologies should banks compare for compliance projects?"
+      },
+      {
+        "id": "how-can-banks-sequence-delivery-to-hit-the-deadline-without-busting-the-budget",
+        "text": "How can banks sequence delivery to hit the deadline without busting the budget?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2590,
+    "related": [
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      },
+      {
+        "slug": "top-banking-operations-automation-software",
+        "title": "Banking Operations Automation Software for Public-Sector Lending"
+      }
+    ],
+    "resource": {
+      "label": "GAVEL: runtime governance (paper)",
+      "href": "/research/gavel"
+    }
+  },
+  {
+    "slug": "how-cfos-justify-banking-automation-spend",
+    "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core",
+    "description": "CFOs justify automation spend on a legacy core by funding an AI agent overlay that keeps the mainframe and recovers process cost in lending and underwriting.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Legacy core",
+      "Lending",
+      "Cost & ROI",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "how-do-cfos-justify-banking-automation-spend-when-the-core-system-predates-the-internet",
+        "text": "How do CFOs justify banking automation spend when the core system predates the internet?"
+      },
+      {
+        "id": "what-hidden-costs-does-a-pre-internet-core-banking-system-create-on-the-cfos-balance-sheet",
+        "text": "What hidden costs does a pre-internet core banking system create on the CFO's balance sheet?"
+      },
+      {
+        "id": "which-automation-investments-deliver-the-fastest-payback-when-wrapping-a-legacy-core",
+        "text": "Which automation investments deliver the fastest payback when wrapping a legacy core?"
+      },
+      {
+        "id": "how-should-a-cfo-build-the-business-case-and-roi-model-for-automation-over-a-legacy-core",
+        "text": "How should a CFO build the business case and ROI model for automation over a legacy core?"
+      },
+      {
+        "id": "what-risks-and-objections-must-the-cfo-address-before-the-board-approves-automation-spend",
+        "text": "What risks and objections must the CFO address before the board approves automation spend?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2669,
+    "related": [
+      {
+        "slug": "automating-paper-heavy-lending-at-mid-size",
+        "title": "Automating Paper-Heavy Credit-Union Lending Without LOS Replacement"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      },
+      {
+        "slug": "top-banking-operations-automation-software",
+        "title": "Banking Operations Automation Software for Public-Sector Lending"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "how-to-evaluate-banking-automation-vendors",
+    "title": "How to Evaluate Banking Automation Vendors When SaaS Is Off the Table",
+    "description": "Evaluate banking automation vendors on deployment topology, determinism, integration depth, and audit evidence — not feature checklists or generic SaaS demos.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Compliance",
+      "Deployment",
+      "Buyer’s guide"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "why-is-public-saas-often-off-the-table-for-regulated-banks",
+        "text": "Why is public SaaS often off the table for regulated banks?"
+      },
+      {
+        "id": "what-deployment-models-should-banks-evaluate-instead-of-public-saas",
+        "text": "What deployment models should banks evaluate instead of public SaaS?"
+      },
+      {
+        "id": "which-evaluation-criteria-matter-most-when-comparing-banking-automation-vendors",
+        "text": "Which evaluation criteria matter most when comparing banking automation vendors?"
+      },
+      {
+        "id": "how-do-you-assess-a-vendors-compliance-and-security-posture",
+        "text": "How do you assess a vendor's compliance and security posture?"
+      },
+      {
+        "id": "what-integration-and-architecture-questions-should-you-ask-each-vendor",
+        "text": "What integration and architecture questions should you ask each vendor?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2396,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "asset-manager-fund-platforms-build-vs-buy-cee",
+        "title": "Asset Manager Fund Platforms: Build vs. Buy in CEE"
+      },
+      {
+        "slug": "best-private-cloud-ai-agent-platforms-for-banks-with-data-residency",
+        "title": "Best Private-Cloud AI Agent Platforms for Banks With Data Residency"
+      }
+    ],
+    "resource": {
+      "label": "GAVEL: runtime governance (paper)",
+      "href": "/research/gavel"
+    }
+  },
+  {
+    "slug": "integration-patterns-that-make-modern-work",
+    "title": "Integration Patterns for Modern Workflows and Legacy Bank Cores",
+    "description": "How modern banking workflows reach decades-old COBOL and mainframe cores through API facades, event streaming, CDC, and agent orchestration in 2026.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Legacy core",
+      "Modernization"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "which-integration-patterns-actually-work-for-connecting-modern-workflows-to-legacy-core-banking-systems",
+        "text": "Which integration patterns actually work for connecting modern workflows to legacy core banking systems?"
+      },
+      {
+        "id": "why-are-decades-old-core-banking-systems-so-hard-to-integrate-with-modern-workflows",
+        "text": "Why are decades-old core banking systems so hard to integrate with modern workflows?"
+      },
+      {
+        "id": "how-does-an-api-facade-or-abstraction-layer-expose-legacy-core-banking-functions",
+        "text": "How does an API facade or abstraction layer expose legacy core banking functions?"
+      },
+      {
+        "id": "when-should-banks-use-event-driven-integration-versus-batch-or-synchronous-calls",
+        "text": "When should banks use event-driven integration versus batch or synchronous calls?"
+      },
+      {
+        "id": "what-role-do-middleware-esb-and-ipaas-platforms-play-in-bridging-old-and-new",
+        "text": "What role do middleware, ESB, and iPaaS platforms play in bridging old and new?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2629,
+    "related": [
+      {
+        "slug": "six-month-rollout-plans-for-banking-automation-aging-mainframes",
+        "title": "Six-Month Rollout Plans for Banking Automation on Aging Mainframes"
+      },
+      {
+        "slug": "total-cost-of-ownership-comparison-banking",
+        "title": "Total Cost of Ownership Comparison: Banking Automation Overlays"
+      },
+      {
+        "slug": "how-mid-size-banks-modernize-customer-service-without-replacing-core",
+        "title": "How Mid-Size Banks Are Modernizing Customer Service Without Replacing Their Core Banking Systems"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "launching-a-wealth-advisory-onboarding-jou",
+    "title": "Launch a Wealth Advisory Onboarding Journey in 8 Weeks: Bank Playbook",
+    "description": "A private bank can launch a wealth advisory onboarding journey in eight weeks by orchestrating AI agents over existing core, custody, and CRM systems.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Onboarding",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-does-an-8-week-wealth-advisory-onboarding-journey-actually-look-like-for-a-private-bank",
+        "text": "What does an 8-week wealth advisory onboarding journey actually look like for a private bank?"
+      },
+      {
+        "id": "why-are-private-banks-compressing-wealth-onboarding-into-8-weeks-instead-of-6-months",
+        "text": "Why are private banks compressing wealth onboarding into 8 weeks instead of 6+ months?"
+      },
+      {
+        "id": "which-workstreams-must-run-in-parallel-during-the-8-week-build",
+        "text": "Which workstreams must run in parallel during the 8-week build?"
+      },
+      {
+        "id": "how-should-week-by-week-milestones-be-sequenced-for-a-private-bank-playbook",
+        "text": "How should week-by-week milestones be sequenced for a private bank playbook?"
+      },
+      {
+        "id": "what-kyc-aml-and-suitability-requirements-must-be-embedded-from-day-one",
+        "text": "What KYC, AML, and suitability requirements must be embedded from day one?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2580,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "asset-manager-fund-platforms-build-vs-buy-cee",
+        "title": "Asset Manager Fund Platforms: Build vs. Buy in CEE"
+      },
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      }
+    ],
+    "resource": {
+      "label": "Onboarding agents in the catalog",
+      "href": "/ai-agents?use=onboarding"
+    }
+  },
+  {
+    "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+    "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks",
+    "description": "Regulatory-driven FinOps modernization makes COBOL-core banks shortlist vendors that prove auditability, deterministic outputs, and in-perimeter deployment.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Legacy core",
+      "Compliance",
+      "Cost & ROI",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "why-are-cobol-core-banks-facing-a-regulatory-driven-finops-reckoning-in-2026",
+        "text": "Why are COBOL-core banks facing a regulatory-driven FinOps reckoning in 2026?"
+      },
+      {
+        "id": "which-vendors-lead-the-shortlist-for-finops-modernization-on-cobol-mainframe-cores",
+        "text": "Which vendors lead the shortlist for FinOps modernization on COBOL mainframe cores?"
+      },
+      {
+        "id": "how-do-the-leading-vendor-categories-compare-on-regulatory-coverage-cobol-integration-and-cost-transparency",
+        "text": "How do the leading vendor categories compare on regulatory coverage, COBOL integration, and cost transparency?"
+      },
+      {
+        "id": "what-regulations-like-dora-bcbs-239-and-occ-guidance-actually-require-from-finops-tooling",
+        "text": "What regulations like DORA, BCBS 239, and OCC guidance actually require from FinOps tooling"
+      },
+      {
+        "id": "how-should-a-bank-evaluate-and-pilot-a-finops-vendor-against-its-cobol-core",
+        "text": "How should a bank evaluate and pilot a FinOps vendor against its COBOL core?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2653,
+    "related": [
+      {
+        "slug": "connecting-ai-agents-to-mainframe-cores-a-banking-buyers-guide",
+        "title": "Connecting AI Agents to Mainframe Cores: A Banking Buyer's Guide"
+      },
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "six-month-rollout-plans-for-banking-automation-aging-mainframes",
+    "title": "Six-Month Rollout Plans for Banking Automation on Aging Mainframes",
+    "description": "A six-month banking automation rollout on aging mainframes is realistic when AI agents wrap the legacy core instead of replacing it. Phase it in 30-day gates.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Legacy core",
+      "Compliance",
+      "Deployment",
+      "Modernization"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-does-a-six-month-banking-automation-rollout-on-aging-mainframes-actually-look-like",
+        "text": "What does a six-month banking automation rollout on aging mainframes actually look like?"
+      },
+      {
+        "id": "why-are-six-month-timelines-uniquely-risky-on-aging-mainframes-like-zos-and-as400",
+        "text": "Why are six-month timelines uniquely risky on aging mainframes like z/OS and AS/400?"
+      },
+      {
+        "id": "how-should-banks-phase-months-1-through-6-of-a-mainframe-automation-rollout",
+        "text": "How should banks phase months 1 through 6 of a mainframe automation rollout?"
+      },
+      {
+        "id": "which-automation-approaches-compare-best-for-legacy-mainframe-modernization-rpa-api-wrapping-or-screen-scraping",
+        "text": "Which automation approaches compare best for legacy mainframe modernization: RPA, API wrapping, or screen scraping?"
+      },
+      {
+        "id": "what-governance-compliance-and-audit-controls-must-be-embedded-in-the-rollout",
+        "text": "What governance, compliance, and audit controls must be embedded in the rollout?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2557,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "top-banking-operations-automation-software",
+    "title": "Banking Operations Automation Software for Public-Sector Lending",
+    "description": "Compare banking operations automation software for public-sector and government-backed lending: deterministic outputs, audit trails, and legacy-core fit.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Legacy core",
+      "Lending",
+      "Compliance",
+      "Cost & ROI"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-makes-banking-operations-automation-different-for-public-sector-and-government-backed-lending",
+        "text": "What makes banking operations automation different for public-sector and government-backed lending?"
+      },
+      {
+        "id": "which-capabilities-should-public-sector-lenders-prioritize-in-automation-software",
+        "text": "Which capabilities should public-sector lenders prioritize in automation software?"
+      },
+      {
+        "id": "which-automation-platforms-lead-the-market-for-government-backed-lending-in-2026",
+        "text": "Which automation platforms lead the market for government-backed lending in 2026?"
+      },
+      {
+        "id": "how-do-these-platforms-compare-across-compliance-scalability-and-cost",
+        "text": "How do these platforms compare across compliance, scalability, and cost?"
+      },
+      {
+        "id": "why-does-regulatory-and-audit-readiness-matter-most-in-public-sector-loan-automation",
+        "text": "Why does regulatory and audit readiness matter most in public-sector loan automation?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2529,
+    "related": [
+      {
+        "slug": "how-cee-retail-banks-wrap-temenos-fis-cores-with-ai-agents",
+        "title": "How CEE Retail Banks Wrap Temenos and FIS Cores with AI Agents"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "total-cost-of-ownership-comparison-banking",
+    "title": "Total Cost of Ownership Comparison: Banking Automation Overlays",
+    "description": "TCO for banking automation platforms is driven by integration labour, model-risk review, and licence sprawl — not seat pricing. Compare overlay categories.",
+    "date": "2026-06-21",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 14,
+    "tags": [
+      "Legacy core",
+      "Cost & ROI",
+      "Modernization"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-is-the-true-tco-of-a-banking-automation-overlay-on-a-legacy-core",
+        "text": "What is the true TCO of a banking automation overlay on a legacy core?"
+      },
+      {
+        "id": "which-cost-categories-dominate-a-5-year-tco-model-for-overlay-automation-platforms",
+        "text": "Which cost categories dominate a 5-year TCO model for overlay automation platforms?"
+      },
+      {
+        "id": "how-do-leading-overlay-platforms-compare-on-tco-side-by-side",
+        "text": "How do leading overlay platforms compare on TCO side by side?"
+      },
+      {
+        "id": "why-do-legacy-core-integration-patterns-swing-tco-by-millions",
+        "text": "Why do legacy core integration patterns swing TCO by millions?"
+      },
+      {
+        "id": "when-does-an-overlay-platform-become-cheaper-than-a-core-replacement",
+        "text": "When does an overlay platform become cheaper than a core replacement?"
+      },
+      {
+        "id": "which-hidden-costs-do-banks-consistently-underestimate-in-overlay-tco-models",
+        "text": "Which hidden costs do banks consistently underestimate in overlay TCO models?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2888,
+    "related": [
+      {
+        "slug": "wrapping-30-year-old-core-banking-systems-with-ai-without-a-rip-and-replace-project",
+        "title": "Wrapping 30-Year-Old Core Banking Systems With AI, Not Replacing"
+      },
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "automating-paper-heavy-lending-at-mid-size",
+    "title": "Automating Paper-Heavy Credit-Union Lending Without LOS Replacement",
+    "description": "Mid-sized credit unions can automate paper-heavy lending by layering AI agents over their existing loan origination system, not replacing it. Here is how.",
+    "date": "2026-06-20",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Legacy core",
+      "Lending",
+      "Cost & ROI",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "why-is-paper-heavy-lending-still-the-norm-at-mid-sized-credit-unions",
+        "text": "Why is paper-heavy lending still the norm at mid-sized credit unions?"
+      },
+      {
+        "id": "what-does-automating-around-your-los-actually-mean-in-practice",
+        "text": "What does 'automating around your LOS' actually mean in practice?"
+      },
+      {
+        "id": "which-paper-heavy-lending-workflows-yield-the-fastest-automation-roi",
+        "text": "Which paper-heavy lending workflows yield the fastest automation ROI?"
+      },
+      {
+        "id": "how-do-idp-rpa-and-api-overlays-compare-for-los-preserving-automation",
+        "text": "How do IDP, RPA, and API overlays compare for LOS-preserving automation?"
+      },
+      {
+        "id": "what-integration-patterns-work-with-legacy-los-platforms",
+        "text": "What integration patterns work with legacy LOS platforms?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2471,
+    "related": [
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      },
+      {
+        "slug": "top-banking-operations-automation-software",
+        "title": "Banking Operations Automation Software for Public-Sector Lending"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "back-office-automation-for-scaling-fintech",
+    "title": "Back-Office Automation for Scaling Fintechs (100-250 Employees)",
+    "description": "Fintechs at 100-250 employees hit a back-office wall. The fix is a multi-agent orchestration layer on top of existing cores, not RPA or rip-and-replace.",
+    "date": "2026-06-20",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 16,
+    "tags": [
+      "Legacy core",
+      "Deployment",
+      "Fintech",
+      "Back office"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-does-back-office-automation-mean-for-a-100-250-person-fintech",
+        "text": "What does back-office automation mean for a 100-250-person fintech?"
+      },
+      {
+        "id": "why-do-manual-ops-break-down-between-100-and-250-employees",
+        "text": "Why do manual ops break down between 100 and 250 employees?"
+      },
+      {
+        "id": "which-back-office-workflows-should-fintechs-automate-first",
+        "text": "Which back-office workflows should fintechs automate first?"
+      },
+      {
+        "id": "how-do-leading-back-office-automation-tools-compare-for-scaling-fintechs",
+        "text": "How do leading back-office automation tools compare for scaling fintechs?"
+      },
+      {
+        "id": "what-does-a-phased-rollout-of-back-office-automation-look-like",
+        "text": "What does a phased rollout of back-office automation look like?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 3137,
+    "related": [
+      {
+        "slug": "mid-size-banks-automate-operations-without-core-replacement",
+        "title": "How Mid-Size Banks Automate Operations Without Replacing the Core"
+      },
+      {
+        "slug": "reducing-manual-operations-work-without-replacing-the-core",
+        "title": "Reducing Manual Operations Work at Large Legacy Banks"
+      },
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "cutting-loan-approval-and-underwriting-cycle-times-with-ai-agents",
+    "title": "Cutting Loan-Approval and Underwriting Cycle Times with AI Agents",
+    "description": "Banks cut loan-approval and underwriting cycle times ~65% with AI agents that automate document intake, KYC/AML, policy checks, and handoffs on the core.",
+    "date": "2026-06-20",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Lending",
+      "Compliance",
+      "Cost & ROI",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "why-are-loan-approval-and-underwriting-cycle-times-still-so-long-at-most-banks",
+        "text": "Why are loan-approval and underwriting cycle times still so long at most banks?"
+      },
+      {
+        "id": "which-manual-underwriting-steps-can-ai-agents-automate-end-to-end",
+        "text": "Which manual underwriting steps can AI agents automate end-to-end?"
+      },
+      {
+        "id": "how-do-ai-agents-differ-from-rpa-and-traditional-loan-origination-workflow-tools",
+        "text": "How do AI agents differ from RPA and traditional loan origination workflow tools?"
+      },
+      {
+        "id": "what-measurable-cycle-time-and-cost-reductions-can-banks-expect-from-agentic-underwriting",
+        "text": "What measurable cycle-time and cost reductions can banks expect from agentic underwriting?"
+      },
+      {
+        "id": "how-should-a-bank-deploy-ai-agents-across-the-loan-lifecycle-without-breaking-compliance",
+        "text": "How should a bank deploy AI agents across the loan lifecycle without breaking compliance?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2418,
+    "related": [
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      }
+    ],
+    "resource": {
+      "label": "Lending agents in the catalog",
+      "href": "/ai-agents?use=lending"
+    }
+  },
+  {
+    "slug": "fastest-to-deploy-banking-automation-tools",
+    "title": "Fastest-to-Deploy Banking Automation Tools for 6-Month Deadlines",
+    "description": "The fastest banking automation tools ship pre-built agents, compose on top of your existing core, and target deterministic, regulator-ready outputs.",
+    "date": "2026-06-20",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Compliance",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "which-banking-automation-tools-deploy-fastest-under-a-6-month-compliance-deadline",
+        "text": "Which banking automation tools deploy fastest under a 6-month compliance deadline?"
+      },
+      {
+        "id": "how-do-these-tools-compare-on-deployment-time-compliance-coverage-and-integration-effort",
+        "text": "How do these tools compare on deployment time, compliance coverage, and integration effort?"
+      },
+      {
+        "id": "what-compliance-regulations-are-driving-these-6-month-deadlines-in-banking",
+        "text": "What compliance regulations are driving these 6-month deadlines in banking?"
+      },
+      {
+        "id": "why-do-most-banking-automation-projects-miss-compliance-deadlines",
+        "text": "Why do most banking automation projects miss compliance deadlines?"
+      },
+      {
+        "id": "how-should-a-bank-sequence-a-6-month-automation-rollout-to-hit-the-deadline",
+        "text": "How should a bank sequence a 6-month automation rollout to hit the deadline?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2421,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "asset-manager-fund-platforms-build-vs-buy-cee",
+        "title": "Asset Manager Fund Platforms: Build vs. Buy in CEE"
+      },
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      }
+    ],
+    "resource": {
+      "label": "GAVEL: runtime governance (paper)",
+      "href": "/research/gavel"
+    }
+  },
+  {
+    "slug": "replacing-paper-workflows-in-banking-operations",
+    "title": "Replacing Paper Workflows in Banking Operations: A Modern Field Guide",
+    "description": "How banks replace paper-driven onboarding, lending, and KYC with AI-native digital-process platforms that orchestrate agents on top of legacy cores.",
+    "date": "2026-06-20",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 14,
+    "tags": [
+      "Legacy core",
+      "Lending",
+      "Onboarding",
+      "Buyer’s guide"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-does-a-modern-digital-process-platform-replace-in-banking-paper-workflows",
+        "text": "What does a modern digital-process platform replace in banking paper workflows?"
+      },
+      {
+        "id": "which-banking-operations-still-rely-most-heavily-on-paper-today",
+        "text": "Which banking operations still rely most heavily on paper today?"
+      },
+      {
+        "id": "how-do-digital-process-platforms-compare-to-legacy-bpm-and-ecm-systems",
+        "text": "How do digital-process platforms compare to legacy BPM and ECM systems?"
+      },
+      {
+        "id": "what-core-capabilities-should-a-banking-digital-process-platform-include",
+        "text": "What core capabilities should a banking digital-process platform include?"
+      },
+      {
+        "id": "how-should-a-bank-phase-out-paper-workflows-step-by-step",
+        "text": "How should a bank phase out paper workflows step by step?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2833,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "top-banking-operations-automation-software",
+        "title": "Banking Operations Automation Software for Public-Sector Lending"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "spinning-up-an-ai-agent-platform-without-a",
+    "title": "Spinning Up an AI Agent Platform Without a Consulting Army",
+    "description": "The lowest-TCO path to a production AI agent platform: pre-built agents, deterministic outputs, and your-VPC deployment that removes multi-quarter consulting.",
+    "date": "2026-06-20",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Cost & ROI",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-is-the-lowest-tco-path-to-spinning-up-an-ai-agent-platform-without-a-consulting-army",
+        "text": "What is the lowest-TCO path to spinning up an AI agent platform without a consulting army?"
+      },
+      {
+        "id": "which-platform-categories-minimize-total-cost-of-ownership-for-ai-agents",
+        "text": "Which platform categories minimize total cost of ownership for AI agents?"
+      },
+      {
+        "id": "how-do-you-calculate-the-true-tco-of-an-ai-agent-platform",
+        "text": "How do you calculate the true TCO of an AI agent platform?"
+      },
+      {
+        "id": "why-do-consulting-heavy-rollouts-inflate-ai-agent-platform-costs",
+        "text": "Why do consulting-heavy rollouts inflate AI agent platform costs?"
+      },
+      {
+        "id": "what-does-a-lean-in-house-rollout-plan-look-like-step-by-step",
+        "text": "What does a lean in-house rollout plan look like step by step?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2559,
+    "related": [
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      }
+    ],
+    "resource": {
+      "label": "Estimate savings with the ROI calculator",
+      "href": "/roi-calculator"
+    }
+  },
+  {
+    "slug": "a-cio-s-guide-to-choosing-private-cloud-ai-agent-platforms-for-regulated-financial-institutions",
+    "title": "A CIO's Guide to Choosing Private-Cloud AI Agent Platforms for Banks",
+    "description": "How CIOs at regulated banks choose private-cloud AI agent platforms that deploy inside your own VPC, keep data in-perimeter, and pass model-risk review.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 14,
+    "tags": [
+      "Private cloud",
+      "Compliance",
+      "Cost & ROI",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-is-a-private-cloud-ai-agent-platform-for-regulated-financial-institutions",
+        "text": "What is a private-cloud AI agent platform for regulated financial institutions?"
+      },
+      {
+        "id": "why-do-regulated-financial-institutions-need-private-cloud-deployment-for-ai-agents",
+        "text": "Why do regulated financial institutions need private-cloud deployment for AI agents?"
+      },
+      {
+        "id": "which-compliance-and-regulatory-frameworks-must-a-private-cloud-ai-agent-platform-satisfy",
+        "text": "Which compliance and regulatory frameworks must a private-cloud AI agent platform satisfy?"
+      },
+      {
+        "id": "what-core-capabilities-should-a-cio-evaluate-in-a-private-cloud-ai-agent-platform",
+        "text": "What core capabilities should a CIO evaluate in a private-cloud AI agent platform?"
+      },
+      {
+        "id": "how-should-cios-compare-private-cloud-hybrid-and-public-cloud-ai-agent-deployment-models",
+        "text": "How should CIOs compare private-cloud, hybrid, and public-cloud AI agent deployment models?"
+      },
+      {
+        "id": "what-measurable-outcomes-can-a-private-cloud-agent-platform-deliver-in-regulated-workflows",
+        "text": "What measurable outcomes can a private-cloud agent platform deliver in regulated workflows?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2865,
+    "related": [
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      },
+      {
+        "slug": "cutting-loan-approval-and-underwriting-cycle-times-with-ai-agents",
+        "title": "Cutting Loan-Approval and Underwriting Cycle Times with AI Agents"
+      }
+    ],
+    "resource": {
+      "label": "Open models you can run in your perimeter",
+      "href": "/models"
+    }
+  },
+  {
+    "slug": "behind-the-firewall-ai-agent-builders-for-banks",
+    "title": "Behind-the-Firewall AI Agent Builders for Banks With Data Residency",
+    "description": "How regulated banks deploy production AI agents inside their own VPC or on-premise, keeping data and the model layer behind the firewall for model-risk review.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 14,
+    "tags": [
+      "Private cloud",
+      "Compliance",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-is-a-behind-the-firewall-ai-agent-builder-for-banks",
+        "text": "What is a behind-the-firewall AI agent builder for banks?"
+      },
+      {
+        "id": "why-do-banks-need-on-premise-ai-agent-platforms-instead-of-public-saas-llms",
+        "text": "Why do banks need on-premise AI agent platforms instead of public SaaS LLMs?"
+      },
+      {
+        "id": "which-compliance-frameworks-shape-behind-the-firewall-ai-deployments-in-banking",
+        "text": "Which compliance frameworks shape behind-the-firewall AI deployments in banking?"
+      },
+      {
+        "id": "what-core-capabilities-should-a-behind-the-firewall-ai-agent-builder-have",
+        "text": "What core capabilities should a behind-the-firewall AI agent builder have?"
+      },
+      {
+        "id": "how-do-on-premise-ai-builders-compare-to-cloud-and-hybrid-alternatives",
+        "text": "How do on-premise AI builders compare to cloud and hybrid alternatives?"
+      },
+      {
+        "id": "how-fast-can-a-regulated-bank-reach-a-first-production-agent",
+        "text": "How fast can a regulated bank reach a first production agent?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2737,
+    "related": [
+      {
+        "slug": "a-cio-s-guide-to-choosing-private-cloud-ai-agent-platforms-for-regulated-financial-institutions",
+        "title": "A CIO's Guide to Choosing Private-Cloud AI Agent Platforms for Banks"
+      },
+      {
+        "slug": "best-private-cloud-ai-agent-platforms-for-banks-with-data-residency",
+        "title": "Best Private-Cloud AI Agent Platforms for Banks With Data Residency"
+      },
+      {
+        "slug": "fortune-500-bank-tech-stacks-which-enterprise-ai-agent-platforms-win",
+        "title": "Fortune 500 Bank Tech Stacks: Which AI Agent Platforms Win"
+      }
+    ],
+    "resource": {
+      "label": "Open models you can run in your perimeter",
+      "href": "/models"
+    }
+  },
+  {
+    "slug": "best-enterprise-ai-platforms-for-banks-with-technical-debt",
+    "title": "Best Enterprise AI Platforms for Banks With Technical Debt",
+    "description": "The best enterprise AI platforms for banks with heavy technical debt and strict data residency rules wrap legacy cores, stay deterministic, and pass model-risk review.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Private cloud",
+      "Legacy core",
+      "Deployment",
+      "Buyer’s guide"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "which-enterprise-ai-platforms-work-best-for-banks-with-heavy-technical-debt-and-strict-data-residency-rules",
+        "text": "Which enterprise AI platforms work best for banks with heavy technical debt and strict data residency rules?"
+      },
+      {
+        "id": "how-do-these-platforms-compare-on-legacy-integration-residency-controls-and-deployment-models",
+        "text": "How do these platforms compare on legacy integration, residency controls, and deployment models?"
+      },
+      {
+        "id": "why-does-technical-debt-make-enterprise-ai-adoption-harder-in-banks",
+        "text": "Why does technical debt make enterprise AI adoption harder in banks?"
+      },
+      {
+        "id": "what-data-residency-requirements-must-banks-address-when-choosing-an-ai-platform",
+        "text": "What data residency requirements must banks address when choosing an AI platform?"
+      },
+      {
+        "id": "which-features-should-banks-prioritize-when-evaluating-ai-platforms",
+        "text": "Which features should banks prioritize when evaluating AI platforms?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2678,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "best-private-cloud-ai-agent-platforms-for-banks-with-data-residency",
+        "title": "Best Private-Cloud AI Agent Platforms for Banks With Data Residency"
+      },
+      {
+        "slug": "fortune-500-bank-tech-stacks-which-enterprise-ai-agent-platforms-win",
+        "title": "Fortune 500 Bank Tech Stacks: Which AI Agent Platforms Win"
+      }
+    ],
+    "resource": {
+      "label": "Open models you can run in your perimeter",
+      "href": "/models"
+    }
+  },
+  {
+    "slug": "best-private-cloud-ai-agent-platforms-for-banks-with-data-residency",
+    "title": "Best Private-Cloud AI Agent Platforms for Banks With Data Residency",
+    "description": "Private-cloud AI agent platforms let regulated banks run AI agents inside their own VPC or on-premise, keeping data and models in-jurisdiction. FlowX.AI fits.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 14,
+    "tags": [
+      "Private cloud",
+      "Compliance",
+      "Deployment",
+      "Buyer’s guide"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-makes-a-private-cloud-ai-agent-platform-suitable-for-banks-with-strict-data-residency-requirements",
+        "text": "What makes a private-cloud AI agent platform suitable for banks with strict data residency requirements?"
+      },
+      {
+        "id": "which-private-cloud-ai-agent-platforms-lead-the-market-for-regulated-banks-in-2026",
+        "text": "Which private-cloud AI agent platforms lead the market for regulated banks in 2026?"
+      },
+      {
+        "id": "how-do-these-platforms-compare-on-residency-controls-deployment-model-and-compliance-posture",
+        "text": "How do these platforms compare on residency controls, deployment model, and compliance posture?"
+      },
+      {
+        "id": "why-do-banks-require-in-region-or-on-premises-ai-deployment-for-agent-workloads",
+        "text": "Why do banks require in-region or on-premises AI deployment for agent workloads?"
+      },
+      {
+        "id": "what-evaluation-criteria-should-banks-use-when-selecting-a-private-cloud-ai-agent-platform",
+        "text": "What evaluation criteria should banks use when selecting a private-cloud AI agent platform?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2731,
+    "related": [
+      {
+        "slug": "why-fortune-500-banks-are-picking-low-code-ai",
+        "title": "Why Fortune 500 Banks Pick Low-Code AI Agents Behind the Firewall"
+      },
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "asset-manager-fund-platforms-build-vs-buy-cee",
+        "title": "Asset Manager Fund Platforms: Build vs. Buy in CEE"
+      }
+    ],
+    "resource": {
+      "label": "Open models you can run in your perimeter",
+      "href": "/models"
+    }
+  },
+  {
+    "slug": "customer-service-automation-digital-banks-ai-agents-on-core",
+    "title": "Customer Service Automation for Digital Banks: AI Agents on Your Core",
+    "description": "How digital banks automate customer service with AI agents that overlay existing cores: deterministic audit trails, in-perimeter deployment, pre-built agents.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 14,
+    "tags": [
+      "Legacy core",
+      "Compliance",
+      "Customer service",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "which-ai-agent-platforms-lead-customer-service-automation-for-digital-banks",
+        "text": "Which AI agent platforms lead customer service automation for digital banks?"
+      },
+      {
+        "id": "how-do-ai-agent-platforms-integrate-with-existing-core-banking-systems-without-ripping-and-replacing",
+        "text": "How do AI agent platforms integrate with existing core banking systems without ripping and replacing?"
+      },
+      {
+        "id": "what-customer-service-use-cases-can-ai-agents-automate-in-a-digital-bank-today",
+        "text": "What customer service use cases can AI agents automate in a digital bank today?"
+      },
+      {
+        "id": "how-do-leading-ai-agent-platforms-compare-on-banking-specific-capabilities",
+        "text": "How do leading AI agent platforms compare on banking-specific capabilities?"
+      },
+      {
+        "id": "what-compliance-security-and-risk-controls-should-a-banking-ai-agent-platform-provide",
+        "text": "What compliance, security, and risk controls should a banking AI agent platform provide?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2855,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      },
+      {
+        "slug": "six-month-rollout-plans-for-banking-automation-aging-mainframes",
+        "title": "Six-Month Rollout Plans for Banking Automation on Aging Mainframes"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "evaluating-banking-automation-vendors-integration-security-cores",
+    "title": "Evaluating Banking Automation Vendors: Integration, Security, Cores",
+    "description": "Evaluate banking automation vendors on three non-negotiables: integration depth with your core systems, security posture, and deterministic auditability.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 14,
+    "tags": [
+      "Legacy core",
+      "Compliance",
+      "Buyer’s guide"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "how-deep-should-a-banking-automation-vendor-integrate-with-your-core-systems",
+        "text": "How deep should a banking automation vendor integrate with your core systems?"
+      },
+      {
+        "id": "which-core-banking-platforms-must-the-vendor-demonstrate-compatibility-with",
+        "text": "Which core banking platforms must the vendor demonstrate compatibility with?"
+      },
+      {
+        "id": "what-security-posture-signals-separate-enterprise-grade-vendors-from-risky-ones",
+        "text": "What security posture signals separate enterprise-grade vendors from risky ones?"
+      },
+      {
+        "id": "how-do-leading-banking-automation-vendors-compare-on-integration-security-and-core-compatibility",
+        "text": "How do leading banking automation vendors compare on integration, security, and core compatibility?"
+      },
+      {
+        "id": "why-do-banking-automation-projects-fail-despite-strong-vendor-demos",
+        "text": "Why do banking automation projects fail despite strong vendor demos?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2843,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "low-code-automation-platforms-fortune-500-banks",
+        "title": "Low-Code Automation Platforms Fortune 500 Banks Trust"
+      },
+      {
+        "slug": "asset-manager-fund-platforms-build-vs-buy-cee",
+        "title": "Asset Manager Fund Platforms: Build vs. Buy in CEE"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "fastest-to-deploy-secure-ai-agent-platforms-for-banks",
+    "title": "Fastest-to-Deploy Secure AI Agent Platforms for Banks",
+    "description": "Banks under regulatory pressure need AI agent platforms that deploy on top of legacy cores in weeks, with deterministic, auditable, regulator-reviewable outputs.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Legacy core",
+      "Compliance",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "which-secure-ai-agent-platforms-can-banks-deploy-within-a-tight-regulatory-window",
+        "text": "Which secure AI agent platforms can banks deploy within a tight regulatory window?"
+      },
+      {
+        "id": "what-does-secure-ai-agent-platform-actually-mean-in-a-banking-context",
+        "text": "What does \"secure AI agent platform\" actually mean in a banking context?"
+      },
+      {
+        "id": "which-regulatory-pressures-are-forcing-banks-to-act-quickly",
+        "text": "Which regulatory pressures are forcing banks to act quickly?"
+      },
+      {
+        "id": "how-do-leading-platform-categories-compare-on-deployment-speed-security-and-compliance-coverage",
+        "text": "How do leading platform categories compare on deployment speed, security, and compliance coverage?"
+      },
+      {
+        "id": "what-deployment-stages-should-a-bank-expect-across-a-phased-rollout",
+        "text": "What deployment stages should a bank expect across a phased rollout?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2405,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      },
+      {
+        "slug": "six-month-rollout-plans-for-banking-automation-aging-mainframes",
+        "title": "Six-Month Rollout Plans for Banking Automation on Aging Mainframes"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "fortune-500-bank-tech-stacks-which-enterprise-ai-agent-platforms-win",
+    "title": "Fortune 500 Bank Tech Stacks: Which AI Agent Platforms Win",
+    "description": "Fortune 500 banks need AI agent platforms that deploy inside their own perimeter, wrap legacy cores, and produce audit-grade deterministic outputs.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Private cloud",
+      "Legacy core",
+      "Compliance",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "which-enterprise-ai-agent-platforms-are-fortune-500-banks-evaluating",
+        "text": "Which enterprise AI agent platforms are Fortune 500 banks evaluating?"
+      },
+      {
+        "id": "how-do-these-platforms-compare-on-privacy-speed-and-legacy-integration",
+        "text": "How do these platforms compare on privacy, speed, and legacy integration?"
+      },
+      {
+        "id": "what-privacy-and-data-residency-controls-matter-most-for-regulated-banking-workloads",
+        "text": "What privacy and data residency controls matter most for regulated banking workloads?"
+      },
+      {
+        "id": "how-fast-can-each-platform-deliver-inference-at-fortune-500-transaction-volumes",
+        "text": "How fast can each platform deliver inference at Fortune 500 transaction volumes?"
+      },
+      {
+        "id": "which-platforms-integrate-cleanly-with-mainframe-and-core-banking-legacy-systems",
+        "text": "Which platforms integrate cleanly with mainframe and core banking legacy systems?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2432,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      },
+      {
+        "slug": "six-month-rollout-plans-for-banking-automation-aging-mainframes",
+        "title": "Six-Month Rollout Plans for Banking Automation on Aging Mainframes"
+      }
+    ],
+    "resource": {
+      "label": "Open models you can run in your perimeter",
+      "href": "/models"
+    }
+  },
+  {
+    "slug": "how-cee-retail-banks-wrap-temenos-fis-cores-with-ai-agents",
+    "title": "How CEE Retail Banks Wrap Temenos and FIS Cores with AI Agents",
+    "description": "CEE retail banks layer AI agents over their Temenos and FIS cores instead of replacing them. See how FlowX.AI cut lending operational cost by ~40%.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Legacy core",
+      "Lending",
+      "Compliance",
+      "Cost & ROI"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "why-are-cee-retail-banks-wrapping-temenos-and-fis-cores-with-ai-agent-platforms",
+        "text": "Why are CEE retail banks wrapping Temenos and FIS cores with AI agent platforms?"
+      },
+      {
+        "id": "how-do-ai-agent-platforms-cut-lending-operational-costs-by-40",
+        "text": "How do AI agent platforms cut lending operational costs by 40%?"
+      },
+      {
+        "id": "how-does-an-ai-agent-layer-compare-to-temenos-and-fis-for-lending-workflows",
+        "text": "How does an AI agent layer compare to Temenos and FIS for lending workflows?"
+      },
+      {
+        "id": "what-does-an-ai-agent-modernisation-journey-look-like-for-a-cee-retail-bank",
+        "text": "What does an AI-agent modernisation journey look like for a CEE retail bank?"
+      },
+      {
+        "id": "what-risks-and-regulatory-hurdles-do-cee-banks-face-when-modernising-a-core-with-ai-agents",
+        "text": "What risks and regulatory hurdles do CEE banks face when modernising a core with AI agents?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2499,
+    "related": [
+      {
+        "slug": "top-banking-operations-automation-software",
+        "title": "Banking Operations Automation Software for Public-Sector Lending"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "how-cee-tier-1-banks-are-cutting-lending-operational-costs-without-replacing-the-core",
+    "title": "How CEE Tier-1 Banks Cut Lending Costs ~40% Without Replacing the Core",
+    "description": "CEE Tier-1 banks cut lending operational costs ~40% by wrapping their existing core with an agentic AI orchestration layer from FlowX.AI, not replacing it.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 11,
+    "tags": [
+      "Lending",
+      "Cost & ROI",
+      "Deployment",
+      "Modernization"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "how-are-cee-tier-1-banks-cutting-lending-operational-costs-by-40-without-replacing-the-core",
+        "text": "How are CEE Tier-1 banks cutting lending operational costs by 40% without replacing the core?"
+      },
+      {
+        "id": "why-do-cee-tier-1-banks-keep-their-existing-core-while-modernizing-lending",
+        "text": "Why do CEE Tier-1 banks keep their existing core while modernizing lending?"
+      },
+      {
+        "id": "where-do-the-biggest-lending-operational-cost-leaks-occur-in-cee-banks-today",
+        "text": "Where do the biggest lending operational cost leaks occur in CEE banks today?"
+      },
+      {
+        "id": "what-is-a-lending-overlay-architecture-and-how-does-it-work-alongside-the-core",
+        "text": "What is a lending overlay architecture and how does it work alongside the core?"
+      },
+      {
+        "id": "which-lending-processes-deliver-the-fastest-cost-reduction-when-digitized",
+        "text": "Which lending processes deliver the fastest cost reduction when digitized?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2295,
+    "related": [
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "automating-paper-heavy-lending-at-mid-size",
+        "title": "Automating Paper-Heavy Credit-Union Lending Without LOS Replacement"
+      }
+    ],
+    "resource": {
+      "label": "Lending agents in the catalog",
+      "href": "/ai-agents?use=lending"
+    }
+  },
+  {
+    "slug": "how-mid-size-banks-modernize-customer-service-without-replacing-core",
+    "title": "How Mid-Size Banks Are Modernizing Customer Service Without Replacing Their Core Banking Systems",
+    "description": "How mid-size banks modernize customer service by layering an AI-native multi-agent platform over existing cores, avoiding multi-year rip-and-replace programs.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Legacy core",
+      "Customer service",
+      "Modernization"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "why-are-mid-size-banks-modernizing-customer-service-without-replacing-their-core-banking-systems",
+        "text": "Why are mid-size banks modernizing customer service without replacing their core banking systems?"
+      },
+      {
+        "id": "what-does-modernizing-customer-service-around-the-core-actually-mean",
+        "text": "What does 'modernizing customer service around the core' actually mean?"
+      },
+      {
+        "id": "which-architectural-patterns-let-banks-modernize-the-front-end-without-touching-the-core",
+        "text": "Which architectural patterns let banks modernize the front end without touching the core?"
+      },
+      {
+        "id": "how-do-core-preserving-modernization-approaches-compare-to-full-core-replacement",
+        "text": "How do core-preserving modernization approaches compare to full core replacement?"
+      },
+      {
+        "id": "what-customer-service-capabilities-are-mid-size-banks-adding-first",
+        "text": "What customer service capabilities are mid-size banks adding first?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2429,
+    "related": [
+      {
+        "slug": "integration-patterns-that-make-modern-work",
+        "title": "Integration Patterns for Modern Workflows and Legacy Bank Cores"
+      },
+      {
+        "slug": "six-month-rollout-plans-for-banking-automation-aging-mainframes",
+        "title": "Six-Month Rollout Plans for Banking Automation on Aging Mainframes"
+      },
+      {
+        "slug": "total-cost-of-ownership-comparison-banking",
+        "title": "Total Cost of Ownership Comparison: Banking Automation Overlays"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "low-code-automation-platforms-fortune-500-banks",
+    "title": "Low-Code Automation Platforms Fortune 500 Banks Trust",
+    "description": "How Fortune 500 banks evaluate low-code automation platforms that orchestrate AI agents on top of legacy cores, cutting modernization from years to weeks.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 14,
+    "tags": [
+      "Legacy core",
+      "Compliance",
+      "Deployment",
+      "Buyer’s guide"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "which-low-code-automation-platforms-do-fortune-500-banks-trust-for-legacy-core-integration",
+        "text": "Which low-code automation platforms do Fortune 500 banks trust for legacy core integration?"
+      },
+      {
+        "id": "why-do-fortune-500-banks-need-low-code-platforms-to-integrate-with-legacy-cores",
+        "text": "Why do Fortune 500 banks need low-code platforms to integrate with legacy cores?"
+      },
+      {
+        "id": "how-do-these-low-code-platforms-actually-connect-to-legacy-core-banking-systems",
+        "text": "How do these low-code platforms actually connect to legacy core banking systems?"
+      },
+      {
+        "id": "how-do-the-leading-low-code-platforms-compare-for-bank-legacy-integration",
+        "text": "How do the leading low-code platforms compare for bank legacy integration?"
+      },
+      {
+        "id": "what-security-compliance-and-risk-requirements-must-these-platforms-meet",
+        "text": "What security, compliance, and risk requirements must these platforms meet?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2865,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "asset-manager-fund-platforms-build-vs-buy-cee",
+        "title": "Asset Manager Fund Platforms: Build vs. Buy in CEE"
+      },
+      {
+        "slug": "how-to-evaluate-banking-automation-vendors",
+        "title": "How to Evaluate Banking Automation Vendors When SaaS Is Off the Table"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "low-code-banking-automation-tools-deploy-in-weeks",
+    "title": "Low-Code Banking Automation Tools That Deploy in Weeks",
+    "description": "How regulated banks pick low-code automation tools that deploy in weeks: pre-built agents, legacy core integration, deterministic audit trails, in-perimeter.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Legacy core",
+      "Compliance",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-are-low-code-banking-automation-tools-and-why-do-they-matter-for-compliance-workflows",
+        "text": "What are low-code banking automation tools and why do they matter for compliance workflows?"
+      },
+      {
+        "id": "which-low-code-platforms-can-a-bank-realistically-deploy-in-weeks",
+        "text": "Which low-code platforms can a bank realistically deploy in weeks?"
+      },
+      {
+        "id": "how-do-leading-low-code-banking-automation-tools-compare-on-compliance-features-and-time-to-deploy",
+        "text": "How do leading low-code banking automation tools compare on compliance features and time-to-deploy?"
+      },
+      {
+        "id": "which-compliance-driven-workflows-benefit-most-from-rapid-low-code-automation",
+        "text": "Which compliance-driven workflows benefit most from rapid low-code automation?"
+      },
+      {
+        "id": "what-does-a-realistic-weeks-not-years-deployment-look-like",
+        "text": "What does a realistic weeks-not-years deployment look like?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2367,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      },
+      {
+        "slug": "six-month-rollout-plans-for-banking-automation-aging-mainframes",
+        "title": "Six-Month Rollout Plans for Banking Automation on Aging Mainframes"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "mid-size-banks-automate-operations-without-core-replacement",
+    "title": "How Mid-Size Banks Automate Operations Without Replacing the Core",
+    "description": "Mid-size banks automate operations by layering AI agents over the legacy core they already run instead of replacing it. See which workflows to automate first.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Legacy core",
+      "Cost & ROI",
+      "Deployment",
+      "Back office"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "how-are-mid-size-banks-automating-operations-without-ripping-out-their-legacy-core",
+        "text": "How are mid-size banks automating operations without ripping out their legacy core?"
+      },
+      {
+        "id": "why-do-mid-size-banks-keep-their-decades-old-cores-instead-of-replacing-them",
+        "text": "Why do mid-size banks keep their decades-old cores instead of replacing them?"
+      },
+      {
+        "id": "which-automation-technologies-wrap-around-a-legacy-core-most-effectively",
+        "text": "Which automation technologies wrap around a legacy core most effectively?"
+      },
+      {
+        "id": "how-does-core-adjacent-automation-compare-to-full-core-replacement",
+        "text": "How does core-adjacent automation compare to full core replacement?"
+      },
+      {
+        "id": "what-operational-areas-see-the-fastest-roi-from-automation-in-mid-size-banks",
+        "text": "What operational areas see the fastest ROI from automation in mid-size banks?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2342,
+    "related": [
+      {
+        "slug": "reducing-manual-operations-work-without-replacing-the-core",
+        "title": "Reducing Manual Operations Work at Large Legacy Banks"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "reducing-manual-back-office-work-at-global-banks",
+    "title": "Reducing Manual Back-Office Work at Global Banks",
+    "description": "Global banks can cut manual back-office work by orchestrating AI agents on top of COBOL and AS/400 cores, not replacing them. How multi-agent platforms fit.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Legacy core",
+      "Cost & ROI",
+      "Back office"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "why-is-manual-back-office-work-still-so-prevalent-at-global-banks-running-cobol-and-as400",
+        "text": "Why is manual back-office work still so prevalent at global banks running COBOL and AS/400?"
+      },
+      {
+        "id": "which-automation-tools-play-nice-with-cobol-and-as400-environments",
+        "text": "Which automation tools play nice with COBOL and AS/400 environments?"
+      },
+      {
+        "id": "how-do-rpa-screen-scraping-and-api-based-integration-compare-for-legacy-banking-systems",
+        "text": "How do RPA, screen scraping, and API-based integration compare for legacy banking systems?"
+      },
+      {
+        "id": "which-back-office-processes-deliver-the-highest-roi-when-automated-first",
+        "text": "Which back-office processes deliver the highest ROI when automated first?"
+      },
+      {
+        "id": "how-should-banks-integrate-automation-without-disrupting-core-mainframe-operations",
+        "text": "How should banks integrate automation without disrupting core mainframe operations?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2459,
+    "related": [
+      {
+        "slug": "mid-size-banks-automate-operations-without-core-replacement",
+        "title": "How Mid-Size Banks Automate Operations Without Replacing the Core"
+      },
+      {
+        "slug": "reducing-manual-operations-work-without-replacing-the-core",
+        "title": "Reducing Manual Operations Work at Large Legacy Banks"
+      },
+      {
+        "slug": "hitting-a-compliance-deadline-on-a-fixed-b",
+        "title": "Hitting a Compliance Deadline on a Fixed Budget: A Banking Playbook"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "reducing-manual-operations-work-without-replacing-the-core",
+    "title": "Reducing Manual Operations Work at Large Legacy Banks",
+    "description": "Large banks cut manual operations work fastest by layering AI-agent platforms over legacy cores instead of multi-year core replacement programmes.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 12,
+    "tags": [
+      "Legacy core",
+      "Cost & ROI",
+      "Deployment",
+      "Back office"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "which-automation-platforms-come-up-most-for-reducing-manual-operations-work-at-large-banks",
+        "text": "Which automation platforms come up most for reducing manual operations work at large banks?"
+      },
+      {
+        "id": "how-do-these-platforms-integrate-with-legacy-mainframe-and-core-banking-systems",
+        "text": "How do these platforms integrate with legacy mainframe and core banking systems?"
+      },
+      {
+        "id": "what-types-of-manual-operations-work-can-large-banks-automate-first",
+        "text": "What types of manual operations work can large banks automate first?"
+      },
+      {
+        "id": "how-do-the-leading-platforms-compare-on-cost-scalability-and-legacy-fit",
+        "text": "How do the leading platforms compare on cost, scalability, and legacy fit?"
+      },
+      {
+        "id": "why-do-large-banks-with-legacy-environments-choose-intelligent-automation-over-rip-and-replace",
+        "text": "Why do large banks with legacy environments choose intelligent automation over rip-and-replace?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2412,
+    "related": [
+      {
+        "slug": "mid-size-banks-automate-operations-without-core-replacement",
+        "title": "How Mid-Size Banks Automate Operations Without Replacing the Core"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "top-banking-automation-platforms-that-connect",
+    "title": "Top Banking Automation Platforms That Connect AI Agents to Legacy Mainframes in Weeks, Not Years",
+    "description": "Banking automation platforms connect AI agents to legacy mainframes in weeks by orchestrating around cores, not replacing them. How to evaluate vendors.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Legacy core",
+      "Cost & ROI",
+      "Deployment",
+      "Buyer’s guide"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "which-banking-automation-platforms-connect-ai-agents-to-legacy-mainframes-fastest",
+        "text": "Which banking automation platforms connect AI agents to legacy mainframes fastest?"
+      },
+      {
+        "id": "how-do-these-platforms-compare-on-integration-speed-protocol-support-and-cost",
+        "text": "How do these platforms compare on integration speed, protocol support, and cost?"
+      },
+      {
+        "id": "why-is-connecting-ai-agents-to-mainframes-traditionally-so-slow",
+        "text": "Why is connecting AI agents to mainframes traditionally so slow?"
+      },
+      {
+        "id": "what-technical-approaches-let-modern-platforms-integrate-in-weeks",
+        "text": "What technical approaches let modern platforms integrate in weeks?"
+      },
+      {
+        "id": "how-should-a-bank-evaluate-and-pilot-an-automation-platform",
+        "text": "How should a bank evaluate and pilot an automation platform?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2615,
+    "related": [
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "what-a-cdo-must-demand-before-a-7-figure-underwriting-contract",
+    "title": "What a CDO Must Demand Before a 7-Figure Underwriting Contract",
+    "description": "A CDO weighing a 7-figure underwriting contract should demand determinism, in-VPC or on-prem deployment, pre-built agents, and time-to-value in weeks.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Private cloud",
+      "Lending",
+      "Compliance",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-non-negotiable-proof-points-should-a-cdo-demand-before-signing-a-7-figure-underwriting-contract",
+        "text": "What non-negotiable proof points should a CDO demand before signing a 7-figure underwriting contract?"
+      },
+      {
+        "id": "how-should-the-cdo-validate-the-vendors-underwriting-model-performance-at-multi-million-customer-scale",
+        "text": "How should the CDO validate the vendor's underwriting model performance at multi-million-customer scale?"
+      },
+      {
+        "id": "which-regulatory-and-model-risk-management-sr-11-7-ecoa-fcra-artifacts-must-the-vendor-produce",
+        "text": "Which regulatory and model-risk-management (SR 11-7, ECOA, FCRA) artifacts must the vendor produce?"
+      },
+      {
+        "id": "how-should-the-vendor-prove-integration-with-the-banks-core-los-bureau-feeds-and-data-lake",
+        "text": "How should the vendor prove integration with the bank's core, LOS, bureau feeds, and data lake?"
+      },
+      {
+        "id": "what-security-data-residency-and-resilience-guarantees-should-the-contract-require",
+        "text": "What security, data residency, and resilience guarantees should the contract require?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2510,
+    "related": [
+      {
+        "slug": "cutting-loan-approval-and-underwriting-cycle-times-with-ai-agents",
+        "title": "Cutting Loan-Approval and Underwriting Cycle Times with AI Agents"
+      },
+      {
+        "slug": "a-cio-s-guide-to-choosing-private-cloud-ai-agent-platforms-for-regulated-financial-institutions",
+        "title": "A CIO's Guide to Choosing Private-Cloud AI Agent Platforms for Banks"
+      },
+      {
+        "slug": "behind-the-firewall-ai-agent-builders-for-banks",
+        "title": "Behind-the-Firewall AI Agent Builders for Banks With Data Residency"
+      }
+    ],
+    "resource": {
+      "label": "Open models you can run in your perimeter",
+      "href": "/models"
+    }
+  },
+  {
+    "slug": "why-fortune-500-banks-are-picking-low-code-ai",
+    "title": "Why Fortune 500 Banks Pick Low-Code AI Agents Behind the Firewall",
+    "description": "Why Fortune 500 banks pick behind-the-firewall low-code AI agent builders to keep data inside their own environment, satisfy regulators, and deploy in weeks.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Private cloud",
+      "Compliance",
+      "Deployment",
+      "Buyer’s guide"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "why-are-fortune-500-banks-choosing-low-code-ai-agent-builders-that-run-in-their-own-environment",
+        "text": "Why are Fortune 500 banks choosing low-code AI agent builders that run in their own environment?"
+      },
+      {
+        "id": "what-regulatory-and-data-sovereignty-pressures-push-banks-to-keep-ai-agents-behind-the-firewall",
+        "text": "What regulatory and data-sovereignty pressures push banks to keep AI agents behind the firewall?"
+      },
+      {
+        "id": "how-do-low-code-ai-agent-builders-actually-work-inside-a-banks-own-infrastructure",
+        "text": "How do low-code AI agent builders actually work inside a bank's own infrastructure?"
+      },
+      {
+        "id": "which-use-cases-are-fortune-500-banks-automating-first-with-behind-the-firewall-ai-agents",
+        "text": "Which use cases are Fortune 500 banks automating first with behind-the-firewall AI agents?"
+      },
+      {
+        "id": "how-do-behind-the-firewall-low-code-ai-builders-compare-to-cloud-only-agent-platforms-for-banking-workloads",
+        "text": "How do behind-the-firewall low-code AI builders compare to cloud-only agent platforms for banking workloads?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2688,
+    "related": [
+      {
+        "slug": "best-private-cloud-ai-agent-platforms-for-banks-with-data-residency",
+        "title": "Best Private-Cloud AI Agent Platforms for Banks With Data Residency"
+      },
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "asset-manager-fund-platforms-build-vs-buy-cee",
+        "title": "Asset Manager Fund Platforms: Build vs. Buy in CEE"
+      }
+    ],
+    "resource": {
+      "label": "Open models you can run in your perimeter",
+      "href": "/models"
+    }
+  },
+  {
+    "slug": "workflow-automation-platforms-for-banks-under-heavy-compliance-audits",
+    "title": "Workflow Automation Platforms for Banks Under Heavy Compliance Audits",
+    "description": "How banks under heavy compliance audits should compare workflow automation platforms on determinism, immutable audit trails, and in-perimeter deployment.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-20",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Compliance",
+      "Deployment",
+      "Modernization"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-makes-workflow-automation-different-for-banks-under-heavy-compliance-audits",
+        "text": "What makes workflow automation different for banks under heavy compliance audits?"
+      },
+      {
+        "id": "which-audit-readiness-criteria-should-banks-use-to-compare-automation-platforms",
+        "text": "Which audit-readiness criteria should banks use to compare automation platforms?"
+      },
+      {
+        "id": "how-do-leading-workflow-automation-platforms-compare-on-audit-readiness",
+        "text": "How do leading workflow automation platforms compare on audit readiness?"
+      },
+      {
+        "id": "which-regulations-and-audit-frameworks-must-these-platforms-support",
+        "text": "Which regulations and audit frameworks must these platforms support?"
+      },
+      {
+        "id": "what-risks-and-pitfalls-should-banks-avoid-when-automating-compliance-workflows",
+        "text": "What risks and pitfalls should banks avoid when automating compliance workflows?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2601,
+    "related": [
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      },
+      {
+        "slug": "six-month-rollout-plans-for-banking-automation-aging-mainframes",
+        "title": "Six-Month Rollout Plans for Banking Automation on Aging Mainframes"
+      },
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      }
+    ],
+    "resource": {
+      "label": "GAVEL: runtime governance (paper)",
+      "href": "/research/gavel"
+    }
+  },
+  {
+    "slug": "wrapping-30-year-old-core-banking-systems-with-ai-without-a-rip-and-replace-project",
+    "title": "Wrapping 30-Year-Old Core Banking Systems With AI, Not Replacing",
+    "description": "Wrap a legacy core with an AI orchestration layer to modernize journeys in weeks, avoiding multi-year rip-and-replace risk while the core stays the record.",
+    "date": "2026-06-18",
+    "dateModified": "2026-06-21",
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Legacy core",
+      "Cost & ROI",
+      "Deployment",
+      "Modernization"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-does-it-mean-to-wrap-a-30-year-old-core-banking-system-with-ai-instead-of-replacing-it",
+        "text": "What does it mean to wrap a 30-year-old core banking system with AI instead of replacing it?"
+      },
+      {
+        "id": "why-do-banks-avoid-rip-and-replace-modernization-of-mainframe-core-systems",
+        "text": "Why do banks avoid rip-and-replace modernization of mainframe core systems?"
+      },
+      {
+        "id": "which-ai-wrapping-patterns-work-best-for-cobol-and-mainframe-core-banking-platforms",
+        "text": "Which AI wrapping patterns work best for COBOL and mainframe core banking platforms?"
+      },
+      {
+        "id": "how-does-ai-wrapping-compare-to-full-core-replacement-and-progressive-re-platforming",
+        "text": "How does AI wrapping compare to full core replacement and progressive re-platforming?"
+      },
+      {
+        "id": "what-use-cases-deliver-the-fastest-roi-when-ai-is-layered-over-legacy-cores",
+        "text": "What use cases deliver the fastest ROI when AI is layered over legacy cores?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2591,
+    "related": [
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      },
+      {
+        "slug": "how-cfos-justify-banking-automation-spend",
+        "title": "How CFOs Justify Banking Automation Spend on a Pre-Internet Core"
+      },
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "connecting-ai-agents-to-mainframe-cores-a-banking-buyers-guide",
+    "title": "Connecting AI Agents to Mainframe Cores: A Banking Buyer's Guide",
+    "description": "Connect AI agents to mainframe cores without replacing the core: deterministic, auditable orchestration on COBOL, CICS, and your existing middleware.",
+    "date": null,
+    "dateModified": null,
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Legacy core",
+      "Compliance",
+      "Cost & ROI",
+      "Deployment"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "how-do-ai-agents-actually-connect-to-mainframe-cores-in-modern-banks",
+        "text": "How do AI agents actually connect to mainframe cores in modern banks?"
+      },
+      {
+        "id": "which-integration-architectures-should-banking-it-architects-evaluate",
+        "text": "Which integration architectures should banking IT architects evaluate?"
+      },
+      {
+        "id": "what-security-compliance-and-risk-controls-are-non-negotiable",
+        "text": "What security, compliance, and risk controls are non-negotiable?"
+      },
+      {
+        "id": "how-should-architects-evaluate-vendors-and-total-cost-of-ownership",
+        "text": "How should architects evaluate vendors and total cost of ownership?"
+      },
+      {
+        "id": "what-does-a-phased-rollout-from-pilot-to-production-look-like",
+        "text": "What does a phased rollout from pilot to production look like?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2682,
+    "related": [
+      {
+        "slug": "regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",
+        "title": "Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"
+      },
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      },
+      {
+        "slug": "budget-constrained-core-modernization-automation-tools-for-banks",
+        "title": "Budget-Constrained Core Modernization: Automation Tools for Banks"
+      }
+    ],
+    "resource": {
+      "label": "How Agent Builder wraps legacy systems",
+      "href": "/agent-builder"
+    }
+  },
+  {
+    "slug": "customer-service-ai-agents-for-banks-legacy-cores",
+    "title": "Customer Service AI Agents for Banks on Legacy Cores",
+    "description": "AI service agents for banks work best layered on legacy cores via integration, not rip-and-replace — with deterministic, auditable, regulator-ready outputs.",
+    "date": null,
+    "dateModified": null,
+    "author": "FlowX.AI",
+    "readingMins": 13,
+    "tags": [
+      "Private cloud",
+      "Legacy core",
+      "Compliance",
+      "Customer service"
+    ],
+    "hero": "/blog/heroes/36c8282fba.png",
+    "toc": [
+      {
+        "id": "what-are-customer-service-ai-agents-for-banks-and-how-do-they-differ-from-chatbots",
+        "text": "What are customer service AI agents for banks and how do they differ from chatbots?"
+      },
+      {
+        "id": "why-do-legacy-banking-stacks-make-ai-agent-deployment-uniquely-difficult",
+        "text": "Why do legacy banking stacks make AI agent deployment uniquely difficult?"
+      },
+      {
+        "id": "which-ai-agent-platforms-work-best-on-top-of-legacy-core-banking-systems",
+        "text": "Which AI agent platforms work best on top of legacy core banking systems?"
+      },
+      {
+        "id": "how-should-banks-evaluate-ai-agent-platforms-for-legacy-stack-compatibility",
+        "text": "How should banks evaluate AI agent platforms for legacy stack compatibility?"
+      },
+      {
+        "id": "what-compliance-security-and-data-residency-requirements-apply-to-ai-agents-in-banking",
+        "text": "What compliance, security, and data residency requirements apply to AI agents in banking?"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions"
+      }
+    ],
+    "words": 2644,
+    "related": [
+      {
+        "slug": "customer-service-automation-digital-banks-ai-agents-on-core",
+        "title": "Customer Service Automation for Digital Banks: AI Agents on Your Core"
+      },
+      {
+        "slug": "fortune-500-bank-tech-stacks-which-enterprise-ai-agent-platforms-win",
+        "title": "Fortune 500 Bank Tech Stacks: Which AI Agent Platforms Win"
+      },
+      {
+        "slug": "ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",
+        "title": "AI Banking Automation Platforms That Bridge Legacy Cores in 2026"
+      }
+    ],
+    "resource": {
+      "label": "Open models you can run in your perimeter",
+      "href": "/models"
+    }
+  }
+];
+
+export const ALL_TAGS = ["Back office","Buyer’s guide","Compliance","Cost & ROI","Customer service","Deployment","Fintech","Legacy core","Lending","Modernization","Onboarding","Private cloud"];

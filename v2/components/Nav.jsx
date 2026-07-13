@@ -1,4 +1,9 @@
 import { bp } from './lib/base';
+import { POSTS } from '@/lib/blogData';
+
+const LATEST = POSTS.slice(0, 2);
+const fmtNavDate = (d) => (d ? new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '');
+
 /* Primary navigation — verbatim port of the v1 mega-menu markup.
    Static server component; megamenu.js (run by <Chrome>) enhances it with the
    WAI-ARIA disclosure behaviour + mobile drawer after hydration. */
@@ -169,22 +174,20 @@ export default function Nav() {
               <div className="nav__sheet">
                 <div className="nav__cols">
                   <div className="nav__group nav__group--wide">
-                    <p className="nav__glabel mono">Latest</p>
-                    <a className="nav__link--desc nav__post" href="https://www.flowx.ai/blog/we-built-a-calculator-to-show-you-the-expected-roi-for-a-selection-of-ai-agents-or-agent-stacks" target="_blank" rel="noopener">
-                      <span className="nav__post-meta mono"><span className="nav__post-tag">ROI</span>Jul 3, 2026</span>
-                      <span className="nav__link-t">We built a calculator for the expected ROI of AI agents <span className="nav__ext" aria-hidden="true">↗</span></span>
-                    </a>
-                    <a className="nav__link--desc nav__post" href="https://www.flowx.ai/blog/the-day-onboarding-stopped-being-a-loop" target="_blank" rel="noopener">
-                      <span className="nav__post-meta mono"><span className="nav__post-tag">Use Cases</span>May 25, 2026</span>
-                      <span className="nav__link-t">The day onboarding stopped being a loop <span className="nav__ext" aria-hidden="true">↗</span></span>
-                    </a>
+                    <p className="nav__glabel mono">Latest from the blog</p>
+                    {LATEST.map((p) => (
+                      <a key={p.slug} className="nav__link--desc nav__post" href={bp(`/blog/${p.slug}`)}>
+                        <span className="nav__post-meta mono"><span className="nav__post-tag">{p.tags[0]}</span>{fmtNavDate(p.date)}</span>
+                        <span className="nav__link-t">{p.title}</span>
+                      </a>
+                    ))}
                   </div>
                   <div className="nav__group">
-                    <p className="nav__glabel mono">Categories</p>
-                    <a href={bp("/blog/category/product")}><span className="nav__link-t">Product</span></a>
-                    <a href={bp("/blog/category/engineering")}><span className="nav__link-t">Engineering</span></a>
-                    <a href={bp("/blog/category/banking-insurance")}><span className="nav__link-t">Banking &amp; Insurance</span></a>
-                    <a href={bp("/blog/category/governance-compliance")}><span className="nav__link-t">Governance &amp; Compliance</span></a>
+                    <p className="nav__glabel mono">Blog topics</p>
+                    <a href={bp("/blog?tag=Legacy+core")}><span className="nav__link-t">Legacy core</span></a>
+                    <a href={bp("/blog?tag=Lending")}><span className="nav__link-t">Lending</span></a>
+                    <a href={bp("/blog?tag=Compliance")}><span className="nav__link-t">Compliance</span></a>
+                    <a href={bp("/blog?tag=Cost+%26+ROI")}><span className="nav__link-t">Cost &amp; ROI</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Tools</p>
@@ -199,12 +202,13 @@ export default function Nav() {
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">More</p>
+                    <a href={bp("/blog")}><span className="nav__link-t">Blog — all articles</span></a>
                     <a href={bp("/blog-flowx-6")}><span className="nav__link-t">Events — FlowX.AI 6</span></a>
                     <a href={bp("/resources/webinars")}><span className="nav__link-t">Webinars</span></a>
                     <a href={bp("/resources/whitepapers")}><span className="nav__link-t">Whitepapers</span></a>
                   </div>
                 </div>
-                <p className="nav__foot mono"><a href={bp("/resources")}>All resources <span className="nav__arr" aria-hidden="true">→</span></a></p>
+                <p className="nav__foot mono"><a href={bp("/blog")}>Read the blog <span className="nav__arr" aria-hidden="true">→</span></a></p>
               </div>
             </div>
           </div>

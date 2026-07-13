@@ -1,0 +1,236 @@
+<p>When public SaaS is off the table, evaluate banking automation vendors against four non-negotiable criteria: deployment topology that keeps regulated data inside your perimeter, deterministic and auditable agent behavior, depth of integration with legacy cores, and demonstrated time-to-production measured in weeks. Everything else — UI polish, model brand names, generic agent counts — is secondary. The vendors worth a serious procurement cycle in 2026 are the ones that can be deployed into your own VPC on AWS, Azure, or GCP, or on-premise alongside your existing core-banking platform and mainframe estate, without forcing regulated workloads through a multi-tenant public endpoint.</p>
+<p>This guide is written for Chief Digital Officers, CTOs, Heads of Lending or Claims, and Chief Risk Officers at Tier 1 and Tier 2 banks and global insurers who have already concluded — usually after a conversation with the regulator or the model risk committee — that a public multi-tenant agent platform is a non-starter. The objective here is not to rank vendors, but to give you an evaluation framework that survives internal compliance review, satisfies data-residency obligations, and still lets you ship production automation against modernization deadlines that will not move.</p>
+<h2 id="why-is-public-saas-often-off-the-table-for-regulated-banks">Why is public SaaS often off the table for regulated banks?</h2>
+<p>Public SaaS is often off the table for regulated banks because supervisory expectations around data residency, tenant isolation, and model governance collide with the shared-infrastructure economics that make public SaaS attractive in the first place. When a Tier 1 or Tier 2 bank evaluates a banking automation vendor, the question is rarely "does the platform work?" — it is "can we prove to our regulator where every byte of customer data sits, who trained the model that touched it, and how we would exit if the provider failed?"</p>
+<h3 id="what-do-we-actually-mean-by-public-saas">What do we actually mean by "public SaaS"?</h3>
+<p>The phrase needs disambiguation, because three different deployment shapes get lumped together:</p>
+<ul>
+<li><strong>Multi-tenant public SaaS</strong> — the vendor runs one logical instance shared across customers on their own cloud account. Lowest cost, highest regulatory friction.</li>
+<li><strong>Single-tenant managed SaaS</strong> — dedicated instance, still inside the vendor's cloud tenancy. Better isolation, but data residency and key custody remain with the vendor.</li>
+<li><strong>Customer-tenant deployment</strong> — the platform runs inside the bank's own VPC on AWS, Azure, or GCP, or on-premise. The bank holds the keys, the logs, and the perimeter.</li>
+</ul>
+<p>Most prudential regulators — and most internal Chief Risk Officers — treat only the third shape as fully compatible with regulated workloads involving PII, transaction data, or model inference over either.</p>
+<h3 id="when-does-the-public-option-become-a-non-starter">When does the public option become a non-starter?</h3>
+<p>If you are operating under EU DORA, the EBA outsourcing guidelines, MAS TRM, or equivalent CEE national frameworks, public-tenant automation typically fails on four dimensions simultaneously: data residency (data must remain in a named jurisdiction), concentration risk (regulators discourage critical workloads on a single hyperscaler tenancy you do not control), model risk management (every prompt and response must be auditable and reproducible), and exit planning (you must be able to extract and rehost within a defined window). Vendors that only ship public SaaS cannot satisfy these requirements without a material architectural rework, which is why the shortlist narrows quickly in 2026 procurement cycles.</p>
+<h2 id="what-deployment-models-should-banks-evaluate-instead-of-public-saas">What deployment models should banks evaluate instead of public SaaS?</h2>
+<p>The deployment models that banks should evaluate instead of public multi-tenant SaaS fall into four concrete options: single-tenant private cloud, customer-owned VPC on a hyperscaler, on-premise installation inside the bank's own data centre, and sovereign cloud regions operated under in-country jurisdiction. Each keeps regulated data, the model layer, and audit logs inside the bank's perimeter — which is the threshold condition for any banking automation platform that will touch core systems such as your core-banking platform or a mainframe general ledger.</p>
+<p>The relevant attributes to score against for each model are below.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Single-tenant private cloud</th>
+<th>Customer VPC (AWS/Azure/GCP)</th>
+<th>On-premise</th>
+<th>Sovereign cloud</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data residency control</td>
+<td>Vendor-managed region</td>
+<td>Bank-controlled region</td>
+<td>Full physical control</td>
+<td>In-country, regulated operator</td>
+</tr>
+<tr>
+<td>Tenancy</td>
+<td>Dedicated infrastructure</td>
+<td>Dedicated within bank account</td>
+<td>Dedicated hardware</td>
+<td>Dedicated, jurisdictionally bound</td>
+</tr>
+<tr>
+<td>Network isolation</td>
+<td>Private link / VPN</td>
+<td>Bank's own VPC peering</td>
+<td>Restricted, private network</td>
+<td>Restricted egress</td>
+</tr>
+<tr>
+<td>LLM hosting</td>
+<td>Vendor or BYO model</td>
+<td>Bank-hosted, LLM-agnostic</td>
+<td>Fully internal models</td>
+<td>Approved sovereign models only</td>
+</tr>
+<tr>
+<td>Change-management authority</td>
+<td>Shared</td>
+<td>Bank-led</td>
+<td>Bank-led</td>
+<td>Bank-led with regulator notice</td>
+</tr>
+<tr>
+<td>Typical fit</td>
+<td>Tier 2 banks, asset managers</td>
+<td>Tier 1 banks with cloud maturity</td>
+<td>Central banks, defence-adjacent</td>
+<td>EU sovereignty mandates, GCC, CEE regulators</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attribute definitions that matter for the model risk officer.</strong> <em>Tenancy</em> is whether compute and storage are shared with other customers — for an agentic platform, shared tenancy means another tenant's prompts traverse the same inference path, which most Tier 1 risk frameworks will not accept. <em>LLM hosting</em> determines whether prompts and embeddings leave the perimeter; an LLM-agnostic platform lets the bank pin a specific open-weights or vendor model inside its own VPC and avoid third-party SaaS inference. <em>Change-management authority</em> governs who can push a platform update — important because each uncontrolled change can trigger a fresh model-risk review under SR 11-7-style governance.</p>
+<h2 id="which-evaluation-criteria-matter-most-when-comparing-banking-automation-vendors">Which evaluation criteria matter most when comparing banking automation vendors?</h2>
+<p>The evaluation criteria that matter most when comparing banking automation vendors for private-deployment scenarios cluster around four weighted pillars: deployment topology and data sovereignty, regulator-grade determinism, integration depth with legacy cores, and demonstrated scale on production workloads. Weight these before any feature checklist — a vendor that excels at workflow design but cannot deploy inside your VPC is structurally disqualified when public SaaS is off the table.</p>
+<h3 id="how-should-you-weight-each-criterion">How should you weight each criterion?</h3>
+<p>Before scoring vendors, define why each criterion matters and how heavily it counts. We suggest a 30/30/25/15 split, weighted toward the constraints that block production rollout rather than the ones that delight a demo audience.</p>
+<ul>
+<li><strong>Deployment topology (30%)</strong> — single-tenant private cloud, customer-owned VPC on AWS/Azure/GCP, or on-premise. Matters because data-residency rules and model-layer isolation are non-negotiable for Tier 1 and Tier 2 banks.</li>
+<li><strong>Determinism and auditability (30%)</strong> — reproducible outputs, full audit trails, controls over LLM behavior, and evidence the platform passes model-risk review. Matters because non-deterministic agent outputs fail regulator scrutiny.</li>
+<li><strong>Integration depth (25%)</strong> — native connectors and adapters for your core-banking platform, payment hub, mainframe / COBOL estate, and the iPaaS and CRM tools already in your stack. Matters because integration overhead is where time-to-value typically dies.</li>
+<li><strong>Scale evidence (15%)</strong> — production references at multi-million-customer banks, not pilots. Matters because BPM and low-code tools commonly stall above a certain transaction volume.</li>
+</ul>
+<h3 id="which-comparison-table-should-you-use">Which comparison table should you use?</h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>What to ask the vendor</th>
+<th>Disqualifier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment topology</td>
+<td>Can you run inside our VPC or on-prem with no outbound calls to your tenancy?</td>
+<td>SaaS-only, shared-tenant control plane</td>
+</tr>
+<tr>
+<td>Determinism</td>
+<td>Show audit trail for a single agent decision, including model version and inputs</td>
+<td>Black-box LLM responses; no decision lineage</td>
+</tr>
+<tr>
+<td>LLM strategy</td>
+<td>Are you model-agnostic? Can we swap or pin model versions?</td>
+<td>Hard-coded dependency on a single foundation model</td>
+</tr>
+<tr>
+<td>Integration</td>
+<td>Pre-built adapters for our core (such as our core-banking platform or COBOL mainframe)?</td>
+<td>Custom integration required for every connector</td>
+</tr>
+<tr>
+<td>Scale proof</td>
+<td>Named production deployment at &gt;1M customers in our segment</td>
+<td>Pilot-only references; no commercial-onboarding case</td>
+</tr>
+<tr>
+<td>Time-to-production</td>
+<td>Weeks to first production workflow, not quarters</td>
+<td>6-month-plus custom build before first agent ships</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict:</strong> vendors that satisfy deployment topology and determinism first — then prove integration depth on your specific core — typically outperform feature-rich competitors that force public SaaS or non-deterministic outputs.</p>
+<h2 id="how-do-you-assess-a-vendors-compliance-and-security-posture">How do you assess a vendor's compliance and security posture?</h2>
+<p>To assess a vendor's compliance posture for private-deployment banking automation, work outward from the certifications on paper to the operational evidence that those certifications actually bind the product you will run. Paper attestations are necessary but insufficient — what matters is whether the controls survive contact with your VPC, your data-residency boundary, and your model risk committee.</p>
+<h3 id="which-certifications-and-attestations-should-be-table-stakes">Which certifications and attestations should be table stakes?</h3>
+<p>Start with the scoped artifacts and verify the scope statement covers the agent runtime, not just the corporate SaaS shell:</p>
+<ul>
+<li><strong>SOC 2 Type II</strong> — Type II (not Type I) covers operating effectiveness over a 6-12 month window. Request the full report under NDA and read the exceptions section.</li>
+<li><strong>ISO/IEC 27001</strong> — confirm the Statement of Applicability includes the development, hosting, and support functions touching your tenant.</li>
+<li><strong>ISO/IEC 27017 and 27018</strong> — cloud-specific and PII-in-cloud extensions; relevant when the vendor deploys into your AWS, Azure, or GCP project.</li>
+<li><strong>PCI DSS</strong> — required only if cardholder data enters the workflow; clarify whether the vendor is in-scope or whether tokenization keeps them out.</li>
+<li><strong>ISO/IEC 42001</strong> — the AI management system standard; increasingly expected for agentic platforms.</li>
+<li><strong>Regional regimes</strong> — DORA for EU financial entities, GDPR Article 28 processor terms, and any local supervisor guidance (BaFin, ACPR, FCA, OCC).</li>
+</ul>
+<h3 id="how-do-you-verify-audit-trails-and-data-residency-in-practice">How do you verify audit trails and data residency in practice?</h3>
+<p>Certifications tell you a control exists; a proof-of-concept tells you it works. Insist on the following trust signals before signing:</p>
+<table>
+<thead>
+<tr>
+<th>Control area</th>
+<th>Evidence to request</th>
+<th>What "good" looks like</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Audit trail</td>
+<td>Sample export of agent decision logs</td>
+<td>Every prompt, tool call, model version, and human override is timestamped and immutable</td>
+</tr>
+<tr>
+<td>Data residency</td>
+<td>Architecture diagram of tenant isolation</td>
+<td>Single-tenant deployment inside your VPC; no cross-border egress to vendor infrastructure</td>
+</tr>
+<tr>
+<td>Model layer</td>
+<td>LLM hosting topology</td>
+<td>Models run inside your perimeter; no third-party SaaS inference calls for regulated data</td>
+</tr>
+<tr>
+<td>Determinism</td>
+<td>Replay of identical inputs</td>
+<td>Bit-for-bit identical outputs, or a documented variance envelope acceptable to model risk</td>
+</tr>
+</tbody>
+</table>
+<p>FlowX.AI publishes deployment patterns for single-tenant private cloud, customer-owned VPC on the three hyperscalers, and on-premise — so regulated data and the model layer can stay within your perimeter and meet data-residency requirements, a useful baseline when the vendor's compliance promises must follow the data, not the other way around.</p>
+<h2 id="what-integration-and-architecture-questions-should-you-ask-each-vendor">What integration and architecture questions should you ask each vendor?</h2>
+<p>The right integration and architecture questions separate vendors who can genuinely sit on top of a Tier 1 core from those who quietly require you to rip and replace. Below is a structured battery of questions to put to every shortlisted banking automation vendor, organised by the architectural attribute under examination.</p>
+<h3 id="which-core-system-connectors-ship-out-of-the-box">Which core-system connectors ship out of the box?</h3>
+<p>Ask which adapters exist for your specific core-banking platform, payment hub, and any mainframe environments running COBOL/CICS. A vendor that claims "API-first" but cannot screen-scrape, call MQ queues, or consume fixed-width files will stall the moment it meets a 1980s general ledger.</p>
+<h3 id="how-does-the-platform-handle-middleware-and-event-flow">How does the platform handle middleware and event flow?</h3>
+<p>Probe support for your iPaaS layer, message brokers such as Kafka or IBM MQ, and REST/SOAP gateways. Ask whether the orchestration layer can act as both producer and consumer, and whether it supports idempotent retries and saga patterns for long-running banking transactions that span multiple systems of record.</p>
+<h3 id="entity-attributes-to-score-each-vendor-on">Entity attributes to score each vendor on</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Allowed values / range</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment topology</td>
+<td>Single-tenant private cloud, customer VPC (AWS/Azure/GCP), on-premise</td>
+<td>Determines whether regulated data ever leaves your perimeter</td>
+</tr>
+<tr>
+<td>Core-banking adapters</td>
+<td>Pre-built count and named systems</td>
+<td>Predicts weeks vs. quarters to first production workflow</td>
+</tr>
+<tr>
+<td>Protocol coverage</td>
+<td>REST, SOAP, GraphQL, MQ, JDBC, ISO 20022, SWIFT MT/MX, file-based</td>
+<td>Legacy cores rarely speak one protocol cleanly</td>
+</tr>
+<tr>
+<td>LLM hosting model</td>
+<td>LLM-agnostic, customer-supplied keys, in-VPC inference</td>
+<td>Avoids model lock-in and data exfiltration risk</td>
+</tr>
+<tr>
+<td>Audit trail granularity</td>
+<td>Per-decision, per-agent, immutable</td>
+<td>Required for model-risk and regulator review</td>
+</tr>
+<tr>
+<td>Identity and access</td>
+<td>SAML, OIDC, SCIM, fine-grained RBAC</td>
+<td>Maps to existing IAM without bespoke work</td>
+</tr>
+</tbody>
+</table>
+<h3 id="you-may-also-be-wondering-what-about-data-residency-and-the-model-layer">You may also be wondering: what about data residency and the model layer?</h3>
+<p>Ask explicitly where embeddings, prompts, and agent state are stored, and whether inference can run inside your VPC.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="what-does-public-saas-is-off-the-table-actually-mean-for-banking-automation-procurement">What does "public SaaS is off the table" actually mean for banking automation procurement?</h3>
+<p>It means the vendor's multi-tenant cloud cannot hold regulated workloads, customer data, or the inference layer. Evaluation must focus on deployment models that keep data, models, and audit logs inside the bank's perimeter — single-tenant private cloud in the bank's own VPC on AWS, Azure, or GCP, or fully on-premise. Shared-tenancy SaaS is excluded by data-residency, sovereignty, or supervisory requirements before any feature scoring begins.</p>
+<h3 id="how-should-we-assess-agentic-ai-vendors-against-model-risk-management-expectations">How should we assess agentic AI vendors against model risk management expectations?</h3>
+<p>Apply the same lens you use for credit and market models, adapted for non-deterministic behaviour. Require deterministic outputs for regulated decision steps, complete audit trails capturing inputs and reasoning, zero-hallucination guarantees on customer-facing responses (a claim banks should validate under their own model-risk governance), and explainability artifacts a supervisor can read. Ask whether each new agent triggers a full model-risk review or reuses an approved governance envelope — the latter materially shortens the path to production.</p>
+<h3 id="which-deployment-architectures-keep-us-inside-our-regulatory-perimeter">Which deployment architectures keep us inside our regulatory perimeter?</h3>
+<p>Three patterns commonly satisfy regulated-data constraints: a single-tenant private cloud managed by the vendor inside isolated infrastructure, a bring-your-own-VPC deployment on the bank's existing hyperscaler account, and a fully on-premise install for the strictest sovereignty regimes. In all three, the orchestration layer, the agent runtime, and the large language model itself should run within the bank's network boundary, with no customer data egressing to a vendor-controlled tenant.</p>
+<h3 id="how-do-we-evaluate-integration-with-our-legacy-core-without-a-rip-and-replace">How do we evaluate integration with our legacy core without a rip-and-replace?</h3>
+<p>Score vendors on their ability to wrap, not replace, systems such as your core-banking platform, mainframe COBOL, or CRM of record. Look for pre-built connectors, an event-driven integration fabric, and the ability to coexist with the iPaaS and workflow tooling already in your estate. Vendors that demand core replacement before delivering value should be deprioritized — modernization on top of the existing stack is typically faster and lower-risk.</p>
+<h3 id="what-proof-points-should-we-demand-before-signing-in-2026">What proof points should we demand before signing in 2026?</h3>
+<p>Ask for named production deployments at comparable institutions, measured outcomes on workflows you actually run (commercial onboarding, underwriting, claims, KYC remediation), and a documented path from pilot to scaled rollout in weeks rather than the year-plus cycles legacy BPM and low-code platforms produced. Reference checks should cover regulator interactions, audit outcomes, and how the vendor handled the first model-risk review — not just feature demos.</p>
+<h3 id="is-llm-lock-in-a-real-procurement-risk">Is LLM lock-in a real procurement risk?</h3>
+<p>Yes, and it is often underestimated. A vendor hard-wired to a single foundation model exposes the bank to pricing shifts, model deprecation, and jurisdictional availability changes. Prefer LLM-agnostic platforms that let you swap between commercial and open-weight models, run a smaller model on-premise for sensitive steps, and route by sensitivity class. That optionality is itself a control — and increasingly a board-level expectation.</p>
+<p><em>Last updated: 2026-06-21</em></p>
