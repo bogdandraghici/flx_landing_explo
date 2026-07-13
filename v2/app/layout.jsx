@@ -7,6 +7,7 @@ import '@fontsource-variable/geist-mono';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Chrome from '@/components/Chrome';
+import JsonLd from '@/components/JsonLd';
 import { SITE_ORIGIN, SITE_NAME, OG_IMAGE, absUrl } from '@/components/lib/site';
 
 // No-flash theme: set data-theme before first paint (verbatim from v1 <head>).
@@ -54,6 +55,27 @@ export default function RootLayout({ children }) {
         <link rel="icon" href={FAVICON} />
       </head>
       <body>
+        <JsonLd data={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'Organization',
+              '@id': `${absUrl('/')}#org`,
+              name: SITE_NAME,
+              url: 'https://www.flowx.ai',
+              logo: OG_IMAGE,
+              description: DESCRIPTION,
+              sameAs: ['https://huggingface.co/flowxai', 'https://docs.flowx.ai'],
+            },
+            {
+              '@type': 'WebSite',
+              '@id': `${absUrl('/')}#website`,
+              url: absUrl('/'),
+              name: SITE_NAME,
+              publisher: { '@id': `${absUrl('/')}#org` },
+            },
+          ],
+        }} />
         <canvas id="grain" className="grain" aria-hidden="true" />
         <Nav />
         {children}

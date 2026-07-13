@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import { bp } from '@/components/lib/base';
+import { absUrl, OG_IMAGE, SITE_NAME } from '@/components/lib/site';
 import { PAPERS } from '@/lib/researchData';
+import JsonLd from '@/components/JsonLd';
 
 export function generateStaticParams() {
   return PAPERS.map((p) => ({ slug: p.slug }));
@@ -20,9 +22,36 @@ export default async function PaperPage({ params }) {
   const { slug } = await params;
   const p = PAPERS.find((x) => x.slug === slug);
   if (!p) notFound();
+  const url = absUrl(`/research/${p.slug}`);
 
   return (
     <main id="top">
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'ScholarlyArticle',
+            headline: `${p.code}: ${p.headline}`,
+            name: p.code,
+            abstract: p.abstract || undefined,
+            description: p.tagline || undefined,
+            keywords: (p.keywords || []).join(', '),
+            author: { '@type': 'Organization', name: SITE_NAME, url: 'https://www.flowx.ai' },
+            publisher: { '@type': 'Organization', name: SITE_NAME, logo: { '@type': 'ImageObject', url: OG_IMAGE } },
+            mainEntityOfPage: url,
+            url,
+            associatedMedia: { '@type': 'MediaObject', contentUrl: absUrl(p.pdf), encodingFormat: 'application/pdf' },
+          },
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: absUrl('/') },
+              { '@type': 'ListItem', position: 2, name: 'Research', item: absUrl('/research') },
+              { '@type': 'ListItem', position: 3, name: p.code, item: url },
+            ],
+          },
+        ],
+      }} />
       {/* ================= HERO ================= */}
       <section className="section rp-hero">
         <div className="shell">

@@ -1,4 +1,6 @@
 import { bp } from '@/components/lib/base';
+import { absUrl, SITE_NAME } from '@/components/lib/site';
+import JsonLd from '@/components/JsonLd';
 import { MODELS, HF_ORG } from '@/lib/modelsData';
 
 export const metadata = {
@@ -34,6 +36,26 @@ function BenchChart({ bench }) {
 export default function ModelsPage() {
   return (
     <main id="top">
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'FlowX.AI open models',
+        itemListElement: MODELS.map((m, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          item: {
+            '@type': 'SoftwareApplication',
+            name: m.name,
+            applicationCategory: 'Machine learning model',
+            description: m.blurb,
+            operatingSystem: 'Cross-platform',
+            license: 'https://www.apache.org/licenses/LICENSE-2.0',
+            downloadUrl: `https://huggingface.co/${m.repo}`,
+            author: { '@type': 'Organization', name: SITE_NAME },
+            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          },
+        })),
+      }} />
       {/* ================= HERO ================= */}
       <section className="section roi-hero">
         <div className="shell">

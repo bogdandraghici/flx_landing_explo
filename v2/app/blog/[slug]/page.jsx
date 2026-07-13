@@ -5,6 +5,7 @@ import { bp } from '@/components/lib/base';
 import { absUrl, OG_IMAGE, SITE_NAME } from '@/components/lib/site';
 import { POSTS } from '@/lib/blogData';
 import ShareBar from '@/components/ShareBar';
+import JsonLd from '@/components/JsonLd';
 
 export function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }));
@@ -58,23 +59,42 @@ export default async function BlogPost({ params }) {
   const byline = [fmtDate(p.date), `${p.readingMins} min read`].filter(Boolean).join(' · ');
   const url = absUrl(`/blog/${slug}`);
 
-  const ld = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: p.title,
-    description: p.description,
-    datePublished: p.date || undefined,
-    dateModified: p.dateModified || p.date || undefined,
-    author: { '@type': 'Organization', name: p.author, url: 'https://www.flowx.ai' },
-    publisher: { '@type': 'Organization', name: SITE_NAME, logo: { '@type': 'ImageObject', url: OG_IMAGE } },
-    mainEntityOfPage: url,
-    image: OG_IMAGE,
-    keywords: p.tags.join(', '),
-  };
+  const graph = [
+    {
+      '@type': 'BlogPosting',
+      headline: p.title,
+      description: p.description,
+      datePublished: p.date || undefined,
+      dateModified: p.dateModified || p.date || undefined,
+      author: { '@type': 'Organization', name: p.author, url: 'https://www.flowx.ai' },
+      publisher: { '@type': 'Organization', name: SITE_NAME, logo: { '@type': 'ImageObject', url: OG_IMAGE } },
+      mainEntityOfPage: url,
+      image: OG_IMAGE,
+      keywords: p.tags.join(', '),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: absUrl('/') },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: absUrl('/blog') },
+        { '@type': 'ListItem', position: 3, name: p.title, item: url },
+      ],
+    },
+  ];
+  if (p.faq?.length) {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: p.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    });
+  }
 
   return (
     <main id="top">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+      <JsonLd data={{ '@context': 'https://schema.org', '@graph': graph }} />
 
       {/* ================= HEADER ================= */}
       <section className="section blog-post-hero">
