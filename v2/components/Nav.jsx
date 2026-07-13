@@ -146,7 +146,7 @@ export default function Nav() {
                     <p className="nav__glabel mono">Learn</p>
                     <a href="https://docs.flowx.ai/" target="_blank" rel="noopener"><span className="nav__link-t">Documentation <span className="nav__ext" aria-hidden="true">↗</span></span></a>
                     <a href="https://academy.flowx.ai/" target="_blank" rel="noopener"><span className="nav__link-t">Academy <span className="nav__ext" aria-hidden="true">↗</span></span></a>
-                    <a href={bp("/developers/cookbooks")}><span className="nav__link-t">Cookbooks</span></a>
+                    <a href="https://docs.flowx.ai/5.9/cookbooks/overview" target="_blank" rel="noopener"><span className="nav__link-t">Cookbooks <span className="nav__ext" aria-hidden="true">↗</span></span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Reference</p>
