@@ -59,6 +59,13 @@ export default async function BlogPost({ params }) {
   const byline = [fmtDate(p.date), `${p.readingMins} min read`].filter(Boolean).join(' · ');
   const url = absUrl(`/blog/${slug}`);
 
+  // Key takeaways — the first sentence of each of the first few FAQ answers.
+  // Real content (answer-first), so it's exactly what answer engines lift.
+  const takeaways = (p.faq || []).slice(0, 4).map((f) => {
+    const first = (f.a || '').split(/(?<=[.?!])\s+/)[0].trim();
+    return first.length > 190 ? `${first.slice(0, 187)}…` : first;
+  }).filter(Boolean);
+
   const graph = [
     {
       '@type': 'BlogPosting',
@@ -116,6 +123,14 @@ export default async function BlogPost({ params }) {
       {/* ================= BODY + TOC ================= */}
       <section className="section blog-post-body">
         <div className="shell shell--narrow">
+          {takeaways.length > 0 && (
+            <div className="blog-tldr">
+              <p className="blog-tldr__h mono">Key takeaways</p>
+              <ul className="blog-tldr__list">
+                {takeaways.map((t, i) => <li key={i}>{t}</li>)}
+              </ul>
+            </div>
+          )}
           <div className="blog-post__grid">
             <article className="blog-prose" dangerouslySetInnerHTML={{ __html: body }} />
 
