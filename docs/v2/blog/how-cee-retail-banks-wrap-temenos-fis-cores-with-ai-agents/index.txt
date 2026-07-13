@@ -1,0 +1,293 @@
+1:"$Sreact.fragment"
+14:I[7150,[],""]
+:HL["/flx_landing_explo/v2/_next/static/css/183029559500d182.css","style"]
+:HL["/flx_landing_explo/v2/_next/static/css/72d2b71cc137c0ec.css","style"]
+0:{"P":null,"b":"flx-v2","p":"/flx_landing_explo/v2","c":["","blog","how-cee-retail-banks-wrap-temenos-fis-cores-with-ai-agents",""],"i":false,"f":[[["",{"children":["blog",{"children":[["slug","how-cee-retail-banks-wrap-temenos-fis-cores-with-ai-agents","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/flx_landing_explo/v2/_next/static/css/183029559500d182.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/flx_landing_explo/v2/_next/static/css/72d2b71cc137c0ec.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=localStorage.getItem(\"flx-theme\");if(t!==\"light\"&&t!==\"dark\")t=\"dark\";document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme=\"dark\";}})();"}}],["$","link",null,{"rel":"icon","href":"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0B0D'/%3E%3Cpath d='M28 26 L60 62 M60 26 L28 62' stroke='%23F4F5F3' stroke-width='9'/%3E%3Crect x='28' y='70' width='44' height='9' fill='%23FCB813'/%3E%3C/svg%3E"}]]}],["$","body",null,{"children":[["$","canvas",null,{"id":"grain","className":"grain","aria-hidden":"true"}],["$","header",null,{"className":"nav","id":"nav","children":["$","div",null,{"className":"nav__inner","children":[["$","a",null,{"className":"nav__brand","href":"/flx_landing_explo/v2/","aria-label":"FlowX home","children":["$","svg",null,{"className":"nav__logo","viewBox":"0 0 696 128","fill":"none","xmlns":"http://www.w3.org/2000/svg","role":"img","aria-label":"FlowX","children":[["$","path",null,{"d":"M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z","fill":"currentColor"}],["$","path",null,{"d":"M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z","fill":"currentColor"}],["$","path",null,{"d":"M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z","fill":"currentColor"}],["$","path",null,{"d":"M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z","fill":"currentColor"}],["$","path",null,{"d":"M695.4 99.5H603.2V123.7H695.4V99.5Z","fill":"#FCB813"}],["$","path",null,{"d":"M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z","fill":"currentColor"}]]}]}],["$","nav",null,{"className":"nav__links","id":"nav-links","aria-label":"Primary","children":[["$","div",null,{"className":"nav__item","children":[["$","button",null,{"className":"nav__trigger","type":"button","aria-expanded":"false","aria-controls":"panel-platform","children":["Platform ",["$","svg",null,{"className":"nav__caret","viewBox":"0 0 8 5","aria-hidden":"true","children":["$","path",null,{"d":"M1 1l3 3 3-3","fill":"none","stroke":"currentColor","strokeWidth":"1.4","strokeLinecap":"round","strokeLinejoin":"round"}]}]]}],["$","div",null,{"className":"nav__panel","id":"panel-platform","children":["$","div",null,{"className":"nav__sheet","children":[["$","div",null,{"className":"nav__cols","children":[["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Build"}],["$","a",null,{"className":"nav__link--desc","href":"/flx_landing_explo/v2/agent-builder","children":[["$","span",null,{"className":"nav__link-t","children":"Agent Builder"}],["$","span",null,{"className":"nav__link-d","children":"Design, evaluate, and ship AI agents"}]]}],["$","a",null,{"className":"nav__link--desc","href":"/flx_landing_explo/v2/flowx-code","children":[["$","span",null,{"className":"nav__link-t","children":"FlowX Code"}],["$","span",null,{"className":"nav__link-d","children":"The full platform, expressed as code"}]]}]]}],"$L2","$L3","$L4"]}],"$L5"]}]}]]}],"$L6","$L7","$L8","$L9","$La","$Lb"]}],"$Lc"]}]}],"$Ld","$Le","$Lf"]}]]}]]}],{"children":["blog","$L10",{"children":[["slug","how-cee-retail-banks-wrap-temenos-fis-cores-with-ai-agents","d"],"$L11",{"children":["__PAGE__","$L12",{},null,false]},null,false]},null,false]},null,false],"$L13",false]],"m":"$undefined","G":["$14",[]],"s":false,"S":true}
+15:I[9766,[],""]
+16:I[8924,[],""]
+17:I[2618,["177","static/chunks/app/layout-1cc69c8ec6c4762c.js"],"default"]
+19:I[4431,[],"OutletBoundary"]
+1b:I[5278,[],"AsyncMetadataOutlet"]
+1d:I[4431,[],"ViewportBoundary"]
+1f:I[4431,[],"MetadataBoundary"]
+20:"$Sreact.suspense"
+2:["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Govern & measure"}],["$","a",null,{"className":"nav__link--desc","href":"/flx_landing_explo/v2/observatory","children":[["$","span",null,{"className":"nav__link-t","children":"Observatory"}],["$","span",null,{"className":"nav__link-d","children":"Trace every agent decision in production"}]]}],["$","a",null,{"className":"nav__link--desc","href":"/flx_landing_explo/v2/platform/roi-hub","children":[["$","span",null,{"className":"nav__link-t","children":"ROI Hub"}],["$","span",null,{"className":"nav__link-d","children":"Measure impact against a real baseline"}]]}]]}]
+3:["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Foundation"}],["$","a",null,{"className":"nav__link--desc","href":"/flx_landing_explo/v2/platform/ontology","children":[["$","span",null,{"className":"nav__link-t","children":"Ontology Layer"}],["$","span",null,{"className":"nav__link-d","children":"One shared model of your business"}]]}],["$","a",null,{"className":"nav__link--desc","href":"/flx_landing_explo/v2/platform/integrations","children":[["$","span",null,{"className":"nav__link-t","children":"Integrations & Connectors"}],["$","span",null,{"className":"nav__link-d","children":"Plug into core and legacy systems"}]]}]]}]
+4:["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Run"}],["$","a",null,{"className":"nav__link--desc","href":"/flx_landing_explo/v2/platform/security","children":[["$","span",null,{"className":"nav__link-t","children":"Security & Compliance"}],["$","span",null,{"className":"nav__link-d","children":"Controls built for regulated work"}]]}],["$","a",null,{"className":"nav__link--desc","href":"/flx_landing_explo/v2/platform/deployment","children":[["$","span",null,{"className":"nav__link-t","children":"Deployment"}],["$","span",null,{"className":"nav__link-d","children":"Cloud, hybrid, or on-prem"}]]}]]}]
+5:["$","p",null,{"className":"nav__foot mono","children":["$","a",null,{"href":"/flx_landing_explo/v2/platform","children":["Platform overview ",["$","span",null,{"className":"nav__arr","aria-hidden":"true","children":"→"}]]}]}]
+6:["$","div",null,{"className":"nav__item","children":[["$","button",null,{"className":"nav__trigger","type":"button","aria-expanded":"false","aria-controls":"panel-solutions","children":["Solutions ",["$","svg",null,{"className":"nav__caret","viewBox":"0 0 8 5","aria-hidden":"true","children":["$","path",null,{"d":"M1 1l3 3 3-3","fill":"none","stroke":"currentColor","strokeWidth":"1.4","strokeLinecap":"round","strokeLinejoin":"round"}]}]]}],["$","div",null,{"className":"nav__panel","id":"panel-solutions","children":["$","div",null,{"className":"nav__sheet","children":[["$","div",null,{"className":"nav__cols","children":[["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"By industry"}],["$","a",null,{"href":"/flx_landing_explo/v2/banking","children":["$","span",null,{"className":"nav__link-t","children":"Banking"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/insurance","children":["$","span",null,{"className":"nav__link-t","children":"Insurance"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/logistics","children":["$","span",null,{"className":"nav__link-t","children":"Logistics"}]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"By use case"}],["$","a",null,{"href":"/flx_landing_explo/v2/ai-agents?use=onboarding","children":["$","span",null,{"className":"nav__link-t","children":"Onboarding"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/ai-agents?use=lending","children":["$","span",null,{"className":"nav__link-t","children":"Lending"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/ai-agents?use=underwriting","children":["$","span",null,{"className":"nav__link-t","children":"Underwriting"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/ai-agents?use=claims","children":["$","span",null,{"className":"nav__link-t","children":"Claims"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/ai-agents?use=quoting","children":["$","span",null,{"className":"nav__link-t","children":"Quoting"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/ai-agents?industry=Logistics","children":["$","span",null,{"className":"nav__link-t","children":"Track & trace"}]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Explore"}],["$","a",null,{"href":"/flx_landing_explo/v2/ai-agents","children":["$","span",null,{"className":"nav__link-t","children":"All AI agents"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/roi-calculator","children":["$","span",null,{"className":"nav__link-t","children":"ROI calculator"}]}]]}]]}],["$","p",null,{"className":"nav__foot mono","children":["$","a",null,{"href":"/flx_landing_explo/v2/solutions","children":["All solutions ",["$","span",null,{"className":"nav__arr","aria-hidden":"true","children":"→"}]]}]}]]}]}]]}]
+7:["$","div",null,{"className":"nav__item","children":[["$","button",null,{"className":"nav__trigger","type":"button","aria-expanded":"false","aria-controls":"panel-research","children":["Research ",["$","svg",null,{"className":"nav__caret","viewBox":"0 0 8 5","aria-hidden":"true","children":["$","path",null,{"d":"M1 1l3 3 3-3","fill":"none","stroke":"currentColor","strokeWidth":"1.4","strokeLinecap":"round","strokeLinejoin":"round"}]}]]}],["$","div",null,{"className":"nav__panel","id":"panel-research","children":["$","div",null,{"className":"nav__sheet","children":[["$","div",null,{"className":"nav__cols","children":[["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Papers · eXponential6"}],["$","a",null,{"className":"nav__link--mono","href":"/flx_landing_explo/v2/research/vera","children":["$","span",null,{"className":"nav__link-t","children":"VERA"}]}],["$","a",null,{"className":"nav__link--mono","href":"/flx_landing_explo/v2/research/orna-autotune","children":["$","span",null,{"className":"nav__link-t","children":"ORNA"}]}],["$","a",null,{"className":"nav__link--mono","href":"/flx_landing_explo/v2/research/halo","children":["$","span",null,{"className":"nav__link-t","children":"HALO"}]}],["$","a",null,{"className":"nav__link--mono","href":"/flx_landing_explo/v2/research/gavel","children":["$","span",null,{"className":"nav__link-t","children":"GAVEL"}]}],["$","a",null,{"className":"nav__link--mono","href":"/flx_landing_explo/v2/research/sift","children":["$","span",null,{"className":"nav__link-t","children":"SIFT"}]}],["$","a",null,{"className":"nav__link--mono","href":"/flx_landing_explo/v2/research/rails","children":["$","span",null,{"className":"nav__link-t","children":"RAILS"}]}],["$","a",null,{"className":"nav__link--mono","href":"/flx_landing_explo/v2/research/mneme","children":["$","span",null,{"className":"nav__link-t","children":"MNEMĒ"}]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Open models"}],["$","a",null,{"href":"/flx_landing_explo/v2/models","children":["$","span",null,{"className":"nav__link-t","children":"Models overview"}]}],["$","a",null,{"href":"https://huggingface.co/flowxai","target":"_blank","rel":"noopener","children":["$","span",null,{"className":"nav__link-t","children":["Hugging Face ",["$","span",null,{"className":"nav__ext","aria-hidden":"true","children":"↗"}]]}]}],["$","a",null,{"href":"/flx_landing_explo/v2/models#benchmarks","children":["$","span",null,{"className":"nav__link-t","children":"Benchmarks"}]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Approach"}],["$","a",null,{"href":"/flx_landing_explo/v2/research/methodology","children":["$","span",null,{"className":"nav__link-t","children":"Methodology"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/research/safety","children":["$","span",null,{"className":"nav__link-t","children":"Safety & governance"}]}]]}]]}],["$","p",null,{"className":"nav__foot mono","children":["$","a",null,{"href":"/flx_landing_explo/v2/research","children":["Research overview ",["$","span",null,{"className":"nav__arr","aria-hidden":"true","children":"→"}]]}]}]]}]}]]}]
+8:["$","div",null,{"className":"nav__item","children":[["$","button",null,{"className":"nav__trigger","type":"button","aria-expanded":"false","aria-controls":"panel-developers","children":["Developers ",["$","svg",null,{"className":"nav__caret","viewBox":"0 0 8 5","aria-hidden":"true","children":["$","path",null,{"d":"M1 1l3 3 3-3","fill":"none","stroke":"currentColor","strokeWidth":"1.4","strokeLinecap":"round","strokeLinejoin":"round"}]}]]}],["$","div",null,{"className":"nav__panel","id":"panel-developers","children":["$","div",null,{"className":"nav__sheet","children":[["$","div",null,{"className":"nav__cols","children":[["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Learn"}],["$","a",null,{"href":"https://docs.flowx.ai/","target":"_blank","rel":"noopener","children":["$","span",null,{"className":"nav__link-t","children":["Documentation ",["$","span",null,{"className":"nav__ext","aria-hidden":"true","children":"↗"}]]}]}],["$","a",null,{"href":"https://academy.flowx.ai/","target":"_blank","rel":"noopener","children":["$","span",null,{"className":"nav__link-t","children":["Academy ",["$","span",null,{"className":"nav__ext","aria-hidden":"true","children":"↗"}]]}]}],["$","a",null,{"href":"/flx_landing_explo/v2/developers/cookbooks","children":["$","span",null,{"className":"nav__link-t","children":"Cookbooks"}]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Reference"}],["$","a",null,{"href":"https://docs.flowx.ai/api","target":"_blank","rel":"noopener","children":["$","span",null,{"className":"nav__link-t","children":["API reference ",["$","span",null,{"className":"nav__ext","aria-hidden":"true","children":"↗"}]]}]}],["$","a",null,{"href":"/flx_landing_explo/v2/developers/changelog","children":["$","span",null,{"className":"nav__link-t","children":"Changelog"}]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Models"}],["$","a",null,{"href":"https://huggingface.co/flowxai","target":"_blank","rel":"noopener","children":["$","span",null,{"className":"nav__link-t","children":["Open weights on Hugging Face ",["$","span",null,{"className":"nav__ext","aria-hidden":"true","children":"↗"}]]}]}],["$","a",null,{"href":"/flx_landing_explo/v2/models","children":["$","span",null,{"className":"nav__link-t","children":"Model cards & licenses"}]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Start"}],["$","a",null,{"href":"https://docs.flowx.ai/quickstart","target":"_blank","rel":"noopener","children":["$","span",null,{"className":"nav__link-t","children":["Quickstart ",["$","span",null,{"className":"nav__ext","aria-hidden":"true","children":"↗"}]]}]}],["$","a",null,{"href":"https://flowxai.zendesk.com/","target":"_blank","rel":"noopener","children":["$","span",null,{"className":"nav__link-t","children":["Support ",["$","span",null,{"className":"nav__ext","aria-hidden":"true","children":"↗"}]]}]}]]}]]}],["$","p",null,{"className":"nav__foot mono","children":["$","a",null,{"href":"https://docs.flowx.ai/","target":"_blank","rel":"noopener","children":["docs.flowx.ai ",["$","span",null,{"className":"nav__arr","aria-hidden":"true","children":"→"}]]}]}]]}]}]]}]
+9:["$","div",null,{"className":"nav__item","children":[["$","button",null,{"className":"nav__trigger","type":"button","aria-expanded":"false","aria-controls":"panel-resources","children":["Resources ",["$","svg",null,{"className":"nav__caret","viewBox":"0 0 8 5","aria-hidden":"true","children":["$","path",null,{"d":"M1 1l3 3 3-3","fill":"none","stroke":"currentColor","strokeWidth":"1.4","strokeLinecap":"round","strokeLinejoin":"round"}]}]]}],["$","div",null,{"className":"nav__panel","id":"panel-resources","children":["$","div",null,{"className":"nav__sheet","children":[["$","div",null,{"className":"nav__cols","children":[["$","div",null,{"className":"nav__group nav__group--wide","children":[["$","p",null,{"className":"nav__glabel mono","children":"Latest from the blog"}],[["$","a","ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026",{"className":"nav__link--desc nav__post","href":"/flx_landing_explo/v2/blog/ai-banking-automation-platforms-that-bridge-legacy-cores-in-2026","children":[["$","span",null,{"className":"nav__post-meta mono","children":[["$","span",null,{"className":"nav__post-tag","children":"Legacy core"}],"Jun 21, 2026"]}],["$","span",null,{"className":"nav__link-t","children":"AI Banking Automation Platforms That Bridge Legacy Cores in 2026"}]]}],["$","a","asset-manager-fund-platforms-build-vs-buy-cee",{"className":"nav__link--desc nav__post","href":"/flx_landing_explo/v2/blog/asset-manager-fund-platforms-build-vs-buy-cee","children":[["$","span",null,{"className":"nav__post-meta mono","children":[["$","span",null,{"className":"nav__post-tag","children":"Compliance"}],"Jun 21, 2026"]}],["$","span",null,{"className":"nav__link-t","children":"Asset Manager Fund Platforms: Build vs. Buy in CEE"}]]}]]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Blog topics"}],["$","a",null,{"href":"/flx_landing_explo/v2/blog?tag=Legacy+core","children":["$","span",null,{"className":"nav__link-t","children":"Legacy core"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/blog?tag=Lending","children":["$","span",null,{"className":"nav__link-t","children":"Lending"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/blog?tag=Compliance","children":["$","span",null,{"className":"nav__link-t","children":"Compliance"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/blog?tag=Cost+%26+ROI","children":["$","span",null,{"className":"nav__link-t","children":"Cost & ROI"}]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Tools"}],["$","a",null,{"className":"nav__link--desc","href":"/flx_landing_explo/v2/ai-agents","children":[["$","span",null,{"className":"nav__link-t","children":"AI agents catalog"}],["$","span",null,{"className":"nav__link-d","children":"Browse 140+ agents by industry & effort"}]]}],["$","a",null,{"className":"nav__link--desc","href":"/flx_landing_explo/v2/roi-calculator","children":[["$","span",null,{"className":"nav__link-t","children":"ROI calculator"}],["$","span",null,{"className":"nav__link-d","children":"Estimate savings for an agent stack"}]]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"More"}],["$","a",null,{"href":"/flx_landing_explo/v2/blog","children":["$","span",null,{"className":"nav__link-t","children":"Blog — all articles"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/blog-flowx-6","children":["$","span",null,{"className":"nav__link-t","children":"Events — FlowX.AI 6"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/resources/webinars","children":["$","span",null,{"className":"nav__link-t","children":"Webinars"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/resources/whitepapers","children":["$","span",null,{"className":"nav__link-t","children":"Whitepapers"}]}]]}]]}],["$","p",null,{"className":"nav__foot mono","children":["$","a",null,{"href":"/flx_landing_explo/v2/blog","children":["Read the blog ",["$","span",null,{"className":"nav__arr","aria-hidden":"true","children":"→"}]]}]}]]}]}]]}]
+a:["$","div",null,{"className":"nav__item","children":[["$","button",null,{"className":"nav__trigger","type":"button","aria-expanded":"false","aria-controls":"panel-customers","children":["Customers ",["$","svg",null,{"className":"nav__caret","viewBox":"0 0 8 5","aria-hidden":"true","children":["$","path",null,{"d":"M1 1l3 3 3-3","fill":"none","stroke":"currentColor","strokeWidth":"1.4","strokeLinecap":"round","strokeLinejoin":"round"}]}]]}],["$","div",null,{"className":"nav__panel","id":"panel-customers","children":["$","div",null,{"className":"nav__sheet","children":[["$","div",null,{"className":"nav__cols","children":[["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Featured"}],["$","a",null,{"href":"/flx_landing_explo/v2/customers","children":["$","span",null,{"className":"nav__link-t","children":"Success stories"}]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Browse"}],["$","a",null,{"href":"/flx_landing_explo/v2/customers#industry","children":["$","span",null,{"className":"nav__link-t","children":"By industry"}]}],["$","a",null,{"href":"/flx_landing_explo/v2/customers#use-case","children":["$","span",null,{"className":"nav__link-t","children":"By use case"}]}]]}],["$","div",null,{"className":"nav__group","children":[["$","p",null,{"className":"nav__glabel mono","children":"Prove it"}],["$","a",null,{"href":"/flx_landing_explo/v2/roi-calculator","children":["$","span",null,{"className":"nav__link-t","children":"ROI calculator"}]}]]}]]}],["$","p",null,{"className":"nav__foot mono","children":["$","a",null,{"href":"/flx_landing_explo/v2/customers","children":["All customers ",["$","span",null,{"className":"nav__arr","aria-hidden":"true","children":"→"}]]}]}]]}]}]]}]
+b:["$","a",null,{"className":"nav__top","href":"/flx_landing_explo/v2/about","children":"Company"}]
+c:["$","div",null,{"className":"nav__right","children":[["$","a",null,{"className":"btn btn--primary btn--sm","href":"#cta","children":"Book a demo"}],["$","button",null,{"className":"nav__burger","type":"button","aria-label":"Open menu","aria-expanded":"false","aria-controls":"nav-links","children":["$","span",null,{"className":"nav__burger-lines","aria-hidden":"true"}]}]]}]
+d:["$","$L15",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L16",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]
+e:["$","footer",null,{"className":"footer","children":["$","div",null,{"className":"shell","children":[["$","div",null,{"className":"footer__top","children":[["$","div",null,{"className":"footer__id","children":[["$","svg",null,{"className":"footer__logo","viewBox":"0 0 696 128","fill":"none","xmlns":"http://www.w3.org/2000/svg","role":"img","aria-label":"FlowX","children":[["$","path",null,{"d":"M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z","fill":"currentColor"}],["$","path",null,{"d":"M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z","fill":"currentColor"}],["$","path",null,{"d":"M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z","fill":"currentColor"}],["$","path",null,{"d":"M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z","fill":"currentColor"}],["$","path",null,{"d":"M695.4 99.5H603.2V123.7H695.4V99.5Z","fill":"#FCB813"}],["$","path",null,{"d":"M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z","fill":"currentColor"}]]}],["$","address",null,{"className":"footer__offices mono","children":["Charles de Gaulle Plaza, Piata Charles de Gaulle 15, 9th floor, 011857 Bucharest, Romania",["$","br",null,{}],"352 Sharon Park Drive, Menlo Park, CA 94025"]}]]}],["$","nav",null,{"className":"footer__cols","aria-label":"Footer","children":[["$","div",null,{"children":[["$","h4",null,{"className":"mono","children":"Platform"}],["$","a",null,{"href":"/flx_landing_explo/v2/banking","children":"Banking"}],["$","a",null,{"href":"/flx_landing_explo/v2/insurance","children":"Insurance"}],["$","a",null,{"href":"/flx_landing_explo/v2/logistics","children":"Logistics"}],["$","a",null,{"href":"/flx_landing_explo/v2/agent-builder","children":"Agent Builder"}],["$","a",null,{"href":"/flx_landing_explo/v2/flowx-code","children":"FlowX Code"}],["$","a",null,{"href":"/flx_landing_explo/v2/observatory","children":"Observatory"}],["$","a",null,{"href":"/flx_landing_explo/v2/#proof","children":"Proof"}]]}],["$","div",null,{"children":[["$","h4",null,{"className":"mono","children":"Company"}],["$","a",null,{"href":"/flx_landing_explo/v2/about","children":"About us"}]]}],["$","div",null,{"children":[["$","h4",null,{"className":"mono","children":"Resources"}],["$","a",null,{"href":"/flx_landing_explo/v2/resources","children":"Blog"}],["$","a",null,{"href":"https://docs.flowx.ai","target":"_blank","rel":"noopener","children":"Documentation"}],["$","a",null,{"href":"https://academy.flowx.ai","target":"_blank","rel":"noopener","children":"Academy"}],["$","a",null,{"href":"/flx_landing_explo/v2/#cta","children":"Support"}]]}],["$","div",null,{"children":[["$","h4",null,{"className":"mono","children":"Legal"}],["$","a",null,{"href":"https://www.flowx.ai/privacy-policy","target":"_blank","rel":"noopener","children":"Privacy Policy"}],["$","a",null,{"href":"https://www.flowx.ai/cookies","target":"_blank","rel":"noopener","children":"Cookies"}],["$","a",null,{"href":"https://www.flowx.ai/terms-and-conditions","target":"_blank","rel":"noopener","children":"Terms & Conditions"}]]}]]}]]}],["$","div",null,{"className":"footer__base mono","children":["$","span",null,{"children":["© ",["$","span",null,{"id":"year","children":"2026"}]," FlowX.AI Business Systems — Bucharest · Menlo Park"]}]}]]}]}]
+f:["$","$L17",null,{}]
+10:["$","$1","c",{"children":[null,["$","$L15",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L16",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+11:["$","$1","c",{"children":[null,["$","$L15",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L16",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+12:["$","$1","c",{"children":["$L18",null,["$","$L19",null,{"children":["$L1a",["$","$L1b",null,{"promise":"$@1c"}]]}]]}]
+13:["$","$1","h",{"children":[null,[["$","$L1d",null,{"children":"$L1e"}],null],["$","$L1f",null,{"children":["$","div",null,{"hidden":true,"children":["$","$20",null,{"fallback":null,"children":"$L21"}]}]}]]}]
+22:T5157,<p>Central and Eastern European retail banks are not literally ripping out their Temenos or FIS cores — they are wrapping the core they already run with AI agent platforms that absorb the manual lending workflows the ledger was never designed to orchestrate. According to outcomes published on the FlowX.AI homepage, a reference deployment at a bank with more than four million customers delivered approximately 40% lower operational cost in lending, achieved without a core replacement programme. The mechanism is straightforward: multi-agent orchestration sits above the system of record, automating handoffs across origination, KYC, underwriting, and disbursement, while the core continues to hold the ledger and book of record.</p>
+<p>For a Chief Digital Officer in Bucharest, Warsaw, or Budapest, this reframes the modernisation question entirely. Instead of a multi-year core migration with binary go-live risk, the institution composes an agent layer — built from a library that FlowX.AI markets as 150+ pre-built banking, insurance, and logistics agents — on top of the core, middleware, and CRM the bank already runs in production. FlowX.AI orchestrates on top of that existing estate rather than shipping its own copy of it. Deployment runs inside the bank's own VPC on AWS, Azure, or GCP, or fully on-premise, so regulated data and the model layer never leave the perimeter. That deployment posture, combined with deterministic outputs and full audit trails (a claim banks should validate under their own model-risk governance), is what makes the approach defensible to a Chief Risk Officer and to the supervisor — and it is why the 2026 conversation in CEE has shifted from "when do we replace the core?" to "what do we orchestrate on top of it?"</p>
+<h2 id="why-are-cee-retail-banks-wrapping-temenos-and-fis-cores-with-ai-agent-platforms">Why are CEE retail banks wrapping Temenos and FIS cores with AI agent platforms?</h2>
+<p>When CEE retail banks weigh whether to modernise on top of their Temenos or FIS core with an AI agent platform, the driver is rarely the core ledger itself — it is the surrounding journey layer that has become impossible to change at the speed the business demands. Large CEE retail groups — multi-country franchises of the kind that anchor the region's ideal-customer profile — operate across several countries with fragmented product catalogues, multilingual onboarding flows, and divergent local regulators, which means every lending or account-opening change multiplies across jurisdictions. A long core-transformation cycle collides directly with competitive pressure from neobanks and BigTech wallets that ship new journeys continuously.</p>
+<h3 id="what-contextual-pressures-make-this-shift-urgent-in-cee">What contextual pressures make this shift urgent in CEE?</h3>
+<p>Three regional conditions concentrate the pain:</p>
+<ul>
+<li><strong>Multi-country product sprawl.</strong> A single retail bank brand may run a distinct core instance per country, each customised, each expensive to change.</li>
+<li><strong>Aggressive digital-only competitors.</strong> Neobanks and money-transfer challengers set the UX benchmark; incumbents struggle to match it on legacy rails alone.</li>
+<li><strong>Regulator-grade explainability requirements.</strong> EU and national supervisory expectations push toward deterministic, auditable decisioning rather than generic LLM wrappers.</li>
+</ul>
+<h3 id="which-legacy-attributes-are-driving-the-decision">Which legacy attributes are driving the decision?</h3>
+<p>Rather than rip-and-replace, CEE retail banks are wrapping the core with an agent layer. The attributes that matter in the buying decision:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Legacy core baseline</th>
+<th>AI agent platform expectation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Journey change speed</td>
+<td>Slow and code-heavy</td>
+<td>Weeks per journey</td>
+</tr>
+<tr>
+<td>Manual handoffs in lending</td>
+<td>Majority of steps manual</td>
+<td>FlowX.AI cites ~80% automation of manual handoffs in production</td>
+</tr>
+<tr>
+<td>Operational cost in lending</td>
+<td>Baseline</td>
+<td>A FlowX.AI reference bank with more than 4 million clients reported ~40% lower operational cost</td>
+</tr>
+<tr>
+<td>Auditability</td>
+<td>ETL-reconstructed</td>
+<td>Deterministic outputs with native audit trail (a claim banks should validate under their own model-risk governance)</td>
+</tr>
+<tr>
+<td>Model lock-in</td>
+<td>Vendor-defined</td>
+<td>LLM-agnostic</td>
+</tr>
+</tbody>
+</table>
+<p>The underappreciated point: the core is not being replaced — its <em>reach</em> is. The agent platform becomes the system of engagement; the existing core remains the system of record.</p>
+<h2 id="how-do-ai-agent-platforms-cut-lending-operational-costs-by-40">How do AI agent platforms cut lending operational costs by 40%?</h2>
+<p>AI agent platforms cut lending operational costs by reframing the workflow itself: instead of human analysts orchestrating documents, decisions, and core-system updates, orchestrated agents handle the deterministic majority of each handoff, and people adjudicate only the exceptions. The ~40% opex reduction FlowX.AI reports at a bank with more than 4 million clients is the compounded effect of four specific mechanisms working in sequence on the same lending case.</p>
+<h3 id="which-mechanisms-drive-the-savings">Which mechanisms drive the savings?</h3>
+<ul>
+<li><strong>Document AI ingestion.</strong> Income statements, KYC packs, collateral appraisals, and trade certificates are parsed at submission. Structured fields populate the case file directly, removing the rekeying that historically consumed analyst hours per file.</li>
+<li><strong>Underwriting automation.</strong> Agents pre-assemble the credit memo — pulling bureau data, internal exposure, covenant history, and risk-rating inputs from the bank's existing core — so the underwriter opens a near-complete file. FlowX.AI cites a ~65% reduction in underwriting processing time at a global bank using this pattern.</li>
+<li><strong>Deterministic decisioning.</strong> Policy rules execute as auditable code paths rather than LLM free-text. The model proposes; a rules engine disposes. This is what FlowX.AI positions as making the outputs pass model-risk and regulator review (a claim banks should validate under their own model-risk governance).</li>
+<li><strong>Straight-through handoffs.</strong> Approval, disbursement, and core-system booking are orchestrated end-to-end, which is how FlowX.AI describes automating roughly 80% of manual lending handoffs in production.</li>
+</ul>
+<h3 id="what-attributes-matter-when-evaluating-an-agent-for-lending">What attributes matter when evaluating an agent for lending?</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Allowed values / range</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Determinism</td>
+<td>Deterministic / probabilistic / hybrid (a claim banks should validate under their own model-risk governance)</td>
+<td>Model-risk officers reject non-deterministic outputs in credit decisioning.</td>
+</tr>
+<tr>
+<td>Audit trail granularity</td>
+<td>Per-step, per-agent, per-prompt</td>
+<td>Required for regulator reconstruction of any individual decision.</td>
+</tr>
+<tr>
+<td>Deployment locus</td>
+<td>Private VPC / single-tenant / on-prem</td>
+<td>Keeps regulated data and the model layer inside the bank's perimeter.</td>
+</tr>
+<tr>
+<td>Core-system reach</td>
+<td>Orchestrates on top of your existing core, such as Temenos or FIS, without replacing it</td>
+<td>Determines integration weeks versus integration quarters.</td>
+</tr>
+<tr>
+<td>LLM coupling</td>
+<td>Model-agnostic / locked</td>
+<td>Avoids vendor lock-in as frontier models evolve through 2026.</td>
+</tr>
+<tr>
+<td>Pre-built agent library</td>
+<td>Count of banking-specific agents</td>
+<td>FlowX.AI markets 150+ pre-built banking, insurance, and logistics agents.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-does-an-ai-agent-layer-compare-to-temenos-and-fis-for-lending-workflows">How does an AI agent layer compare to Temenos and FIS for lending workflows?</h2>
+<p>Comparing an AI agent layer to a core such as Temenos or FIS for lending workflows means asking a different question than the usual core-banking RFP: instead of "which system of record do we rip and replace," the question becomes "which orchestration layer sits on top of our existing core and actually moves loans through underwriting, decisioning, and fulfilment." Cores like Temenos and FIS are systems of record optimised for ledger integrity, product configuration, and regulatory reporting. An AI agent platform — a multi-agent orchestration layer that coordinates LLM-driven and deterministic agents across the lending journey — is optimised for the workflow <em>between</em> systems: document intake, KYC/AML screening, credit memo drafting, exception handling, and human-in-the-loop review.</p>
+<h3 id="which-criteria-matter-most-when-comparing-the-two">Which criteria matter most when comparing the two?</h3>
+<p>Before the table, weight these criteria honestly:</p>
+<ul>
+<li><strong>Time-to-value</strong> — heaviest weight for a CDO under a transformation mandate.</li>
+<li><strong>Integration with the existing core</strong> — replacement risk is the single largest blocker.</li>
+<li><strong>Auditability and determinism</strong> — non-negotiable for the CRO and model-risk function.</li>
+<li><strong>Workflow flexibility</strong> — how quickly lending product variants can be launched.</li>
+<li><strong>Operational cost impact</strong> — the metric the board will track.</li>
+</ul>
+<h3 id="how-do-the-two-roles-compare">How do the two roles compare?</h3>
+<p>These are two different layers of the stack, not two competing products. The table contrasts the role each plays in a lending journey rather than scoring named vendors against each other.</p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Core system of record (e.g. Temenos, FIS)</th>
+<th>AI agent platform (e.g. FlowX.AI)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary role</td>
+<td>Core ledger, product engine</td>
+<td>Orchestration of lending journey on top of the core</td>
+</tr>
+<tr>
+<td>Where the work lands</td>
+<td>Holds the book of record</td>
+<td>Coordinates the handoffs between systems</td>
+</tr>
+<tr>
+<td>Integration posture</td>
+<td>The destination of record</td>
+<td>Orchestrates on top of your existing core</td>
+</tr>
+<tr>
+<td>Auditability</td>
+<td>Strong ledger audit</td>
+<td>Deterministic agent outputs, full step-level audit trails (a claim banks should validate under their own model-risk governance)</td>
+</tr>
+<tr>
+<td>Lending workflow automation</td>
+<td>Holds the ledger entry</td>
+<td>Pre-built lending, KYC, and underwriting agents</td>
+</tr>
+<tr>
+<td>Operational cost lever</td>
+<td>Ledger integrity, not workflow opex</td>
+<td>FlowX.AI reports ~40% lower operational cost in lending at a bank with more than 4 million clients</td>
+</tr>
+</tbody>
+</table>
+<h3 id="whats-the-practical-verdict">What's the practical verdict?</h3>
+<p>The core remains the system of record; the AI agent layer reclaims the manual lending handoffs — up to roughly 80% of which FlowX.AI reports automating in production — without triggering a core replacement programme.</p>
+<h2 id="what-does-an-ai-agent-modernisation-journey-look-like-for-a-cee-retail-bank">What does an AI-agent modernisation journey look like for a CEE retail bank?</h2>
+<p>An AI-agent modernisation journey for a CEE retail bank rarely means ripping out the core on day one — instead, the journey wraps the legacy core with an AI agent platform and progressively shifts journey workloads off it. The pattern below reflects how multi-million-customer banks in the region typically sequence the work, anchored to outcomes FlowX.AI reports rather than to any fixed timeline.</p>
+<h3 id="what-are-the-phased-next-steps">What are the phased next steps?</h3>
+<ol>
+<li><strong>Discovery and journey mapping (awareness stage).</strong> Inventory the integration surface of the existing core and rank lending, onboarding, and claims journeys by reclaimable processing time. Output: a prioritised backlog tied to operational-cost KPIs.</li>
+<li><strong>First production agent (consideration stage).</strong> Deploy one pre-built FlowX.AI agent — commonly commercial onboarding or underwriting triage — inside the bank's own VPC on AWS, Azure, or GCP. The core stays untouched; the agent reads and writes through the bank's existing API and integration layer.</li>
+<li><strong>Workflow expansion (decision stage).</strong> Layer additional agents — for example document intake and decisioning drawn from FlowX.AI's 150+ pre-built catalogue — onto the same orchestration fabric. Model Risk and Compliance run audit-trail reviews against deterministic outputs rather than black-box LLM responses (a claim banks should validate under their own model-risk governance).</li>
+<li><strong>Core abstraction (decision stage).</strong> Route customer journeys through the agent platform as the system of engagement. The legacy core is demoted to a system of record, called only for ledger and regulatory postings.</li>
+<li><strong>Selective decommissioning (retention stage).</strong> Retire modules of the legacy core whose functionality now lives in the agent layer — typically origination, servicing workflow, and case management first; ledger last.</li>
+</ol>
+<h3 id="what-changes-at-each-journey-stage">What changes at each journey stage?</h3>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Primary owner</th>
+<th>Success metric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discovery</td>
+<td>CDO / COO</td>
+<td>Backlog signed off</td>
+</tr>
+<tr>
+<td>First agent</td>
+<td>CTO + Head of Lending</td>
+<td>Live in production</td>
+</tr>
+<tr>
+<td>Expansion</td>
+<td>Head of Operations</td>
+<td>Handoff automation rate</td>
+</tr>
+<tr>
+<td>Core abstraction</td>
+<td>CTO + CRO</td>
+<td>Audit pass, latency SLA</td>
+</tr>
+<tr>
+<td>Decommissioning</td>
+<td>CFO + CTO</td>
+<td>Legacy run-cost removed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-risks-and-regulatory-hurdles-do-cee-banks-face-when-modernising-a-core-with-ai-agents">What risks and regulatory hurdles do CEE banks face when modernising a core with AI agents?</h2>
+<p>The risks and regulatory hurdles facing CEE banks that layer an AI agent platform over a Temenos or FIS core cluster into three categories: model-governance risk, operational-resilience risk, and supervisory-approval risk. The clarification matters because "replacing the core" rarely means ripping out the ledger — it usually means displacing the orchestration, workflow, and customer-facing layers that sit on top of the core, while the system of record stays put. That distinction changes which regulations bite.</p>
+<h3 id="which-regulatory-regimes-apply">Which regulatory regimes apply?</h3>
+<ul>
+<li><strong>EU AI Act</strong>: Credit scoring and creditworthiness assessment are classified as high-risk AI use cases, triggering conformity assessment, technical documentation, human oversight, and post-market monitoring obligations.</li>
+<li><strong>DORA (Digital Operational Resilience Act)</strong>: In force since January 2025, it imposes ICT third-party risk management, incident reporting, and threat-led penetration testing on every in-scope financial entity — and on critical ICT providers behind them.</li>
+<li><strong>National supervisors</strong>: NBP in Poland, MNB in Hungary, and CNB in the Czech Republic each layer their own outsourcing, cloud, and model-risk circulars on top of the EU framework.</li>
+</ul>
+<h3 id="what-are-the-actions-and-the-matching-risks">What are the actions and the matching risks?</h3>
+<table>
+<thead>
+<tr>
+<th>Do this</th>
+<th>But watch out for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deploy agents in a single-tenant VPC on AWS, Azure, or GCP inside the EU</td>
+<td>Data-residency drift if a sub-processor processes data outside the bloc</td>
+</tr>
+<tr>
+<td>Enforce deterministic outputs and full audit trails on every agent decision</td>
+<td>Non-deterministic LLM fallbacks creeping in via "creative" prompts</td>
+</tr>
+<tr>
+<td>Treat each agent as a model under the bank's existing model-risk framework</td>
+<td>Review backlog if every new agent triggers a full model-validation cycle</td>
+</tr>
+<tr>
+<td>Run threat-led penetration tests against the agent fabric</td>
+<td>Scope gaps where the agent layer is treated as "application," not "ICT system"</td>
+</tr>
+</tbody>
+</table>
+<p>The highest-impact mitigation is structural: keep the model layer inside the bank's perimeter and produce deterministic, auditable outputs by default. That single design choice converts an unbounded compliance problem into a finite one. Independent legal and model-risk sign-off still applies.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="do-cee-retail-banks-actually-need-to-rip-out-temenos-or-fis-to-capture-these-lending-gains">Do CEE retail banks actually need to rip out Temenos or FIS to capture these lending gains?</h3>
+<p>No. The pattern emerging across Central and Eastern European banks is overlay, not replacement. An AI-native multi-agent platform like FlowX.AI sits on top of the bank's existing core — whether that is Temenos, FIS, or another system of record — and orchestrates the lending journey across it. The core-banking ledger stays; what changes is the orchestration, onboarding, and decisioning layer that historically forced manual handoffs.</p>
+<h3 id="how-realistic-is-the-40-reduction-in-lending-operational-cost">How realistic is the ~40% reduction in lending operational cost?</h3>
+<p>According to FlowX.AI's published outcomes, a bank with more than 4 million clients achieved approximately 40% lower operational cost in lending workflows, and a global-bank deployment reduced underwriting processing time by roughly 65%. These figures are anchored to named production deployments rather than industry averages. Results vary with the starting baseline — banks carrying heavy manual handoffs in origination typically see the largest swing.</p>
+<h3 id="what-does-banking-grade-ai-safety-mean-for-the-chief-risk-officer">What does "banking-grade AI safety" mean for the Chief Risk Officer?</h3>
+<p>It means deterministic outputs, full audit trails, and zero hallucinations on regulated decisions (a claim banks should validate under their own model-risk governance) — the properties FlowX.AI commits to so that agent behaviour passes regulator review and model-risk committee scrutiny. Agents are deployed inside the bank's own perimeter (single-tenant private cloud, customer VPC on AWS/Azure/GCP, or on-premise), keeping regulated data and the LLM layer within data-residency boundaries. Independent legal and model-risk sign-off still applies.</p>
+<h3 id="how-quickly-can-a-cee-bank-stand-up-a-production-lending-agent">How quickly can a CEE bank stand up a production lending agent?</h3>
+<p>FlowX.AI states that an asset-management platform was built and launched in 8 weeks for a named asset manager, and that commercial onboarding time has been cut by approximately 65% in production deployments. The accelerator is the library of pre-built agents — FlowX.AI publishes a catalogue of more than 150 banking, insurance, and logistics agents — which removes the customary six-month custom-build phase before configuration starts.</p>
+<h3 id="are-we-locked-into-a-specific-large-language-model">Are we locked into a specific large language model?</h3>
+<p>No. FlowX.AI is explicitly LLM-agnostic, so the bank can route different agent tasks to different foundation models — for example, one provider for document extraction, another for conversational underwriting — and swap them as model economics and regulatory guidance evolve. This matters for the CTO who needs to avoid the kind of vendor lock-in that has historically destroyed time-to-value on transformation programmes.</p>
+<h3 id="what-roi-signal-should-the-chief-digital-officer-take-to-the-board">What ROI signal should the Chief Digital Officer take to the board?</h3>
+<p>Two anchors travel well in a board pack. First, FlowX.AI reports approximately $1.8M in projected annual savings for a global insurer post-implementation — a concrete, named outcome rather than a modelled estimate. Second, FlowX.AI cites a 62% reduction in time-to-yes on commercial approvals and an 80% automation rate on manual lending handoffs in production. Together these reframe the conversation from IT cost to revenue velocity and customer-experience economics.</p>
+<p><em>Last updated: 2026-06-20</em></p>
+<p><em>Reference: FlowX.AI, "FlowX.AI 5" launch announcement (LLM-agnostic platform), 2025; FlowX.AI customer outcomes, flowx.ai, accessed 2026.</em></p>18:["$","main",null,{"id":"top","children":[["$","section",null,{"className":"section blog-post-hero","children":["$","div",null,{"className":"shell shell--narrow","children":[["$","a",null,{"className":"blog-post__back mono","href":"/flx_landing_explo/v2/blog","children":"← All articles"}],["$","div",null,{"className":"blog-post__tags","children":[["$","a","Legacy core",{"className":"blog__tag mono","href":"/flx_landing_explo/v2/blog?tag=Legacy%20core","children":"Legacy core"}],["$","a","Lending",{"className":"blog__tag mono","href":"/flx_landing_explo/v2/blog?tag=Lending","children":"Lending"}],["$","a","Compliance",{"className":"blog__tag mono","href":"/flx_landing_explo/v2/blog?tag=Compliance","children":"Compliance"}],["$","a","Cost & ROI",{"className":"blog__tag mono","href":"/flx_landing_explo/v2/blog?tag=Cost%20%26%20ROI","children":"Cost & ROI"}]]}],["$","h1",null,{"className":"blog-post__title rv","children":"How CEE Retail Banks Wrap Temenos and FIS Cores with AI Agents"}],["$","p",null,{"className":"blog-post__byline mono rv","style":{"--i":1},"children":[["$","span",null,{"className":"amber","children":"FlowX.AI"}]," · June 18, 2026 · 12 min read"]}]]}]}],["$","section",null,{"className":"section blog-post-body","children":["$","div",null,{"className":"shell shell--narrow","children":[["$","div",null,{"className":"blog-post__grid","children":[["$","article",null,{"className":"blog-prose","dangerouslySetInnerHTML":{"__html":"$22"}}],"$L23"]}],"$L24"]}]}],"$L25"]}]
+23:["$","aside",null,{"className":"blog-post__aside","children":["$","nav",null,{"className":"blog-toc","aria-label":"On this page","children":[["$","p",null,{"className":"blog-toc__h mono","children":"On this page"}],["$","ol",null,{"className":"blog-toc__list","children":[["$","li","why-are-cee-retail-banks-wrapping-temenos-and-fis-cores-with-ai-agent-platforms",{"children":["$","a",null,{"href":"#why-are-cee-retail-banks-wrapping-temenos-and-fis-cores-with-ai-agent-platforms","children":"Why are CEE retail banks wrapping Temenos and FIS cores with AI agent platforms?"}]}],["$","li","how-do-ai-agent-platforms-cut-lending-operational-costs-by-40",{"children":["$","a",null,{"href":"#how-do-ai-agent-platforms-cut-lending-operational-costs-by-40","children":"How do AI agent platforms cut lending operational costs by 40%?"}]}],["$","li","how-does-an-ai-agent-layer-compare-to-temenos-and-fis-for-lending-workflows",{"children":["$","a",null,{"href":"#how-does-an-ai-agent-layer-compare-to-temenos-and-fis-for-lending-workflows","children":"How does an AI agent layer compare to Temenos and FIS for lending workflows?"}]}],["$","li","what-does-an-ai-agent-modernisation-journey-look-like-for-a-cee-retail-bank",{"children":["$","a",null,{"href":"#what-does-an-ai-agent-modernisation-journey-look-like-for-a-cee-retail-bank","children":"What does an AI-agent modernisation journey look like for a CEE retail bank?"}]}],["$","li","what-risks-and-regulatory-hurdles-do-cee-banks-face-when-modernising-a-core-with-ai-agents",{"children":["$","a",null,{"href":"#what-risks-and-regulatory-hurdles-do-cee-banks-face-when-modernising-a-core-with-ai-agents","children":"What risks and regulatory hurdles do CEE banks face when modernising a core with AI agents?"}]}],["$","li","frequently-asked-questions",{"children":["$","a",null,{"href":"#frequently-asked-questions","children":"Frequently Asked Questions"}]}]]}]]}]}]
+24:["$","div",null,{"className":"blog-refs","children":[["$","h2",null,{"className":"blog-refs__h","children":"Further reading"}],["$","ul",null,{"className":"blog-refs__list","children":[[["$","li","top-banking-operations-automation-software",{"children":["$","a",null,{"href":"/flx_landing_explo/v2/blog/top-banking-operations-automation-software","children":[["$","span",null,{"className":"blog-refs__kind mono","children":"Article"}],"Banking Operations Automation Software for Public-Sector Lending"]}]}],["$","li","how-cfos-justify-banking-automation-spend",{"children":["$","a",null,{"href":"/flx_landing_explo/v2/blog/how-cfos-justify-banking-automation-spend","children":[["$","span",null,{"className":"blog-refs__kind mono","children":"Article"}],"How CFOs Justify Banking Automation Spend on a Pre-Internet Core"]}]}],["$","li","regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks",{"children":["$","a",null,{"href":"/flx_landing_explo/v2/blog/regulatory-driven-finops-modernization-vendor-shortlist-cobol-banks","children":[["$","span",null,{"className":"blog-refs__kind mono","children":"Article"}],"Regulatory FinOps Modernization: A Vendor Shortlist for COBOL Banks"]}]}]],["$","li",null,{"children":["$","a",null,{"href":"/flx_landing_explo/v2/agent-builder","children":[["$","span",null,{"className":"blog-refs__kind mono","children":"Resource"}],"How Agent Builder wraps legacy systems"]}]}]]}]]}]
+25:["$","section",null,{"className":"section section--cta","children":["$","div",null,{"className":"shell","children":[["$","span",null,{"className":"section__no mono","children":"Next"}],["$","h2",null,{"className":"cta__title","children":[["$","span",null,{"children":"See it on your"}],["$","span",null,{"children":["own core",["$","span",null,{"className":"amber","children":"."}]]}]]}],["$","p",null,{"className":"abd-cta__sub","children":"Bring a legacy-core workflow. We'll wrap it with agents and show the audit trail — or size the payback first."}],["$","div",null,{"className":"cta__row","children":[["$","a",null,{"className":"btn btn--primary btn--lg","href":"mailto:hello@flowx.ai?subject=Modernizing%20our%20core","children":"Book a demo"}],["$","a",null,{"className":"btn btn--ghost btn--lg","href":"/flx_landing_explo/v2/roi-calculator","children":"Estimate the ROI"}]]}]]}]}]
+1e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1a:null
+1c:{"metadata":[["$","title","0",{"children":"FlowX — How CEE Retail Banks Wrap Temenos and FIS Cores with AI Agents"}],["$","meta","1",{"name":"description","content":"CEE retail banks layer AI agents over their Temenos and FIS cores instead of replacing them. See how FlowX.AI cut lending operational cost by ~40%."}]],"error":null,"digest":"$undefined"}
+21:"$1c:metadata"
