@@ -1,6 +1,8 @@
 import AgentCatalog from '@/components/AgentCatalog';
 import CtaFieldInit from '@/components/CtaFieldInit';
 import { bp } from '@/components/lib/base';
+import { absUrl } from '@/components/lib/site';
+import JsonLd from '@/components/JsonLd';
 import { AGENTS } from '@/lib/agentsData';
 
 export const metadata = {
@@ -15,6 +17,18 @@ export default function AiAgentsPage() {
 
   return (
     <main id="top">
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'FlowX.AI AI agents catalog',
+        description: `A catalog of ${total} production-ready AI agents for ${industries.join(', ')}.`,
+        url: absUrl('/ai-agents'),
+        mainEntity: {
+          '@type': 'ItemList',
+          numberOfItems: total,
+          itemListElement: AGENTS.map((a, i) => ({ '@type': 'ListItem', position: i + 1, name: a.name })),
+        },
+      }} />
       {/* ================= HERO ================= */}
       <section className="section roi-hero">
         <div className="shell">

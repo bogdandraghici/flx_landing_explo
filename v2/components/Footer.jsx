@@ -46,9 +46,9 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="mono">Legal</h4>
-              <a href="https://www.flowx.ai/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
-              <a href="https://www.flowx.ai/cookies" target="_blank" rel="noopener">Cookies</a>
-              <a href="https://www.flowx.ai/terms-and-conditions" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+              <a href={bp("/privacy-policy")}>Privacy Policy</a>
+              <a href={bp("/cookie-policy")}>Cookies</a>
+              <a href={bp("/terms-and-conditions")}>Terms &amp; Conditions</a>
             </div>
           </nav>
         </div>
