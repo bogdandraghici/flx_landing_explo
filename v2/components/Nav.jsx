@@ -44,8 +44,8 @@ export default function Nav() {
                       <span className="nav__link-t">Observatory</span>
                       <span className="nav__link-d">Trace every agent decision in production</span>
                     </a>
-                    <a className="nav__link--desc" href={bp("/platform/roi-hub")}>
-                      <span className="nav__link-t">ROI Hub</span>
+                    <a className="nav__link--desc" href={bp("/roi-calculator")}>
+                      <span className="nav__link-t">ROI Calculator</span>
                       <span className="nav__link-d">Measure impact against a real baseline</span>
                     </a>
                   </div>
@@ -102,7 +102,7 @@ export default function Nav() {
                     <a href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span></a>
                   </div>
                 </div>
-                <p className="nav__foot mono"><a href={bp("/solutions")}>All solutions <span className="nav__arr" aria-hidden="true">→</span></a></p>
+                <p className="nav__foot mono"><a href={bp("/ai-agents")}>Browse all AI agents <span className="nav__arr" aria-hidden="true">→</span></a></p>
               </div>
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function Nav() {
                   <div className="nav__group">
                     <p className="nav__glabel mono">Reference</p>
                     <a href="https://docs.flowx.ai/api" target="_blank" rel="noopener"><span className="nav__link-t">API reference <span className="nav__ext" aria-hidden="true">↗</span></span></a>
-                    <a href={bp("/developers/changelog")}><span className="nav__link-t">Changelog</span></a>
+                    <a href="https://docs.flowx.ai/release-notes/overview" target="_blank" rel="noopener"><span className="nav__link-t">Release notes <span className="nav__ext" aria-hidden="true">↗</span></span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Models</p>
@@ -205,7 +205,7 @@ export default function Nav() {
                     <a href={bp("/blog")}><span className="nav__link-t">Blog — all articles</span></a>
                     <a href={bp("/blog-flowx-6")}><span className="nav__link-t">Events — FlowX.AI 6</span></a>
                     <a href={bp("/resources/webinars")}><span className="nav__link-t">Webinars</span></a>
-                    <a href={bp("/resources/whitepapers")}><span className="nav__link-t">Whitepapers</span></a>
+                    <a href={bp("/research")}><span className="nav__link-t">Research papers</span></a>
                   </div>
                 </div>
                 <p className="nav__foot mono"><a href={bp("/blog")}>Read the blog <span className="nav__arr" aria-hidden="true">→</span></a></p>

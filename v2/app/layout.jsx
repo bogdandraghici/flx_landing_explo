@@ -66,7 +66,12 @@ export default function RootLayout({ children }) {
               url: 'https://www.flowx.ai',
               logo: OG_IMAGE,
               description: DESCRIPTION,
-              sameAs: ['https://huggingface.co/flowxai', 'https://docs.flowx.ai'],
+              sameAs: [
+                'https://huggingface.co/flowxai',
+                'https://www.linkedin.com/company/flowxai',
+                'https://x.com/FlowX_ai',
+                'https://docs.flowx.ai',
+              ],
             },
             {
               '@type': 'WebSite',
