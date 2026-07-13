@@ -8,6 +8,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Chrome from '@/components/Chrome';
 import JsonLd from '@/components/JsonLd';
+import CookieConsent from '@/components/CookieConsent';
 import { SITE_ORIGIN, SITE_NAME, OG_IMAGE, absUrl } from '@/components/lib/site';
 
 // No-flash theme: set data-theme before first paint (verbatim from v1 <head>).
@@ -80,6 +81,7 @@ export default function RootLayout({ children }) {
         <Nav />
         {children}
         <Footer />
+        <CookieConsent />
         <Chrome />
       </body>
     </html>
