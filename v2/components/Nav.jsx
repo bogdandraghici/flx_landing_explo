@@ -12,13 +12,19 @@ export default function Nav() {
     <header className="nav" id="nav">
       <div className="nav__inner">
         <a className="nav__brand" href={bp("/")} aria-label="FlowX home">
-          <svg className="nav__logo" viewBox="0 0 696 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX">
-            <path d="M32.6 31.3999V54.1999H103.2V81.3999H32.6V123.7H0V3.8999H117.1V31.4999H32.6V31.3999Z" fill="currentColor" />
-            <path d="M241.9 95.5999V123.7H134.1V3.8999H166.7V95.5999H241.9Z" fill="currentColor" />
-            <path d="M247.7 63.8C247.7 23.2 276.3 0 320.6 0C364.9 0 393.6 23.3 393.6 63.8C393.6 104.3 364.8 127.6 320.6 127.6C276.3 127.6 247.7 104.4 247.7 63.8ZM360.3 63.8C360.3 41.2 345.1 28.4 320.5 28.4C296.1 28.4 280.7 41.2 280.7 63.8C280.7 86.4 295.9 99.2 320.5 99.2C345.1 99.2 360.3 86.4 360.3 63.8Z" fill="currentColor" />
-            <path d="M595.5 3.8999L554.8 123.7H522.4L496.4 40.2999L470.2 123.7H438.1L397.2 3.8999H430.6L455 86.1999L481.7 3.8999H511.7L538.4 86.1999L562.8 3.8999H595.5Z" fill="currentColor" />
-            <path d="M695.4 99.5H603.2V123.7H695.4V99.5Z" fill="#FCB813" />
-            <path d="M663.4 38.5999L695.4 75.2999H665.9L648.5 54.8999L631.1 75.2999H603.3L635.2 38.9999L604.1 3.8999H633.7L650.2 23.1999L666.7 3.8999H694.6L663.4 38.5999Z" fill="currentColor" />
+          {/* Official FlowX.AI wordmark, exactly as published on flowx.ai (extracted
+              from the header SVG). Letters use currentColor so it flips with the
+              theme; amber bar on the X. */}
+          <svg className="nav__logo" viewBox="0 0 143 21" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FlowX.AI">
+            <path d="M 107.652 16.06 L 93.191 16.06 L 93.191 19.858 L 107.652 19.858 Z" fill="#FCB813" />
+            <path d="M 102.63 6.505 L 107.652 12.262 L 103.028 12.262 L 100.294 9.062 L 97.559 12.262 L 93.191 12.262 L 98.198 6.569 L 93.319 1.065 L 97.957 1.065 L 100.549 4.087 L 103.142 1.065 L 107.524 1.065 Z" fill="currentColor" />
+            <path d="M 5.028 5.132 L 5.028 8.858 L 15.918 8.858 L 15.918 13.303 L 5.028 13.303 L 5.028 20.217 L 0 20.217 L 0 0.637 L 18.062 0.637 L 18.062 5.148 L 5.028 5.148 Z" fill="currentColor" />
+            <path d="M 37.327 15.624 L 37.327 20.217 L 20.684 20.217 L 20.684 0.637 L 25.713 0.637 L 25.713 15.624 Z" fill="currentColor" />
+            <path d="M 38.206 10.427 C 38.206 3.792 42.618 0 49.451 0 C 56.284 0 60.711 3.808 60.711 10.427 C 60.711 17.046 56.268 20.854 49.451 20.854 C 42.618 20.854 38.206 17.063 38.206 10.427 Z M 55.59 10.427 C 55.59 6.733 53.245 4.642 49.451 4.642 C 45.687 4.642 43.312 6.733 43.312 10.427 C 43.312 14.121 45.656 16.213 49.451 16.213 C 53.245 16.213 55.59 14.121 55.59 10.427 Z" fill="currentColor" />
+            <path d="M 91.868 0.637 L 85.591 20.217 L 80.593 20.217 L 76.583 6.586 L 72.541 20.217 L 67.59 20.217 L 61.282 0.637 L 66.433 0.637 L 70.197 14.088 L 74.315 0.637 L 78.943 0.637 L 83.061 14.088 L 86.825 0.637 Z" fill="currentColor" />
+            <path d="M 110.686 19.318 C 110.686 18.68 111.133 18.206 111.796 18.206 C 112.46 18.206 112.907 18.68 112.907 19.318 C 112.907 19.955 112.46 20.429 111.796 20.429 C 111.133 20.446 110.686 19.972 110.686 19.318 Z" fill="currentColor" />
+            <path d="M 133.159 14.431 L 120.094 14.431 L 117.056 20.217 L 115.529 20.217 L 125.878 0.637 L 127.405 0.637 L 137.755 20.217 L 136.228 20.217 Z M 132.465 13.091 L 126.603 1.978 L 120.773 13.091 Z" fill="currentColor" />
+            <path d="M 141.627 20.217 L 141.627 0.637 L 143 0.637 L 143 20.217 Z" fill="currentColor" />
           </svg>
         </a>
         <nav className="nav__links" id="nav-links" aria-label="Primary">
@@ -44,8 +50,8 @@ export default function Nav() {
                       <span className="nav__link-t">Observatory</span>
                       <span className="nav__link-d">Trace every agent decision in production</span>
                     </a>
-                    <a className="nav__link--desc" href={bp("/platform/roi-hub")}>
-                      <span className="nav__link-t">ROI Hub</span>
+                    <a className="nav__link--desc" href={bp("/roi-calculator")}>
+                      <span className="nav__link-t">ROI Calculator</span>
                       <span className="nav__link-d">Measure impact against a real baseline</span>
                     </a>
                   </div>
@@ -102,7 +108,7 @@ export default function Nav() {
                     <a href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span></a>
                   </div>
                 </div>
-                <p className="nav__foot mono"><a href={bp("/solutions")}>All solutions <span className="nav__arr" aria-hidden="true">→</span></a></p>
+                <p className="nav__foot mono"><a href={bp("/ai-agents")}>Browse all AI agents <span className="nav__arr" aria-hidden="true">→</span></a></p>
               </div>
             </div>
           </div>
@@ -151,7 +157,7 @@ export default function Nav() {
                   <div className="nav__group">
                     <p className="nav__glabel mono">Reference</p>
                     <a href="https://docs.flowx.ai/api" target="_blank" rel="noopener"><span className="nav__link-t">API reference <span className="nav__ext" aria-hidden="true">↗</span></span></a>
-                    <a href={bp("/developers/changelog")}><span className="nav__link-t">Changelog</span></a>
+                    <a href="https://docs.flowx.ai/release-notes/overview" target="_blank" rel="noopener"><span className="nav__link-t">Release notes <span className="nav__ext" aria-hidden="true">↗</span></span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Models</p>
@@ -205,7 +211,7 @@ export default function Nav() {
                     <a href={bp("/blog")}><span className="nav__link-t">Blog — all articles</span></a>
                     <a href={bp("/blog-flowx-6")}><span className="nav__link-t">Events — FlowX.AI 6</span></a>
                     <a href={bp("/resources/webinars")}><span className="nav__link-t">Webinars</span></a>
-                    <a href={bp("/resources/whitepapers")}><span className="nav__link-t">Whitepapers</span></a>
+                    <a href={bp("/research")}><span className="nav__link-t">Research papers</span></a>
                   </div>
                 </div>
                 <p className="nav__foot mono"><a href={bp("/blog")}>Read the blog <span className="nav__arr" aria-hidden="true">→</span></a></p>
