@@ -3831,6 +3831,31 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .share__btn:hover { color: var(--amber-text); border-color: var(--amber-line); background: var(--amber-soft); }
 .share__copied { font-size: 11px; letter-spacing: 0.04em; color: var(--amber-text); }
 
+/* ============================================================
+   CUSTOMERS  (/customers)
+   ============================================================ */
+.cust-out-section { padding-top: clamp(24px, 4vh, 48px); padding-bottom: clamp(24px, 4vh, 48px); }
+.cust-out { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 720px) { .cust-out { grid-template-columns: 1fr; } }
+.cust-out__card { display: flex; flex-direction: column; gap: 6px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-card); }
+.cust-out__metric { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--amber-text); }
+.cust-out__label { font-size: 15px; color: var(--text); margin-top: 4px; }
+.cust-out__who { font-size: 11.5px; letter-spacing: 0.04em; color: var(--text-faint); margin-top: 8px; }
+
+.cust-section { padding-top: clamp(24px, 4vh, 48px); }
+.cust-group { margin-bottom: clamp(36px, 5vh, 56px); scroll-margin-top: 96px; }
+.cust-group__label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.cust-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.cust-tile {
+  display: flex; align-items: center; justify-content: center;
+  height: 96px; padding: 20px 24px;
+  border: 1px solid var(--line); border-radius: 14px; background: var(--bg-raised);
+  box-shadow: var(--shadow-card);
+}
+.cust-logo { display: flex; align-items: center; justify-content: center; width: 100%; color: var(--text-dim); }
+.cust-logo svg { max-height: 40px; max-width: 100%; width: auto; height: auto; display: block; }
+.cust-note { margin-top: 8px; font-size: 11.5px; color: var(--text-faint); line-height: 1.6; }
+
 .blog-post__grid { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: clamp(32px, 5vw, 64px); align-items: start; }
 @media (max-width: 860px) { .blog-post__grid { grid-template-columns: 1fr; } .blog-post__aside { display: none; } }
 .blog-post__aside { position: sticky; top: 96px; }
