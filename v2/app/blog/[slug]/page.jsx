@@ -201,7 +201,7 @@ export default async function BlogPost({ params }) {
           </h2>
           <p className="abd-cta__sub">Bring a legacy-core workflow. We&apos;ll wrap it with agents and show the audit trail — or size the payback first.</p>
           <div className="cta__row">
-            <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Modernizing%20our%20core">Book a demo</a>
+            <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
             <a className="btn btn--ghost btn--lg" href={bp('/roi-calculator')}>Estimate the ROI</a>
           </div>
         </div>

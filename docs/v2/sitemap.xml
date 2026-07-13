@@ -51,6 +51,11 @@
 <priority>0.6</priority>
 </url>
 <url>
+<loc>https://bogdandraghici.github.io/flx_landing_explo/v2/platform/status</loc>
+<changefreq>monthly</changefreq>
+<priority>0.4</priority>
+</url>
+<url>
 <loc>https://bogdandraghici.github.io/flx_landing_explo/v2/agent-builder</loc>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>

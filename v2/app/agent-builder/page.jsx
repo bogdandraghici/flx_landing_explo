@@ -31,7 +31,7 @@ export default function AgentBuilder() {
                 running.
               </p>
               <div className="abd-hero__cta rv-load" style={{ '--d': 4 }}>
-                <a className="btn btn--primary btn--lg" href="#cta">Book a demo</a>
+                <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
                 <a className="btn btn--ghost btn--lg" href="#how">See how it works</a>
               </div>
               <p className="astats mono rv-load" style={{ '--d': 5 }}>

@@ -28,24 +28,34 @@ export default function Footer() {
           <nav className="footer__cols" aria-label="Footer">
             <div>
               <h4 className="mono">Platform</h4>
-              <a href={bp("/banking")}>Banking</a>
-              <a href={bp("/insurance")}>Insurance</a>
-              <a href={bp("/logistics")}>Logistics</a>
+              <a href={bp("/platform")}>Overview</a>
               <a href={bp("/agent-builder")}>Agent Builder</a>
               <a href={bp("/flowx-code")}>FlowX Code</a>
               <a href={bp("/observatory")}>Observatory</a>
-              <a href={bp("/#proof")}>Proof</a>
+              <a href={bp("/platform/ontology")}>Ontology Layer</a>
+              <a href={bp("/platform/integrations")}>Integrations</a>
+              <a href={bp("/platform/status")}>Status</a>
+            </div>
+            <div>
+              <h4 className="mono">Solutions</h4>
+              <a href={bp("/banking")}>Banking</a>
+              <a href={bp("/insurance")}>Insurance</a>
+              <a href={bp("/logistics")}>Logistics</a>
+              <a href={bp("/ai-agents")}>AI agents</a>
+              <a href={bp("/roi-calculator")}>ROI calculator</a>
+            </div>
+            <div>
+              <h4 className="mono">Resources</h4>
+              <a href={bp("/blog")}>Blog</a>
+              <a href={bp("/research")}>Research</a>
+              <a href={bp("/models")}>Open models</a>
+              <a href="https://docs.flowx.ai" target="_blank" rel="noopener">Documentation</a>
+              <a href="https://academy.flowx.ai" target="_blank" rel="noopener">Academy</a>
             </div>
             <div>
               <h4 className="mono">Company</h4>
               <a href={bp("/about")}>About us</a>
-            </div>
-            <div>
-              <h4 className="mono">Resources</h4>
-              <a href={bp("/resources")}>Blog</a>
-              <a href="https://docs.flowx.ai" target="_blank" rel="noopener">Documentation</a>
-              <a href="https://academy.flowx.ai" target="_blank" rel="noopener">Academy</a>
-              <a href={bp("/#cta")}>Support</a>
+              <a href={bp("/customers")}>Customers</a>
             </div>
             <div>
               <h4 className="mono">Legal</h4>

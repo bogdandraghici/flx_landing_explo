@@ -129,7 +129,7 @@ export default function IntegrationsPage() {
           </h2>
           <p className="abd-cta__sub rv" style={{ '--i': 2 }}>Tell us what you run. We&apos;ll show the connectors and a journey wired end-to-end across them — on your systems.</p>
           <div className="cta__row rv" style={{ '--i': 3 }}>
-            <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=FlowX%20integrations">Book a demo</a>
+            <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
             <a className="btn btn--ghost btn--lg" href={bp('/platform')}>Platform overview</a>
           </div>
         </div>
