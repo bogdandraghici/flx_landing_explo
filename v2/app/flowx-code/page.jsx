@@ -30,7 +30,7 @@ export default function FlowxCode() {
                 validated before it persists, and committed only when you click Save.
               </p>
               <div className="abd-hero__cta rv-load" style={{ '--d': 4 }}>
-                <a className="btn btn--primary btn--lg" href="#cta">Book a demo</a>
+                <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
                 <a className="btn btn--ghost btn--lg" href="#how">See how it works</a>
               </div>
               <p className="astats mono rv-load" style={{ '--d': 5 }}>
@@ -207,7 +207,7 @@ export default function FlowxCode() {
             <p className="abd-cta__sub rv" style={{ '--i': 2 }}>Describe an integration, a process, or a UI — we&apos;ll draft it,
               validated against your live project, and you click Save.</p>
             <div className="cta__row rv" style={{ '--i': 3 }}>
-              <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=FlowX%20Code%20demo">Book a demo</a>
+              <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
               <a className="btn btn--ghost btn--lg" href="#how">See how it works</a>
             </div>
           </div>

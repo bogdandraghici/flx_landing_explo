@@ -248,7 +248,7 @@ export default function Nav() {
           <a className="nav__top" href={bp("/about")}>Company</a>
         </nav>
         <div className="nav__right">
-          <a className="btn btn--primary btn--sm" href="#cta">Book a demo</a>
+          <a className="btn btn--primary btn--sm" href="#demo">Book a demo</a>
           <button className="nav__burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span className="nav__burger-lines" aria-hidden="true" /></button>
         </div>
       </div>

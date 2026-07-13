@@ -133,7 +133,7 @@ export default function PlatformOverview() {
           </h2>
           <p className="abd-cta__sub rv" style={{ '--i': 2 }}>Bring one regulated journey. We&apos;ll show you the platform running it — design, integration and audit trail — on your stack.</p>
           <div className="cta__row rv" style={{ '--i': 3 }}>
-            <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=FlowX%20platform%20demo">Book a demo</a>
+            <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
             <a className="btn btn--ghost btn--lg" href={bp('/roi-calculator')}>Estimate the ROI</a>
           </div>
         </div>

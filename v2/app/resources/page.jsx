@@ -211,7 +211,7 @@ export default function Resources() {
               <span className="rv" style={{ '--i': 1 }}>build your first agent<span className="amber">.</span></span>
             </h2>
             <div className="cta__row rv" style={{ '--i': 2 }}>
-              <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Customized%20demo">Book a demo</a>
+              <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
               <a className="btn btn--ghost btn--lg" href={bp("/banking")}>Explore Industries</a>
             </div>
           </div>

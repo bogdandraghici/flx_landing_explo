@@ -89,7 +89,7 @@ export default function Observatory() {
                 regulation.
               </p>
               <div className="abd-hero__cta rv-load" style={{ '--d': 4 }}>
-                <a className="btn btn--primary btn--lg" href="#cta">Book a demo</a>
+                <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
                 <a className="btn btn--ghost btn--lg" href="#how">See how it works</a>
               </div>
               <p className="astats mono rv-load" style={{ '--d': 5 }}>
@@ -358,7 +358,7 @@ export default function Observatory() {
             <p className="abd-cta__sub rv" style={{ '--i': 2 }}>Bring a high-risk workflow — we'll enforce a policy pack against a
               live run and hand you the evidence chain.</p>
             <div className="cta__row rv" style={{ '--i': 3 }}>
-              <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=Observatory%20demo">Book a demo</a>
+              <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
               <a className="btn btn--ghost btn--lg" href="#how">See how it works</a>
             </div>
           </div>

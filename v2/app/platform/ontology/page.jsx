@@ -129,7 +129,7 @@ export default function OntologyPage() {
           </h2>
           <p className="abd-cta__sub rv" style={{ '--i': 2 }}>Bring your products, rules and terminology. We&apos;ll stand up the ontology and show agents reasoning over it — with every fact traceable.</p>
           <div className="cta__row rv" style={{ '--i': 3 }}>
-            <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=FlowX%20Ontology%20Layer">Book a demo</a>
+            <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
             <a className="btn btn--ghost btn--lg" href={bp('/platform')}>Platform overview</a>
           </div>
         </div>

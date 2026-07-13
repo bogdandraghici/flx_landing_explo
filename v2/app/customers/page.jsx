@@ -87,7 +87,7 @@ export default function CustomersPage() {
           </h2>
           <p className="abd-cta__sub">Most AI initiatives never reach production. Bring a regulated journey and we&apos;ll show you a path that does — on your core, with the audit trail.</p>
           <div className="cta__row">
-            <a className="btn btn--primary btn--lg" href="mailto:hello@flowx.ai?subject=FlowX%20for%20our%20institution">Book a demo</a>
+            <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
             <a className="btn btn--ghost btn--lg" href={bp('/roi-calculator')}>Estimate the ROI</a>
           </div>
         </div>
