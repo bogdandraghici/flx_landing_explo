@@ -85,11 +85,12 @@ function EditSelect({ field, value, placeholder, options, onSelect, disabled, op
 }
 
 function EditNum({ value, onChange, onCommit, placeholder, ariaLabel }) {
-  const display = value === '' || value == null ? '' : Number(value).toLocaleString('en-US');
+  const empty = value === '' || value == null;
+  const display = empty ? '' : Number(value).toLocaleString('en-US');
   const width = Math.max((display || placeholder || '').length, 2);
   return (
     <input
-      className="roic__edit roic__num"
+      className={`roic__edit roic__num${empty ? ' is-empty' : ''}`}
       type="text"
       inputMode="numeric"
       aria-label={ariaLabel}

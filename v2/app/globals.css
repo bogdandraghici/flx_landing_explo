@@ -3962,16 +3962,19 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 /* inline editable "words" (shared by select + number) */
 .roic__edit {
   font: inherit; color: var(--text); font-weight: 600;
-  border: none; border-bottom: 2px solid var(--amber);
+  border: none; border-bottom: 2px solid rgba(var(--ink), 0.28);
   background: transparent; padding: 0 2px; border-radius: 2px 2px 0 0;
-  transition: background 0.18s var(--ease), border-color 0.18s var(--ease);
+  transition: background 0.18s var(--ease), border-color 0.18s var(--ease), color 0.18s var(--ease);
 }
-.roic__edit:hover { background: var(--amber-soft); }
-.roic__edit:focus, .roic__edit:focus-visible { outline: none; background: var(--amber-soft); }
+/* amber underline = still needs a value; gray = completed (toned down) */
+.roic__edit.is-empty { border-bottom-color: var(--amber); }
+.roic__edit:hover { background: var(--amber-soft); border-bottom-color: var(--amber); }
+.roic__edit:focus, .roic__edit:focus-visible { outline: none; background: var(--amber-soft); border-bottom-color: var(--amber); }
 .roic__pick { cursor: pointer; display: inline-flex; align-items: baseline; gap: 3px; white-space: nowrap; }
-.roic__pick.is-empty { color: var(--text-faint); font-weight: 500; border-bottom-color: var(--amber-line); }
+.roic__pick.is-empty { color: var(--text-faint); font-weight: 500; }
 .roic__pick:disabled { cursor: not-allowed; opacity: 0.6; border-bottom-style: dashed; }
-.roic__caret { font-size: 0.5em; color: var(--amber-text); transform: translateY(-0.25em); }
+.roic__caret { font-size: 0.5em; color: var(--text-faint); transform: translateY(-0.25em); transition: color 0.18s var(--ease); }
+.roic__edit.is-empty .roic__caret { color: var(--amber-text); }
 .roic__num {
   cursor: text; text-align: center; min-width: 2ch;
   -moz-appearance: textfield;
