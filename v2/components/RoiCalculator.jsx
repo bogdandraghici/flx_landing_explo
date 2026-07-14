@@ -266,7 +266,7 @@ export default function RoiCalculator() {
 
       <div className="roi__layout">
         {/* ============ CONFIG ============ */}
-        <aside className="roi__config" style={{ gridArea: 'config' }}>
+        <aside className="roi__config">
           <div className="roi__config-head">
             <span className="roi__config-title">Configure your scenario</span>
             <span className="roi__chip mono">3 steps</span>
@@ -371,8 +371,10 @@ export default function RoiCalculator() {
           </button>
         </aside>
 
+        {/* ============ RESULTS COLUMN (hero → chart → breakdown) ============ */}
+        <div className="roi__results">
         {/* ============ HERO ============ */}
-        <div className={`roi__panel roi__result${ready ? '' : ' is-dim'}`} style={{ gridArea: 'hero' }}>
+        <div className={`roi__panel roi__result${ready ? '' : ' is-dim'}`}>
           <p className="roi__panel-label mono">Estimated annual savings</p>
           <p className="roi__value">{money(grossSavings)}<span className="amber">.</span></p>
           <p className="roi__value-sub">{ftesSaved.toFixed(2)} FTE equivalent · {autoPct}% automation</p>
@@ -406,7 +408,7 @@ export default function RoiCalculator() {
         </div>
 
         {/* ============ CHART ============ */}
-        <div className={`roi__panel roi__chart${ready ? '' : ' is-dim'}`} style={{ gridArea: 'chart' }}>
+        <div className={`roi__panel roi__chart${ready ? '' : ' is-dim'}`}>
           <p className="roi__panel-label mono">Time per process</p>
           <div className="roi__bars">
             <div className="roi__bar-row">
@@ -431,7 +433,7 @@ export default function RoiCalculator() {
         </div>
 
         {/* ============ BREAKDOWN ============ */}
-        <div className="roi__panel roi__breakdown" style={{ gridArea: 'breakdown' }}>
+        <div className="roi__panel roi__breakdown">
           <div className="roi__panel-head">
             <p className="roi__panel-label mono">Agent breakdown</p>
             <span className="roi__chip mono">{enabledAgents.length} enabled</span>
@@ -477,6 +479,7 @@ export default function RoiCalculator() {
             change-management effort — see <a href="#how-calculated">how this is calculated</a>.
           </p>
         </div>
+        </div>{/* /roi__results */}
       </div>
 
       {/* ============ LEAD MODAL ============ */}

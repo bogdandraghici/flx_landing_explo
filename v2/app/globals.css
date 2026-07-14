@@ -3639,22 +3639,26 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .roi__select:disabled { opacity: 0.5; }
 .roi__mini-select { cursor: pointer; }
 
-/* ---- layout ---- */
+/* ---- layout ----
+   Two independent columns: a config sidebar (left) and a single results
+   column (right) that stacks hero → chart → breakdown in reading order.
+   Keeping the results in one flowing column — rather than parking them in
+   separate grid rows the tall config forces open — is what removes the
+   floating voids the row-span layout produced. */
 .roi__layout {
   display: grid;
   grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
-  grid-template-areas:
-    "config hero"
-    "config chart"
-    "breakdown breakdown";
   gap: 18px;
   align-items: start;
 }
+.roi__results {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
 @media (max-width: 900px) {
-  .roi__layout {
-    grid-template-columns: 1fr;
-    grid-template-areas: "config" "hero" "chart" "breakdown";
-  }
+  .roi__layout { grid-template-columns: 1fr; }
 }
 
 /* ---- config panel ---- */
@@ -3664,6 +3668,13 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
   background: var(--bg-panel);
   padding: clamp(18px, 2vw, 24px);
   box-shadow: var(--shadow-card);
+  /* Pin the controls while the results column scrolls past, so tweaking an
+     input and watching the numbers update stays a single glance. */
+  position: sticky;
+  top: 84px;
+}
+@media (max-width: 900px) {
+  .roi__config { position: static; top: auto; }
 }
 .roi__config-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 .roi__config-title { font-family: var(--font-display); font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; }
