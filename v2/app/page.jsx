@@ -38,7 +38,6 @@ export default function Home() {
               <div className="term__bar mono">
                 <span className="term__dots" aria-hidden="true"><i /><i /><i /></span>
                 <span className="term__title">flowx — agent builder</span>
-                <span className="term__ver">v4.2.1</span>
               </div>
               <div className="term__body mono">
                 <p className="term__ask"><span className="amber">▸</span> what should your first agent do?</p>
