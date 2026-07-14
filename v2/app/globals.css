@@ -350,7 +350,7 @@ em { font-style: normal; }
      scrim + a faint top sheen so it reads as glass over the page. */
   background:
     linear-gradient(180deg, rgba(var(--ink), 0.05), rgba(var(--ink), 0.015)),
-    rgba(var(--scrim), 0.85);
+    rgba(var(--scrim), 0.90);
   border-bottom-color: var(--line);
   box-shadow: inset 0 1px 0 rgba(var(--ink), 0.04);
 }
@@ -838,7 +838,7 @@ em { font-style: normal; }
   position: relative;
   width: min(880px, 100%);
   margin: clamp(4px, 2vh, 20px) auto 0;
-  border: 1px solid rgba(var(--ink), 0.22);
+  border: 1px solid rgba(var(--ink), 0.12);
   border-radius: 18px;
   /* Frosted glass, done WITHOUT backdrop-filter (which can't blur the live
      GPU-composited hero canvas behind it — the blur silently no-ops on some
@@ -851,7 +851,7 @@ em { font-style: normal; }
       rgba(var(--ink), 0.03) 20%,
       rgba(var(--ink), 0.01) 60%,
       rgba(var(--ink), 0.045) 100%),
-    rgba(var(--scrim), 0.86);
+    rgba(var(--scrim), 0.91);
   box-shadow: var(--shadow-term);
   overflow: hidden;
   text-align: left;
@@ -872,7 +872,7 @@ em { font-style: normal; }
 .term__dots i {
   width: 11px; height: 11px; border-radius: 50%;
   background: transparent;
-  border: 1px solid rgba(var(--ink), 0.3);
+  border: 1px solid rgba(var(--ink), 0.12);
 }
 .term__title { flex: 1; text-align: left; }
 .term__ver { font-size: 12px; color: rgba(var(--ink), 0.32); }
@@ -884,13 +884,13 @@ em { font-style: normal; }
   align-items: center;
   gap: 16px;
   background: var(--well-bg);
-  border: 1px solid rgba(var(--ink), 0.18);
+  border: 1px solid rgba(var(--ink), 0.12);
   border-radius: 14px;
   padding: 20px 22px;
   transition: border-color 0.3s var(--ease);
 }
 .term__form:focus-within {
-  border-color: rgba(var(--ink), 0.32);
+  border-color: rgba(var(--ink), 0.12);
   background: var(--well-bg-focus);
   box-shadow: inset 0 0 0 1px rgba(var(--ink), 0.04);
 }
@@ -936,7 +936,7 @@ em { font-style: normal; }
   letter-spacing: 0;
   color: var(--term-ink);
   background: transparent;
-  border: 1px solid rgba(var(--ink), 0.25);
+  border: 1px solid rgba(var(--ink), 0.12);
   border-radius: 12px;
   padding: 14px 24px;
   white-space: nowrap;
