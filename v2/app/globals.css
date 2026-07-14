@@ -3683,24 +3683,28 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
   color: var(--text-dim); border: 1px solid var(--line); border-radius: 999px; padding: 4px 9px;
 }
 
+/* Flat steps: hairline-divided sections, no nested cards. The current step is
+   marked only by the amber number badge + a full-strength heading; the others
+   sit quietly dimmed. */
 .roi__step {
-  padding: 16px 4px;
+  padding: 20px 0;
   border-top: 1px solid var(--line-soft);
 }
-.roi__step.is-active {
-  border-top-color: transparent;
-  border: 1px solid var(--line);
-  background: var(--bg-raised);
-  border-radius: 12px;
-  padding: 16px;
-  margin: 10px 0;
+.roi__step:first-of-type {
+  border-top: none;
+  padding-top: 6px;
 }
-.roi__step-head { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 14.5px; font-weight: 560; margin-bottom: 14px; }
+.roi__step-head {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 14.5px; font-weight: 560;
+  margin-bottom: 14px; color: var(--text-dim);
+}
+.roi__step.is-active .roi__step-head { color: var(--text); }
 .roi__step-no {
   display: inline-flex; align-items: center; justify-content: center;
   width: 20px; height: 20px; flex: none;
   border: 1px solid var(--line); border-radius: 50%;
-  font-size: 11px; color: var(--text-dim);
+  font-size: 11px; color: var(--text-faint);
 }
 .roi__step.is-active .roi__step-no { border-color: var(--amber-line); color: var(--amber-text); }
 
