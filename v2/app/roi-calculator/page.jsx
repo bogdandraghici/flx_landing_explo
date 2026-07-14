@@ -25,16 +25,16 @@ export default function RoiCalculatorPage() {
               <span className="hero__line hero__line--big rv-load" style={{ '--d': 2 }}>on the agents<span className="amber">.</span></span>
             </h1>
             <p className="hero__sub rv-load" style={{ '--d': 3 }}>
-              Choose an industry and a use case, set your monthly volume and cost per FTE, then pick
-              the agents you&apos;d deploy. The calculator values the time each one frees against a real
-              baseline — no black box, every number is traceable.
+              Fill in one sentence — your industry, the process, the volume, the cost — and the
+              calculator values the time each agent frees against a real baseline, then projects it
+              across three years. No black box, every number is traceable.
             </p>
             <div className="abd-hero__cta rv-load" style={{ '--d': 4 }}>
               <a className="btn btn--primary btn--lg" href="#calculator">Run the numbers</a>
               <a className="btn btn--ghost btn--lg" href="#how-calculated">See the methodology</a>
             </div>
             <p className="astats mono rv-load" style={{ '--d': 5 }}>
-              <span>four inputs · no black box · traceable</span>
+              <span>fill in the sentence · no black box · traceable</span>
             </p>
           </div>
 

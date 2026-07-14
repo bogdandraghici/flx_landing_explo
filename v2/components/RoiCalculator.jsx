@@ -1,31 +1,36 @@
 'use client';
 
-/* Agent ROI calculator — a v2 re-skin of the flowx.ai/business-agents-roi-calculator
-   embed, with a more honest model. Same shape (industry → use case → volume +
-   FTE cost + assumptions → agents ⇒ savings), rebuilt as a React client
-   component in the FlowX v2 design language: charcoal ground, one amber accent,
-   hairline cards, Sora/Geist/Geist-Mono, restrained motion.
+/* Agent ROI calculator — CONVERSATIONAL rework (design 2a "Full conversational
+   calculator"). Instead of a 3-step form sidebar, the six inputs are woven into
+   one editable sentence ("We're a {industry} team automating {process}…"); the
+   math writes itself into a result block, a before→with-AI bar, and a 3-year
+   cumulative projection with a break-even point. Built in the FlowX v2 design
+   language: token-driven so it flips light/dark, one amber accent, Sora/Geist/
+   Geist-Mono, restrained motion.
 
-   Model (see /roi-calculator methodology section + v2/docs/roi-calculator.md):
+   Preserved from the previous version (flagged as important, not in the 2a
+   mockup): the EUR/USD/GBP/JPY currency switcher, MANUAL agent selection (the
+   "see the agents" disclosure is where you pick them), and the lead-gated PDF
+   export behind "Email me this estimate".
+
+   Model (unchanged core; see /roi-calculator methodology + docs/roi-calculator.md):
      hourlyCost      = fteCost / 1800
      savedMinutes    = Σ agent.t · automationRate        (per process run)
      valuePerRun     = savedMinutes / 60 · hourlyCost
      grossSavings    = monthlyVolume · 12 · valuePerRun
-     netSavings      = grossSavings − annualPlatformCost
-     FTE equivalent  = (savedMinutes · runs/yr / 60) / 1800
-   The chart's "with AI" time and the savings now use the SAME automationRate,
-   so they can't disagree (the source embed credited 100% to savings but drew a
-   95% bar — that mismatch is fixed here). */
+     netSavings/yr   = grossSavings − annualPlatformCost  (platform is RECURRING)
+   Projection: cumulative net over 36 months, the platform+rollout cost charged
+   up-front at the start of EACH year (months 0/12/24) — so the curve dips below
+   zero, crosses at the break-even month, and steps down once a year as the cost
+   recurs. 3-year net = (gross − platform) × 3. */
 
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ROI_DATA, CURRENCIES, FTE_HOURS } from '@/lib/roiData';
 
-/* Static, approximate FX rates per 1 EUR — enough to keep the FTE cost and the
-   results in a believable range per currency (NOT live rates; see methodology). */
+/* Static, approximate FX rates per 1 EUR (NOT live rates; see methodology). */
 const FX = { EUR: 1, USD: 1.08, GBP: 0.85, JPY: 170 };
 
-/* FTE-cost slider bounds, derived from an EUR baseline (20k–150k, step 5k) and
-   scaled into each currency so the range stays sensible (e.g. millions of JPY). */
+/* FTE-cost bounds, derived from an EUR baseline (20k–150k) and scaled per currency. */
 function fteBounds(code) {
   const r = FX[code];
   const snap = (n, s) => Math.round(n / s) * s;
@@ -38,15 +43,119 @@ const LEAD_FORM_ACTION =
 
 const INDUSTRIES = [...new Set(ROI_DATA.map((r) => r.i))].sort();
 
+/* ---- inline editable "word" controls ---------------------------------- */
+
+function EditSelect({ field, value, placeholder, options, onSelect, disabled, openField, setOpenField }) {
+  const open = openField === field;
+  return (
+    <span className="roic__pick-wrap">
+      <button
+        type="button"
+        className={`roic__edit roic__pick${value ? '' : ' is-empty'}`}
+        disabled={disabled}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpenField(open ? null : field)}
+      >
+        {value || placeholder}
+        <span className="roic__caret" aria-hidden="true">▾</span>
+      </button>
+      {open && (
+        <span className="roic__menu" role="listbox">
+          {options.length === 0 ? (
+            <span className="roic__menu-empty">Pick an industry first.</span>
+          ) : (
+            options.map((o) => (
+              <button
+                key={o}
+                type="button"
+                role="option"
+                aria-selected={o === value}
+                className={`roic__menu-item${o === value ? ' is-sel' : ''}`}
+                onClick={() => { onSelect(o); setOpenField(null); }}
+              >
+                {o}
+              </button>
+            ))
+          )}
+        </span>
+      )}
+    </span>
+  );
+}
+
+function EditNum({ value, onChange, onCommit, placeholder, ariaLabel }) {
+  const display = value === '' || value == null ? '' : Number(value).toLocaleString('en-US');
+  const width = Math.max((display || placeholder || '').length, 2);
+  return (
+    <input
+      className="roic__edit roic__num"
+      type="text"
+      inputMode="numeric"
+      aria-label={ariaLabel}
+      value={display}
+      placeholder={placeholder}
+      style={{ width: `${width}ch` }}
+      onChange={(e) => {
+        const raw = e.target.value.replace(/[^\d]/g, '');
+        onChange(raw === '' ? '' : parseInt(raw, 10));
+      }}
+      onBlur={onCommit}
+    />
+  );
+}
+
+/* ---- 3-year projection geometry --------------------------------------- */
+
+function buildProjection(gross, platform) {
+  const W = 960, H = 240, padX = 6, padTop = 20, padBot = 20;
+  const x0 = padX, x1 = W - padX, plotW = x1 - x0, plotTop = padTop, plotBot = H - padBot, plotH = plotBot - plotTop;
+  const perMo = gross / 12;
+  const payAt = platform > 0 ? [0, 12, 24] : [];
+  const paysDue = (m) => payAt.filter((p) => p <= m).length;
+
+  const net = [];
+  for (let m = 0; m <= 36; m++) {
+    // At each yearly boundary, emit the top-of-year point (before that year's
+    // charge) then the post-charge point — a clean vertical "re-investment" notch.
+    if ((m === 12 || m === 24) && platform > 0) net.push([m, perMo * m - platform * (paysDue(m) - 1)]);
+    net.push([m, perMo * m - platform * paysDue(m)]);
+  }
+  const grossEnd = perMo * 36;
+  const vals = net.map((p) => p[1]).concat([0, grossEnd]);
+  let maxV = Math.max(...vals), minV = Math.min(...vals);
+  if (maxV === minV) { maxV = 1; minV = 0; }
+
+  const X = (m) => x0 + (m / 36) * plotW;
+  const Y = (v) => plotTop + ((maxV - v) / (maxV - minV)) * plotH;
+
+  const netLine = net.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(' ');
+  const netArea = `${netLine} L${X(36).toFixed(1)},${plotBot} L${X(0).toFixed(1)},${plotBot} Z`;
+  const grossPath = `M${X(0).toFixed(1)},${Y(0).toFixed(1)} L${X(36).toFixed(1)},${Y(grossEnd).toFixed(1)}`;
+  const yZero = Y(0);
+
+  let beFrac = null;
+  if (platform > 0 && perMo > 0) { const m = platform / perMo; if (m <= 36) beFrac = m; }
+
+  return {
+    W, H, netLine, netArea, grossPath,
+    yZeroPct: (yZero / H) * 100,
+    beFrac,
+    beXPct: beFrac != null ? (X(beFrac) / W) * 100 : null,
+  };
+}
+
 export default function RoiCalculator() {
   const [currency, setCurrency] = useState('EUR');
   const [industry, setIndustry] = useState('');
   const [stack, setStack] = useState('');
-  const [executions, setExecutions] = useState('');
+  const [executions, setExecutions] = useState(''); // monthly volume, number | ''
   const [fteCost, setFteCost] = useState(50000);
-  const [autoPct, setAutoPct] = useState(75); // automation rate, % of manual time removed
-  const [platformCost, setPlatformCost] = useState(''); // annual platform + rollout cost (optional)
+  const [autoPct, setAutoPct] = useState(75);
+  const [platformCost, setPlatformCost] = useState(''); // annual platform + rollout, number | ''
   const [enabled, setEnabled] = useState({});
+  const [openField, setOpenField] = useState(null);
+  const [agentsOpen, setAgentsOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [lead, setLead] = useState({ fname: '', lname: '', email: '', consent: false });
   const [submitting, setSubmitting] = useState(false);
@@ -63,62 +172,87 @@ export default function RoiCalculator() {
     [industry, stack],
   );
 
+  /* close the inline dropdown on outside click / Escape */
+  useEffect(() => {
+    if (!openField) return undefined;
+    const onDown = (e) => { if (!e.target.closest('.roic__pick-wrap')) setOpenField(null); };
+    const onKey = (e) => { if (e.key === 'Escape') setOpenField(null); };
+    document.addEventListener('pointerdown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('pointerdown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [openField]);
+
   /* ---- formatting ---- */
   const fmtNum = (n) => Math.round(n).toLocaleString('en-US');
   const money = (n) => cur.symbol + fmtNum(n);
+  const moneyShort = (n) => {
+    const a = Math.abs(n);
+    if (a >= 1e6) return `${cur.symbol}${(n / 1e6).toFixed(2).replace(/\.?0+$/, '')}M`;
+    if (a >= 1e3) return `${cur.symbol}${Math.round(n / 1e3)}K`;
+    return money(n);
+  };
 
   /* ---- derived model ---- */
-  const monthlyExec = parseFloat(executions) || 0;
+  const monthlyExec = Number(executions) || 0;
   const annualExec = monthlyExec * 12;
   const hourlyCost = fteCost / FTE_HOURS;
   const autoRate = autoPct / 100;
-  const platform = parseFloat(platformCost) || 0;
+  const platform = Number(platformCost) || 0;
 
   const enabledAgents = agents.filter((_, i) => enabled[i]);
   const allSelected = agents.length > 0 && agents.every((_, i) => enabled[i]);
 
-  const step1Done = !!industry && !!stack;
-  const step2Done = step1Done && monthlyExec > 0;
-  const step3Done = step2Done && enabledAgents.length > 0;
-  const ready = step1Done && step2Done && step3Done;
-  const activeStep = !step1Done ? 1 : !step2Done ? 2 : !step3Done ? 3 : 0;
+  const ready = !!industry && !!stack && monthlyExec > 0 && enabledAgents.length > 0;
 
   const manualMinPerExec = enabledAgents.reduce((s, a) => s + (a.t || 0), 0);
   const savedMinPerExec = manualMinPerExec * autoRate;
   const valuePerExec = (savedMinPerExec / 60) * hourlyCost;
   const grossSavings = annualExec * valuePerExec;
   const netSavings = grossSavings - platform;
-  const roiX = platform > 0 ? grossSavings / platform : null;
   const timeSavedHours = (annualExec * savedMinPerExec) / 60;
   const ftesSaved = timeSavedHours / FTE_HOURS;
+
+  /* break-even month + 3-year net (platform recurring, charged yearly up front) */
+  const breakEvenMonth = platform > 0 && grossSavings > 0 ? Math.ceil((12 * platform) / grossSavings) : null;
+  const breaksEven = breakEvenMonth != null && breakEvenMonth <= 36;
+  const net3yr = grossSavings * 3 - platform * 3;
 
   /* chart — manual vs. residual time after the chosen automation rate */
   const autoMinPerExec = manualMinPerExec * (1 - autoRate);
   const maxMin = Math.max(manualMinPerExec, 1);
-  const manualW = ready ? 100 : 50;
-  const autoW = ready ? Math.max((autoMinPerExec / maxMin) * 100, 4) : 12;
+  const beforeW = ready ? 100 : 60;
+  const afterW = ready ? Math.max((autoMinPerExec / maxMin) * 100, 4) : 15;
   const minLabel = (m) => (m < 1 ? `${(m * 60).toFixed(0)} sec` : `${m.toFixed(1)} min`);
 
+  const proj = useMemo(
+    () => (ready && grossSavings > 0 ? buildProjection(grossSavings, platform) : null),
+    [ready, grossSavings, platform],
+  );
+
   /* ---- handlers ---- */
-  const onIndustry = (e) => { setIndustry(e.target.value); setStack(''); setEnabled({}); };
-  const onStack = (e) => { setStack(e.target.value); setEnabled({}); };
+  const onIndustry = (v) => { setIndustry(v); setStack(''); setEnabled({}); setAgentsOpen(false); };
+  const onStack = (v) => { setStack(v); setEnabled({}); setAgentsOpen(true); };
   const toggleAgent = (i) => setEnabled((p) => ({ ...p, [i]: !p[i] }));
   const toggleAll = () => {
     if (allSelected) return setEnabled({});
     const next = {};
     agents.forEach((_, i) => { next[i] = true; });
-    setEnabled(next);
+    return setEnabled(next);
   };
+  function commitFte() { setFteCost((v) => Math.min(bounds.max, Math.max(bounds.min, Number(v) || bounds.default))); }
+  function commitAuto() { setAutoPct((v) => Math.min(95, Math.max(40, Number(v) || 75))); }
   function onCurrency(next) {
     const b = fteBounds(next);
     const eur = fteCost / FX[currency];
-    const converted = Math.min(b.max, Math.max(b.min, Math.round((eur * FX[next]) / b.step) * b.step));
-    setFteCost(converted);
-    if (platformCost) setPlatformCost(String(Math.round((parseFloat(platformCost) / FX[currency]) * FX[next])));
+    setFteCost(Math.min(b.max, Math.max(b.min, Math.round((eur * FX[next]) / b.step) * b.step)));
+    if (platformCost !== '') setPlatformCost(Math.round((Number(platformCost) / FX[currency]) * FX[next]));
     setCurrency(next);
   }
 
-  /* ---- export → lead gate → print ---- */
+  /* ---- export → lead gate → print (unchanged behaviour) ---- */
   const submitRef = useRef(null);
 
   function submitLeadThenPrint(e) {
@@ -164,7 +298,7 @@ export default function RoiCalculator() {
         return `<tr>
           <td>${a.n}</td>
           <td class="dim">${a.d}</td>
-          <td class="r">${a.t} min</td>
+          <td class="r">${(a.t * autoRate).toFixed(1)} min</td>
           <td class="r">${money(monthlyExec * per)}</td>
           <td class="r b">${money(annualExec * per)}</td>
         </tr>`;
@@ -172,8 +306,10 @@ export default function RoiCalculator() {
       .join('');
 
     const netRows = platform > 0
-      ? `<div class="cell"><div class="k">Est. platform cost</div><div class="v">${money(platform)}</div></div>
-         <div class="cell hero"><div class="k">Net annual savings</div><div class="v">${money(netSavings)}</div></div>`
+      ? `<div class="cell"><div class="k">Annual platform cost</div><div class="v">${money(platform)}</div></div>
+         <div class="cell"><div class="k">Net savings / yr</div><div class="v">${money(netSavings)}</div></div>
+         ${breaksEven ? `<div class="cell hero"><div class="k">Break-even</div><div class="v">Month ${breakEvenMonth}</div></div>` : ''}
+         <div class="cell"><div class="k">3-year net savings</div><div class="v">${money(net3yr)}</div></div>`
       : `<div class="cell"><div class="k">Active agents</div><div class="v">${enabledAgents.length}</div></div>
          <div class="cell"><div class="k">Time saved / yr</div><div class="v">${fmtNum(timeSavedHours)} hrs</div></div>`;
 
@@ -248,238 +384,246 @@ export default function RoiCalculator() {
     }, 350);
   }
 
-  return (
-    <div className="roi" id="calc">
-      <div className="roi__rail">
-        <label className="roi__rail-label mono" htmlFor="roi-currency">Currency</label>
-        <select
-          id="roi-currency"
-          className="roi__mini-select mono"
-          value={currency}
-          onChange={(e) => onCurrency(e.target.value)}
-        >
-          {Object.entries(CURRENCIES).map(([code, c]) => (
-            <option key={code} value={code}>{code} ({c.symbol})</option>
-          ))}
-        </select>
-      </div>
+  const ftePlaceholder = fteBounds('EUR').default; // stable placeholder text
+  const platPlaceholder = Math.round(150000 * FX[currency]);
 
-      <div className="roi__layout">
-        {/* ============ CONFIG ============ */}
-        <aside className="roi__config">
-          <div className="roi__config-head">
-            <span className="roi__config-title">Configure your scenario</span>
-            <span className="roi__chip mono">3 steps</span>
+  return (
+    <div className="roi roic" id="calc">
+      <div className="roic__card">
+        {/* ---- header ---- */}
+        <div className="roic__head">
+          <span className="roic__eyebrow mono">ROI Calculator</span>
+          <div className="roic__head-right">
+            <span className="roic__hint mono" aria-hidden="true">Edit any highlighted value</span>
+            <label className="roic__cur-label mono" htmlFor="roi-currency">Currency</label>
+            <select
+              id="roi-currency"
+              className="roi__mini-select mono"
+              value={currency}
+              onChange={(e) => onCurrency(e.target.value)}
+            >
+              {Object.entries(CURRENCIES).map(([code, c]) => (
+                <option key={code} value={code}>{code} ({c.symbol})</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* ---- conversational sentence ---- */}
+        <p className="roic__sentence">
+          We&apos;re a{' '}
+          <EditSelect
+            field="industry" value={industry} placeholder="pick an industry" options={INDUSTRIES}
+            onSelect={onIndustry} openField={openField} setOpenField={setOpenField}
+          />{' '}
+          team automating{' '}
+          <EditSelect
+            field="process" value={stack} placeholder="a process" options={stacks}
+            onSelect={onStack} disabled={!industry} openField={openField} setOpenField={setOpenField}
+          />
+          . We handle{' '}
+          <EditNum value={executions} onChange={setExecutions} placeholder="5,000" ariaLabel="Monthly volume" />{' '}
+          cases a month, and agents can take over{' '}
+          <EditNum value={autoPct} onChange={setAutoPct} onCommit={commitAuto} placeholder="75" ariaLabel="Automation rate (percent)" />% of the manual work.
+          A full-time employee costs about {cur.symbol}
+          <EditNum value={fteCost} onChange={setFteCost} onCommit={commitFte} placeholder={fmtNum(ftePlaceholder)} ariaLabel="Cost per FTE per year" />
+          <span className="roic__unit"> / yr</span>, and we&apos;d invest {cur.symbol}
+          <EditNum value={platformCost} onChange={setPlatformCost} placeholder={fmtNum(platPlaceholder)} ariaLabel="Annual platform and rollout cost (optional)" />
+          <span className="roic__unit"> / yr</span> in platform &amp; rollout
+          <span className="roic__opt-inline"> (optional)</span>.
+        </p>
+
+        {/* ---- result block ---- */}
+        <div className={`roic__result${ready ? '' : ' is-dim'}`}>
+          <div className="roic__worth-row">
+            <div className="roic__worth">
+              <div className="roic__worth-label mono">That&apos;s worth</div>
+              <div className="roic__worth-val">
+                {ready ? money(grossSavings) : `${cur.symbol}—`}
+                <span className="roic__per">/ year</span>
+              </div>
+            </div>
+            <div className="roic__kpis">
+              <div className="roic__kpi">
+                <div className="roic__kpi-v">{ready ? `${fmtNum(timeSavedHours)}` : '—'}<span className="roic__kpi-u"> hrs</span></div>
+                <div className="roic__kpi-k">freed / year</div>
+              </div>
+              <div className="roic__kpi">
+                <div className="roic__kpi-v">{ready ? ftesSaved.toFixed(1) : '—'}<span className="roic__kpi-u"> FTE</span></div>
+                <div className="roic__kpi-k">capacity</div>
+              </div>
+              <div className="roic__kpi">
+                {platform > 0 ? (
+                  <>
+                    <div className="roic__kpi-v roic__kpi-v--amber">{ready && breaksEven ? `Mo ${breakEvenMonth}` : '—'}</div>
+                    <div className="roic__kpi-k">break-even</div>
+                  </>
+                ) : (
+                  <>
+                    <div className="roic__kpi-v roic__kpi-v--amber">{ready ? `${autoPct}%` : '—'}</div>
+                    <div className="roic__kpi-k">automated</div>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
 
-          {/* Step 1 */}
-          <section className={`roi__step${activeStep === 1 ? ' is-active' : ''}`}>
-            <p className="roi__step-head"><span className="roi__step-no mono">1</span>Industry &amp; use case</p>
-            <label className="roi__label" htmlFor="roi-industry">Industry</label>
-            <select id="roi-industry" className="roi__select" value={industry} onChange={onIndustry}>
-              <option value="" disabled>Select industry</option>
-              {INDUSTRIES.map((n) => <option key={n} value={n}>{n}</option>)}
-            </select>
-            <label className="roi__label" htmlFor="roi-stack">Stack / use case</label>
-            <select id="roi-stack" className="roi__select" value={stack} onChange={onStack} disabled={!industry}>
-              <option value="" disabled>Select use case</option>
-              {stacks.map((n) => <option key={n} value={n}>{n}</option>)}
-            </select>
-            <p className="roi__help">Choose the business process you want to automate.</p>
-          </section>
-
-          {/* Step 2 */}
-          <section className={`roi__step${activeStep === 2 ? ' is-active' : ''}`}>
-            <p className="roi__step-head"><span className="roi__step-no mono">2</span>Volume, cost &amp; assumptions</p>
-            <label className="roi__label" htmlFor="roi-vol">Expected monthly volume</label>
-            <input
-              id="roi-vol" className="roi__input mono" type="number" min="0" step="100"
-              placeholder="e.g. 5,000" value={executions}
-              onChange={(e) => setExecutions(e.target.value)}
-            />
-            <div className="roi__presets">
-              {[1000, 5000, 10000].map((v) => (
-                <button key={v} type="button" className="roi__preset mono" onClick={() => setExecutions(String(v))}>
-                  {v / 1000}K/mo
-                </button>
-              ))}
+          {/* before / with-AI bars */}
+          <div className="roic__bars">
+            <div className="roic__bar-row">
+              <span className="roic__bar-label mono">Before</span>
+              <span className="roic__bar-track"><span className="roic__bar roic__bar--before" style={{ width: `${beforeW}%` }} /></span>
+              <span className="roic__bar-val mono">{ready ? minLabel(manualMinPerExec) : '—'}</span>
             </div>
-
-            <div className="roi__fte-head">
-              <span className="roi__label" style={{ margin: 0 }}>Cost per FTE</span>
-              <span className="roi__fte-pill mono">{money(fteCost)} / yr</span>
+            <div className="roic__bar-row">
+              <span className="roic__bar-label mono roic__bar-label--amber">With AI</span>
+              <span className="roic__bar-track"><span className="roic__bar roic__bar--after" style={{ width: `${afterW}%` }} /></span>
+              <span className="roic__bar-val mono roic__bar-val--amber">{ready ? minLabel(autoMinPerExec) : '—'}</span>
             </div>
-            <input
-              className="roi__range" type="range"
-              min={bounds.min} max={bounds.max} step={bounds.step}
-              value={Math.min(bounds.max, Math.max(bounds.min, fteCost))}
-              onChange={(e) => setFteCost(parseFloat(e.target.value))}
-              aria-label="Annual cost per FTE"
-            />
-            <p className="roi__help">Fully-loaded annual cost per FTE — used to value the time saved.</p>
+          </div>
+        </div>
 
-            <div className="roi__fte-head">
-              <span className="roi__label" style={{ margin: 0 }}>Automation rate</span>
-              <span className="roi__fte-pill mono">{autoPct}%</span>
-            </div>
-            <input
-              className="roi__range" type="range" min="40" max="95" step="5"
-              value={autoPct} onChange={(e) => setAutoPct(parseInt(e.target.value, 10))}
-              aria-label="Automation rate"
-            />
-            <p className="roi__help">Share of manual handling time the agents actually remove — the rest stays with a human (review, exceptions).</p>
-
-            <label className="roi__label" htmlFor="roi-plat">Est. annual platform + rollout cost <span className="roi__opt">(optional)</span></label>
-            <input
-              id="roi-plat" className="roi__input mono" type="number" min="0" step="1000"
-              placeholder={`e.g. ${cur.symbol}${(150000 * FX[currency]).toLocaleString('en-US', { maximumFractionDigits: 0 })}`}
-              value={platformCost} onChange={(e) => setPlatformCost(e.target.value)}
-            />
-            <p className="roi__help">Enter a figure to see savings <em>net</em> of investment and a first-year ROI multiple.</p>
-          </section>
-
-          {/* Step 3 */}
-          <section className={`roi__step${activeStep === 3 ? ' is-active' : ''}`}>
-            <p className="roi__step-head"><span className="roi__step-no mono">3</span>Choose AI agents</p>
-            <div className="roi__agents-top">
-              <span className="roi__label" style={{ margin: 0 }}>Available agents ({agents.length})</span>
-              {agents.length > 0 && (
-                <button type="button" className="roi__selectall mono" onClick={toggleAll}>
-                  {allSelected ? 'Clear all' : 'Select all'}
-                </button>
-              )}
-            </div>
-            <div className="roi__agent-list">
-              {agents.length === 0 ? (
-                <p className="roi__empty mono">Pick an industry &amp; use case first.</p>
+        {/* ---- 3-year projection ---- */}
+        <div className={`roic__proj${ready ? '' : ' is-dim'}`}>
+          <div className="roic__proj-head">
+            <div className="roic__proj-headline">
+              {platform > 0 ? (
+                <>Over three years, that compounds to <span className="amber">{ready ? moneyShort(net3yr) : `${cur.symbol}—`} net</span></>
               ) : (
-                agents.map((a, i) => (
-                  <label key={a.n + i} className={`roi__agent${enabled[i] ? ' is-on' : ''}`}>
-                    <input type="checkbox" checked={!!enabled[i]} onChange={() => toggleAgent(i)} />
-                    <span className="roi__agent-info">
-                      <span className="roi__agent-name">{a.n}</span>
-                      <span className="roi__agent-dept mono">{a.d}</span>
-                    </span>
-                  </label>
-                ))
+                <>Over three years, that compounds to <span className="amber">{ready ? moneyShort(grossSavings * 3) : `${cur.symbol}—`}</span></>
               )}
             </div>
-          </section>
+            <div className="roic__proj-sub">
+              {platform > 0 ? `after ${money(platform)} / yr platform cost` : 'add a platform cost above to net it'}
+            </div>
+          </div>
 
-          <button type="button" className="btn btn--primary roi__export" onClick={() => setModalOpen(true)} disabled={!ready}>
-            Export PDF report
+          <div className="roic__chart-wrap">
+            <svg className="roic__chart" viewBox={`0 0 ${proj ? proj.W : 960} ${proj ? proj.H : 240}`} preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="roicGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" style={{ stopColor: 'var(--amber)', stopOpacity: 0.22 }} />
+                  <stop offset="1" style={{ stopColor: 'var(--amber)', stopOpacity: 0 }} />
+                </linearGradient>
+              </defs>
+              {proj && (
+                <>
+                  <line
+                    x1="6" x2="954"
+                    y1={(proj.yZeroPct / 100) * proj.H} y2={(proj.yZeroPct / 100) * proj.H}
+                    strokeDasharray="4 4" vectorEffect="non-scaling-stroke"
+                    style={{ stroke: 'rgba(var(--ink),0.16)' }}
+                  />
+                  <path d={proj.netArea} style={{ fill: 'url(#roicGrad)' }} />
+                  <path d={proj.grossPath} strokeWidth="1.5" strokeDasharray="5 5" vectorEffect="non-scaling-stroke" style={{ fill: 'none', stroke: 'rgba(var(--ink),0.3)' }} />
+                  <path d={proj.netLine} strokeWidth="2.5" vectorEffect="non-scaling-stroke" style={{ fill: 'none', stroke: 'var(--amber)' }} />
+                </>
+              )}
+            </svg>
+            {proj && proj.beXPct != null && (
+              <>
+                <span className="roic__be-dot" style={{ left: `${proj.beXPct}%`, top: `${proj.yZeroPct}%` }} aria-hidden="true" />
+                <span className="roic__be-label mono" style={{ left: `${proj.beXPct}%`, top: `${proj.yZeroPct}%` }}>
+                  Break-even · Mo {breakEvenMonth}
+                </span>
+              </>
+            )}
+          </div>
+
+          <div className="roic__axis mono">
+            <span>Today</span><span>12 mo</span><span>24 mo</span><span>36 mo</span>
+          </div>
+          <div className="roic__legend mono">
+            <span className="roic__legend-item"><i className="roic__swatch roic__swatch--net" />Net savings</span>
+            <span className="roic__legend-item"><i className="roic__swatch roic__swatch--gross" />Gross savings</span>
+          </div>
+        </div>
+
+        {/* ---- agents disclosure (MANUAL selection lives here) ---- */}
+        <div className="roic__disc">
+          <button
+            type="button"
+            className={`roic__disc-btn${agentsOpen ? ' is-open' : ''}`}
+            aria-expanded={agentsOpen}
+            onClick={() => setAgentsOpen((o) => !o)}
+            disabled={!stack}
+          >
+            <span>
+              {ready ? 'See the agents behind this' : 'Choose the agents that run this'}
+              {agents.length > 0 && <span className="roic__disc-count mono"> {enabledAgents.length}/{agents.length}</span>}
+            </span>
+            <span className="roic__disc-caret" aria-hidden="true">▾</span>
           </button>
-        </aside>
 
-        {/* ============ RESULTS COLUMN (hero → chart → breakdown) ============ */}
-        <div className="roi__results">
-        {/* ============ HERO ============ */}
-        <div className={`roi__panel roi__result${ready ? '' : ' is-dim'}`}>
-          <p className="roi__panel-label mono">Estimated annual savings</p>
-          <p className="roi__value">{money(grossSavings)}<span className="amber">.</span></p>
-          <p className="roi__value-sub">{ftesSaved.toFixed(2)} FTE equivalent · {autoPct}% automation</p>
-          <a className="roi__valnote mono" href="#how-calculated">How is this calculated? ↓</a>
+          {agentsOpen && (
+            <div className="roic__disc-body">
+              <div className="roi__agents-top">
+                <span className="roi__label" style={{ margin: 0 }}>
+                  {stack ? `Available agents (${agents.length})` : 'Pick a process in the sentence above first.'}
+                </span>
+                {agents.length > 0 && (
+                  <button type="button" className="roi__selectall mono" onClick={toggleAll}>
+                    {allSelected ? 'Clear all' : 'Select all'}
+                  </button>
+                )}
+              </div>
+              {agents.length > 0 && (
+                <div className="roi__agent-list">
+                  {agents.map((a, i) => (
+                    <label key={a.n + i} className={`roi__agent${enabled[i] ? ' is-on' : ''}`}>
+                      <input type="checkbox" checked={!!enabled[i]} onChange={() => toggleAgent(i)} />
+                      <span className="roi__agent-info">
+                        <span className="roi__agent-name">{a.n}</span>
+                        <span className="roi__agent-dept mono">{a.d}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              )}
 
-          {platform > 0 && ready && (
-            <div className="roi__net mono">
-              <span>Gross {money(grossSavings)}</span>
-              <span className="roi__net-op">− platform {money(platform)}</span>
-              <span className="roi__net-total">= net {money(netSavings)}</span>
-              {roiX && <span className="amber">≈ {roiX.toFixed(1)}× first-year</span>}
+              {ready && (
+                <div className="roic__table-wrap">
+                  <table className="roi__table">
+                    <thead>
+                      <tr>
+                        <th>Agent</th>
+                        <th>Department</th>
+                        <th className="r">Time saved / process</th>
+                        <th className="r">Monthly savings</th>
+                        <th className="r">Annual savings</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {enabledAgents.map((a, i) => {
+                        const per = ((a.t * autoRate) / 60) * hourlyCost;
+                        return (
+                          <tr key={a.n + i}>
+                            <td className="roi__td-name">{a.n}</td>
+                            <td className="dim">{a.d}</td>
+                            <td className="r mono">{(a.t * autoRate).toFixed(1)} min</td>
+                            <td className="r mono">{money(monthlyExec * per)}</td>
+                            <td className="r mono roi__td-annual">{money(annualExec * per)}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           )}
+        </div>
 
-          <p className="roi__value-desc">
-            Automating <em>{stack || 'this process'}</em> with{' '}
-            <strong>{enabledAgents.length} {enabledAgents.length === 1 ? 'agent' : 'agents'}</strong> at a{' '}
-            <strong>{autoPct}% automation rate</strong> frees <strong>{fmtNum(timeSavedHours)} hours</strong> of
-            capacity a year — time your team can redirect to higher-value work.
+        {/* ---- footer ---- */}
+        <div className="roic__foot">
+          <p className="roic__foot-note">
+            Assumes {FTE_HOURS.toLocaleString('en-US')} working hrs/yr · figures are capacity freed, not headcount ·{' '}
+            <a className="roic__foot-link" href="#how-calculated">how this is calculated</a>
           </p>
-          <div className="roi__stats">
-            <div className="roi__stat">
-              <span className="roi__stat-v">{fmtNum(timeSavedHours)} hrs</span>
-              <span className="roi__stat-k mono">Time saved annually</span>
-            </div>
-            <div className="roi__stat">
-              <span className="roi__stat-v">{enabledAgents.length}</span>
-              <span className="roi__stat-k mono">Active agents</span>
-            </div>
-          </div>
+          <button type="button" className="btn btn--primary roic__cta" onClick={() => setModalOpen(true)} disabled={!ready}>
+            Email me this estimate
+          </button>
         </div>
-
-        {/* ============ CHART ============ */}
-        <div className={`roi__panel roi__chart${ready ? '' : ' is-dim'}`}>
-          <p className="roi__panel-label mono">Time per process</p>
-          <div className="roi__bars">
-            <div className="roi__bar-row">
-              <span className="roi__bar-label mono">Before</span>
-              <span className="roi__bar-track">
-                <span className="roi__bar roi__bar--manual" style={{ width: `${manualW}%` }} />
-              </span>
-              <span className="roi__bar-val mono">{ready ? minLabel(manualMinPerExec) : '—'}</span>
-            </div>
-            <div className="roi__bar-row">
-              <span className="roi__bar-label mono">With AI</span>
-              <span className="roi__bar-track">
-                <span className="roi__bar roi__bar--auto" style={{ width: `${autoW}%` }} />
-              </span>
-              <span className="roi__bar-val mono amber">{ready ? minLabel(autoMinPerExec) : '—'}</span>
-            </div>
-          </div>
-          <div className="roi__legend mono">
-            <span className="roi__legend-item"><i className="roi__swatch roi__swatch--manual" />Manual process</span>
-            <span className="roi__legend-item"><i className="roi__swatch roi__swatch--auto" />After {autoPct}% automation</span>
-          </div>
-        </div>
-
-        {/* ============ BREAKDOWN ============ */}
-        <div className="roi__panel roi__breakdown">
-          <div className="roi__panel-head">
-            <p className="roi__panel-label mono">Agent breakdown</p>
-            <span className="roi__chip mono">{enabledAgents.length} enabled</span>
-          </div>
-          <div className="roi__table-wrap">
-            <table className="roi__table">
-              <thead>
-                <tr>
-                  <th>Agent</th>
-                  <th>Department</th>
-                  <th className="r">Time saved / process</th>
-                  <th className="r">Monthly savings</th>
-                  <th className="r">Annual savings</th>
-                </tr>
-              </thead>
-              <tbody>
-                {!ready ? (
-                  <tr>
-                    <td colSpan={5} className="roi__table-empty mono">
-                      {step2Done ? 'Select agents in step 3 to compute savings.' : 'Complete steps 1 & 2 to see the agent breakdown.'}
-                    </td>
-                  </tr>
-                ) : (
-                  enabledAgents.map((a, i) => {
-                    const per = ((a.t * autoRate) / 60) * hourlyCost;
-                    return (
-                      <tr key={a.n + i}>
-                        <td className="roi__td-name">{a.n}</td>
-                        <td className="dim">{a.d}</td>
-                        <td className="r mono">{(a.t * autoRate).toFixed(1)} min</td>
-                        <td className="r mono">{money(monthlyExec * per)}</td>
-                        <td className="r mono roi__td-annual">{money(annualExec * per)}</td>
-                      </tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </table>
-          </div>
-          <p className="roi__note">
-            Estimate. Uses a <strong>{money(fteCost)}</strong> annual FTE cost, {FTE_HOURS.toLocaleString('en-US')} working
-            hours/year, and a <strong>{autoPct}%</strong> automation rate. Figures reflect capacity freed, before
-            change-management effort — see <a href="#how-calculated">how this is calculated</a>.
-          </p>
-        </div>
-        </div>{/* /roi__results */}
       </div>
 
       {/* ============ LEAD MODAL ============ */}
