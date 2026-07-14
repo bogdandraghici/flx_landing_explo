@@ -89,30 +89,44 @@ export default function Nav() {
           <div className="nav__item">
             <button className="nav__trigger" type="button" aria-expanded="false" aria-controls="panel-solutions">Solutions <svg className="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
             <div className="nav__panel" id="panel-solutions">
-              <div className="nav__sheet">
-                <div className="nav__cols">
-                  <div className="nav__group">
-                    <p className="nav__glabel mono">By industry</p>
-                    <a className="nav__link--desc" href={bp("/banking")}><span className="nav__link-t">Banking</span><span className="nav__link-d">Onboarding, lending, fraud, AML</span></a>
-                    <a className="nav__link--desc" href={bp("/insurance")}><span className="nav__link-t">Insurance</span><span className="nav__link-d">Claims, underwriting, distribution</span></a>
-                    <a className="nav__link--desc" href={bp("/logistics")}><span className="nav__link-t">Logistics</span><span className="nav__link-d">Freight, fleet, visibility</span></a>
-                  </div>
-                  <div className="nav__group">
-                    <p className="nav__glabel mono">By use case</p>
-                    <a className="nav__link--desc" href={bp("/ai-agents?use=onboarding")}><span className="nav__link-t">Onboarding</span><span className="nav__link-d">KYC and account opening</span></a>
-                    <a className="nav__link--desc" href={bp("/ai-agents?use=lending")}><span className="nav__link-t">Lending</span><span className="nav__link-d">Origination and credit</span></a>
-                    <a className="nav__link--desc" href={bp("/ai-agents?use=underwriting")}><span className="nav__link-t">Underwriting</span><span className="nav__link-d">Risk, pricing, decisioning</span></a>
-                    <a className="nav__link--desc" href={bp("/ai-agents?use=claims")}><span className="nav__link-t">Claims</span><span className="nav__link-d">Intake to settlement</span></a>
-                    <a className="nav__link--desc" href={bp("/ai-agents?use=quoting")}><span className="nav__link-t">Quoting</span><span className="nav__link-d">Pricing and rate optimization</span></a>
-                    <a className="nav__link--desc" href={bp("/ai-agents?industry=Logistics")}><span className="nav__link-t">Track &amp; trace</span><span className="nav__link-d">Shipment visibility</span></a>
-                  </div>
-                  <div className="nav__group">
-                    <p className="nav__glabel mono">Explore</p>
-                    <a className="nav__link--desc" href={bp("/ai-agents")}><span className="nav__link-t">All AI agents</span><span className="nav__link-d">140+ production-ready agents</span></a>
-                    <a className="nav__link--desc" href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span><span className="nav__link-d">Size the payback</span></a>
+              <div className="nav__sheet nav__sheet--feat">
+                <div className="nav__main">
+                  <div className="nav__cols">
+                    <div className="nav__group">
+                      <p className="nav__glabel mono">By industry</p>
+                      <a className="nav__link--desc" href={bp("/banking")}><span className="nav__link-t">Banking</span><span className="nav__link-d">Onboarding, lending, fraud, AML</span></a>
+                      <a className="nav__link--desc" href={bp("/insurance")}><span className="nav__link-t">Insurance</span><span className="nav__link-d">Claims, underwriting, distribution</span></a>
+                      <a className="nav__link--desc" href={bp("/logistics")}><span className="nav__link-t">Logistics</span><span className="nav__link-d">Freight, fleet, visibility</span></a>
+                    </div>
+                    <div className="nav__group">
+                      <p className="nav__glabel mono">By use case</p>
+                      <a className="nav__link--desc" href={bp("/ai-agents?use=onboarding")}><span className="nav__link-t">Onboarding</span><span className="nav__link-d">KYC and account opening</span></a>
+                      <a className="nav__link--desc" href={bp("/ai-agents?use=lending")}><span className="nav__link-t">Lending</span><span className="nav__link-d">Origination and credit</span></a>
+                      <a className="nav__link--desc" href={bp("/ai-agents?use=underwriting")}><span className="nav__link-t">Underwriting</span><span className="nav__link-d">Risk, pricing, decisioning</span></a>
+                      <a className="nav__link--desc" href={bp("/ai-agents?use=claims")}><span className="nav__link-t">Claims</span><span className="nav__link-d">Intake to settlement</span></a>
+                      <a className="nav__link--desc" href={bp("/ai-agents?use=quoting")}><span className="nav__link-t">Quoting</span><span className="nav__link-d">Pricing and rate optimization</span></a>
+                      <a className="nav__link--desc" href={bp("/ai-agents?industry=Logistics")}><span className="nav__link-t">Track &amp; trace</span><span className="nav__link-d">Shipment visibility</span></a>
+                    </div>
+                    <div className="nav__group">
+                      <p className="nav__glabel mono">Explore</p>
+                      <a className="nav__link--desc" href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span><span className="nav__link-d">Size the payback</span></a>
+                    </div>
                   </div>
                 </div>
-                <p className="nav__foot mono"><a href={bp("/ai-agents")}>Browse all AI agents <span className="nav__arr" aria-hidden="true">→</span></a></p>
+                {/* Featured: the AI agent catalog promoted to a card — a tile field
+                    standing in for the 140+ agents, one amber (the resolved accent). */}
+                <a className="nav__feat" href={bp("/ai-agents")}>
+                  <span className="nav__feat-kicker">140+ production-ready agents</span>
+                  <span className="nav__feat-title">All AI agents</span>
+                  <span className="nav__feat-grid" aria-hidden="true">
+                    <span className="nav__feat-grid-inner">
+                      {['', 'on', '', '', 'on', '', '', '', 'on', '', '', 'on', 'on', '', 'amber', '', 'on', '', '', '', '', 'on', '', '', 'on', '', 'on', '', '', 'on', '', 'on', '', '', 'on', ''].map((v, i) => (
+                        <span key={i} className={`nav__feat-tile${v ? ` nav__feat-tile--${v}` : ''}`} />
+                      ))}
+                    </span>
+                  </span>
+                  <span className="nav__feat-cta mono">Browse the catalog <span className="nav__arr" aria-hidden="true">→</span></span>
+                </a>
               </div>
             </div>
           </div>

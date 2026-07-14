@@ -661,6 +661,36 @@ em { font-style: normal; }
   background: var(--amber);
   box-shadow: 0 0 7px rgba(var(--amber-rgb), 0.5);
 }
+
+/* "agent catalog" motif — a tile field standing in for the full agent library,
+   one amber. Same flex-to-fill trick as the sparkline so the CTA bottom-aligns
+   with the left columns; the tile grid itself is centered in the spare space so
+   the squares keep their shape instead of stretching. */
+.nav__feat-grid {
+  flex: 1 1 auto;
+  min-height: 84px;
+  margin: 16px 0 14px;
+  display: flex;
+  align-items: center;
+}
+.nav__feat-grid-inner {
+  width: 100%;
+  max-width: 208px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+.nav__feat-tile {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: rgba(var(--ink), 0.06);
+}
+.nav__feat-tile--on { background: rgba(var(--ink), 0.2); }
+.nav__feat-tile--amber {
+  background: var(--amber);
+  box-shadow: 0 0 10px rgba(var(--amber-rgb), 0.35);
+}
 .nav__feat-cta {
   display: inline-flex;
   align-items: center;
