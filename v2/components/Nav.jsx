@@ -240,38 +240,26 @@ export default function Nav() {
                   </div>
                   <p className="nav__foot mono"><a href={bp("/customers")}>All customers <span className="nav__arr" aria-hidden="true">→</span></a></p>
                 </div>
-                {/* Primary option: ROI calculator promoted to a 3:4 feature card with
-                    an evidence-graded ledger thumbnail (the site's ROI motif — amber
-                    reserved for the Verified tier). */}
+                {/* Primary option: ROI calculator promoted to a feature card with a
+                    "rising trend" sparkline climbing to an amber endpoint (the site's
+                    ROI motif — amber reserved for the resolved outcome). */}
                 <a className="nav__feat" href={bp("/roi-calculator")}>
-                  <span className="nav__feat-thumb" aria-hidden="true">
-                    <span className="nav__feat-head">
-                      <span className="nav__feat-tag mono">ROI Calculator</span>
-                      <span className="nav__feat-lede">Every euro graded by its evidence.</span>
-                    </span>
-                    <span className="nav__feat-ledger">
-                      <span className="nav__feat-row">
-                        <span className="nav__feat-rl mono">Verified</span>
-                        <span className="nav__feat-bar"><span className="nav__feat-fill nav__feat-fill--amber" style={{ width: '82%' }} /></span>
-                      </span>
-                      <span className="nav__feat-row">
-                        <span className="nav__feat-rl mono">Modeled</span>
-                        <span className="nav__feat-bar"><span className="nav__feat-fill" style={{ width: '54%' }} /></span>
-                      </span>
-                      <span className="nav__feat-row">
-                        <span className="nav__feat-rl mono">Assumed</span>
-                        <span className="nav__feat-bar"><span className="nav__feat-fill" style={{ width: '31%' }} /></span>
-                      </span>
-                    </span>
-                    <span className="nav__feat-total">
-                      <span className="nav__feat-amt">€1.24M</span>
-                      <span className="nav__feat-cap mono">verified annual savings</span>
-                    </span>
+                  <span className="nav__feat-kicker">See your return in minutes</span>
+                  <span className="nav__feat-title">ROI Calculator</span>
+                  <span className="nav__feat-spark" aria-hidden="true">
+                    <svg viewBox="0 0 324 128" width="100%" height="100%" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="navFeatSpark" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" className="nav__feat-spark-stop0" />
+                          <stop offset="100%" className="nav__feat-spark-stop1" />
+                        </linearGradient>
+                      </defs>
+                      <path className="nav__feat-spark-area" d="M0,104 L54,86 L108,94 L162,58 L216,44 L270,26 L324,10 L324,128 L0,128 Z" />
+                      <path className="nav__feat-spark-line" d="M0,104 L54,86 L108,94 L162,58 L216,44 L270,26 L324,10" vectorEffect="non-scaling-stroke" />
+                    </svg>
+                    <span className="nav__feat-spark-dot" />
                   </span>
-                  <span className="nav__feat-body">
-                    <span className="nav__feat-title">Size the payback in minutes</span>
-                    <span className="nav__feat-cta mono">Open the calculator <span className="nav__arr" aria-hidden="true">→</span></span>
-                  </span>
+                  <span className="nav__feat-cta mono">Open the calculator <span className="nav__arr" aria-hidden="true">→</span></span>
                 </a>
               </div>
             </div>

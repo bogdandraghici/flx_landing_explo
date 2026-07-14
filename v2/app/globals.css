@@ -598,109 +598,60 @@ em { font-style: normal; }
   box-shadow: var(--shadow-pop);
 }
 
-/* thumbnail — the graded-ledger motif (3:4 portrait), built in CSS */
-.nav__feat-thumb {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  aspect-ratio: 3 / 4;
-  padding: 16px 16px 15px;
-  border-radius: 9px;
-  background:
-    radial-gradient(120% 90% at 88% 8%, rgba(var(--amber-rgb), 0.16), transparent 55%),
-    linear-gradient(158deg, rgba(var(--ink), 0.05), rgba(var(--ink), 0) 60%),
-    var(--bg);
-  border: 1px solid var(--line-soft);
-  overflow: hidden;
-}
-.nav__feat-head {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.nav__feat-tag {
-  font-size: 9.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-}
-.nav__feat-lede {
-  font-size: 12.5px;
+/* "rising trend" motif — kicker + title, a sparkline climbing to an amber
+   endpoint, then the CTA. Padding on the card frame gives the card its breathing
+   room, so contents sit flush inside it. */
+.nav__feat-kicker {
+  font-size: 12px;
   line-height: 1.35;
   color: var(--text-dim);
-  max-width: 15ch;
-}
-.nav__feat-ledger {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-}
-.nav__feat-row {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-.nav__feat-rl {
-  width: 50px;
-  flex: 0 0 50px;
-  font-size: 9px;
-  letter-spacing: 0.04em;
-  color: var(--text-faint);
-}
-.nav__feat-bar {
-  position: relative;
-  flex: 1 1 auto;
-  height: 7px;
-  border-radius: 4px;
-  background: rgba(var(--ink), 0.06);
-  overflow: hidden;
-}
-.nav__feat-fill {
-  position: absolute;
-  inset: 0 auto 0 0;
-  border-radius: 4px;
-  background: rgba(var(--ink), 0.22);
-}
-.nav__feat-fill--amber { background: var(--amber); }
-.nav__feat-total {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding-top: 13px;
-  border-top: 1px solid var(--line-soft);
-}
-.nav__feat-amt {
-  font-family: var(--font-display, inherit);
-  font-size: 26px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  color: var(--amber-text);
-}
-.nav__feat-cap {
-  font-size: 9.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-}
-
-/* card caption + CTA */
-.nav__feat-body {
-  padding: 13px 4px 3px;
 }
 .nav__feat-title {
   display: block;
-  font-size: 14px;
+  margin-top: 4px;
+  font-size: 19px;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
   color: var(--text);
+}
+.nav__feat-spark {
+  position: relative;
+  height: 96px;
+  margin: 16px 0 14px;
+}
+.nav__feat-spark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.nav__feat-spark-stop0 { stop-color: rgba(var(--ink), 0.12); }
+.nav__feat-spark-stop1 { stop-color: rgba(var(--ink), 0); }
+.nav__feat-spark-area { fill: url(#navFeatSpark); }
+.nav__feat-spark-line {
+  fill: none;
+  stroke: rgba(var(--ink), 0.5);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* endpoint dot as a CSS element so it stays a true circle regardless of the
+   sparkline's non-uniform (preserveAspectRatio="none") horizontal scaling */
+.nav__feat-spark-dot {
+  position: absolute;
+  top: 8%;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px -4.5px 0 0;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 7px rgba(var(--amber-rgb), 0.5);
 }
 .nav__feat-cta {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 7px;
   font-size: 11px;
   letter-spacing: 0.04em;
   color: var(--text-dim);
@@ -2345,27 +2296,14 @@ em { font-style: normal; }
   .nav__link--mono { font-size: 13px; }
   .nav__foot { margin-top: 12px; }
 
-  /* featured card: stack below the links, cap the thumbnail so it scales down
-     (compress vertically) rather than dominate the drawer */
+  /* featured card: stack below the links; keep the sparkline visible but shorter
+     so it compresses vertically rather than dominating the drawer */
   .nav__sheet--feat { display: block; }
   .nav__feat {
     width: auto;
     margin-top: 16px;
-    flex-direction: row;
-    align-items: center;
-    gap: 14px;
   }
-  .nav__feat-thumb {
-    width: 116px;
-    flex: 0 0 116px;
-    padding: 12px;
-    gap: 10px;
-  }
-  .nav__feat-lede,
-  .nav__feat-cap { display: none; }
-  .nav__feat-total { border-top: 0; padding-top: 0; }
-  .nav__feat-amt { font-size: 20px; }
-  .nav__feat-body { flex: 1 1 auto; padding: 0; }
+  .nav__feat-spark { height: 72px; margin: 12px 0 10px; }
 
   /* no-JS: the drawer can't open, so render everything stacked in flow —
      the bar wraps and the full link tree flows below it, panels open */
