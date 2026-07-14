@@ -346,11 +346,11 @@ em { font-style: normal; }
   transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
 }
 .nav.scrolled {
+  /* Frosted bar without backdrop-filter (see .term) — dimmed translucent
+     scrim + a faint top sheen so it reads as glass over the page. */
   background:
-    linear-gradient(180deg, rgba(var(--ink), 0.03), rgba(var(--ink), 0.02)),
-    rgba(var(--scrim), 0.55);
-  backdrop-filter: blur(28px) saturate(1.1);
-  -webkit-backdrop-filter: blur(28px) saturate(1.1);
+    linear-gradient(180deg, rgba(var(--ink), 0.05), rgba(var(--ink), 0.015)),
+    rgba(var(--scrim), 0.85);
   border-bottom-color: var(--line);
   box-shadow: inset 0 1px 0 rgba(var(--ink), 0.04);
 }
@@ -750,13 +750,6 @@ em { font-style: normal; }
   grid-template-columns: minmax(0, 1fr); /* cap the track to the viewport so wide content (the text-sized terminal input) can't blow the hero out on mobile */
   align-content: center;
   overflow: clip;
-  /* Backdrop root for the terminal's frosted glass. Without this, the terminal
-     sits in a separate stacking context from the #field canvas and its
-     backdrop-filter has an empty backdrop (the canvas never blurs). Making
-     .hero the backdrop root and pushing the canvas/scrim to negative z (below
-     .hero__inner, which is now a plain positioned box) puts the canvas inside
-     the terminal's backdrop so the blur actually reads. */
-  isolation: isolate;
 }
 .hero__canvas {
   position: absolute;
@@ -764,12 +757,10 @@ em { font-style: normal; }
   width: 100%;
   height: 100%;
   display: block;
-  z-index: -2;
 }
 .hero__scrim {
   position: absolute;
   inset: 0;
-  z-index: -1;
   pointer-events: none;
   background:
     radial-gradient(72% 48% at 50% 40%, rgba(var(--scrim), 0.82) 0%, rgba(var(--scrim), 0.38) 46%, rgba(var(--scrim), 0) 70%),
@@ -778,9 +769,7 @@ em { font-style: normal; }
 }
 .hero__inner {
   position: relative;
-  /* z-index intentionally omitted: canvas/scrim now use negative z so this
-     stays a plain positioned box (not a stacking context) and doesn't cut the
-     terminal off from the canvas backdrop. It still paints above them. */
+  z-index: 1;
   width: 100%;
   padding-top: 96px;
   padding-bottom: 96px;
@@ -851,15 +840,18 @@ em { font-style: normal; }
   margin: clamp(4px, 2vh, 20px) auto 0;
   border: 1px solid rgba(var(--ink), 0.22);
   border-radius: 18px;
-  /* Frosted glass. --scrim equals the page bg, so a scrim-only panel is
-     invisible over the dark hero; the --ink veil (white in dark, near-black
-     in light) lifts it into a distinct translucent surface, and the low scrim
-     base keeps enough transparency for the strong backdrop blur to read. */
+  /* Frosted glass, done WITHOUT backdrop-filter (which can't blur the live
+     GPU-composited hero canvas behind it — the blur silently no-ops on some
+     browsers/hardware). Instead: a mostly-opaque scrim dims the hero grid to a
+     faint ghost, and a top-weighted --ink sheen (white in dark, near-black in
+     light) catches "light" so the panel reads as a lifted glass surface. */
   background:
-    linear-gradient(180deg, rgba(var(--ink), 0.045), rgba(var(--ink), 0.02) 55%, rgba(var(--ink), 0.03)),
-    rgba(var(--scrim), 0.55);
-  backdrop-filter: blur(28px) saturate(1.1);
-  -webkit-backdrop-filter: blur(28px) saturate(1.1);
+    linear-gradient(180deg,
+      rgba(var(--ink), 0.10) 0%,
+      rgba(var(--ink), 0.03) 20%,
+      rgba(var(--ink), 0.01) 60%,
+      rgba(var(--ink), 0.045) 100%),
+    rgba(var(--scrim), 0.86);
   box-shadow: var(--shadow-term);
   overflow: hidden;
   text-align: left;
@@ -1714,12 +1706,6 @@ em { font-style: normal; }
 .rv.in { opacity: 1; transform: none; }
 .rv-load { animation: rvIn 0.9s var(--ease) forwards; animation-delay: calc(var(--d, 0) * 110ms + 150ms); }
 @keyframes rvIn { to { opacity: 1; transform: none; } }
-/* The hero terminal reveals with opacity ONLY. The shared rv-load slide uses a
-   transform, which promotes the terminal to its own compositing layer and
-   disables its backdrop-filter — so the frosted-glass blur silently dies. A
-   fade keeps it transform-free so the blur survives. */
-.term.rv-load { transform: none; animation-name: rvFade; }
-@keyframes rvFade { from { opacity: 0; } to { opacity: 1; } }
 
 /* ============================================================
    agents page
