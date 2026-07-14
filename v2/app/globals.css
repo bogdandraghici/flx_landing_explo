@@ -702,6 +702,90 @@ em { font-style: normal; }
   background: var(--amber);
   box-shadow: 0 0 10px rgba(var(--amber-rgb), 0.35);
 }
+/* "agent builder" motif — an agent-flow node graph that branches from an input,
+   through design/evaluate stages, and resolves to a single amber "shipped" node.
+   Same flex-to-fill trick so the CTA bottom-aligns with the left columns. Nodes
+   are CSS circles (stay round); edges are an SVG stretched to the box. */
+.nav__feat-graph {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 84px;
+  margin: 16px 0 14px;
+}
+.nav__feat-graph-edges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.nav__feat-graph-edge {
+  fill: none;
+  stroke: rgba(var(--ink), 0.32);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.nav__feat-node {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
+  border-radius: 50%;
+  background: var(--bg-panel);
+  border: 1.5px solid rgba(var(--ink), 0.42);
+}
+.nav__feat-node--amber {
+  background: var(--amber);
+  border-color: var(--amber);
+  box-shadow: 0 0 10px rgba(var(--amber-rgb), 0.4);
+}
+
+/* right rail: the two "Build" products clustered — the Agent Builder card as the
+   hero, FlowX Code as a compact companion beneath it — so the left side stays
+   three balanced columns instead of a lonely one-item "Build" column. */
+.nav__side {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 236px;
+  width: 236px;
+}
+/* the card fills the rail's height above the companion; its viz flexes so the
+   CTA still bottom-aligns (the compound selector outranks `.nav__feat`, no !important) */
+.nav__side .nav__feat { width: auto; flex: 1 1 auto; }
+/* companion link styled as a mini card. `.nav__side .nav__feat-sub` (0,2,0)
+   outspecifies `.nav__panel a` (0,1,1), so plain props win without !important. */
+.nav__side .nav__feat-sub {
+  display: block;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-panel);
+  color: var(--text);
+  transition: border-color 0.34s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.34s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.34s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.nav__side .nav__feat-sub:hover {
+  border-color: rgba(var(--amber-rgb), 0.3);
+  background: var(--bg-panel);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+.nav__feat-sub-t {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.nav__feat-sub-d {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--text-dim);
+}
+
 .nav__feat-cta {
   display: inline-flex;
   align-items: center;
@@ -2361,6 +2445,9 @@ em { font-style: normal; }
     margin-top: 16px;
   }
   .nav__feat-spark { flex: none; min-height: 0; height: 72px; margin: 12px 0 10px; }
+  .nav__feat-graph { flex: none; min-height: 0; height: 72px; margin: 12px 0 10px; }
+  .nav__side { display: block; flex: none; width: auto; margin-top: 16px; }
+  .nav__side .nav__feat { flex: none; margin-top: 0; }
 
   /* no-JS: the drawer can't open, so render everything stacked in flow —
      the bar wraps and the full link tree flows below it, panels open */

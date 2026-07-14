@@ -31,58 +31,79 @@ export default function Nav() {
           <div className="nav__item">
             <button className="nav__trigger" type="button" aria-expanded="false" aria-controls="panel-platform">Platform <svg className="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
             <div className="nav__panel" id="panel-platform">
-              <div className="nav__sheet">
-                <div className="nav__cols">
-                  <div className="nav__group">
-                    <p className="nav__glabel mono">Build</p>
-                    <a className="nav__link--desc" href={bp("/agent-builder")}>
-                      <span className="nav__link-t">Agent Builder</span>
-                      <span className="nav__link-d">Design, evaluate, and ship AI agents</span>
-                    </a>
-                    <a className="nav__link--desc" href={bp("/flowx-code")}>
-                      <span className="nav__link-t">FlowX Code</span>
-                      <span className="nav__link-d">The full platform, expressed as code</span>
-                    </a>
+              <div className="nav__sheet nav__sheet--feat">
+                <div className="nav__main">
+                  <div className="nav__cols">
+                    <div className="nav__group">
+                      <p className="nav__glabel mono">Govern &amp; measure</p>
+                      <a className="nav__link--desc" href={bp("/observatory")}>
+                        <span className="nav__link-t">Observatory</span>
+                        <span className="nav__link-d">Trace every agent decision in production</span>
+                      </a>
+                      <a className="nav__link--desc" href={bp("/platform/roi-hub")}>
+                        <span className="nav__link-t">ROI Hub</span>
+                        <span className="nav__link-d">Every dollar graded by its evidence</span>
+                      </a>
+                    </div>
+                    <div className="nav__group">
+                      <p className="nav__glabel mono">Foundation</p>
+                      <a className="nav__link--desc" href={bp("/platform/ontology")}>
+                        <span className="nav__link-t">Ontology Layer</span>
+                        <span className="nav__link-d">One shared model of your business</span>
+                      </a>
+                      <a className="nav__link--desc" href={bp("/platform/integrations")}>
+                        <span className="nav__link-t">Integrations &amp; Connectors</span>
+                        <span className="nav__link-d">Plug into core and legacy systems</span>
+                      </a>
+                    </div>
+                    <div className="nav__group">
+                      <p className="nav__glabel mono">Run</p>
+                      <a className="nav__link--desc" href={bp("/platform/security")}>
+                        <span className="nav__link-t">Security &amp; Compliance</span>
+                        <span className="nav__link-d">Controls built for regulated work</span>
+                      </a>
+                      <a className="nav__link--desc" href={bp("/platform/deployment")}>
+                        <span className="nav__link-t">Deployment</span>
+                        <span className="nav__link-d">Cloud, hybrid, or on-prem</span>
+                      </a>
+                      <a className="nav__link--desc" href={bp("/platform/status")}>
+                        <span className="nav__link-t">Status</span>
+                        <span className="nav__link-d">Live uptime across US &amp; EU</span>
+                      </a>
+                    </div>
                   </div>
-                  <div className="nav__group">
-                    <p className="nav__glabel mono">Govern &amp; measure</p>
-                    <a className="nav__link--desc" href={bp("/observatory")}>
-                      <span className="nav__link-t">Observatory</span>
-                      <span className="nav__link-d">Trace every agent decision in production</span>
-                    </a>
-                    <a className="nav__link--desc" href={bp("/platform/roi-hub")}>
-                      <span className="nav__link-t">ROI Hub</span>
-                      <span className="nav__link-d">Every dollar graded by its evidence</span>
-                    </a>
-                  </div>
-                  <div className="nav__group">
-                    <p className="nav__glabel mono">Foundation</p>
-                    <a className="nav__link--desc" href={bp("/platform/ontology")}>
-                      <span className="nav__link-t">Ontology Layer</span>
-                      <span className="nav__link-d">One shared model of your business</span>
-                    </a>
-                    <a className="nav__link--desc" href={bp("/platform/integrations")}>
-                      <span className="nav__link-t">Integrations &amp; Connectors</span>
-                      <span className="nav__link-d">Plug into core and legacy systems</span>
-                    </a>
-                  </div>
-                  <div className="nav__group">
-                    <p className="nav__glabel mono">Run</p>
-                    <a className="nav__link--desc" href={bp("/platform/security")}>
-                      <span className="nav__link-t">Security &amp; Compliance</span>
-                      <span className="nav__link-d">Controls built for regulated work</span>
-                    </a>
-                    <a className="nav__link--desc" href={bp("/platform/deployment")}>
-                      <span className="nav__link-t">Deployment</span>
-                      <span className="nav__link-d">Cloud, hybrid, or on-prem</span>
-                    </a>
-                    <a className="nav__link--desc" href={bp("/platform/status")}>
-                      <span className="nav__link-t">Status</span>
-                      <span className="nav__link-d">Live uptime across US &amp; EU</span>
-                    </a>
-                  </div>
+                  <p className="nav__foot mono"><a href={bp("/platform")}>Platform overview <span className="nav__arr" aria-hidden="true">→</span></a></p>
                 </div>
-                <p className="nav__foot mono"><a href={bp("/platform")}>Platform overview <span className="nav__arr" aria-hidden="true">→</span></a></p>
+                {/* Right rail: the two "Build" products clustered — Agent Builder as the
+                    featured card, FlowX Code as a compact companion. Keeps the left side
+                    three balanced columns instead of a lonely one-item "Build" column.
+                    The card's motif is an agent-flow node graph (design → branch → ship)
+                    resolving to one amber node, distinct from the ROI sparkline and the
+                    agent-catalog tile grid. Nodes are CSS circles so they stay round;
+                    edges are an SVG that scales horizontally with the card. */}
+                <div className="nav__side">
+                  <a className="nav__feat" href={bp("/agent-builder")}>
+                    <span className="nav__feat-kicker">Design, evaluate, and ship AI agents</span>
+                    <span className="nav__feat-title">Agent Builder</span>
+                    <span className="nav__feat-graph" aria-hidden="true">
+                      <svg className="nav__feat-graph-edges" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path className="nav__feat-graph-edge" d="M14,50 L44,22" vectorEffect="non-scaling-stroke" />
+                        <path className="nav__feat-graph-edge" d="M14,50 L44,78" vectorEffect="non-scaling-stroke" />
+                        <path className="nav__feat-graph-edge" d="M44,22 L82,50" vectorEffect="non-scaling-stroke" />
+                        <path className="nav__feat-graph-edge" d="M44,78 L82,50" vectorEffect="non-scaling-stroke" />
+                      </svg>
+                      <span className="nav__feat-node" style={{ left: '14%', top: '50%' }} />
+                      <span className="nav__feat-node" style={{ left: '44%', top: '22%' }} />
+                      <span className="nav__feat-node" style={{ left: '44%', top: '78%' }} />
+                      <span className="nav__feat-node nav__feat-node--amber" style={{ left: '82%', top: '50%' }} />
+                    </span>
+                    <span className="nav__feat-cta mono">Open Agent Builder <span className="nav__arr" aria-hidden="true">→</span></span>
+                  </a>
+                  <a className="nav__feat-sub" href={bp("/flowx-code")}>
+                    <span className="nav__feat-sub-t">FlowX Code</span>
+                    <span className="nav__feat-sub-d">The full platform, expressed as code</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
