@@ -590,10 +590,13 @@ em { font-style: normal; }
   color: var(--text) !important;
   overflow: hidden;
   /* gentle ease-out over a slightly longer beat so the lift settles instead of
-     snapping (the site's --ease is front-loaded and reads abrupt on a hover) */
+     snapping (the site's --ease is front-loaded and reads abrupt on a hover).
+     !important is required: `.nav__panel a` (higher specificity) sets its own
+     `transition`, which would otherwise win and leave transform/border/shadow
+     with no transition at all — the reason the hover snapped. */
   transition: border-color 0.34s cubic-bezier(0.22, 0.61, 0.36, 1),
               transform 0.34s cubic-bezier(0.22, 0.61, 0.36, 1),
-              box-shadow 0.34s cubic-bezier(0.22, 0.61, 0.36, 1);
+              box-shadow 0.34s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
 }
 .nav__feat:hover {
   background: var(--bg-panel) !important;
