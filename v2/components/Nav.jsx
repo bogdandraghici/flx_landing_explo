@@ -225,23 +225,54 @@ export default function Nav() {
           <div className="nav__item">
             <button className="nav__trigger" type="button" aria-expanded="false" aria-controls="panel-customers">Customers <svg className="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
             <div className="nav__panel" id="panel-customers">
-              <div className="nav__sheet">
-                <div className="nav__cols">
-                  <div className="nav__group">
-                    <p className="nav__glabel mono">Featured</p>
-                    <a className="nav__link--desc" href={bp("/customers")}><span className="nav__link-t">Success stories</span><span className="nav__link-d">Banks and insurers running on FlowX</span></a>
+              <div className="nav__sheet nav__sheet--feat">
+                <div className="nav__main">
+                  <div className="nav__cols">
+                    <div className="nav__group">
+                      <p className="nav__glabel mono">Featured</p>
+                      <a className="nav__link--desc" href={bp("/customers")}><span className="nav__link-t">Success stories</span><span className="nav__link-d">Banks and insurers running on FlowX</span></a>
+                    </div>
+                    <div className="nav__group">
+                      <p className="nav__glabel mono">Browse</p>
+                      <a className="nav__link--desc" href={bp("/customers#industry")}><span className="nav__link-t">By industry</span><span className="nav__link-d">Banking, insurance, logistics</span></a>
+                      <a className="nav__link--desc" href={bp("/customers#use-case")}><span className="nav__link-t">By outcome</span><span className="nav__link-d">Automation, time saved, cost</span></a>
+                    </div>
                   </div>
-                  <div className="nav__group">
-                    <p className="nav__glabel mono">Browse</p>
-                    <a className="nav__link--desc" href={bp("/customers#industry")}><span className="nav__link-t">By industry</span><span className="nav__link-d">Banking, insurance, logistics</span></a>
-                    <a className="nav__link--desc" href={bp("/customers#use-case")}><span className="nav__link-t">By outcome</span><span className="nav__link-d">Automation, time saved, cost</span></a>
-                  </div>
-                  <div className="nav__group">
-                    <p className="nav__glabel mono">Prove it</p>
-                    <a className="nav__link--desc" href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span><span className="nav__link-d">Estimate your savings</span></a>
-                  </div>
+                  <p className="nav__foot mono"><a href={bp("/customers")}>All customers <span className="nav__arr" aria-hidden="true">→</span></a></p>
                 </div>
-                <p className="nav__foot mono"><a href={bp("/customers")}>All customers <span className="nav__arr" aria-hidden="true">→</span></a></p>
+                {/* Primary option: ROI calculator promoted to a 3:4 feature card with
+                    an evidence-graded ledger thumbnail (the site's ROI motif — amber
+                    reserved for the Verified tier). */}
+                <a className="nav__feat" href={bp("/roi-calculator")}>
+                  <span className="nav__feat-thumb" aria-hidden="true">
+                    <span className="nav__feat-head">
+                      <span className="nav__feat-tag mono">ROI Calculator</span>
+                      <span className="nav__feat-lede">Every euro graded by its evidence.</span>
+                    </span>
+                    <span className="nav__feat-ledger">
+                      <span className="nav__feat-row">
+                        <span className="nav__feat-rl mono">Verified</span>
+                        <span className="nav__feat-bar"><span className="nav__feat-fill nav__feat-fill--amber" style={{ width: '82%' }} /></span>
+                      </span>
+                      <span className="nav__feat-row">
+                        <span className="nav__feat-rl mono">Modeled</span>
+                        <span className="nav__feat-bar"><span className="nav__feat-fill" style={{ width: '54%' }} /></span>
+                      </span>
+                      <span className="nav__feat-row">
+                        <span className="nav__feat-rl mono">Assumed</span>
+                        <span className="nav__feat-bar"><span className="nav__feat-fill" style={{ width: '31%' }} /></span>
+                      </span>
+                    </span>
+                    <span className="nav__feat-total">
+                      <span className="nav__feat-amt">€1.24M</span>
+                      <span className="nav__feat-cap mono">verified annual savings</span>
+                    </span>
+                  </span>
+                  <span className="nav__feat-body">
+                    <span className="nav__feat-title">Size the payback in minutes</span>
+                    <span className="nav__feat-cta mono">Open the calculator <span className="nav__arr" aria-hidden="true">→</span></span>
+                  </span>
+                </a>
               </div>
             </div>
           </div>
