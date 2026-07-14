@@ -508,8 +508,21 @@ export default function RoiCalculator() {
           )}
         </div>
 
+        {/* ---- estimate: progressively revealed once the sentence is complete ---- */}
+        {!ready ? (
+          <div className="roic__pending">
+            <p className="roic__pending-title">Fill in the sentence to see your estimate</p>
+            <ul className="roic__checklist">
+              <li className={`roic__check${industry ? ' is-done' : ''}`}><span className="roic__check-box" aria-hidden="true" />Pick an industry</li>
+              <li className={`roic__check${stack ? ' is-done' : ''}`}><span className="roic__check-box" aria-hidden="true" />Choose a process</li>
+              <li className={`roic__check${monthlyExec > 0 ? ' is-done' : ''}`}><span className="roic__check-box" aria-hidden="true" />Set a monthly volume</li>
+              <li className={`roic__check${enabledAgents.length > 0 ? ' is-done' : ''}`}><span className="roic__check-box" aria-hidden="true" />Select at least one agent</li>
+            </ul>
+          </div>
+        ) : (
+        <div className="roic__reveal">
         {/* ---- result block ---- */}
-        <div className={`roic__result${ready ? '' : ' is-dim'}`}>
+        <div className="roic__result">
           <div className="roic__worth-row">
             <div className="roic__worth">
               <div className="roic__worth-label mono">That&apos;s worth</div>
@@ -559,7 +572,7 @@ export default function RoiCalculator() {
         </div>
 
         {/* ---- 3-year projection ---- */}
-        <div className={`roic__proj${ready ? '' : ' is-dim'}`}>
+        <div className="roic__proj">
           <div className="roic__proj-head">
             <div className="roic__proj-headline">
               {platform > 0 ? (
@@ -613,6 +626,8 @@ export default function RoiCalculator() {
             <span className="roic__legend-item"><i className="roic__swatch roic__swatch--gross" />Gross savings</span>
           </div>
         </div>
+        </div>
+        )}
 
         {/* ---- footer ---- */}
         <div className="roic__foot">
