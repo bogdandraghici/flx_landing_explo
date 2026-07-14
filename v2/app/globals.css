@@ -843,8 +843,8 @@ em { font-style: normal; }
   background:
     linear-gradient(180deg, rgba(var(--ink), 0.055), rgba(var(--ink), 0.02) 55%, rgba(var(--ink), 0.012)),
     rgba(var(--scrim), 0.78);
-  backdrop-filter: blur(16px) saturate(1.05);
-  -webkit-backdrop-filter: blur(16px) saturate(1.05);
+  backdrop-filter: blur(32px) saturate(1.05);
+  -webkit-backdrop-filter: blur(32px) saturate(1.05);
   box-shadow: var(--shadow-term);
   overflow: hidden;
   text-align: left;
