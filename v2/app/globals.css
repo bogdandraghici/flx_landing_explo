@@ -346,9 +346,9 @@ em { font-style: normal; }
   transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
 }
 .nav.scrolled {
-  background: rgba(var(--scrim), 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(var(--scrim), 0.6);
+  backdrop-filter: blur(30px) saturate(1.05);
+  -webkit-backdrop-filter: blur(30px) saturate(1.05);
   border-bottom-color: var(--line);
   box-shadow: inset 0 1px 0 rgba(var(--ink), 0.04);
 }
@@ -842,9 +842,9 @@ em { font-style: normal; }
      over a blurred backdrop, so the hero order-field shows through faintly. */
   background:
     linear-gradient(180deg, rgba(var(--ink), 0.055), rgba(var(--ink), 0.02) 55%, rgba(var(--ink), 0.012)),
-    rgba(var(--scrim), 0.78);
-  backdrop-filter: blur(32px) saturate(1.05);
-  -webkit-backdrop-filter: blur(32px) saturate(1.05);
+    rgba(var(--scrim), 0.6);
+  backdrop-filter: blur(30px) saturate(1.05);
+  -webkit-backdrop-filter: blur(30px) saturate(1.05);
   box-shadow: var(--shadow-term);
   overflow: hidden;
   text-align: left;
