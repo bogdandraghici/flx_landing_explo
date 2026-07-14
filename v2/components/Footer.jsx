@@ -46,7 +46,7 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="mono">Resources</h4>
-              <a href={bp("/blog")}>Blog</a>
+              <a href={bp("/blog")}>Knowledge Hub</a>
               <a href={bp("/research")}>Research</a>
               <a href={bp("/models")}>Open models</a>
               <a href="https://docs.flowx.ai" target="_blank" rel="noopener">Documentation</a>

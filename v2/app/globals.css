@@ -3811,7 +3811,16 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .blog__dot { opacity: 0.5; }
 
 /* ---- article ---- */
-.blog-post-hero { padding-bottom: clamp(24px, 3vh, 40px); }
+.blog-post-hero { position: relative; overflow: hidden; padding-bottom: clamp(24px, 3vh, 40px); }
+.blog-post-hero .shell { position: relative; z-index: 1; }
+/* typeset-manuscript canvas: sits behind the header text, fading out toward the
+   body so the wireframe never competes with real prose */
+.blog-post-hero__bg {
+  position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none;
+  /* top fade keeps the manuscript out of the nav zone; bottom fade merges into the body */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, 0.85) 110px, rgba(0, 0, 0, 0.5) 60%, transparent 96%);
+  mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, 0.85) 110px, rgba(0, 0, 0, 0.5) 60%, transparent 96%);
+}
 .blog-post__back { display: inline-block; font-size: 12px; color: var(--text-dim); margin-bottom: 24px; transition: color 0.2s ease; }
 .blog-post__back:hover { color: var(--amber-text); }
 .blog-post__tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
@@ -3923,6 +3932,27 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .st-note a { color: var(--amber-text); border-bottom: 1px solid var(--amber-line); }
 
 /* ============================================================
+   PLATFORM · SECURITY & COMPLIANCE
+   ============================================================ */
+/* Regulatory-framework chips */
+.sec-fw { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 40px; }
+.sec-fw__item { padding: 22px 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-raised); }
+.sec-fw__name { font-family: var(--font-display); font-size: 1.15rem; font-weight: 620; letter-spacing: -0.01em; color: var(--amber-text); }
+.sec-fw__desc { margin-top: 8px; font-size: 13.5px; line-height: 1.55; color: var(--text-dim); }
+@media (max-width: 860px) { .sec-fw { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .sec-fw { grid-template-columns: 1fr; } }
+
+/* EU AI Act crosswalk table */
+.sec-cw { margin-top: 40px; overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; }
+.sec-cw table { width: 100%; min-width: 560px; border-collapse: collapse; }
+.sec-cw th, .sec-cw td { text-align: left; padding: 15px 20px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+.sec-cw thead th { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); font-weight: 500; background: var(--bg-panel); }
+.sec-cw tbody tr:last-child td { border-bottom: none; }
+.sec-cw td { font-size: 14px; line-height: 1.55; color: var(--text); }
+.sec-cw__art { color: var(--amber-text); white-space: nowrap; font-size: 12.5px; }
+.sec-cw__cap { color: var(--text-dim); }
+
+/* ============================================================
    COOKIE CONSENT (GDPR)
    ============================================================ */
 .cc {
@@ -4007,6 +4037,10 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .blog-post__grid { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: clamp(32px, 5vw, 64px); align-items: start; }
 @media (max-width: 860px) { .blog-post__grid { grid-template-columns: 1fr; } .blog-post__aside { display: none; } }
 .blog-post__aside { position: sticky; top: 96px; }
+/* floated cross-reference: prose wraps around it, then reclaims full width */
+.blog-post__flow { display: flow-root; }
+.blog-toc--float { float: right; width: min(250px, 40%); margin: 4px 0 20px 32px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-panel); }
+@media (max-width: 640px) { .blog-toc--float { float: none; width: 100%; margin: 0 0 24px; } }
 .blog-toc__h { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 12px; }
 .blog-toc__list { list-style: none; display: flex; flex-direction: column; gap: 9px; border-left: 1px solid var(--line); padding-left: 14px; }
 .blog-toc__list a { font-size: 12.5px; color: var(--text-dim); line-height: 1.4; transition: color 0.2s ease; }
