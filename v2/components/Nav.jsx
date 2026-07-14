@@ -154,15 +154,19 @@ export default function Nav() {
             <div className="nav__panel" id="panel-research">
               <div className="nav__sheet">
                 <div className="nav__cols">
-                  <div className="nav__group">
+                  <div className="nav__group nav__group--split">
                     <p className="nav__glabel mono">Papers · eXponential6</p>
-                    <a className="nav__link--desc" href={bp("/research/vera")}><span className="nav__link-t mono">VERA</span><span className="nav__link-d">Evidence-graded ROI for agents</span></a>
-                    <a className="nav__link--desc" href={bp("/research/orna-autotune")}><span className="nav__link-t mono">ORNA</span><span className="nav__link-d">Agent self-adaptation in production</span></a>
-                    <a className="nav__link--desc" href={bp("/research/halo")}><span className="nav__link-t mono">HALO</span><span className="nav__link-d">Zero hallucination, by construction</span></a>
-                    <a className="nav__link--desc" href={bp("/research/gavel")}><span className="nav__link-t mono">GAVEL</span><span className="nav__link-d">Governance, evidenced at runtime</span></a>
-                    <a className="nav__link--desc" href={bp("/research/sift")}><span className="nav__link-t mono">SIFT</span><span className="nav__link-d">A classifier that teaches itself</span></a>
-                    <a className="nav__link--desc" href={bp("/research/rails")}><span className="nav__link-t mono">RAILS</span><span className="nav__link-d">Deterministic graphs, stochastic nodes</span></a>
-                    <a className="nav__link--desc" href={bp("/research/mneme")}><span className="nav__link-t mono">MNEMĒ</span><span className="nav__link-d">Safe, active agent memory</span></a>
+                    {/* 7 papers over two column-major columns (4 + 3); 4 rows so the
+                        7th doesn't spill into an implicit third column */}
+                    <div className="nav__group-cols" style={{ gridTemplateRows: 'repeat(4, auto)' }}>
+                      <a className="nav__link--desc" href={bp("/research/vera")}><span className="nav__link-t mono">VERA</span><span className="nav__link-d">Evidence-graded ROI for agents</span></a>
+                      <a className="nav__link--desc" href={bp("/research/orna-autotune")}><span className="nav__link-t mono">ORNA</span><span className="nav__link-d">Agent self-adaptation in production</span></a>
+                      <a className="nav__link--desc" href={bp("/research/halo")}><span className="nav__link-t mono">HALO</span><span className="nav__link-d">Zero hallucination, by construction</span></a>
+                      <a className="nav__link--desc" href={bp("/research/gavel")}><span className="nav__link-t mono">GAVEL</span><span className="nav__link-d">Governance, evidenced at runtime</span></a>
+                      <a className="nav__link--desc" href={bp("/research/sift")}><span className="nav__link-t mono">SIFT</span><span className="nav__link-d">A classifier that teaches itself</span></a>
+                      <a className="nav__link--desc" href={bp("/research/rails")}><span className="nav__link-t mono">RAILS</span><span className="nav__link-d">Deterministic graphs, stochastic nodes</span></a>
+                      <a className="nav__link--desc" href={bp("/research/mneme")}><span className="nav__link-t mono">MNEMĒ</span><span className="nav__link-d">Safe, active agent memory</span></a>
+                    </div>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Open models</p>
