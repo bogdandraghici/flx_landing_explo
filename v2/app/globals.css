@@ -3935,7 +3935,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
    Fill-in-the-sentence inputs → result block → 3-year projection.
    Token-driven (flips light/dark), one amber accent, motion guarded.
    ============================================================ */
-.roic { max-width: 940px; margin: 0 auto; }
+.roic { width: 100%; }
 .roic__card {
   border: 1px solid var(--line); border-radius: 20px;
   background: var(--bg-raised); box-shadow: var(--shadow-card);

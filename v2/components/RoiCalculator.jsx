@@ -433,6 +433,81 @@ export default function RoiCalculator() {
           <span className="roic__opt-inline"> (optional)</span>.
         </p>
 
+        {/* ---- agents disclosure (MANUAL selection — sits with the inputs) ---- */}
+        <div className="roic__disc roic__disc--top">
+          <button
+            type="button"
+            className={`roic__disc-btn${agentsOpen ? ' is-open' : ''}`}
+            aria-expanded={agentsOpen}
+            onClick={() => setAgentsOpen((o) => !o)}
+            disabled={!stack}
+          >
+            <span>
+              {ready ? 'See the agents behind this' : 'Choose the agents that run this'}
+              {agents.length > 0 && <span className="roic__disc-count mono"> {enabledAgents.length}/{agents.length}</span>}
+            </span>
+            <span className="roic__disc-caret" aria-hidden="true">▾</span>
+          </button>
+
+          {agentsOpen && (
+            <div className="roic__disc-body">
+              <div className="roi__agents-top">
+                <span className="roi__label" style={{ margin: 0 }}>
+                  {stack ? `Available agents (${agents.length})` : 'Pick a process in the sentence above first.'}
+                </span>
+                {agents.length > 0 && (
+                  <button type="button" className="roi__selectall mono" onClick={toggleAll}>
+                    {allSelected ? 'Clear all' : 'Select all'}
+                  </button>
+                )}
+              </div>
+              {agents.length > 0 && (
+                <div className="roi__agent-list">
+                  {agents.map((a, i) => (
+                    <label key={a.n + i} className={`roi__agent${enabled[i] ? ' is-on' : ''}`}>
+                      <input type="checkbox" checked={!!enabled[i]} onChange={() => toggleAgent(i)} />
+                      <span className="roi__agent-info">
+                        <span className="roi__agent-name">{a.n}</span>
+                        <span className="roi__agent-dept mono">{a.d}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              )}
+
+              {ready && (
+                <div className="roic__table-wrap">
+                  <table className="roi__table">
+                    <thead>
+                      <tr>
+                        <th>Agent</th>
+                        <th>Department</th>
+                        <th className="r">Time saved / process</th>
+                        <th className="r">Monthly savings</th>
+                        <th className="r">Annual savings</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {enabledAgents.map((a, i) => {
+                        const per = ((a.t * autoRate) / 60) * hourlyCost;
+                        return (
+                          <tr key={a.n + i}>
+                            <td className="roi__td-name">{a.n}</td>
+                            <td className="dim">{a.d}</td>
+                            <td className="r mono">{(a.t * autoRate).toFixed(1)} min</td>
+                            <td className="r mono">{money(monthlyExec * per)}</td>
+                            <td className="r mono roi__td-annual">{money(annualExec * per)}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
         {/* ---- result block ---- */}
         <div className={`roic__result${ready ? '' : ' is-dim'}`}>
           <div className="roic__worth-row">
@@ -537,81 +612,6 @@ export default function RoiCalculator() {
             <span className="roic__legend-item"><i className="roic__swatch roic__swatch--net" />Net savings</span>
             <span className="roic__legend-item"><i className="roic__swatch roic__swatch--gross" />Gross savings</span>
           </div>
-        </div>
-
-        {/* ---- agents disclosure (MANUAL selection lives here) ---- */}
-        <div className="roic__disc">
-          <button
-            type="button"
-            className={`roic__disc-btn${agentsOpen ? ' is-open' : ''}`}
-            aria-expanded={agentsOpen}
-            onClick={() => setAgentsOpen((o) => !o)}
-            disabled={!stack}
-          >
-            <span>
-              {ready ? 'See the agents behind this' : 'Choose the agents that run this'}
-              {agents.length > 0 && <span className="roic__disc-count mono"> {enabledAgents.length}/{agents.length}</span>}
-            </span>
-            <span className="roic__disc-caret" aria-hidden="true">▾</span>
-          </button>
-
-          {agentsOpen && (
-            <div className="roic__disc-body">
-              <div className="roi__agents-top">
-                <span className="roi__label" style={{ margin: 0 }}>
-                  {stack ? `Available agents (${agents.length})` : 'Pick a process in the sentence above first.'}
-                </span>
-                {agents.length > 0 && (
-                  <button type="button" className="roi__selectall mono" onClick={toggleAll}>
-                    {allSelected ? 'Clear all' : 'Select all'}
-                  </button>
-                )}
-              </div>
-              {agents.length > 0 && (
-                <div className="roi__agent-list">
-                  {agents.map((a, i) => (
-                    <label key={a.n + i} className={`roi__agent${enabled[i] ? ' is-on' : ''}`}>
-                      <input type="checkbox" checked={!!enabled[i]} onChange={() => toggleAgent(i)} />
-                      <span className="roi__agent-info">
-                        <span className="roi__agent-name">{a.n}</span>
-                        <span className="roi__agent-dept mono">{a.d}</span>
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              )}
-
-              {ready && (
-                <div className="roic__table-wrap">
-                  <table className="roi__table">
-                    <thead>
-                      <tr>
-                        <th>Agent</th>
-                        <th>Department</th>
-                        <th className="r">Time saved / process</th>
-                        <th className="r">Monthly savings</th>
-                        <th className="r">Annual savings</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {enabledAgents.map((a, i) => {
-                        const per = ((a.t * autoRate) / 60) * hourlyCost;
-                        return (
-                          <tr key={a.n + i}>
-                            <td className="roi__td-name">{a.n}</td>
-                            <td className="dim">{a.d}</td>
-                            <td className="r mono">{(a.t * autoRate).toFixed(1)} min</td>
-                            <td className="r mono">{money(monthlyExec * per)}</td>
-                            <td className="r mono roi__td-annual">{money(annualExec * per)}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </div>
-          )}
         </div>
 
         {/* ---- footer ---- */}
