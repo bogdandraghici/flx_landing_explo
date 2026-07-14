@@ -1714,6 +1714,12 @@ em { font-style: normal; }
 .rv.in { opacity: 1; transform: none; }
 .rv-load { animation: rvIn 0.9s var(--ease) forwards; animation-delay: calc(var(--d, 0) * 110ms + 150ms); }
 @keyframes rvIn { to { opacity: 1; transform: none; } }
+/* The hero terminal reveals with opacity ONLY. The shared rv-load slide uses a
+   transform, which promotes the terminal to its own compositing layer and
+   disables its backdrop-filter — so the frosted-glass blur silently dies. A
+   fade keeps it transform-free so the blur survives. */
+.term.rv-load { transform: none; animation-name: rvFade; }
+@keyframes rvFade { from { opacity: 0; } to { opacity: 1; } }
 
 /* ============================================================
    agents page
