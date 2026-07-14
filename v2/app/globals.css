@@ -3689,8 +3689,8 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 }
 .roi__step.is-active {
   border-top-color: transparent;
-  border: 1px solid var(--amber-line);
-  background: var(--amber-soft);
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
   border-radius: 12px;
   padding: 16px;
   margin: 10px 0;
@@ -3765,7 +3765,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
   transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
 }
 .roi__agent:hover { background: rgba(var(--ink), 0.04); border-color: var(--line); }
-.roi__agent.is-on { background: var(--amber-soft); border-color: var(--amber-line); }
+.roi__agent.is-on { background: rgba(var(--ink), 0.05); border-color: rgba(var(--ink), 0.18); }
 .roi__agent input { margin-top: 3px; flex: none; accent-color: var(--amber); cursor: pointer; }
 .roi__agent-info { display: flex; flex-direction: column; gap: 2px; }
 .roi__agent-name { font-size: 13px; line-height: 1.35; color: var(--text); }
