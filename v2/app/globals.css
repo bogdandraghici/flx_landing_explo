@@ -348,9 +348,9 @@ em { font-style: normal; }
 .nav.scrolled {
   background:
     linear-gradient(180deg, rgba(var(--ink), 0.03), rgba(var(--ink), 0.02)),
-    rgba(var(--scrim), 0.52);
-  backdrop-filter: blur(40px) saturate(1.1);
-  -webkit-backdrop-filter: blur(40px) saturate(1.1);
+    rgba(var(--scrim), 0.55);
+  backdrop-filter: blur(28px) saturate(1.1);
+  -webkit-backdrop-filter: blur(28px) saturate(1.1);
   border-bottom-color: var(--line);
   box-shadow: inset 0 1px 0 rgba(var(--ink), 0.04);
 }
@@ -750,6 +750,13 @@ em { font-style: normal; }
   grid-template-columns: minmax(0, 1fr); /* cap the track to the viewport so wide content (the text-sized terminal input) can't blow the hero out on mobile */
   align-content: center;
   overflow: clip;
+  /* Backdrop root for the terminal's frosted glass. Without this, the terminal
+     sits in a separate stacking context from the #field canvas and its
+     backdrop-filter has an empty backdrop (the canvas never blurs). Making
+     .hero the backdrop root and pushing the canvas/scrim to negative z (below
+     .hero__inner, which is now a plain positioned box) puts the canvas inside
+     the terminal's backdrop so the blur actually reads. */
+  isolation: isolate;
 }
 .hero__canvas {
   position: absolute;
@@ -757,10 +764,12 @@ em { font-style: normal; }
   width: 100%;
   height: 100%;
   display: block;
+  z-index: -2;
 }
 .hero__scrim {
   position: absolute;
   inset: 0;
+  z-index: -1;
   pointer-events: none;
   background:
     radial-gradient(72% 48% at 50% 40%, rgba(var(--scrim), 0.82) 0%, rgba(var(--scrim), 0.38) 46%, rgba(var(--scrim), 0) 70%),
@@ -769,7 +778,9 @@ em { font-style: normal; }
 }
 .hero__inner {
   position: relative;
-  z-index: 1;
+  /* z-index intentionally omitted: canvas/scrim now use negative z so this
+     stays a plain positioned box (not a stacking context) and doesn't cut the
+     terminal off from the canvas backdrop. It still paints above them. */
   width: 100%;
   padding-top: 96px;
   padding-bottom: 96px;
@@ -846,9 +857,9 @@ em { font-style: normal; }
      base keeps enough transparency for the strong backdrop blur to read. */
   background:
     linear-gradient(180deg, rgba(var(--ink), 0.045), rgba(var(--ink), 0.02) 55%, rgba(var(--ink), 0.03)),
-    rgba(var(--scrim), 0.52);
-  backdrop-filter: blur(40px) saturate(1.1);
-  -webkit-backdrop-filter: blur(40px) saturate(1.1);
+    rgba(var(--scrim), 0.55);
+  backdrop-filter: blur(28px) saturate(1.1);
+  -webkit-backdrop-filter: blur(28px) saturate(1.1);
   box-shadow: var(--shadow-term);
   overflow: hidden;
   text-align: left;
