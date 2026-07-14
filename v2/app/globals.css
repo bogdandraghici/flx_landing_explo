@@ -3729,10 +3729,9 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 
 .roi__fte-head { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
 .roi__fte-pill {
-  font-size: 12px; color: var(--amber-ink); font-weight: 600;
-  background: var(--amber); border-radius: 8px; padding: 4px 9px;
+  font-size: 12px; color: var(--amber-text); font-weight: 600;
+  background: var(--amber-soft); border-radius: 8px; padding: 4px 9px;
 }
-:root[data-theme="light"] .roi__fte-pill { color: var(--amber-ink); }
 .roi__range {
   width: 100%; margin-top: 12px; height: 4px; border-radius: 4px; cursor: pointer;
   -webkit-appearance: none; appearance: none;
@@ -3878,7 +3877,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 }
 .roi-method__step h3 { font-family: var(--font-display); font-size: 15.5px; font-weight: 560; letter-spacing: -0.01em; margin-bottom: 4px; }
 .roi-method__step p { font-size: 13.5px; color: var(--text-dim); line-height: 1.55; }
-.roi-method__formula { display: block; margin-top: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--amber-text); background: var(--amber-soft); border: 1px solid var(--amber-line); border-radius: 8px; padding: 8px 10px; overflow-x: auto; }
+.roi-method__formula { display: block; margin-top: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--amber-text); background: var(--amber-soft); border-radius: 8px; padding: 8px 10px; overflow-x: auto; }
 .roi-method__aside { border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); padding: clamp(20px, 2.2vw, 28px); box-shadow: var(--shadow-card); }
 .roi-method__aside h3 { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 12px; }
 .roi-method__aside h3:not(:first-child) { margin-top: 22px; }
