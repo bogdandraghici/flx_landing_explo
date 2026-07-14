@@ -617,7 +617,11 @@ em { font-style: normal; }
 }
 .nav__feat-spark {
   position: relative;
-  height: 96px;
+  /* grow to fill the card so the CTA pins to the bottom and lines up with the
+     left column's "All customers" foot — the sheet stretches both sides to the
+     same height, so a fixed-height sparkline would leave dead space here */
+  flex: 1 1 auto;
+  min-height: 84px;
   margin: 16px 0 14px;
 }
 .nav__feat-spark svg {
@@ -2303,7 +2307,7 @@ em { font-style: normal; }
     width: auto;
     margin-top: 16px;
   }
-  .nav__feat-spark { height: 72px; margin: 12px 0 10px; }
+  .nav__feat-spark { flex: none; min-height: 0; height: 72px; margin: 12px 0 10px; }
 
   /* no-JS: the drawer can't open, so render everything stacked in flow —
      the bar wraps and the full link tree flows below it, panels open */
