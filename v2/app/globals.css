@@ -3625,7 +3625,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
   background: var(--well-bg);
   border: 1px solid rgba(var(--ink), 0.16);
   border-radius: 10px;
-  padding: 10px 12px;
+  padding: 11px 15px;
   font-size: 14px;
   outline: none;
   transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
