@@ -3799,7 +3799,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 }
 .roi__value .amber { color: var(--amber-text); }
 .roi__value-sub { font-family: var(--font-display); font-size: 17px; font-weight: 560; color: var(--text-dim); }
-.roi__value-desc { margin-top: 16px; font-size: 14px; line-height: 1.6; color: var(--text-dim); max-width: 54ch; }
+.roi__value-desc { margin-top: 16px; font-size: 14px; line-height: 1.6; color: var(--text-dim); }
 .roi__value-desc em { color: var(--text); font-style: normal; }
 .roi__value-desc strong { color: var(--text); font-weight: 600; }
 .roi__stats {
