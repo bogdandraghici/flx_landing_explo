@@ -3845,7 +3845,8 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .roi__table-empty { text-align: center; padding: 40px 12px; color: var(--text-faint); }
 .roi__note { margin-top: 16px; font-size: 12px; color: var(--text-faint); line-height: 1.6; }
 .roi__note strong { color: var(--text-dim); font-weight: 600; }
-.roi__note a { color: var(--amber-text); border-bottom: 1px solid var(--amber-line); }
+.roi__note a { color: var(--text-dim); border-bottom: 1px dashed rgba(var(--ink), 0.2); transition: color 0.2s ease, border-color 0.2s ease; }
+.roi__note a:hover { color: var(--text); border-color: var(--amber-line); }
 
 /* optional-field marker + methodology link under the headline value */
 .roi__opt { color: var(--text-faint); font-weight: 400; }
