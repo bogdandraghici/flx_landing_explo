@@ -3635,9 +3635,27 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .roi__mini-select:hover { border-color: rgba(var(--ink), 0.3); }
 .roi__select:focus,
 .roi__input:focus,
-.roi__mini-select:focus { border-color: var(--amber-line); background: var(--well-bg-focus); }
+.roi__mini-select:focus { border-color: var(--amber-line); background-color: var(--well-bg-focus); }
 .roi__select:disabled { opacity: 0.5; }
 .roi__mini-select { cursor: pointer; }
+
+/* Custom caret: the native <select> arrow sits hard against the right edge
+   and ignores padding, so replace it with an inset SVG chevron we control. */
+.roi__select,
+.roi__mini-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%239aa0a6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M2.5 4.5 6 8l3.5-3.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 38px;
+}
+.roi__mini-select { background-position: right 11px center; padding-right: 30px; }
+:root[data-theme="light"] .roi__select,
+:root[data-theme="light"] .roi__mini-select {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M2.5 4.5 6 8l3.5-3.5'/></svg>");
+}
 
 /* ---- layout ----
    Two independent columns: a config sidebar (left) and a single results
