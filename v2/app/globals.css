@@ -589,13 +589,19 @@ em { font-style: normal; }
   background: var(--bg-panel);
   color: var(--text) !important;
   overflow: hidden;
-  transition: border-color 0.22s var(--ease), transform 0.22s var(--ease), box-shadow 0.22s var(--ease);
+  /* gentle ease-out over a slightly longer beat so the lift settles instead of
+     snapping (the site's --ease is front-loaded and reads abrupt on a hover) */
+  transition: border-color 0.34s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.34s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.34s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .nav__feat:hover {
   background: var(--bg-panel) !important;
-  border-color: var(--amber-line);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-pop);
+  /* softer amber than --amber-line (0.45) so the edge warms rather than snaps */
+  border-color: rgba(var(--amber-rgb), 0.3);
+  transform: translateY(-3px);
+  /* a light card-scale shadow instead of the panel-sized --shadow-pop */
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
 }
 
 /* "rising trend" motif — kicker + title, a sparkline climbing to an amber
