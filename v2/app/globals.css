@@ -838,9 +838,13 @@ em { font-style: normal; }
   margin: clamp(4px, 2vh, 20px) auto 0;
   border: 1px solid rgba(var(--ink), 0.22);
   border-radius: 18px;
+  /* Frosted glass: translucent scrim base (same token the scrolled nav uses)
+     over a blurred backdrop, so the hero order-field shows through faintly. */
   background:
     linear-gradient(180deg, rgba(var(--ink), 0.055), rgba(var(--ink), 0.02) 55%, rgba(var(--ink), 0.012)),
-    var(--bg);
+    rgba(var(--scrim), 0.78);
+  backdrop-filter: blur(16px) saturate(1.05);
+  -webkit-backdrop-filter: blur(16px) saturate(1.05);
   box-shadow: var(--shadow-term);
   overflow: hidden;
   text-align: left;
