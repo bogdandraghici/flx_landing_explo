@@ -222,10 +222,15 @@ export default function Nav() {
                 <div className="nav__cols">
                   <div className="nav__group nav__group--wide">
                     <p className="nav__glabel mono">Latest from the Knowledge Hub</p>
+                    {/* the two latest posts promoted to featured article cards —
+                        a tag · date meta line and the title, kept spare */}
                     {LATEST.map((p) => (
-                      <a key={p.slug} className="nav__link--desc nav__post" href={bp(`/blog/${p.slug}`)}>
-                        <span className="nav__post-meta mono"><span className="nav__post-tag">{p.tags[0]}</span>{fmtNavDate(p.date)}</span>
-                        <span className="nav__link-t">{p.title}</span>
+                      <a key={p.slug} className="nav__post-card" href={bp(`/blog/${p.slug}`)}>
+                        <span className="nav__post-meta mono">
+                          <span className="nav__post-tag">{p.tags[0]}</span>
+                          <span>{fmtNavDate(p.date)}</span>
+                        </span>
+                        <span className="nav__post-title">{p.title}</span>
                       </a>
                     ))}
                   </div>
