@@ -156,7 +156,6 @@ export default function RoiCalculator() {
   const [platformCost, setPlatformCost] = useState(''); // annual platform + rollout, number | ''
   const [enabled, setEnabled] = useState({});
   const [openField, setOpenField] = useState(null);
-  const [agentsOpen, setAgentsOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [lead, setLead] = useState({ fname: '', lname: '', email: '', consent: false });
   const [submitting, setSubmitting] = useState(false);
@@ -234,8 +233,8 @@ export default function RoiCalculator() {
   );
 
   /* ---- handlers ---- */
-  const onIndustry = (v) => { setIndustry(v); setStack(''); setEnabled({}); setAgentsOpen(false); };
-  const onStack = (v) => { setStack(v); setEnabled({}); setAgentsOpen(true); };
+  const onIndustry = (v) => { setIndustry(v); setStack(''); setEnabled({}); };
+  const onStack = (v) => { setStack(v); setEnabled({}); };
   const toggleAgent = (i) => setEnabled((p) => ({ ...p, [i]: !p[i] }));
   const toggleAll = () => {
     if (allSelected) return setEnabled({});
@@ -434,23 +433,8 @@ export default function RoiCalculator() {
           <span className="roic__opt-inline"> (optional)</span>.
         </p>
 
-        {/* ---- agents disclosure (MANUAL selection — sits with the inputs) ---- */}
+        {/* ---- agents (MANUAL selection — sits with the inputs, always visible) ---- */}
         <div className="roic__disc roic__disc--top">
-          <button
-            type="button"
-            className={`roic__disc-btn${agentsOpen ? ' is-open' : ''}`}
-            aria-expanded={agentsOpen}
-            onClick={() => setAgentsOpen((o) => !o)}
-            disabled={!stack}
-          >
-            <span>
-              {ready ? 'See the agents behind this' : 'Choose the agents that run this'}
-              {agents.length > 0 && <span className="roic__disc-count mono"> {enabledAgents.length}/{agents.length}</span>}
-            </span>
-            <span className="roic__disc-caret" aria-hidden="true">▾</span>
-          </button>
-
-          {agentsOpen && (
             <div className="roic__disc-body">
               <div className="roi__agents-top">
                 <span className="roi__label" style={{ margin: 0 }}>
@@ -506,21 +490,9 @@ export default function RoiCalculator() {
                 </div>
               )}
             </div>
-          )}
         </div>
 
-        {/* ---- estimate: progressively revealed once the sentence is complete ---- */}
-        {!ready ? (
-          <div className="roic__pending">
-            <p className="roic__pending-title">Fill in the sentence to see your estimate</p>
-            <ul className="roic__checklist">
-              <li className={`roic__check${industry ? ' is-done' : ''}`}><span className="roic__check-box" aria-hidden="true" />Pick an industry</li>
-              <li className={`roic__check${stack ? ' is-done' : ''}`}><span className="roic__check-box" aria-hidden="true" />Choose a process</li>
-              <li className={`roic__check${monthlyExec > 0 ? ' is-done' : ''}`}><span className="roic__check-box" aria-hidden="true" />Set a monthly volume</li>
-              <li className={`roic__check${enabledAgents.length > 0 ? ' is-done' : ''}`}><span className="roic__check-box" aria-hidden="true" />Select at least one agent</li>
-            </ul>
-          </div>
-        ) : (
+        {/* ---- estimate ---- */}
         <div className="roic__reveal">
         {/* ---- result block ---- */}
         <div className="roic__result">
@@ -628,7 +600,6 @@ export default function RoiCalculator() {
           </div>
         </div>
         </div>
-        )}
 
         {/* ---- footer ---- */}
         <div className="roic__foot">
