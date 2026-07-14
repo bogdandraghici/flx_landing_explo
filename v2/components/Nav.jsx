@@ -98,18 +98,16 @@ export default function Nav() {
                       <a className="nav__link--desc" href={bp("/insurance")}><span className="nav__link-t">Insurance</span><span className="nav__link-d">Claims, underwriting, distribution</span></a>
                       <a className="nav__link--desc" href={bp("/logistics")}><span className="nav__link-t">Logistics</span><span className="nav__link-d">Freight, fleet, visibility</span></a>
                     </div>
-                    <div className="nav__group">
+                    <div className="nav__group nav__group--split">
                       <p className="nav__glabel mono">By use case</p>
-                      <a className="nav__link--desc" href={bp("/ai-agents?use=onboarding")}><span className="nav__link-t">Onboarding</span><span className="nav__link-d">KYC and account opening</span></a>
-                      <a className="nav__link--desc" href={bp("/ai-agents?use=lending")}><span className="nav__link-t">Lending</span><span className="nav__link-d">Origination and credit</span></a>
-                      <a className="nav__link--desc" href={bp("/ai-agents?use=underwriting")}><span className="nav__link-t">Underwriting</span><span className="nav__link-d">Risk, pricing, decisioning</span></a>
-                      <a className="nav__link--desc" href={bp("/ai-agents?use=claims")}><span className="nav__link-t">Claims</span><span className="nav__link-d">Intake to settlement</span></a>
-                      <a className="nav__link--desc" href={bp("/ai-agents?use=quoting")}><span className="nav__link-t">Quoting</span><span className="nav__link-d">Pricing and rate optimization</span></a>
-                      <a className="nav__link--desc" href={bp("/ai-agents?industry=Logistics")}><span className="nav__link-t">Track &amp; trace</span><span className="nav__link-d">Shipment visibility</span></a>
-                    </div>
-                    <div className="nav__group">
-                      <p className="nav__glabel mono">Explore</p>
-                      <a className="nav__link--desc" href={bp("/roi-calculator")}><span className="nav__link-t">ROI calculator</span><span className="nav__link-d">Size the payback</span></a>
+                      <div className="nav__group-cols">
+                        <a className="nav__link--desc" href={bp("/ai-agents?use=onboarding")}><span className="nav__link-t">Onboarding</span><span className="nav__link-d">KYC and account opening</span></a>
+                        <a className="nav__link--desc" href={bp("/ai-agents?use=lending")}><span className="nav__link-t">Lending</span><span className="nav__link-d">Origination and credit</span></a>
+                        <a className="nav__link--desc" href={bp("/ai-agents?use=underwriting")}><span className="nav__link-t">Underwriting</span><span className="nav__link-d">Risk, pricing, decisioning</span></a>
+                        <a className="nav__link--desc" href={bp("/ai-agents?use=claims")}><span className="nav__link-t">Claims</span><span className="nav__link-d">Intake to settlement</span></a>
+                        <a className="nav__link--desc" href={bp("/ai-agents?use=quoting")}><span className="nav__link-t">Quoting</span><span className="nav__link-d">Pricing and rate optimization</span></a>
+                        <a className="nav__link--desc" href={bp("/ai-agents?industry=Logistics")}><span className="nav__link-t">Track &amp; trace</span><span className="nav__link-d">Shipment visibility</span></a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -120,7 +118,7 @@ export default function Nav() {
                   <span className="nav__feat-title">All AI agents</span>
                   <span className="nav__feat-grid" aria-hidden="true">
                     <span className="nav__feat-grid-inner">
-                      {['', 'on', '', '', 'on', '', '', '', 'on', '', '', 'on', 'on', '', 'amber', '', 'on', '', '', '', '', 'on', '', '', 'on', '', 'on', '', '', 'on', '', 'on', '', '', 'on', ''].map((v, i) => (
+                      {['', 'on', '', '', 'on', '', '', 'on', 'on', '', '', 'amber', '', 'on', '', '', '', '', 'on', '', '', 'on', '', 'on'].map((v, i) => (
                         <span key={i} className={`nav__feat-tile${v ? ` nav__feat-tile--${v}` : ''}`} />
                       ))}
                     </span>

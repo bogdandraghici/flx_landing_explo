@@ -481,6 +481,17 @@ em { font-style: normal; }
 .nav__cols { display: flex; align-items: stretch; }
 .nav__group { min-width: 188px; max-width: 232px; }
 .nav__group--wide { min-width: 296px; max-width: 320px; }
+/* a group whose links flow into two equal columns (fills 3 rows each,
+   column-major so col 1 = first three items). Used for a long single-category
+   list — e.g. Solutions "By use case" — under one label. */
+.nav__group--split { min-width: 336px; max-width: 400px; }
+.nav__group-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  column-gap: 16px;
+}
 .nav__group + .nav__group {
   margin-left: 28px;
   padding-left: 28px;
@@ -668,7 +679,7 @@ em { font-style: normal; }
    the squares keep their shape instead of stretching. */
 .nav__feat-grid {
   flex: 1 1 auto;
-  min-height: 84px;
+  min-height: 72px;
   margin: 16px 0 14px;
   display: flex;
   align-items: center;
@@ -678,8 +689,8 @@ em { font-style: normal; }
   max-width: 208px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 5px;
 }
 .nav__feat-tile {
   aspect-ratio: 1;
@@ -2328,7 +2339,10 @@ em { font-style: normal; }
 
   .nav__cols { display: block; }
   .nav__group,
-  .nav__group--wide { min-width: 0; max-width: none; }
+  .nav__group--wide,
+  .nav__group--split { min-width: 0; max-width: none; }
+  /* the two-column use-case list stacks back to one column in the drawer */
+  .nav__group-cols { display: block; }
   .nav__group + .nav__group {
     margin: 16px 0 0;
     padding: 0;
