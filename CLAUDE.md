@@ -204,12 +204,21 @@ if `docs/v2` is unchanged:
 ```
 
 Two things the script relies on (don't undo them):
-- The Pages build uses `distDir: out-pages` (not the default `.next`), so it
-  never clobbers a running `npm run dev` (which uses `.next`). Publishing is
-  therefore safe while the dev server is up.
+- **It builds in an isolated copy so it's safe while `npm run dev` is up.**
+  `next build` writes a full `.next/` regardless of `distDir` (the `out-pages`
+  distDir only redirects the final export, NOT the build's working `.next`), so
+  building inside `v2/` would clobber the dev server's `.next` and 500 it. The
+  script instead rsyncs the source into a **fixed** dir (`$TMPDIR/flx-v2-publish`,
+  node_modules symlinked in) and builds there. The path must stay fixed: Next
+  bakes it into chunk content hashes, so a random/`mktemp` dir would make every
+  build differ and defeat the no-op. Also run dev on **Turbopack**
+  (`next dev --turbopack`, now the default `dev` script) — the webpack dev server
+  in Next 15.5 spontaneously corrupts its own chunk cache (`Cannot find module
+  './NNN.js'` 500s); Turbopack doesn't.
 - `generateBuildId: () => 'flx-v2'` pins the build ID, so an unchanged source
-  tree produces a byte-identical export — that's what makes the script a true
-  no-op and keeps auto-publish (below) from committing build-ID churn.
+  tree produces a byte-identical export — that (plus the fixed build path above)
+  is what makes the script a true no-op and keeps auto-publish (below) from
+  committing build churn.
 
 **Auto-publish on push:** a personal `PostToolUse` hook (in
 `../.claude/settings.local.json`, i.e. the workspace root above the repo — not
@@ -219,7 +228,9 @@ automatically. It only acts on `main` and no-ops when `docs/v2` is unchanged.
 The hook activates when a session starts with that settings file present (open
 `/hooks` once or restart to pick up a freshly-created one).
 
-The equivalent by hand, if you ever need it:
+The equivalent by hand, if you ever need it (**stop `npm run dev` first** — this
+builds inside `v2/` and will clobber a running dev server's `.next`; the script
+above avoids that by building in an isolated copy):
 
 ```bash
 cd v2
