@@ -1,4 +1,5 @@
 import AgentCatalog from '@/components/AgentCatalog';
+import AgentsHeroViz from '@/components/AgentsHeroViz';
 import CtaFieldInit from '@/components/CtaFieldInit';
 import { bp } from '@/components/lib/base';
 import { absUrl } from '@/components/lib/site';
@@ -30,24 +31,41 @@ export default function AiAgentsPage() {
         },
       }} />
       {/* ================= HERO ================= */}
-      <section className="section roi-hero">
-        <div className="shell">
-          <div className="section__head">
-            <span className="section__no mono">Catalog · AI Agents</span>
-            <div className="section__headline">
-              <h1 className="h2 rv">{total} agents, ready for regulated work<span className="amber">.</span></h1>
-              <p className="section__lede rv" style={{ '--i': 1 }}>
-                A library of production-ready AI agents for {industries.join(', ')} — each one scoped to a
-                real process. Filter by industry and deploy effort, search by the outcome you care about,
-                and open any agent to see the problem it solves, the KPIs it moves, and what it pairs with.
-              </p>
+      <section className="ahero" id="phero">
+        <div className="shell ahero__grid">
+          <div className="ahero__text">
+            <p className="hero__eyebrow mono rv-load" style={{ '--d': 0 }}>
+              <span className="tick" aria-hidden="true" />
+              Catalog · AI Agents
+            </p>
+            <h1 className="hero__title">
+              <span className="hero__line rv-load" style={{ '--d': 1 }}><span className="dim">{total} agents, ready</span></span>
+              <span className="hero__line hero__line--big rv-load" style={{ '--d': 2 }}>for regulated work<span className="amber">.</span></span>
+            </h1>
+            <p className="hero__sub rv-load" style={{ '--d': 3 }}>
+              A library of production-ready AI agents for {industries.join(', ')} — each one scoped to a
+              real process. Filter by industry and deploy effort, search by outcome, and see what each
+              agent solves, the KPIs it moves, and what it pairs with.
+            </p>
+            <div className="abd-hero__cta rv-load" style={{ '--d': 4 }}>
+              <a className="btn btn--primary btn--lg" href="#catalog">Browse the catalog</a>
+              <a className="btn btn--ghost btn--lg" href={bp('/roi-calculator')}>Estimate the ROI</a>
             </div>
+            <p className="astats mono rv-load" style={{ '--d': 5 }}>
+              <span>pick a set · they work together</span>
+            </p>
           </div>
+
+          {/* Catalog matrix: a grid of agent cells; each cycle a handful light
+               up in sequence and interconnect into a stack — amber lands when
+               the constellation completes and a pulse travels the chain.
+               Reduced motion → resolved pose. */}
+          <AgentsHeroViz className="ahero__viz" />
         </div>
       </section>
 
       {/* ================= CATALOG ================= */}
-      <section className="section ac-section">
+      <section className="section ac-section" id="catalog">
         <div className="shell">
           <AgentCatalog />
         </div>

@@ -50,9 +50,9 @@ export default function Nav() {
                       <span className="nav__link-t">Observatory</span>
                       <span className="nav__link-d">Trace every agent decision in production</span>
                     </a>
-                    <a className="nav__link--desc" href={bp("/roi-calculator")}>
-                      <span className="nav__link-t">ROI Calculator</span>
-                      <span className="nav__link-d">Measure impact against a real baseline</span>
+                    <a className="nav__link--desc" href={bp("/platform/roi-hub")}>
+                      <span className="nav__link-t">ROI Hub</span>
+                      <span className="nav__link-d">Every dollar graded by its evidence</span>
                     </a>
                   </div>
                   <div className="nav__group">
@@ -184,7 +184,7 @@ export default function Nav() {
               <div className="nav__sheet">
                 <div className="nav__cols">
                   <div className="nav__group nav__group--wide">
-                    <p className="nav__glabel mono">Latest from the blog</p>
+                    <p className="nav__glabel mono">Latest from the Knowledge Hub</p>
                     {LATEST.map((p) => (
                       <a key={p.slug} className="nav__link--desc nav__post" href={bp(`/blog/${p.slug}`)}>
                         <span className="nav__post-meta mono"><span className="nav__post-tag">{p.tags[0]}</span>{fmtNavDate(p.date)}</span>
@@ -193,7 +193,7 @@ export default function Nav() {
                     ))}
                   </div>
                   <div className="nav__group">
-                    <p className="nav__glabel mono">Blog topics</p>
+                    <p className="nav__glabel mono">Topics</p>
                     <a href={bp("/blog?tag=Legacy+core")}><span className="nav__link-t">Legacy core</span></a>
                     <a href={bp("/blog?tag=Lending")}><span className="nav__link-t">Lending</span></a>
                     <a href={bp("/blog?tag=Compliance")}><span className="nav__link-t">Compliance</span></a>
@@ -212,13 +212,13 @@ export default function Nav() {
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">More</p>
-                    <a href={bp("/blog")}><span className="nav__link-t">Blog — all articles</span></a>
+                    <a href={bp("/blog")}><span className="nav__link-t">Knowledge Hub — all articles</span></a>
                     <a href={bp("/blog-flowx-6")}><span className="nav__link-t">Events — FlowX.AI 6</span></a>
                     <a href={bp("/resources/webinars")}><span className="nav__link-t">Webinars</span></a>
                     <a href={bp("/research")}><span className="nav__link-t">Research papers</span></a>
                   </div>
                 </div>
-                <p className="nav__foot mono"><a href={bp("/blog")}>Read the blog <span className="nav__arr" aria-hidden="true">→</span></a></p>
+                <p className="nav__foot mono"><a href={bp("/blog")}>Explore the Knowledge Hub <span className="nav__arr" aria-hidden="true">→</span></a></p>
               </div>
             </div>
           </div>

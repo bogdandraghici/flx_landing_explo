@@ -6,6 +6,7 @@ import { absUrl, OG_IMAGE, SITE_NAME } from '@/components/lib/site';
 import { POSTS } from '@/lib/blogData';
 import ShareBar from '@/components/ShareBar';
 import JsonLd from '@/components/JsonLd';
+import BlogPostHeroBg from '@/components/BlogPostHeroBg';
 
 export function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }));
@@ -89,7 +90,7 @@ export default async function BlogPost({ params }) {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: absUrl('/') },
-        { '@type': 'ListItem', position: 2, name: 'Blog', item: absUrl('/blog') },
+        { '@type': 'ListItem', position: 2, name: 'Knowledge Hub', item: absUrl('/blog') },
         { '@type': 'ListItem', position: 3, name: p.title, item: url },
       ],
     },
@@ -111,6 +112,9 @@ export default async function BlogPost({ params }) {
 
       {/* ================= HEADER ================= */}
       <section className="section blog-post-hero">
+        {/* typeset-manuscript background: a faint article wireframe types itself
+            in behind the title (amber = caret + the odd link word only) */}
+        <BlogPostHeroBg className="blog-post-hero__bg" />
         <div className="shell shell--narrow">
           <a className="blog-post__back mono" href={bp('/blog')}>← All articles</a>
           <div className="blog-post__tags">
@@ -118,8 +122,10 @@ export default async function BlogPost({ params }) {
               <a key={t} className="blog__tag mono" href={bp(`/blog?tag=${encodeURIComponent(t)}`)}>{t}</a>
             ))}
           </div>
-          <h1 className="blog-post__title rv">{p.title}</h1>
-          <p className="blog-post__byline mono rv" style={{ '--i': 1 }}>
+          {/* rv-load (animation-based) rather than rv: the title is above the fold,
+              so it must reveal on load, not on scroll-intersection */}
+          <h1 className="blog-post__title rv-load" style={{ '--d': 1 }}>{p.title}</h1>
+          <p className="blog-post__byline mono rv-load" style={{ '--d': 2 }}>
             <span className="amber">{p.author}</span>{byline ? ` · ${byline}` : ''}
           </p>
           <ShareBar title={p.title} url={url} />
@@ -137,19 +143,18 @@ export default async function BlogPost({ params }) {
               </ul>
             </div>
           )}
-          <div className="blog-post__grid">
+          {/* the TOC floats right inside the prose flow, so the article text wraps
+              around it and reclaims the full column width below it */}
+          <div className="blog-post__flow">
+            {p.toc.length > 0 && (
+              <nav className="blog-toc blog-toc--float" aria-label="On this page">
+                <p className="blog-toc__h mono">On this page</p>
+                <ol className="blog-toc__list">
+                  {p.toc.map((h) => <li key={h.id}><a href={`#${h.id}`}>{h.text}</a></li>)}
+                </ol>
+              </nav>
+            )}
             <article className="blog-prose" dangerouslySetInnerHTML={{ __html: body }} />
-
-            <aside className="blog-post__aside">
-              {p.toc.length > 0 && (
-                <nav className="blog-toc" aria-label="On this page">
-                  <p className="blog-toc__h mono">On this page</p>
-                  <ol className="blog-toc__list">
-                    {p.toc.map((h) => <li key={h.id}><a href={`#${h.id}`}>{h.text}</a></li>)}
-                  </ol>
-                </nav>
-              )}
-            </aside>
           </div>
 
           {/* ================= FAQ (collapsible, home-style) ================= */}

@@ -1,4 +1,5 @@
 import { bp } from '@/components/lib/base';
+import ResearchHeroViz from '@/components/ResearchHeroViz';
 import { PAPERS } from '@/lib/researchData';
 
 export const metadata = {
@@ -11,24 +12,41 @@ export default function ResearchPage() {
   return (
     <main id="top">
       {/* ================= HERO ================= */}
-      <section className="section roi-hero">
-        <div className="shell">
-          <div className="section__head">
-            <span className="section__no mono">Research · Papers</span>
-            <div className="section__headline">
-              <h1 className="h2 rv">The FlowX.AI paper series<span className="amber">.</span></h1>
-              <p className="section__lede rv" style={{ '--i': 1 }}>
-                Reliability, governance, measurement and memory for enterprise agents — each engineered
-                and shown running in production, not hoped for. Read a summary, then download the full
-                technical paper.
-              </p>
+      <section className="ahero" id="phero">
+        <div className="shell ahero__grid">
+          <div className="ahero__text">
+            <p className="hero__eyebrow mono rv-load" style={{ '--d': 0 }}>
+              <span className="tick" aria-hidden="true" />
+              Research · Papers
+            </p>
+            <h1 className="hero__title">
+              <span className="hero__line rv-load" style={{ '--d': 1 }}><span className="dim">The FlowX.AI</span></span>
+              <span className="hero__line hero__line--big rv-load" style={{ '--d': 2 }}>paper series<span className="amber">.</span></span>
+            </h1>
+            <p className="hero__sub rv-load" style={{ '--d': 3 }}>
+              Reliability, governance, measurement and memory for enterprise agents — each engineered
+              and shown running in production, not hoped for. Read a summary, then download the full
+              technical paper.
+            </p>
+            <div className="abd-hero__cta rv-load" style={{ '--d': 4 }}>
+              <a className="btn btn--primary btn--lg" href="#papers">Browse the papers</a>
+              <a className="btn btn--ghost btn--lg" href={bp('/models')}>See the open models</a>
             </div>
+            <p className="astats mono rv-load" style={{ '--d': 5 }}>
+              <span>engineered · measured · in production</span>
+            </p>
           </div>
+
+          {/* Results-figure instrument: axes sweep in, trial points scatter,
+               a dashed baseline sweeps, the method curve fits through the
+               points, and the delta bracket + readout land amber. A different
+               figure plots each cycle. Reduced motion → resolved pose. */}
+          <ResearchHeroViz className="ahero__viz" />
         </div>
       </section>
 
       {/* ================= PAPERS ================= */}
-      <section className="section rlist-section">
+      <section className="section rlist-section" id="papers">
         <div className="shell">
           <ul className="rlist">
             {PAPERS.map((p, i) => (

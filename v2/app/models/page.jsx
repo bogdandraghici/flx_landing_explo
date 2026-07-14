@@ -1,6 +1,7 @@
 import { bp } from '@/components/lib/base';
 import { absUrl, SITE_NAME } from '@/components/lib/site';
 import JsonLd from '@/components/JsonLd';
+import ModelsHeroViz from '@/components/ModelsHeroViz';
 import { MODELS, HF_ORG } from '@/lib/modelsData';
 
 export const metadata = {
@@ -57,25 +58,39 @@ export default function ModelsPage() {
         })),
       }} />
       {/* ================= HERO ================= */}
-      <section className="section roi-hero">
-        <div className="shell">
-          <div className="section__head">
-            <span className="section__no mono">Research · Open models</span>
-            <div className="section__headline">
-              <h1 className="h2 rv">Small models, frontier-grade where it counts<span className="amber">.</span></h1>
-              <p className="section__lede rv" style={{ '--i': 1 }}>
-                Open-weight, Apache-2.0 models fine-tuned for the narrow, high-stakes jobs inside regulated
-                workflows — scam detection, PII redaction, risky-clause flagging, escalation gating. Small
-                enough to run on-device, benchmarked head-to-head against frontier APIs.
-              </p>
-              <div className="rp__actions rv" style={{ '--i': 2 }}>
-                <a className="btn btn--primary btn--lg" href={HF_ORG} target="_blank" rel="noopener">
-                  Download on Hugging Face ↗
-                </a>
-                <a className="btn btn--ghost btn--lg" href="#benchmarks">See the benchmarks</a>
-              </div>
+      <section className="ahero" id="phero">
+        <div className="shell ahero__grid">
+          <div className="ahero__text">
+            <p className="hero__eyebrow mono rv-load" style={{ '--d': 0 }}>
+              <span className="tick" aria-hidden="true" />
+              Research · Open models
+            </p>
+            <h1 className="hero__title">
+              <span className="hero__line rv-load" style={{ '--d': 1 }}><span className="dim">Small open models,</span></span>
+              <span className="hero__line hero__line--big rv-load" style={{ '--d': 2 }}>frontier where it counts<span className="amber">.</span></span>
+            </h1>
+            <p className="hero__sub rv-load" style={{ '--d': 3 }}>
+              Apache-2.0 models fine-tuned for the narrow, high-stakes jobs inside regulated
+              workflows — scam detection, PII redaction, risky-clause flagging. Small enough to
+              run on-device, benchmarked head-to-head against frontier APIs.
+            </p>
+            <div className="abd-hero__cta rv-load" style={{ '--d': 4 }}>
+              <a className="btn btn--primary btn--lg" href={HF_ORG} target="_blank" rel="noopener">
+                Download on Hugging Face ↗
+              </a>
+              <a className="btn btn--ghost btn--lg" href="#benchmarks">See the benchmarks</a>
             </div>
+            <p className="astats mono rv-load" style={{ '--d': 5 }}>
+              <span>apache-2.0 · on-device · benchmarked</span>
+            </p>
           </div>
+
+          {/* Generation canvas: autoregressive decoding with attention — a
+               PROMPT column of token chips, a COMPLETION column generating
+               token by token; attention arcs weight in from the prompt (the
+               strongest head amber), each new token lands amber and settles
+               to ink. Reduced motion → resolved pose. */}
+          <ModelsHeroViz className="ahero__viz" />
         </div>
       </section>
 

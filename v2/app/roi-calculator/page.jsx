@@ -1,5 +1,6 @@
 import RoiCalculator from '@/components/RoiCalculator';
 import CtaFieldInit from '@/components/CtaFieldInit';
+import RoiHeroViz from '@/components/RoiHeroViz';
 import { bp } from '@/components/lib/base';
 
 export const metadata = {
@@ -12,24 +13,41 @@ export default function RoiCalculatorPage() {
   return (
     <main id="top">
       {/* ================= HERO ================= */}
-      <section className="section roi-hero">
-        <div className="shell">
-          <div className="section__head">
-            <span className="section__no mono">Prove it · ROI</span>
-            <div className="section__headline">
-              <h1 className="h2 rv">Put a number on the agents<span className="amber">.</span></h1>
-              <p className="section__lede rv" style={{ '--i': 1 }}>
-                Choose an industry and a use case, set your monthly volume and cost per FTE, then pick
-                the agents you&apos;d deploy. The calculator values the time each one frees against a real
-                baseline — no black box, every number is traceable.
-              </p>
+      <section className="ahero" id="phero">
+        <div className="shell ahero__grid">
+          <div className="ahero__text">
+            <p className="hero__eyebrow mono rv-load" style={{ '--d': 0 }}>
+              <span className="tick" aria-hidden="true" />
+              Prove it · ROI
+            </p>
+            <h1 className="hero__title">
+              <span className="hero__line rv-load" style={{ '--d': 1 }}><span className="dim">Put a number</span></span>
+              <span className="hero__line hero__line--big rv-load" style={{ '--d': 2 }}>on the agents<span className="amber">.</span></span>
+            </h1>
+            <p className="hero__sub rv-load" style={{ '--d': 3 }}>
+              Choose an industry and a use case, set your monthly volume and cost per FTE, then pick
+              the agents you&apos;d deploy. The calculator values the time each one frees against a real
+              baseline — no black box, every number is traceable.
+            </p>
+            <div className="abd-hero__cta rv-load" style={{ '--d': 4 }}>
+              <a className="btn btn--primary btn--lg" href="#calculator">Run the numbers</a>
+              <a className="btn btn--ghost btn--lg" href="#how-calculated">See the methodology</a>
             </div>
+            <p className="astats mono rv-load" style={{ '--d': 5 }}>
+              <span>four inputs · no black box · traceable</span>
+            </p>
           </div>
+
+          {/* Tally instrument: four INPUTS tick in, the CHAIN computes the
+               methodology's three steps with real arithmetic, a progress dot
+               rides the left rail, and the annual figure counts up and lands
+               amber. Scenarios rotate per cycle. Reduced motion → resolved pose. */}
+          <RoiHeroViz className="ahero__viz" />
         </div>
       </section>
 
       {/* ================= CALCULATOR ================= */}
-      <section className="section roi-section">
+      <section className="section roi-section" id="calculator">
         <div className="shell">
           <RoiCalculator />
         </div>

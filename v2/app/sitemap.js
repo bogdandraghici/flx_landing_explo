@@ -19,6 +19,8 @@ export default function sitemap() {
     ['/platform', 0.7],
     ['/platform/integrations', 0.6],
     ['/platform/ontology', 0.6],
+    ['/platform/roi-hub', 0.6],
+    ['/platform/security', 0.6],
     ['/platform/status', 0.4],
     ['/agent-builder', 0.7],
     ['/flowx-code', 0.7],
