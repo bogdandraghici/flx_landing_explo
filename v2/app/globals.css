@@ -1921,7 +1921,13 @@ em { font-style: normal; }
   padding: 24px 22px;
   transition: border-color 0.3s var(--ease);
 }
-.seg:hover { border-color: var(--amber-line); }
+/* Only interactive .seg cards get a hover cue: those wrapped as links
+   (a.seg), and the industry pages' [data-stages] segments (hovering one
+   cross-highlights its stages in the value-stream pipeline). Plain
+   <article> .seg cards are static content — a hover cue there would falsely
+   signal clickability. */
+a.seg:hover,
+.seg[data-stages]:hover { border-color: var(--amber-line); }
 .seg__name { font-family: var(--font-display); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
 .seg__no { display: block; font-size: 11px; color: var(--text-faint); letter-spacing: 0.08em; margin-bottom: 10px; }
 .seg__desc { color: var(--text-dim); font-size: 13.5px; line-height: 1.55; margin: 10px 0 16px; }
@@ -3048,24 +3054,6 @@ em { font-style: normal; }
 .om-tick { stroke: rgba(var(--ink), 0.18); stroke-width: 1; }
 .om-mark { stroke: var(--amber); stroke-width: 1.6; }
 .om-count { stroke: rgba(var(--dia-bright), 0.6); stroke-width: 2; stroke-linecap: round; }
-
-/* the .seg cards on this page are static content, not links or interactive
-   controls (unlike the industry pages' [data-stages] segments), so they carry
-   no hover cue — a hover response must always signal "you can click this". */
-.page-observatory .seg { transition: none; }
-.page-observatory .seg:hover { border-color: var(--line); }
-
-/* Same story on the agent-builder page: its .seg cards (Draw/Compile/Run, the
-   node catalog, the capabilities grid) are static content, not links, so they
-   carry no hover cue. */
-.page-agent-builder .seg { transition: none; }
-.page-agent-builder .seg:hover { border-color: var(--line); }
-
-/* Same on the flowx-code page: its .seg cards (Ground/Draft/Validate/Commit,
-   the artifact kinds) are static content, not links, so they carry no hover
-   cue. */
-.page-flowx-code .seg { transition: none; }
-.page-flowx-code .seg:hover { border-color: var(--line); }
 
 /* ------------------------------------------------------------------
    WHAT IT DOES — the evidence ledger
@@ -4400,8 +4388,10 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 /* ---- research overview ---- */
 .rlist-section { padding-top: clamp(24px, 4vh, 48px); }
 .rlist { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+/* The card itself is a plain <li> — only its inner links (cover, title,
+   Read summary, PDF) are clickable — so it carries no whole-card hover cue.
+   The transition remains for the .rv scroll-reveal transform. */
 .rlist__card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-raised); overflow: hidden; box-shadow: var(--shadow-card); transition: border-color 0.25s var(--ease), transform 0.25s var(--ease); }
-.rlist__card:hover { border-color: var(--amber-line); transform: translateY(-2px); }
 .rlist__cover { display: block; border-bottom: 1px solid var(--line); background: var(--bg-panel); aspect-ratio: 16 / 9; overflow: hidden; }
 .rlist__cover img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
 .rlist__meta { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
@@ -4423,8 +4413,9 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
    ============================================================ */
 /* ---- model cards ---- */
 .mgrid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+/* Plain <li> — only its inner links (Model card, Benchmark) are clickable —
+   so no whole-card hover cue. Transition stays for the .rv reveal transform. */
 .mcard { display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-raised); padding: 24px; box-shadow: var(--shadow-card); transition: border-color 0.25s var(--ease), transform 0.25s var(--ease); }
-.mcard:hover { border-color: var(--amber-line); transform: translateY(-2px); }
 .mcard__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .mcard__params { font-size: 11px; letter-spacing: 0.06em; color: var(--amber-ink); background: var(--amber); border-radius: 7px; padding: 3px 9px; font-weight: 600; }
 .mcard__type { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); text-align: right; }
@@ -4608,11 +4599,11 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 
 /* 90-day uptime bars */
 .st-bars { display: flex; gap: 2px; height: 30px; align-items: stretch; }
-.st-bar { flex: 1 1 0; min-width: 0; border-radius: 2px; background: rgba(var(--ink), 0.12); transition: opacity 0.15s ease; }
+/* Decorative, aria-hidden uptime bars — not interactive, so no hover cue. */
+.st-bar { flex: 1 1 0; min-width: 0; border-radius: 2px; background: rgba(var(--ink), 0.12); }
 .st-bar.is-up { background: rgba(var(--st-up), 0.85); }
 .st-bar.is-degraded { background: var(--amber); }
 .st-bar.is-down { background: rgb(var(--st-down)); }
-.st-bar:hover { opacity: 0.6; }
 .st-row__foot { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--text-faint); }
 .st-row__foot span:nth-child(2) { color: var(--text-dim); }
 @media (max-width: 560px) { .st-bars { gap: 1px; } .st-bar:nth-child(odd) { display: none; } }

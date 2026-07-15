@@ -79,7 +79,7 @@ export default function LogoStrip() {
         <div ref={trackRef} className="flex w-max items-center will-change-transform">
           {LOGOS.map(([alt, src]) => (
             <div key={alt} className="flex-none flex items-center justify-center px-[clamp(28px,4vw,56px)] h-14">
-              <img src={bp(src)} alt={alt} draggable="false" className="h-[30px] w-auto opacity-50 hover:opacity-100 transition-opacity select-none pointer-events-none" />
+              <img src={bp(src)} alt={alt} draggable="false" className="h-[30px] w-auto opacity-50 select-none pointer-events-none" />
             </div>
           ))}
         </div>
