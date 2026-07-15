@@ -67,15 +67,20 @@ export default function RoiHubPage() {
         </div>
       </section>
 
-      {/* ================= THESIS ================= */}
-      <section className="abd-thesis">
+      {/* ================= THESIS ================= *//* editorial split: this thesis runs longer than the single punchy line
+           the base treatment expects, so the claim reads across (left) against
+           its evidence (right) instead of stacking into a heading-sized wall */}
+      <section className="abd-thesis abd-thesis--split">
         <div className="shell">
-          <blockquote className="rv">The agent-ROI crisis is not a value crisis. It is a <span className="amber">measurement-credibility</span> crisis — and credibility is an engineering property of the measurement system, not a rhetorical one.</blockquote>
-          <p className="rv" style={{ '--i': 1 }}>95% of generative-AI pilots show no measurable P&amp;L impact — not because agents don&apos;t create
-            value, but because flat assumptions and self-reported time savings are figures a finance function
-            correctly declines to capitalize. The fix is the one financial accounting found a century ago:
-            don&apos;t make every number certain — grade it, audit it, and recognize it under the right tier.</p>
-          <span className="abd-thesis__tag mono rv" style={{ '--i': 2 }}>VERA · Verifiable, Evidence-Graded Return on Agents</span>
+          <span className="abd-thesis__kicker mono rv" style={{ '--i': 0 }}>The measurement thesis</span>
+          <blockquote className="rv" style={{ '--i': 1 }}>The agent-ROI crisis is not a value crisis. It is a <span className="amber">measurement-credibility</span> crisis — and credibility is an engineering property of the measurement system, not a rhetorical one.</blockquote>
+          <div className="abd-thesis__evidence">
+            <p className="rv" style={{ '--i': 2 }}>95% of generative-AI pilots show no measurable P&amp;L impact — not because agents don&apos;t create
+              value, but because flat assumptions and self-reported time savings are figures a finance function
+              correctly declines to capitalize. The fix is the one financial accounting found a century ago:
+              don&apos;t make every number certain — grade it, audit it, and recognize it under the right tier.</p>
+            <span className="abd-thesis__tag mono rv" style={{ '--i': 3 }}>VERA · Verifiable, Evidence-Graded Return on Agents</span>
+          </div>
         </div>
       </section>
 
