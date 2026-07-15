@@ -3774,8 +3774,8 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 }
 .roi__selectall:hover { border-color: var(--amber-line); color: var(--text); }
 .roi__agent-list {
-  margin-top: 10px; max-height: 320px; overflow-y: auto;
-  display: flex; flex-direction: column; gap: 6px;
+  margin-top: 10px; max-height: 360px; overflow-y: auto;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 6px;
   padding: 4px; border: 1px solid var(--line-soft); border-radius: 10px;
 }
 .roi__empty { padding: 24px 12px; text-align: center; font-size: 12px; color: var(--text-faint); }
