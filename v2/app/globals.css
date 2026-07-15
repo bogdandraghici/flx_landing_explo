@@ -4437,7 +4437,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 /* Most of the card navigates to the paper (cover + title are links), so the
    card carries an amber border-hover cue matching the blog .post card. The
    transition also covers the .rv scroll-reveal transform. */
-.rlist__card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-raised); overflow: hidden; box-shadow: var(--shadow-card); transition: border-color 0.25s var(--ease), transform 0.25s var(--ease); }
+.rlist__card { position: relative; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-raised); overflow: hidden; box-shadow: var(--shadow-card); transition: border-color 0.25s var(--ease), transform 0.25s var(--ease); }
 .rlist__card:hover { border-color: var(--amber-line); }
 .rlist__cover { display: block; border-bottom: 1px solid var(--line); background: var(--bg-panel); aspect-ratio: 16 / 9; overflow: hidden; }
 .rlist__cover img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
@@ -4464,6 +4464,11 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .rlist__name { font-family: var(--font-display); font-size: 18px; font-weight: 620; letter-spacing: -0.015em; line-height: 1.2; }
 .rlist__name a { transition: color 0.2s ease; }
 .rlist__name a:hover { color: var(--amber-text); }
+/* Stretched link: the title link covers the whole card, so clicking anywhere
+   opens the paper. The links row sits above it (z-index) so "Read summary"
+   keeps its hover and the PDF button opens the PDF instead of the card. */
+.rlist__name a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.rlist__link, .rlist__pdf { position: relative; z-index: 2; }
 .rlist__tagline { font-size: 13.5px; line-height: 1.55; color: var(--text-dim); flex: 1; }
 .rlist__links { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
 .rlist__link { font-size: 13px; color: var(--text); transition: color 0.2s ease; }
