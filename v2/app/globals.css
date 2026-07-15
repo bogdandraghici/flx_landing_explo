@@ -603,9 +603,12 @@ em { font-style: normal; }
 
 /* ---- featured section: one option promoted to a 3:4 card ----------------
    Used in the Customers panel to give ROI Calculator a visually dominant slot
-   beside the plain link columns. The sheet splits into [link columns][card]. */
+   beside the plain link columns. The sheet splits into [featured card][link
+   columns] — the featured/promoted item sits on the LEFT (row-reverse keeps the
+   card, which stays last in the DOM for reading order, on the left edge). */
 .nav__sheet--feat {
   display: flex;
+  flex-direction: row-reverse;
   align-items: stretch;
   gap: 32px;
 }
