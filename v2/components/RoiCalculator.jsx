@@ -89,7 +89,6 @@ function EditSelect({ field, value, placeholder, options, onSelect, disabled, op
 function EditNum({ value, onChange, onCommit, placeholder, ariaLabel, prefix, step = 1, min = 0, max = Infinity, fallback = 0 }) {
   const empty = value === '' || value == null;
   const display = empty ? '' : Number(value).toLocaleString('en-US');
-  const width = Math.max((display || placeholder || '').length, 2);
   const bump = (dir) => {
     const base = empty ? fallback : Number(value);
     const next = Math.min(max, Math.max(min, base + dir * step));
@@ -99,20 +98,24 @@ function EditNum({ value, onChange, onCommit, placeholder, ariaLabel, prefix, st
   return (
     <span className={`roic__edit roic__numbox${empty ? ' is-empty' : ''}`}>
       {prefix && <span className="roic__prefix">{prefix}</span>}
-      <input
-        className={`roic__num${empty ? ' is-empty' : ''}`}
-        type="text"
-        inputMode="numeric"
-        aria-label={ariaLabel}
-        value={display}
-        placeholder={placeholder}
-        style={{ width: `${width}ch` }}
-        onChange={(e) => {
-          const raw = e.target.value.replace(/[^\d]/g, '');
-          onChange(raw === '' ? '' : parseInt(raw, 10));
-        }}
-        onBlur={onCommit}
-      />
+      {/* auto-grow: a hidden sizer holds the same glyphs so the box width
+          tracks the content exactly (the old ch estimate overcounted commas). */}
+      <span className="roic__num-sizer" data-value={display || placeholder}>
+        <input
+          className={`roic__num${empty ? ' is-empty' : ''}`}
+          type="text"
+          size={1}
+          inputMode="numeric"
+          aria-label={ariaLabel}
+          value={display}
+          placeholder={placeholder}
+          onChange={(e) => {
+            const raw = e.target.value.replace(/[^\d]/g, '');
+            onChange(raw === '' ? '' : parseInt(raw, 10));
+          }}
+          onBlur={onCommit}
+        />
+      </span>
       <span className="roic__stepper" aria-hidden="true">
         <button type="button" tabIndex={-1} className="roic__step" aria-label="Increase" onClick={() => bump(1)}>▲</button>
         <button type="button" tabIndex={-1} className="roic__step" aria-label="Decrease" onClick={() => bump(-1)}>▼</button>
