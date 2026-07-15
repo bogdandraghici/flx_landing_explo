@@ -788,14 +788,14 @@ em { font-style: normal; }
 .nav__side .nav__feat { width: auto; flex: 0 0 auto; padding: 11px 12px !important; }
 .nav__side .nav__feat-title { font-size: 17px; margin-top: 3px; }
 .nav__side .nav__feat-graph { flex: none; min-height: 0; height: 46px; margin: 10px 0 9px; }
-.nav__side .nav__feat-term { flex: none; min-height: 0; height: 52px; margin: 10px 0 9px; }
+.nav__side .nav__feat-term { flex: none; min-height: 0; height: 46px; margin: 10px 0 9px; }
 
 /* "terminal session" motif — a compact terminal window echoing FlowX Code's hero
    (a natural-language request typed at a `>` prompt): traffic-light dots in a
-   header, a command line with an amber cursor, and an indented output line below.
-   Same thin-stroke, single-amber language as the sibling agent-flow graph — the
-   amber cursor is the one accent (matching the amber node). Bars scale
-   horizontally with the card; monochrome, no color beyond the cursor. */
+   header and a single command line with an amber cursor. Same thin-stroke,
+   single-amber language as the sibling agent-flow graph — the amber cursor is the
+   one accent (matching the amber node). The command bar scales horizontally with
+   the card; monochrome, no color beyond the cursor. */
 .nav__feat-term {
   flex: 1 1 auto;
   min-height: 48px;
@@ -835,8 +835,6 @@ em { font-style: normal; }
   align-items: center;
   gap: 6px;
 }
-/* indent the output under the command, past the prompt glyph */
-.nav__feat-term-row--out { padding-left: 15px; }
 .nav__feat-term-caret {
   font-size: 10px;
   line-height: 1;
@@ -847,8 +845,7 @@ em { font-style: normal; }
   border-radius: 2px;
   background: rgba(var(--ink), 0.22);
 }
-.nav__feat-term-bar--cmd { width: 56%; }
-.nav__feat-term-bar--out { width: 44%; background: rgba(var(--ink), 0.15); }
+.nav__feat-term-bar--cmd { width: 58%; }
 /* the live cursor — the single amber accent (the "resolved" active prompt) */
 .nav__feat-term-cursor {
   width: 5px;
@@ -2529,7 +2526,7 @@ a.seg:hover,
   .nav__side { display: flex; flex-direction: column; gap: 12px; flex: none; width: auto; margin-top: 16px; }
   .nav__side .nav__feat { flex: none; margin-top: 0; }
   .nav__side .nav__feat-graph { min-height: 0; height: 60px; margin: 12px 0 10px; }
-  .nav__side .nav__feat-term { min-height: 0; height: 52px; margin: 12px 0 10px; }
+  .nav__side .nav__feat-term { min-height: 0; height: 46px; margin: 12px 0 10px; }
 
   /* no-JS: the drawer can't open, so render everything stacked in flow —
      the bar wraps and the full link tree flows below it, panels open */

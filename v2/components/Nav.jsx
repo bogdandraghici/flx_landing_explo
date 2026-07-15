@@ -118,9 +118,6 @@ export default function Nav() {
                           <span className="nav__feat-term-bar nav__feat-term-bar--cmd" />
                           <span className="nav__feat-term-cursor" />
                         </span>
-                        <span className="nav__feat-term-row nav__feat-term-row--out">
-                          <span className="nav__feat-term-bar nav__feat-term-bar--out" />
-                        </span>
                       </span>
                     </span>
                     <span className="nav__feat-cta mono">Explore FlowX Code <span className="nav__arr" aria-hidden="true">→</span></span>
