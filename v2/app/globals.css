@@ -775,40 +775,41 @@ em { font-style: normal; }
 .nav__side {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   flex: 0 0 236px;
   width: 236px;
 }
-/* each card takes its natural height (kicker · title · viz · CTA), and the rail
-   grows to fit both — the sheet's `align-items: stretch` then stretches the left
-   columns to match, so the panel is as tall as the two stacked cards. (Forcing
-   the cards to split the left column's height instead clipped the CTA, since two
-   full cards don't fit in one column's height.) Slightly tighter viz than a lone
-   feature card so the pair stays compact. The compound selector outranks
+/* Two compact cards that together stay within the left columns' height, so the
+   panel doesn't grow taller than the link list. Each still holds kicker · title ·
+   viz · CTA, but the viz is short and the margins tight so both fit. Cards take
+   natural height (`flex: 0 0 auto`); the sheet's `align-items: stretch` then
+   stretches the left columns to match. The compound selector outranks
    `.nav__feat`, so these win without !important. */
-.nav__side .nav__feat { width: auto; flex: 0 0 auto; }
+.nav__side .nav__feat { width: auto; flex: 0 0 auto; padding: 11px 12px !important; }
+.nav__side .nav__feat-title { font-size: 17px; margin-top: 3px; }
 .nav__side .nav__feat-graph,
-.nav__side .nav__feat-layers { flex: none; min-height: 0; height: 68px; margin: 14px 0 12px; }
+.nav__side .nav__feat-layers { flex: none; min-height: 0; height: 46px; margin: 10px 0 9px; }
 
 /* "platform layers" motif — a stack of layer bars standing in for FlowX Code's
-   L0→L3 platform stack (its hero's diamond stack, flattened), one amber (the
-   resolved accent, matching the other feat cards). Bars are CSS blocks so they
-   scale horizontally with the card; the stack centers in the spare space so the
-   CTA still bottom-aligns with the sibling card. */
+   L0→L3 platform stack (its hero's diamond stack, flattened). Drawn in the same
+   line-art language as the sibling agent-flow graph: thin outlined bars (matching
+   the node stroke), with one filled amber bar as the resolved accent (matching the
+   amber node). Bars are CSS blocks so they scale horizontally with the card; the
+   stack centers in the spare space so the CTA bottom-aligns with the sibling card. */
 .nav__feat-layers {
   flex: 1 1 auto;
-  min-height: 60px;
-  margin: 16px 0 14px;
+  min-height: 44px;
+  margin: 12px 0 11px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 7px;
+  gap: 5px;
 }
 .nav__feat-layer {
-  height: 9px;
-  border-radius: 4px;
-  background: rgba(var(--ink), 0.14);
-  border: 1px solid rgba(var(--ink), 0.12);
+  height: 8px;
+  border-radius: 3px;
+  background: var(--bg-panel);
+  border: 1.5px solid rgba(var(--ink), 0.34);
 }
 /* stagger the widths so the stack reads as a layered hierarchy, not a bar chart */
 .nav__feat-layer:nth-child(1) { width: 100%; }
@@ -818,7 +819,7 @@ em { font-style: normal; }
 .nav__feat-layer--amber {
   background: var(--amber);
   border-color: var(--amber);
-  box-shadow: 0 0 10px rgba(var(--amber-rgb), 0.35);
+  box-shadow: 0 0 10px rgba(var(--amber-rgb), 0.4);
 }
 
 .nav__feat-cta {
