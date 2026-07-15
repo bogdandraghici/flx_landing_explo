@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react';
 /**
  * Ontology hero visual — a 1:1 port of design variant "2a" (Field · Chaos →
  * model): a hundred scattered signals drift as unstructured noise, then assemble
- * into one coherent model — root, three hubs (products / rules / risk) and their
- * leaves — hold, and release, on a loop. Order out of noise.
+ * into one coherent model — a radial dendrogram of a root, eight hubs and their
+ * fanned-out leaves — hold, and release, on a loop. Order out of noise.
  *
  * Two adaptations to this site's conventions (matching the sibling hero vizzes,
  * e.g. FlowxCodeHeroViz):
@@ -23,22 +23,48 @@ import { useEffect, useRef } from 'react';
 const SIZE = 560;
 const PI2 = Math.PI * 2;
 
-// Field layout (built once): root + three rings of 8 / 28 / 64 leaves, and the
-// edges binding each ring to its parent. Seeds drive each node's drift.
+// Field layout (built once): a radial dendrogram — root + three rings of
+// 8 / 28 / 64 nodes. Children fan out in a sector CENTERED on their parent, so
+// every branch points straight outward from the centre (no rotational hook /
+// pinwheel). Node index order is [root, 8 hubs, 28 ring-2, 64 ring-3] so
+// `i < 9` cleanly identifies the first-ring hubs. Seeds drive each node's drift.
 function buildField() {
+  const R1 = 62, R2 = 122, R3 = 184;
   const homes = [[280, 280]];
-  const counts = [8, 28, 64];
-  const rads = [60, 120, 180];
-  counts.forEach((c, ri) => {
-    for (let i = 0; i < c; i++) {
-      const a = (i / c) * PI2 - Math.PI / 2 + ri * 0.2;
-      homes.push([280 + Math.cos(a) * rads[ri], 280 + Math.sin(a) * rads[ri]]);
+  const edges = [];
+  const hubAng = [];
+  for (let h = 0; h < 8; h++) {
+    const a = (h / 8) * PI2 - Math.PI / 2;
+    hubAng.push(a);
+    homes.push([280 + Math.cos(a) * R1, 280 + Math.sin(a) * R1]);
+    edges.push([0, 1 + h]);
+  }
+  const slice = PI2 / 8;
+  const sector2 = slice * 0.66, sector3 = slice * 0.34;
+  const r2counts = [4, 3, 4, 3, 4, 3, 4, 3]; // sums to 28
+  let idx = 9;
+  const ring2 = [];
+  r2counts.forEach((cnt, h) => {
+    for (let k = 0; k < cnt; k++) {
+      const frac = cnt === 1 ? 0.5 : k / (cnt - 1);
+      const a = hubAng[h] + (frac - 0.5) * sector2;
+      homes.push([280 + Math.cos(a) * R2, 280 + Math.sin(a) * R2]);
+      edges.push([1 + h, idx]);
+      ring2.push({ i: idx, a });
+      idx++;
     }
   });
-  const edges = [];
-  for (let i = 0; i < 8; i++) edges.push([0, 1 + i]);
-  for (let i = 0; i < 28; i++) edges.push([1 + Math.floor((i / 28) * 8), 9 + i]);
-  for (let i = 0; i < 64; i++) edges.push([9 + Math.floor((i / 64) * 28), 37 + i]);
+  const extra = new Set([0, 3, 7, 10, 14, 17, 21, 24]); // 8 parents get a 3rd child → 64 total
+  ring2.forEach((par, k) => {
+    const cnt = 2 + (extra.has(k) ? 1 : 0);
+    for (let c = 0; c < cnt; c++) {
+      const frac = cnt === 1 ? 0.5 : c / (cnt - 1);
+      const a = par.a + (frac - 0.5) * sector3;
+      homes.push([280 + Math.cos(a) * R3, 280 + Math.sin(a) * R3]);
+      edges.push([par.i, idx]);
+      idx++;
+    }
+  });
   const seeds = homes.map((h, i) => i * 17.13);
   return { homes, edges, seeds };
 }
