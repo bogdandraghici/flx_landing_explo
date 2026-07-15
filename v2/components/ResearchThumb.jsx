@@ -79,18 +79,8 @@ function roi(ctx, w, h, t, { inkA, sigA }) {
   for (let i = 0; i <= 60; i++) { const u = i / 60, X = x0 + u * (x1 - x0); i ? ctx.lineTo(X, ac(u)) : ctx.moveTo(X, ac(u)); }
   ctx.stroke();
   const p = (t * 0.07) % 1, px = x0 + p * (x1 - x0);
-  ctx.strokeStyle = inkA(0.14);
-  ctx.beginPath(); ctx.moveTo(px, h * 0.16); ctx.lineTo(px, y0 + 5); ctx.stroke();
   ctx.fillStyle = sigA(0.9);
   ctx.beginPath(); ctx.arc(px, ac(p), 2.4, 0, 7); ctx.fill();
-  ctx.strokeStyle = sigA(0.35);
-  ctx.beginPath(); ctx.arc(px, ac(p), 6 + Math.sin(t * 2) * 1.2, 0, 7); ctx.stroke();
-  ctx.strokeStyle = inkA(0.4);
-  ctx.beginPath(); ctx.arc(px, cf(p), 2, 0, 7); ctx.stroke();
-  const d = (cf(p) - ac(p)) / h * 100;
-  mono(ctx, 9);
-  ctx.fillStyle = sigA(0.9);
-  ctx.fillText('Δ +' + d.toFixed(1) + '%', Math.min(px + 9, w - 58), ac(p) - 9);
   caption(ctx, w, h, 'COUNTERFACTUAL LIFT', inkA);
 }
 
@@ -141,7 +131,8 @@ function harness(ctx, w, h, t, { inkA, sigA }) {
   const xEnd = w * 0.92;
   ctx.strokeStyle = inkA(0.08);
   ctx.beginPath(); ctx.moveTo(bx + bw, y); ctx.lineTo(xEnd, y); ctx.stroke();
-  const gates = [w * 0.42, w * 0.58, w * 0.74];
+  const gates = [w * 0.46, w * 0.68];
+  const gLast = gates[gates.length - 1];
   const gh = h * 0.15;
   gates.forEach((gx) => {
     ctx.strokeStyle = inkA(0.22);
@@ -156,15 +147,15 @@ function harness(ctx, w, h, t, { inkA, sigA }) {
   ctx.strokeStyle = inkA(0.20);
   ctx.strokeRect(binX + 0.5, binY + 0.5, w * 0.12, h * 0.14);
   ctx.setLineDash([]);
-  for (let k = 0; k < 3; k++) {
-    const tt = t * 0.28 - k * 0.34;
+  for (let k = 0; k < 2; k++) {
+    const tt = t * 0.28 - k * 0.5;
     if (tt < 0) continue;
     const id = Math.floor(tt), p = tt - id;
     const abst = hs(id * 3 + 1) > 0.7;
     let px = bx + bw + p * (xEnd - bx - bw), py = y, hollow = false;
-    if (abst && px > gates[2]) {
-      const q = Math.min(1, (px - gates[2]) / (xEnd - gates[2]));
-      px = gates[2] + q * (binX + w * 0.06 - gates[2]);
+    if (abst && px > gLast) {
+      const q = Math.min(1, (px - gLast) / (xEnd - gLast));
+      px = gLast + q * (binX + w * 0.06 - gLast);
       py = y + q * q * (binY + h * 0.07 - y);
       hollow = true;
     }
@@ -192,11 +183,11 @@ function gov(ctx, w, h, t, { inkA, sigA }) {
   const x0 = w * 0.10, x1 = w * 0.92;
   ctx.lineWidth = 1;
   const p = (t * 0.055) % 1, px = x0 + p * (x1 - x0);
-  for (let i = 0; i < 4; i++) {
-    const y = h * (0.30 + i * 0.15);
+  for (let i = 0; i < 3; i++) {
+    const y = h * (0.34 + i * 0.16);
     ctx.strokeStyle = inkA(0.07);
     ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
-    for (let j = 0; j < 4; j++) {
+    for (let j = 0; j < 3; j++) {
       const u = hs(i * 17.3 + j * 3.1);
       const ex = x0 + u * (x1 - x0);
       ctx.strokeStyle = inkA(0.35);
@@ -208,9 +199,9 @@ function gov(ctx, w, h, t, { inkA, sigA }) {
     }
   }
   ctx.strokeStyle = sigA(0.55);
-  ctx.beginPath(); ctx.moveTo(px, h * 0.18); ctx.lineTo(px, h * 0.84); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(px, h * 0.20); ctx.lineTo(px, h * 0.82); ctx.stroke();
   ctx.fillStyle = sigA(0.9);
-  ctx.beginPath(); ctx.moveTo(px - 4, h * 0.18); ctx.lineTo(px + 4, h * 0.18); ctx.lineTo(px, h * 0.18 + 5); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(px - 4, h * 0.20); ctx.lineTo(px + 4, h * 0.20); ctx.lineTo(px, h * 0.20 + 5); ctx.closePath(); ctx.fill();
   caption(ctx, w, h, 'RUNTIME POLICY', inkA);
 }
 
@@ -228,15 +219,13 @@ function classifier(ctx, w, h, t, { inkA, sigA }) {
     ctx.bezierCurveTo(xSplit + 22, yc, xMerge - 22, y, xMerge, y);
     ctx.lineTo(xEnd, y);
     ctx.stroke();
-    ctx.fillStyle = inkA(0.5);
-    ctx.fillRect(xEnd - 3, y - 3, 6, 6);
   });
   ctx.setLineDash([3, 4]);
   ctx.strokeStyle = inkA(0.28);
-  ctx.beginPath(); ctx.moveTo(gateX, h * 0.16); ctx.lineTo(gateX, h * 0.84); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(gateX, h * 0.18); ctx.lineTo(gateX, h * 0.82); ctx.stroke();
   ctx.setLineDash([]);
-  for (let k = 0; k < 3; k++) {
-    const tt = t * 0.30 - k * 0.30;
+  for (let k = 0; k < 2; k++) {
+    const tt = t * 0.30 - k * 0.45;
     if (tt < 0) continue;
     const id = Math.floor(tt), p = tt - id;
     const tier = Math.floor(hs(id * 7 + 2) * 3);
@@ -249,7 +238,7 @@ function classifier(ctx, w, h, t, { inkA, sigA }) {
     } else { const q = (p - 0.55) / 0.45; px = xMerge + q * (xEnd - xMerge); py = tierY[tier]; }
     if (Math.abs(px - gateX) < 5) {
       ctx.strokeStyle = sigA(0.8);
-      ctx.beginPath(); ctx.moveTo(gateX, h * 0.16); ctx.lineTo(gateX, h * 0.84); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(gateX, h * 0.18); ctx.lineTo(gateX, h * 0.82); ctx.stroke();
     }
     ctx.fillStyle = tier === 2 ? sigA(0.95) : inkA(0.6);
     ctx.fillRect(px - 3, py - 4, 6, 8);
