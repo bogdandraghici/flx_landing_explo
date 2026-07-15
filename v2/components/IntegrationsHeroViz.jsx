@@ -142,11 +142,11 @@ export default function IntegrationsHeroViz({ className = '' }) {
       // pass *under* it and never show over the logo.
       const ph = (t * 0.35) % 1;
       ctx.beginPath(); ctx.arc(cx, cy, 24 + ph * 38, 0, PI2);
-      ctx.strokeStyle = ambA((1 - ph) * 0.24); ctx.lineWidth = 1; ctx.stroke();
+      ctx.strokeStyle = inkA((1 - ph) * 0.20); ctx.lineWidth = 1; ctx.stroke();
       ctx.beginPath(); ctx.arc(cx, cy, 24, 0, PI2);
-      ctx.fillStyle = bgSolid(); ctx.fill();  // opaque base — hides lines beneath
-      ctx.fillStyle = ambA(0.06); ctx.fill(); // faint amber identity wash
-      ctx.strokeStyle = ambA(0.65); ctx.stroke();
+      ctx.fillStyle = bgSolid(); ctx.fill();   // opaque base — hides lines beneath
+      ctx.fillStyle = inkA(0.03); ctx.fill();  // faint neutral wash
+      ctx.strokeStyle = inkA(0.4); ctx.stroke();
       drawLogo(cx, cy);
 
       // peripheral system nodes — neutral square terminals with a label.
