@@ -149,10 +149,6 @@ export default function AgentsHeroViz({ className = '' }) {
       ctx.beginPath();
       ctx.moveTo(CX + ox - 8, CY + oy); ctx.lineTo(CX + ox + 8, CY + oy);
       ctx.moveTo(CX + ox, CY + oy - 8); ctx.lineTo(CX + ox, CY + oy + 8); ctx.stroke();
-
-      // footnote — a plain, checkable claim
-      ctx.textAlign = 'left'; ctx.fillStyle = inkA(0.35);
-      ctx.fillText('140 AGENTS · 3 SECTORS', 45, 460);
     };
 
     // ---- animation loop -----------------------------------------------------
