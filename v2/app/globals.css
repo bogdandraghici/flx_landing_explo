@@ -178,7 +178,8 @@
    raised surface, and drop the dark gradients. Dark is untouched. */
 :root[data-theme="light"] { --bg-panel: var(--bg-raised); }
 :root[data-theme="light"] :is(
-  .portal__card, .post, .plat__cell, .proc__step, .voice, .dgv__row, .term
+  .portal__card, .post, .plat__cell, .proc__step, .voice, .dgv__row, .term,
+  .roi-chain__step, .roi-notes__cell
 ) {
   background: var(--bg-raised);
 }
@@ -3881,30 +3882,73 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .roi__net-op { color: var(--text-faint); }
 .roi__net-total { color: var(--text); font-weight: 600; }
 
-/* ---- on-page methodology explainer ---- */
+/* ---- on-page methodology explainer ----
+   Rebuilt in the site's signature hairline-cell grid (see .proc / .plat): thin
+   1px dividers on a --line ground, mono amber numbers, Sora headings. This
+   replaces the old bespoke list + single dense aside so the section reads as
+   part of the same system as the rest of the page. */
 .roi-method { padding-top: clamp(48px, 8vh, 96px); }
-.roi-method__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(28px, 4vw, 64px); align-items: start; }
-@media (max-width: 900px) { .roi-method__grid { grid-template-columns: 1fr; } }
-.roi-method__steps { list-style: none; display: flex; flex-direction: column; gap: 4px; counter-reset: rm; }
-.roi-method__step { display: grid; grid-template-columns: 30px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
-.roi-method__step:first-child { border-top: none; }
-.roi-method__step::before {
-  counter-increment: rm; content: counter(rm);
-  font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);
-  display: flex; align-items: center; justify-content: center;
-  width: 26px; height: 26px; border: 1px solid var(--line); border-radius: 50%;
+
+/* mono label that opens each block, with a hairline rule trailing out */
+.roi-method__label {
+  display: flex; align-items: center; gap: 16px;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 22px;
 }
-.roi-method__step h3 { font-family: var(--font-display); font-size: 15.5px; font-weight: 560; letter-spacing: -0.01em; margin-bottom: 4px; }
-.roi-method__step p { font-size: 13.5px; color: var(--text-dim); line-height: 1.55; }
-.roi-method__formula { display: block; margin-top: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--amber-text); background: var(--amber-soft); border-radius: 8px; padding: 8px 10px; overflow-x: auto; }
-.roi-method__aside { border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); padding: clamp(20px, 2.2vw, 28px); box-shadow: var(--shadow-card); }
-.roi-method__aside h3 { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 12px; }
-.roi-method__aside h3:not(:first-child) { margin-top: 22px; }
-.roi-method__list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.roi-method__list li { font-size: 13px; color: var(--text-dim); line-height: 1.5; padding-left: 16px; position: relative; }
+.roi-method__label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.roi-chain + .roi-method__label { margin-top: clamp(44px, 6vh, 76px); }
+
+/* the chain — four calculation steps as hairline cells; formula chips bottom-align */
+.roi-chain {
+  list-style: none;
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--line); border: 1px solid var(--line);
+}
+.roi-chain__step {
+  background: var(--bg); padding: clamp(24px, 2.6vw, 36px);
+  display: flex; flex-direction: column;
+}
+.roi-chain__no { font-size: 11px; letter-spacing: 0.2em; color: var(--amber-text); margin-bottom: 18px; }
+.roi-chain__step h3 {
+  font-family: var(--font-display); font-size: 17px; font-weight: 600;
+  letter-spacing: -0.01em; margin-bottom: 8px;
+}
+.roi-chain__opt {
+  display: inline-block; margin-left: 9px; vertical-align: middle;
+  font-family: var(--font-mono); font-size: 9.5px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint);
+  border: 1px solid var(--line); border-radius: 5px; padding: 2px 6px;
+}
+.roi-chain__step p { font-size: 13.5px; color: var(--text-dim); line-height: 1.55; margin-bottom: 22px; }
+.roi-chain__step p em { font-style: normal; color: var(--text); border-bottom: 1px solid var(--amber); }
+.roi-chain__formula {
+  margin-top: auto;
+  font-family: var(--font-mono); font-size: 12px; color: var(--amber-text);
+  background: var(--amber-soft); border-radius: 8px; padding: 10px 12px;
+  overflow-x: auto; white-space: nowrap;
+}
+
+/* what it assumes / means — two matching hairline cells */
+.roi-notes {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--line); border: 1px solid var(--line);
+}
+.roi-notes__cell { background: var(--bg); padding: clamp(24px, 2.6vw, 36px); }
+.roi-notes__cell h3 { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 16px; }
+.roi-method__list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.roi-method__list li { font-size: 13px; color: var(--text-dim); line-height: 1.55; padding-left: 18px; position: relative; }
 .roi-method__list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--amber); }
 .roi-method__list li strong { color: var(--text); font-weight: 600; }
-.roi-method__honest { margin-top: 22px; font-size: 12.5px; color: var(--text-faint); line-height: 1.6; border-top: 1px solid var(--line-soft); padding-top: 16px; }
+
+/* the honest disclaimer — an amber-ruled aside note */
+.roi-method__honest {
+  margin-top: clamp(30px, 4vh, 46px); max-width: 82ch;
+  padding-left: 18px; border-left: 2px solid var(--amber);
+  font-size: 13.5px; color: var(--text-faint); line-height: 1.7;
+}
+
+@media (max-width: 860px) { .roi-chain, .roi-notes { grid-template-columns: 1fr; } }
 
 /* ---- lead modal ---- */
 .roi__modal {

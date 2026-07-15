@@ -68,42 +68,45 @@ export default function RoiCalculatorPage() {
             </div>
           </div>
 
-          <div className="roi-method__grid">
-            <ol className="roi-method__steps">
-              <li className="roi-method__step">
-                <div>
-                  <h3>Price an hour of your team&apos;s time</h3>
-                  <p>Your fully-loaded annual cost per FTE, divided by a working year.</p>
-                  <code className="roi-method__formula">hourlyCost = costPerFTE / 1,800 hrs</code>
-                </div>
-              </li>
-              <li className="roi-method__step">
-                <div>
-                  <h3>Add up the minutes each agent removes</h3>
-                  <p>Every agent has a fixed &ldquo;minutes saved per process run&rdquo;. We sum that across the
-                    agents you selected, then keep only the share your <em>automation rate</em> says is
-                    genuinely removed — the rest stays with a human for review and exceptions.</p>
-                  <code className="roi-method__formula">savedMin/run = Σ(agent minutes) × automationRate</code>
-                </div>
-              </li>
-              <li className="roi-method__step">
-                <div>
-                  <h3>Scale by how often the process runs</h3>
-                  <p>Monthly volume, annualized, turns time-per-run into money-per-year.</p>
-                  <code className="roi-method__formula">gross = monthlyVolume × 12 × (savedMin/run / 60) × hourlyCost</code>
-                </div>
-              </li>
-              <li className="roi-method__step">
-                <div>
-                  <h3>Net it against investment (optional)</h3>
-                  <p>Enter an estimated annual platform + rollout cost to see savings net of investment,
-                    plus a first-year return multiple.</p>
-                  <code className="roi-method__formula">net = gross − platformCost   ·   ROI× = gross / platformCost</code>
-                </div>
-              </li>
-            </ol>
+          {/* THE CHAIN — four calculation steps, laid out in the site's
+               signature hairline-cell grid (matches the homepage Process and
+               Platform sections). Each cell's formula chip bottom-aligns. */}
+          <p className="roi-method__label mono rv">The chain · four steps, four inputs</p>
+          <ol className="roi-chain">
+            <li className="roi-chain__step rv" style={{ '--i': 0 }}>
+              <span className="roi-chain__no mono">01</span>
+              <h3>Price an hour of your team&apos;s time</h3>
+              <p>Your fully-loaded annual cost per FTE, divided by a working year.</p>
+              <code className="roi-chain__formula">hourlyCost = costPerFTE / 1,800 hrs</code>
+            </li>
+            <li className="roi-chain__step rv" style={{ '--i': 1 }}>
+              <span className="roi-chain__no mono">02</span>
+              <h3>Add up the minutes each agent removes</h3>
+              <p>Every agent has a fixed &ldquo;minutes saved per process run&rdquo;. We sum that across the
+                agents you selected, then keep only the share your <em>automation rate</em> says is
+                genuinely removed — the rest stays with a human for review and exceptions.</p>
+              <code className="roi-chain__formula">savedMin/run = Σ(agent minutes) × automationRate</code>
+            </li>
+            <li className="roi-chain__step rv" style={{ '--i': 2 }}>
+              <span className="roi-chain__no mono">03</span>
+              <h3>Scale by how often the process runs</h3>
+              <p>Monthly volume, annualized, turns time-per-run into money-per-year.</p>
+              <code className="roi-chain__formula">gross = monthlyVolume × 12 × (savedMin/run / 60) × hourlyCost</code>
+            </li>
+            <li className="roi-chain__step rv" style={{ '--i': 3 }}>
+              <span className="roi-chain__no mono">04</span>
+              <h3>Net it against investment<span className="roi-chain__opt">optional</span></h3>
+              <p>Enter an estimated annual platform + rollout cost to see savings net of investment,
+                plus a first-year return multiple.</p>
+              <code className="roi-chain__formula">net = gross − platformCost   ·   ROI× = gross / platformCost</code>
+            </li>
+          </ol>
 
-            <aside className="roi-method__aside">
+          {/* WHAT IT ASSUMES / MEANS — two matching hairline cells, then the
+               honest disclaimer as an amber-ruled note. */}
+          <p className="roi-method__label mono rv">What it assumes — and what it means</p>
+          <div className="roi-notes">
+            <div className="roi-notes__cell rv" style={{ '--i': 0 }}>
               <h3>Assumptions</h3>
               <ul className="roi-method__list">
                 <li><strong>1,800 working hours</strong> per FTE per year (after leave &amp; overhead).</li>
@@ -111,18 +114,21 @@ export default function RoiCalculatorPage() {
                 <li><strong>Agent times are additive</strong> and assume the process actually runs at your stated volume.</li>
                 <li><strong>Currency is converted</strong> at static, approximate rates — indicative, not live FX.</li>
               </ul>
+            </div>
+            <div className="roi-notes__cell rv" style={{ '--i': 1 }}>
               <h3>What it means — and doesn&apos;t</h3>
               <ul className="roi-method__list">
                 <li>Savings measure <strong>capacity freed</strong> (time × labor rate), not cash already booked.</li>
                 <li>The value is realized only if that capacity is <strong>redeployed or reduced</strong>.</li>
                 <li>It&apos;s <strong>before</strong> integration, change-management and model-running effort unless you add a platform cost.</li>
               </ul>
-              <p className="roi-method__honest">
-                Treat the headline as a directional, best-case estimate for framing a business case — not a
-                committed forecast. A real number comes out of a scoped assessment on your data and processes.
-              </p>
-            </aside>
+            </div>
           </div>
+
+          <p className="roi-method__honest rv">
+            Treat the headline as a directional, best-case estimate for framing a business case — not a
+            committed forecast. A real number comes out of a scoped assessment on your data and processes.
+          </p>
         </div>
       </section>
 
