@@ -6,6 +6,11 @@ import { useEffect, useRef } from 'react';
  * thesis, drawn on a canvas. Ported from the "Article Thumbnails" Claude Design
  * project (seven `draw*` methods), one figure per paper, mapped by slug.
  *
+ * Kept deliberately spare, in the spirit of the RAILS `graph` figure: each is a
+ * single clean schematic + one animated element + one shared top-left caption.
+ * The source project's legends, live counters, grade boxes and per-element label
+ * stacks are dropped — that annotation density is what read as "too complex."
+ *
  * Site conventions (same as ResearchHeroViz):
  *  - Colours route through theme tokens (`--ink`, `--bg-panel`) and the canvas
  *    background is left transparent, so the figures flip with light/dark. The
@@ -43,16 +48,24 @@ const dots = (ctx, w, h, inkA) => {
   for (let x = 12; x < w; x += 22) for (let y = 12; y < h; y += 22) ctx.fillRect(x, y, 1, 1);
 };
 
+// One small top-left caption, in the RAILS style — the single label the whole
+// set shares so each figure reads as one calm schematic, not an instrument panel.
+const caption = (ctx, w, h, text, inkA) => {
+  mono(ctx, 9);
+  ctx.fillStyle = inkA(0.35);
+  ctx.fillText(text, w * 0.07, h * 0.10);
+};
+
 /* ---- the seven figures (H = { inkA, sigA, panel }) --------------------- */
 
-// 01 — counterfactual sparklines with drifting crosshair
+// 01 — observed vs counterfactual, with the measured gap and a drifting readout
 function roi(ctx, w, h, t, { inkA, sigA }) {
-  const y0 = h * 0.78, x0 = w * 0.10, x1 = w * 0.92;
+  const y0 = h * 0.82, x0 = w * 0.10, x1 = w * 0.90;
   ctx.lineWidth = 1;
   ctx.strokeStyle = inkA(0.10);
   ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y0); ctx.stroke();
-  const cf = (u) => y0 - h * 0.10 - h * 0.035 * Math.sin(u * 4 + 1);
-  const ac = (u) => y0 - h * 0.10 - u * h * 0.34 - h * 0.04 * Math.sin(u * 7 + 2) - h * 0.025 * Math.sin(u * 13);
+  const cf = (u) => y0 - h * 0.12 - h * 0.035 * Math.sin(u * 4 + 1);
+  const ac = (u) => y0 - h * 0.12 - u * h * 0.34 - h * 0.04 * Math.sin(u * 7 + 2) - h * 0.025 * Math.sin(u * 13);
   ctx.beginPath();
   for (let i = 0; i <= 60; i++) { const u = i / 60, X = x0 + u * (x1 - x0); i ? ctx.lineTo(X, ac(u)) : ctx.moveTo(X, ac(u)); }
   for (let i = 60; i >= 0; i--) { const u = i / 60; ctx.lineTo(x0 + u * (x1 - x0), cf(u)); }
@@ -67,7 +80,7 @@ function roi(ctx, w, h, t, { inkA, sigA }) {
   ctx.stroke();
   const p = (t * 0.07) % 1, px = x0 + p * (x1 - x0);
   ctx.strokeStyle = inkA(0.14);
-  ctx.beginPath(); ctx.moveTo(px, h * 0.14); ctx.lineTo(px, y0 + 5); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(px, h * 0.16); ctx.lineTo(px, y0 + 5); ctx.stroke();
   ctx.fillStyle = sigA(0.9);
   ctx.beginPath(); ctx.arc(px, ac(p), 2.4, 0, 7); ctx.fill();
   ctx.strokeStyle = sigA(0.35);
@@ -78,39 +91,19 @@ function roi(ctx, w, h, t, { inkA, sigA }) {
   mono(ctx, 9);
   ctx.fillStyle = sigA(0.9);
   ctx.fillText('Δ +' + d.toFixed(1) + '%', Math.min(px + 9, w - 58), ac(p) - 9);
-  const gi = p > 0.66 ? 0 : p > 0.33 ? 1 : 2;
-  ['A', 'B', 'C'].forEach((gr, i) => {
-    const gx = x0 + i * 26, gy = h * 0.12;
-    const on = i === gi;
-    if (on) { ctx.fillStyle = sigA(0.10); ctx.fillRect(gx, gy, 18, 14); }
-    ctx.strokeStyle = on ? sigA(0.8) : inkA(0.15);
-    ctx.strokeRect(gx + 0.5, gy + 0.5, 18, 14);
-    ctx.fillStyle = on ? sigA(0.95) : inkA(0.35);
-    ctx.fillText(gr, gx + 6, gy + 10.5);
-  });
-  ctx.fillStyle = inkA(0.35);
-  ctx.fillText('EVIDENCE GRADE', x0 + 86, h * 0.12 + 10.5);
-  const ly = h * 0.90;
-  ctx.strokeStyle = sigA(0.9);
-  ctx.beginPath(); ctx.moveTo(x0, ly); ctx.lineTo(x0 + 14, ly); ctx.stroke();
-  ctx.fillStyle = inkA(0.35); ctx.fillText('OBSERVED', x0 + 20, ly + 3);
-  ctx.setLineDash([3, 4]); ctx.strokeStyle = inkA(0.30);
-  ctx.beginPath(); ctx.moveTo(x0 + 92, ly); ctx.lineTo(x0 + 106, ly); ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.fillText('COUNTERFACTUAL', x0 + 112, ly + 3);
+  caption(ctx, w, h, 'COUNTERFACTUAL LIFT', inkA);
 }
 
-// 02 — closed adaptation loop
+// 02 — closed adaptation loop: four unlabeled stages, a comet lighting each
 function loop2(ctx, w, h, t, { inkA, sigA }) {
-  const cx = w * 0.5, cy = h * 0.52, rx = w * 0.26, ry = h * 0.29;
+  const cx = w * 0.5, cy = h * 0.54, rx = w * 0.24, ry = h * 0.27;
   ctx.lineWidth = 1;
   ctx.strokeStyle = inkA(0.12);
   ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, 7); ctx.stroke();
   const ang = t * 0.6;
-  const nodes = [['OBSERVE', -Math.PI / 2], ['VALIDATE', 0], ['REFINE', Math.PI / 2], ['DEPLOY', Math.PI]];
-  mono(ctx, 9);
-  nodes.forEach((n) => {
-    const a = n[1], x = cx + Math.cos(a) * rx, y = cy + Math.sin(a) * ry;
+  const angles = [-Math.PI / 2, 0, Math.PI / 2, Math.PI];
+  angles.forEach((a) => {
+    const x = cx + Math.cos(a) * rx, y = cy + Math.sin(a) * ry;
     let d = Math.abs(((ang - a) % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
     d = Math.min(d, Math.PI * 2 - d);
     const on = d < 0.5;
@@ -120,12 +113,6 @@ function loop2(ctx, w, h, t, { inkA, sigA }) {
     }
     ctx.fillStyle = on ? sigA(0.95) : inkA(0.5);
     ctx.fillRect(x - 3, y - 3, 6, 6);
-    ctx.fillStyle = on ? sigA(0.8) : inkA(0.38);
-    const tw = ctx.measureText(n[0]).width;
-    const co = Math.cos(a);
-    if (co > 0.5) ctx.fillText(n[0], x + 12, y + 3);
-    else if (co < -0.5) ctx.fillText(n[0], x - 12 - tw, y + 3);
-    else ctx.fillText(n[0], x - tw / 2, cy + Math.sin(a) * (ry + 18) + 3);
   });
   for (let k = 0; k < 12; k++) {
     const a = ang - k * 0.05;
@@ -133,16 +120,12 @@ function loop2(ctx, w, h, t, { inkA, sigA }) {
     ctx.fillStyle = sigA(0.9 * (1 - k / 12));
     ctx.beginPath(); ctx.arc(x, y, k ? 1.1 : 2.4, 0, 7); ctx.fill();
   }
-  ctx.strokeStyle = inkA(0.18);
-  ctx.beginPath(); ctx.moveTo(cx - 6, cy); ctx.lineTo(cx + 6, cy); ctx.moveTo(cx, cy - 6); ctx.lineTo(cx, cy + 6); ctx.stroke();
-  ctx.fillStyle = inkA(0.35);
-  const cyc = 'CYCLE ' + String(Math.floor(ang / (Math.PI * 2)) + 41).padStart(4, '0');
-  ctx.fillText(cyc, cx - ctx.measureText(cyc).width / 2, cy + 22);
+  caption(ctx, w, h, 'CLOSED ADAPTATION LOOP', inkA);
 }
 
-// 03 — verification harness around the model
+// 03 — verification harness: model → three gates → grounded out, some abstain
 function harness(ctx, w, h, t, { inkA, sigA }) {
-  const y = h * 0.44;
+  const y = h * 0.50;
   const bx = w * 0.08, bw = w * 0.15, bh = h * 0.28, by = y - bh / 2;
   ctx.lineWidth = 1;
   ctx.strokeStyle = inkA(0.25);
@@ -155,48 +138,40 @@ function harness(ctx, w, h, t, { inkA, sigA }) {
     i ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y);
   }
   ctx.stroke();
-  mono(ctx, 9);
-  ctx.fillStyle = inkA(0.35);
-  ctx.fillText('MODEL', bx + bw / 2 - ctx.measureText('MODEL').width / 2, by + bh + 14);
   const xEnd = w * 0.92;
   ctx.strokeStyle = inkA(0.08);
   ctx.beginPath(); ctx.moveTo(bx + bw, y); ctx.lineTo(xEnd, y); ctx.stroke();
-  const gates = [['GROUND', w * 0.42], ['VERIFY', w * 0.58], ['CALIBRATE', w * 0.74]];
+  const gates = [w * 0.42, w * 0.58, w * 0.74];
   const gh = h * 0.15;
-  gates.forEach((gt) => {
-    const gx = gt[1];
+  gates.forEach((gx) => {
     ctx.strokeStyle = inkA(0.22);
     ctx.beginPath(); ctx.moveTo(gx, y - gh); ctx.lineTo(gx, y + gh); ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(gx - 4, y - gh); ctx.lineTo(gx + 4, y - gh);
     ctx.moveTo(gx - 4, y + gh); ctx.lineTo(gx + 4, y + gh);
     ctx.stroke();
-    ctx.fillStyle = inkA(0.35);
-    ctx.fillText(gt[0], gx - ctx.measureText(gt[0]).width / 2, y + gh + 14);
   });
-  const binX = w * 0.80, binY = h * 0.72;
+  const binX = w * 0.80, binY = h * 0.74;
   ctx.setLineDash([3, 3]);
   ctx.strokeStyle = inkA(0.20);
   ctx.strokeRect(binX + 0.5, binY + 0.5, w * 0.12, h * 0.14);
   ctx.setLineDash([]);
-  ctx.fillStyle = inkA(0.35);
-  ctx.fillText('ABSTAIN', binX + w * 0.06 - ctx.measureText('ABSTAIN').width / 2, binY - 6);
   for (let k = 0; k < 3; k++) {
     const tt = t * 0.28 - k * 0.34;
     if (tt < 0) continue;
     const id = Math.floor(tt), p = tt - id;
     const abst = hs(id * 3 + 1) > 0.7;
     let px = bx + bw + p * (xEnd - bx - bw), py = y, hollow = false;
-    if (abst && px > gates[2][1]) {
-      const q = Math.min(1, (px - gates[2][1]) / (xEnd - gates[2][1]));
-      px = gates[2][1] + q * (binX + w * 0.06 - gates[2][1]);
+    if (abst && px > gates[2]) {
+      const q = Math.min(1, (px - gates[2]) / (xEnd - gates[2]));
+      px = gates[2] + q * (binX + w * 0.06 - gates[2]);
       py = y + q * q * (binY + h * 0.07 - y);
       hollow = true;
     }
-    gates.forEach((gt) => {
-      if (Math.abs(bx + bw + p * (xEnd - bx - bw) - gt[1]) < 5) {
+    gates.forEach((gx) => {
+      if (Math.abs(bx + bw + p * (xEnd - bx - bw) - gx) < 5) {
         ctx.strokeStyle = sigA(0.8);
-        ctx.beginPath(); ctx.moveTo(gt[1], y - gh); ctx.lineTo(gt[1], y + gh); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(gx, y - gh); ctx.lineTo(gx, y + gh); ctx.stroke();
       }
     });
     if (hollow) {
@@ -209,89 +184,59 @@ function harness(ctx, w, h, t, { inkA, sigA }) {
   }
   ctx.fillStyle = inkA(0.5);
   ctx.fillRect(xEnd - 3, y - 3, 6, 6);
-  ctx.fillStyle = inkA(0.35);
-  ctx.fillText('GROUNDED OUT', xEnd - ctx.measureText('GROUNDED OUT').width, y - 12);
+  caption(ctx, w, h, 'LAYERED OVERSIGHT', inkA);
 }
 
-// 04 — runtime policy sweep over telemetry lanes
+// 04 — a policy line sweeping telemetry lanes, checking each event it passes
 function gov(ctx, w, h, t, { inkA, sigA }) {
-  const lanes = ['AGENT.CALLS', 'TOOL.IO', 'DATA.ACCESS', 'DECISIONS'];
-  const x0 = w * 0.26, x1 = w * 0.94;
+  const x0 = w * 0.10, x1 = w * 0.92;
   ctx.lineWidth = 1;
-  mono(ctx, 9);
   const p = (t * 0.055) % 1, px = x0 + p * (x1 - x0);
-  let passed = 0;
-  lanes.forEach((lb, i) => {
-    const y = h * (0.20 + i * 0.17);
-    ctx.fillStyle = inkA(0.38);
-    ctx.fillText(lb, w * 0.05, y + 3);
+  for (let i = 0; i < 4; i++) {
+    const y = h * (0.30 + i * 0.15);
     ctx.strokeStyle = inkA(0.07);
     ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
-    for (let j = 0; j < 6; j++) {
+    for (let j = 0; j < 4; j++) {
       const u = hs(i * 17.3 + j * 3.1);
       const ex = x0 + u * (x1 - x0);
       ctx.strokeStyle = inkA(0.35);
       ctx.beginPath(); ctx.moveTo(ex, y - 3); ctx.lineTo(ex, y + 3); ctx.stroke();
       if (ex < px) {
-        passed++;
         ctx.strokeStyle = sigA(0.7);
         ctx.strokeRect(ex - 3.5, y - 3.5, 7, 7);
       }
     }
-  });
-  ctx.strokeStyle = sigA(0.55);
-  ctx.beginPath(); ctx.moveTo(px, h * 0.10); ctx.lineTo(px, h * 0.80); ctx.stroke();
-  ctx.fillStyle = sigA(0.9);
-  ctx.beginPath(); ctx.moveTo(px - 4, h * 0.10); ctx.lineTo(px + 4, h * 0.10); ctx.lineTo(px, h * 0.10 + 5); ctx.closePath(); ctx.fill();
-  ctx.fillStyle = sigA(0.8);
-  ctx.fillText('POLICY', Math.min(px + 7, w - 48), h * 0.10 + 8);
-  const ay = h * 0.90;
-  ctx.fillStyle = inkA(0.35);
-  ctx.fillText('EVIDENCE', w * 0.05, ay + 3);
-  for (let i = 0; i < passed; i++) {
-    ctx.fillStyle = sigA(0.8);
-    ctx.fillRect(x0 + i * 9, ay - 1, 3, 3);
   }
+  ctx.strokeStyle = sigA(0.55);
+  ctx.beginPath(); ctx.moveTo(px, h * 0.18); ctx.lineTo(px, h * 0.84); ctx.stroke();
+  ctx.fillStyle = sigA(0.9);
+  ctx.beginPath(); ctx.moveTo(px - 4, h * 0.18); ctx.lineTo(px + 4, h * 0.18); ctx.lineTo(px, h * 0.18 + 5); ctx.closePath(); ctx.fill();
+  caption(ctx, w, h, 'RUNTIME POLICY', inkA);
 }
 
-// 05 — cost-tiered router with frozen eval gate + retrain loop
+// 05 — cost-tiered router: input fans to three tiers, through a frozen gate
 function classifier(ctx, w, h, t, { inkA, sigA }) {
-  const yc = h * 0.48, xIn = w * 0.05, xSplit = w * 0.30, xMerge = w * 0.44, gateX = w * 0.78;
-  const tierY = [h * 0.24, h * 0.48, h * 0.72];
-  const tierLb = ['T0 · RULES', 'T1 · SMALL', 'T2 · FRONTIER'];
+  const yc = h * 0.50, xIn = w * 0.06, xSplit = w * 0.30, xMerge = w * 0.44, gateX = w * 0.72, xEnd = w * 0.92;
+  const tierY = [h * 0.26, h * 0.50, h * 0.74];
   ctx.lineWidth = 1;
-  mono(ctx, 9);
   ctx.strokeStyle = inkA(0.08);
   ctx.beginPath(); ctx.moveTo(xIn, yc); ctx.lineTo(xSplit, yc); ctx.stroke();
-  tierY.forEach((y, i) => {
+  tierY.forEach((y) => {
     ctx.strokeStyle = inkA(0.08);
     ctx.beginPath();
     ctx.moveTo(xSplit, yc);
     ctx.bezierCurveTo(xSplit + 22, yc, xMerge - 22, y, xMerge, y);
-    ctx.lineTo(gateX, y);
+    ctx.lineTo(xEnd, y);
     ctx.stroke();
-    ctx.fillStyle = inkA(0.35);
-    ctx.fillText(tierLb[i], xMerge + 4, y - 7);
+    ctx.fillStyle = inkA(0.5);
+    ctx.fillRect(xEnd - 3, y - 3, 6, 6);
   });
   ctx.setLineDash([3, 4]);
   ctx.strokeStyle = inkA(0.28);
-  ctx.beginPath(); ctx.moveTo(gateX, h * 0.10); ctx.lineTo(gateX, h * 0.84); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(gateX, h * 0.16); ctx.lineTo(gateX, h * 0.84); ctx.stroke();
   ctx.setLineDash([]);
-  ctx.fillStyle = inkA(0.42);
-  ctx.fillText('FROZEN EVAL', gateX - ctx.measureText('FROZEN EVAL').width / 2, h * 0.10 - 4);
-  const n = 12408 + Math.floor(t * 2.4);
-  const cols = 4;
-  const shown = 12 + Math.floor(t * 0.4) % 8;
-  for (let i = 0; i < shown; i++) {
-    ctx.fillStyle = sigA(0.65);
-    ctx.fillRect(w * 0.86 + (i % cols) * 8, h * 0.60 - Math.floor(i / cols) * 8, 3, 3);
-  }
-  ctx.fillStyle = inkA(0.35);
-  ctx.fillText('CORPUS', w * 0.86, h * 0.70);
-  ctx.fillStyle = sigA(0.8);
-  ctx.fillText('N=' + n.toLocaleString(), w * 0.86, h * 0.70 + 13);
-  for (let k = 0; k < 4; k++) {
-    const tt = t * 0.30 - k * 0.26;
+  for (let k = 0; k < 3; k++) {
+    const tt = t * 0.30 - k * 0.30;
     if (tt < 0) continue;
     const id = Math.floor(tt), p = tt - id;
     const tier = Math.floor(hs(id * 7 + 2) * 3);
@@ -301,24 +246,15 @@ function classifier(ctx, w, h, t, { inkA, sigA }) {
       const q = (p - 0.35) / 0.2;
       px = xSplit + q * (xMerge - xSplit);
       py = yc + (tierY[tier] - yc) * (q * q * (3 - 2 * q));
-    } else { const q = (p - 0.55) / 0.45; px = xMerge + q * (gateX + 14 - xMerge); py = tierY[tier]; }
+    } else { const q = (p - 0.55) / 0.45; px = xMerge + q * (xEnd - xMerge); py = tierY[tier]; }
     if (Math.abs(px - gateX) < 5) {
       ctx.strokeStyle = sigA(0.8);
-      ctx.beginPath(); ctx.moveTo(gateX, h * 0.10); ctx.lineTo(gateX, h * 0.84); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(gateX, h * 0.16); ctx.lineTo(gateX, h * 0.84); ctx.stroke();
     }
     ctx.fillStyle = tier === 2 ? sigA(0.95) : inkA(0.6);
     ctx.fillRect(px - 3, py - 4, 6, 8);
   }
-  const ry = h * 0.90;
-  ctx.setLineDash([3, 4]);
-  ctx.strokeStyle = inkA(0.18);
-  ctx.beginPath(); ctx.moveTo(w * 0.88, ry); ctx.lineTo(xIn + 8, ry); ctx.stroke();
-  ctx.setLineDash([]);
-  const rp = (t * 0.1) % 1;
-  ctx.fillStyle = sigA(0.85);
-  ctx.beginPath(); ctx.arc(w * 0.88 - rp * (w * 0.88 - xIn - 8), ry, 2, 0, 7); ctx.fill();
-  ctx.fillStyle = inkA(0.30);
-  ctx.fillText('AUTONOMOUS RETRAIN', w * 0.36, ry - 6);
+  caption(ctx, w, h, 'COST-TIERED ROUTING', inkA);
 }
 
 // 06 — deterministic state machine, one bounded stochastic node
@@ -396,17 +332,13 @@ function mneme(ctx, w, h, t, { inkA, sigA }) {
   const cands = [[[0.60, 0.80], 4], [[0.88, 0.70], 7], [[0.42, 0.10], 1]];
   const cand = cands[cyc % 3];
   const P = [cand[0][0] * w, cand[0][1] * h], par = pts[cand[1]];
-  mono(ctx, 9);
-  let stage;
   if (ph < 0.35) {
-    stage = 'PROPOSED';
     ctx.setLineDash([3, 3]);
     ctx.strokeStyle = sigA(0.55);
     ctx.beginPath(); ctx.moveTo(par[0], par[1]); ctx.lineTo(P[0], P[1]); ctx.stroke();
     ctx.beginPath(); ctx.arc(P[0], P[1], 5, 0, 7); ctx.stroke();
     ctx.setLineDash([]);
   } else if (ph < 0.62) {
-    stage = 'VALIDATING';
     ctx.setLineDash([3, 3]);
     ctx.strokeStyle = sigA(0.55);
     ctx.beginPath(); ctx.moveTo(par[0], par[1]); ctx.lineTo(P[0], P[1]); ctx.stroke();
@@ -416,16 +348,12 @@ function mneme(ctx, w, h, t, { inkA, sigA }) {
     ctx.beginPath(); ctx.arc(P[0], P[1], 6 + q * 26, 0, 7); ctx.stroke();
     ctx.setLineDash([]);
   } else {
-    stage = 'COMMITTED';
     ctx.strokeStyle = sigA(0.6);
     ctx.beginPath(); ctx.moveTo(par[0], par[1]); ctx.lineTo(P[0], P[1]); ctx.stroke();
     ctx.fillStyle = sigA(0.95);
     ctx.beginPath(); ctx.arc(P[0], P[1], 3, 0, 7); ctx.fill();
-    ctx.fillStyle = sigA(0.7);
-    ctx.fillText('prov:agent-0' + (cyc % 3 + 5), P[0] + 9, P[1] + 3);
   }
-  ctx.fillStyle = inkA(0.35);
-  ctx.fillText('WRITE 0' + String(cyc + 12) + ' · ' + stage, w * 0.05, h * 0.92);
+  caption(ctx, w, h, 'GOVERNED MEMORY', inkA);
 }
 
 const DRAW = { roi, loop2, harness, gov, classifier, graph, mneme };
