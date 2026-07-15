@@ -56,10 +56,10 @@ export default function AiAgentsPage() {
             </p>
           </div>
 
-          {/* Catalog matrix: a grid of agent cells; each cycle a handful light
-               up in sequence and interconnect into a stack — amber lands when
-               the constellation completes and a pulse travels the chain.
-               Reduced motion → resolved pose. */}
+          {/* Sector radar: three calibration rings hold the catalog's three
+               sectors; a sweep line rotates and each agent blip flares amber
+               the instant it's detected, then fades. Reduced motion → sweep
+               parked mid-scan. */}
           <AgentsHeroViz className="ahero__viz" />
         </div>
       </section>

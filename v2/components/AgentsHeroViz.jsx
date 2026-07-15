@@ -2,77 +2,38 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * AI-agents catalog hero visual — the catalog as a matrix. A grid of agent
- * cells (each with a faint card tick, like the catalog cards below); every
- * cycle a handful of spread-out cells light up in sequence and interconnect
- * with hairline links — a stack being composed from the shelf. When the last
- * link lands the constellation takes the amber accent and a single pulse
- * travels the chain: the picked agents working together. Then it releases,
- * and a different set lights up.
+ * AI-agents catalog hero visual — a sector radar. Three calibration rings hold
+ * the catalog's three sectors (Logistics · Banking · Insurance); a sweep line
+ * rotates and, as it passes each agent blip, the blip flares to life. The
+ * radar reads the catalog: 140 agents across 3 sectors, continuously scanned.
  *
- * Site conventions (same as the other hero canvases):
+ * Ported from the "Hero Illustrations" Claude Design doc (panel 1D, "Sector
+ * radar — industries on calibration rings"), re-fitted to the site conventions:
  *  - Colours from theme tokens (repaints on `themechange`) — dark + light-paper.
- *  - The matrix and links are neutral schematic ink; amber is reserved for the
- *    resolution (the completed constellation + its travelling pulse).
- *  - `prefers-reduced-motion` → resolved pose (first constellation, connected).
- *  - Selections are seeded per cycle (deterministic).
+ *  - The rings, ticks, spokes, sweep and base blips are neutral schematic ink;
+ *    amber is reserved for the resolution — the flare a blip takes the instant
+ *    the sweep detects it, then fades. So amber lands sparingly, one or two
+ *    detections at a time.
+ *  - `prefers-reduced-motion` → resolved pose (sweep parked mid-scan with a
+ *    couple of detections lit).
  *
- * Design space is a fixed 640×640, scaled uniformly into the square slot.
+ * Design space is a fixed 480×480 (matching the source doc's canvas), scaled
+ * uniformly into the square slot.
  */
-const SIZE = 640;
+const SIZE = 480;
 const PI2 = Math.PI * 2;
+const RAD = Math.PI / 180;
 
-const COLS = 10, ROWS = 10, CELL = 34, GAP = 12;
-const GRID = COLS * CELL + (COLS - 1) * GAP; // 448
-const OX = (SIZE - GRID) / 2, OY = (SIZE - GRID) / 2;
+const CX = 240, CY = 250;
+const RINGS = [70, 115, 160];
+const N_BLIPS = 27;
+const SECTORS = [[-30, 'LOGISTICS'], [90, 'BANKING'], [210, 'INSURANCE']];
 
-const K = 6; // agents per constellation
-const STEP = 0.55; // seconds per cell lighting
-const AMBER_IN = 0.4; // the resolution wash
-const HOLD = 3.6;
-const FADE = 0.7;
-const BUILD = K * STEP;
-const CYCLE = BUILD + AMBER_IN + HOLD + FADE;
-
-function mulberry32(seed) {
-  let a = seed >>> 0;
-  return () => {
-    a |= 0; a = (a + 0x6D2B79F5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-// pick K spread-out cells for a cycle, then order them greedy-nearest so the
-// chain reads as a path instead of criss-crossing the grid
-function constellation(cycleIdx) {
-  const rnd = mulberry32(0xCA7A ^ (cycleIdx * 0x9E3779B9));
-  const picks = [];
-  let guard = 0;
-  while (picks.length < K && guard++ < 400) {
-    const c = Math.floor(rnd() * COLS), r = Math.floor(rnd() * ROWS);
-    if (picks.some((p) => Math.max(Math.abs(p.c - c), Math.abs(p.r - r)) < 2)) continue;
-    picks.push({ c, r });
-  }
-  const ordered = [picks[0]];
-  const rest = picks.slice(1);
-  while (rest.length) {
-    const last = ordered[ordered.length - 1];
-    let bi = 0, bd = Infinity;
-    rest.forEach((p, i) => {
-      const d = (p.c - last.c) ** 2 + (p.r - last.r) ** 2;
-      if (d < bd) { bd = d; bi = i; }
-    });
-    ordered.push(rest.splice(bi, 1)[0]);
-  }
-  return ordered;
-}
-
-const center = (p) => [
-  OX + p.c * (CELL + GAP) + CELL / 2,
-  OY + p.r * (CELL + GAP) + CELL / 2,
-];
+// deterministic hash → [0,1) (same generator as the source doc)
+const hash = (i) => {
+  const x = Math.sin(i * 127.1 + 311.7) * 43758.5453;
+  return x - Math.floor(x);
+};
 
 export default function AgentsHeroViz({ className = '' }) {
   const canvasRef = useRef(null);
@@ -86,18 +47,16 @@ export default function AgentsHeroViz({ className = '' }) {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ---- theme palette (re-read on themechange) ----------------------------
-    const P = { ink: '255, 255, 255', amber: '252, 184, 19', bg: '#0A0B0D' };
+    const P = { ink: '255, 255, 255', amber: '252, 184, 19' };
     const readPalette = () => {
       const cs = getComputedStyle(document.documentElement);
       const get = (name, fallback) => cs.getPropertyValue(name).trim() || fallback;
       P.ink = get('--ink', P.ink);
       P.amber = get('--amber-rgb', P.amber);
-      P.bg = get('--bg', P.bg);
     };
     readPalette();
     const inkA = (a) => `rgba(${P.ink}, ${a})`;
     const ambA = (a) => `rgba(${P.amber}, ${a})`;
-    const bgFill = () => (P.bg.startsWith('#') ? P.bg : `rgb(${P.bg})`);
 
     // ---- sizing / DPR / uniform scale ---------------------------------------
     const size = () => {
@@ -111,112 +70,92 @@ export default function AgentsHeroViz({ className = '' }) {
     };
     size();
 
-    // per-cell ambient shimmer phases (seeded once)
-    const shimmer = (() => {
-      const rnd = mulberry32(0x5A1AD);
-      return Array.from({ length: COLS * ROWS }, () => rnd() * PI2);
-    })();
-
-    const easeOut = (v) => 1 - Math.pow(1 - v, 3);
-
-    // ---- draw primitives ------------------------------------------------------
-    // one agent cell: bg-opaque rounded square + inner card tick
-    const cell = (c, r, lit, glow, pop = 1) => {
-      const x = OX + c * (CELL + GAP), y = OY + r * (CELL + GAP);
-      const g = (CELL * (1 - pop)) / 2; // pop-in grows from the middle
-      ctx.beginPath(); ctx.roundRect(x + g, y + g, CELL - g * 2, CELL - g * 2, 7);
-      ctx.fillStyle = bgFill(); ctx.fill(); // opaque, so links pass *between* cells
-      ctx.fillStyle = inkA(lit ? 0.09 : 0.03); ctx.fill();
-      if (lit && glow > 0) {
-        ctx.save();
-        ctx.shadowColor = ambA(0.4 * glow);
-        ctx.shadowBlur = 14;
-        ctx.strokeStyle = ambA(0.28 + 0.32 * glow);
-        ctx.lineWidth = 1.25; ctx.stroke();
-        ctx.restore();
-      } else {
-        ctx.strokeStyle = inkA(lit ? 0.3 : 0.09); ctx.lineWidth = 1; ctx.stroke();
-      }
-      // the card tick: header dot + short bar, like the catalog cards
-      if (pop > 0.6) {
-        const a = lit ? (glow > 0 ? ambA(0.55 + 0.45 * glow) : inkA(0.5)) : inkA(0.12);
-        ctx.fillStyle = a;
-        ctx.beginPath(); ctx.arc(x + 9, y + 10, 1.6, 0, PI2); ctx.fill();
-        ctx.fillStyle = lit ? inkA(0.3) : inkA(0.08);
-        ctx.beginPath(); ctx.roundRect(x + 7, y + 18, CELL - 14, 3, 1.5); ctx.fill();
-        ctx.beginPath(); ctx.roundRect(x + 7, y + 25, (CELL - 14) * 0.6, 3, 1.5); ctx.fill();
-      }
+    const mono = (px) => {
+      ctx.font = `${px}px "Geist Mono Variable", ui-monospace, Menlo, monospace`;
+      try { ctx.letterSpacing = '0.08em'; } catch (e) { /* older browsers */ }
     };
 
-    // dashed link between two cell centers, drawing in with `ease`
-    const link = (a, b, ease, style) => {
-      const tip = [a[0] + (b[0] - a[0]) * ease, a[1] + (b[1] - a[1]) * ease];
-      ctx.save();
-      ctx.setLineDash([4, 5]);
-      ctx.strokeStyle = style; ctx.lineWidth = 1.3;
-      ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(tip[0], tip[1]); ctx.stroke();
-      ctx.restore();
-      return tip;
-    };
-
-    // ---- the scene -------------------------------------------------------------
-    const draw = (t, fade, cycleIdx, now) => {
+    // ---- the scene ----------------------------------------------------------
+    const draw = (t) => {
       ctx.clearRect(0, 0, SIZE, SIZE);
-      ctx.globalAlpha = fade;
+      ctx.lineWidth = 1;
 
-      const picks = constellation(cycleIdx);
-      const centers = picks.map(center);
-      const litCount = Math.min(Math.floor(t / STEP) + (t > 0 ? 1 : 0), K);
-      const resolved = t >= BUILD;
-      const glow = resolved ? easeOut(Math.min((t - BUILD) / AMBER_IN, 1)) : 0;
+      // faint instrument grid, so the ground reads as a calibrated field
+      ctx.fillStyle = inkA(0.025);
+      for (let x = 20; x < SIZE; x += 24)
+        for (let y = 20; y < SIZE; y += 24) ctx.fillRect(x, y, 1, 1);
 
-      // links first (they run between the opaque cells)
-      for (let i = 1; i < K; i++) {
-        const start = i * STEP - STEP, end = i * STEP;
-        if (t < start) break;
-        const ease = easeOut(Math.min((t - start) / (end - start), 1));
-        link(centers[i - 1], centers[i], ease,
-          glow > 0 ? ambA(0.2 + 0.25 * glow) : inkA(0.28));
+      // concentric calibration rings (dashed)
+      ctx.setLineDash([2, 6]); ctx.strokeStyle = inkA(0.10);
+      RINGS.forEach((r) => { ctx.beginPath(); ctx.arc(CX, CY, r, 0, PI2); ctx.stroke(); });
+      ctx.setLineDash([]);
+
+      // outer bezel ticks — major every 30°
+      for (let d = 0; d < 360; d += 6) {
+        const a = d * RAD, maj = d % 30 === 0, len = maj ? 8 : 4;
+        ctx.strokeStyle = inkA(maj ? 0.25 : 0.10);
+        ctx.beginPath();
+        ctx.moveTo(CX + Math.cos(a) * 195, CY + Math.sin(a) * 195);
+        ctx.lineTo(CX + Math.cos(a) * (195 - len), CY + Math.sin(a) * (195 - len));
+        ctx.stroke();
       }
 
-      // the matrix — unlit cells shimmer faintly; picked cells pop in sequence
-      const lit = new Set();
-      picks.slice(0, litCount).forEach((p) => lit.add(p.r * COLS + p.c));
-      for (let r = 0; r < ROWS; r++) {
-        for (let c = 0; c < COLS; c++) {
-          const idx = r * COLS + c;
-          if (lit.has(idx)) continue;
-          // gentle ambient breathing so the shelf feels alive, never busy
-          const amb = reduce ? 1 : 0.85 + 0.15 * Math.sin(now / 1400 + shimmer[idx]);
-          ctx.globalAlpha = fade * amb;
-          cell(c, r, false, 0);
-        }
-      }
-      ctx.globalAlpha = fade;
-      picks.slice(0, litCount).forEach((p, i) => {
-        const pop = easeOut(Math.min(Math.max((t - i * STEP) / 0.3, 0), 1));
-        cell(p.c, p.r, true, glow, pop);
+      // sector-dividing spokes
+      ctx.strokeStyle = inkA(0.07);
+      [-90, 30, 150].forEach((d) => {
+        const a = d * RAD;
+        ctx.beginPath();
+        ctx.moveTo(CX + Math.cos(a) * 40, CY + Math.sin(a) * 40);
+        ctx.lineTo(CX + Math.cos(a) * 185, CY + Math.sin(a) * 185);
+        ctx.stroke();
       });
 
-      // resolution pulse: one packet travels the whole chain while it holds
-      if (resolved && glow >= 1 && !reduce) {
-        const per = 0.9; // seconds per hop
-        const total = (K - 1) * per;
-        const pt = ((t - BUILD - AMBER_IN) % total) / per;
-        const seg = Math.min(Math.floor(pt), K - 2);
-        const f = pt - seg;
-        const a = centers[seg], b = centers[seg + 1];
-        const p = [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
-        const halo = ctx.createRadialGradient(p[0], p[1], 0, p[0], p[1], 9);
-        halo.addColorStop(0, ambA(0.3)); halo.addColorStop(1, ambA(0));
-        ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(p[0], p[1], 9, 0, PI2); ctx.fill();
-        ctx.fillStyle = ambA(0.95); ctx.beginPath(); ctx.arc(p[0], p[1], 2.4, 0, PI2); ctx.fill();
+      // sector labels
+      mono(9); ctx.textAlign = 'center'; ctx.fillStyle = inkA(0.42);
+      SECTORS.forEach(([d, lb]) => {
+        const a = d * RAD;
+        ctx.fillText(lb, CX + Math.cos(a) * 218, CY + Math.sin(a) * 218 + 3);
+      });
+
+      // the sweep — trailing wedge + leading line (neutral)
+      const sa = (t * 0.35) % PI2;
+      ctx.fillStyle = inkA(0.05);
+      ctx.beginPath(); ctx.moveTo(CX, CY); ctx.arc(CX, CY, 193, sa - 0.5, sa); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = inkA(0.55);
+      ctx.beginPath(); ctx.moveTo(CX, CY);
+      ctx.lineTo(CX + Math.cos(sa) * 193, CY + Math.sin(sa) * 193); ctx.stroke();
+
+      // agent blips — base dot in ink; amber flare as the sweep detects them
+      for (let i = 0; i < N_BLIPS; i++) {
+        const a0 = (-90 + (i % 3) * 120 + 10 + hash(i * 3) * 100) * RAD;
+        const r = RINGS[Math.floor(hash(i * 5 + 1) * 3)];
+        const x = CX + Math.cos(a0) * r, y = CY + Math.sin(a0) * r;
+        const d = ((sa - a0) % PI2 + PI2) % PI2; // angle since the sweep passed
+        const glow = Math.exp(-d * 3);
+        ctx.fillStyle = inkA(0.30);
+        ctx.beginPath(); ctx.arc(x, y, 1.8, 0, PI2); ctx.fill();
+        if (glow > 0.04) {
+          ctx.fillStyle = ambA(Math.min(0.9, glow));
+          ctx.beginPath(); ctx.arc(x, y, 2, 0, PI2); ctx.fill();
+          ctx.strokeStyle = ambA(glow * 0.5);
+          ctx.beginPath(); ctx.arc(x, y, 3 + glow * 5, 0, PI2); ctx.stroke();
+        }
       }
 
-      ctx.globalAlpha = 1;
+      // center crosshair, gently drifting
+      const ox = reduce ? 0 : Math.sin(t * 0.25) * 5;
+      const oy = reduce ? 0 : Math.cos(t * 0.2) * 5;
+      ctx.strokeStyle = inkA(0.40);
+      ctx.beginPath();
+      ctx.moveTo(CX + ox - 8, CY + oy); ctx.lineTo(CX + ox + 8, CY + oy);
+      ctx.moveTo(CX + ox, CY + oy - 8); ctx.lineTo(CX + ox, CY + oy + 8); ctx.stroke();
+
+      // footnote — a plain, checkable claim
+      ctx.textAlign = 'left'; ctx.fillStyle = inkA(0.35);
+      ctx.fillText('140 AGENTS · 3 SECTORS', 45, 460);
     };
 
-    // ---- animation loop ----------------------------------------------------------
+    // ---- animation loop -----------------------------------------------------
     let raf = 0;
     let start = 0;
     let visible = true;
@@ -225,14 +164,11 @@ export default function AgentsHeroViz({ className = '' }) {
       raf = requestAnimationFrame(frame);
       if (!visible) return;
       if (!start) start = now;
-      const el = (now - start) / 1000;
-      const cycleIdx = Math.floor(el / CYCLE);
-      const c = el % CYCLE;
-      if (c < BUILD + AMBER_IN + HOLD) draw(c, 1, cycleIdx, now);
-      else draw(BUILD + AMBER_IN + HOLD, 1 - (c - BUILD - AMBER_IN - HOLD) / FADE, cycleIdx, now);
+      draw((now - start) / 1000);
     };
 
-    const staticPose = () => draw(BUILD + AMBER_IN, 1, 0, 0);
+    // parked mid-scan, a couple of detections lit
+    const staticPose = () => draw(2.4);
 
     if (reduce) {
       staticPose();
@@ -240,7 +176,7 @@ export default function AgentsHeroViz({ className = '' }) {
       raf = requestAnimationFrame(frame);
     }
 
-    // ---- listeners -----------------------------------------------------------------
+    // ---- listeners ----------------------------------------------------------
     const onTheme = () => { readPalette(); if (reduce) staticPose(); };
     window.addEventListener('themechange', onTheme);
 
