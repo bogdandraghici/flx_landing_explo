@@ -431,7 +431,7 @@ function mneme(ctx, w, h, t, { inkA, sigA }) {
 const DRAW = { roi, loop2, harness, gov, classifier, graph, mneme };
 
 // Playback speed for the figures (1 = the source project's default pace).
-const SPEED = 0.3;
+const SPEED = 0.15;
 
 // A frame that reads as populated when motion is disabled.
 const STATIC_T = 7;
