@@ -520,7 +520,7 @@ export default function RoiCalculator() {
                 )}
               </div>
               {agents.length > 0 && (
-                <div className="roi__agent-list">
+                <div className="roi__agent-list roic__agents-flash" key={stack}>
                   {agents.map((a, i) => (
                     <label key={a.n + i} className={`roi__agent${enabled[i] ? ' is-on' : ''}`}>
                       <input type="checkbox" checked={!!enabled[i]} onChange={() => toggleAgent(i)} />

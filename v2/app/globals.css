@@ -3793,6 +3793,18 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .roi__agent-name { font-size: 13px; line-height: 1.35; color: var(--text); }
 .roi__agent-dept { font-size: 10.5px; color: var(--text-faint); letter-spacing: 0.02em; }
 
+/* When the agents list first appears (a process is picked), give it a soft
+   one-shot amber bloom so it doesn't slip past unnoticed — restrained: a quick
+   rise, a slow recede, and back to its resting border. */
+@keyframes roicAgentsFlash {
+  0%   { border-color: var(--line-soft); box-shadow: 0 0 0 0 rgba(var(--amber-rgb), 0); }
+  22%  { border-color: var(--amber-line); box-shadow: 0 0 0 3px rgba(var(--amber-rgb), 0.13), 0 8px 26px -6px rgba(var(--amber-rgb), 0.16); }
+  100% { border-color: var(--line-soft); box-shadow: 0 0 0 0 rgba(var(--amber-rgb), 0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .roic__agents-flash { animation: roicAgentsFlash 1.5s var(--ease) 1; }
+}
+
 .roi__export { width: 100%; margin-top: 16px; }
 .roi .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .roi .btn:disabled:hover { background: var(--amber); }
