@@ -106,11 +106,22 @@ export default function Nav() {
                   <a className="nav__feat" href={bp("/flowx-code")}>
                     <span className="nav__feat-kicker">The full platform, expressed as code</span>
                     <span className="nav__feat-title">FlowX Code</span>
-                    <span className="nav__feat-layers" aria-hidden="true">
-                      <span className="nav__feat-layer" />
-                      <span className="nav__feat-layer" />
-                      <span className="nav__feat-layer nav__feat-layer--amber" />
-                      <span className="nav__feat-layer" />
+                    <span className="nav__feat-term" aria-hidden="true">
+                      <span className="nav__feat-term-head">
+                        <span className="nav__feat-term-dot" />
+                        <span className="nav__feat-term-dot" />
+                        <span className="nav__feat-term-dot" />
+                      </span>
+                      <span className="nav__feat-term-body">
+                        <span className="nav__feat-term-row">
+                          <span className="nav__feat-term-caret mono">&gt;</span>
+                          <span className="nav__feat-term-bar nav__feat-term-bar--cmd" />
+                          <span className="nav__feat-term-cursor" />
+                        </span>
+                        <span className="nav__feat-term-row nav__feat-term-row--out">
+                          <span className="nav__feat-term-bar nav__feat-term-bar--out" />
+                        </span>
+                      </span>
                     </span>
                     <span className="nav__feat-cta mono">Explore FlowX Code <span className="nav__arr" aria-hidden="true">→</span></span>
                   </a>

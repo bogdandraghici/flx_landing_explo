@@ -787,39 +787,75 @@ em { font-style: normal; }
    `.nav__feat`, so these win without !important. */
 .nav__side .nav__feat { width: auto; flex: 0 0 auto; padding: 11px 12px !important; }
 .nav__side .nav__feat-title { font-size: 17px; margin-top: 3px; }
-.nav__side .nav__feat-graph,
-.nav__side .nav__feat-layers { flex: none; min-height: 0; height: 46px; margin: 10px 0 9px; }
+.nav__side .nav__feat-graph { flex: none; min-height: 0; height: 46px; margin: 10px 0 9px; }
+.nav__side .nav__feat-term { flex: none; min-height: 0; height: 52px; margin: 10px 0 9px; }
 
-/* "platform layers" motif — a stack of layer bars standing in for FlowX Code's
-   L0→L3 platform stack (its hero's diamond stack, flattened). Drawn in the same
-   line-art language as the sibling agent-flow graph: thin outlined bars (matching
-   the node stroke), with one filled amber bar as the resolved accent (matching the
-   amber node). Bars are CSS blocks so they scale horizontally with the card; the
-   stack centers in the spare space so the CTA bottom-aligns with the sibling card. */
-.nav__feat-layers {
+/* "terminal session" motif — a compact terminal window echoing FlowX Code's hero
+   (a natural-language request typed at a `>` prompt): traffic-light dots in a
+   header, a command line with an amber cursor, and an indented output line below.
+   Same thin-stroke, single-amber language as the sibling agent-flow graph — the
+   amber cursor is the one accent (matching the amber node). Bars scale
+   horizontally with the card; monochrome, no color beyond the cursor. */
+.nav__feat-term {
   flex: 1 1 auto;
-  min-height: 44px;
+  min-height: 48px;
   margin: 12px 0 11px;
   display: flex;
   flex-direction: column;
+  border: 1.5px solid rgba(var(--ink), 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(var(--ink), 0.02);
+}
+.nav__feat-term-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 14px;
+  flex: none;
+  padding: 0 8px;
+  border-bottom: 1px solid rgba(var(--ink), 0.16);
+}
+.nav__feat-term-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(var(--ink), 0.26);
+}
+.nav__feat-term-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 5px;
+  gap: 7px;
+  padding: 0 9px;
 }
-.nav__feat-layer {
-  height: 8px;
-  border-radius: 3px;
-  background: var(--bg-panel);
-  border: 1.5px solid rgba(var(--ink), 0.34);
+.nav__feat-term-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-/* stagger the widths so the stack reads as a layered hierarchy, not a bar chart */
-.nav__feat-layer:nth-child(1) { width: 100%; }
-.nav__feat-layer:nth-child(2) { width: 82%; }
-.nav__feat-layer:nth-child(3) { width: 66%; }
-.nav__feat-layer:nth-child(4) { width: 90%; }
-.nav__feat-layer--amber {
+/* indent the output under the command, past the prompt glyph */
+.nav__feat-term-row--out { padding-left: 15px; }
+.nav__feat-term-caret {
+  font-size: 10px;
+  line-height: 1;
+  color: rgba(var(--ink), 0.5);
+}
+.nav__feat-term-bar {
+  height: 5px;
+  border-radius: 2px;
+  background: rgba(var(--ink), 0.22);
+}
+.nav__feat-term-bar--cmd { width: 56%; }
+.nav__feat-term-bar--out { width: 44%; background: rgba(var(--ink), 0.15); }
+/* the live cursor — the single amber accent (the "resolved" active prompt) */
+.nav__feat-term-cursor {
+  width: 5px;
+  height: 10px;
+  border-radius: 1px;
   background: var(--amber);
-  border-color: var(--amber);
-  box-shadow: 0 0 10px rgba(var(--amber-rgb), 0.4);
+  box-shadow: 0 0 8px rgba(var(--amber-rgb), 0.45);
 }
 
 .nav__feat-cta {
@@ -2488,12 +2524,12 @@ a.seg:hover,
   }
   .nav__feat-spark { flex: none; min-height: 0; height: 72px; margin: 12px 0 10px; }
   .nav__feat-graph { flex: none; min-height: 0; height: 72px; margin: 12px 0 10px; }
-  .nav__feat-layers { flex: none; min-height: 0; height: 60px; margin: 12px 0 10px; }
+  .nav__feat-term { flex: none; min-height: 0; margin: 12px 0 10px; }
   /* drawer: the two Build cards stack in flow with a gap, natural height each */
   .nav__side { display: flex; flex-direction: column; gap: 12px; flex: none; width: auto; margin-top: 16px; }
   .nav__side .nav__feat { flex: none; margin-top: 0; }
-  .nav__side .nav__feat-graph,
-  .nav__side .nav__feat-layers { min-height: 0; height: 60px; margin: 12px 0 10px; }
+  .nav__side .nav__feat-graph { min-height: 0; height: 60px; margin: 12px 0 10px; }
+  .nav__side .nav__feat-term { min-height: 0; height: 52px; margin: 12px 0 10px; }
 
   /* no-JS: the drawer can't open, so render everything stacked in flow —
      the bar wraps and the full link tree flows below it, panels open */
