@@ -4417,9 +4417,16 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .rp__cover:hover { transform: translateY(-3px); border-color: var(--amber-line); }
 .rp__cover img { display: block; width: 100%; height: auto; }
 
-.rp-thesis { padding-block: clamp(40px, 6vh, 80px); border-block: 1px solid var(--line); background: var(--bg-panel); }
-.rp__thesis-kicker { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 18px; }
-.rp__thesis { font-family: var(--font-display); font-size: clamp(1.4rem, 2.8vw, 2.2rem); font-weight: 560; letter-spacing: -0.02em; line-height: 1.32; max-width: 30ch; }
+.rp-thesis { padding-block: clamp(56px, 8vh, 104px); border-block: 1px solid var(--line); background: var(--bg-panel); }
+.rp__thesis-kicker { display: flex; align-items: center; gap: 12px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 26px; }
+.rp__thesis-kicker::before { content: ""; width: 24px; height: 2px; border-radius: 2px; background: var(--amber); }
+.rp__thesis { font-family: var(--font-display); font-weight: 560; letter-spacing: -0.025em; line-height: 1.24; color: var(--text); }
+.rp__thesis--lg { font-size: clamp(1.9rem, 3.8vw, 3.05rem); max-width: 24ch; }
+.rp__thesis--md { font-size: clamp(1.55rem, 3vw, 2.45rem); max-width: 28ch; }
+.rp__thesis--sm { font-size: clamp(1.35rem, 2.5vw, 2rem); max-width: 33ch; }
+.rp__thesis-line { display: block; }
+.rp__thesis-line + .rp__thesis-line { margin-top: 0.32em; }
+.rp__thesis-hl { color: var(--amber-text); }
 
 .rp__body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); gap: clamp(32px, 5vw, 64px); align-items: start; }
 @media (max-width: 860px) { .rp__body { grid-template-columns: 1fr; } }

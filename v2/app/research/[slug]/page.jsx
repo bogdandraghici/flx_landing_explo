@@ -84,7 +84,18 @@ export default async function PaperPage({ params }) {
         <section className="rp-thesis">
           <div className="shell">
             <p className="rp__thesis-kicker mono rv">Core thesis</p>
-            <blockquote className="rp__thesis rv" style={{ '--i': 1 }}>{p.thesis}</blockquote>
+            <blockquote className={`rp__thesis rp__thesis--${p.thesisSize} rv`} style={{ '--i': 1 }}>
+              {p.thesisLines.map((line, i) => {
+                const at = p.thesisHl ? line.indexOf(p.thesisHl) : -1;
+                return (
+                  <span className="rp__thesis-line" key={i}>
+                    {at >= 0
+                      ? (<>{line.slice(0, at)}<span className="rp__thesis-hl">{p.thesisHl}</span>{line.slice(at + p.thesisHl.length)}</>)
+                      : line}
+                  </span>
+                );
+              })}
+            </blockquote>
           </div>
         </section>
       )}

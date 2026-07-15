@@ -243,6 +243,34 @@ const ABSTRACT_BREAKS = {
   mneme: ["We present MNEME", "Each Concept and Relation", "We describe the architecture"],
 };
 
+/* The payoff clause of each thesis (the resolving "but Y"), emphasized in
+   amber on the page. Each string must occur verbatim in that paper's thesis. */
+const THESIS_HIGHLIGHT = {
+  vera: "measurement-credibility crisis",
+  "orna-autotune": "deployable",
+  halo: "a system enforces",
+  gavel: "run where the agent runs",
+  sift: "Remove the first and tame the second",
+  rails: "deterministic even when its nodes are not",
+  mneme: "active memory",
+};
+
+/* Break a thesis into stanza lines at sentence (.) and clause (;) boundaries,
+   so a long thesis reads as distinct claims rather than one dense block. */
+function splitThesisLines(text) {
+  if (!text) return [];
+  return text.split(/(?<=[.;])\s+/).map((s) => s.trim()).filter(Boolean);
+}
+
+/* Scale the display type to the thesis length: short stays punchy-large,
+   long steps down so it doesn't balloon into a wall. */
+function thesisSizeTier(text) {
+  if (!text) return "md";
+  if (text.length > 240) return "sm";
+  if (text.length > 190) return "md";
+  return "lg";
+}
+
 function splitAbstract(text, breakBefore = []) {
   const cuts = breakBefore
     .map((s) => text.indexOf(s))
@@ -262,4 +290,7 @@ for (const p of PAPERS) {
   p.abstractParas = p.abstract
     ? splitAbstract(p.abstract, ABSTRACT_BREAKS[p.slug])
     : [];
+  p.thesisLines = splitThesisLines(p.thesis);
+  p.thesisHl = THESIS_HIGHLIGHT[p.slug] || "";
+  p.thesisSize = thesisSizeTier(p.thesis);
 }
