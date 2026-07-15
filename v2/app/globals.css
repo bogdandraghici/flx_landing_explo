@@ -4147,7 +4147,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 /* agents disclosure */
 .roic__disc { border-top: 1px solid var(--line); padding-top: 6px; }
 .roic__disc-body { padding: 8px 0 4px; display: flex; flex-direction: column; gap: 14px; }
-.roic__table-wrap { overflow-x: auto; }
+.roic__table-wrap { overflow-x: auto; margin-top: 28px; }
 
 /* footer */
 .roic__foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 24px; }

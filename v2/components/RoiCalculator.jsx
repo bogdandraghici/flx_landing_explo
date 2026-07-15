@@ -532,36 +532,6 @@ export default function RoiCalculator() {
                   ))}
                 </div>
               )}
-
-              {ready && (
-                <div className="roic__table-wrap">
-                  <table className="roi__table">
-                    <thead>
-                      <tr>
-                        <th>Agent</th>
-                        <th>Department</th>
-                        <th className="r">Time saved / process</th>
-                        <th className="r">Monthly savings</th>
-                        <th className="r">Annual savings</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {enabledAgents.map((a, i) => {
-                        const per = ((a.t * autoRate) / 60) * hourlyCost;
-                        return (
-                          <tr key={a.n + i}>
-                            <td className="roi__td-name">{a.n}</td>
-                            <td className="dim">{a.d}</td>
-                            <td className="r mono">{(a.t * autoRate).toFixed(1)} min</td>
-                            <td className="r mono">{money(monthlyExec * per)}</td>
-                            <td className="r mono roi__td-annual">{money(annualExec * per)}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              )}
             </div>
         </div>
 
@@ -673,6 +643,37 @@ export default function RoiCalculator() {
           </div>
         </div>
         </div>
+
+        {/* ---- agent breakdown table (sits at the bottom, before the CTA) ---- */}
+        {ready && (
+          <div className="roic__table-wrap">
+            <table className="roi__table">
+              <thead>
+                <tr>
+                  <th>Agent</th>
+                  <th>Department</th>
+                  <th className="r">Time saved / process</th>
+                  <th className="r">Monthly savings</th>
+                  <th className="r">Annual savings</th>
+                </tr>
+              </thead>
+              <tbody>
+                {enabledAgents.map((a, i) => {
+                  const per = ((a.t * autoRate) / 60) * hourlyCost;
+                  return (
+                    <tr key={a.n + i}>
+                      <td className="roi__td-name">{a.n}</td>
+                      <td className="dim">{a.d}</td>
+                      <td className="r mono">{(a.t * autoRate).toFixed(1)} min</td>
+                      <td className="r mono">{money(monthlyExec * per)}</td>
+                      <td className="r mono roi__td-annual">{money(annualExec * per)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         {/* ---- footer ---- */}
         <div className="roic__foot">
