@@ -195,8 +195,12 @@ function buildProjection(gross, platform) {
   const grossPath = `M${X(0).toFixed(1)},${Y(0).toFixed(1)} L${X(36).toFixed(1)},${Y(grossEnd).toFixed(1)}`;
   const yZero = Y(0);
 
+  // Break-even only exists when annual net is positive (gross > platform);
+  // otherwise the platform cost is re-charged before the curve ever reaches
+  // zero, so it never pays back. The single-payment estimate m = platform/perMo
+  // is valid only while it lands inside year 1 (m <= 12 ⟺ platform <= gross).
   let beFrac = null;
-  if (platform > 0 && perMo > 0) { const m = platform / perMo; if (m <= 36) beFrac = m; }
+  if (platform > 0 && perMo > 0) { const m = platform / perMo; if (m < 12) beFrac = m; }
 
   return {
     W, H, netLine, netArea, grossPath,
@@ -275,8 +279,10 @@ export default function RoiCalculator() {
   const timeSavedHours = (annualExec * savedMinPerExec) / 60;
   const ftesSaved = timeSavedHours / FTE_HOURS;
 
-  /* break-even month + 3-year net (platform recurring, charged yearly up front) */
-  const breakEvenMonth = platform > 0 && grossSavings > 0 ? Math.ceil((12 * platform) / grossSavings) : null;
+  /* break-even month + 3-year net (platform recurring, charged yearly up front).
+     Only defined when annual net is positive — if platform >= gross the yearly
+     charge recurs before the curve reaches zero, so it never pays back. */
+  const breakEvenMonth = platform > 0 && grossSavings > platform ? Math.ceil((12 * platform) / grossSavings) : null;
   const breaksEven = breakEvenMonth != null && breakEvenMonth <= 36;
   const net3yr = grossSavings * 3 - platform * 3;
 
