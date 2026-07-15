@@ -4430,7 +4430,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 
 .rp__body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); gap: clamp(32px, 5vw, 64px); align-items: start; }
 @media (max-width: 860px) { .rp__body { grid-template-columns: 1fr; } }
-.rp__h { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); font-weight: 500; margin-bottom: 16px; }
+.rp__h { font-family: var(--font-mono); font-weight: 400; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 16px; }
 .rp__abstract-p { font-size: 16.5px; line-height: 1.7; color: var(--text-dim); max-width: 66ch; }
 .rp__abstract-p + .rp__abstract-p { margin-top: 1.15em; }
 .rp__abstract-p--lead { font-size: 22px; line-height: 1.5; letter-spacing: -0.013em; font-weight: 500; color: var(--text); margin-bottom: 24px; }
