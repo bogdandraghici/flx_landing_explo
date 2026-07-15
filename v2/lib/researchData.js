@@ -228,3 +228,38 @@ export const PAPERS = [
     "cover": "/research/mneme-cover.png"
   }
 ];
+
+/* Abstracts are stored as one verbatim string (used for SEO metadata + JSON-LD).
+   For on-page reading we break each into paragraphs at its rhetorical seams
+   (problem → approach → mechanics → proof) so it doesn't read as a wall of text.
+   Splitting is derived from the source string, so the prose is never re-typed. */
+const ABSTRACT_BREAKS = {
+  vera: ["We present VERA", "VERA computes return", "We describe the architecture"],
+  "orna-autotune": ["We present a framework", "Our approach monitors", "We evaluate the framework"],
+  halo: ["We reframe the goal", "HALO composes six layers", "We detail each layer"],
+  gavel: ["Regulation is closing in", "We argue that AI agent governance", "GAVEL compiles organizational", "We detail the architecture"],
+  sift: ["We present SIFT", "The harder problem is safety", "We describe the architecture"],
+  rails: ["We describe RAILS", "Agent Builder defines an agent", "We present the compilation pipeline"],
+  mneme: ["We present MNEME", "Each Concept and Relation", "We describe the architecture"],
+};
+
+function splitAbstract(text, breakBefore = []) {
+  const cuts = breakBefore
+    .map((s) => text.indexOf(s))
+    .filter((i) => i > 0)
+    .sort((a, b) => a - b);
+  const paras = [];
+  let start = 0;
+  for (const i of cuts) {
+    paras.push(text.slice(start, i).trim());
+    start = i;
+  }
+  paras.push(text.slice(start).trim());
+  return paras;
+}
+
+for (const p of PAPERS) {
+  p.abstractParas = p.abstract
+    ? splitAbstract(p.abstract, ABSTRACT_BREAKS[p.slug])
+    : [];
+}

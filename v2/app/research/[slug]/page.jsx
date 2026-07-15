@@ -95,7 +95,15 @@ export default async function PaperPage({ params }) {
           <div className="rp__body">
             <div className="rp__abstract">
               <h2 className="rp__h rv">Abstract</h2>
-              <p className="rp__abstract-p rv" style={{ '--i': 1 }}>{p.abstract}</p>
+              {(p.abstractParas?.length ? p.abstractParas : [p.abstract]).map((para, i) => (
+                <p
+                  key={i}
+                  className={`rp__abstract-p rv${i === 0 ? ' rp__abstract-p--lead' : ''}`}
+                  style={{ '--i': i + 1 }}
+                >
+                  {para}
+                </p>
+              ))}
             </div>
             {p.sections?.length > 0 && (
               <aside className="rp__contents">
