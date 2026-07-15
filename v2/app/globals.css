@@ -769,51 +769,56 @@ em { font-style: normal; }
   box-shadow: 0 0 10px rgba(var(--amber-rgb), 0.4);
 }
 
-/* right rail: the two "Build" products clustered — the Agent Builder card as the
-   hero, FlowX Code as a compact companion beneath it — so the left side stays
-   three balanced columns instead of a lonely one-item "Build" column. */
+/* right rail: the two "Build" products as equal featured cards — Agent Builder
+   and FlowX Code stacked — so the left side stays three balanced columns instead
+   of a lonely one-item "Build" column, and neither product reads as subordinate. */
 .nav__side {
   display: flex;
   flex-direction: column;
+  gap: 12px;
   flex: 0 0 236px;
   width: 236px;
 }
-/* the card fills the rail's height above the companion; its viz flexes so the
-   CTA still bottom-aligns (the compound selector outranks `.nav__feat`, no !important) */
-.nav__side .nav__feat { width: auto; flex: 1 1 auto; }
-/* companion link styled as a mini card. `.nav__side .nav__feat-sub` (0,2,0)
-   outspecifies `.nav__panel a` (0,1,1), so plain props win without !important. */
-.nav__side .nav__feat-sub {
-  display: block;
-  margin-top: 12px;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--bg-panel);
-  color: var(--text);
-  transition: border-color 0.34s cubic-bezier(0.22, 0.61, 0.36, 1),
-              transform 0.34s cubic-bezier(0.22, 0.61, 0.36, 1),
-              box-shadow 0.34s cubic-bezier(0.22, 0.61, 0.36, 1);
+/* each card takes its natural height (kicker · title · viz · CTA), and the rail
+   grows to fit both — the sheet's `align-items: stretch` then stretches the left
+   columns to match, so the panel is as tall as the two stacked cards. (Forcing
+   the cards to split the left column's height instead clipped the CTA, since two
+   full cards don't fit in one column's height.) Slightly tighter viz than a lone
+   feature card so the pair stays compact. The compound selector outranks
+   `.nav__feat`, so these win without !important. */
+.nav__side .nav__feat { width: auto; flex: 0 0 auto; }
+.nav__side .nav__feat-graph,
+.nav__side .nav__feat-layers { flex: none; min-height: 0; height: 68px; margin: 14px 0 12px; }
+
+/* "platform layers" motif — a stack of layer bars standing in for FlowX Code's
+   L0→L3 platform stack (its hero's diamond stack, flattened), one amber (the
+   resolved accent, matching the other feat cards). Bars are CSS blocks so they
+   scale horizontally with the card; the stack centers in the spare space so the
+   CTA still bottom-aligns with the sibling card. */
+.nav__feat-layers {
+  flex: 1 1 auto;
+  min-height: 60px;
+  margin: 16px 0 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
 }
-.nav__side .nav__feat-sub:hover {
-  border-color: rgba(var(--amber-rgb), 0.3);
-  background: var(--bg-panel);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+.nav__feat-layer {
+  height: 9px;
+  border-radius: 4px;
+  background: rgba(var(--ink), 0.14);
+  border: 1px solid rgba(var(--ink), 0.12);
 }
-.nav__feat-sub-t {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--text);
-}
-.nav__feat-sub-d {
-  display: block;
-  margin-top: 2px;
-  font-size: 12px;
-  line-height: 1.35;
-  color: var(--text-dim);
+/* stagger the widths so the stack reads as a layered hierarchy, not a bar chart */
+.nav__feat-layer:nth-child(1) { width: 100%; }
+.nav__feat-layer:nth-child(2) { width: 82%; }
+.nav__feat-layer:nth-child(3) { width: 66%; }
+.nav__feat-layer:nth-child(4) { width: 90%; }
+.nav__feat-layer--amber {
+  background: var(--amber);
+  border-color: var(--amber);
+  box-shadow: 0 0 10px rgba(var(--amber-rgb), 0.35);
 }
 
 .nav__feat-cta {
@@ -2482,8 +2487,12 @@ a.seg:hover,
   }
   .nav__feat-spark { flex: none; min-height: 0; height: 72px; margin: 12px 0 10px; }
   .nav__feat-graph { flex: none; min-height: 0; height: 72px; margin: 12px 0 10px; }
-  .nav__side { display: block; flex: none; width: auto; margin-top: 16px; }
+  .nav__feat-layers { flex: none; min-height: 0; height: 60px; margin: 12px 0 10px; }
+  /* drawer: the two Build cards stack in flow with a gap, natural height each */
+  .nav__side { display: flex; flex-direction: column; gap: 12px; flex: none; width: auto; margin-top: 16px; }
   .nav__side .nav__feat { flex: none; margin-top: 0; }
+  .nav__side .nav__feat-graph,
+  .nav__side .nav__feat-layers { min-height: 0; height: 60px; margin: 12px 0 10px; }
 
   /* no-JS: the drawer can't open, so render everything stacked in flow —
      the bar wraps and the full link tree flows below it, panels open */

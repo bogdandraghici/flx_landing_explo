@@ -74,13 +74,17 @@ export default function Nav() {
                   </div>
                   <p className="nav__foot mono"><a href={bp("/platform")}>Platform overview <span className="nav__arr" aria-hidden="true">→</span></a></p>
                 </div>
-                {/* Right rail: the two "Build" products clustered — Agent Builder as the
-                    featured card, FlowX Code as a compact companion. Keeps the left side
-                    three balanced columns instead of a lonely one-item "Build" column.
-                    The card's motif is an agent-flow node graph (design → branch → ship)
-                    resolving to one amber node, distinct from the ROI sparkline and the
-                    agent-catalog tile grid. Nodes are CSS circles so they stay round;
-                    edges are an SVG that scales horizontally with the card. */}
+                {/* Right rail: the two "Build" products as equal featured cards —
+                    Agent Builder and FlowX Code stacked, splitting the rail height so
+                    neither reads as subordinate. Keeps the left side three balanced
+                    columns instead of a lonely one-item "Build" column. Each card carries
+                    its own motif, resolving to one amber accent:
+                      · Agent Builder — an agent-flow node graph (design → branch → ship).
+                      · FlowX Code — a platform-layer stack (echoing its L0→L3 hero),
+                        the full platform expressed as code.
+                    Both motifs are built from CSS shapes (+ an SVG for the graph's edges)
+                    so they scale horizontally with the card, distinct from the ROI
+                    sparkline and the agent-catalog tile grid. */}
                 <div className="nav__side">
                   <a className="nav__feat" href={bp("/agent-builder")}>
                     <span className="nav__feat-kicker">Design, evaluate, and ship AI agents</span>
@@ -99,9 +103,16 @@ export default function Nav() {
                     </span>
                     <span className="nav__feat-cta mono">Open Agent Builder <span className="nav__arr" aria-hidden="true">→</span></span>
                   </a>
-                  <a className="nav__feat-sub" href={bp("/flowx-code")}>
-                    <span className="nav__feat-sub-t">FlowX Code</span>
-                    <span className="nav__feat-sub-d">The full platform, expressed as code</span>
+                  <a className="nav__feat" href={bp("/flowx-code")}>
+                    <span className="nav__feat-kicker">The full platform, expressed as code</span>
+                    <span className="nav__feat-title">FlowX Code</span>
+                    <span className="nav__feat-layers" aria-hidden="true">
+                      <span className="nav__feat-layer" />
+                      <span className="nav__feat-layer" />
+                      <span className="nav__feat-layer nav__feat-layer--amber" />
+                      <span className="nav__feat-layer" />
+                    </span>
+                    <span className="nav__feat-cta mono">Explore FlowX Code <span className="nav__arr" aria-hidden="true">→</span></span>
                   </a>
                 </div>
               </div>
