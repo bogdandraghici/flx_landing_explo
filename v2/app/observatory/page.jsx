@@ -152,15 +152,23 @@ export default function Observatory() {
           </div>
         </section>
 
-        {/* ================= THESIS ================= */}
-        <section className="abd-thesis">
+        {/* ================= THESIS ================= *//* editorial split, staggered claim (matches the ROI hub thesis): dim
+           subject → big payoff (amber "second" = the speed that breaks static
+           policy), evidence + GAVEL tag set off by a hairline on the right */}
+        <section className="abd-thesis abd-thesis--split" style={{ '--payoff-measure': '20ch' }}>
           <div className="shell">
-            <blockquote className="rv">A policy that lives in a document cannot govern an agent that chains a dozen tool calls in a <span className="amber">second</span>.</blockquote>
-            <p className="rv" style={{ '--i': 1 }}>The dominant failure mode in production isn't hallucination — it's privilege excess: an agent
-              doing something it was technically able to but never should have, faster than any review cycle can
-              follow. Governance has to run where the agent runs, check what the agent actually did, and leave
-              behind the evidence that it did.</p>
-            <span className="abd-thesis__tag mono rv" style={{ '--i': 2 }}>GAVEL · Governed Autonomy, Verified by an Evidence Layer</span>
+            <span className="abd-thesis__kicker mono rv" style={{ '--i': 0 }}>The governance thesis</span>
+            <blockquote className="abd-thesis__claim rv" style={{ '--i': 1 }}>
+              <span className="abd-thesis__setup">A policy that lives in a document</span>
+              <span className="abd-thesis__payoff">cannot govern an agent that chains a dozen tool calls in a <span className="amber">second</span>.</span>
+            </blockquote>
+            <div className="abd-thesis__evidence">
+              <p className="rv" style={{ '--i': 2 }}>The dominant failure mode in production isn't hallucination — it's privilege excess: an agent
+                doing something it was technically able to but never should have, faster than any review cycle can
+                follow. Governance has to run where the agent runs, check what the agent actually did, and leave
+                behind the evidence that it did.</p>
+              <span className="abd-thesis__tag mono rv" style={{ '--i': 3 }}>GAVEL · Governed Autonomy, Verified by an Evidence Layer</span>
+            </div>
           </div>
         </section>
 

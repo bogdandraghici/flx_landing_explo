@@ -3579,7 +3579,9 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
   font-size: clamp(2.1rem, 4vw, 3.5rem);
   line-height: 1.05;
   color: var(--text);
-  max-width: 15ch;
+  /* per-section measure: short payoffs (e.g. ROI hub) stay tight at 15ch;
+     a longer clause can widen it via --payoff-measure on the section */
+  max-width: var(--payoff-measure, 15ch);
   text-wrap: balance;
 }
 .abd-thesis__qualifier {
