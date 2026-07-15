@@ -84,25 +84,82 @@ function EditSelect({ field, value, placeholder, options, onSelect, disabled, op
   );
 }
 
-function EditNum({ value, onChange, onCommit, placeholder, ariaLabel }) {
+/* Recessed inline number field with ▲▼ steppers (design 3d). An optional
+   `prefix` (e.g. a currency symbol) sits inside the box before the value. */
+function EditNum({ value, onChange, onCommit, placeholder, ariaLabel, prefix, step = 1, min = 0, max = Infinity, fallback = 0 }) {
   const empty = value === '' || value == null;
   const display = empty ? '' : Number(value).toLocaleString('en-US');
   const width = Math.max((display || placeholder || '').length, 2);
+  const bump = (dir) => {
+    const base = empty ? fallback : Number(value);
+    const next = Math.min(max, Math.max(min, base + dir * step));
+    onChange(next);
+    if (onCommit) onCommit();
+  };
   return (
-    <input
-      className={`roic__edit roic__num${empty ? ' is-empty' : ''}`}
-      type="text"
-      inputMode="numeric"
-      aria-label={ariaLabel}
-      value={display}
-      placeholder={placeholder}
-      style={{ width: `${width}ch` }}
-      onChange={(e) => {
-        const raw = e.target.value.replace(/[^\d]/g, '');
-        onChange(raw === '' ? '' : parseInt(raw, 10));
-      }}
-      onBlur={onCommit}
-    />
+    <span className={`roic__edit roic__numbox${empty ? ' is-empty' : ''}`}>
+      {prefix && <span className="roic__prefix">{prefix}</span>}
+      <input
+        className={`roic__num${empty ? ' is-empty' : ''}`}
+        type="text"
+        inputMode="numeric"
+        aria-label={ariaLabel}
+        value={display}
+        placeholder={placeholder}
+        style={{ width: `${width}ch` }}
+        onChange={(e) => {
+          const raw = e.target.value.replace(/[^\d]/g, '');
+          onChange(raw === '' ? '' : parseInt(raw, 10));
+        }}
+        onBlur={onCommit}
+      />
+      <span className="roic__stepper" aria-hidden="true">
+        <button type="button" tabIndex={-1} className="roic__step" aria-label="Increase" onClick={() => bump(1)}>▲</button>
+        <button type="button" tabIndex={-1} className="roic__step" aria-label="Decrease" onClick={() => bump(-1)}>▼</button>
+      </span>
+    </span>
+  );
+}
+
+/* Automation-rate control: an inline value that opens a slider popover
+   (design 3e). Editing is drag-a-slider only — no typing. */
+function PctSlider({ value, min, max, onChange, openField, setOpenField }) {
+  const open = openField === 'autopct';
+  const fill = ((value - min) / (max - min)) * 100;
+  return (
+    <span className="roic__pick-wrap">
+      <button
+        type="button"
+        className={`roic__edit roic__pctbtn${open ? ' is-open' : ''}`}
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        onClick={() => setOpenField(open ? null : 'autopct')}
+      >
+        {value}%
+      </button>
+      {open && (
+        <span className="roic__slider-pop" role="dialog" aria-label="Automation rate">
+          <span className="roic__slider-head mono">
+            <span>AUTOMATION RATE</span>
+            <span className="roic__slider-val">{value}%</span>
+          </span>
+          <input
+            className="roic__range"
+            type="range"
+            min={min}
+            max={max}
+            value={value}
+            style={{ '--fill': `${fill}%` }}
+            aria-label="Automation rate (percent)"
+            onChange={(e) => onChange(parseInt(e.target.value, 10))}
+          />
+          <span className="roic__slider-foot mono">
+            <span>conservative {min}%</span>
+            <span>proven {max}%</span>
+          </span>
+        </span>
+      )}
+    </span>
   );
 }
 
@@ -243,7 +300,6 @@ export default function RoiCalculator() {
     return setEnabled(next);
   };
   function commitFte() { setFteCost((v) => Math.min(bounds.max, Math.max(bounds.min, Number(v) || bounds.default))); }
-  function commitAuto() { setAutoPct((v) => Math.min(95, Math.max(40, Number(v) || 75))); }
   function onCurrency(next) {
     const b = fteBounds(next);
     const eur = fteCost / FX[currency];
@@ -422,13 +478,27 @@ export default function RoiCalculator() {
             onSelect={onStack} disabled={!industry} openField={openField} setOpenField={setOpenField}
           />
           . We handle{' '}
-          <EditNum value={executions} onChange={setExecutions} placeholder="5,000" ariaLabel="Monthly volume" />{' '}
+          <EditNum
+            value={executions} onChange={setExecutions} placeholder="5,000" ariaLabel="Monthly volume"
+            step={500} min={0} fallback={5000}
+          />{' '}
           cases a month, and agents can take over{' '}
-          <EditNum value={autoPct} onChange={setAutoPct} onCommit={commitAuto} placeholder="75" ariaLabel="Automation rate (percent)" />% of the manual work.
-          A full-time employee costs about {cur.symbol}
-          <EditNum value={fteCost} onChange={setFteCost} onCommit={commitFte} placeholder={fmtNum(ftePlaceholder)} ariaLabel="Cost per FTE per year" />
-          <span className="roic__unit"> / yr</span>, and we&apos;d invest {cur.symbol}
-          <EditNum value={platformCost} onChange={setPlatformCost} placeholder={fmtNum(platPlaceholder)} ariaLabel="Annual platform and rollout cost (optional)" />
+          <PctSlider
+            value={autoPct} min={40} max={95} onChange={setAutoPct}
+            openField={openField} setOpenField={setOpenField}
+          />{' '}of the manual work.
+          A full-time employee costs about{' '}
+          <EditNum
+            value={fteCost} onChange={setFteCost} onCommit={commitFte} prefix={cur.symbol}
+            placeholder={fmtNum(ftePlaceholder)} ariaLabel="Cost per FTE per year"
+            step={bounds.step} min={bounds.min} max={bounds.max} fallback={bounds.default}
+          />
+          <span className="roic__unit"> / yr</span>, and we&apos;d invest{' '}
+          <EditNum
+            value={platformCost} onChange={setPlatformCost} prefix={cur.symbol}
+            placeholder={fmtNum(platPlaceholder)} ariaLabel="Annual platform and rollout cost (optional)"
+            step={bounds.step} min={0} fallback={platPlaceholder}
+          />
           <span className="roic__unit"> / yr</span> in platform &amp; rollout
           <span className="roic__opt-inline"> (optional)</span>.
         </p>
