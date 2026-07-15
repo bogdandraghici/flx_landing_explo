@@ -1,5 +1,6 @@
 import { bp } from '@/components/lib/base';
 import CtaFieldInit from '@/components/CtaFieldInit';
+import IntegrationsHeroViz from '@/components/IntegrationsHeroViz';
 
 export const metadata = {
   title: 'Integrations & Connectors',
@@ -31,19 +32,38 @@ export default function IntegrationsPage() {
   return (
     <main id="top">
       {/* ================= HERO ================= */}
-      <section className="section roi-hero">
-        <div className="shell">
-          <div className="section__head">
-            <span className="section__no mono">Platform · Integrations</span>
-            <div className="section__headline">
-              <h1 className="h2 rv">Connect the systems you already run<span className="amber">.</span></h1>
-              <p className="section__lede rv" style={{ '--i': 1 }}>
-                Integrations are how FlowX.AI plugs into your existing estate — core banking, databases, APIs,
-                files, email and AI tools — so they work together inside a single journey. Nothing gets
-                ripped out; your systems of record keep doing what they do, while new experiences run on top.
-              </p>
+      <section className="ahero" id="phero">
+        <div className="shell ahero__grid">
+          <div className="ahero__text">
+            <p className="hero__eyebrow mono rv-load" style={{ '--d': 0 }}>
+              <span className="tick" aria-hidden="true" />
+              Platform · Integrations
+            </p>
+            <h1 className="hero__title">
+              <span className="hero__line rv-load" style={{ '--d': 1 }}><span className="dim">Connect the systems</span></span>
+              <span className="hero__line hero__line--big rv-load" style={{ '--d': 2 }}>you already run<span className="amber">.</span></span>
+            </h1>
+            <p className="hero__sub rv-load" style={{ '--d': 3 }}>
+              Integrations are how FlowX.AI plugs into your existing estate — core banking, databases, APIs,
+              files, email and AI tools — so they work together inside a single journey. Nothing gets
+              ripped out; your systems of record keep doing what they do, while new experiences run on top.
+            </p>
+            <div className="abd-hero__cta rv-load" style={{ '--d': 4 }}>
+              <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
+              <a className="btn btn--ghost btn--lg" href="#connects">What it connects to</a>
             </div>
+            <p className="astats mono rv-load" style={{ '--d': 5 }}>
+              <span>six system types · one journey · no rip-and-replace</span>
+            </p>
           </div>
+
+          {/* Node graph (Hero Illustrations 1a): the systems you already run sit
+               as peers around a central FlowX hub, each wired in by a bowed edge
+               with a packet riding inward — the estate flowing together into one
+               journey. Neutral schematic ink for the estate; brand amber only on
+               the hub (the resolution everything converges into). Theme-aware via
+               tokens; reduced-motion freezes on the resolved pose. */}
+          <IntegrationsHeroViz className="ahero__viz" />
         </div>
       </section>
 
