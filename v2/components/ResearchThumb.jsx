@@ -430,6 +430,9 @@ function mneme(ctx, w, h, t, { inkA, sigA }) {
 
 const DRAW = { roi, loop2, harness, gov, classifier, graph, mneme };
 
+// Playback speed for the figures (1 = the source project's default pace).
+const SPEED = 0.5;
+
 // A frame that reads as populated when motion is disabled.
 const STATIC_T = 7;
 
@@ -491,7 +494,7 @@ export default function ResearchThumb({ slug }) {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       if (!visible) return;
-      tAcc += dt;
+      tAcc += dt * SPEED;
       render(tAcc);
     };
 
