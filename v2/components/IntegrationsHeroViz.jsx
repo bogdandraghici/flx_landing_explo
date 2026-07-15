@@ -119,7 +119,13 @@ export default function IntegrationsHeroViz({ className = '' }) {
       const nodes = NAMES.map((n, i) => {
         const a = -Math.PI / 2 + (i * Math.PI) / 3;
         const r = 138 + VARY[i];
-        return { n, x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r, a };
+        // gentle tethered float — each module drifts in a small, slow lissajous,
+        // phase-offset per node so they bob independently while staying wired to
+        // the hub (the bowed edge, packet and label all read this position, so
+        // the whole tether follows). Amplitude is a few px in the 400-unit space.
+        const fx = Math.sin(t * 0.6 + i * 1.7) * 7;
+        const fy = Math.cos(t * 0.5 + i * 2.3) * 7.5;
+        return { n, x: cx + Math.cos(a) * r + fx, y: cy + Math.sin(a) * r + fy, a };
       });
 
       // edges: a gently-bowed curve from each node to the hub, with one packet
