@@ -73,7 +73,13 @@ export default function RoiHubPage() {
       <section className="abd-thesis abd-thesis--split">
         <div className="shell">
           <span className="abd-thesis__kicker mono rv" style={{ '--i': 0 }}>The measurement thesis</span>
-          <blockquote className="rv" style={{ '--i': 1 }}>The agent-ROI crisis is not a value crisis. It is a <span className="amber">measurement-credibility</span> crisis — and credibility is an engineering property of the measurement system, not a rhetorical one.</blockquote>
+          {/* staggered claim (1a): dim setup → short amber payoff (the punch) → calmer qualifier,
+              so only the short phrase is large and it reads as a statement, not a wall */}
+          <blockquote className="abd-thesis__claim rv" style={{ '--i': 1 }}>
+            <span className="abd-thesis__setup">The agent-ROI crisis is not a value crisis.</span>
+            <span className="abd-thesis__payoff">It is a <span className="amber">measurement-credibility</span> crisis.</span>
+            <span className="abd-thesis__qualifier">Credibility is an engineering property of the measurement system — not a rhetorical one.</span>
+          </blockquote>
           <div className="abd-thesis__evidence">
             <p className="rv" style={{ '--i': 2 }}>95% of generative-AI pilots show no measurable P&amp;L impact — not because agents don&apos;t create
               value, but because flat assumptions and self-reported time savings are figures a finance function
