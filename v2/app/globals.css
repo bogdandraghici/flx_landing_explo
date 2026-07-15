@@ -4434,10 +4434,11 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 /* ---- research overview ---- */
 .rlist-section { padding-top: clamp(24px, 4vh, 48px); }
 .rlist { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
-/* The card itself is a plain <li> — only its inner links (cover, title,
-   Read summary, PDF) are clickable — so it carries no whole-card hover cue.
-   The transition remains for the .rv scroll-reveal transform. */
+/* Most of the card navigates to the paper (cover + title are links), so the
+   card carries an amber border-hover cue matching the blog .post card. The
+   transition also covers the .rv scroll-reveal transform. */
 .rlist__card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-raised); overflow: hidden; box-shadow: var(--shadow-card); transition: border-color 0.25s var(--ease), transform 0.25s var(--ease); }
+.rlist__card:hover { border-color: var(--amber-line); }
 .rlist__cover { display: block; border-bottom: 1px solid var(--line); background: var(--bg-panel); aspect-ratio: 16 / 9; overflow: hidden; }
 .rlist__cover img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
 
