@@ -1,5 +1,6 @@
 import { bp } from '@/components/lib/base';
 import CtaFieldInit from '@/components/CtaFieldInit';
+import OntologyHeroViz from '@/components/OntologyHeroViz';
 
 export const metadata = {
   title: 'Ontology Layer',
@@ -29,19 +30,35 @@ export default function OntologyPage() {
   return (
     <main id="top">
       {/* ================= HERO ================= */}
-      <section className="section roi-hero">
-        <div className="shell">
-          <div className="section__head">
-            <span className="section__no mono">Platform · Ontology Layer</span>
-            <div className="section__headline">
-              <h1 className="h2 rv">One shared model of your business<span className="amber">.</span></h1>
-              <p className="section__lede rv" style={{ '--i': 1 }}>
-                The Ontology Layer is the map of how your world is organized — your products, rules and risk
-                hierarchies, and how they relate. It&apos;s the structure agents reason over to give connected,
-                explainable answers. And unlike everyone else&apos;s, it&apos;s memory the agents can safely help build.
-              </p>
+      <section className="ahero" id="phero">
+        <div className="shell ahero__grid">
+          <div className="ahero__text">
+            <p className="hero__eyebrow mono rv-load" style={{ '--d': 0 }}>
+              <span className="tick" aria-hidden="true" />
+              Platform · Ontology Layer
+            </p>
+            <h1 className="hero__title">
+              <span className="hero__line rv-load" style={{ '--d': 1 }}><span className="dim">One shared model of</span></span>
+              <span className="hero__line hero__line--big rv-load" style={{ '--d': 2 }}>your business<span className="amber">.</span></span>
+            </h1>
+            <p className="hero__sub rv-load" style={{ '--d': 3 }}>
+              The Ontology Layer is the map of how your world is organized — your products, rules and risk
+              hierarchies, and how they relate. It&apos;s the structure agents reason over to give connected,
+              explainable answers. And unlike everyone else&apos;s, it&apos;s memory the agents can safely help build.
+            </p>
+            <div className="abd-hero__cta rv-load" style={{ '--d': 4 }}>
+              <a className="btn btn--primary btn--lg" href="#demo">Book a demo</a>
+              <a className="btn btn--ghost btn--lg" href="#kinds">See how it works</a>
             </div>
+            <p className="astats mono rv-load" style={{ '--d': 5 }}>
+              <span>connected · explainable · safe to improve</span>
+            </p>
           </div>
+
+          {/* Field · chaos → model: a hundred scattered signals assemble into one
+               coherent model (root, three hubs — products / rules / risk — and
+               their leaves), hold, and release, on a loop. */}
+          <OntologyHeroViz className="ahero__viz" />
         </div>
       </section>
 
