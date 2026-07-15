@@ -4394,6 +4394,59 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .rlist__card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-raised); overflow: hidden; box-shadow: var(--shadow-card); transition: border-color 0.25s var(--ease), transform 0.25s var(--ease); }
 .rlist__cover { display: block; border-bottom: 1px solid var(--line); background: var(--bg-panel); aspect-ratio: 16 / 9; overflow: hidden; }
 .rlist__cover img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
+
+/* Generated card thumbnail — a title-driven cover so the papers list doesn't
+   crop the portrait PDF covers. Fixed-height figure; text stays legible while
+   the layout compresses horizontally. */
+.rthumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(var(--ink), 0.02), transparent 60%),
+    var(--bg-panel);
+}
+.rthumb::before { /* faint schematic grid */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: -1px -1px;
+  -webkit-mask-image: radial-gradient(120% 120% at 20% 30%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(120% 120% at 20% 30%, #000 30%, transparent 100%);
+}
+.rthumb__label {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.rthumb__code {
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  font-size: clamp(26px, 6.5vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--text);
+}
+.rthumb__motif {
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46%;
+  max-width: 168px;
+  height: auto;
+}
 .rlist__meta { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .rlist__code { font-size: 11px; letter-spacing: 0.2em; color: var(--amber-text); }
 .rlist__name { font-family: var(--font-display); font-size: 18px; font-weight: 620; letter-spacing: -0.015em; line-height: 1.2; }
