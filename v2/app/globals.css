@@ -4342,7 +4342,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .ac__seg--effort .ac__seg-btn.is-on { color: var(--amber-ink); }
 
 /* use-case selector */
-.ac__usecase { display: inline-flex; align-items: center; gap: 8px; }
+.ac__usecase { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; }
 .ac__usecase-label { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); }
 .ac__usecase-select {
   font-family: var(--font-mono); font-size: 12.5px; color: var(--text);
