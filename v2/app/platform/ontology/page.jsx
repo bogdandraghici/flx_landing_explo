@@ -45,11 +45,21 @@ export default function OntologyPage() {
         </div>
       </section>
 
-      {/* ================= THESIS ================= */}
-      <section className="abd-thesis">
+      {/* ================= THESIS ================= *//* editorial split, staggered claim (matches the ROI hub / observatory
+           theses): dim contrast setup → big amber payoff ("active memory") →
+           short "and it's safe" coda; evidence in the hairline-divided right
+           column (this thesis carries no framework tag) */}
+      <section className="abd-thesis abd-thesis--split" style={{ '--payoff-measure': '20ch' }}>
         <div className="shell">
-          <blockquote className="rv">Most platforms make the ontology a read-only reference a human team maintains. FlowX makes it <span className="amber">active memory</span> the agents help build — and makes every write safe.</blockquote>
-          <p className="rv" style={{ '--i': 1 }}>The agent that just resolved an ambiguous entity or discovered a relationship is the one best placed to enrich the map. So it does — but every contribution is stamped with where it came from, screened for conflicts, and quarantined until it earns its place. The institutional memory improves from use, with the blast radius of a read-only system.</p>
+          <span className="abd-thesis__kicker mono rv" style={{ '--i': 0 }}>The memory thesis</span>
+          <blockquote className="abd-thesis__claim rv" style={{ '--i': 1 }}>
+            <span className="abd-thesis__setup">Most platforms make the ontology a read-only reference a human team maintains.</span>
+            <span className="abd-thesis__payoff">FlowX makes it <span className="amber">active memory</span> the agents help build.</span>
+            <span className="abd-thesis__qualifier">And it makes every write safe.</span>
+          </blockquote>
+          <div className="abd-thesis__evidence">
+            <p className="rv" style={{ '--i': 2 }}>The agent that just resolved an ambiguous entity or discovered a relationship is the one best placed to enrich the map. So it does — but every contribution is stamped with where it came from, screened for conflicts, and quarantined until it earns its place. The institutional memory improves from use, with the blast radius of a read-only system.</p>
+          </div>
         </div>
       </section>
 
