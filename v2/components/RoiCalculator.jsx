@@ -506,34 +506,32 @@ export default function RoiCalculator() {
           <span className="roic__opt-inline"> (optional)</span>.
         </p>
 
-        {/* ---- agents (MANUAL selection — sits with the inputs, always visible) ---- */}
+        {/* ---- agents (MANUAL selection — appears once a process is picked) ---- */}
+        {agents.length > 0 && (
         <div className="roic__disc roic__disc--top">
             <div className="roic__disc-body">
               <div className="roi__agents-top">
                 <span className="roi__label" style={{ margin: 0 }}>
-                  {stack ? `Available agents (${agents.length})` : 'Pick a process in the sentence above first.'}
+                  {`Available agents (${agents.length})`}
                 </span>
-                {agents.length > 0 && (
-                  <button type="button" className="roi__selectall mono" onClick={toggleAll}>
-                    {allSelected ? 'Clear all' : 'Select all'}
-                  </button>
-                )}
+                <button type="button" className="roi__selectall mono" onClick={toggleAll}>
+                  {allSelected ? 'Clear all' : 'Select all'}
+                </button>
               </div>
-              {agents.length > 0 && (
-                <div className="roi__agent-list roic__agents-flash" key={stack}>
-                  {agents.map((a, i) => (
-                    <label key={a.n + i} className={`roi__agent${enabled[i] ? ' is-on' : ''}`}>
-                      <input type="checkbox" checked={!!enabled[i]} onChange={() => toggleAgent(i)} />
-                      <span className="roi__agent-info">
-                        <span className="roi__agent-name">{a.n}</span>
-                        <span className="roi__agent-dept mono">{a.d}</span>
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              )}
+              <div className="roi__agent-list roic__agents-flash" key={stack}>
+                {agents.map((a, i) => (
+                  <label key={a.n + i} className={`roi__agent${enabled[i] ? ' is-on' : ''}`}>
+                    <input type="checkbox" checked={!!enabled[i]} onChange={() => toggleAgent(i)} />
+                    <span className="roi__agent-info">
+                      <span className="roi__agent-name">{a.n}</span>
+                      <span className="roi__agent-dept mono">{a.d}</span>
+                    </span>
+                  </label>
+                ))}
+              </div>
             </div>
         </div>
+        )}
 
         {/* ---- estimate (only once the sentence is filled in and agents are
              selected — no empty "—" scaffold before then) ---- */}
