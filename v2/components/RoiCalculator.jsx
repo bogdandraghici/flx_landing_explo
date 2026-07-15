@@ -535,7 +535,9 @@ export default function RoiCalculator() {
             </div>
         </div>
 
-        {/* ---- estimate ---- */}
+        {/* ---- estimate (only once the sentence is filled in and agents are
+             selected — no empty "—" scaffold before then) ---- */}
+        {ready && (
         <div className="roic__reveal">
         {/* ---- result block ---- */}
         <div className="roic__result">
@@ -643,6 +645,7 @@ export default function RoiCalculator() {
           </div>
         </div>
         </div>
+        )}
 
         {/* ---- agent breakdown table (sits at the bottom, before the CTA) ---- */}
         {ready && (
