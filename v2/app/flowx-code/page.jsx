@@ -45,16 +45,26 @@ export default function FlowxCode() {
           </div>
         </section>
 
-        {/* ================= THESIS ================= */}
-        <section className="abd-thesis">
+        {/* ================= THESIS ================= *//* editorial split, staggered claim (matches the observatory governance
+           thesis): dim setup framing → big payoff (amber "neither" = the missing
+           safety net), evidence + FlowX Code tag set off by a hairline on the
+           right. The claim splits along its own parallel structure — "In a code
+           repository…" (the given) vs. "In a regulated platform…" (the punch). */}
+        <section className="abd-thesis abd-thesis--split">
           <div className="shell">
-            <blockquote className="rv">In a code repository, a reviewer and a compiler stand between an agent&apos;s mistake and production. In a regulated platform, there is <span className="amber">neither</span>.</blockquote>
-            <p className="rv" style={{ '--i': 1 }}>A build copilot&apos;s output isn&apos;t free-text code — it&apos;s a schema-bound artifact
-              that takes effect the moment it&apos;s saved, with no diff review and no compiler in between. So FlowX Code
-              inverts the field&apos;s optimization: not maximal autonomy, but grounded, validated, human-gated
-              construction. The grounding, the validation and the human gate aren&apos;t friction — they&apos;re the compiler
-              and the reviewer, moved into the agent.</p>
-            <span className="abd-thesis__tag mono rv" style={{ '--i': 2 }}>FlowX Code · The most important thing to engineer into the loop is where it stops — at a human</span>
+            <span className="abd-thesis__kicker mono rv" style={{ '--i': 0 }}>The construction thesis</span>
+            <blockquote className="abd-thesis__claim rv" style={{ '--i': 1 }}>
+              <span className="abd-thesis__setup">In a code repository, a reviewer and a compiler stand between an agent&apos;s mistake and production.</span>
+              <span className="abd-thesis__payoff">In a regulated platform, there is <span className="amber">neither</span>.</span>
+            </blockquote>
+            <div className="abd-thesis__evidence">
+              <p className="rv" style={{ '--i': 2 }}>A build copilot&apos;s output isn&apos;t free-text code — it&apos;s a schema-bound artifact
+                that takes effect the moment it&apos;s saved, with no diff review and no compiler in between. So FlowX Code
+                inverts the field&apos;s optimization: not maximal autonomy, but grounded, validated, human-gated
+                construction. The grounding, the validation and the human gate aren&apos;t friction — they&apos;re the compiler
+                and the reviewer, moved into the agent.</p>
+              <span className="abd-thesis__tag mono rv" style={{ '--i': 3 }}>FlowX Code · The most important thing to engineer into the loop is where it stops — at a human</span>
+            </div>
           </div>
         </section>
 
