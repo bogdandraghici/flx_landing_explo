@@ -53,7 +53,7 @@ export default function ResearchPage() {
             {PAPERS.map((p, i) => (
               <li key={p.slug} className="rlist__card rv" style={{ '--i': i % 3 }}>
                 <a className="rlist__cover" href={bp(`/research/${p.slug}`)} aria-hidden="true" tabIndex={-1}>
-                  <ResearchThumb slug={p.slug} code={p.code} index={i + 1} />
+                  <ResearchThumb slug={p.slug} />
                 </a>
                 <div className="rlist__meta">
                   <span className="rlist__code mono">{p.code}</span>

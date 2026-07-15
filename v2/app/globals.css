@@ -4441,68 +4441,23 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .rlist__cover { display: block; border-bottom: 1px solid var(--line); background: var(--bg-panel); aspect-ratio: 16 / 9; overflow: hidden; }
 .rlist__cover img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
 
-/* Generated card thumbnail — a title-driven cover so the papers list doesn't
-   crop the portrait PDF covers. Fixed-height figure; text stays legible while
-   the layout compresses horizontally. The schematic figure sits on graph
-   paper (grid concentrated behind it, right), the code on clean ground (left);
-   the single amber "resolution" element glows via .rthumb__hot. */
+/* Generated card thumbnail — an animated schematic figure per paper, drawn on
+   a canvas (see ResearchThumb.jsx). Fills the 16:9 cover; the figure's colours
+   route through theme tokens so it flips with light/dark. Text inside the
+   figure stays a fixed, legible size while the card compresses horizontally. */
 .rthumb {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background:
-    radial-gradient(58% 82% at 74% 44%, rgba(var(--amber-rgb), 0.05), transparent 72%),
-    linear-gradient(160deg, var(--bg-raised), var(--bg-panel) 62%);
 }
-.rthumb::before { /* faint schematic grid, densest behind the figure */
-  content: "";
+.rthumb__canvas {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(var(--line-soft) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
-  background-size: 20px 20px;
-  background-position: center;
-  -webkit-mask-image: radial-gradient(78% 118% at 74% 46%, #000 8%, rgba(0, 0, 0, 0.45) 46%, transparent 80%);
-  mask-image: radial-gradient(78% 118% at 74% 46%, #000 8%, rgba(0, 0, 0, 0.45) 46%, transparent 80%);
+  width: 100%;
+  height: 100%;
+  display: block;
 }
-.rthumb__head {
-  position: absolute;
-  top: 13px;
-  left: 16px;
-  right: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 9.5px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-}
-.rthumb__index { letter-spacing: 0.16em; }
-.rthumb__code {
-  position: absolute;
-  left: 16px;
-  bottom: 13px;
-  font-size: clamp(27px, 6.6vw, 41px);
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1;
-  color: var(--text);
-}
-.rthumb__motif {
-  position: absolute;
-  right: 5%;
-  top: 48%;
-  transform: translateY(-50%);
-  width: 47%;
-  max-width: 172px;
-  height: auto;
-}
-/* The one amber element per figure resolves with a soft glow. */
-.rthumb__hot { filter: drop-shadow(0 0 3px rgba(var(--amber-rgb), 0.5)); }
-:root[data-theme="light"] .rthumb__hot { filter: drop-shadow(0 0 2px rgba(var(--amber-rgb), 0.45)); }
 .rlist__meta { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .rlist__code { font-size: 11px; letter-spacing: 0.2em; color: var(--amber-text); }
 .rlist__name { font-family: var(--font-display); font-size: 18px; font-weight: 620; letter-spacing: -0.015em; line-height: 1.2; }
