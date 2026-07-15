@@ -95,7 +95,7 @@ export default function IntegrationsHeroViz({ className = '' }) {
     // FlowX mark (from `x logo.svg`) rendered at the hub — the X in schematic
     // ink (flips with the theme), the underscore bar in brand amber. `LOGO_C` is
     // the svg viewBox centre; the artwork is ~280 units tall in that space.
-    const LOGO_C = 148, LOGO_H = 280, LOGO_FIT = 32; // fit the mark into ~32px
+    const LOGO_C = 148, LOGO_H = 280, LOGO_FIT = 22; // fit the mark into ~22px
     const xPath = new Path2D('M181.031 89.0438L255.769 174.759H186.87L146.232 127.113L105.593 174.759H40.6643L115.169 89.9781L42.5329 8H111.665L150.202 53.0762L188.739 8H253.901L181.031 89.0438Z');
     const barPath = new Path2D('M255.769 231.28H40.4308V287.8H255.769V231.28Z');
     const drawLogo = (px, py) => {
