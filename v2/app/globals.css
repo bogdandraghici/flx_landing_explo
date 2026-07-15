@@ -4463,18 +4463,18 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .rlist__code { font-size: 11px; letter-spacing: 0.2em; color: var(--amber-text); }
 .rlist__name { font-family: var(--font-display); font-size: 18px; font-weight: 620; letter-spacing: -0.015em; line-height: 1.2; }
 .rlist__name a { transition: color 0.2s ease; }
-.rlist__name a:hover { color: var(--amber-text); }
 /* Stretched link: the title link covers the whole card, so clicking anywhere
-   opens the paper. The links row sits above it (z-index) so "Read summary"
-   keeps its hover and the PDF button opens the PDF instead of the card. */
+   opens the paper. The whole card is one click target, so its only hover cue
+   is the amber border (.rlist__card:hover) — the inner title/Read-summary
+   links deliberately have no independent hover, or they'd light up whenever
+   the card is hovered. The PDF button sits above the overlay (z-index) so it
+   opens the PDF instead of the card, and keeps its own hover. */
 .rlist__name a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .rlist__link, .rlist__pdf { position: relative; z-index: 2; }
 .rlist__tagline { font-size: 13.5px; line-height: 1.55; color: var(--text-dim); flex: 1; }
 .rlist__links { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
-.rlist__link { font-size: 13px; color: var(--text); transition: color 0.2s ease; }
-.rlist__link span { display: inline-block; transition: transform 0.2s var(--ease); }
-.rlist__link:hover { color: var(--amber-text); }
-.rlist__link:hover span { transform: translateX(3px); }
+.rlist__link { font-size: 13px; color: var(--text); }
+.rlist__link span { display: inline-block; }
 .rlist__pdf { font-size: 11.5px; letter-spacing: 0.06em; color: var(--text-dim); border: 1px solid var(--line); border-radius: 7px; padding: 5px 10px; transition: border-color 0.2s var(--ease), color 0.2s var(--ease); }
 .rlist__pdf:hover { border-color: var(--amber-line); color: var(--amber-text); }
 
