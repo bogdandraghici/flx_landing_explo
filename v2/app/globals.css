@@ -3909,6 +3909,10 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
   background: var(--bg); padding: clamp(24px, 2.6vw, 36px);
   display: flex; flex-direction: column;
 }
+/* The scroll-reveal lives on this inner wrapper, not the cell itself, so the
+   opaque cell background (and the hairline grid behind it) never fades — a
+   fading cell would briefly expose the gray grid ground behind it. */
+.roi-chain__step > .roi-cell-rv { flex: 1; display: flex; flex-direction: column; }
 .roi-chain__no { font-size: 11px; letter-spacing: 0.2em; color: var(--amber-text); margin-bottom: 18px; }
 .roi-chain__step h3 {
   font-family: var(--font-display); font-size: 17px; font-weight: 600;
