@@ -47,11 +47,21 @@ export default function IntegrationsPage() {
         </div>
       </section>
 
-      {/* ================= THESIS ================= */}
-      <section className="abd-thesis">
+      {/* ================= THESIS ================= *//* editorial split, staggered claim (matches the ROI hub / observatory /
+           ontology theses): dim negation setup → big amber payoff ("work
+           together") → short "in real time" coda; evidence in the
+           hairline-divided right column (no framework tag on this thesis) */}
+      <section className="abd-thesis abd-thesis--split" style={{ '--payoff-measure': '20ch' }}>
         <div className="shell">
-          <blockquote className="rv">Integration isn&apos;t a migration. It&apos;s making what you already own <span className="amber">work together</span> — inside the flow, in real time.</blockquote>
-          <p className="rv" style={{ '--i': 1 }}>A lending decision might read a mainframe, call a bureau API, pull a document from S3, run an AI check and write back to the core — as one governed journey. The customer sees a single, modern experience; nothing behind the glass had to be replaced.</p>
+          <span className="abd-thesis__kicker mono rv" style={{ '--i': 0 }}>The integration thesis</span>
+          <blockquote className="abd-thesis__claim rv" style={{ '--i': 1 }}>
+            <span className="abd-thesis__setup">Integration isn&apos;t a migration.</span>
+            <span className="abd-thesis__payoff">It&apos;s making what you already own <span className="amber">work together</span>.</span>
+            <span className="abd-thesis__qualifier">Inside the flow, in real time.</span>
+          </blockquote>
+          <div className="abd-thesis__evidence">
+            <p className="rv" style={{ '--i': 2 }}>A lending decision might read a mainframe, call a bureau API, pull a document from S3, run an AI check and write back to the core — as one governed journey. The customer sees a single, modern experience; nothing behind the glass had to be replaced.</p>
+          </div>
         </div>
       </section>
 
