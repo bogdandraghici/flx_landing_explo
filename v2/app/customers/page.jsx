@@ -224,7 +224,9 @@ export default function CustomersPage() {
             <div className="cust-led">
               {OUTCOMES.map((o, i) => (
                 <figure key={i} className="cust-led__row rv" style={{ '--i': i }}>
-                  <b className="cust-led__metric">{o.metric}</b>
+                  <b className="cust-led__metric">
+                    {o.value}{o.unit && <span className="cust-led__unit">{o.unit}</span>}
+                  </b>
                   <div className="cust-led__body">
                     <p className="cust-led__label">{o.label}</p>
                     <figcaption className="cust-led__who mono">
