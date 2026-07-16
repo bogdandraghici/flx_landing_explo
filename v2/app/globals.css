@@ -4759,7 +4759,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .cust-group__head { margin-bottom: 20px; }
 .cust-group__label { display: flex; align-items: baseline; gap: 10px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text); }
 .cust-group__count { font-family: var(--font-mono); letter-spacing: 0.04em; color: var(--text-faint); }
-.cust-group__desc { margin-top: 7px; font-size: 14px; color: var(--text-dim); line-height: 1.55; max-width: 62ch; }
+.cust-group__desc { margin-top: 7px; font-size: 14px; color: var(--text-dim); line-height: 1.55; }
 .cust-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
 .cust-tile {
   display: flex; align-items: center; justify-content: center;
