@@ -1,5 +1,6 @@
 import { bp } from '@/components/lib/base';
 import IndustryInit from '@/components/IndustryInit';
+import LogisticsHeroViz from '@/components/LogisticsHeroViz';
 
 export const metadata = {
   title: 'FlowX — Logistics',
@@ -35,91 +36,8 @@ export default function Logistics() {
               </p>
             </div>
 
-            {/* reroute: the planned route breaks mid-journey; the agent recomputes, an amber detour draws, the shipment still arrives — invoiced */}
-            <div className="ahero__viz" aria-hidden="true">
-              <svg viewBox="0 0 460 460" role="img" aria-label="A freight network where a leg of the planned route fails mid-journey; the agent instantly draws an amber detour and the shipment still arrives — rerouted, invoiced">
-                {/* the wider network the planner knows about */}
-                <line className="lrv-alt" x1="64" y1="300" x2="96" y2="208" />
-                <line className="lrv-alt" x1="96" y1="208" x2="104" y2="120" />
-                <line className="lrv-alt" x1="104" y1="120" x2="226" y2="96" />
-                <line className="lrv-alt" x1="226" y1="96" x2="356" y2="96" />
-                <line className="lrv-alt" x1="226" y1="96" x2="248" y2="220" />
-                <line className="lrv-alt" x1="356" y1="96" x2="330" y2="180" />
-                <line className="lrv-alt" x1="356" y1="96" x2="398" y2="262" />
-                <line className="lrv-alt" x1="96" y1="208" x2="150" y2="244" />
-                <line className="lrv-alt" x1="64" y1="300" x2="156" y2="368" />
-                <line className="lrv-alt" x1="156" y1="368" x2="262" y2="398" />
-                <line className="lrv-alt lrv-alt--scan" x1="262" y1="398" x2="352" y2="310" />
-                <line className="lrv-alt lrv-alt--scan" x1="156" y1="368" x2="284" y2="290" />
-                <line className="lrv-alt lrv-alt--scan" x1="150" y1="244" x2="284" y2="290" />
-                <line className="lrv-alt" x1="248" y1="220" x2="284" y2="290" />
-                <line className="lrv-alt" x1="284" y1="290" x2="352" y2="310" />
-                <line className="lrv-alt" x1="352" y1="310" x2="398" y2="262" />
-
-                {/* the planned route: drawn at dispatch; the leg past the break dims when it fails */}
-                <path className="lrv-plan lrv-plan-a" pathLength="100" d="M64 300 L150 244 L248 220" />
-                <path className="lrv-plan lrv-plan-b" pathLength="100" d="M248 220 L330 180 L398 262" />
-
-                {/* the break: flash + mark on the dead leg */}
-                <circle className="lrv-flash" cx="289" cy="200" r="9" />
-                <g className="lrv-x">
-                  <line x1="284" y1="195" x2="294" y2="205" />
-                  <line x1="294" y1="195" x2="284" y2="205" />
-                </g>
-
-                {/* the agent's fix: the amber detour, drawn the moment the leg dies */}
-                <path className="lrv-detour" pathLength="100" d="M248 220 L284 290 L352 310 L398 262" />
-
-                {/* nodes */}
-                <circle className="lrv-node" cx="150" cy="244" r="3" />
-                <circle className="lrv-node" cx="248" cy="220" r="3" />
-                <circle className="lrv-node" cx="330" cy="180" r="3" />
-                <circle className="lrv-node" cx="284" cy="290" r="3" />
-                <circle className="lrv-node" cx="352" cy="310" r="3" />
-                <circle className="lrv-node" cx="96" cy="208" r="3" />
-                <circle className="lrv-node" cx="104" cy="120" r="3" />
-                <circle className="lrv-node" cx="226" cy="96" r="3" />
-                <circle className="lrv-node" cx="356" cy="96" r="3" />
-                <circle className="lrv-node" cx="156" cy="368" r="3" />
-                <circle className="lrv-node" cx="262" cy="398" r="3" />
-                <circle className="lrv-node lrv-node--end" cx="64" cy="300" r="3.4" />
-                <circle className="lrv-ring" cx="64" cy="300" r="7" />
-                <circle className="lrv-node lrv-node--end" cx="398" cy="262" r="3.4" />
-                <circle className="lrv-ring" cx="398" cy="262" r="7" />
-
-                {/* endpoints named in the page's own words */}
-                <text className="ivz-lbl" x="64" y="326" textAnchor="middle">quote</text>
-                <rect className="ivz-tag" x="367" y="234" width="62" height="14" />
-                <text className="ivz-lbl" x="398" y="244" textAnchor="middle">invoice</text>
-
-                {/* ambient traffic on a northern lane: the network never sleeps */}
-                <circle className="lrv-amb" r="2.2">
-                  <animateMotion dur="9s" repeatCount="indefinite" path="M104 120 L226 96 L356 96" />
-                  <animate attributeName="opacity" values="0;0.35;0.35;0" keyTimes="0;0.08;0.9;1" dur="9s" repeatCount="indefinite" />
-                </circle>
-
-                {/* the shipment: departs, halts at the break, takes the detour, arrives */}
-                <circle className="lrv-dot" r="3.4">
-                  <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear"
-                    keyPoints="0;0;0.4851;0.4851;1;1" keyTimes="0;0.12;0.34;0.50;0.76;1"
-                    path="M64 300 L150 244 L248 220 L284 290 L352 310 L398 262" />
-                  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.115;0.125;0.765;0.80;1" dur="12s" repeatCount="indefinite" />
-                </circle>
-                <circle className="lrv-arrive" cx="398" cy="262" r="9">
-                  <animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.76;0.79;0.87;1" dur="12s" repeatCount="indefinite" />
-                </circle>
-
-                {/* status tags */}
-                <g className="lrv-tag--ex" transform="translate(289 154)">
-                  <rect className="ivz-tag" x="-36" y="-10" width="72" height="14" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1">exception</text>
-                </g>
-                <g className="lrv-tag--re" transform="translate(318 342)">
-                  <rect className="ivz-tag" x="-31" y="-10" width="62" height="14" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1">rerouted</text>
-                </g>
-              </svg>
-            </div>
+            {/* network mesh: five parties on one mesh — shipper, broker, forwarder, carrier, 3PL — with packets streaming the edges as agent handoffs */}
+            <LogisticsHeroViz className="ahero__viz" />
           </div>
         </section>
 
