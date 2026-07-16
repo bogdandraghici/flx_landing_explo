@@ -3713,6 +3713,86 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 /* --- cta: supporting line under the title --- */
 .abd-cta__sub { margin-top: 22px; max-width: 48ch; color: var(--text-dim); font-size: 16.5px; line-height: 1.6; }
 
+/* --- integrations "how it works": two paths as one joined comparison pane
+   (hairline seam, same joined-pane idiom as .abd-loop / .eled), so the two
+   options read as a deliberate default→escape-hatch pair, not two loose cards.
+   The default no-code path carries a thin amber top rail. --- */
+.abd-ways {
+  margin-top: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.abd-ways__panel {
+  background: var(--bg-raised);
+  padding: clamp(24px, 2.4vw, 32px);
+  display: flex;
+  flex-direction: column;
+}
+/* the recommended default path — amber top rail (inset so overflow:hidden keeps it) */
+.abd-ways__panel--lead { box-shadow: inset 0 2px 0 0 var(--amber); }
+.abd-ways__hd {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.abd-ways__idx { font-size: 12px; letter-spacing: 0.12em; color: var(--text-faint); }
+.abd-ways__mode {
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.abd-ways__panel--lead .abd-ways__mode { color: var(--amber-text); }
+@media (max-width: 700px) { .abd-ways { grid-template-columns: 1fr; } }
+
+/* --- integrations "why it matters": outcomes as an open, hairline-divided
+   proof row (no boxes), each claim led by a small static amber affirmation
+   tick — the lightest, closing beat before the CTA, distinct from the boxed
+   catalog (01) and the joined comparison (02). --- */
+.abd-assure {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+}
+.abd-assure__item {
+  padding: 26px 28px 0;
+  border-left: 1px solid var(--line);
+}
+.abd-assure__item:first-child { border-left: 0; padding-left: 0; }
+.abd-assure__tick {
+  display: block;
+  width: 7px;
+  height: 7px;
+  background: var(--amber);
+  margin-bottom: 18px;
+}
+.abd-assure__name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.abd-assure__desc { margin-top: 9px; color: var(--text-dim); font-size: 13.5px; line-height: 1.55; }
+@media (max-width: 760px) {
+  .abd-assure { grid-template-columns: 1fr; border-top: 0; }
+  .abd-assure__item {
+    border-left: 0;
+    padding: 22px 0 0;
+    border-top: 1px solid var(--line);
+  }
+  .abd-assure__item:first-child { border-top: 0; padding-top: 0; }
+}
+
 /* ============================================================
    ROI CALCULATOR  (/roi-calculator)
    A re-skin of the flowx.ai embed into the v2 token system: charcoal

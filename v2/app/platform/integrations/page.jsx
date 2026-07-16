@@ -18,8 +18,8 @@ const CONNECTS = [
 ];
 
 const HOW = [
-  { name: 'Integration Designer', d: 'A visual, no-code canvas to connect most systems and shape the data — no custom development, so business and delivery teams move fast together.' },
-  { name: 'Custom connectors', d: 'For specialized legacy systems or bespoke logic, event-driven (Kafka) microservices give you full control where you need it.' },
+  { mode: 'No-code', name: 'Integration Designer', d: 'A visual, no-code canvas to connect most systems and shape the data — no custom development, so business and delivery teams move fast together.' },
+  { mode: 'Pro-code', name: 'Custom connectors', d: 'For specialized legacy systems or bespoke logic, event-driven (Kafka) microservices give you full control where you need it.' },
 ];
 
 const PROOF = [
@@ -117,11 +117,19 @@ export default function IntegrationsPage() {
               <p className="section__lede rv" style={{ '--i': 1 }}>Most connections are point-and-click. When something needs bespoke handling, you drop down to code — only where you need it.</p>
             </div>
           </div>
-          <div className="segs" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
+          <div className="abd-ways">
             {HOW.map((b, i) => (
-              <article key={b.name} className="seg rv" style={{ '--i': i }}>
+              <article
+                key={b.name}
+                className={`abd-ways__panel rv${i === 0 ? ' abd-ways__panel--lead' : ''}`}
+                style={{ '--i': i }}
+              >
+                <div className="abd-ways__hd">
+                  <span className="abd-ways__idx mono">{`0${i + 1}`}</span>
+                  <span className="abd-ways__mode mono">{b.mode}</span>
+                </div>
                 <h3 className="seg__name">{b.name}</h3>
-                <p className="seg__desc" style={{ marginBottom: 0 }}>{b.d}</p>
+                <p className="seg__desc" style={{ margin: '12px 0 0' }}>{b.d}</p>
               </article>
             ))}
           </div>
@@ -137,14 +145,15 @@ export default function IntegrationsPage() {
               <h2 className="h2 rv">Modernize without the risk<span className="amber">.</span></h2>
             </div>
           </div>
-          <div className="segs segs--3">
+          <ul className="abd-assure">
             {PROOF.map((p, i) => (
-              <article key={p[0]} className="seg rv" style={{ '--i': i }}>
-                <h3 className="seg__name">{p[0]}</h3>
-                <p className="seg__desc" style={{ marginBottom: 0 }}>{p[1]}</p>
-              </article>
+              <li key={p[0]} className="abd-assure__item rv" style={{ '--i': i }}>
+                <span className="abd-assure__tick" aria-hidden="true" />
+                <h3 className="abd-assure__name">{p[0]}</h3>
+                <p className="abd-assure__desc">{p[1]}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
