@@ -117,9 +117,9 @@ export default function IntegrationsPage() {
               <p className="section__lede rv" style={{ '--i': 1 }}>Most connections are point-and-click. When something needs bespoke handling, you drop down to code — only where you need it.</p>
             </div>
           </div>
-          <div className="abd-ways">
+          <div className="abd-ways rv" style={{ '--i': 1 }}>
             {HOW.map((b, i) => (
-              <article key={b.name} className="abd-ways__panel rv" style={{ '--i': i }}>
+              <article key={b.name} className="abd-ways__panel">
                 <div className="abd-ways__hd">
                   <span className="abd-ways__idx mono">{`0${i + 1}`}</span>
                   <span className="abd-ways__mode mono">{b.mode}</span>
