@@ -150,7 +150,7 @@ export default function AgentCatalog() {
 
           <label className="ac__usecase">
             <span className="ac__usecase-label mono">Use case</span>
-            <select className="ac__usecase-select mono" value={useCase} onChange={(e) => setUseCase(e.target.value)}>
+            <select className="ac__usecase-select" value={useCase} onChange={(e) => setUseCase(e.target.value)}>
               <option value="All">Any use case</option>
               {USE_CASES.map((u) => <option key={u.id} value={u.id}>{u.label}</option>)}
             </select>

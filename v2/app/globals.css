@@ -4450,21 +4450,31 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
   transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease);
 }
 .ac__seg-btn:hover { border-color: var(--amber-line); color: var(--text); }
-.ac__seg-btn.is-on { color: var(--amber-ink); background: var(--amber); border-color: var(--amber); font-weight: 560; }
+.ac__seg-btn.is-on { color: var(--amber-text); background: var(--amber-soft); border-color: var(--amber-line); font-weight: 560; }
 .ac__seg-n { font-size: 11px; opacity: 0.7; }
 .ac__seg-btn.is-on .ac__seg-n { opacity: 0.85; }
-.ac__seg--effort .ac__seg-btn.is-on { color: var(--amber-ink); }
+.ac__seg--effort .ac__seg-btn.is-on { color: var(--amber-text); }
 
 /* use-case selector */
 .ac__usecase { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; }
 .ac__usecase-label { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); }
+/* Match the site's select convention (see .roi__mini-select): body font,
+   ink hairline, custom themed chevron — not the native browser arrow. */
 .ac__usecase-select {
-  font-family: var(--font-mono); font-size: 12.5px; color: var(--text);
-  background: var(--well-bg); border: 1px solid var(--line); border-radius: 999px;
-  padding: 7px 12px; cursor: pointer; outline: none;
-  transition: border-color 0.2s var(--ease);
+  font-family: var(--font-body); font-size: 12.5px; color: var(--text);
+  background: var(--well-bg); border: 1px solid rgba(var(--ink), 0.16); border-radius: 8px;
+  padding: 7px 30px 7px 12px; cursor: pointer; outline: none;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+  -webkit-appearance: none; -moz-appearance: none; appearance: none;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%239aa0a6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M2.5 4.5 6 8l3.5-3.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
 }
-.ac__usecase-select:hover, .ac__usecase-select:focus { border-color: var(--amber-line); }
+.ac__usecase-select:hover { border-color: rgba(var(--ink), 0.3); }
+.ac__usecase-select:focus { border-color: var(--amber-line); background-color: var(--well-bg-focus); }
+:root[data-theme="light"] .ac__usecase-select {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M2.5 4.5 6 8l3.5-3.5'/></svg>");
+}
 
 .ac__count { margin: 22px 0 16px; font-size: 12px; letter-spacing: 0.06em; color: var(--text-faint); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .ac__count-tag { color: var(--amber-text); }
