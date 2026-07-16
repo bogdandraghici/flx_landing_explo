@@ -8,8 +8,8 @@
  * (Turn 01 — 21:9 hero illustrations, direction 1B "Policy gate").
  *
  * Theme-aware: structure is drawn from the page's --ink token, the "safe /
- * validated" side from --amber-rgb (the mission's single accent, reserved for
- * resolution) and both are re-read on `themechange`, so the instrument flips
+ * validated" side from --dia-bright (a neutral signal — deliberately not the
+ * amber accent) and both are re-read on `themechange`, so the instrument flips
  * with the light/dark toggle. Honours prefers-reduced-motion by sitting on a
  * single settled frame instead of animating. The canvas is decorative
  * (aria-hidden); the legible labels are baked into the drawing and the copy
@@ -38,11 +38,11 @@ export function createPolicyGate(canvas) {
 
   // live palette, read from the page's theme tokens
   let INK = [255, 255, 255]; // structure (the design's flat white)
-  let ACC = [252, 184, 19];  // safe AI — post-gate (the design's neutral accent)
+  let ACC = [233, 236, 242]; // safe AI — post-gate (a neutral signal, not amber)
   function readPalette() {
     const cs = getComputedStyle(document.documentElement);
     INK = parseTriplet(cs.getPropertyValue('--ink')) || INK;
-    ACC = parseTriplet(cs.getPropertyValue('--amber-rgb')) || ACC;
+    ACC = parseTriplet(cs.getPropertyValue('--dia-bright')) || ACC;
   }
   readPalette();
 
