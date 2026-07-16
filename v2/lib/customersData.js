@@ -8,15 +8,15 @@ export const SEGMENTS = [
   {
     id: 'banking',
     label: 'Banking',
-    desc: 'Onboarding, lending and servicing journeys, modernized on the core systems these banks already run.',
+    desc: 'Onboarding, lending and servicing journeys, modernized on the cores these banks already run.',
     customers: [
-      { name: 'BNP Paribas', logo: '/customers/bnp-paribas.svg', meta: 'Global banking group', region: 'FR' },
+      { name: 'BNP Paribas', logo: '/customers/bnp-paribas.svg' },
       /* unicredit's svg box has no internal padding, so it renders oversized
          at the shared 40px cap — pull its cap down to optically match */
-      { name: 'UniCredit', logo: '/customers/unicredit.svg', meta: 'Pan-European banking group', region: 'IT', lh: 30 },
-      { name: 'OTP Bank', logo: '/customers/otp-bank.svg', meta: 'CEE banking group', region: 'HU' },
-      { name: 'Banca Transilvania', logo: '/customers/banca-transilvania.svg', meta: 'Largest bank in Romania', region: 'RO' },
-      { name: 'State Street', logo: '/customers/state-street.svg', meta: 'Custody & asset servicing', region: 'US' },
+      { name: 'UniCredit', logo: '/customers/unicredit.svg', lh: 30 },
+      { name: 'OTP Bank', logo: '/customers/otp-bank.svg' },
+      { name: 'Banca Transilvania', logo: '/customers/banca-transilvania.svg' },
+      { name: 'State Street', logo: '/customers/state-street.svg' },
     ],
   },
   {
@@ -24,10 +24,10 @@ export const SEGMENTS = [
     label: 'Insurance',
     desc: 'Claims, underwriting and policy journeys, built to hold up under real regulatory scrutiny.',
     customers: [
-      { name: 'Legal & General', logo: '/customers/legal-and-general.svg', meta: 'Insurance & asset management', region: 'UK' },
-      { name: 'Asirom · Vienna Insurance Group', logo: '/customers/asirom.svg', meta: 'Vienna Insurance Group member', region: 'RO' },
-      { name: 'Signal Iduna', logo: '/customers/signal-iduna.svg', meta: 'Insurance & financial services', region: 'DE' },
-      { name: 'Triglav', logo: '/customers/triglav.svg', meta: 'Adria-region insurance group', region: 'SI' },
+      { name: 'Legal & General', logo: '/customers/legal-and-general.svg' },
+      { name: 'Asirom · Vienna Insurance Group', logo: '/customers/asirom.svg' },
+      { name: 'Signal Iduna', logo: '/customers/signal-iduna.svg' },
+      { name: 'Triglav', logo: '/customers/triglav.svg' },
     ],
   },
   {
@@ -35,9 +35,9 @@ export const SEGMENTS = [
     label: 'Technology & delivery partners',
     desc: 'The technology and delivery partners who implement and scale FlowX programs.',
     customers: [
-      { name: 'IBM', logo: '/customers/ibm.svg', meta: 'Technology partner', region: 'Global' },
-      { name: 'Kyndryl', logo: '/customers/kyndryl.svg', meta: 'IT infrastructure services', region: 'Global' },
-      { name: 'Stefanini Group', logo: '/customers/stefanini.svg', meta: 'Digital services & delivery', region: 'Global' },
+      { name: 'IBM', logo: '/customers/ibm.svg' },
+      { name: 'Kyndryl', logo: '/customers/kyndryl.svg' },
+      { name: 'Stefanini Group', logo: '/customers/stefanini.svg' },
     ],
   },
 ];

@@ -187,17 +187,15 @@ export default function CustomersPage() {
             {SEGMENTS.map((seg) => (
               <div key={seg.id} className="cust-group" id={seg.id}>
                 <div className="cust-group__head rv">
-                  <p className="cust-group__label mono">{seg.label}</p>
+                  <p className="cust-group__label mono">
+                    {seg.label}<span className="cust-group__count">{seg.customers.length}</span>
+                  </p>
                   <p className="cust-group__desc">{seg.desc}</p>
                 </div>
                 <ul className="cust-grid">
                   {seg.customers.map((c, i) => (
                     <li key={c.name} className="cust-tile rv" style={{ '--i': i }} title={c.name}>
                       <span className="cust-logo" role="img" aria-label={c.name} style={c.lh ? { '--lh': `${c.lh}px` } : undefined} dangerouslySetInnerHTML={{ __html: logoSvg(c.logo) }} />
-                      <span className="cust-tile__meta mono">
-                        <span>{c.meta}</span>
-                        <span className="cust-tile__region">{c.region}</span>
-                      </span>
                     </li>
                   ))}
                 </ul>
