@@ -11,9 +11,9 @@ export const SEGMENTS = [
     desc: 'Onboarding, lending and servicing journeys, modernized on the cores these banks already run.',
     customers: [
       { name: 'BNP Paribas', logo: '/customers/bnp-paribas.svg' },
-      /* unicredit's svg box has no internal padding, so it renders oversized
-         at the shared 40px cap — pull its cap down to optically match */
-      { name: 'UniCredit', logo: '/customers/unicredit.svg', lh: 30 },
+      /* unicredit's mark is a tight-cropped wordmark; padding is baked into
+         its svg viewBox so it optically matches the others at the shared cap */
+      { name: 'UniCredit', logo: '/customers/unicredit.svg' },
       { name: 'OTP Bank', logo: '/customers/otp-bank.svg' },
       { name: 'Banca Transilvania', logo: '/customers/banca-transilvania.svg' },
       { name: 'State Street', logo: '/customers/state-street.svg' },
