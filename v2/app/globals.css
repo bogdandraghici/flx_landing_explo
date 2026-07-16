@@ -4767,6 +4767,23 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .cust-logo svg { max-height: var(--lh, 40px); max-width: 152px; width: auto; height: auto; display: block; }
 .cust-note { margin-top: 8px; font-size: 11.5px; color: var(--text-faint); line-height: 1.6; }
 
+/* Homepage "trusted by" logo band — reuses the customers-page monochrome
+   logos, scrolled by CustomerMarquee. Motion lives in JS (transform), so it's
+   frozen there under reduced-motion; no CSS keyframes to guard here. */
+.logo-band { padding: clamp(40px, 6vh, 72px) 0; border-block: 1px solid var(--line-soft); }
+.logo-band__eyebrow { text-align: center; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); margin-bottom: clamp(26px, 4vh, 44px); }
+.logo-band__vp { overflow: hidden; cursor: grab; touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.logo-band__vp.is-grabbing { cursor: grabbing; }
+.logo-band__track { display: flex; width: max-content; align-items: center; will-change: transform; }
+.logo-band__logo { flex: none; display: flex; align-items: center; justify-content: center;
+  height: 56px; padding: 0 clamp(28px, 4vw, 56px); color: var(--text-dim); user-select: none; }
+/* definite height + auto width so the viewBox aspect ratio drives the size —
+   these SVGs carry a viewBox but no width/height attrs, so they'd collapse to
+   0×0 under width/height:auto inside a shrink-to-fit flex item. */
+.logo-band__logo svg { height: 30px; width: auto; max-width: 150px; display: block; pointer-events: none; }
+
 /* ============================================================
    PLATFORM STATUS  (/platform/status)
    Functional semaphore colours (green/amber/red) — status semantics, not brand.

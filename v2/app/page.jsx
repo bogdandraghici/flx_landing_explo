@@ -1,5 +1,24 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { bp } from '@/components/lib/base';
 import HomeInit from '@/components/HomeInit';
+import CustomerMarquee from '@/components/CustomerMarquee';
+import { SEGMENTS } from '@/lib/customersData';
+
+/* Inline the customer logo SVGs at build so `currentColor` inherits the band's
+   muted, theme-aware color (an <img>-loaded SVG can't). Trusted local assets. */
+function logoSvg(logoPath) {
+  try {
+    return fs.readFileSync(path.join(process.cwd(), 'public', logoPath), 'utf8');
+  } catch {
+    return '';
+  }
+}
+
+// Same set + order as the customers page, flattened into one row for the band.
+const MARQUEE_LOGOS = SEGMENTS.flatMap((seg) =>
+  seg.customers.map((c) => ({ name: c.name, svg: logoSvg(c.logo) })),
+).filter((it) => it.svg);
 
 export default function Home() {
   return (
@@ -93,6 +112,14 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* ================= TRUSTED-BY LOGO BAND ================= */}
+        <section className="logo-band" id="trusted" aria-label="Trusted by leading financial institutions and partners">
+          <div className="shell">
+            <p className="logo-band__eyebrow mono">Trusted by leading financial institutions</p>
+          </div>
+          <CustomerMarquee items={MARQUEE_LOGOS} />
         </section>
 
         {/* ================= WHY 95% FAIL ================= */}
