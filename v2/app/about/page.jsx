@@ -1,5 +1,6 @@
 import { bp } from '@/components/lib/base';
 import AboutInit from '@/components/AboutInit';
+import PolicyGateViz from '@/components/PolicyGateViz';
 
 export const metadata = {
   title: 'FlowX — About us',
@@ -73,53 +74,9 @@ export default function About() {
               </div>
             </div>
 
-            {/* the mission as safe AI: an AI process running inside a governance
-                 boundary, cleared through validation checkpoints before it ships */}
-            <figure className="mfound rv" style={{ '--i': 2 }} role="img" aria-label="An AI process running inside a governance boundary, cleared through policy, validation and audit checkpoints before emerging as safe output">
-                <svg className="mfound__svg" viewBox="0 0 1000 280" aria-hidden="true">
-                  {/* the governance boundary: everything runs inside a regulated envelope */}
-                  <rect className="mgrd-bound" x="48" y="56" width="904" height="168" rx="18"/>
-                  <text className="mgrd-lbl" x="48" y="44">regulated environment</text>
-
-                  {/* guardrails channelling the AI between safe bounds */}
-                  <line className="mgrd-rail" x1="200" y1="112" x2="840" y2="112"/>
-                  <line className="mgrd-rail" x1="200" y1="168" x2="840" y2="168"/>
-
-                  {/* the AI process, checked at every gate before it may proceed */}
-                  <path id="mgrdFlow" className="mgrd-flow" d="M150 140 L890 140"/>
-
-                  <g>
-                    <line className="mgrd-gate" x1="330" y1="108" x2="330" y2="172"/>
-                    <line className="mgrd-gate" x1="324" y1="108" x2="336" y2="108"/>
-                    <line className="mgrd-gate" x1="324" y1="172" x2="336" y2="172"/>
-                    <path className="mgrd-check" d="M330 132 L338 140 L330 148 L322 140 Z"/>
-                    <text className="mgrd-lbl" x="330" y="202" textAnchor="middle">policy</text>
-                  </g>
-                  <g>
-                    <line className="mgrd-gate" x1="520" y1="108" x2="520" y2="172"/>
-                    <line className="mgrd-gate" x1="514" y1="108" x2="526" y2="108"/>
-                    <line className="mgrd-gate" x1="514" y1="172" x2="526" y2="172"/>
-                    <path className="mgrd-check--live" d="M520 132 L528 140 L520 148 L512 140 Z"/>
-                    <text className="mgrd-lbl mgrd-lbl--amber" x="520" y="202" textAnchor="middle">validate</text>
-                  </g>
-                  <g>
-                    <line className="mgrd-gate" x1="710" y1="108" x2="710" y2="172"/>
-                    <line className="mgrd-gate" x1="704" y1="108" x2="716" y2="108"/>
-                    <line className="mgrd-gate" x1="704" y1="172" x2="716" y2="172"/>
-                    <path className="mgrd-check" d="M710 132 L718 140 L710 148 L702 140 Z"/>
-                    <text className="mgrd-lbl" x="710" y="202" textAnchor="middle">audit</text>
-                  </g>
-
-                  {/* raw AI in on the left, validated-safe output on the right */}
-                  <circle className="mgrd-node" cx="150" cy="140" r="6"/>
-                  <text className="mgrd-lbl" x="150" y="202" textAnchor="middle">AI</text>
-                  <circle className="mgrd-node--live" cx="890" cy="140" r="6"/>
-                  <text className="mgrd-lbl mgrd-lbl--amber" x="890" y="202" textAnchor="middle">safe AI</text>
-
-                  {/* the process flowing through the checks, continuously */}
-                  <circle className="mgrd-pulse" r="3.5"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#mgrdFlow"/></animateMotion></circle>
-                </svg>
-            </figure>
+            {/* the mission as safe AI: many creators pass through one policy
+                 gate to production — work earns the accent only once inspected */}
+            <PolicyGateViz />
           </div>
         </section>
 
