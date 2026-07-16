@@ -1,6 +1,6 @@
 import { bp } from '@/components/lib/base';
 import AboutInit from '@/components/AboutInit';
-import PolicyGateViz from '@/components/PolicyGateViz';
+import CheckpointRingsViz from '@/components/CheckpointRingsViz';
 
 export const metadata = {
   title: 'FlowX — About us',
@@ -74,9 +74,10 @@ export default function About() {
               </div>
             </div>
 
-            {/* the mission as safe AI: many creators pass through one policy
-                 gate to production — work earns the accent only once inspected */}
-            <PolicyGateViz />
+            {/* the mission as safe AI: sources converge onto one governed line
+                 through three checkpoints (policy → verify → sign) — work earns
+                 the accent only after clearing the final checkpoint */}
+            <CheckpointRingsViz />
           </div>
         </section>
 
