@@ -4757,12 +4757,12 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 }
 .cust-led__metric {
   justify-self: end;
-  display: inline-flex; align-items: flex-start; justify-content: flex-end;
+  display: inline-flex; align-items: flex-end; justify-content: flex-end;
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(3rem, 8vw, 6rem); letter-spacing: -0.04em; line-height: 0.85;
   color: var(--text); font-variant-numeric: tabular-nums;
 }
-.cust-led__unit { font-size: 0.42em; color: var(--amber-text); margin-top: 0.16em; margin-left: 0.04em; letter-spacing: 0; }
+.cust-led__unit { font-size: 0.42em; color: var(--amber-text); margin-bottom: 0.12em; margin-inline: 0.03em; letter-spacing: 0; }
 .cust-led__body { display: flex; flex-direction: column; gap: 14px; max-width: 40ch; }
 .cust-led__label { font-size: clamp(19px, 2.2vw, 26px); line-height: 1.3; letter-spacing: -0.01em; color: var(--text); }
 .cust-led__who { display: flex; align-items: center; gap: 9px; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); }
