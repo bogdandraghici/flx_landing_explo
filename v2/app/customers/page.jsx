@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { bp } from '@/components/lib/base';
 import CustomersInit from '@/components/CustomersInit';
+import CustomersHeroViz from '@/components/CustomersHeroViz';
 import { SEGMENTS, OUTCOMES, CUSTOMER_COUNT } from '@/lib/customersData';
 
 /* Inline the logo SVGs at build so `currentColor` inherits the page color
@@ -48,126 +49,11 @@ export default function CustomersPage() {
               </p>
             </div>
 
-            {/* the install base: a skyline of institutions above one shared platform rail.
-                 Each building connects to the rail and its windows light up (journeys live
-                 inside); the newest one is held "in review", then clears — the connection
-                 runs amber, the tag flips to live, and traffic keeps moving on the rail. */}
-            <div className="ahero__viz" aria-hidden="true">
-              <svg viewBox="0 0 460 460" role="img" aria-label="Four institutions — a retail bank, a custodian, an insurer and a commercial bank — stand above one shared platform rail. Each connects to the rail and its windows light up; the newest connection is held in review, then clears and runs live, with traffic pulsing along the rail.">
-                {/* back row: the rest of the install base, receded */}
-                <rect className="ckv-back" x="128" y="176" width="44" height="164" />
-                <rect className="ckv-back" x="296" y="176" width="44" height="164" />
-
-                {/* ground + the platform rail beneath the skyline */}
-                <line className="ckv-ground" x1="40" y1="340" x2="420" y2="340" />
-                <line className="ckv-rail" x1="56" y1="392" x2="404" y2="392" />
-                <text className="ivz-lbl" x="56" y="412" textAnchor="start">flowx platform</text>
-                <text className="ivz-lbl" x="404" y="426" textAnchor="end">in production</text>
-
-                {/* the counter: one tick per institution, filling as each connects */}
-                <line className="ckv-count" x1="313" y1="410" x2="404" y2="410" />
-                <line className="ckv-cf ckv-on1" x1="313" y1="410" x2="332" y2="410" />
-                <line className="ckv-cf ckv-on2" x1="337" y1="410" x2="356" y2="410" />
-                <line className="ckv-cf ckv-on3" x1="361" y1="410" x2="380" y2="410" />
-                <line className="ckv-cf ckv-on4" x1="385" y1="410" x2="404" y2="410" />
-
-                {/* the skyline: three live institutions + one being onboarded */}
-                <rect className="ckv-bld" x="64" y="168" width="72" height="172" rx="4" />
-                <rect className="ckv-bld" x="152" y="120" width="68" height="220" rx="4" />
-                <rect className="ckv-bld" x="236" y="192" width="68" height="148" rx="4" />
-                <rect className="ckv-bld ckv-t4-solid ckv-on4" x="320" y="152" width="76" height="188" rx="4" />
-                <rect className="ckv-t4-draft" x="320" y="152" width="76" height="188" rx="4" />
-                <text className="ivz-lbl" x="100" y="158" textAnchor="middle">retail bank</text>
-                <text className="ivz-lbl" x="186" y="110" textAnchor="middle">custodian</text>
-                <text className="ivz-lbl" x="270" y="182" textAnchor="middle">insurer</text>
-                <text className="ivz-lbl" x="358" y="142" textAnchor="middle">commercial bank</text>
-
-                {/* windows: faint until the institution's journeys go live */}
-                <g className="ckv-win">
-                  <rect x="76" y="186" width="18" height="3" rx="1.5" /><rect x="102" y="186" width="18" height="3" rx="1.5" />
-                  <rect x="76" y="204" width="18" height="3" rx="1.5" /><rect x="102" y="204" width="18" height="3" rx="1.5" />
-                  <rect x="76" y="222" width="18" height="3" rx="1.5" /><rect x="102" y="222" width="18" height="3" rx="1.5" />
-                  <rect x="163" y="138" width="18" height="3" rx="1.5" /><rect x="189" y="138" width="18" height="3" rx="1.5" />
-                  <rect x="163" y="156" width="18" height="3" rx="1.5" /><rect x="189" y="156" width="18" height="3" rx="1.5" />
-                  <rect x="163" y="174" width="18" height="3" rx="1.5" /><rect x="189" y="174" width="18" height="3" rx="1.5" />
-                  <rect x="163" y="192" width="18" height="3" rx="1.5" /><rect x="189" y="192" width="18" height="3" rx="1.5" />
-                  <rect x="247" y="210" width="18" height="3" rx="1.5" /><rect x="273" y="210" width="18" height="3" rx="1.5" />
-                  <rect x="247" y="228" width="18" height="3" rx="1.5" /><rect x="273" y="228" width="18" height="3" rx="1.5" />
-                  <rect x="247" y="246" width="18" height="3" rx="1.5" /><rect x="273" y="246" width="18" height="3" rx="1.5" />
-                  <rect x="333" y="170" width="18" height="3" rx="1.5" /><rect x="361" y="170" width="18" height="3" rx="1.5" />
-                  <rect x="333" y="188" width="18" height="3" rx="1.5" /><rect x="361" y="188" width="18" height="3" rx="1.5" />
-                  <rect x="333" y="206" width="18" height="3" rx="1.5" /><rect x="361" y="206" width="18" height="3" rx="1.5" />
-                </g>
-                <g className="ckv-win-on ckv-on1">
-                  <rect x="76" y="186" width="18" height="3" rx="1.5" /><rect x="102" y="186" width="18" height="3" rx="1.5" />
-                  <rect x="76" y="204" width="18" height="3" rx="1.5" /><rect x="102" y="204" width="18" height="3" rx="1.5" />
-                  <rect x="76" y="222" width="18" height="3" rx="1.5" /><rect x="102" y="222" width="18" height="3" rx="1.5" />
-                </g>
-                <g className="ckv-win-on ckv-on2">
-                  <rect x="163" y="138" width="18" height="3" rx="1.5" /><rect x="189" y="138" width="18" height="3" rx="1.5" />
-                  <rect x="163" y="156" width="18" height="3" rx="1.5" /><rect x="189" y="156" width="18" height="3" rx="1.5" />
-                  <rect x="163" y="174" width="18" height="3" rx="1.5" /><rect x="189" y="174" width="18" height="3" rx="1.5" />
-                  <rect x="163" y="192" width="18" height="3" rx="1.5" /><rect x="189" y="192" width="18" height="3" rx="1.5" />
-                </g>
-                <g className="ckv-win-on ckv-on3">
-                  <rect x="247" y="210" width="18" height="3" rx="1.5" /><rect x="273" y="210" width="18" height="3" rx="1.5" />
-                  <rect x="247" y="228" width="18" height="3" rx="1.5" /><rect x="273" y="228" width="18" height="3" rx="1.5" />
-                  <rect x="247" y="246" width="18" height="3" rx="1.5" /><rect x="273" y="246" width="18" height="3" rx="1.5" />
-                </g>
-                <g className="ckv-win-on ckv-on4">
-                  <rect x="333" y="170" width="18" height="3" rx="1.5" /><rect x="361" y="170" width="18" height="3" rx="1.5" />
-                  <rect x="333" y="188" width="18" height="3" rx="1.5" /><rect x="361" y="188" width="18" height="3" rx="1.5" />
-                  <rect x="333" y="206" width="18" height="3" rx="1.5" /><rect x="361" y="206" width="18" height="3" rx="1.5" />
-                </g>
-
-                {/* connections: each institution drops a stem onto the rail */}
-                <g className="ckv-on1">
-                  <line className="ckv-stem" x1="100" y1="340" x2="100" y2="392" />
-                  <circle className="ckv-port" cx="100" cy="392" r="3" />
-                </g>
-                <g className="ckv-on2">
-                  <line className="ckv-stem" x1="186" y1="340" x2="186" y2="392" />
-                  <circle className="ckv-port" cx="186" cy="392" r="3" />
-                </g>
-                <g className="ckv-on3">
-                  <line className="ckv-stem" x1="270" y1="340" x2="270" y2="392" />
-                  <circle className="ckv-port" cx="270" cy="392" r="3" />
-                </g>
-                <g className="ckv-stem4">
-                  <line className="ckv-stem" x1="358" y1="340" x2="358" y2="392" />
-                  <circle className="ckv-port" cx="358" cy="392" r="3" />
-                </g>
-                {/* the fourth connection is held in review, clears, and runs amber */}
-                <line className="ckv-stem-hot" x1="358" y1="340" x2="358" y2="392" />
-                <line className="ckv-hold" x1="350" y1="366" x2="366" y2="366" />
-                <circle className="ckv-flash" cx="358" cy="366" r="7" />
-                <g className="ckv-tag--rev" transform="translate(314 366)">
-                  <rect className="ivz-tag" x="-31" y="-10" width="62" height="14" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1">in review</text>
-                </g>
-                <g className="ckv-tag--live" transform="translate(314 366)">
-                  <rect className="ivz-tag" x="-31" y="-10" width="62" height="14" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1">live</text>
-                </g>
-
-                {/* traffic: journeys riding the shared rail once connections exist */}
-                <path id="ckvRail" fill="none" stroke="none" d="M56 392 H404" />
-                <g className="ckv-dot"><circle r="2.6" />
-                  <animateMotion dur="4s" repeatCount="indefinite"><mpath href="#ckvRail" /></animateMotion>
-                  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.13;0.15;0.9;0.94;1" dur="12s" repeatCount="indefinite" />
-                </g>
-                <g className="ckv-dot"><circle r="2.6" />
-                  <animateMotion dur="4s" begin="2s" repeatCount="indefinite"><mpath href="#ckvRail" /></animateMotion>
-                  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.24;0.26;0.9;0.94;1" dur="12s" repeatCount="indefinite" />
-                </g>
-                {/* the cleared connection's first journey climbs into the building */}
-                <g className="ckv-amb"><circle r="3" />
-                  <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.57;0.61;1"><mpath href="#ckvClimb" /></animateMotion>
-                  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.57;0.58;0.6;0.62;1" dur="12s" repeatCount="indefinite" />
-                </g>
-                <path id="ckvClimb" fill="none" stroke="none" d="M358 392 L358 340" />
-              </svg>
-            </div>
+            {/* the hub: FlowX at the centre with the (anonymized) client roster
+                 boxed around it, work flowing both ways along the spokes — each
+                 endpoint carries a live agent count and a breathing status dot.
+                 Ported from design variant 2b. */}
+            <CustomersHeroViz className="ahero__viz" />
           </div>
         </section>
 
