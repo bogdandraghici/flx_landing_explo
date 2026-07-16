@@ -119,11 +119,7 @@ export default function IntegrationsPage() {
           </div>
           <div className="abd-ways">
             {HOW.map((b, i) => (
-              <article
-                key={b.name}
-                className={`abd-ways__panel rv${i === 0 ? ' abd-ways__panel--lead' : ''}`}
-                style={{ '--i': i }}
-              >
+              <article key={b.name} className="abd-ways__panel rv" style={{ '--i': i }}>
                 <div className="abd-ways__hd">
                   <span className="abd-ways__idx mono">{`0${i + 1}`}</span>
                   <span className="abd-ways__mode mono">{b.mode}</span>

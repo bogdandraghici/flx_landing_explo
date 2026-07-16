@@ -3733,8 +3733,6 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
   display: flex;
   flex-direction: column;
 }
-/* the recommended default path — amber top rail (inset so overflow:hidden keeps it) */
-.abd-ways__panel--lead { box-shadow: inset 0 2px 0 0 var(--amber); }
 .abd-ways__hd {
   display: flex;
   align-items: baseline;
@@ -3747,9 +3745,8 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--amber-text);
 }
-.abd-ways__panel--lead .abd-ways__mode { color: var(--amber-text); }
 @media (max-width: 700px) { .abd-ways { grid-template-columns: 1fr; } }
 
 /* --- integrations "why it matters": outcomes as an open, hairline-divided
