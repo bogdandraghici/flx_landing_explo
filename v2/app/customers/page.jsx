@@ -221,23 +221,28 @@ export default function CustomersPage() {
                 </p>
               </div>
             </div>
-            <div className="cust-led">
+            <dl className="stats stats--obs">
               {OUTCOMES.map((o, i) => (
-                <figure key={i} className="cust-led__row rv" style={{ '--i': i }}>
-                  <b className="cust-led__metric">
-                    {o.prefix && <span className="cust-led__unit">{o.prefix}</span>}
-                    {o.value}
-                    {o.unit && <span className="cust-led__unit">{o.unit}</span>}
-                  </b>
-                  <div className="cust-led__body">
-                    <p className="cust-led__label">{o.label}</p>
-                    <figcaption className="cust-led__who mono">
-                      <span className="cust-led__dot" aria-hidden="true" />{o.who}
-                    </figcaption>
-                  </div>
-                </figure>
+                <div key={i} className="stats__row rv" style={{ '--i': i }}>
+                  <dt>
+                    <span className="stats__val">
+                      {o.pre && <span className="stats__unit mono">{o.pre}</span>}
+                      <span className="stats__num mono" data-count={o.count} data-dec={o.dec}>{(0).toFixed(o.dec)}</span>
+                      <span className="stats__unit mono">{o.unit}</span>
+                    </span>
+                    <svg className="stats__meter" viewBox="0 0 200 12" aria-hidden="true">
+                      <line className="om-track" x1="0" y1="6" x2="200" y2="6" />
+                      {o.ticks?.map((t) => (
+                        <line key={t} className="om-tick" x1={t} y1="3" x2={t} y2="9" />
+                      ))}
+                      <line className="om-fill" x1="0" y1="6" x2={o.fill} y2="6" />
+                      <line className="om-cap" x1={o.fill} y1="1.5" x2={o.fill} y2="10.5" />
+                    </svg>
+                  </dt>
+                  <dd>{o.label} — {o.who}</dd>
+                </div>
               ))}
-            </div>
+            </dl>
           </div>
         </section>
 

@@ -45,9 +45,15 @@ export const SEGMENTS = [
 export const CUSTOMER_COUNT = SEGMENTS.reduce((n, s) => n + s.customers.length, 0);
 
 /* Real, published outcome metrics (attributions anonymized on flowx.ai).
-   `value` is the white numeral; `prefix`/`unit` (if any) render small + amber. */
+   Rendered like the landing page's proof section: a counted-up mono numeral
+   with a proportion meter beneath. `fill` is the meter's filled length on a
+   200-unit track; `ticks` (if set) draws gradation marks (the $ ruler). */
 export const OUTCOMES = [
-  { value: '80', unit: '%', label: 'of manual handoffs automated', who: 'COO · Major Custodian Bank' },
-  { value: '65', unit: '%', label: 'faster end-to-end process time', who: 'CTO · European Insurer' },
-  { prefix: '$', value: '1.8', unit: 'M', label: 'in annual operating savings', who: 'Deputy Director · CEE Bank Group' },
+  { count: 80, dec: 0, unit: '%', fill: 160, label: 'of manual handoffs automated', who: 'COO · Major Custodian Bank' },
+  { count: 65, dec: 0, unit: '%', fill: 130, label: 'faster end-to-end process time', who: 'CTO · European Insurer' },
+  {
+    count: 1.8, dec: 1, pre: '$', unit: 'M', fill: 180,
+    ticks: [20, 40, 60, 80, 100, 120, 140, 160, 200],
+    label: 'in annual operating savings', who: 'Deputy Director · CEE Bank Group',
+  },
 ];
