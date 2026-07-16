@@ -1884,6 +1884,18 @@ em { font-style: normal; }
    composited layer that some engines rasterize empty */
 .ahero__viz { opacity: 0; animation: heroVizIn 0.85s var(--ease) 0.55s forwards; }
 @keyframes heroVizIn { to { opacity: 1; } }
+
+/* banking hero — agent decision log panel (canvas-drawn in decisionLog.js) */
+.bkg-log {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.bkg-log__cvs { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .astats {
   display: flex;
   flex-wrap: wrap;

@@ -35,88 +35,14 @@ export default function Banking() {
               </p>
             </div>
 
-            {/* loan funnel: applications from every channel drop into the funnel and narrow through
-                 the verification stages; one jams at the neck (flagged), the agent clears it, the neck
-                 opens amber, the queue drains, and the funded balance fills one landing at a time */}
+            {/* agent decision log: a live upward-scrolling stream of agent decisions
+                 across the origination pipeline — timestamp · agent · stage · latency ·
+                 verdict — most rows PASS, a few resolve FUNDED / ESCALATE in amber.
+                 Canvas-drawn in decisionLog.js; theme-aware and reduced-motion safe. */}
             <div className="ahero__viz" aria-hidden="true">
-              <svg viewBox="0 0 460 460" role="img" aria-label="Loan applications from every channel drop into an origination funnel and narrow through docs, KYC, bureau and income checks; one jams at the neck and is flagged, then the agent clears it — the neck opens, the queue drains, and the account balance fills: cleared, funded">
-                {/* intake: three origination channels drop into the funnel mouth */}
-                <circle className="bkg-src" cx="118" cy="52" r="2.6" />
-                <circle className="bkg-src" cx="230" cy="44" r="2.6" />
-                <circle className="bkg-src" cx="342" cy="52" r="2.6" />
-                <text className="ivz-lbl" x="118" y="38" textAnchor="middle">branch</text>
-                <text className="ivz-lbl" x="230" y="30" textAnchor="middle">web</text>
-                <text className="ivz-lbl" x="342" y="38" textAnchor="middle">api</text>
-                <path className="bkg-guide" d="M118 52 Q150 92 230 116" />
-                <path className="bkg-guide" d="M230 44 L230 116" />
-                <path className="bkg-guide" d="M342 52 Q310 92 230 116" />
-
-                {/* invisible motion rails: each channel drops in, descends the funnel centreline to its
-                     place in the queue above the neck, holds, then pours through into the account */}
-                <path id="bkgRunW" fill="none" stroke="none" d="M230 44 L230 286 L230 342" />
-                <path id="bkgRunB" fill="none" stroke="none" d="M118 52 Q160 92 230 120 L230 266 L230 342" />
-                <path id="bkgRunA" fill="none" stroke="none" d="M342 52 Q300 92 230 120 L230 246 L230 342" />
-
-                {/* faint funnel-mouth rim + interior stage gradations */}
-                <line className="bkg-rim" x1="96" y1="120" x2="364" y2="120" />
-                <line className="bkg-level" x1="122.5" y1="158" x2="337.5" y2="158" />
-                <line className="bkg-level" x1="149" y1="196" x2="311" y2="196" />
-                <line className="bkg-level" x1="175.5" y1="234" x2="284.5" y2="234" />
-                <line className="bkg-level" x1="202" y1="272" x2="258" y2="272" />
-
-                {/* the funnel: the strong central form — walls narrowing to a neck + spout */}
-                <path className="bkg-wall" d="M96 120 L216 292" />
-                <path className="bkg-wall" d="M364 120 L244 292" />
-                <line className="bkg-spout" x1="216" y1="292" x2="216" y2="316" />
-                <line className="bkg-spout" x1="244" y1="292" x2="244" y2="316" />
-                {/* amber neck: the resolution — the spout runs amber once the jam clears */}
-                <line className="bkg-spout-hot" x1="216" y1="292" x2="216" y2="316" />
-                <line className="bkg-spout-hot" x1="244" y1="292" x2="244" y2="316" />
-
-                {/* stage labels riding the funnel walls */}
-                <text className="ivz-lbl" x="114" y="161" textAnchor="end">docs</text>
-                <text className="ivz-lbl" x="140" y="199" textAnchor="end">kyc</text>
-                <text className="ivz-lbl" x="167" y="237" textAnchor="end">bureau</text>
-                <text className="ivz-lbl" x="193" y="275" textAnchor="end">income</text>
-                <text className="ivz-lbl" x="346" y="161" textAnchor="start">01</text>
-                <text className="ivz-lbl" x="320" y="199" textAnchor="start">02</text>
-                <text className="ivz-lbl" x="293" y="237" textAnchor="start">03</text>
-                <text className="ivz-lbl" x="267" y="275" textAnchor="start">04</text>
-
-                {/* applications: three files drop in, stack at the neck (the jam), then pour through */}
-                <g className="bkg-dot"><circle r="3" />
-                  <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;0.815;0.815;1;1" keyTimes="0;0.02;0.25;0.575;0.615;1"><mpath href="#bkgRunW" /></animateMotion>
-                  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.02;0.03;0.61;0.62;1" dur="12s" repeatCount="indefinite" />
-                </g>
-                <g className="bkg-dot"><circle r="3" />
-                  <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;0.788;0.788;1;1" keyTimes="0;0.10;0.34;0.60;0.655;1"><mpath href="#bkgRunB" /></animateMotion>
-                  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.10;0.11;0.65;0.66;1" dur="12s" repeatCount="indefinite" />
-                </g>
-                <g className="bkg-dot"><circle r="3" />
-                  <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;0.733;0.733;1;1" keyTimes="0;0.18;0.42;0.625;0.685;1"><mpath href="#bkgRunA" /></animateMotion>
-                  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.18;0.19;0.68;0.69;1" dur="12s" repeatCount="indefinite" />
-                </g>
-
-                {/* the jam: the neck plugs, flares, and is flagged until the agent clears it */}
-                <line className="bkg-plug" x1="214" y1="290" x2="246" y2="290" />
-                <circle className="bkg-flash" cx="230" cy="289" r="7" />
-                <g className="bkg-tag--flag" transform="translate(316 258)">
-                  <rect className="ivz-tag" x="-31" y="-10" width="62" height="14" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1">flagged</text>
-                </g>
-                <g className="bkg-tag--ok" transform="translate(316 258)">
-                  <rect className="ivz-tag" x="-31" y="-10" width="62" height="14" />
-                  <text className="ivz-lbl" textAnchor="middle" y="1">cleared</text>
-                </g>
-
-                {/* the funded account: the balance steps up as each application lands */}
-                <rect className="bkg-card" x="158" y="344" width="144" height="48" rx="10" />
-                <rect className="bkg-title" x="174" y="356" width="44" height="6" rx="3" />
-                <line className="bkg-line" x1="174" y1="376" x2="286" y2="376" />
-                <line className="bkg-fill" x1="174" y1="376" x2="286" y2="376" />
-                <circle className="bkg-arr" cx="230" cy="344" r="8" />
-                <line className="bkg-ground" x1="120" y1="404" x2="340" y2="404" />
-              </svg>
+              <div className="bkg-log">
+                <canvas className="bkg-log__cvs" />
+              </div>
             </div>
           </div>
         </section>

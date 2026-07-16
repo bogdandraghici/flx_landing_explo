@@ -3,11 +3,16 @@
    page-specific behaviour. */
 import { reduceMotion } from './shared.js';
 import { createStaticField } from './orderField.js';
+import { createDecisionLog } from './decisionLog.js';
 
 export function initIndustry() {
   /* ================= cta static grid ================= */
   const ctaCanvas = document.querySelector('.cta__canvas');
   if (ctaCanvas) createStaticField(ctaCanvas);
+
+  /* ================= banking hero — agent decision log ================= */
+  const decisionLog = document.querySelector('.bkg-log');
+  if (decisionLog) createDecisionLog(decisionLog);
 
   /* ================= segment hover → highlight pipeline stages =================
      Hovering a segment card lights up the stages its agents work on and dims the
