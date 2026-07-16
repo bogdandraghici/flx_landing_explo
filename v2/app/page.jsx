@@ -116,9 +116,6 @@ export default function Home() {
 
         {/* ================= TRUSTED-BY LOGO BAND ================= */}
         <section className="logo-band" id="trusted" aria-label="Trusted by leading financial institutions and partners">
-          <div className="shell">
-            <p className="logo-band__eyebrow mono">Trusted by leading financial institutions</p>
-          </div>
           <CustomerMarquee items={MARQUEE_LOGOS} />
         </section>
 

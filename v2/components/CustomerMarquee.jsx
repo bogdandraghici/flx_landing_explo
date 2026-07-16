@@ -33,7 +33,7 @@ export default function CustomerMarquee({ items }) {
       return () => window.removeEventListener('resize', measure);
     }
 
-    const speed = 0.4;
+    const speed = 0.28;
     let offset = 0, paused = false, dragging = false, startX = 0, startOffset = 0, raf = 0;
     const wrap = () => { if (!setWidth) return; if (offset <= -setWidth) offset += setWidth; else if (offset > 0) offset -= setWidth; };
     const render = () => { track.style.transform = `translate3d(${offset}px,0,0)`; };
