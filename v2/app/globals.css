@@ -2778,6 +2778,53 @@ a.seg:hover,
 @keyframes lrv-ex { 0%, 36% { opacity: 0; } 38%, 56% { opacity: 0.9; } 62%, 100% { opacity: 0; } }
 @keyframes lrv-re { 0%, 52% { opacity: 0; } 56%, 88% { opacity: 0.9; } 94%, 100% { opacity: 0; } }
 
+/* --- customers hero: the install base (ckv-*) ---
+   a skyline of institutions above one shared platform rail. Each building
+   drops a stem onto the rail in turn and its windows light up (journeys live
+   inside); the tick counter fills as each connects. The newest connection is
+   held "in review" mid-stem, then clears — the stem runs amber, the tag flips
+   to live, and traffic keeps riding the rail. Amber is reserved for the
+   cleared connection. Base (non-animated) values are the resolved pose. */
+.ckv-back { fill: none; stroke: rgba(var(--ink), 0.07); stroke-width: 1; }
+.ckv-ground { stroke: rgba(var(--ink), 0.06); stroke-width: 1; }
+.ckv-rail { stroke: rgba(var(--dia-bright), 0.35); stroke-width: 1.2; stroke-linecap: round; }
+.ckv-bld { fill: var(--bg-raised); stroke: rgba(var(--ink), 0.14); stroke-width: 1; }
+.ckv-t4-draft { fill: none; stroke: rgba(var(--ink), 0.22); stroke-width: 1; stroke-dasharray: 3 5; opacity: 0; animation: ckv-draft 12s linear infinite; }
+.ckv-win rect { fill: rgba(var(--ink), 0.08); }
+.ckv-win-on rect { fill: rgba(var(--dia-bright), 0.5); }
+.ckv-stem { stroke: rgba(var(--dia-bright), 0.4); stroke-width: 1.2; stroke-linecap: round; }
+.ckv-port { fill: rgba(var(--dia-bright), 0.8); }
+.ckv-count { stroke: rgba(var(--ink), 0.10); stroke-width: 2; stroke-dasharray: 3 5; }
+.ckv-cf { stroke: rgba(var(--dia-bright), 0.6); stroke-width: 2; stroke-dasharray: 3 5; }
+/* connection beats: stems, ports, lit windows and counter ticks share timing */
+.ckv-on1 { animation: ckv-on1 12s linear infinite; }
+.ckv-on2 { animation: ckv-on2 12s linear infinite; }
+.ckv-on3 { animation: ckv-on3 12s linear infinite; }
+.ckv-on4 { animation: ckv-on4 12s linear infinite; }
+.ckv-stem4 { animation: ckv-stem4 12s linear infinite; }
+.ckv-stem-hot { stroke: var(--amber); stroke-width: 1.4; stroke-linecap: round; opacity: 0.9; animation: ckv-hot 12s linear infinite; }
+.ckv-hold { stroke: rgba(var(--dia-bright), 0.55); stroke-width: 1.4; stroke-linecap: round; opacity: 0; animation: ckv-hold 12s linear infinite; }
+.ckv-flash { fill: none; stroke: rgba(var(--dia-bright), 0.8); stroke-width: 1; opacity: 0; transform-origin: 358px 366px; animation: ckv-flash 12s ease-out infinite; }
+.ckv-tag--rev { opacity: 0; animation: ckv-rev 12s linear infinite; }
+.ckv-tag--live { opacity: 0.9; animation: ckv-live 12s linear infinite; }
+.ckv-dot { fill: rgba(var(--dia-bright), 0.8); }
+.ckv-amb { fill: var(--amber); }
+
+@keyframes ckv-on1 { 0%, 8% { opacity: 0; } 11%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+@keyframes ckv-on2 { 0%, 14% { opacity: 0; } 17%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+@keyframes ckv-on3 { 0%, 20% { opacity: 0; } 23%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+/* the fourth beat is the resolution: nothing lights until the review clears */
+@keyframes ckv-on4 { 0%, 56% { opacity: 0; } 59%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+/* the fourth stem connects early but stays held (dim) until cleared */
+@keyframes ckv-stem4 { 0%, 30% { opacity: 0; } 33%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+@keyframes ckv-hot { 0%, 56% { opacity: 0; } 58.5%, 90% { opacity: 0.9; } 95%, 100% { opacity: 0; } }
+@keyframes ckv-hold { 0%, 32% { opacity: 0; } 34%, 52% { opacity: 0.85; } 54%, 100% { opacity: 0; } }
+@keyframes ckv-flash { 0%, 52% { opacity: 0; transform: scale(0.5); } 53.5% { opacity: 0.75; transform: scale(1); } 56%, 100% { opacity: 0; transform: scale(1.5); } }
+@keyframes ckv-rev { 0%, 35% { opacity: 0; } 37%, 52% { opacity: 0.9; } 56%, 100% { opacity: 0; } }
+@keyframes ckv-live { 0%, 57% { opacity: 0; } 59%, 88% { opacity: 0.9; } 94%, 100% { opacity: 0; } }
+/* the onboarding outline: dashed while pending, gone once the building is live */
+@keyframes ckv-draft { 0%, 2% { opacity: 0; } 4%, 56% { opacity: 0.9; } 58%, 100% { opacity: 0; } }
+
 /* --- agent-builder hero: "the build" (abv-*) — agent-builder.html;
    the page's layout styles live in the AGENT BUILDER PAGE section below.
    typed bricks are dragged from a palette (agent · tool · memory) and lock into
@@ -3283,11 +3330,14 @@ a.seg:hover,
   .irv-pulse, .irv-tag--fnol, .irv-tag--set,
   .lrv-plan-a, .lrv-plan-b, .lrv-detour, .lrv-x, .lrv-flash, .lrv-alt--scan,
   .lrv-tag--ex, .lrv-tag--re { animation: none; }
+  /* customers hero: freeze on the resolved pose (all connected, tag live) */
+  .ckv-on1, .ckv-on2, .ckv-on3, .ckv-on4, .ckv-stem4, .ckv-stem-hot,
+  .ckv-hold, .ckv-flash, .ckv-tag--rev, .ckv-tag--live, .ckv-t4-draft { animation: none; }
   /* agent-builder hero: freeze on the resolved pose (grid whole, output lit) */
   .abv-slots, .abv-pal, .abv-port-pill, .abv-out-hot,
   .abv-edge, .abv-brick, .abv-tag { animation: none; }
   /* SMIL movers can't be frozen by CSS — hide them; the static scene is the resolved pose */
-  .lrv-dot, .lrv-arrive, .lrv-amb, .bkg-dot, .abv-dot { display: none; }
+  .lrv-dot, .lrv-arrive, .lrv-amb, .bkg-dot, .abv-dot, .ckv-dot, .ckv-amb { display: none; }
   /* flowx-code hero: freeze on the resolved pose (validated, saved, committed) */
   .fxc-caret, .fxc-type, .fxc-rail-hot, .fxc-ground, .fxc-field,
   .fxc-wait, .fxc-commit,
@@ -4696,23 +4746,37 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .cust-out-section { padding-top: clamp(24px, 4vh, 48px); padding-bottom: clamp(24px, 4vh, 48px); }
 .cust-out { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 @media (max-width: 720px) { .cust-out { grid-template-columns: 1fr; } }
-.cust-out__card { display: flex; flex-direction: column; gap: 6px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-card); }
-.cust-out__metric { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--amber-text); }
-.cust-out__label { font-size: 15px; color: var(--text); margin-top: 4px; }
-.cust-out__who { font-size: 11.5px; letter-spacing: 0.04em; color: var(--text-faint); margin-top: 8px; }
+/* outcome proof: an attributed statement, the metric reading inline with it */
+.cust-out__card { display: flex; flex-direction: column; justify-content: space-between; gap: 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); padding: clamp(22px, 3vw, 30px); box-shadow: var(--shadow-card); }
+.cust-out__q { font-size: 17px; line-height: 1.5; color: var(--text); max-width: 26ch; }
+.cust-out__metric { font-family: var(--font-display); font-size: clamp(1.9rem, 2.6vw, 2.3rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1; color: var(--amber-text); margin-right: 4px; }
+.cust-out__who { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); border-top: 1px solid var(--line); padding-top: 14px; }
 
 .cust-section { padding-top: clamp(24px, 4vh, 48px); }
-.cust-group { margin-bottom: clamp(36px, 5vh, 56px); scroll-margin-top: 96px; }
-.cust-group__label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-.cust-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.cust-group { margin-bottom: clamp(40px, 6vh, 64px); scroll-margin-top: 96px; }
+/* group header: segment label + what these customers run FlowX for */
+.cust-group__head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px 32px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 20px;
+}
+.cust-group__label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); }
+.cust-group__desc { font-size: 14px; color: var(--text-dim); line-height: 1.55; max-width: 56ch; }
+.cust-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
 .cust-tile {
-  display: flex; align-items: center; justify-content: center;
-  height: 96px; padding: 20px 24px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
+  padding: 20px 20px 14px;
   border: 1px solid var(--line); border-radius: 14px; background: var(--bg-raised);
   box-shadow: var(--shadow-card);
 }
-.cust-logo { display: flex; align-items: center; justify-content: center; width: 100%; color: var(--text-dim); }
-.cust-logo svg { max-height: 40px; max-width: 100%; width: auto; height: auto; display: block; }
+.cust-logo { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; color: var(--text-dim); }
+.cust-logo svg { max-height: var(--lh, 40px); max-width: 152px; width: auto; height: auto; display: block; }
+/* caption: what this logo is, and where — info the mark alone doesn't carry */
+.cust-tile__meta {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  border-top: 1px solid var(--line); padding-top: 10px;
+  font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-faint);
+}
+.cust-tile__region { flex: none; color: var(--text-dim); }
 .cust-note { margin-top: 8px; font-size: 11.5px; color: var(--text-faint); line-height: 1.6; }
 
 /* ============================================================
