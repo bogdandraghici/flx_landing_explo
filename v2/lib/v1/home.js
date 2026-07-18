@@ -1,14 +1,16 @@
 /* Home page interactions, ported verbatim from v1 src/main.js.
    `initChrome()` is intentionally omitted — the layout <Chrome> runs it once. */
 import { $, reduceMotion } from './shared.js';
-import { createOrderField, createStaticField } from './orderField.js';
+import { createStaticField } from './orderField.js';
+import { createSlowTide } from './slowTide.js';
 import { classify, renderDiagram, specText, typeSpec } from './blueprint.js';
 
 export function initHome() {
   /* ================= hero field ================= */
-  /* The hero background is the "order field" animation (the only mode). */
+  /* The hero background is the "Slow Tide" WebGL scene — a glowing ring around a
+     dark sphere with a disk of orbiting agent particles. */
   const canvas = $('#field');
-  if (canvas) createOrderField(canvas);
+  if (canvas) createSlowTide(canvas);
 
   /* ================= cta static grid ================= */
   const ctaCanvas = $('.cta__canvas');

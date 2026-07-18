@@ -928,6 +928,118 @@ em { font-style: normal; }
     linear-gradient(to top, var(--bg) 0%, rgba(var(--scrim), 0) 26%),
     linear-gradient(to bottom, rgba(var(--scrim), 0.75) 0%, rgba(var(--scrim), 0) 22%);
 }
+
+/* ---------- Slow Tide: always-dark hero ----------
+   The hero background is a dark deep-space WebGL scene in both themes, so the
+   hero subtree is pinned to the dark palette even under the light theme. The
+   rest of the page still flips light/dark normally. */
+:root[data-theme="light"] .hero {
+  color-scheme: dark;
+  --bg: #0A0B0D;
+  --bg-raised: #0E1013;
+  --bg-panel: #0C0E11;
+  --ink: 255, 255, 255;
+  --scrim: 10, 11, 13;
+  --line: rgba(var(--ink), 0.08);
+  --line-soft: rgba(var(--ink), 0.05);
+  --text: #F4F5F3;
+  --text-rgb: 244, 245, 243;
+  --text-dim: rgba(var(--text-rgb), 0.58);
+  --text-faint: rgba(var(--text-rgb), 0.34);
+  --hero-eyebrow: #a3a39a;
+  --hero-dim: #8f8f88;
+  --hero-strong: #f5f5f0;
+  --hero-sub: #b9b9b1;
+  --term-ink: #f2efe9;
+  --lede: #cdd2dc;
+  --amber-text: var(--amber);
+  --amber-soft: rgba(var(--amber-rgb), 0.08);
+  --amber-line: rgba(var(--amber-rgb), 0.45);
+  --shadow-card: none;
+  --shadow-pop: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --shadow-term: 0 24px 60px rgba(0, 0, 0, 0.5);
+  --well-bg: rgba(0, 0, 0, 0.18);
+  --well-bg-focus: rgba(0, 0, 0, 0.24);
+  color: var(--text);
+}
+
+/* ---------- Slow Tide: overlay (edge vignette + HUD + tracked labels) ---------- */
+/* Gentle porthole vignette so the disk fades into the frame edges. Sits just
+   above the canvas, below the legibility scrim and the copy. */
+.tide-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(125% 95% at 50% 50%,
+    rgba(var(--scrim), 0) 45%, rgba(var(--scrim), 0.75) 100%);
+}
+/* Instrument layer: above the scrim, below the hero copy (z-index 1 == inner,
+   but the copy is later in the DOM so it always paints on top). */
+.tide-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  font-family: var(--font-mono);
+}
+.tide-hud {
+  position: absolute;
+  bottom: 24px;
+  left: clamp(20px, 4vw, 52px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(var(--ink), 0.38);
+}
+.tide-hud__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(var(--ink), 0.9);
+  animation: tideBreathe 4.6s ease-in-out infinite;
+}
+@keyframes tideBreathe {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.06); }
+}
+.tide-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.25s linear;
+}
+.tide-label__box {
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(var(--amber-rgb), 0.85);
+  flex: none;
+}
+.tide-label__lead {
+  width: 12px;
+  height: 1px;
+  background: rgba(var(--ink), 0.3);
+  flex: none;
+}
+.tide-label__tag {
+  padding: 2px 6px;
+  background: rgba(var(--scrim), 0.72);
+  white-space: nowrap;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: rgba(var(--ink), 0.75);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tide-hud__dot { animation: none; }
+  .tide-label { transition: none; }
+}
+
 .hero__inner {
   position: relative;
   z-index: 1;
