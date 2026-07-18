@@ -978,31 +978,39 @@ em { font-style: normal; }
   margin: 0 auto clamp(18px, 3vh, 28px);
   max-width: 20ch;
 }
-/* Value-stream list — numbered mono rows, centered block, left-aligned rows. */
+/* Value-stream list — pill cloud: compact chips, centered and wrapping, quiet. */
 .hero__vs {
   list-style: none;
-  margin: clamp(8px, 2vh, 20px) auto 0;
+  margin: clamp(14px, 3vh, 30px) auto 0;
   padding: 0;
-  width: min(440px, 100%);
-  border-top: 1px solid rgba(var(--ink), 0.14);
-  text-align: left;
+  max-width: min(780px, 100%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(9px, 1.1vw, 14px);
 }
 .hero__vs li {
   display: flex;
-  align-items: baseline;
-  gap: 18px;
-  padding: 13px 2px;
-  border-bottom: 1px solid rgba(var(--ink), 0.09);
+  align-items: center;
+  gap: 12px;
+  padding: 11px clamp(18px, 1.6vw, 24px);
+  border: 1px solid rgba(var(--ink), 0.14);
+  border-radius: 999px;
+  background: rgba(var(--ink), 0.035);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .hero__vs-no {
-  font-size: 10px;
+  font-size: 11px;
   color: rgba(var(--ink), 0.42);
 }
 .hero__vs-name {
-  font-size: 13px;
-  letter-spacing: 0.22em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(12.5px, 1.1vw, 15px);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(var(--ink), 0.85);
+  color: rgba(var(--ink), 0.9);
 }
 .hero__canvas {
   position: absolute;

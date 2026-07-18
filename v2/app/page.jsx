@@ -84,13 +84,13 @@ export default function Home() {
                   pulling each one into the flow.
                 </p>
                 <ol className="hero__vs rv" style={{ '--i': 3 }}>
-                  <li><span className="hero__vs-no mono">01</span><span className="hero__vs-name mono">Onboarding</span></li>
-                  <li><span className="hero__vs-no mono">02</span><span className="hero__vs-name mono">Lending</span></li>
-                  <li><span className="hero__vs-no mono">03</span><span className="hero__vs-name mono">Underwriting</span></li>
-                  <li><span className="hero__vs-no mono">04</span><span className="hero__vs-name mono">Claims</span></li>
-                  <li><span className="hero__vs-no mono">05</span><span className="hero__vs-name mono">Retention</span></li>
-                  <li><span className="hero__vs-no mono">06</span><span className="hero__vs-name mono">Quoting</span></li>
-                  <li><span className="hero__vs-no mono">07</span><span className="hero__vs-name mono">Track &amp; Trace</span></li>
+                  <li><span className="hero__vs-no mono">01</span><span className="hero__vs-name">Onboarding</span></li>
+                  <li><span className="hero__vs-no mono">02</span><span className="hero__vs-name">Lending</span></li>
+                  <li><span className="hero__vs-no mono">03</span><span className="hero__vs-name">Underwriting</span></li>
+                  <li><span className="hero__vs-no mono">04</span><span className="hero__vs-name">Claims</span></li>
+                  <li><span className="hero__vs-no mono">05</span><span className="hero__vs-name">Retention</span></li>
+                  <li><span className="hero__vs-no mono">06</span><span className="hero__vs-name">Quoting</span></li>
+                  <li><span className="hero__vs-no mono">07</span><span className="hero__vs-name">Track &amp; Trace</span></li>
                 </ol>
               </div>
             </div>
