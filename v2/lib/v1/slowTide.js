@@ -59,6 +59,11 @@ export function createSlowTide(canvas) {
 
   const MOTION_SPEED = 0.4;
   const WAVE_AMP = 0.09;
+  // Opening-frame lift: raise the scene so the sphere's top edge crowns the
+  // title at the top of the page (like the reference's starting composition).
+  // Amount of upward lift as a fraction of clip space; eases to 0 as the camera
+  // descends, so the later steps keep the framing already dialed in.
+  const FRAME_UP = 0.34;
   // Fewer particles on small/handheld viewports (position updates run in JS).
   const N = window.innerWidth < 760 ? 1200 : 2200;
 
@@ -206,6 +211,10 @@ export function createSlowTide(canvas) {
       Math.sin(az) * Math.cos(elv) * dist,
     );
     cam.lookAt(0, 0, 0);
+    // Lift the whole scene at the top of the page so the ring crowns the title,
+    // relaxing to a centered frame by the time the camera reaches the horizon.
+    // (Negative clip-space Y shift moves the scene up on screen.)
+    cam.projectionMatrix.elements[9] = -FRAME_UP * (1 - ez(seg(p, 0, 0.4)));
 
     hudText.textContent =
       'AZ ' + (((az * 57.2958) % 360 + 360) % 360).toFixed(1).padStart(5, '0') +
@@ -301,8 +310,8 @@ export function createSlowTide(canvas) {
   document.addEventListener('visibilitychange', onVis);
 
   if (reduceMotion) {
-    // Freeze at a settled, mid-descent pose so the scene reads as intended.
-    p = 0.34;
+    // Freeze at the opening pose — the sphere's edge crowning the title.
+    p = 0.05;
     renderFrame(t0);
     hudDot.style.animation = 'none';
   } else {
