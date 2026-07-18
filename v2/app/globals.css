@@ -1144,6 +1144,23 @@ em { font-style: normal; }
   align-items: center;
   text-align: center;
 }
+/* Soft dark pool bound to the copy — a layer between the sphere and the text.
+   It hides the visual behind the copy so only the sphere's top edge rises above
+   it (the "moon cresting a dark horizon" read), and keeps the text crisp. Sits
+   above the canvas (z-index -1 lands inside .hero__inner's own stacking context,
+   which is above the pinned .hero__bg) and below the copy. */
+.hero__inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(58% 46% at 50% 52%,
+    rgba(var(--scrim), 0.94) 0%,
+    rgba(var(--scrim), 0.8) 42%,
+    rgba(var(--scrim), 0.34) 72%,
+    rgba(var(--scrim), 0) 100%);
+}
 .hero__eyebrow {
   display: inline-flex;
   align-items: center;
