@@ -1008,8 +1008,7 @@ em { font-style: normal; }
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(12.5px, 1.1vw, 15px);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   color: rgba(var(--ink), 0.9);
 }
 .hero__canvas {
