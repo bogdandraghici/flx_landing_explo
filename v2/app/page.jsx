@@ -78,10 +78,10 @@ export default function Home() {
                   <span className="tick" aria-hidden="true" />
                   Value streams — in production
                 </p>
-                <h2 className="hero__step-title rv" style={{ '--i': 1 }}>Every mission-critical value stream<span className="amber">.</span></h2>
+                <h2 className="hero__step-title rv" style={{ '--i': 1 }}>Every mission-critical value stream, in stable orbit<span className="amber">.</span></h2>
                 <p className="hero__sub rv" style={{ '--i': 2 }}>
-                  Deployed inside banks, insurers, and logistics operators —
-                  governed, auditable, and running on your infrastructure.
+                  220+ enterprise-ready agents, governed and observable —
+                  pulling each one into the flow.
                 </p>
                 <ol className="hero__vs rv" style={{ '--i': 3 }}>
                   <li><span className="hero__vs-no mono">01</span><span className="hero__vs-name mono">Onboarding</span></li>
