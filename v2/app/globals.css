@@ -904,13 +904,105 @@ em { font-style: normal; }
 /* ============================================================
    HERO
    ============================================================ */
+/* The hero is a tall scroll TRACK: a pinned WebGL stage (.hero__bg) plus three
+   full-height steps that scroll over it. Its height (steps x 100dvh) is the
+   scroll distance the Slow Tide camera animation plays across. No overflow clip
+   here — that would trap the sticky stage. */
 .hero {
   position: relative;
+}
+.hero__bg {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: clip;
+  z-index: 0;
+}
+.hero__steps {
+  position: relative;
+  z-index: 1;
+  margin-top: -100dvh; /* pull the steps up so they scroll over the pinned stage */
+}
+.hero__step {
+  position: relative; /* anchors the step-1 scroll cue to this step, not the track */
   min-height: 100dvh;
   display: grid;
   grid-template-columns: minmax(0, 1fr); /* cap the track to the viewport so wide content (the text-sized terminal input) can't blow the hero out on mobile */
   align-content: center;
-  overflow: clip;
+}
+/* Persistent instrument readout, bottom-right, pairing with the Slow Tide HUD. */
+.hero__stamp {
+  position: absolute;
+  bottom: clamp(64px, 7vh, 72px); /* matched baseline with the Slow Tide HUD */
+  right: clamp(20px, 4vw, 52px);
+  margin: 0;
+  z-index: 1;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(var(--ink), 0.4);
+  text-transform: uppercase;
+}
+/* On narrow viewports the long stamp would wrap and collide with the HUD — drop
+   it (its content is already in the hero copy) and let the HUD stand alone. */
+@media (max-width: 720px) {
+  .hero__stamp { display: none; }
+}
+/* Scroll affordance on step 1 (fades away as the step scrolls off). */
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 4vh, 40px);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(var(--ink), 0.42);
+}
+.hero__scroll-line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(rgba(var(--ink), 0.5), rgba(var(--ink), 0));
+}
+/* Value-stream + agent-builder step headings. */
+.hero__step-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  color: var(--hero-strong);
+  margin: 0 auto clamp(18px, 3vh, 28px);
+  max-width: 20ch;
+}
+/* Value-stream list — numbered mono rows, centered block, left-aligned rows. */
+.hero__vs {
+  list-style: none;
+  margin: clamp(8px, 2vh, 20px) auto 0;
+  padding: 0;
+  width: min(440px, 100%);
+  border-top: 1px solid rgba(var(--ink), 0.14);
+  text-align: left;
+}
+.hero__vs li {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 13px 2px;
+  border-bottom: 1px solid rgba(var(--ink), 0.09);
+}
+.hero__vs-no {
+  font-size: 10px;
+  color: rgba(var(--ink), 0.42);
+}
+.hero__vs-name {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(var(--ink), 0.85);
 }
 .hero__canvas {
   position: absolute;
@@ -985,7 +1077,8 @@ em { font-style: normal; }
 }
 .tide-hud {
   position: absolute;
-  bottom: 24px;
+  /* lifted clear of the fixed bottom-left cookie-consent pill (.cc-pill) */
+  bottom: clamp(64px, 7vh, 72px);
   left: clamp(20px, 4vw, 52px);
   display: flex;
   align-items: center;

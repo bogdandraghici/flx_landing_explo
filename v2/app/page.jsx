@@ -24,67 +24,116 @@ export default function Home() {
   return (
     <>
       <main id="top">
-        {/* ================= HERO ================= */}
+        {/* ================= HERO — "Slow Tide" ================= */}
+        {/* A pinned WebGL stage (glowing ring + orbiting agent particles) whose
+            camera descends across three scroll steps — overview → value streams
+            → agent builder — so the whole animation plays out before the page
+            continues below. */}
         <section className="hero" id="hero">
-          <canvas id="field" className="hero__canvas" aria-hidden="true" />
-          <div className="hero__scrim" aria-hidden="true" />
-
-          <div className="shell hero__inner">
-            <p className="hero__eyebrow mono rv-load" style={{ '--d': 0 }}>
-              <span className="tick" aria-hidden="true" />
-              Enterprise AI · AI for regulated industries
-            </p>
-
-            <h1 className="hero__title">
-              <span className="hero__line hero__line--big rv-load" style={{ '--d': 1 }}>Deploy Banking, Insurance, and Logistics AI Agents in Weeks<span className="amber">.</span></span>
-              <span className="hero__line rv-load" style={{ '--d': 2 }}><span className="dim">Proven in Production.</span></span>
-            </h1>
-
-            <p className="hero__sub rv-load" style={{ '--d': 4 }}>
-              Accelerate mission-critical value streams: onboarding, lending,
-              underwriting, claims, retention, quoting, track &amp; trace, and more.
-              Over 220 enterprise-ready AI agents — or build your own — ready to
-              plug into your legacy systems.
-            </p>
-
-            <div className="hero__cta cta__row rv-load" style={{ '--d': 5 }}>
-              <a className="btn btn--primary" href="#registry">Explore Agents</a>
-              <a className="btn btn--ghost" href="#proof">Calculate ROI</a>
-            </div>
-
-            {/* Terminal / solution compiler */}
-            <div className="term rv-load" style={{ '--d': 6 }} id="term">
-              <div className="term__bar mono">
-                <span className="term__dots" aria-hidden="true"><i /><i /><i /></span>
-                <span className="term__title">flowx — agent builder</span>
-              </div>
-              <div className="term__body mono">
-                <p className="term__ask"><span className="amber">▸</span> what should your first agent do?</p>
-                <form className="term__form" id="termForm" autoComplete="off">
-                  <label className="term__prompt" htmlFor="termInput">$</label>
-                  <span className="term__field">
-                    <input className="term__input" id="termInput" name="usecase" type="text" spellCheck="false"
-                      placeholder="" aria-label="Describe your use case" maxLength="120" />
-                    <span className="term__caret" aria-hidden="true" />
-                  </span>
-                  <button className="term__go" type="submit" aria-label="Compile blueprint">compile ↵</button>
-                </form>
-                <div className="term__log" id="termLog" aria-live="polite" />
-              </div>
-            </div>
-
-            <p className="term__hints mono rv-load" style={{ '--d': 7 }}>
-              try —
-              <button className="hint" type="button" data-hint="automate commercial onboarding for business clients">onboarding</button> ·
-              <button className="hint" type="button" data-hint="underwrite retail mortgages in days, not weeks">underwriting</button> ·
-              <button className="hint" type="button" data-hint="triage motor insurance claims end to end">claims</button> ·
-              <button className="hint" type="button" data-hint="track and trace shipments across carriers">track &amp; trace</button>
-            </p>
+          {/* Pinned background stage. The canvas + scrim stay put while the steps
+              scroll over them; slowTide.js injects the vignette, HUD, and labels here. */}
+          <div className="hero__bg" aria-hidden="true">
+            <canvas id="field" className="hero__canvas" aria-hidden="true" />
+            <div className="hero__scrim" aria-hidden="true" />
+            <p className="hero__stamp mono">220+ enterprise-ready agents · 20 categories · in production</p>
           </div>
 
-          <div className="hero__foot mono rv-load" style={{ '--d': 8 }}>
-            <span>[ scroll ]</span>
-            <span className="hero__foot-right">001 — 220+ enterprise-ready agents · 20 categories · in production</span>
+          <div className="hero__steps">
+            {/* ---- STEP 1 · overview ---- */}
+            <div className="hero__step" data-step="1">
+              <div className="shell hero__inner">
+                <p className="hero__eyebrow mono rv-load" style={{ '--d': 0 }}>
+                  <span className="tick" aria-hidden="true" />
+                  Enterprise AI · AI for regulated industries
+                </p>
+
+                <h1 className="hero__title">
+                  <span className="hero__line hero__line--big rv-load" style={{ '--d': 1 }}>Deploy Banking, Insurance, and Logistics AI Agents in Weeks<span className="amber">.</span></span>
+                  <span className="hero__line rv-load" style={{ '--d': 2 }}><span className="dim">Proven in Production.</span></span>
+                </h1>
+
+                <p className="hero__sub rv-load" style={{ '--d': 4 }}>
+                  Accelerate mission-critical value streams: onboarding, lending,
+                  underwriting, claims, retention, quoting, track &amp; trace, and more.
+                  Over 220 enterprise-ready AI agents — or build your own — ready to
+                  plug into your legacy systems.
+                </p>
+
+                <div className="hero__cta cta__row rv-load" style={{ '--d': 5 }}>
+                  <a className="btn btn--primary" href="#registry">Explore Agents</a>
+                  <a className="btn btn--ghost" href="#proof">Calculate ROI</a>
+                </div>
+              </div>
+
+              <span className="hero__scroll mono rv-load" style={{ '--d': 7 }} aria-hidden="true">
+                scroll
+                <span className="hero__scroll-line" />
+              </span>
+            </div>
+
+            {/* ---- STEP 2 · value streams ---- */}
+            <div className="hero__step" data-step="2">
+              <div className="shell hero__inner">
+                <p className="hero__eyebrow mono rv" style={{ '--i': 0 }}>
+                  <span className="tick" aria-hidden="true" />
+                  Value streams — in production
+                </p>
+                <h2 className="hero__step-title rv" style={{ '--i': 1 }}>Every mission-critical value stream<span className="amber">.</span></h2>
+                <p className="hero__sub rv" style={{ '--i': 2 }}>
+                  Deployed inside banks, insurers, and logistics operators —
+                  governed, auditable, and running on your infrastructure.
+                </p>
+                <ol className="hero__vs rv" style={{ '--i': 3 }}>
+                  <li><span className="hero__vs-no mono">01</span><span className="hero__vs-name mono">Onboarding</span></li>
+                  <li><span className="hero__vs-no mono">02</span><span className="hero__vs-name mono">Lending</span></li>
+                  <li><span className="hero__vs-no mono">03</span><span className="hero__vs-name mono">Underwriting</span></li>
+                  <li><span className="hero__vs-no mono">04</span><span className="hero__vs-name mono">Claims</span></li>
+                  <li><span className="hero__vs-no mono">05</span><span className="hero__vs-name mono">Retention</span></li>
+                  <li><span className="hero__vs-no mono">06</span><span className="hero__vs-name mono">Quoting</span></li>
+                  <li><span className="hero__vs-no mono">07</span><span className="hero__vs-name mono">Track &amp; Trace</span></li>
+                </ol>
+              </div>
+            </div>
+
+            {/* ---- STEP 3 · agent builder / terminal ---- */}
+            <div className="hero__step" data-step="3">
+              <div className="shell hero__inner">
+                <p className="hero__eyebrow mono rv" style={{ '--i': 0 }}>
+                  <span className="tick" aria-hidden="true" />
+                  Agent builder
+                </p>
+                <h2 className="hero__step-title rv" style={{ '--i': 1 }}>Start with a sentence<span className="amber">.</span></h2>
+
+                {/* Terminal / solution compiler */}
+                <div className="term rv" style={{ '--i': 2 }} id="term">
+                  <div className="term__bar mono">
+                    <span className="term__dots" aria-hidden="true"><i /><i /><i /></span>
+                    <span className="term__title">flowx — agent builder</span>
+                  </div>
+                  <div className="term__body mono">
+                    <p className="term__ask"><span className="amber">▸</span> what should your first agent do?</p>
+                    <form className="term__form" id="termForm" autoComplete="off">
+                      <label className="term__prompt" htmlFor="termInput">$</label>
+                      <span className="term__field">
+                        <input className="term__input" id="termInput" name="usecase" type="text" spellCheck="false"
+                          placeholder="" aria-label="Describe your use case" maxLength="120" />
+                        <span className="term__caret" aria-hidden="true" />
+                      </span>
+                      <button className="term__go" type="submit" aria-label="Compile blueprint">compile ↵</button>
+                    </form>
+                    <div className="term__log" id="termLog" aria-live="polite" />
+                  </div>
+                </div>
+
+                <p className="term__hints mono rv" style={{ '--i': 3 }}>
+                  try —
+                  <button className="hint" type="button" data-hint="automate commercial onboarding for business clients">onboarding</button> ·
+                  <button className="hint" type="button" data-hint="underwrite retail mortgages in days, not weeks">underwriting</button> ·
+                  <button className="hint" type="button" data-hint="triage motor insurance claims end to end">claims</button> ·
+                  <button className="hint" type="button" data-hint="track and trace shipments across carriers">track &amp; trace</button>
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 

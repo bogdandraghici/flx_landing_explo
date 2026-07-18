@@ -41,8 +41,13 @@ function makeDotTexture() {
 
 export function createSlowTide(canvas) {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const hero = canvas.closest('section') || canvas.parentElement;
-  if (!hero) return { destroy() {} };
+  // The stage is the pinned, viewport-height element the scene is sized/drawn to
+  // (canvas + overlays live here). The track is the tall scroll container whose
+  // scroll progress drives the camera — so the whole animation plays across the
+  // hero's several steps before the page continues below.
+  const stage = canvas.closest('.hero__bg') || canvas.parentElement || canvas;
+  const track = canvas.closest('section') || stage;
+  if (!stage) return { destroy() {} };
 
   let rend;
   try {
@@ -57,8 +62,8 @@ export function createSlowTide(canvas) {
   // Fewer particles on small/handheld viewports (position updates run in JS).
   const N = window.innerWidth < 760 ? 1200 : 2200;
 
-  let w = hero.clientWidth || window.innerWidth;
-  let h = hero.clientHeight || window.innerHeight;
+  let w = stage.clientWidth || window.innerWidth;
+  let h = stage.clientHeight || window.innerHeight;
   rend.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   rend.setSize(w, h, false); // false: keep the CSS-driven 100%/100% sizing
   rend.setClearColor(0x0a0b0d, 1);
@@ -146,10 +151,10 @@ export function createSlowTide(canvas) {
     return node;
   });
 
-  const scrim = hero.querySelector('.hero__scrim');
-  hero.insertBefore(vignette, canvas.nextSibling); // just above the canvas
-  if (scrim) hero.insertBefore(overlay, scrim.nextSibling); // above the scrim, below the copy
-  else hero.appendChild(overlay);
+  const scrim = stage.querySelector('.hero__scrim');
+  stage.insertBefore(vignette, canvas.nextSibling); // just above the canvas
+  if (scrim) stage.insertBefore(overlay, scrim.nextSibling); // above the scrim, below the copy
+  else stage.appendChild(overlay);
 
   /* ---------- frame ---------- */
   const pv = new THREE.Vector3();
@@ -159,8 +164,11 @@ export function createSlowTide(canvas) {
 
   function scrollTarget() {
     const vh = window.innerHeight || 1;
-    const top = hero.getBoundingClientRect().top;
-    return Math.min(1, Math.max(0, -top / vh));
+    const rect = track.getBoundingClientRect();
+    // 0 at the track top, 1 once the track has scrolled fully past — the camera
+    // animation is spread across the entire pinned region (all hero steps).
+    const range = Math.max(1, track.offsetHeight - vh);
+    return Math.min(1, Math.max(0, -rect.top / range));
   }
 
   function renderFrame(now) {
@@ -271,8 +279,8 @@ export function createSlowTide(canvas) {
   }
 
   function onResize() {
-    w = hero.clientWidth || window.innerWidth;
-    h = hero.clientHeight || window.innerHeight;
+    w = stage.clientWidth || window.innerWidth;
+    h = stage.clientHeight || window.innerHeight;
     rend.setSize(w, h, false);
     cam.aspect = w / h;
     cam.updateProjectionMatrix();
@@ -282,9 +290,9 @@ export function createSlowTide(canvas) {
 
   const io = new IntersectionObserver(
     ([entry]) => (entry.isIntersecting ? start() : stop()),
-    { threshold: 0.02 },
+    { threshold: 0 },
   );
-  io.observe(hero);
+  io.observe(track);
 
   function onVis() {
     if (document.hidden) stop();

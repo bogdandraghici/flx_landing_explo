@@ -235,7 +235,12 @@ export function initHome() {
     sizeInput();
     term.classList.remove('has-text');
     log.innerHTML = '';
-    document.getElementById('hero').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    // Return to the terminal step (the terminal now lives at the bottom of the
+    // tall scrollytelling hero — scrolling to #hero would land on step 1).
+    (term.closest('.hero__step') || term).scrollIntoView({
+      behavior: reduceMotion ? 'auto' : 'smooth',
+      block: 'center',
+    });
     setTimeout(() => input.focus({ preventScroll: true }), reduceMotion ? 0 : 650);
   });
 
