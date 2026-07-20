@@ -2,7 +2,7 @@ import { bp } from '@/components/lib/base';
 import { absUrl, SITE_NAME } from '@/components/lib/site';
 import JsonLd from '@/components/JsonLd';
 import ModelsHeroViz from '@/components/ModelsHeroViz';
-import { MODELS, HF_ORG } from '@/lib/modelsData';
+import { MODELS, INDUSTRY_MODELS, HF_ORG } from '@/lib/modelsData';
 
 export const metadata = {
   title: 'FlowX — Open Models',
@@ -91,6 +91,47 @@ export default function ModelsPage() {
                strongest head amber), each new token lands amber and settles
                to ink. Reduced motion → resolved pose. */}
           <ModelsHeroViz className="ahero__viz" />
+        </div>
+      </section>
+
+      {/* ================= INDUSTRY MODEL FAMILIES ================= */}
+      <section className="section rlist-section" id="industry">
+        <div className="shell">
+          <div className="section__head">
+            <span className="section__no mono">Industry models</span>
+            <div className="section__headline">
+              <h2 className="h2 rv">Model families for regulated verticals<span className="amber">.</span></h2>
+              <p className="section__lede rv" style={{ '--i': 1 }}>
+                On-device NER and de-identification families, one per industry — small encoder and
+                document models that read your paperwork, extract the entities that matter, and strip
+                regulated data before a single byte leaves your network.
+              </p>
+            </div>
+          </div>
+          <ul className="mgrid">
+            {INDUSTRY_MODELS.map((m, i) => (
+              <li key={m.slug} id={m.slug} className="mcard rv" style={{ '--i': i % 3, scrollMarginTop: '6rem' }}>
+                <div className="mcard__top">
+                  <span className="mcard__params mono">{m.count}</span>
+                  <span className="mcard__type mono">{m.industry}</span>
+                </div>
+                <h3 className="mcard__name">{m.name}</h3>
+                <p className="mcard__repo mono">{m.family}</p>
+                <p className="mcard__blurb">{m.blurb}</p>
+                <dl className="mcard__spec">
+                  <div><dt className="mono">Extracts</dt><dd>{m.entities}</dd></div>
+                  <div><dt className="mono">Latency</dt><dd>{m.latency}</dd></div>
+                  <div><dt className="mono">Compliance</dt><dd>{m.reg}</dd></div>
+                </dl>
+                <div className="mcard__links">
+                  <a className="mcard__hf" href={bp(`/models/${m.slug}`)}>
+                    Explore {m.name} →
+                  </a>
+                  <span className="mcard__bench mono">{m.install}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
