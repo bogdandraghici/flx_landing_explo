@@ -23,7 +23,7 @@ const MARQUEE_LOGOS = SEGMENTS.flatMap((seg) =>
 export default function Home() {
   return (
     <>
-      <main id="top">
+      <main id="top" className="page-home">
         {/* ================= HERO — "Slow Tide" ================= */}
         {/* A pinned WebGL stage (glowing ring + orbiting agent particles) whose
             camera descends across three scroll steps — overview → value streams
@@ -173,7 +173,7 @@ export default function Home() {
           <div className="shell">
             <div className="why">
               <div className="why__left">
-                <span className="section__no mono">02 / The 5%</span>
+                <span className="section__no mono">The 5%</span>
                 <h2 className="h2 rv">95% of AI initiatives do fail. Be in the <span className="amber">5%</span> that succeed.</h2>
               </div>
               <ol className="why__list">
@@ -200,7 +200,7 @@ export default function Home() {
         <section className="section" id="registry">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">03 / Agents</span>
+              <span className="section__no mono">Agents</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Our production-ready AI agents and agent stacks<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>Over 220 mission-critical AI agents across 20 categories,
@@ -254,7 +254,7 @@ export default function Home() {
         <section className="section section--platform" id="platform">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">04 / Why FlowX</span>
+              <span className="section__no mono">Why FlowX</span>
               <div className="section__headline">
                 <h2 className="h2 rv" style={{ whiteSpace: 'normal' }}>Why do FlowX.AI agents succeed in enterprises?</h2>
               </div>
@@ -330,7 +330,7 @@ export default function Home() {
         <section className="section" id="process">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">05 / Process</span>
+              <span className="section__no mono">Process</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Start. Prove ROI. Scale<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>Four steps from kickoff to production — weeks, not quarters.</p>
@@ -365,7 +365,7 @@ export default function Home() {
         <section className="section section--proof" id="proof">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">06 / Proof</span>
+              <span className="section__no mono">Proof</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Success stories with FlowX.AI<span className="amber">.</span></h2>
               </div>
@@ -465,7 +465,7 @@ export default function Home() {
         <section className="section" id="voices">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">07 / Voices</span>
+              <span className="section__no mono">Voices</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Global companies, including financial institutions, trust FlowX.AI<span className="amber">.</span></h2>
               </div>
@@ -503,7 +503,7 @@ export default function Home() {
         <section className="section" id="faq">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">08 / FAQ</span>
+              <span className="section__no mono">FAQ</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Frequently asked questions<span className="amber">.</span></h2>
               </div>
@@ -538,7 +538,7 @@ export default function Home() {
           <div className="shell">
             <div className="abuild">
               <div className="abuild__text">
-                <span className="section__no mono">09 / Agent Builder</span>
+                <span className="section__no mono">Agent Builder</span>
                 <h2 className="h2 rv">Build your own agents with our Agent Builder<span className="amber">.</span></h2>
                 <p className="section__lede rv">Streamline business flows, reduce human effort and risk.</p>
                 <div className="cta__row bp__cta rv">
@@ -661,7 +661,7 @@ export default function Home() {
         <section className="section section--cta" id="cta">
           <canvas className="cta__canvas" aria-hidden="true" />
           <div className="shell">
-            <span className="section__no mono">10 / Next</span>
+            <span className="section__no mono">Next</span>
             <h2 className="cta__title">
               <span className="rv" style={{ '--i': 0 }}>Accelerate mission-critical</span>
               <span className="rv" style={{ '--i': 1 }}>value streams with our</span>

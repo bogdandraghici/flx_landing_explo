@@ -1404,6 +1404,12 @@ em { font-style: normal; }
   color: var(--text-faint);
   padding-top: 10px;
 }
+/* homepage: section labels drop the number prefix and the all-caps eyebrow
+   treatment (numbered, uppercased labels read as an AI-page tell) */
+.page-home .section__no {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
 .h2 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 3.9vw, 3.4rem);
