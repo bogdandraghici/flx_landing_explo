@@ -126,3 +126,59 @@ export const MODELS = [
 ];
 
 export const HF_ORG = 'https://huggingface.co/flowxai';
+
+/* Industry model families — on-device NER + de-identification SLM families,
+   one per regulated vertical. These ship as families of small encoder/document
+   models (not single checkpoints), so they're presented as families rather than
+   in the head-to-head benchmark grid above. Content transcribed from each
+   family's model page. `slug` doubles as the /models#<slug> deep-link anchor. */
+export const INDUSTRY_MODELS = [
+  {
+    slug: 'openledger',
+    name: 'OpenLedger',
+    industry: 'Banking',
+    family: 'Open-source financial NER',
+    count: '9 models',
+    blurb: 'Small encoder models for banking: extract IBANs, PANs, counterparties and 30+ financial entity types, and de-identify PCI & PII — without a single byte leaving your network. IBAN/card checksums validated on-device.',
+    entities: '30+ financial entities',
+    latency: '~140 ms / doc',
+    reg: 'PCI · GLBA · GDPR · AML',
+    install: 'github.com/flowx-ai/openner',
+  },
+  {
+    slug: 'opencover',
+    name: 'OpenCover',
+    industry: 'Insurance',
+    family: 'Open-source insurance NER',
+    count: '8 models',
+    blurb: 'A family of encoder models that read dec pages, FNOL notices, ACORD forms, adjuster notes and medical reports — extracting 28+ entity types and stripping PII + all 18 HIPAA identifiers on-device.',
+    entities: '28+ insurance entities',
+    latency: '~150 ms / doc',
+    reg: 'GLBA + HIPAA',
+    install: 'github.com/flowx-ai/openner',
+  },
+  {
+    slug: 'openfreight',
+    name: 'OpenFreight',
+    industry: 'Trade & shipping',
+    family: 'Open-source logistics NER',
+    count: '8 models',
+    blurb: 'Encoder and document models that read B/Ls, air waybills, commercial invoices, packing lists and customs declarations — validating ISO 6346, IMO, HS and UN/LOCODE codes and de-identifying pricing & PII on-prem. ONNX/edge exports included.',
+    entities: '30+ trade entities',
+    latency: '~150 ms / doc',
+    reg: 'On-prem · signed audit trail',
+    install: 'github.com/flowx-ai/openner',
+  },
+  {
+    slug: 'openvita',
+    name: 'OpenVita',
+    industry: 'Pharmacy & healthcare',
+    family: 'On-device healthcare NER',
+    count: '5 models',
+    blurb: 'On-device NER and SLM models for pharmacy and healthcare ops: route the inbox, extract every expiry, lot and GTIN, and de-identify patient PII and health data — because patient data cannot go to a cloud LLM.',
+    entities: 'Expiry · lot · GTIN · PHI',
+    latency: '~126 ms / doc',
+    reg: 'HIPAA + GDPR Art. 9',
+    install: 'github.com/flowx-ai/openner',
+  },
+];

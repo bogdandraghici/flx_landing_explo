@@ -173,28 +173,23 @@ export default function Nav() {
             <div className="nav__panel" id="panel-research">
               <div className="nav__sheet">
                 <div className="nav__cols">
-                  <div className="nav__group nav__group--split">
-                    <p className="nav__glabel mono">Papers · eXponential6</p>
-                    {/* 7 papers over two column-major columns (4 + 3); 4 rows so the
-                        7th doesn't spill into an implicit third column */}
-                    <div className="nav__group-cols" style={{ gridTemplateRows: 'repeat(4, auto)' }}>
-                      <a className="nav__link--desc" href={bp("/research/vera")}><span className="nav__link-t mono">VERA</span><span className="nav__link-d">Evidence-graded ROI for agents</span></a>
-                      <a className="nav__link--desc" href={bp("/research/orna-autotune")}><span className="nav__link-t mono">ORNA</span><span className="nav__link-d">Agent self-adaptation in production</span></a>
-                      <a className="nav__link--desc" href={bp("/research/halo")}><span className="nav__link-t mono">HALO</span><span className="nav__link-d">Zero hallucination, by construction</span></a>
-                      <a className="nav__link--desc" href={bp("/research/gavel")}><span className="nav__link-t mono">GAVEL</span><span className="nav__link-d">Governance, evidenced at runtime</span></a>
-                      <a className="nav__link--desc" href={bp("/research/sift")}><span className="nav__link-t mono">SIFT</span><span className="nav__link-d">A classifier that teaches itself</span></a>
-                      <a className="nav__link--desc" href={bp("/research/rails")}><span className="nav__link-t mono">RAILS</span><span className="nav__link-d">Deterministic graphs, stochastic nodes</span></a>
-                      <a className="nav__link--desc" href={bp("/research/mneme")}><span className="nav__link-t mono">MNEMĒ</span><span className="nav__link-d">Safe, active agent memory</span></a>
-                    </div>
+                  <div className="nav__group">
+                    <p className="nav__glabel mono">Industry Models</p>
+                    {/* four industry-specific on-device NER / de-identification SLMs */}
+                    <a className="nav__link--desc" href={bp("/models/openledger")}><span className="nav__link-t mono">OpenLedger</span><span className="nav__link-d">On-device NER for banking</span></a>
+                    <a className="nav__link--desc" href={bp("/models/opencover")}><span className="nav__link-t mono">OpenCover</span><span className="nav__link-d">On-device NER for insurance</span></a>
+                    <a className="nav__link--desc" href={bp("/models/openfreight")}><span className="nav__link-t mono">OpenFreight</span><span className="nav__link-d">On-device NER for trade &amp; shipping</span></a>
+                    <a className="nav__link--desc" href={bp("/models/openvita")}><span className="nav__link-t mono">OpenVita</span><span className="nav__link-d">On-device NER for healthcare</span></a>
                   </div>
                   <div className="nav__group">
                     <p className="nav__glabel mono">Open models</p>
                     <a className="nav__link--desc" href={bp("/models")}><span className="nav__link-t">Models overview</span><span className="nav__link-d">Open-weight models, benchmarked</span></a>
-                    <a className="nav__link--desc" href="https://huggingface.co/flowxai" target="_blank" rel="noopener"><span className="nav__link-t">Hugging Face <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">Download the open weights</span></a>
+                    <a className="nav__link--desc" href="https://huggingface.co/flowxai" target="_blank" rel="noopener"><span className="nav__link-t">Hugging Face <span className="nav__ext" aria-hidden="true">↗</span></span><span className="nav__link-d">40+ open weights to download</span></a>
                     <a className="nav__link--desc" href={bp("/models#benchmarks")}><span className="nav__link-t">Benchmarks</span><span className="nav__link-d">Head-to-head vs frontier models</span></a>
                   </div>
                   <div className="nav__group">
-                    <p className="nav__glabel mono">Approach</p>
+                    <p className="nav__glabel mono">Papers &amp; approach</p>
+                    <a className="nav__link--desc" href={bp("/research")}><span className="nav__link-t">Technical Papers</span><span className="nav__link-d">The eXponential6 research series</span></a>
                     <a className="nav__link--desc" href={bp("/research/methodology")}><span className="nav__link-t">Methodology</span><span className="nav__link-d">How we build and evaluate</span></a>
                     <a className="nav__link--desc" href={bp("/research/safety")}><span className="nav__link-t">Safety &amp; governance</span><span className="nav__link-d">Controls for regulated AI</span></a>
                   </div>
@@ -276,7 +271,7 @@ export default function Nav() {
                     <a href={bp("/blog")}><span className="nav__link-t">Knowledge Hub — all articles</span></a>
                     <a href={bp("/blog-flowx-6")}><span className="nav__link-t">Events — FlowX.AI 6</span></a>
                     <a href={bp("/resources/webinars")}><span className="nav__link-t">Webinars</span></a>
-                    <a href={bp("/research")}><span className="nav__link-t">Research papers</span></a>
+                    <a href={bp("/research")}><span className="nav__link-t">Technical Papers</span></a>
                   </div>
                 </div>
                 <p className="nav__foot mono"><a href={bp("/blog")}>Explore the Knowledge Hub <span className="nav__arr" aria-hidden="true">→</span></a></p>

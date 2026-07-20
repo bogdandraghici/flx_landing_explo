@@ -1,6 +1,7 @@
 import { absUrl } from '@/components/lib/site';
 import { POSTS } from '@/lib/blogData';
 import { PAPERS } from '@/lib/researchData';
+import { OPEN_MODELS } from '@/lib/openModelsData';
 
 export const dynamic = 'force-static';
 
@@ -38,6 +39,8 @@ export default function sitemap() {
 
   const papers = PAPERS.map((p) => ({ url: absUrl(`/research/${p.slug}`), changeFrequency: 'yearly', priority: 0.6 }));
 
+  const openModels = OPEN_MODELS.map((m) => ({ url: absUrl(`/models/${m.slug}`), changeFrequency: 'monthly', priority: 0.6 }));
+
   const posts = POSTS.map((p) => ({
     url: absUrl(`/blog/${p.slug}`),
     lastModified: p.dateModified || p.date || undefined,
@@ -45,5 +48,5 @@ export default function sitemap() {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...papers, ...posts];
+  return [...staticRoutes, ...openModels, ...papers, ...posts];
 }
