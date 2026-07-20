@@ -66,7 +66,7 @@ export default function AgentBuilder() {
         <section className="section" id="how">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">01 / Pipeline</span>
+              <span className="section__no mono">Pipeline</span>
               <div className="section__headline">
                 <h2 className="h2 rv">From a visual workflow to a running state machine<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>The author draws nodes and edges; the platform
@@ -106,7 +106,7 @@ export default function AgentBuilder() {
         <section className="section" id="gradient">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">02 / Node catalog</span>
+              <span className="section__no mono">Node catalog</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Place the stochastic core on a gradient<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>Node types span a gradient from fully deterministic
@@ -157,7 +157,7 @@ export default function AgentBuilder() {
         <section className="section" id="capabilities">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">03 / Capabilities</span>
+              <span className="section__no mono">Capabilities</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Everything an enterprise agent needs, built in<span className="amber">.</span></h2>
               </div>
@@ -201,7 +201,7 @@ export default function AgentBuilder() {
         <section className="section section--cta" id="cta">
           <canvas className="cta__canvas" aria-hidden="true" />
           <div className="shell">
-            <span className="section__no mono">04 / Next</span>
+            <span className="section__no mono">Next</span>
             <h2 className="cta__title">
               <span className="rv" style={{ '--i': 0 }}>Design your</span>
               <span className="rv" style={{ '--i': 1 }}>first agent<span className="amber">.</span></span>

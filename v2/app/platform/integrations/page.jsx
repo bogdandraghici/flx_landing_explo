@@ -89,7 +89,7 @@ export default function IntegrationsPage() {
       <section className="section" id="connects">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">01 / What it connects to</span>
+            <span className="section__no mono">What it connects to</span>
             <div className="section__headline">
               <h2 className="h2 rv">One journey, every system<span className="amber">.</span></h2>
               <p className="section__lede rv" style={{ '--i': 1 }}>From decades-old cores to the newest AI tools — the same journey can reach them all.</p>
@@ -111,7 +111,7 @@ export default function IntegrationsPage() {
       <section className="section" id="how">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">02 / How it works</span>
+            <span className="section__no mono">How it works</span>
             <div className="section__headline">
               <h2 className="h2 rv">Two ways to connect<span className="amber">.</span></h2>
               <p className="section__lede rv" style={{ '--i': 1 }}>Most connections are point-and-click. When something needs bespoke handling, you drop down to code — only where you need it.</p>
@@ -136,7 +136,7 @@ export default function IntegrationsPage() {
       <section className="section" id="why">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">03 / Why it matters</span>
+            <span className="section__no mono">Why it matters</span>
             <div className="section__headline">
               <h2 className="h2 rv">Modernize without the risk<span className="amber">.</span></h2>
             </div>

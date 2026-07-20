@@ -23,7 +23,7 @@ const MARQUEE_LOGOS = SEGMENTS.flatMap((seg) =>
 export default function Home() {
   return (
     <>
-      <main id="top" className="page-home">
+      <main id="top">
         {/* ================= HERO — "Slow Tide" ================= */}
         {/* A pinned WebGL stage (glowing ring + orbiting agent particles) whose
             camera descends across three scroll steps — overview → value streams

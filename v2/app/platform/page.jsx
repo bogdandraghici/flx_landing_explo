@@ -58,7 +58,7 @@ export default function PlatformOverview() {
       <section className="section" id="building-blocks">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">01 / Building blocks</span>
+            <span className="section__no mono">Building blocks</span>
             <div className="section__headline">
               <h2 className="h2 rv">What&apos;s inside the platform<span className="amber">.</span></h2>
               <p className="section__lede rv" style={{ '--i': 1 }}>Six parts that work as one. You don&apos;t have to adopt them all at once — most teams start with one journey and grow.</p>
@@ -80,7 +80,7 @@ export default function PlatformOverview() {
       <section className="section" id="why">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">02 / In the enterprise</span>
+            <span className="section__no mono">In the enterprise</span>
             <div className="section__headline">
               <h2 className="h2 rv">Why it holds up under real scrutiny<span className="amber">.</span></h2>
             </div>
@@ -100,7 +100,7 @@ export default function PlatformOverview() {
       <section className="section" id="explore">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">03 / Go deeper</span>
+            <span className="section__no mono">Go deeper</span>
             <div className="section__headline">
               <h2 className="h2 rv">Explore the pieces<span className="amber">.</span></h2>
             </div>

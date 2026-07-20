@@ -65,7 +65,7 @@ export default function About() {
         <section className="section" id="mission">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">02 / Mission</span>
+              <span className="section__no mono">Mission</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Unlock new business value for enterprises by democratizing the creation of mission-critical systems with <span className="amber">safe AI</span>.</h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>We provide a secure foundation for embedding AI in highly
@@ -85,7 +85,7 @@ export default function About() {
         <section className="section" id="team">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">03 / Team</span>
+              <span className="section__no mono">Team</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Leadership &amp; Team<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>An experienced team of professionals powering progress with passion and&nbsp;expertise.</p>
@@ -139,7 +139,7 @@ export default function About() {
         <section className="section" id="timeline">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">04 / Timeline</span>
+              <span className="section__no mono">Timeline</span>
               <div className="section__headline">
                 <h2 className="h2 rv">From framework to FlowX 6<span className="amber">.</span></h2>
               </div>
@@ -212,7 +212,7 @@ export default function About() {
         <section className="section" id="offices">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">05 / Offices</span>
+              <span className="section__no mono">Offices</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Two offices, one system<span className="amber">.</span></h2>
               </div>
@@ -236,7 +236,7 @@ export default function About() {
         <section className="section section--cta" id="cta">
           <canvas className="cta__canvas" aria-hidden="true" />
           <div className="shell">
-            <span className="section__no mono">06 / Next</span>
+            <span className="section__no mono">Next</span>
             <h2 className="cta__title">
               <span className="rv" style={{ '--i': 0 }}>More than a decade in,</span>
               <span className="rv" style={{ '--i': 1 }}>just getting started<span className="amber">.</span></span>

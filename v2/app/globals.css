@@ -1397,18 +1397,14 @@ em { font-style: normal; }
   gap: clamp(24px, 4vw, 64px);
   margin-bottom: clamp(48px, 7vh, 88px);
 }
+/* section eyebrow labels: plain title-case names, no number prefix and no
+   all-caps treatment (numbered, uppercased labels read as an AI-page tell) */
 .section__no {
   font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-transform: none;
   color: var(--text-faint);
   padding-top: 10px;
-}
-/* homepage: section labels drop the number prefix and the all-caps eyebrow
-   treatment (numbered, uppercased labels read as an AI-page tell) */
-.page-home .section__no {
-  text-transform: none;
-  letter-spacing: 0.04em;
 }
 .h2 {
   font-family: var(--font-display);

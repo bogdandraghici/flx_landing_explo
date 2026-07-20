@@ -8,10 +8,10 @@ import { OPENNER_REPO } from '@/lib/openModelsData';
    om-* block in globals.css. Pure server component; scroll-reveal (.rv) and
    the shared chrome come from the global <RevealInit>/<Chrome> in the layout. */
 
-function SectionHead({ no, label, title, sub }) {
+function SectionHead({ label, title, sub }) {
   return (
     <div className="section__head">
-      <span className="section__no mono">{no} / {label}</span>
+      <span className="section__no mono">{label}</span>
       <div className="section__headline">
         <h2 className="h2 rv">{title}</h2>
         {sub ? <p className="section__lede rv" style={{ '--i': 1 }}>{sub}</p> : null}

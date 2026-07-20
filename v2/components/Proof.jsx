@@ -42,7 +42,7 @@ export default function Proof() {
     <section className="section section--proof" id="proof">
       <div className="shell">
         <div className="section__head">
-          <span className="section__no mono">06 / Proof</span>
+          <span className="section__no mono">Proof</span>
           <div className="section__headline"><h2 className="h2 rv">In production, not in&nbsp;pilots<span className="amber">.</span></h2></div>
         </div>
         <dl className="stats">

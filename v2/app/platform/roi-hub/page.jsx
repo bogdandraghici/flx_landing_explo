@@ -94,7 +94,7 @@ export default function RoiHubPage() {
       <section className="section" id="dimensions">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">01 / Three dimensions</span>
+            <span className="section__no mono">Three dimensions</span>
             <div className="section__headline">
               <h2 className="h2 rv">Three measurements, one reconciled number<span className="amber">.</span></h2>
               <p className="section__lede rv" style={{ '--i': 1 }}>The dimensions aren&apos;t alternatives — they&apos;re layers over one stream of agent-run telemetry, each visible, each feeding the confidence engine that decides how much value may be credited, and at what tier.</p>
@@ -116,7 +116,7 @@ export default function RoiHubPage() {
       <section className="section" id="grades">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">02 / Confidence grading</span>
+            <span className="section__no mono">Confidence grading</span>
             <div className="section__headline">
               <h2 className="h2 rv">Verified, Modeled, Assumed<span className="amber">.</span></h2>
               <p className="section__lede rv" style={{ '--i': 1 }}>Borrowed from revenue recognition: a dollar backed by a randomized holdout is not the same asset as a dollar inferred from a model assumption — so each unit of value is counted under exactly one tier.</p>
@@ -139,7 +139,7 @@ export default function RoiHubPage() {
       <section className="section" id="decisions">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">03 / From number to decision</span>
+            <span className="section__no mono">From number to decision</span>
             <div className="section__headline">
               <h2 className="h2 rv">Graded ROI becomes portfolio decisions<span className="amber">.</span></h2>
             </div>

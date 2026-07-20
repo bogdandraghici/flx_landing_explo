@@ -33,7 +33,7 @@ export default function BlueprintSection() {
     <section className="section section--blueprint" id="blueprint">
       <div className="shell">
         <div className="section__head">
-          <span className="section__no mono">03 / Blueprint</span>
+          <span className="section__no mono">Blueprint</span>
           <div className="section__headline">
             <h2 className="h2" dangerouslySetInnerHTML={{ __html: `${t.title}<span class="amber">.</span>` }} />
             <p className="section__lede">{t.tagline}</p>

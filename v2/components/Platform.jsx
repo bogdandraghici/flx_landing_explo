@@ -48,7 +48,7 @@ export default function Platform() {
     <section className="section section--platform" id="platform">
       <div className="shell">
         <div className="section__head">
-          <span className="section__no mono">05 / Platform</span>
+          <span className="section__no mono">Platform</span>
           <div className="section__headline">
             <h2 className="h2 rv">Built like infrastructure, because it is<span className="amber">.</span></h2>
             <p className="section__lede rv" style={{ '--i': 1 }}>Not a chatbot wrapper. A governed execution layer for AI agents, engineered to the standard of your core systems.</p>

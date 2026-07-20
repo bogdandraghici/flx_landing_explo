@@ -78,7 +78,7 @@ export default function SecurityPage() {
       <section className="section" id="frameworks">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">01 / Regulatory frameworks</span>
+            <span className="section__no mono">Regulatory frameworks</span>
             <div className="section__headline">
               <h2 className="h2 rv">Six frameworks, out of the box<span className="amber">.</span></h2>
               <p className="section__lede rv" style={{ '--i': 1 }}>Each ships broken down into requirements, with the evidence needed and suggested assessments pre-mapped. Your policies, evidence and assessments auto-map to the right requirement — and you can add your own frameworks.</p>
@@ -99,7 +99,7 @@ export default function SecurityPage() {
       <section className="section" id="controls">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">02 / Controls</span>
+            <span className="section__no mono">Controls</span>
             <div className="section__headline">
               <h2 className="h2 rv">The controls underneath<span className="amber">.</span></h2>
               <p className="section__lede rv" style={{ '--i': 1 }}>Enterprise-grade access, privacy and governance — applied uniformly across every agent, workspace and journey.</p>
@@ -121,7 +121,7 @@ export default function SecurityPage() {
       <section className="section" id="eu-ai-act">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">03 / EU AI Act</span>
+            <span className="section__no mono">EU AI Act</span>
             <div className="section__headline">
               <h2 className="h2 rv">Mapped to the Act, article by article<span className="amber">.</span></h2>
               <p className="section__lede rv" style={{ '--i': 1 }}>The high-risk provisions apply from <span className="amber">2 August 2026</span>, with penalties up to €15M or 3% of worldwide turnover. Here is where each core requirement lands in the platform.</p>
@@ -155,7 +155,7 @@ export default function SecurityPage() {
       <section className="section" id="residency">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">04 / Data residency</span>
+            <span className="section__no mono">Data residency</span>
             <div className="section__headline">
               <h2 className="h2 rv">Your data, where you need it<span className="amber">.</span></h2>
             </div>

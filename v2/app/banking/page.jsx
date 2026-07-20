@@ -52,7 +52,7 @@ export default function Banking() {
         <section className="section" id="problem">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">01 / The problem</span>
+              <span className="section__no mono">The problem</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Where banking leaks time<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>The bottleneck isn&apos;t ambition —
@@ -80,7 +80,7 @@ export default function Banking() {
         <section className="section" id="value-stream">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">02 / Value stream</span>
+              <span className="section__no mono">Value stream</span>
               <div className="section__headline">
                 <h2 className="h2 rv">The lending journey, end to end<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>From first application to funded account —
@@ -178,7 +178,7 @@ export default function Banking() {
         <section className="section" id="featured">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">03 / Featured</span>
+              <span className="section__no mono">Featured</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Featured agents, up close<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>Nine banking agents — what each one watches,
@@ -273,7 +273,7 @@ export default function Banking() {
         <section className="section" id="workflows">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">04 / Workflows</span>
+              <span className="section__no mono">Workflows</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Three workflows, mission-critical<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>Where banking agent stacks go to work first.</p>
@@ -303,7 +303,7 @@ export default function Banking() {
         <section className="section section--cta" id="cta">
           <canvas className="cta__canvas" aria-hidden="true" />
           <div className="shell">
-            <span className="section__no mono">05 / Next</span>
+            <span className="section__no mono">Next</span>
             <h2 className="cta__title">
               <span className="rv" style={{ '--i': 0 }}>Put agents on your</span>
               <span className="rv" style={{ '--i': 1 }}>lending journey<span className="amber">.</span></span>

@@ -26,7 +26,7 @@ export function Why() {
       <div className="shell">
         <div className="why">
           <div className="why__left">
-            <span className="section__no mono">04 / Why 95% fail</span>
+            <span className="section__no mono">Why 95% fail</span>
             <h2 className="h2 rv">Pilots don&apos;t die from bad&nbsp;models<span className="amber">.</span></h2>
             <p className="section__lede rv" style={{ '--i': 1 }}>They die from missing infrastructure — the unglamorous machinery between a promising demo and a system a regulator will sign off on. FlowX is that machinery.</p>
           </div>
@@ -59,7 +59,7 @@ export function Outcomes() {
     <section className="section section--outcomes" id="outcomes">
       <div className="shell">
         <div className="section__head">
-          <span className="section__no mono">07 / Outcomes</span>
+          <span className="section__no mono">Outcomes</span>
           <div className="section__headline">
             <h2 className="h2 rv">Real outcomes for regulated enterprises<span className="amber">.</span></h2>
             <p className="section__lede rv" style={{ '--i': 1 }}>95% of AI initiatives fail. FlowX.AI customers run mission-critical customer and operations journeys in production — and show the board real numbers.</p>
@@ -87,7 +87,7 @@ export function Agents() {
     <section className="section section--agents" id="agents">
       <div className="shell">
         <div className="section__head">
-          <span className="section__no mono">08 / Agents</span>
+          <span className="section__no mono">Agents</span>
           <div className="section__headline">
             <h2 className="h2 rv">Over 150 mission-critical agents, ready to deploy<span className="amber">.</span></h2>
             <a className="agents__all mono rv" style={{ '--i': 1 }} href={bp("/ai-agents")}>Explore all agents →</a>
@@ -126,7 +126,7 @@ export function Foundations() {
     <section className="section section--pillars" id="foundations">
       <div className="shell">
         <div className="section__head">
-          <span className="section__no mono">09 / Foundations</span>
+          <span className="section__no mono">Foundations</span>
           <div className="section__headline">
             <h2 className="h2 rv">Built for mission-critical, regulated environments<span className="amber">.</span></h2>
           </div>
@@ -154,7 +154,7 @@ export function Testimonials() {
     <section className="section section--quotes" id="quotes">
       <div className="shell">
         <div className="section__head">
-          <span className="section__no mono">10 / Voices</span>
+          <span className="section__no mono">Voices</span>
           <div className="section__headline">
             <h2 className="h2 rv">What financial leaders say<span className="amber">.</span></h2>
             <p className="section__lede rv" style={{ '--i': 1 }}>Trusted by global institutions.</p>
@@ -177,7 +177,7 @@ export function CTA() {
   return (
     <section className="section section--cta" id="cta">
       <div className="shell">
-        <span className="section__no mono">11 / Next</span>
+        <span className="section__no mono">Next</span>
         <h2 className="cta__title">
           <span className="rv" style={{ '--i': 0 }}>Stop piloting.</span>
           <span className="rv" style={{ '--i': 1 }}>Start deploying<span className="amber">.</span></span>

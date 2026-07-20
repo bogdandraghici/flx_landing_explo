@@ -84,7 +84,7 @@ export default function OntologyPage() {
       <section className="section" id="kinds">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">01 / The three kinds of memory</span>
+            <span className="section__no mono">The three kinds of memory</span>
             <div className="section__headline">
               <h2 className="h2 rv">Where the ontology sits<span className="amber">.</span></h2>
               <p className="section__lede rv" style={{ '--i': 1 }}>Agents draw on three different stores. The ontology is the connective tissue between them.</p>
@@ -106,7 +106,7 @@ export default function OntologyPage() {
       <section className="section" id="active-memory">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">02 / Active, governed memory</span>
+            <span className="section__no mono">Active, governed memory</span>
             <div className="section__headline">
               <h2 className="h2 rv">Memory that improves, safely<span className="amber">.</span></h2>
               <p className="section__lede rv" style={{ '--i': 1 }}>What makes the FlowX ontology different from the read-only knowledge graphs the rest of the market ships.</p>
@@ -129,7 +129,7 @@ export default function OntologyPage() {
       <section className="section" id="why">
         <div className="shell">
           <div className="section__head">
-            <span className="section__no mono">03 / Why it matters</span>
+            <span className="section__no mono">Why it matters</span>
             <div className="section__headline">
               <h2 className="h2 rv">Connected, explainable, current<span className="amber">.</span></h2>
             </div>

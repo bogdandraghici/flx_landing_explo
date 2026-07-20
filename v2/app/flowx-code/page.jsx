@@ -72,7 +72,7 @@ export default function FlowxCode() {
         <section className="section" id="how">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">01 / The loop</span>
+              <span className="section__no mono">The loop</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Loop engineering, constrained<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>A turn runs from a natural-language request to a
@@ -118,7 +118,7 @@ export default function FlowxCode() {
         <section className="section" id="artifacts">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">02 / Artifact kinds</span>
+              <span className="section__no mono">Artifact kinds</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Twelve kinds of platform artifact, from a sentence<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>Integrations, processes, agents, UIs, data models and more — each with a
@@ -179,7 +179,7 @@ export default function FlowxCode() {
         <section className="section" id="safe">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">03 / Safe by structure</span>
+              <span className="section__no mono">Safe by structure</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Autonomy is the wrong target here<span className="amber">.</span></h2>
               </div>
@@ -209,7 +209,7 @@ export default function FlowxCode() {
         <section className="section section--cta" id="cta">
           <canvas className="cta__canvas" aria-hidden="true" />
           <div className="shell">
-            <span className="section__no mono">04 / Next</span>
+            <span className="section__no mono">Next</span>
             <h2 className="cta__title">
               <span className="rv" style={{ '--i': 0 }}>Build platform artifacts</span>
               <span className="rv" style={{ '--i': 1 }}>by describing them<span className="amber">.</span></span>

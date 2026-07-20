@@ -176,7 +176,7 @@ export default function Observatory() {
         <section className="section" id="how">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">01 / Regulation to runtime</span>
+              <span className="section__no mono">Regulation to runtime</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Enforced and evidenced at runtime<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>Document suites pass a paper audit while agents misbehave;
@@ -286,7 +286,7 @@ export default function Observatory() {
         <section className="section" id="why">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">03 / Why now</span>
+              <span className="section__no mono">Why now</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Autonomy is outpacing oversight<span className="amber">.</span></h2>
               </div>
@@ -358,7 +358,7 @@ export default function Observatory() {
         <section className="section section--cta" id="cta">
           <canvas className="cta__canvas" aria-hidden="true" />
           <div className="shell">
-            <span className="section__no mono">04 / Next</span>
+            <span className="section__no mono">Next</span>
             <h2 className="cta__title">
               <span className="rv" style={{ '--i': 0 }}>Govern the autonomy</span>
               <span className="rv" style={{ '--i': 1 }}>you grant<span className="amber">.</span></span>

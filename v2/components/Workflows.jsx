@@ -15,7 +15,7 @@ export default function Workflows() {
     <section className="section section--workflows" id="workflows">
       <div className="shell">
         <div className="section__head">
-          <span className="section__no mono">02 / Workflows</span>
+          <span className="section__no mono">Workflows</span>
           <div className="section__headline"><h2 className="h2 rv">One platform. Every regulated workflow<span className="amber">.</span></h2></div>
         </div>
         <div className="wf">

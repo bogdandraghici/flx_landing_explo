@@ -61,7 +61,7 @@ export default function CustomersPage() {
         <section className="section cust-section" id="industry">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">01 / Customers</span>
+              <span className="section__no mono">Customers</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Who runs on FlowX<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>
@@ -98,7 +98,7 @@ export default function CustomersPage() {
         <section className="section cust-out-section" id="use-case">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">02 / Outcomes</span>
+              <span className="section__no mono">Outcomes</span>
               <div className="section__headline">
                 <h2 className="h2 rv">What production looks like<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>
@@ -136,7 +136,7 @@ export default function CustomersPage() {
         <section className="section section--cta" id="cta">
           <canvas className="cta__canvas" aria-hidden="true" />
           <div className="shell">
-            <span className="section__no mono">03 / Next</span>
+            <span className="section__no mono">Next</span>
             <h2 className="cta__title">
               <span className="rv" style={{ '--i': 0 }}>Join them in the</span>
               <span className="rv" style={{ '--i': 1 }}>5%<span className="amber">.</span></span>

@@ -83,7 +83,7 @@ export default function Resources() {
         <section className="section" id="learn">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">01 / Learn</span>
+              <span className="section__no mono">Learn</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Documentation and hands-on training<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>Start with the reference, then go deep in the Academy.</p>
@@ -114,7 +114,7 @@ export default function Resources() {
         <section className="section" id="blog">
           <div className="shell">
             <div className="section__head">
-              <span className="section__no mono">02 / Blog</span>
+              <span className="section__no mono">Blog</span>
               <div className="section__headline">
                 <h2 className="h2 rv">Latest articles and insights<span className="amber">.</span></h2>
                 <p className="section__lede rv" style={{ '--i': 1 }}>Field notes on agentic AI, governance, and integration from the team building it.</p>
@@ -205,7 +205,7 @@ export default function Resources() {
         <section className="section section--cta" id="cta">
           <canvas className="cta__canvas" aria-hidden="true" />
           <div className="shell">
-            <span className="section__no mono">03 / Next</span>
+            <span className="section__no mono">Next</span>
             <h2 className="cta__title">
               <span className="rv" style={{ '--i': 0 }}>Read the docs, then</span>
               <span className="rv" style={{ '--i': 1 }}>build your first agent<span className="amber">.</span></span>
