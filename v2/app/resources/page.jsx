@@ -143,11 +143,11 @@ export default function Resources() {
                 <p className="post__excerpt">Why measuring impact matters — and a way to project the return before you build.</p>
                 <span className="post__go mono" aria-hidden="true">↗</span>
               </a>
-              <a className="post rv" style={{ '--i': 1 }} href="https://www.flowx.ai/blog/the-day-onboarding-stopped-being-a-loop" target="_blank" rel="noopener">
-                <p className="post__meta mono"><span className="post__tag">Use Cases</span><span>May 25, 2026</span></p>
+              <a className="post rv" style={{ '--i': 1 }} href={bp("/onboarding-stopped-being-a-loop")}>
+                <p className="post__meta mono"><span className="post__tag">Use Cases</span><span>Jul 21, 2026</span></p>
                 <h3 className="post__title">The day onboarding stopped being a loop</h3>
                 <p className="post__excerpt">Turning commercial onboarding from an endless back-and-forth into a single agentic flow.</p>
-                <span className="post__go mono" aria-hidden="true">↗</span>
+                <span className="post__go mono" aria-hidden="true">→</span>
               </a>
               <a className="post rv" style={{ '--i': 2 }} href="https://www.flowx.ai/blog/the-five-tests-of-mission-critical-ai" target="_blank" rel="noopener">
                 <p className="post__meta mono"><span className="post__tag">Governance</span><span>Apr 28, 2026</span></p>

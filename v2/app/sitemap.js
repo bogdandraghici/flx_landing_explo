@@ -32,6 +32,7 @@ export default function sitemap() {
     ['/about', 0.6],
     ['/resources', 0.5],
     ['/blog-flowx-6', 0.4],
+    ['/onboarding-stopped-being-a-loop', 0.4],
     ['/privacy-policy', 0.3],
     ['/cookie-policy', 0.3],
     ['/terms-and-conditions', 0.3],
