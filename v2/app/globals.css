@@ -772,92 +772,6 @@ em { font-style: normal; }
   box-shadow: 0 0 10px rgba(var(--amber-rgb), 0.4);
 }
 
-/* right rail: the two "Build" products as equal featured cards — Agent Builder
-   and FlowX Code stacked — so the left side stays three balanced columns instead
-   of a lonely one-item "Build" column, and neither product reads as subordinate. */
-.nav__side {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 0 0 236px;
-  width: 236px;
-}
-/* Two compact cards that together stay within the left columns' height, so the
-   panel doesn't grow taller than the link list. Each still holds kicker · title ·
-   viz · CTA, but the viz is short and the margins tight so both fit. Cards take
-   natural height (`flex: 0 0 auto`); the sheet's `align-items: stretch` then
-   stretches the left columns to match. The compound selector outranks
-   `.nav__feat`, so these win without !important. */
-.nav__side .nav__feat { width: auto; flex: 0 0 auto; padding: 11px 12px !important; }
-.nav__side .nav__feat-title { font-size: 17px; margin-top: 3px; }
-.nav__side .nav__feat-graph { flex: none; min-height: 0; height: 46px; margin: 10px 0 9px; }
-.nav__side .nav__feat-term { flex: none; min-height: 0; height: 46px; margin: 10px 0 9px; }
-
-/* "terminal session" motif — a compact terminal window echoing FlowX Code's hero
-   (a natural-language request typed at a `>` prompt): traffic-light dots in a
-   header and a single command line with an amber cursor. Same thin-stroke,
-   single-amber language as the sibling agent-flow graph — the amber cursor is the
-   one accent (matching the amber node). The command bar scales horizontally with
-   the card; monochrome, no color beyond the cursor. */
-.nav__feat-term {
-  flex: 1 1 auto;
-  min-height: 48px;
-  margin: 12px 0 11px;
-  display: flex;
-  flex-direction: column;
-  border: 1.5px solid rgba(var(--ink), 0.3);
-  border-radius: 6px;
-  overflow: hidden;
-  background: rgba(var(--ink), 0.02);
-}
-.nav__feat-term-head {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  height: 14px;
-  flex: none;
-  padding: 0 8px;
-  border-bottom: 1px solid rgba(var(--ink), 0.16);
-}
-.nav__feat-term-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(var(--ink), 0.26);
-}
-.nav__feat-term-body {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 7px;
-  padding: 0 9px;
-}
-.nav__feat-term-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.nav__feat-term-caret {
-  font-size: 10px;
-  line-height: 1;
-  color: rgba(var(--ink), 0.5);
-}
-.nav__feat-term-bar {
-  height: 5px;
-  border-radius: 2px;
-  background: rgba(var(--ink), 0.22);
-}
-.nav__feat-term-bar--cmd { width: 58%; }
-/* the live cursor — the single amber accent (the "resolved" active prompt) */
-.nav__feat-term-cursor {
-  width: 5px;
-  height: 10px;
-  border-radius: 1px;
-  background: var(--amber);
-  box-shadow: 0 0 8px rgba(var(--amber-rgb), 0.45);
-}
-
 .nav__feat-cta {
   display: inline-flex;
   align-items: center;
@@ -2760,12 +2674,6 @@ a.seg:hover,
   }
   .nav__feat-spark { flex: none; min-height: 0; height: 72px; margin: 12px 0 10px; }
   .nav__feat-graph { flex: none; min-height: 0; height: 72px; margin: 12px 0 10px; }
-  .nav__feat-term { flex: none; min-height: 0; margin: 12px 0 10px; }
-  /* drawer: the two Build cards stack in flow with a gap, natural height each */
-  .nav__side { display: flex; flex-direction: column; gap: 12px; flex: none; width: auto; margin-top: 16px; }
-  .nav__side .nav__feat { flex: none; margin-top: 0; }
-  .nav__side .nav__feat-graph { min-height: 0; height: 60px; margin: 12px 0 10px; }
-  .nav__side .nav__feat-term { min-height: 0; height: 46px; margin: 12px 0 10px; }
 
   /* no-JS: the drawer can't open, so render everything stacked in flow —
      the bar wraps and the full link tree flows below it, panels open */

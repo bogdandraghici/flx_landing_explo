@@ -55,6 +55,10 @@ export default function Nav() {
                         <span className="nav__link-t">Integrations &amp; Connectors</span>
                         <span className="nav__link-d">Plug into core and legacy systems</span>
                       </a>
+                      <a className="nav__link--desc" href={bp("/flowx-code")}>
+                        <span className="nav__link-t">FlowX Code</span>
+                        <span className="nav__link-d">The full platform, expressed as code</span>
+                      </a>
                     </div>
                     <div className="nav__group">
                       <p className="nav__glabel mono">Run</p>
@@ -74,55 +78,29 @@ export default function Nav() {
                   </div>
                   <p className="nav__foot mono"><a href={bp("/platform")}>Platform overview <span className="nav__arr" aria-hidden="true">→</span></a></p>
                 </div>
-                {/* Right rail: the two "Build" products as equal featured cards —
-                    Agent Builder and FlowX Code stacked, splitting the rail height so
-                    neither reads as subordinate. Keeps the left side three balanced
-                    columns instead of a lonely one-item "Build" column. Each card carries
-                    its own motif, resolving to one amber accent:
-                      · Agent Builder — an agent-flow node graph (design → branch → ship).
-                      · FlowX Code — a platform-layer stack (echoing its L0→L3 hero),
-                        the full platform expressed as code.
-                    Both motifs are built from CSS shapes (+ an SVG for the graph's edges)
-                    so they scale horizontally with the card, distinct from the ROI
-                    sparkline and the agent-catalog tile grid. */}
-                <div className="nav__side">
-                  <a className="nav__feat" href={bp("/agent-builder")}>
-                    <span className="nav__feat-kicker">Design, evaluate, and ship AI agents</span>
-                    <span className="nav__feat-title">Agent Builder</span>
-                    <span className="nav__feat-graph" aria-hidden="true">
-                      <svg className="nav__feat-graph-edges" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <path className="nav__feat-graph-edge" d="M14,50 L44,22" vectorEffect="non-scaling-stroke" />
-                        <path className="nav__feat-graph-edge" d="M14,50 L44,78" vectorEffect="non-scaling-stroke" />
-                        <path className="nav__feat-graph-edge" d="M44,22 L82,50" vectorEffect="non-scaling-stroke" />
-                        <path className="nav__feat-graph-edge" d="M44,78 L82,50" vectorEffect="non-scaling-stroke" />
-                      </svg>
-                      <span className="nav__feat-node" style={{ left: '14%', top: '50%' }} />
-                      <span className="nav__feat-node" style={{ left: '44%', top: '22%' }} />
-                      <span className="nav__feat-node" style={{ left: '44%', top: '78%' }} />
-                      <span className="nav__feat-node nav__feat-node--amber" style={{ left: '82%', top: '50%' }} />
-                    </span>
-                    <span className="nav__feat-cta mono">Open Agent Builder <span className="nav__arr" aria-hidden="true">→</span></span>
-                  </a>
-                  <a className="nav__feat" href={bp("/flowx-code")}>
-                    <span className="nav__feat-kicker">The full platform, expressed as code</span>
-                    <span className="nav__feat-title">FlowX Code</span>
-                    <span className="nav__feat-term" aria-hidden="true">
-                      <span className="nav__feat-term-head">
-                        <span className="nav__feat-term-dot" />
-                        <span className="nav__feat-term-dot" />
-                        <span className="nav__feat-term-dot" />
-                      </span>
-                      <span className="nav__feat-term-body">
-                        <span className="nav__feat-term-row">
-                          <span className="nav__feat-term-caret mono">&gt;</span>
-                          <span className="nav__feat-term-bar nav__feat-term-bar--cmd" />
-                          <span className="nav__feat-term-cursor" />
-                        </span>
-                      </span>
-                    </span>
-                    <span className="nav__feat-cta mono">Explore FlowX Code <span className="nav__arr" aria-hidden="true">→</span></span>
-                  </a>
-                </div>
+                {/* Featured: Agent Builder promoted to a single full-size card (like
+                    the ROI Calculator in Customers), sitting directly in the sheet so it
+                    stretches to the columns' full height. Its motif is an agent-flow node
+                    graph (design → branch → ship) resolving to one amber node — CSS shapes
+                    plus an SVG for the edges, so it scales with the card. FlowX Code now
+                    lives as a normal link in the Foundation column. */}
+                <a className="nav__feat" href={bp("/agent-builder")}>
+                  <span className="nav__feat-kicker">Design, evaluate, and ship AI agents</span>
+                  <span className="nav__feat-title">Agent Builder</span>
+                  <span className="nav__feat-graph" aria-hidden="true">
+                    <svg className="nav__feat-graph-edges" viewBox="0 0 100 100" preserveAspectRatio="none">
+                      <path className="nav__feat-graph-edge" d="M14,50 L44,22" vectorEffect="non-scaling-stroke" />
+                      <path className="nav__feat-graph-edge" d="M14,50 L44,78" vectorEffect="non-scaling-stroke" />
+                      <path className="nav__feat-graph-edge" d="M44,22 L82,50" vectorEffect="non-scaling-stroke" />
+                      <path className="nav__feat-graph-edge" d="M44,78 L82,50" vectorEffect="non-scaling-stroke" />
+                    </svg>
+                    <span className="nav__feat-node" style={{ left: '14%', top: '50%' }} />
+                    <span className="nav__feat-node" style={{ left: '44%', top: '22%' }} />
+                    <span className="nav__feat-node" style={{ left: '44%', top: '78%' }} />
+                    <span className="nav__feat-node nav__feat-node--amber" style={{ left: '82%', top: '50%' }} />
+                  </span>
+                  <span className="nav__feat-cta mono">Open Agent Builder <span className="nav__arr" aria-hidden="true">→</span></span>
+                </a>
               </div>
             </div>
           </div>
