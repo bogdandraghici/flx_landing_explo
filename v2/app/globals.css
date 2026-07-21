@@ -3648,21 +3648,32 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .shot__bar i { width: 7px; height: 7px; border-radius: 50%; background: rgba(var(--ink), 0.16); }
 .shot img { width: 100%; height: auto; display: block; }
 
-/* shared diagram primitives */
+/* shared diagram primitives — monochrome ink schematic; amber reserved for the
+   single "live"/resolution beat per figure (matches the .abx / .bp diagram language) */
 .dg-box { fill: var(--bg-raised); stroke: rgba(var(--ink), 0.12); stroke-width: 1; }
 .dg-box--live { fill: var(--amber-soft); stroke: var(--amber-line); }
 .dg-edge { fill: none; stroke: rgba(var(--ink), 0.16); stroke-width: 1; }
-.dg-edge--soft { fill: none; stroke: rgba(var(--amber-rgb), 0.30); stroke-width: 1; }
-.dg-node { fill: var(--amber); }
+/* connective/throughput lines: ink, dashed — they carry a slow flow (see motion block) */
+.dg-edge--soft { fill: none; stroke: rgba(var(--ink), 0.16); stroke-width: 1; stroke-dasharray: 4 6; }
+.dg-node { fill: rgba(var(--ink), 0.24); }
+.dg-node--live { fill: var(--amber); }
 .dg-node--dim { fill: rgba(var(--dia-dim2), 0.42); }
 .dg-label { font-family: var(--font-body); font-weight: 500; fill: var(--dia-title); }
 .dg-sub { font-family: var(--font-mono); fill: rgba(var(--dia-dim), 0.5); }
 .dg-pulse { fill: var(--amber); }
 
+/* subtle idle motion — opt-in, mirrors the site's abxWire / bpBreathe idioms */
+@media (prefers-reduced-motion: no-preference) {
+  .dg-edge--soft { animation: dgFlow 3.2s linear infinite; }
+  .dg-node--live { animation: bpBreathe 4s ease-in-out infinite; }
+  .dgv__row--live .dgv__arrow { animation: bpBreathe 4.5s ease-in-out infinite; }
+}
+@keyframes dgFlow { to { stroke-dashoffset: -20; } }
+
 /* v6 vs v5 comparison */
 .dgv { display: grid; gap: 14px; }
 .dgv__row { display: flex; align-items: center; gap: 18px; border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; }
-.dgv__row--live { border-color: var(--amber-line); background: var(--amber-soft); }
+.dgv__row--live { border-color: rgba(var(--amber-rgb), 0.34); background: var(--bg-raised); }
 .dgv__ver { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em; color: var(--text-dim); min-width: 104px; }
 .dgv__row--live .dgv__ver { color: var(--text); }
 .dgv__arrow { color: var(--text-faint); }
@@ -3675,17 +3686,23 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .dg-callout b { font-family: var(--font-display); font-size: clamp(1.9rem, 3vw, 2.7rem); font-weight: 640; color: var(--amber-text); }
 .dg-callout span { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); margin-top: 6px; }
 .dgi { display: grid; gap: clamp(14px, 2vw, 26px); }
+.dgi--5 { grid-template-columns: repeat(5, 1fr); }
 .dgi--4 { grid-template-columns: repeat(4, 1fr); }
 .dgi--3 { grid-template-columns: repeat(3, 1fr); }
 .dgi__cell { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 8px 6px; }
 .dgi--3 .dgi__cell { padding: 8px 12px; }
 .dgi__ico { width: 42px; height: 42px; }
 .dgi__ico svg { width: 100%; height: 100%; display: block; }
-.dgi__ico :is(path, line, rect, circle, polyline, polygon) { stroke: var(--amber); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+/* opaque muted-ink stroke (not alpha) so overlapping strokes don't stack darker at crossings */
+.dgi__ico :is(path, line, rect, circle, polyline, polygon) { stroke: rgb(var(--dia-dim)); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .dgi__label { font-family: var(--font-display); font-size: 1.05rem; font-weight: 560; color: var(--text); }
 .dgi__sub { font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); letter-spacing: 0.02em; max-width: 22ch; line-height: 1.4; }
 
+@media (max-width: 980px) {
+  .dgi--5 { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 760px) {
+  .dgi--5 { grid-template-columns: repeat(2, 1fr); }
   .dgi--4 { grid-template-columns: repeat(2, 1fr); }
   .dgi--3 { grid-template-columns: 1fr; }
   .dgv__row { flex-wrap: wrap; gap: 10px; }
@@ -5076,7 +5093,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .demo__form .submitted-message { font-size: 15px; color: var(--text); line-height: 1.6; }
 
 /* key takeaways (answer-first summary from the FAQ) */
-.blog-tldr { border: 1px solid var(--amber-line); background: var(--amber-soft); border-radius: 14px; padding: 20px 24px; margin-bottom: clamp(32px, 5vh, 48px); }
+.blog-tldr { border: 1px solid var(--line); background: var(--bg-panel); border-radius: 14px; padding: 20px 24px; margin-bottom: clamp(32px, 5vh, 48px); }
 .blog-tldr__h { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber-text); margin-bottom: 12px; }
 .blog-tldr__list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .blog-tldr__list li { position: relative; padding-left: 20px; font-size: 14.5px; line-height: 1.55; color: var(--text); }
@@ -5090,7 +5107,7 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .blog-toc--float { float: right; width: min(250px, 40%); margin: 4px 0 20px 32px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-panel); }
 @media (max-width: 640px) { .blog-toc--float { float: none; width: 100%; margin: 0 0 24px; } }
 .blog-toc__h { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 12px; }
-.blog-toc__list { list-style: none; display: flex; flex-direction: column; gap: 9px; border-left: 1px solid var(--line); padding-left: 14px; }
+.blog-toc__list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
 .blog-toc__list a { font-size: 12.5px; color: var(--text-dim); line-height: 1.4; transition: color 0.2s ease; }
 .blog-toc__list a:hover { color: var(--amber-text); }
 
@@ -5113,6 +5130,14 @@ a.feat:hover .feat__go span { transform: translate(2px, -2px); }
 .blog-prose table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 14px; display: block; overflow-x: auto; }
 .blog-prose th { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--text); font-weight: 600; font-family: var(--font-mono); font-size: 12px; white-space: nowrap; }
 .blog-prose td { padding: 10px 12px; border-bottom: 1px solid var(--line-soft); color: var(--text-dim); vertical-align: top; }
+/* opening lede — a touch larger/lighter than body, matching the old .prose lede */
+.blog-prose .lede { color: var(--lede); font-size: 1.14em; line-height: 1.6; margin-bottom: 1.4em; }
+/* bespoke schematic figures (dgv / dgi / shot diagrams) authored inline in
+   long-form posts: they carry their own global styling, but under the flow-based
+   .blog-prose (with a right-floated TOC) they must clear the float and take the
+   full column width the old .prose grid used to give them */
+.blog-prose .fig { clear: both; }
+.blog-prose .fig--wide { width: 100%; max-width: 100%; }
 
 /* ---- FAQ accordion (reuses home .faq styles) ---- */
 .blog-faq { margin-top: clamp(40px, 6vh, 72px); padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 90px; }

@@ -97,51 +97,36 @@ export default function Post() {
                 <p>Operations writes an ask-back. The customer responds with an attachment that is technically the right document but not the right version. The relationship manager forwards it in a thread that doesn’t land in the case management system cleanly. Compliance asks for a clarification that isn’t framed precisely, so the customer sends more material than necessary, creating noise rather than certainty. Someone does a second review later, discovers a conflict that could have been caught earlier, and reopens questions that were believed to be resolved. Meanwhile, no one can give the business a confident timeline because the file is not in a “single truth” state; it is in motion, and motion is where errors multiply.</p>
 
                 <figure className="fig fig--wide fig--diagram">
-                  <svg viewBox="0 0 960 288" role="img" aria-label="The before loop: an ask-back is sent, noise comes back, it is lost in an off-system thread, a vague clarification adds more noise, a late re-review reopens issues, and the cycle returns to the start without resolving">
-                    {/* return loop (drawn first, behind) */}
-                    <path id="beforeLoop" className="dg-edge--soft" d="M855 188 C855 254, 690 266, 480 266 C270 266, 105 254, 105 188" />
-                    {/* connectors */}
-                    <path className="dg-edge" d="M170 153 H204" /><polygon className="dg-node--dim" points="204,149 212,153 204,157" />
-                    <path className="dg-edge" d="M360 153 H394" /><polygon className="dg-node--dim" points="394,149 402,153 394,157" />
-                    <path className="dg-edge" d="M550 153 H584" /><polygon className="dg-node--dim" points="584,149 592,153 584,157" />
-                    <path className="dg-edge" d="M740 153 H774" /><polygon className="dg-node--dim" points="774,149 782,153 774,157" />
-                    {/* boxes — all ink; nothing resolves */}
-                    <g>
-                      <rect className="dg-box" x="20" y="120" width="150" height="66" rx="10" />
-                      <text className="dg-sub" x="34" y="138" fontSize="10">01</text>
-                      <text className="dg-label" x="95" y="158" textAnchor="middle" fontSize="14">Ask-back</text>
-                      <text className="dg-sub" x="95" y="174" textAnchor="middle" fontSize="10.5">broad &amp; vague</text>
-                    </g>
-                    <g>
-                      <rect className="dg-box" x="210" y="120" width="150" height="66" rx="10" />
-                      <text className="dg-sub" x="224" y="138" fontSize="10">02</text>
-                      <text className="dg-label" x="285" y="158" textAnchor="middle" fontSize="14">Noise back</text>
-                      <text className="dg-sub" x="285" y="174" textAnchor="middle" fontSize="10.5">wrong version</text>
-                    </g>
-                    <g>
-                      <rect className="dg-box" x="400" y="120" width="150" height="66" rx="10" />
-                      <text className="dg-sub" x="414" y="138" fontSize="10">03</text>
-                      <text className="dg-label" x="475" y="158" textAnchor="middle" fontSize="14">Lost thread</text>
-                      <text className="dg-sub" x="475" y="174" textAnchor="middle" fontSize="10.5">off-system</text>
-                    </g>
-                    <g>
-                      <rect className="dg-box" x="590" y="120" width="150" height="66" rx="10" />
-                      <text className="dg-sub" x="604" y="138" fontSize="10">04</text>
-                      <text className="dg-label" x="665" y="158" textAnchor="middle" fontSize="14">Clarification</text>
-                      <text className="dg-sub" x="665" y="174" textAnchor="middle" fontSize="10.5">adds noise</text>
-                    </g>
-                    <g>
-                      <rect className="dg-box" x="780" y="120" width="150" height="66" rx="10" />
-                      <text className="dg-sub" x="794" y="138" fontSize="10">05</text>
-                      <text className="dg-label" x="855" y="158" textAnchor="middle" fontSize="14">Re-review</text>
-                      <text className="dg-sub" x="855" y="174" textAnchor="middle" fontSize="10.5">reopens issues</text>
-                    </g>
-                    {/* arrow head leaving box 5 into the return loop */}
-                    <polygon className="dg-node--dim" points="851,182 859,182 855,190" />
-                    {/* amber pulse circling endlessly — motion without progress */}
-                    <circle className="dg-pulse" r="3.4"><animateMotion dur="6s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#beforeLoop" /></animateMotion></circle>
+                  <svg viewBox="0 0 860 340" role="img" aria-label="Onboarding as a loop: the case file sits at the centre while operations, the customer, the relationship manager and compliance pass it around a ring of hand-offs, and an amber token circles the ring endlessly without the file ever resolving.">
+                    {/* the ring of hand-offs (drawn first, behind) — dashed ink, drifts */}
+                    <path id="obLoop" className="dg-edge--soft" d="M430 50 A250 120 0 0 1 680 170 A250 120 0 0 1 430 290 A250 120 0 0 1 180 170 A250 120 0 0 1 430 50 Z" />
+                    {/* scattered fragments — evidence spread across threads &amp; folders */}
+                    <circle className="dg-node--dim" cx="330" cy="95" r="3" />
+                    <circle className="dg-node--dim" cx="545" cy="100" r="2.6" />
+                    <circle className="dg-node--dim" cx="540" cy="248" r="3" />
+                    <circle className="dg-node--dim" cx="320" cy="250" r="2.6" />
+                    {/* the file at the centre — never a single truth */}
+                    <rect className="dg-box" x="360" y="141" width="140" height="58" rx="10" />
+                    <text className="dg-label" x="430" y="167" textAnchor="middle" fontSize="14">the file</text>
+                    <text className="dg-sub" x="430" y="184" textAnchor="middle" fontSize="10.5">never a single truth</text>
+                    {/* four actors around the ring */}
+                    <circle className="dg-node" cx="430" cy="50" r="8" />
+                    <circle className="dg-node" cx="680" cy="170" r="8" />
+                    <circle className="dg-node" cx="430" cy="290" r="8" />
+                    <circle className="dg-node" cx="180" cy="170" r="8" />
+                    {/* labels, set outward from each actor */}
+                    <text className="dg-sub" x="430" y="20" textAnchor="middle" fontSize="10.5">sends noise</text>
+                    <text className="dg-label" x="430" y="36" textAnchor="middle" fontSize="14">Customer</text>
+                    <text className="dg-label" x="698" y="166" fontSize="14">RM</text>
+                    <text className="dg-sub" x="698" y="182" fontSize="10.5">off-system</text>
+                    <text className="dg-label" x="430" y="314" textAnchor="middle" fontSize="14">Compliance</text>
+                    <text className="dg-sub" x="430" y="328" textAnchor="middle" fontSize="10.5">re-asks vaguely</text>
+                    <text className="dg-label" x="162" y="166" textAnchor="end" fontSize="14">Ops</text>
+                    <text className="dg-sub" x="162" y="182" textAnchor="end" fontSize="10.5">re-checks</text>
+                    {/* amber token circling the ring — motion without progress */}
+                    <circle className="dg-pulse" r="4"><animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#obLoop" /></animateMotion></circle>
                   </svg>
-                  <figcaption>a dozen small questions force the file into a loop — motion is where errors multiply</figcaption>
+                  <figcaption>onboarding as a loop — the file circles between hands and never reaches a single truth</figcaption>
                 </figure>
 
                 <p>Two things happen in this “before” world that leaders should care about.</p>
@@ -158,37 +143,41 @@ export default function Post() {
                 <p>When something is missing or out of date, the system generates a targeted ask-back that specifies exactly what is needed and why: the missing annex referenced in the resolution, the required validity window for an address proof, the precise field mismatch that must be corrected. When an ownership structure is complex or signatory powers depend on interpretation, the case is routed to a human checkpoint with a structured summary, highlighted discrepancies, and the evidence required to make a decision without doing detective work.</p>
 
                 <figure className="fig fig--wide fig--diagram">
-                  <svg viewBox="0 0 960 240" role="img" aria-label="The after flow: key fields are extracted and anchored to evidence, the whole submission is cross-checked and conflicts flagged, ambiguity is resolved early with precise ask-backs and human checkpoints, and the file becomes a clean, decision-ready record">
-                    {/* forward connectors — no return path */}
-                    <path className="dg-edge" d="M220 145 H252" /><polygon className="dg-node--dim" points="252,141 260,145 252,149" />
-                    <path className="dg-edge" d="M460 145 H492" /><polygon className="dg-node--dim" points="492,141 500,145 492,149" />
-                    <path className="dg-edge" d="M700 145 H732" /><polygon className="dg-node--dim" points="732,141 740,145 732,149" />
-                    <g>
-                      <rect className="dg-box" x="20" y="110" width="200" height="70" rx="10" />
-                      <text className="dg-sub" x="34" y="130" fontSize="10">01</text>
-                      <text className="dg-label" x="120" y="150" textAnchor="middle" fontSize="14">Extract &amp; anchor</text>
-                      <text className="dg-sub" x="120" y="167" textAnchor="middle" fontSize="10.5">to source evidence</text>
-                    </g>
-                    <g>
-                      <rect className="dg-box" x="260" y="110" width="200" height="70" rx="10" />
-                      <text className="dg-sub" x="274" y="130" fontSize="10">02</text>
-                      <text className="dg-label" x="360" y="150" textAnchor="middle" fontSize="14">Cross-check fields</text>
-                      <text className="dg-sub" x="360" y="167" textAnchor="middle" fontSize="10.5">flag conflicts early</text>
-                    </g>
-                    <g>
-                      <rect className="dg-box" x="500" y="110" width="200" height="70" rx="10" />
-                      <text className="dg-sub" x="514" y="130" fontSize="10">03</text>
-                      <text className="dg-label" x="600" y="150" textAnchor="middle" fontSize="14">Resolve early</text>
-                      <text className="dg-sub" x="600" y="167" textAnchor="middle" fontSize="10.5">ask-back · checkpoint</text>
-                    </g>
-                    <g>
-                      <rect className="dg-box dg-box--live" x="740" y="110" width="200" height="70" rx="10" />
-                      <text className="dg-sub" x="754" y="130" fontSize="10">04</text>
-                      <text className="dg-label" x="840" y="150" textAnchor="middle" fontSize="14">Decision-ready file</text>
-                      <text className="dg-sub" x="840" y="167" textAnchor="middle" fontSize="10.5">audit-ready as it builds</text>
-                    </g>
+                  <svg viewBox="0 0 820 320" role="img" aria-label="The after flow: a stack of imperfect submitted documents is extracted and cross-checked at a single gate, conflicts flagged, and every field anchored by dashed provenance lines back to its source, resolving into one amber decision-ready record on the right.">
+                    {/* provenance / anchor lines: record fields tied back to source evidence (behind) */}
+                    <path className="dg-edge--soft" d="M572 158 C430 120, 300 92, 150 128" />
+                    <path className="dg-edge--soft" d="M572 230 C430 258, 300 282, 150 236" />
+                    {/* left: the messy submission — offset document stack */}
+                    <rect className="dg-box" x="58" y="78" width="116" height="150" rx="8" />
+                    <rect className="dg-box" x="46" y="94" width="116" height="150" rx="8" />
+                    <rect className="dg-box" x="34" y="110" width="116" height="150" rx="8" />
+                    <line className="dg-edge" x1="50" y1="140" x2="134" y2="140" />
+                    <line className="dg-edge" x1="50" y1="160" x2="134" y2="160" />
+                    <line className="dg-edge" x1="50" y1="180" x2="120" y2="180" />
+                    <line className="dg-edge" x1="50" y1="200" x2="128" y2="200" />
+                    <text className="dg-label" x="92" y="286" textAnchor="middle" fontSize="13.5">submitted docs</text>
+                    <text className="dg-sub" x="92" y="302" textAnchor="middle" fontSize="10.5">imperfect, inconsistent</text>
+                    {/* converging inputs into the gate */}
+                    <path className="dg-edge" d="M176 150 C262 150, 280 170, 338 170" />
+                    <path className="dg-edge" d="M176 210 C262 210, 280 174, 338 174" />
+                    <path className="dg-edge" d="M176 180 H338" />
+                    <polygon className="dg-node--dim" points="338,166 346,171 338,176" />
+                    {/* middle: the extract &amp; cross-check gate */}
+                    <rect className="dg-box" x="346" y="138" width="128" height="64" rx="10" />
+                    <text className="dg-label" x="410" y="164" textAnchor="middle" fontSize="13.5">Extract &amp; check</text>
+                    <text className="dg-sub" x="410" y="181" textAnchor="middle" fontSize="10.5">flag conflicts early</text>
+                    <path className="dg-edge" d="M474 170 H540" />
+                    <polygon className="dg-node--dim" points="540,166 548,170 540,174" />
+                    {/* right: the single decision-ready record — amber resolution beat */}
+                    <rect className="dg-box dg-box--live" x="548" y="86" width="236" height="168" rx="12" />
+                    <text className="dg-label" x="666" y="116" textAnchor="middle" fontSize="14">Decision-ready</text>
+                    <text className="dg-sub" x="666" y="132" textAnchor="middle" fontSize="10.5">record · audit-ready</text>
+                    <circle className="dg-node" cx="572" cy="158" r="3" /><line className="dg-edge" x1="586" y1="158" x2="760" y2="158" />
+                    <circle className="dg-node" cx="572" cy="182" r="3" /><line className="dg-edge" x1="586" y1="182" x2="742" y2="182" />
+                    <circle className="dg-node" cx="572" cy="206" r="3" /><line className="dg-edge" x1="586" y1="206" x2="760" y2="206" />
+                    <circle className="dg-node" cx="572" cy="230" r="3" /><line className="dg-edge" x1="586" y1="230" x2="734" y2="230" />
                   </svg>
-                  <figcaption>the loop collapses — messy inputs become a clean, decision-ready file</figcaption>
+                  <figcaption>messy inputs, extracted and anchored to evidence — resolved into one decision-ready record</figcaption>
                 </figure>
 
                 <p>The loop collapses because the process stops relying on late discovery. It becomes front-loaded with clarity.</p>
@@ -220,34 +209,34 @@ export default function Post() {
                 <p>Part 3 gave you five tests. Here is how they appear in real onboarding, in leader terms.</p>
 
                 <figure className="fig fig--wide fig--diagram">
-                  <div className="dgv">
-                    <div className="dgv__row">
-                      <span className="dgv__ver">Traceability</span>
-                      <span className="dgv__arrow">→</span>
-                      <span className="dgv__label">a case record you can replay</span>
+                  <div className="dgi dgi--5">
+                    <div className="dgi__cell">
+                      <span className="dgi__ico"><svg viewBox="0 0 24 24"><path d="M5.5 6.5 A8 8 0 1 1 4.2 13" /><polyline points="4 3 5.5 6.5 9 5.5" /><polyline points="12 7.5 12 12 15 13.8" /></svg></span>
+                      <span className="dgi__label">Traceability</span>
+                      <span className="dgi__sub">a case record you can replay</span>
                     </div>
-                    <div className="dgv__row">
-                      <span className="dgv__ver">Evidenced outputs</span>
-                      <span className="dgv__arrow">→</span>
-                      <span className="dgv__label">provenance on every field</span>
+                    <div className="dgi__cell">
+                      <span className="dgi__ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2" /><line x1="12" y1="7" x2="12" y2="20" /><line x1="8" y1="11" x2="16" y2="11" /><path d="M5 14 A7 7 0 0 0 12 21 A7 7 0 0 0 19 14" /></svg></span>
+                      <span className="dgi__label">Evidenced outputs</span>
+                      <span className="dgi__sub">provenance on every field</span>
                     </div>
-                    <div className="dgv__row">
-                      <span className="dgv__ver">Identity &amp; permissions</span>
-                      <span className="dgv__arrow">→</span>
-                      <span className="dgv__label">controlled, entitled action</span>
+                    <div className="dgi__cell">
+                      <span className="dgi__ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4" /><line x1="10.8" y1="10.8" x2="20" y2="20" /><line x1="17" y1="17" x2="19.5" y2="14.5" /><line x1="19" y1="19" x2="21" y2="17" /></svg></span>
+                      <span className="dgi__label">Identity &amp; permissions</span>
+                      <span className="dgi__sub">controlled, entitled action</span>
                     </div>
-                    <div className="dgv__row">
-                      <span className="dgv__ver">Designed oversight</span>
-                      <span className="dgv__arrow">→</span>
-                      <span className="dgv__label">human checkpoints, with evidence</span>
+                    <div className="dgi__cell">
+                      <span className="dgi__ico"><svg viewBox="0 0 24 24"><path d="M2 12 C6 6.5 18 6.5 22 12 C18 17.5 6 17.5 2 12 Z" /><circle cx="12" cy="12" r="2.6" /></svg></span>
+                      <span className="dgi__label">Designed oversight</span>
+                      <span className="dgi__sub">human checkpoints, with evidence</span>
                     </div>
-                    <div className="dgv__row">
-                      <span className="dgv__ver">Reliability under stress</span>
-                      <span className="dgv__arrow">→</span>
-                      <span className="dgv__label">safe exception handling</span>
+                    <div className="dgi__cell">
+                      <span className="dgi__ico"><svg viewBox="0 0 24 24"><path d="M12 3 L20 6 V12 C20 17 16 20 12 21 C8 20 4 17 4 12 V6 Z" /><polyline points="9 12 11.3 14.3 15.3 10" /></svg></span>
+                      <span className="dgi__label">Reliability under stress</span>
+                      <span className="dgi__sub">safe exception handling</span>
                     </div>
                   </div>
-                  <figcaption>the five tests, as they show up in real onboarding</figcaption>
+                  <figcaption>the five tests, as they show up across the onboarding flow</figcaption>
                 </figure>
 
                 <ol>
